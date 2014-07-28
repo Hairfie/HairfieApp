@@ -11,8 +11,5 @@
 
 @interface HomeViewController : UIViewController
 
-@property (nonatomic, strong) IBOutlet UILabel* label;
-@property (nonatomic, strong) NSString* text;
-
 
 @end

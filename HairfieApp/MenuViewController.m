@@ -8,64 +8,27 @@
 
 
 #import "MenuViewController.h"
-#import "SWRevealViewController.h"
-#import "HomeViewController.h"
+#import "UIViewController+ECSlidingViewController.h"
 
-@implementation SWUITableViewCell
-
-@end
 
 @implementation MenuViewController
 
-- (void) prepareForSegueB: (UIStoryboardSegue *) segue sender: (id) sender
-{
-    // configure the destination view controller:
-    
-    if ( [segue.destinationViewController isKindOfClass: [HomeViewController class]] &&
-        [sender isKindOfClass:[UITableViewCell class]] )
-    {
-        UILabel* c = [(SWUITableViewCell *)sender label];
-        HomeViewController* home = segue.destinationViewController;
-        
-        home.text = c.text;
-    }
-    
-    // configure the segue.
-    if ( [segue isKindOfClass: [SWRevealViewControllerSegue class]] )
-    {
-        SWRevealViewControllerSegue* rvcs = (SWRevealViewControllerSegue*) segue;
-        
-        SWRevealViewController* rvc = self.revealViewController;
-        NSAssert( rvc != nil, @"oops! must have a revealViewController" );
-        
-        NSAssert( [rvc.frontViewController isKindOfClass: [UINavigationController class]], @"oops!  for this segue we want a permanent navigation controller in the front!" );
-        
-        rvcs.performBlock = ^(SWRevealViewControllerSegue* rvc_segue, UIViewController* svc, UIViewController* dvc)
-        {
-            UINavigationController* nc = [[UINavigationController alloc] initWithRootViewController:dvc];
-            [rvc pushFrontViewController:nc animated:YES];
-        };
-    }
+@synthesize menuTableView = _menuTableView;
+
+
+
+- (IBAction)unwindToMenuViewController:(UIStoryboardSegue *)segue {
+    NSLog(@"Open Menu");
 }
 
-
-- (void) prepareForSegue: (UIStoryboardSegue *) segue sender: (id) sender
+- (void)viewDidLoad
 {
-    // configure the destination view controller:
-    if ( [sender isKindOfClass:[UITableViewCell class]] )
-    {
-        UILabel* c = [(SWUITableViewCell *)sender label];
-        UINavigationController *navController = segue.destinationViewController;
-        HomeViewController* home = [navController childViewControllers].firstObject;
-        if ( [home isKindOfClass:[HomeViewController class]] )
-        {
-            home.text = c.text;
-        }
-    }
+    [super viewDidLoad];
+    self.slidingViewController.topViewAnchoredGesture = ECSlidingViewControllerAnchoredGesturePanning | ECSlidingViewControllerAnchoredGestureTapping;
 }
-
 
 #pragma mark - Table view data source
+
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -74,29 +37,68 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 2;
+    return 4;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
+    static NSString *cellIdentifier = @"Cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    NSInteger row = indexPath.row;
     
-    switch ( indexPath.row )
+    if (nil == cell)
     {
-        case 0:
-            CellIdentifier = @"Page1";
-            break;
-            
-        case 1:
-            CellIdentifier = @"Page2";
-            break;
-            
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
     }
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: CellIdentifier forIndexPath: indexPath];
+    if (row == 0)
+    {
+        cell.textLabel.text = @"Home";
+    }
+    else if (row == 1)
+    {
+        cell.textLabel.text = @"Favorites";
+    }
+    else if (row == 2)
+    {
+        cell.textLabel.text = @"Likes";
+    }
+    else if (row == 3)
+    {
+        cell.textLabel.text = @"Settings";
+    }
     
     return cell;
 }
+
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    NSInteger row = indexPath.row;
+    //
+    if (row == 0)
+    {
+        NSLog(@"home");
+    }
+    
+    if (row == 1)
+    {
+        NSLog(@"favorites");
+    }
+    if (row == 2)
+    {
+        NSLog(@"likes");
+    }
+    if (row == 3)
+    {
+        NSLog(@"settings");
+    }
+   // NSLog(@"%ld", indexPath.row);
+}
+
+
 
 #pragma mark state preservation / restoration
 - (void)encodeRestorableStateWithCoder:(NSCoder *)coder {

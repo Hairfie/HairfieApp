@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SWUITableViewCell : UITableViewCell
-@property (nonatomic) IBOutlet UILabel *label;
-@end
+@interface MenuViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
-@interface MenuViewController : UITableViewController
+
+@property (nonatomic) IBOutlet UITableView *menuTableView;
+
+- (IBAction)unwindToMenuViewController:(UIStoryboardSegue *)segue;
 
 @end
