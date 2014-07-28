@@ -13,6 +13,13 @@
 		1511519A1982B7A8001157A2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 151151981982B7A8001157A2 /* Main.storyboard */; };
 		1511519C1982B7A8001157A2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1511519B1982B7A8001157A2 /* Images.xcassets */; };
 		151151A81982B7A8001157A2 /* HairfieAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 151151A71982B7A8001157A2 /* HairfieAppTests.m */; };
+		B330B5B4198653940059AE56 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B330B5B3198653940059AE56 /* SWRevealViewController.m */; };
+		B330B5BC198656450059AE56 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B330B5BB198656450059AE56 /* MenuViewController.m */; };
+		B330B5BE198656DD0059AE56 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B330B5BD198656DD0059AE56 /* UIKit.framework */; };
+		B330B5C0198656EB0059AE56 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B330B5BF198656EA0059AE56 /* Foundation.framework */; };
+		B330B5C2198656F20059AE56 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B330B5C1198656F20059AE56 /* CoreGraphics.framework */; };
+		B330B5C5198658970059AE56 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B330B5C4198658970059AE56 /* HomeViewController.m */; };
+		B330B5C9198663400059AE56 /* menu-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B330B5C8198663400059AE56 /* menu-icon.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +45,17 @@
 		151151A11982B7A8001157A2 /* HairfieAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HairfieAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		151151A61982B7A8001157A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		151151A71982B7A8001157A2 /* HairfieAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HairfieAppTests.m; sourceTree = "<group>"; };
+		B330B5B2198653940059AE56 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
+		B330B5B3198653940059AE56 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
+		B330B5BA198656450059AE56 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
+		B330B5BB198656450059AE56 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
+		B330B5BD198656DD0059AE56 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		B330B5BF198656EA0059AE56 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		B330B5C1198656F20059AE56 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		B330B5C3198658970059AE56 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		B330B5C4198658970059AE56 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		B330B5C619865B2E0059AE56 /* HairfiePrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HairfiePrefixHeader.pch; sourceTree = "<group>"; };
+		B330B5C8198663400059AE56 /* menu-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu-icon.png"; path = "../../../../Pictures/menu-icon.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +63,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B330B5C2198656F20059AE56 /* CoreGraphics.framework in Frameworks */,
+				B330B5C0198656EB0059AE56 /* Foundation.framework in Frameworks */,
+				B330B5BE198656DD0059AE56 /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +82,9 @@
 		151151821982B7A8001157A2 = {
 			isa = PBXGroup;
 			children = (
+				B330B5C1198656F20059AE56 /* CoreGraphics.framework */,
+				B330B5BF198656EA0059AE56 /* Foundation.framework */,
+				B330B5BD198656DD0059AE56 /* UIKit.framework */,
 				1511518D1982B7A8001157A2 /* HairfieApp */,
 				151151A41982B7A8001157A2 /* HairfieAppTests */,
 				1511518C1982B7A8001157A2 /* Products */,
@@ -84,6 +108,11 @@
 				151151951982B7A8001157A2 /* ViewController.h */,
 				151151961982B7A8001157A2 /* ViewController.m */,
 				151151981982B7A8001157A2 /* Main.storyboard */,
+				B330B5BA198656450059AE56 /* MenuViewController.h */,
+				B330B5BB198656450059AE56 /* MenuViewController.m */,
+				B330B5C3198658970059AE56 /* HomeViewController.h */,
+				B330B5C4198658970059AE56 /* HomeViewController.m */,
+				B330B5B1198653940059AE56 /* SWRevealViewController */,
 				1511519B1982B7A8001157A2 /* Images.xcassets */,
 				1511518E1982B7A8001157A2 /* Supporting Files */,
 			);
@@ -93,8 +122,10 @@
 		1511518E1982B7A8001157A2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B330B5C8198663400059AE56 /* menu-icon.png */,
 				1511518F1982B7A8001157A2 /* Info.plist */,
 				151151901982B7A8001157A2 /* main.m */,
+				B330B5C619865B2E0059AE56 /* HairfiePrefixHeader.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -114,6 +145,15 @@
 				151151A61982B7A8001157A2 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B330B5B1198653940059AE56 /* SWRevealViewController */ = {
+			isa = PBXGroup;
+			children = (
+				B330B5B2198653940059AE56 /* SWRevealViewController.h */,
+				B330B5B3198653940059AE56 /* SWRevealViewController.m */,
+			);
+			path = SWRevealViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -198,6 +238,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1511519A1982B7A8001157A2 /* Main.storyboard in Resources */,
+				B330B5C9198663400059AE56 /* menu-icon.png in Resources */,
 				1511519C1982B7A8001157A2 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -219,6 +260,9 @@
 				151151971982B7A8001157A2 /* ViewController.m in Sources */,
 				151151941982B7A8001157A2 /* AppDelegate.m in Sources */,
 				151151911982B7A8001157A2 /* main.m in Sources */,
+				B330B5B4198653940059AE56 /* SWRevealViewController.m in Sources */,
+				B330B5BC198656450059AE56 /* MenuViewController.m in Sources */,
+				B330B5C5198658970059AE56 /* HomeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,6 +319,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -286,7 +331,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -315,13 +360,14 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -334,7 +380,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = HairfieApp/HairfiePrefixHeader.pch;
 				INFOPLIST_FILE = HairfieApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -346,7 +395,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = HairfiePrefixHeader.pch;
 				INFOPLIST_FILE = HairfieApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -405,6 +457,7 @@
 				151151AD1982B7A8001157A2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		151151AE1982B7A8001157A2 /* Build configuration list for PBXNativeTarget "HairfieAppTests" */ = {
 			isa = XCConfigurationList;
@@ -413,6 +466,7 @@
 				151151B01982B7A8001157A2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

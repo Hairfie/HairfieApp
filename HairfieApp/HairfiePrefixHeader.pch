@@ -1,0 +1,16 @@
+//
+//  HairfiePrefixHeader.pch
+//  HairfieApp
+//
+//  Created by Leo Martin on 28/07/2014.
+//  Copyright (c) 2014 Hairfie. All rights reserved.
+//
+
+#import <Availability.h>
+
+#ifdef __OBJC__
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+
+#import "SWRevealViewController.h"
+#endif
