@@ -12,6 +12,7 @@
 
 
 @property (nonatomic) IBOutlet UITableView *menuTableView;
+@property (nonatomic) IBOutlet UIView *profileView;
 
 - (IBAction)unwindToMenuViewController:(UIStoryboardSegue *)segue;
 

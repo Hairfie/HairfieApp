@@ -13,7 +13,7 @@
 
 @implementation MenuViewController
 
-@synthesize menuTableView = _menuTableView;
+@synthesize menuTableView = _menuTableView , profileView = _profileView;
 
 
 
@@ -25,6 +25,12 @@
 {
     [super viewDidLoad];
     self.slidingViewController.topViewAnchoredGesture = ECSlidingViewControllerAnchoredGesturePanning | ECSlidingViewControllerAnchoredGestureTapping;
+    _menuTableView.backgroundColor = [UIColor clearColor];
+    _menuTableView.opaque = NO;
+    _menuTableView.backgroundView = nil;
+    _menuTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    _profileView.backgroundColor = [UIColor clearColor];
+    
 }
 
 #pragma mark - Table view data source
@@ -68,16 +74,29 @@
         cell.textLabel.text = @"Settings";
     }
     
+    
+    cell.selectedBackgroundView.bounds = CGRectMake(0, 0, 10, 44);
+    cell.selectedBackgroundView.backgroundColor = [UIColor redColor];
+    
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView
+  willDisplayCell:(UITableViewCell *)cell
+forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [cell setBackgroundColor:[UIColor clearColor]];
+    // cell.imageView.image = [UIImage imageNamed:@"selected-cell.jpg"];
+
+}
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    UITableViewCell *cell = [_menuTableView cellForRowAtIndexPath:indexPath];
+    cell.imageView.image = [UIImage imageNamed:@"selected-cell.jpg"];
     NSInteger row = indexPath.row;
-    //
+
     if (row == 0)
     {
         NSLog(@"home");
@@ -98,6 +117,12 @@
    // NSLog(@"%ld", indexPath.row);
 }
 
+-(void) tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [_menuTableView cellForRowAtIndexPath:indexPath];
+    cell.imageView.image = nil;
+
+}
 
 
 #pragma mark state preservation / restoration

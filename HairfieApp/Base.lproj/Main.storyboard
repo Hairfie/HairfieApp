@@ -33,6 +33,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="navigation-bg.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="Z34-W3-l52">
+                                <rect key="frame" x="-65" y="-370" width="640" height="1136"/>
+                            </imageView>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9xK-Dr-6cp">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="150"/>
                                 <subviews>
@@ -43,15 +46,16 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="fXv-Hv-mwB">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="fXv-Hv-mwB">
                                 <rect key="frame" x="0.0" y="158" width="643" height="442"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="separatorColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <color key="sectionIndexBackgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="29k-aN-s1R" style="IBUITableViewCellStyleDefault" id="C1u-e5-pGp">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" textLabel="29k-aN-s1R" style="IBUITableViewCellStyleDefault" id="C1u-e5-pGp">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="C1u-e5-pGp" id="mYX-R8-Cb5">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -64,6 +68,7 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="yS6-bd-jQ5" style="IBUITableViewCellStyleDefault" id="s5R-Bt-XHw">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -118,6 +123,7 @@
                     </view>
                     <connections>
                         <outlet property="menuTableView" destination="fXv-Hv-mwB" id="2IP-YF-Fwt"/>
+                        <outlet property="profileView" destination="9xK-Dr-6cp" id="fWz-6V-l2M"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xwh-tg-876" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -161,7 +167,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Home" id="WQR-MD-M4q">
-                        <barButtonItem key="leftBarButtonItem" image="menu-icon.png" style="plain" id="I7H-qm-CJ7">
+                        <barButtonItem key="leftBarButtonItem" image="menu-icon.png" id="I7H-qm-CJ7">
                             <connections>
                                 <segue destination="Pyc-9a-F9R" kind="unwind" unwindAction="unwindToMenuViewController:" id="DxQ-p4-fuE"/>
                             </connections>
@@ -175,5 +181,6 @@
     </scenes>
     <resources>
         <image name="menu-icon.png" width="43" height="24"/>
+        <image name="navigation-bg.jpg" width="640" height="1136"/>
     </resources>
 </document>
