@@ -1,5 +1,5 @@
 //
-//  LikeViewController.h
+//  SettingsViewController.h
 //  HairfieApp
 //
 //  Created by Leo Martin on 29/07/2014.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LikeViewController : UIViewController <UINavigationControllerDelegate>
+@interface SettingsViewController : UIViewController <UINavigationControllerDelegate>
 
 @end

@@ -9,11 +9,11 @@
 /* Begin PBXBuildFile section */
 		151151911982B7A8001157A2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 151151901982B7A8001157A2 /* main.m */; };
 		151151941982B7A8001157A2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 151151931982B7A8001157A2 /* AppDelegate.m */; };
-		1511519A1982B7A8001157A2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 151151981982B7A8001157A2 /* Main.storyboard */; };
 		1511519C1982B7A8001157A2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1511519B1982B7A8001157A2 /* Images.xcassets */; };
 		151151A81982B7A8001157A2 /* HairfieAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 151151A71982B7A8001157A2 /* HairfieAppTests.m */; };
 		B308700C198782AF0080E6D2 /* FavoriteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B308700B198782AF0080E6D2 /* FavoriteViewController.m */; };
 		B308700F198782BC0080E6D2 /* LikeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B308700E198782BC0080E6D2 /* LikeViewController.m */; };
+		B308701719878C030080E6D2 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B308701619878C030080E6D2 /* SettingsViewController.m */; };
 		B330B5BC198656450059AE56 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B330B5BB198656450059AE56 /* MenuViewController.m */; };
 		B330B5BE198656DD0059AE56 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B330B5BD198656DD0059AE56 /* UIKit.framework */; };
 		B330B5C0198656EB0059AE56 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B330B5BF198656EA0059AE56 /* Foundation.framework */; };
@@ -28,6 +28,12 @@
 		B3E65FBB1986917800AF0C15 /* UIViewController+ECSlidingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E65FB51986917800AF0C15 /* UIViewController+ECSlidingViewController.m */; };
 		B3E65FD31986A32D00AF0C15 /* navigation-bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B3E65FD21986A32D00AF0C15 /* navigation-bg.jpg */; };
 		B3E65FD51986A9E500AF0C15 /* selected-cell.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B3E65FD41986A9E500AF0C15 /* selected-cell.jpg */; };
+		B3EDF87419878F6C00431B70 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B3EDF87619878F6C00431B70 /* Localizable.strings */; };
+		B3EDF88A198794C900431B70 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3EDF88C198794C900431B70 /* Main.storyboard */; };
+		B3EDF89219879BEF00431B70 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3EDF89119879BEF00431B70 /* QuartzCore.framework */; };
+		B3EDF8981987ABB900431B70 /* leosquare.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B3EDF8971987ABB900431B70 /* leosquare.jpg */; };
+		B3EDF89D1987C57200431B70 /* aroundme-bttn.png in Resources */ = {isa = PBXBuildFile; fileRef = B3EDF89B1987C57200431B70 /* aroundme-bttn.png */; };
+		B3EDF89E1987C57200431B70 /* menu-bttn.png in Resources */ = {isa = PBXBuildFile; fileRef = B3EDF89C1987C57200431B70 /* menu-bttn.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,11 +48,9 @@
 
 /* Begin PBXFileReference section */
 		1511518B1982B7A8001157A2 /* HairfieApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HairfieApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		1511518F1982B7A8001157A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		151151901982B7A8001157A2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		151151921982B7A8001157A2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		151151931982B7A8001157A2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		151151991982B7A8001157A2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1511519B1982B7A8001157A2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		151151A11982B7A8001157A2 /* HairfieAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HairfieAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		151151A61982B7A8001157A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -55,6 +59,8 @@
 		B308700B198782AF0080E6D2 /* FavoriteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoriteViewController.m; sourceTree = "<group>"; };
 		B308700D198782BC0080E6D2 /* LikeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LikeViewController.h; sourceTree = "<group>"; };
 		B308700E198782BC0080E6D2 /* LikeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LikeViewController.m; sourceTree = "<group>"; };
+		B308701519878C030080E6D2 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		B308701619878C030080E6D2 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		B330B5BA198656450059AE56 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
 		B330B5BB198656450059AE56 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 		B330B5BD198656DD0059AE56 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -79,6 +85,14 @@
 		B3E65FB51986917800AF0C15 /* UIViewController+ECSlidingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ECSlidingViewController.m"; sourceTree = "<group>"; };
 		B3E65FD21986A32D00AF0C15 /* navigation-bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "navigation-bg.jpg"; sourceTree = "<group>"; };
 		B3E65FD41986A9E500AF0C15 /* selected-cell.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "selected-cell.jpg"; sourceTree = "<group>"; };
+		B3EDF87519878F6C00431B70 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B3EDF885198792E800431B70 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B3EDF887198793B900431B70 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B3EDF88B198794C900431B70 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		B3EDF89119879BEF00431B70 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		B3EDF8971987ABB900431B70 /* leosquare.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = leosquare.jpg; sourceTree = "<group>"; };
+		B3EDF89B1987C57200431B70 /* aroundme-bttn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "aroundme-bttn.png"; sourceTree = "<group>"; };
+		B3EDF89C1987C57200431B70 /* menu-bttn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu-bttn.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +100,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3EDF89219879BEF00431B70 /* QuartzCore.framework in Frameworks */,
 				B330B5C2198656F20059AE56 /* CoreGraphics.framework in Frameworks */,
 				B330B5C0198656EB0059AE56 /* Foundation.framework in Frameworks */,
 				B330B5BE198656DD0059AE56 /* UIKit.framework in Frameworks */,
@@ -105,6 +120,7 @@
 		151151821982B7A8001157A2 = {
 			isa = PBXGroup;
 			children = (
+				B3EDF89119879BEF00431B70 /* QuartzCore.framework */,
 				B330B5C1198656F20059AE56 /* CoreGraphics.framework */,
 				B330B5BF198656EA0059AE56 /* Foundation.framework */,
 				B330B5BD198656DD0059AE56 /* UIKit.framework */,
@@ -126,9 +142,9 @@
 		1511518D1982B7A8001157A2 /* HairfieApp */ = {
 			isa = PBXGroup;
 			children = (
+				B3EDF88C198794C900431B70 /* Main.storyboard */,
 				151151921982B7A8001157A2 /* AppDelegate.h */,
 				151151931982B7A8001157A2 /* AppDelegate.m */,
-				151151981982B7A8001157A2 /* Main.storyboard */,
 				B3087010198782CF0080E6D2 /* Pages */,
 				B330B5BA198656450059AE56 /* MenuViewController.h */,
 				B330B5BB198656450059AE56 /* MenuViewController.m */,
@@ -142,10 +158,13 @@
 		1511518E1982B7A8001157A2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B3EDF8991987C43500431B70 /* Ressources */,
+				B3EDF8971987ABB900431B70 /* leosquare.jpg */,
+				B3EDF887198793B900431B70 /* Info.plist */,
+				B3EDF87619878F6C00431B70 /* Localizable.strings */,
 				B3E65FD41986A9E500AF0C15 /* selected-cell.jpg */,
 				B3E65FD21986A32D00AF0C15 /* navigation-bg.jpg */,
 				B330B5CA198681B20059AE56 /* menu-icon.png */,
-				1511518F1982B7A8001157A2 /* Info.plist */,
 				151151901982B7A8001157A2 /* main.m */,
 				B330B5C619865B2E0059AE56 /* HairfiePrefixHeader.pch */,
 			);
@@ -178,6 +197,8 @@
 				B308700E198782BC0080E6D2 /* LikeViewController.m */,
 				B330B5C3198658970059AE56 /* HomeViewController.h */,
 				B330B5C4198658970059AE56 /* HomeViewController.m */,
+				B308701519878C030080E6D2 /* SettingsViewController.h */,
+				B308701619878C030080E6D2 /* SettingsViewController.m */,
 			);
 			name = Pages;
 			sourceTree = "<group>";
@@ -201,6 +222,23 @@
 			);
 			name = ECSlidingViewController;
 			path = ../ECSlidingViewController;
+			sourceTree = "<group>";
+		};
+		B3EDF8991987C43500431B70 /* Ressources */ = {
+			isa = PBXGroup;
+			children = (
+				B3EDF89A1987C44500431B70 /* Feed */,
+			);
+			name = Ressources;
+			sourceTree = "<group>";
+		};
+		B3EDF89A1987C44500431B70 /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				B3EDF89B1987C57200431B70 /* aroundme-bttn.png */,
+				B3EDF89C1987C57200431B70 /* menu-bttn.png */,
+			);
+			name = Feed;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -267,6 +305,7 @@
 			knownRegions = (
 				en,
 				Base,
+				fr,
 			);
 			mainGroup = 151151821982B7A8001157A2;
 			productRefGroup = 1511518C1982B7A8001157A2 /* Products */;
@@ -284,9 +323,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1511519A1982B7A8001157A2 /* Main.storyboard in Resources */,
+				B3EDF87419878F6C00431B70 /* Localizable.strings in Resources */,
+				B3EDF8981987ABB900431B70 /* leosquare.jpg in Resources */,
 				B330B5CB198681B20059AE56 /* menu-icon.png in Resources */,
 				B3E65FD51986A9E500AF0C15 /* selected-cell.jpg in Resources */,
+				B3EDF89D1987C57200431B70 /* aroundme-bttn.png in Resources */,
+				B3EDF89E1987C57200431B70 /* menu-bttn.png in Resources */,
+				B3EDF88A198794C900431B70 /* Main.storyboard in Resources */,
 				B3E65FD31986A32D00AF0C15 /* navigation-bg.jpg in Resources */,
 				1511519C1982B7A8001157A2 /* Images.xcassets in Resources */,
 			);
@@ -318,6 +361,7 @@
 				B330B5C5198658970059AE56 /* HomeViewController.m in Sources */,
 				B3E65FB61986917800AF0C15 /* ECPercentDrivenInteractiveTransition.m in Sources */,
 				B3E65FBB1986917800AF0C15 /* UIViewController+ECSlidingViewController.m in Sources */,
+				B308701719878C030080E6D2 /* SettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,10 +384,19 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		151151981982B7A8001157A2 /* Main.storyboard */ = {
+		B3EDF87619878F6C00431B70 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				151151991982B7A8001157A2 /* Base */,
+				B3EDF87519878F6C00431B70 /* en */,
+				B3EDF885198792E800431B70 /* fr */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		B3EDF88C198794C900431B70 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B3EDF88B198794C900431B70 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

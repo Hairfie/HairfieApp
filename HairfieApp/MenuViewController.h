@@ -13,7 +13,6 @@
 
 @property (nonatomic) IBOutlet UITableView *menuTableView;
 @property (nonatomic) IBOutlet UIView *profileView;
-@property (nonatomic) IBOutlet UIView *profilePictureView;
 
 - (IBAction)unwindToMenuViewController:(UIStoryboardSegue *)segue;
 

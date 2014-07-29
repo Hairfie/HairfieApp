@@ -9,16 +9,19 @@
 
 #import "MenuViewController.h"
 #import "UIViewController+ECSlidingViewController.h"
+#import <QuartzCore/QuartzCore.h>
+
 
 
 @implementation MenuViewController
 
-@synthesize menuTableView = _menuTableView , profileView = _profileView, profilePictureView = _profilePictureView;
-
+@synthesize menuTableView = _menuTableView;
+@synthesize profileView = _profileView;
+//@synthesize profilePictureView = _profilePictureView;
+//@synthesize profilePicture = _profilePicture;
 
 
 - (IBAction)unwindToMenuViewController:(UIStoryboardSegue *)segue {
-    NSLog(@"Open Menu");
 }
 
 - (void)viewDidLoad
@@ -30,18 +33,38 @@
     _menuTableView.backgroundView = nil;
     _menuTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     _profileView.backgroundColor = [UIColor clearColor];
+   
+    UIImageView *profilePicture = [[UIImageView alloc] initWithFrame:CGRectMake(60, 50, 50, 50)];
+    profilePicture.image = [UIImage imageNamed:@"leosquare.jpg"];
     
+    profilePicture.layer.cornerRadius = profilePicture.frame.size.height / 2;
+    profilePicture.clipsToBounds = YES;
+    profilePicture.layer.borderWidth = 1.0f;
+    profilePicture.layer.borderColor = [UIColor whiteColor].CGColor;
     
-    CAShapeLayer *shape = [CAShapeLayer layer];
-    UIBezierPath *path = [UIBezierPath bezierPathWithArcCenter:_profilePictureView.center radius:(_profilePictureView.bounds.size.width / 2) startAngle:0 endAngle:(2 * M_PI) clockwise:YES];
-    shape.path = path.CGPath;
-    _profilePictureView.layer.mask=shape;
+    [_profileView addSubview:profilePicture];
     
-  /*  _profilePictureView = [[UIView alloc] initWithFrame:CGRectMake(10,20,75, 75)];
-    _profilePictureView.alpha = 0.5;
-    _profilePictureView.layer.cornerRadius = 50;
-    _profilePictureView.backgroundColor = [UIColor whiteColor];*/
+    /*
+    NSLog(@"%@", tost);
     
+    if (tost != nil)
+    {
+        NSLog(@"COUCOU");
+        
+        _profilePictureView.image = _profilePicture;
+ 
+    }
+ 
+    _profilePictureView.layer.cornerRadius = _profilePictureView.frame.size.height / 2;
+    _profilePictureView.clipsToBounds = YES;
+    _profilePictureView.layer.borderWidth = 2.0f;
+    _profilePictureView.layer.borderColor = [UIColor whiteColor].CGColor;
+  //  profilePictureView.image = [[UIImage alloc] init];
+   // profilePictureView.image = [UIImage imageWithContentsOfFile:@"leosquare.jpg"];
+   */
+   // [_profilePictureView setFrame:CGRectMake(18, 14, 100, 100)];
+   // _profilePictureView.image = [UIImage imageNamed:@"leosquare.jpg"];
+   // [_profilePictureView setImage:[UIImage imageNamed:@"leosquare.jpg"]];
 }
 
 #pragma mark - Table view data source
@@ -70,19 +93,19 @@
     
     if (row == 0)
     {
-        cell.textLabel.text = @"Home";
+        cell.textLabel.text =  [NSString  stringWithFormat:NSLocalizedString(@"Home", nil)];
     }
     else if (row == 1)
     {
-        cell.textLabel.text = @"Favorites";
+        cell.textLabel.text =[NSString  stringWithFormat:NSLocalizedString(@"Favorites", nil)];
     }
     else if (row == 2)
     {
-        cell.textLabel.text = @"Likes";
+        cell.textLabel.text = [NSString  stringWithFormat:NSLocalizedString(@"Likes", nil)];
     }
     else if (row == 3)
     {
-        cell.textLabel.text = @"Settings";
+        cell.textLabel.text = [NSString  stringWithFormat:NSLocalizedString(@"Settings", nil)];
     }
     
     
@@ -110,26 +133,20 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 
     if (row == 0)
     {
-        NSLog(@"home");
         [self performSegueWithIdentifier:@"HomeSegue" sender:self];
     }
-    
     if (row == 1)
     {
         [self performSegueWithIdentifier:@"FavoriteSegue" sender:self];
-        NSLog(@"favorites");
     }
     if (row == 2)
     {
         [self performSegueWithIdentifier:@"LikeSegue" sender:self];
-        NSLog(@"likes");
     }
     if (row == 3)
     {
-      //  [self performSegueWithIdentifier:@"home" sender:self];
-        NSLog(@"settings");
+        [self performSegueWithIdentifier:@"SettingSegue" sender:self];
     }
-   // NSLog(@"%ld", indexPath.row);
 }
 
 -(void) tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath

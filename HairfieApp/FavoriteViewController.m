@@ -16,6 +16,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationItem.title = [NSString stringWithFormat:NSLocalizedString(@"Favorites", nil)];
+    
     // Do any additional setup after loading the view.
 }
 
