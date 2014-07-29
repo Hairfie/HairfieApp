@@ -13,7 +13,7 @@
 
 @implementation MenuViewController
 
-@synthesize menuTableView = _menuTableView , profileView = _profileView;
+@synthesize menuTableView = _menuTableView , profileView = _profileView, profilePictureView = _profilePictureView;
 
 
 
@@ -30,6 +30,17 @@
     _menuTableView.backgroundView = nil;
     _menuTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     _profileView.backgroundColor = [UIColor clearColor];
+    
+    
+    CAShapeLayer *shape = [CAShapeLayer layer];
+    UIBezierPath *path = [UIBezierPath bezierPathWithArcCenter:_profilePictureView.center radius:(_profilePictureView.bounds.size.width / 2) startAngle:0 endAngle:(2 * M_PI) clockwise:YES];
+    shape.path = path.CGPath;
+    _profilePictureView.layer.mask=shape;
+    
+  /*  _profilePictureView = [[UIView alloc] initWithFrame:CGRectMake(10,20,75, 75)];
+    _profilePictureView.alpha = 0.5;
+    _profilePictureView.layer.cornerRadius = 50;
+    _profilePictureView.backgroundColor = [UIColor whiteColor];*/
     
 }
 
@@ -100,18 +111,22 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
     if (row == 0)
     {
         NSLog(@"home");
+        [self performSegueWithIdentifier:@"HomeSegue" sender:self];
     }
     
     if (row == 1)
     {
+        [self performSegueWithIdentifier:@"FavoriteSegue" sender:self];
         NSLog(@"favorites");
     }
     if (row == 2)
     {
+        [self performSegueWithIdentifier:@"LikeSegue" sender:self];
         NSLog(@"likes");
     }
     if (row == 3)
     {
+      //  [self performSegueWithIdentifier:@"home" sender:self];
         NSLog(@"settings");
     }
    // NSLog(@"%ld", indexPath.row);
