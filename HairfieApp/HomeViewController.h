@@ -11,5 +11,8 @@
 
 @interface HomeViewController : UIViewController <UINavigationControllerDelegate>
 
+@property (nonatomic) IBOutlet UILabel *AroundMeLabel;
+
+
 
 @end

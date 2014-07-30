@@ -1,22 +1,22 @@
 //
-//  SettingsViewController.m
+//  BusinessViewController.m
 //  HairfieApp
 //
-//  Created by Leo Martin on 29/07/2014.
+//  Created by Leo Martin on 30/07/2014.
 //  Copyright (c) 2014 Hairfie. All rights reserved.
 //
 
-#import "SettingsViewController.h"
+#import "BusinessViewController.h"
 
-@interface SettingsViewController ()
+@interface BusinessViewController ()
 
 @end
 
-@implementation SettingsViewController
+@implementation BusinessViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-   
+
     // Do any additional setup after loading the view.
 }
 

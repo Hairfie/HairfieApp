@@ -1,22 +1,22 @@
 //
-//  SettingsViewController.m
+//  FriendViewController.m
 //  HairfieApp
 //
-//  Created by Leo Martin on 29/07/2014.
+//  Created by Leo Martin on 30/07/2014.
 //  Copyright (c) 2014 Hairfie. All rights reserved.
 //
 
-#import "SettingsViewController.h"
+#import "FriendViewController.h"
 
-@interface SettingsViewController ()
+@interface FriendViewController ()
 
 @end
 
-@implementation SettingsViewController
+@implementation FriendViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-   
+
     // Do any additional setup after loading the view.
 }
 

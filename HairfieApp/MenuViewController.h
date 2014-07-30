@@ -13,6 +13,8 @@
 
 @property (nonatomic) IBOutlet UITableView *menuTableView;
 @property (nonatomic) IBOutlet UIView *profileView;
+@property (nonatomic, strong) NSArray *menuItems;
+@property (nonatomic, strong) NSMutableArray *menuPictos;
 
 - (IBAction)unwindToMenuViewController:(UIStoryboardSegue *)segue;
 

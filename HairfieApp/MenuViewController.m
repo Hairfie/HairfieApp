@@ -10,6 +10,7 @@
 #import "MenuViewController.h"
 #import "UIViewController+ECSlidingViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "MenuTableViewCell.h"
 
 
 
@@ -17,8 +18,8 @@
 
 @synthesize menuTableView = _menuTableView;
 @synthesize profileView = _profileView;
-//@synthesize profilePictureView = _profilePictureView;
-//@synthesize profilePicture = _profilePicture;
+@synthesize menuItems = _menuItems;
+@synthesize menuPictos = _menuPictos;
 
 
 - (IBAction)unwindToMenuViewController:(UIStoryboardSegue *)segue {
@@ -32,6 +33,7 @@
     _menuTableView.opaque = NO;
     _menuTableView.backgroundView = nil;
     _menuTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    
     _profileView.backgroundColor = [UIColor clearColor];
    
     UIImageView *profilePicture = [[UIImageView alloc] initWithFrame:CGRectMake(60, 50, 50, 50)];
@@ -43,28 +45,15 @@
     profilePicture.layer.borderColor = [UIColor whiteColor].CGColor;
     
     [_profileView addSubview:profilePicture];
-    
-    /*
-    NSLog(@"%@", tost);
-    
-    if (tost != nil)
-    {
-        NSLog(@"COUCOU");
-        
-        _profilePictureView.image = _profilePicture;
- 
-    }
- 
-    _profilePictureView.layer.cornerRadius = _profilePictureView.frame.size.height / 2;
-    _profilePictureView.clipsToBounds = YES;
-    _profilePictureView.layer.borderWidth = 2.0f;
-    _profilePictureView.layer.borderColor = [UIColor whiteColor].CGColor;
-  //  profilePictureView.image = [[UIImage alloc] init];
-   // profilePictureView.image = [UIImage imageWithContentsOfFile:@"leosquare.jpg"];
-   */
-   // [_profilePictureView setFrame:CGRectMake(18, 14, 100, 100)];
-   // _profilePictureView.image = [UIImage imageNamed:@"leosquare.jpg"];
-   // [_profilePictureView setImage:[UIImage imageNamed:@"leosquare.jpg"]];
+    _menuItems = [[NSArray alloc] init];
+    _menuItems = [NSArray arrayWithObjects: NSLocalizedString(@"Home", nil), NSLocalizedString(@"Favorites", nil),NSLocalizedString(@"Likes", nil), NSLocalizedString(@"Friends", nil),NSLocalizedString(@"Business", nil),NSLocalizedString(@"Settings", nil), nil];
+    _menuPictos = [[NSMutableArray alloc] init];
+    [_menuPictos addObject:@"home-picto.png"];
+    [_menuPictos addObject:@"favorites-picto.png"];
+    [_menuPictos addObject:@"likes-picto.png"];
+    [_menuPictos addObject:@"friends-picto.png"];
+    [_menuPictos addObject:@"business-picto.png"];
+    [_menuPictos addObject:@"settings-picto.png"];
 }
 
 #pragma mark - Table view data source
@@ -77,41 +66,28 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 4;
+    return [_menuItems count];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 45;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *cellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    NSInteger row = indexPath.row;
+    static NSString *CellIdentifier = @"MenuCell";
+    MenuTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    if (nil == cell)
-    {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
+    if (cell == nil) {
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"MenuTableViewCell" owner:self options:nil];
+        cell = [nib objectAtIndex:0];
     }
     
-    if (row == 0)
-    {
-        cell.textLabel.text =  [NSString  stringWithFormat:NSLocalizedString(@"Home", nil)];
-    }
-    else if (row == 1)
-    {
-        cell.textLabel.text =[NSString  stringWithFormat:NSLocalizedString(@"Favorites", nil)];
-    }
-    else if (row == 2)
-    {
-        cell.textLabel.text = [NSString  stringWithFormat:NSLocalizedString(@"Likes", nil)];
-    }
-    else if (row == 3)
-    {
-        cell.textLabel.text = [NSString  stringWithFormat:NSLocalizedString(@"Settings", nil)];
-    }
-    
-    
-    cell.selectedBackgroundView.bounds = CGRectMake(0, 0, 10, 44);
-    cell.selectedBackgroundView.backgroundColor = [UIColor redColor];
-    
+   
+    cell.menuItem.textColor = [UIColor colorWithRed:208 green:210 blue:213 alpha:1];
+    cell.menuItem.font = [UIFont fontWithName:@"SourceSansPro-Light" size:15];
+    cell.menuItem.text = [_menuItems objectAtIndex:indexPath.row];
+    [cell.menuPicto setImage:[UIImage imageNamed:[_menuPictos objectAtIndex:indexPath.row]]];
     return cell;
 }
 
@@ -125,10 +101,9 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 }
 
 
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [_menuTableView cellForRowAtIndexPath:indexPath];
-    cell.imageView.image = [UIImage imageNamed:@"selected-cell.jpg"];
     NSInteger row = indexPath.row;
 
     if (row == 0)
@@ -145,16 +120,18 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
     }
     if (row == 3)
     {
+        [self performSegueWithIdentifier:@"FriendSegue" sender:self];
+    }
+    if (row == 4)
+    {
+        [self performSegueWithIdentifier:@"BusinessSegue" sender:self];
+    }
+    if (row == 5)
+    {
         [self performSegueWithIdentifier:@"SettingSegue" sender:self];
     }
 }
 
--(void) tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UITableViewCell *cell = [_menuTableView cellForRowAtIndexPath:indexPath];
-    cell.imageView.image = nil;
-
-}
 
 
 #pragma mark state preservation / restoration
