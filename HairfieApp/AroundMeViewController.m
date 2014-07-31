@@ -63,11 +63,6 @@
     
     userLocation = _mapView.userLocation;
     
-    
-//    NSLog(@"latitude %+.6f, longitude %+.6f\n",
-//          location.coordinate.latitude,
-//          location.coordinate.longitude);
-    
     [self initMapWithSalons];
 }
 
@@ -79,9 +74,7 @@
 // Init a map on user location
 // Get Salons from webservice
 -(void) initMapWithSalons {
-    
-    //userLocation = _mapView.userLocation;
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance (userLocation.location.coordinate, 1000, 1000);
+        MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance (userLocation.location.coordinate, 1000, 1000);
     [_mapView setRegion:region animated:NO];
     
     [_mapView setUserTrackingMode:MKUserTrackingModeFollow animated:YES];
