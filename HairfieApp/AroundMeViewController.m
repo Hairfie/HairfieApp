@@ -19,7 +19,8 @@
 
 @implementation AroundMeViewController
 {
-    NSDictionary *salons;
+    NSArray *salons;
+    MKUserLocation *userLocation;
 }
 @synthesize manager = _manager, geocoder = _geocoder, placemark = _placemark, mapView = _mapView;
 
@@ -31,7 +32,7 @@
     _manager.desiredAccuracy = kCLLocationAccuracyBest;
     [_manager startUpdatingLocation];
     _mapView.showsUserLocation = YES;
-    [self getItems];
+    [self initMapWithSalons];
     // Do any additional setup after loading the view.
 }
 
@@ -42,12 +43,7 @@
 
 
 - (IBAction)zoomIn:(id)sender {
-    MKUserLocation *userLocation = _mapView.userLocation;
-    MKCoordinateRegion region =
-    MKCoordinateRegionMakeWithDistance (
-                                        userLocation.location.coordinate, 20000, 20000);
-    [_mapView setRegion:region animated:NO];
-    [self addAnnotations];
+    [self initMapWithSalons];
 }
 
 -(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
@@ -67,50 +63,54 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-
--(void) addAnnotations {
-    NSDictionary *info = [salons valueForKey:@"obj"];
-    NSDictionary *coords = [info valueForKey:@"gps"];
-    NSArray *longitude = [coords valueForKey:@"lng"];
-    NSArray *latitude = [coords valueForKey:@"lat"];
-    NSArray *name =[info valueForKey:@"name"];
-    for ( int i= 0; i<[longitude count]; i++)
-    {
-        CLLocationCoordinate2D coord;
-        
-        coord.longitude = [[NSString stringWithFormat:@"%@",[longitude objectAtIndex:i]] floatValue];
-        
-        coord.latitude = [[NSString stringWithFormat:@"%@",[latitude objectAtIndex:i]] floatValue];
-        
-        NSString *titleStr = [name objectAtIndex:i];
-        
-   
-        if (i == 3)
-        {
-            NSLog(@"%f %f %@", coord.longitude, coord.latitude, titleStr );
-        }
-        Annotation *annotObj =[[Annotation alloc]initWithCoordinate:coord name:titleStr];
-        
-        [_mapView addAnnotation:annotObj];
-        
-       
-    }
+-(void) initMapWithSalons {
     
+//    MKCoordinateRegion region;
+//    MKCoordinateSpan span;
+//    span.latitudeDelta = 0.005;
+//    span.longitudeDelta = 0.005;
+//    CLLocationCoordinate2D location;
+//    location.latitude = 48.8673885;
+//    location.longitude = 2.3370847;
+//    region.span = span;
+//    region.center = location;
+//    
+//    [_mapView setRegion:region animated:YES];
     
-    MKCoordinateRegion region;
-    MKCoordinateSpan span;
-    span.latitudeDelta = 0.005;
-    span.longitudeDelta = 0.005;
-    CLLocationCoordinate2D location;
-    location.latitude = 48.8673885;
-    location.longitude = 2.3370847;
-    region.span = span;
-    region.center = location;
+    userLocation = _mapView.userLocation;
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance (userLocation.location.coordinate, 1000, 1000);
+    [_mapView setRegion:region animated:NO];
     
-    [_mapView setRegion:region animated:YES];
+    [_mapView setUserTrackingMode:MKUserTrackingModeFollow animated:YES];
+    
+    [self getSalons];
 }
 
-- (void)getItems
+-(void) addSalonsToMap {
+    
+    for ( int i= 0; i<[salons count]; i++) {
+        NSDictionary *salon = [salons objectAtIndex:i];
+        [self addSalonToMap:salon];
+    }
+
+}
+
+// Add a salon to the map
+- (void) addSalonToMap: (NSDictionary *) salon {
+    NSDictionary *info = [salon valueForKey:@"obj"];
+    NSDictionary *coords = [info valueForKey:@"gps"];
+    NSString *titleStr = [info valueForKey:@"name"];
+
+    CLLocationCoordinate2D coord;
+    coord.longitude = [[NSString stringWithFormat:@"%@",[coords valueForKey:@"lng"]] floatValue];
+    coord.latitude = [[NSString stringWithFormat:@"%@",[coords valueForKey:@"lat"]] floatValue];
+    
+    Annotation *annotObj =[[Annotation alloc]initWithCoordinate:coord name:titleStr];
+    
+    [_mapView addAnnotation:annotObj];
+}
+
+- (void)getSalons
 {
     NSString *urlString = [NSString stringWithFormat:@"http://salons.hairfie.com/api/salons/nearby?lat=%@&lng=%@&limit=0.01", @"48.8673885", @"2.3370847"];
     NSURL *urlforrequest = [NSURL URLWithString:urlString];
@@ -119,38 +119,21 @@
     operation.responseSerializer = [AFJSONResponseSerializer serializer];
     
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        salons = (NSArray *)responseObject;
+        [self addSalonsToMap];
         
-        salons = (NSDictionary *)responseObject;
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error Retrieving Weather"
                                                             message:[error localizedDescription]
                                                            delegate:nil
                                                   cancelButtonTitle:@"Ok"
                                                   otherButtonTitles:nil];
-    [alertView show];
+        [alertView show];
     }];
     [operation start];
 }
+
 /*
-
-- (void) getItems
-{
-    NSString *urlStr = [NSString stringWithFormat:@"http://salons.hairfie.com/api/salons/nearby?lat=%@&lng=%@&limit=0.01", @"48.8673885", @"2.3370847"];
-    
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager GET:urlStr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-     
-        
-        
-       
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
-    }];
-
-}
-
-
 
 #pragma mark - Navigation
 
