@@ -22,7 +22,7 @@
     NSArray *salons;
     MKUserLocation *userLocation;
 }
-@synthesize manager = _manager, geocoder = _geocoder, placemark = _placemark, mapView = _mapView;
+@synthesize manager = _manager, geocoder = _geocoder, placemark = _placemark, mapView = _mapView, hairdresserTableView = _hairdresserTableView;
 
 
 - (void)viewDidLoad {
@@ -32,7 +32,8 @@
     _manager.desiredAccuracy = kCLLocationAccuracyBest;
     //[_manager startUpdatingLocation];
     [_manager startMonitoringSignificantLocationChanges];
-
+    _hairdresserTableView.delegate = self;
+    _hairdresserTableView.dataSource = self;
     _mapView.showsUserLocation = YES;
     [self initMapWithSalons];
     // Do any additional setup after loading the view.
@@ -43,10 +44,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-
-- (IBAction)zoomIn:(id)sender {
-    [self initMapWithSalons];
-}
 
 -(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
     UIAlertView *errorAlert = [[UIAlertView alloc]initWithTitle:@"Error" message:@"There was an error retrieving your location" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
@@ -74,11 +71,9 @@
 // Init a map on user location
 // Get Salons from webservice
 -(void) initMapWithSalons {
-        MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance (userLocation.location.coordinate, 1000, 1000);
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance (userLocation.location.coordinate, 1000, 1000);
     [_mapView setRegion:region animated:NO];
-    
     [_mapView setUserTrackingMode:MKUserTrackingModeFollow animated:YES];
-    
     [self getSalons];
 }
 
@@ -88,7 +83,6 @@
         NSDictionary *salon = [salons objectAtIndex:i];
         [self addSalonToMap:salon];
     }
-
 }
 
 // Add a salon to the map
@@ -133,6 +127,37 @@
     }];
     [operation start];
 }
+
+
+
+// TableView Delegate Functions
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 5;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 45;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"Results";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault   reuseIdentifier:CellIdentifier];
+    }
+    return cell;
+}
+
+
+
 
 /*
 
