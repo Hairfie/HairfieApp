@@ -30,7 +30,9 @@
     _manager = [[CLLocationManager alloc] init];
     _manager.delegate = self;
     _manager.desiredAccuracy = kCLLocationAccuracyBest;
-    [_manager startUpdatingLocation];
+    //[_manager startUpdatingLocation];
+    [_manager startMonitoringSignificantLocationChanges];
+
     _mapView.showsUserLocation = YES;
     [self initMapWithSalons];
     // Do any additional setup after loading the view.
@@ -56,15 +58,17 @@
 {
     
     CLLocation* location = [locations lastObject];
-    NSDate* eventDate = location.timestamp;
-    NSTimeInterval howRecent = [eventDate timeIntervalSinceNow];
-    if (abs(howRecent) < 15.0) {
-        // If the event is recent, do something with it.
-        _latitude = [NSString stringWithFormat:@"%.8f",location.coordinate.latitude];
-        _longitude = [NSString stringWithFormat:@"%.8f",location.coordinate.longitude];
-        [self initMapWithSalons];
-    }
+    _latitude = [NSString stringWithFormat:@"%.8f",location.coordinate.latitude];
+    _longitude = [NSString stringWithFormat:@"%.8f",location.coordinate.longitude];
     
+    userLocation = _mapView.userLocation;
+    
+    
+//    NSLog(@"latitude %+.6f, longitude %+.6f\n",
+//          location.coordinate.latitude,
+//          location.coordinate.longitude);
+    
+    [self initMapWithSalons];
 }
 
 -(IBAction)goBack:(id)sender
@@ -76,7 +80,7 @@
 // Get Salons from webservice
 -(void) initMapWithSalons {
     
-    userLocation = _mapView.userLocation;
+    //userLocation = _mapView.userLocation;
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance (userLocation.location.coordinate, 1000, 1000);
     [_mapView setRegion:region animated:NO];
     
@@ -112,6 +116,9 @@
 // Get Salons from webservices then add them to the map
 - (void)getSalons
 {
+    NSLog(@"user latitude %+.6f, user longitude %+.6f\n",
+          userLocation.location.coordinate.latitude,
+          userLocation.location.coordinate.longitude);
     NSString *urlString = [NSString stringWithFormat:@"http://salons.hairfie.com/api/salons/nearby?lat=%f&lng=%f&limit=0.01", userLocation.location.coordinate.latitude, userLocation.location.coordinate.longitude];
     NSLog(@"URL: %@", urlString);
     NSURL *urlforrequest = [NSURL URLWithString:urlString];
