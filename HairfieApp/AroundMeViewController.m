@@ -54,11 +54,16 @@
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
-    CLLocation *crnLoc = [locations lastObject];
-    _latitude = [NSString stringWithFormat:@"%.8f",crnLoc.coordinate.latitude];
-    _longitude = [NSString stringWithFormat:@"%.8f",crnLoc.coordinate.longitude];
     
-    [self initMapWithSalons];
+    CLLocation* location = [locations lastObject];
+    NSDate* eventDate = location.timestamp;
+    NSTimeInterval howRecent = [eventDate timeIntervalSinceNow];
+    if (abs(howRecent) < 15.0) {
+        // If the event is recent, do something with it.
+        _latitude = [NSString stringWithFormat:@"%.8f",location.coordinate.latitude];
+        _longitude = [NSString stringWithFormat:@"%.8f",location.coordinate.longitude];
+        [self initMapWithSalons];
+    }
     
 }
 
