@@ -57,25 +57,19 @@
     CLLocation *crnLoc = [locations lastObject];
     _latitude = [NSString stringWithFormat:@"%.8f",crnLoc.coordinate.latitude];
     _longitude = [NSString stringWithFormat:@"%.8f",crnLoc.coordinate.longitude];
+    
+    [self initMapWithSalons];
+    
 }
+
 -(IBAction)goBack:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+// Init a map on user location
+// Get Salons from webservice
 -(void) initMapWithSalons {
-    
-//    MKCoordinateRegion region;
-//    MKCoordinateSpan span;
-//    span.latitudeDelta = 0.005;
-//    span.longitudeDelta = 0.005;
-//    CLLocationCoordinate2D location;
-//    location.latitude = 48.8673885;
-//    location.longitude = 2.3370847;
-//    region.span = span;
-//    region.center = location;
-//    
-//    [_mapView setRegion:region animated:YES];
     
     userLocation = _mapView.userLocation;
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance (userLocation.location.coordinate, 1000, 1000);
@@ -110,9 +104,11 @@
     [_mapView addAnnotation:annotObj];
 }
 
+// Get Salons from webservices then add them to the map
 - (void)getSalons
 {
-    NSString *urlString = [NSString stringWithFormat:@"http://salons.hairfie.com/api/salons/nearby?lat=%@&lng=%@&limit=0.01", @"48.8673885", @"2.3370847"];
+    NSString *urlString = [NSString stringWithFormat:@"http://salons.hairfie.com/api/salons/nearby?lat=%f&lng=%f&limit=0.01", userLocation.location.coordinate.latitude, userLocation.location.coordinate.longitude];
+    NSLog(@"URL: %@", urlString);
     NSURL *urlforrequest = [NSURL URLWithString:urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:urlforrequest];
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
