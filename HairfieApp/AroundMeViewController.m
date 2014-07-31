@@ -13,6 +13,8 @@
 #import "AFHTTPRequestOperationManager.h"
 #import "AFHTTPSessionManager.h"
 
+#define BASE_URL @"http://salons.hairfie.com/api"
+
 @interface AroundMeViewController ()
 
 @end
@@ -112,7 +114,7 @@
     NSLog(@"user latitude %+.6f, user longitude %+.6f\n",
           userLocation.location.coordinate.latitude,
           userLocation.location.coordinate.longitude);
-    NSString *urlString = [NSString stringWithFormat:@"http://salons.hairfie.com/api/salons/nearby?lat=%f&lng=%f&limit=0.01", userLocation.location.coordinate.latitude, userLocation.location.coordinate.longitude];
+    NSString *urlString = [NSString stringWithFormat:@"%@/salons/nearby?lat=%f&lng=%f&limit=0.01", BASE_URL, userLocation.location.coordinate.latitude, userLocation.location.coordinate.longitude];
     NSLog(@"URL: %@", urlString);
     NSURL *urlforrequest = [NSURL URLWithString:urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:urlforrequest];
