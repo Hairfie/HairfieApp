@@ -68,11 +68,10 @@
 }
 
 
-
--(void) addAnnotations   
+-(void) addAnnotations {
     NSDictionary *info = [salons valueForKey:@"obj"];
-     NSDictionary *coords = [info valueForKey:@"gps"];
-     NSArray *longitude = [coords valueForKey:@"lng"];
+    NSDictionary *coords = [info valueForKey:@"gps"];
+    NSArray *longitude = [coords valueForKey:@"lng"];
     NSArray *latitude = [coords valueForKey:@"lat"];
     NSArray *name =[info valueForKey:@"name"];
     for ( int i= 0; i<[longitude count]; i++)
