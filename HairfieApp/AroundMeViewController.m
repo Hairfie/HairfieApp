@@ -7,7 +7,8 @@
 //
 
 #import "AroundMeViewController.h"
-#import "Annotation.h"
+#import "MyAnnotation.h"
+#import "CustomPinView.h"
 
 #import "AFHTTPRequestOperation.h"
 #import "AFHTTPRequestOperationManager.h"
@@ -34,6 +35,7 @@
     [_manager startMonitoringSignificantLocationChanges];
     _hairdresserTableView.delegate = self;
     _hairdresserTableView.dataSource = self;
+    _mapView.delegate = self;
     _mapView.showsUserLocation = YES;
     [self initMapWithSalons];
     // Do any additional setup after loading the view.
@@ -98,7 +100,10 @@
     coord.longitude = [[NSString stringWithFormat:@"%@",[coords valueForKey:@"lng"]] floatValue];
     coord.latitude = [[NSString stringWithFormat:@"%@",[coords valueForKey:@"lat"]] floatValue];
     
-    Annotation *annotObj =[[Annotation alloc]initWithCoordinate:coord name:titleStr];
+    MyAnnotation *annotObj =[[MyAnnotation alloc]init];
+    
+    annotObj.title = titleStr;
+    annotObj.coordinate = coord;
     
     [_mapView addAnnotation:annotObj];
 }
@@ -160,6 +165,58 @@
 }
 
 
+// MKAnnotation delegate methods
+
+// Set up the MKAnnotation View
+
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id)annotation {
+
+    static NSString *myIdentifier =@"MyAnnotation";
+
+    if([annotation isKindOfClass:[MyAnnotation class]])
+    {
+        MKAnnotationView *annotationView=[mapView dequeueReusableAnnotationViewWithIdentifier:myIdentifier];
+        if(!annotationView)
+        {
+            annotationView=[[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:myIdentifier];
+            annotationView.image = [UIImage imageNamed:@"custom-map-pin.png"];
+            annotationView.centerOffset = CGPointMake(0, -annotationView.image.size.height / 2);
+            annotationView.canShowCallout = YES;
+        }
+        return annotationView;
+    }
+    return nil;
+}
+
+
+// Method for showing custom view on annotation
+
+/*
+- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)annotationView {
+    
+    CustomPinView *calloutView = [[CustomPinView alloc] initWithFrame:CGRectMake(0.0, 0.0, 70, 30.0)];
+    
+    calloutView.myTitle.text = annotationView.annotation.title;
+    
+    
+    calloutView.center = CGPointMake(CGRectGetWidth(annotationView.bounds) / 2.0, 0.0);
+    [annotationView addSubview:calloutView];
+   
+    
+}
+ 
+// Methods for when the user deselect the annotation
+
+- (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view {
+    for (UIView *subview in view.subviews) {
+        if (![subview isKindOfClass:[CustomPinView class]]) {
+            continue;
+        }
+        
+        [subview removeFromSuperview];
+    }
+}
+*/
 
 
 /*

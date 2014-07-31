@@ -18,7 +18,6 @@
 @property (nonatomic) IBOutlet MKMapView *mapView;
 @property (nonatomic) IBOutlet UITableView *hairdresserTableView;
 
-
 @property (nonatomic)  CLLocationManager *manager;
 @property (nonatomic)     CLGeocoder *geocoder;
 @property (nonatomic)     CLPlacemark *placemark;

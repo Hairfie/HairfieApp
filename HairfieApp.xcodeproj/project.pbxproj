@@ -34,7 +34,7 @@
 		B34231711988FB500058866B /* arrow-nav.png in Resources */ = {isa = PBXBuildFile; fileRef = B34231701988FB500058866B /* arrow-nav.png */; };
 		B3423175198907A80058866B /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3423174198907A80058866B /* CoreLocation.framework */; };
 		B342317719891AA40058866B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B342317619891AA40058866B /* MapKit.framework */; };
-		B342317A19891EA40058866B /* Annotation.m in Sources */ = {isa = PBXBuildFile; fileRef = B342317919891EA40058866B /* Annotation.m */; };
+		B342317A19891EA40058866B /* MyAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = B342317919891EA40058866B /* MyAnnotation.m */; };
 		B3423210198924290058866B /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = B34231FE198924290058866B /* AFHTTPRequestOperation.m */; };
 		B3423211198924290058866B /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B3423200198924290058866B /* AFHTTPRequestOperationManager.m */; };
 		B3423212198924290058866B /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B3423202198924290058866B /* AFHTTPSessionManager.m */; };
@@ -44,8 +44,10 @@
 		B3423216198924290058866B /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = B342320B198924290058866B /* AFURLRequestSerialization.m */; };
 		B3423217198924290058866B /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = B342320D198924290058866B /* AFURLResponseSerialization.m */; };
 		B3423218198924290058866B /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B342320F198924290058866B /* AFURLSessionManager.m */; };
-		B342325819892F180058866B /* MapData.m in Sources */ = {isa = PBXBuildFile; fileRef = B342325719892F180058866B /* MapData.m */; };
-		B342325B19892F460058866B /* MapDataDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = B342325A19892F460058866B /* MapDataDTO.m */; };
+		B3A12814198A7F3A004D90BD /* custom-pin.png in Resources */ = {isa = PBXBuildFile; fileRef = B3A12813198A7F3A004D90BD /* custom-pin.png */; };
+		B3A12816198A815F004D90BD /* custom-map-pin.png in Resources */ = {isa = PBXBuildFile; fileRef = B3A12815198A815F004D90BD /* custom-map-pin.png */; };
+		B3A1281A198A85D8004D90BD /* CustomPinView.m in Sources */ = {isa = PBXBuildFile; fileRef = B3A12819198A85D8004D90BD /* CustomPinView.m */; };
+		B3A1281C198A8609004D90BD /* CustomPinView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3A1281B198A8609004D90BD /* CustomPinView.xib */; };
 		B3E65FB61986917800AF0C15 /* ECPercentDrivenInteractiveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E65FAA1986917800AF0C15 /* ECPercentDrivenInteractiveTransition.m */; };
 		B3E65FB71986917800AF0C15 /* ECSlidingAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E65FAC1986917800AF0C15 /* ECSlidingAnimationController.m */; };
 		B3E65FB81986917800AF0C15 /* ECSlidingInteractiveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E65FAF1986917800AF0C15 /* ECSlidingInteractiveTransition.m */; };
@@ -123,8 +125,8 @@
 		B34231701988FB500058866B /* arrow-nav.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow-nav.png"; sourceTree = "<group>"; };
 		B3423174198907A80058866B /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		B342317619891AA40058866B /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		B342317819891EA40058866B /* Annotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Annotation.h; sourceTree = "<group>"; };
-		B342317919891EA40058866B /* Annotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Annotation.m; sourceTree = "<group>"; };
+		B342317819891EA40058866B /* MyAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAnnotation.h; sourceTree = "<group>"; };
+		B342317919891EA40058866B /* MyAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAnnotation.m; sourceTree = "<group>"; };
 		B34231FD198924290058866B /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		B34231FE198924290058866B /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
 		B34231FF198924290058866B /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
@@ -144,10 +146,11 @@
 		B342320D198924290058866B /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLResponseSerialization.m; sourceTree = "<group>"; };
 		B342320E198924290058866B /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
 		B342320F198924290058866B /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
-		B342325619892F180058866B /* MapData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapData.h; sourceTree = "<group>"; };
-		B342325719892F180058866B /* MapData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapData.m; sourceTree = "<group>"; };
-		B342325919892F460058866B /* MapDataDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapDataDTO.h; sourceTree = "<group>"; };
-		B342325A19892F460058866B /* MapDataDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapDataDTO.m; sourceTree = "<group>"; };
+		B3A12813198A7F3A004D90BD /* custom-pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "custom-pin.png"; sourceTree = "<group>"; };
+		B3A12815198A815F004D90BD /* custom-map-pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "custom-map-pin.png"; sourceTree = "<group>"; };
+		B3A12818198A85D8004D90BD /* CustomPinView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomPinView.h; sourceTree = "<group>"; };
+		B3A12819198A85D8004D90BD /* CustomPinView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomPinView.m; sourceTree = "<group>"; };
+		B3A1281B198A8609004D90BD /* CustomPinView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomPinView.xib; sourceTree = "<group>"; };
 		B3E65FA91986917800AF0C15 /* ECPercentDrivenInteractiveTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECPercentDrivenInteractiveTransition.h; sourceTree = "<group>"; };
 		B3E65FAA1986917800AF0C15 /* ECPercentDrivenInteractiveTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECPercentDrivenInteractiveTransition.m; sourceTree = "<group>"; };
 		B3E65FAB1986917800AF0C15 /* ECSlidingAnimationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECSlidingAnimationController.h; sourceTree = "<group>"; };
@@ -249,6 +252,8 @@
 		1511518E1982B7A8001157A2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B3A12815198A815F004D90BD /* custom-map-pin.png */,
+				B3A12813198A7F3A004D90BD /* custom-pin.png */,
 				B3F6622A1987D52A0041F298 /* Source_Sans_Pro */,
 				B3EDF8991987C43500431B70 /* Ressources */,
 				B3EDF8971987ABB900431B70 /* leosquare.jpg */,
@@ -284,12 +289,7 @@
 			children = (
 				B342316D1988F8D70058866B /* AroundMeViewController.h */,
 				B342316E1988F8D70058866B /* AroundMeViewController.m */,
-				B342325619892F180058866B /* MapData.h */,
-				B342325719892F180058866B /* MapData.m */,
-				B342325919892F460058866B /* MapDataDTO.h */,
-				B342325A19892F460058866B /* MapDataDTO.m */,
-				B342317819891EA40058866B /* Annotation.h */,
-				B342317919891EA40058866B /* Annotation.m */,
+				B3A12817198A8577004D90BD /* MapKit Config */,
 				B308700A198782AF0080E6D2 /* FavoriteViewController.h */,
 				B308700B198782AF0080E6D2 /* FavoriteViewController.m */,
 				B308700D198782BC0080E6D2 /* LikeViewController.h */,
@@ -353,6 +353,18 @@
 				B3F6624C1987E87E0041F298 /* MenuTableViewCell.xib */,
 			);
 			name = "Left Side Menu";
+			sourceTree = "<group>";
+		};
+		B3A12817198A8577004D90BD /* MapKit Config */ = {
+			isa = PBXGroup;
+			children = (
+				B342317819891EA40058866B /* MyAnnotation.h */,
+				B342317919891EA40058866B /* MyAnnotation.m */,
+				B3A12818198A85D8004D90BD /* CustomPinView.h */,
+				B3A12819198A85D8004D90BD /* CustomPinView.m */,
+				B3A1281B198A8609004D90BD /* CustomPinView.xib */,
+			);
+			name = "MapKit Config";
 			sourceTree = "<group>";
 		};
 		B3E65FA81986917800AF0C15 /* ECSlidingViewController */ = {
@@ -524,6 +536,8 @@
 				B3F662401987D52A0041F298 /* SourceSansPro-Light.ttf in Resources */,
 				B3F6623F1987D52A0041F298 /* SourceSansPro-Italic.ttf in Resources */,
 				B342315F1988E1DC0058866B /* friends-picto.png in Resources */,
+				B3A12814198A7F3A004D90BD /* custom-pin.png in Resources */,
+				B3A1281C198A8609004D90BD /* CustomPinView.xib in Resources */,
 				B3F662291987CCC50041F298 /* searchbar.png in Resources */,
 				B3EDF89E1987C57200431B70 /* menu-bttn.png in Resources */,
 				B3F662431987D52A0041F298 /* SourceSansPro-Semibold.ttf in Resources */,
@@ -535,6 +549,7 @@
 				B3E65FD31986A32D00AF0C15 /* navigation-bg.jpg in Resources */,
 				B3F6624E1987E87E0041F298 /* MenuTableViewCell.xib in Resources */,
 				1511519C1982B7A8001157A2 /* Images.xcassets in Resources */,
+				B3A12816198A815F004D90BD /* custom-map-pin.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -572,15 +587,14 @@
 				B3423216198924290058866B /* AFURLRequestSerialization.m in Sources */,
 				B3423218198924290058866B /* AFURLSessionManager.m in Sources */,
 				B3423217198924290058866B /* AFURLResponseSerialization.m in Sources */,
-				B342317A19891EA40058866B /* Annotation.m in Sources */,
+				B342317A19891EA40058866B /* MyAnnotation.m in Sources */,
 				B3E65FB61986917800AF0C15 /* ECPercentDrivenInteractiveTransition.m in Sources */,
 				B3E65FBB1986917800AF0C15 /* UIViewController+ECSlidingViewController.m in Sources */,
 				B34231671988ECF50058866B /* FriendViewController.m in Sources */,
-				B342325819892F180058866B /* MapData.m in Sources */,
-				B342325B19892F460058866B /* MapDataDTO.m in Sources */,
 				B342316A1988ED070058866B /* BusinessViewController.m in Sources */,
 				B3423213198924290058866B /* AFNetworkReachabilityManager.m in Sources */,
 				B308701719878C030080E6D2 /* SettingsViewController.m in Sources */,
+				B3A1281A198A85D8004D90BD /* CustomPinView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
