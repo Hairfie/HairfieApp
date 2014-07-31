@@ -10,14 +10,13 @@
 #import <CoreLocation/CoreLocation.h>
 #import <MapKit/MapKit.h>
 
-@interface AroundMeViewController : UIViewController <CLLocationManagerDelegate, MKMapViewDelegate>
+@interface AroundMeViewController : UIViewController <CLLocationManagerDelegate, MKMapViewDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic) NSString *longitude;
 @property (nonatomic) NSString *latitude;
 
 @property (nonatomic) IBOutlet MKMapView *mapView;
-
-
+@property (nonatomic) IBOutlet UITableView *hairdresserTableView;
 
 
 @property (nonatomic)  CLLocationManager *manager;
