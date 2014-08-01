@@ -7,36 +7,31 @@
 //
 
 #import "SalonTableViewCell.h"
-#import "EDStarRating.h"
+
 
 @implementation SalonTableViewCell
 
-@synthesize name = _name, hairfieNb = _hairfieNb, womanPrice = _womanPrice, manPrice = _manPrice, hairfieDescription = _hairfieDescription ,currentSales = _currentSales, bookButton = _bookButton, starRating = _starRating;
+@synthesize name = _name, hairfieNb = _hairfieNb, womanPrice = _womanPrice, manPrice = _manPrice, hairfieDescription = _hairfieDescription ,currentSales = _currentSales, bookButton = _bookButton, ratingView = _ratingView, statusLabel = _statusLabel;
 
 - (void)awakeFromNib {
     // Initialization code
     _bookButton.text = [NSString stringWithFormat:NSLocalizedString(@"book", nil)];
-    _starRating.backgroundColor  = [UIColor whiteColor];
-    _starRating.starImage = [[UIImage imageNamed:@"selected-template"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-    _starRating.starHighlightedImage = [[UIImage imageNamed:@"star-highlighted-template"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-    _starRating.maxRating = 5.0;
-    _starRating.delegate = self;
-    _starRating.horizontalMargin = 20;
-    _starRating.editable= NO;
-    _starRating.rating= 5; // mettre variable qui change
-    _starRating.displayMode=EDStarRatingDisplayHalf;
-    [_starRating  setNeedsDisplay];
-    _starRating.tintColor = [UIColor redColor];
+
+    _ratingView.notSelectedImage = [UIImage imageNamed:@"not_selected_star.png"];
+    _ratingView.halfSelectedImage = [UIImage imageNamed:@"half_selected_star.png"];
+    _ratingView.fullSelectedImage = [UIImage imageNamed:@"selected_star.png"];
+    _ratingView.rating = 3;
+    _ratingView.editable = NO;
+    _ratingView.maxRating = 5;
+    _ratingView.delegate = self;
+    _statusLabel.text = [NSString stringWithFormat:@"3"];
+    
 }
-
--(void)starsSelectionChanged:(EDStarRating *)control rating:(float)rating
-{
-    NSString *ratingString = [NSString stringWithFormat:@"Rating: %.1f", rating];
-    _starRatingLabel.text = ratingString;
+/*
+- (void)rateView:(RatingView *)rateView ratingDidChange:(float)rating {
+    _statusLabel.text = [NSString stringWithFormat:@"%.f", rating];
 }
-
-
-
+*/
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 

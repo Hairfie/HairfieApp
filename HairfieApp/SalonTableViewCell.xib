@@ -16,6 +16,9 @@
             <string>SourceSansPro-Light</string>
             <string>SourceSansPro-Light</string>
         </mutableArray>
+        <mutableArray key="SourceSansPro-Regular.ttf">
+            <string>SourceSansPro-Regular</string>
+        </mutableArray>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -93,10 +96,16 @@
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="whW-Nh-WXc" customClass="EDStarRating">
-                        <rect key="frame" x="55" y="80" width="128" height="29"/>
+                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="whW-Nh-WXc" customClass="RatingView">
+                        <rect key="frame" x="55" y="80" width="91" height="29"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vIA-lT-8IX">
+                        <rect key="frame" x="154" y="84" width="29" height="21"/>
+                        <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="11"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
             </tableViewCellContentView>
             <connections>
@@ -104,8 +113,9 @@
                 <outlet property="location" destination="RFB-yQ-a3b" id="fP0-6N-vZk"/>
                 <outlet property="manPrice" destination="l8t-JB-gux" id="urY-BW-K30"/>
                 <outlet property="name" destination="dgp-W4-2QP" id="AKh-Jl-uCf"/>
+                <outlet property="ratingView" destination="whW-Nh-WXc" id="oIM-nV-gMX"/>
                 <outlet property="salonPicture" destination="5u0-Dr-YmC" id="veu-Nh-d8M"/>
-                <outlet property="starRating" destination="whW-Nh-WXc" id="l2A-f7-VFd"/>
+                <outlet property="statusLabel" destination="vIA-lT-8IX" id="tQn-mE-Ndt"/>
                 <outlet property="womanPrice" destination="ysg-wz-O3K" id="nUl-8H-ftK"/>
             </connections>
             <point key="canvasLocation" x="324" y="274.5"/>

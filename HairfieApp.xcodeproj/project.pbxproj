@@ -56,7 +56,10 @@
 		B3AD59C1198B9D3500909ADE /* picto-list-promo.png in Resources */ = {isa = PBXBuildFile; fileRef = B3AD59BC198B9D3500909ADE /* picto-list-promo.png */; };
 		B3AD59C2198B9D3500909ADE /* picto-list-man.png in Resources */ = {isa = PBXBuildFile; fileRef = B3AD59BD198B9D3500909ADE /* picto-list-man.png */; };
 		B3AD59C3198B9D3500909ADE /* picto-list-woman.png in Resources */ = {isa = PBXBuildFile; fileRef = B3AD59BE198B9D3500909ADE /* picto-list-woman.png */; };
-		B3BD869C198BC82400BD8591 /* EDStarRating.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BD869B198BC82400BD8591 /* EDStarRating.m */; };
+		B3BD869F198BCFE500BD8591 /* RatingView.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BD869E198BCFE500BD8591 /* RatingView.m */; };
+		B3BD86AA198BD3DA00BD8591 /* half_selected_star.png in Resources */ = {isa = PBXBuildFile; fileRef = B3BD86A7198BD3DA00BD8591 /* half_selected_star.png */; };
+		B3BD86AB198BD3DA00BD8591 /* not_selected_star.png in Resources */ = {isa = PBXBuildFile; fileRef = B3BD86A8198BD3DA00BD8591 /* not_selected_star.png */; };
+		B3BD86AC198BD3DA00BD8591 /* selected_star.png in Resources */ = {isa = PBXBuildFile; fileRef = B3BD86A9198BD3DA00BD8591 /* selected_star.png */; };
 		B3E65FB61986917800AF0C15 /* ECPercentDrivenInteractiveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E65FAA1986917800AF0C15 /* ECPercentDrivenInteractiveTransition.m */; };
 		B3E65FB71986917800AF0C15 /* ECSlidingAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E65FAC1986917800AF0C15 /* ECSlidingAnimationController.m */; };
 		B3E65FB81986917800AF0C15 /* ECSlidingInteractiveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E65FAF1986917800AF0C15 /* ECSlidingInteractiveTransition.m */; };
@@ -169,8 +172,11 @@
 		B3AD59BC198B9D3500909ADE /* picto-list-promo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "picto-list-promo.png"; sourceTree = "<group>"; };
 		B3AD59BD198B9D3500909ADE /* picto-list-man.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "picto-list-man.png"; sourceTree = "<group>"; };
 		B3AD59BE198B9D3500909ADE /* picto-list-woman.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "picto-list-woman.png"; sourceTree = "<group>"; };
-		B3BD869A198BC82400BD8591 /* EDStarRating.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EDStarRating.h; sourceTree = "<group>"; };
-		B3BD869B198BC82400BD8591 /* EDStarRating.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EDStarRating.m; sourceTree = "<group>"; };
+		B3BD869D198BCFE500BD8591 /* RatingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RatingView.h; sourceTree = "<group>"; };
+		B3BD869E198BCFE500BD8591 /* RatingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RatingView.m; sourceTree = "<group>"; };
+		B3BD86A7198BD3DA00BD8591 /* half_selected_star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = half_selected_star.png; sourceTree = "<group>"; };
+		B3BD86A8198BD3DA00BD8591 /* not_selected_star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = not_selected_star.png; sourceTree = "<group>"; };
+		B3BD86A9198BD3DA00BD8591 /* selected_star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = selected_star.png; sourceTree = "<group>"; };
 		B3E65FA91986917800AF0C15 /* ECPercentDrivenInteractiveTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECPercentDrivenInteractiveTransition.h; sourceTree = "<group>"; };
 		B3E65FAA1986917800AF0C15 /* ECPercentDrivenInteractiveTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECPercentDrivenInteractiveTransition.m; sourceTree = "<group>"; };
 		B3E65FAB1986917800AF0C15 /* ECSlidingAnimationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECSlidingAnimationController.h; sourceTree = "<group>"; };
@@ -377,12 +383,12 @@
 		B3923189198BA9C800E0817D /* Around Me Controller + Views */ = {
 			isa = PBXGroup;
 			children = (
-				B3BD869A198BC82400BD8591 /* EDStarRating.h */,
-				B3BD869B198BC82400BD8591 /* EDStarRating.m */,
 				B342316D1988F8D70058866B /* AroundMeViewController.h */,
 				B342316E1988F8D70058866B /* AroundMeViewController.m */,
 				B3AD59B4198B9A3700909ADE /* SalonTableViewCell.h */,
 				B3AD59B5198B9A3700909ADE /* SalonTableViewCell.m */,
+				B3BD869D198BCFE500BD8591 /* RatingView.h */,
+				B3BD869E198BCFE500BD8591 /* RatingView.m */,
 				B3AD59B6198B9A3700909ADE /* SalonTableViewCell.xib */,
 			);
 			name = "Around Me Controller + Views";
@@ -413,6 +419,16 @@
 			name = "List ";
 			sourceTree = "<group>";
 		};
+		B3BD86A0198BD13E00BD8591 /* star rating */ = {
+			isa = PBXGroup;
+			children = (
+				B3BD86A7198BD3DA00BD8591 /* half_selected_star.png */,
+				B3BD86A8198BD3DA00BD8591 /* not_selected_star.png */,
+				B3BD86A9198BD3DA00BD8591 /* selected_star.png */,
+			);
+			name = "star rating";
+			sourceTree = "<group>";
+		};
 		B3E65FA81986917800AF0C15 /* ECSlidingViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -437,6 +453,7 @@
 		B3EDF8991987C43500431B70 /* Ressources */ = {
 			isa = PBXGroup;
 			children = (
+				B3BD86A0198BD13E00BD8591 /* star rating */,
 				B3AD59B9198B9D2600909ADE /* List  */,
 				B34231701988FB500058866B /* arrow-nav.png */,
 				B3F662471987E4670041F298 /* Menu */,
@@ -582,6 +599,7 @@
 				B330B5CB198681B20059AE56 /* menu-icon.png in Resources */,
 				B34231601988E1DC0058866B /* likes-picto.png in Resources */,
 				B34231711988FB500058866B /* arrow-nav.png in Resources */,
+				B3BD86AB198BD3DA00BD8591 /* not_selected_star.png in Resources */,
 				B3AD59C1198B9D3500909ADE /* picto-list-promo.png in Resources */,
 				B3F6623B1987D52A0041F298 /* SourceSansPro-Bold.ttf in Resources */,
 				B3E65FD51986A9E500AF0C15 /* selected-cell.jpg in Resources */,
@@ -589,6 +607,7 @@
 				B3AD59B8198B9A3700909ADE /* SalonTableViewCell.xib in Resources */,
 				B3F662401987D52A0041F298 /* SourceSansPro-Light.ttf in Resources */,
 				B3AD59BF198B9D3500909ADE /* picto-list-resume.png in Resources */,
+				B3BD86AC198BD3DA00BD8591 /* selected_star.png in Resources */,
 				B3F6623F1987D52A0041F298 /* SourceSansPro-Italic.ttf in Resources */,
 				B3AD59C0198B9D3500909ADE /* list-button-call.png in Resources */,
 				B342315F1988E1DC0058866B /* friends-picto.png in Resources */,
@@ -601,6 +620,7 @@
 				B3EDF88A198794C900431B70 /* Main.storyboard in Resources */,
 				B342315D1988E1DC0058866B /* settings-picto.png in Resources */,
 				B3F662421987D52A0041F298 /* SourceSansPro-Regular.ttf in Resources */,
+				B3BD86AA198BD3DA00BD8591 /* half_selected_star.png in Resources */,
 				B34231641988E60D0058866B /* SourceSansPro-ExtraLightItalic.ttf in Resources */,
 				B342316C1988EFD20058866B /* aroundme-bttn.png in Resources */,
 				B3923188198B9F8000E0817D /* line-separator.png in Resources */,
@@ -627,6 +647,7 @@
 				B308700F198782BC0080E6D2 /* LikeViewController.m in Sources */,
 				B3E65FBA1986917800AF0C15 /* ECSlidingViewController.m in Sources */,
 				B3423214198924290058866B /* AFSecurityPolicy.m in Sources */,
+				B3BD869F198BCFE500BD8591 /* RatingView.m in Sources */,
 				B3423211198924290058866B /* AFHTTPRequestOperationManager.m in Sources */,
 				B3423210198924290058866B /* AFHTTPRequestOperation.m in Sources */,
 				151151941982B7A8001157A2 /* AppDelegate.m in Sources */,
@@ -651,7 +672,6 @@
 				B34231671988ECF50058866B /* FriendViewController.m in Sources */,
 				B342316A1988ED070058866B /* BusinessViewController.m in Sources */,
 				B3423213198924290058866B /* AFNetworkReachabilityManager.m in Sources */,
-				B3BD869C198BC82400BD8591 /* EDStarRating.m in Sources */,
 				B308701719878C030080E6D2 /* SettingsViewController.m in Sources */,
 				B3A1281A198A85D8004D90BD /* CustomPinView.m in Sources */,
 			);

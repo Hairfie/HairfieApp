@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "EDStarRating.h"
+#import "RatingView.h"
 
-@interface SalonTableViewCell : UITableViewCell <EDStarRatingProtocol>
+
+@interface SalonTableViewCell : UITableViewCell <RatingViewDelegate>
 
 
 @property (nonatomic) IBOutlet UILabel *name;
@@ -22,8 +23,7 @@
 @property (nonatomic) IBOutlet UILabel *bookButton;
 @property (nonatomic) IBOutlet UIImageView *salonPicture;
 
-@property (weak, nonatomic) IBOutlet EDStarRating *starRating;
-@property (weak, nonatomic) IBOutlet UILabel *starRatingLabel;
-
+@property (weak, nonatomic) IBOutlet RatingView *ratingView;
+@property (weak, nonatomic) IBOutlet UILabel *statusLabel;
 
 @end
