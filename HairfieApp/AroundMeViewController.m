@@ -9,6 +9,8 @@
 #import "AroundMeViewController.h"
 #import "MyAnnotation.h"
 #import "CustomPinView.h"
+#import "AppDelegate.h"
+#import "SalonTableViewCell.h"
 
 #import "AFHTTPRequestOperation.h"
 #import "AFHTTPRequestOperationManager.h"
@@ -23,24 +25,33 @@
 @implementation AroundMeViewController
 {
     NSArray *salons;
-    MKUserLocation *userLocation;
+    CLLocation *myLocation;
 }
-@synthesize manager = _manager, geocoder = _geocoder, placemark = _placemark, mapView = _mapView, hairdresserTableView = _hairdresserTableView;
+@synthesize manager = _manager, geocoder = _geocoder, mapView = _mapView, hairdresserTableView = _hairdresserTableView, delegate = _delegate, myLocation = _myLocation;
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _manager = [[CLLocationManager alloc] init];
-    _manager.delegate = self;
-    _manager.desiredAccuracy = kCLLocationAccuracyBest;
-    //[_manager startUpdatingLocation];
-    [_manager startMonitoringSignificantLocationChanges];
+    _delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(updatedLocation:)
+                                                 name:@"newLocationNotif"
+                                               object:nil];
+
+  //  [_delegate startTrackingLocation:YES];
     _hairdresserTableView.delegate = self;
     _hairdresserTableView.dataSource = self;
     _mapView.delegate = self;
     _mapView.showsUserLocation = YES;
-    [self initMapWithSalons];
+   
     // Do any additional setup after loading the view.
+}
+
+-(void) updatedLocation:(NSNotification*)notif {
+    _myLocation = (CLLocation*)[[notif userInfo] valueForKey:@"newLocationResult"];
+    
+    [self initMapWithSalons];
+  
 }
 
 - (void)didReceiveMemoryWarning {
@@ -48,28 +59,16 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)zoomIn:(id)sender {
-    [self initMapWithSalons];
-}
 
--(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
-    UIAlertView *errorAlert = [[UIAlertView alloc]initWithTitle:@"Error" message:@"There was an error retrieving your location" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-    [errorAlert show];
-    NSLog(@"Error: %@",error.description);
-}
-
--(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
+-(void)viewDidAppear:(BOOL)animated
 {
-    
-    CLLocation* location = [locations lastObject];
-    _latitude = [NSString stringWithFormat:@"%.8f",location.coordinate.latitude];
-    _longitude = [NSString stringWithFormat:@"%.8f",location.coordinate.longitude];
-    
-    userLocation = _mapView.userLocation;
-    
-    [self initMapWithSalons];
+    [_delegate startTrackingLocation:YES];
+  //  userLocation = _mapView.userLocation;
+     [self initMapWithSalons];
+    [_hairdresserTableView reloadData];
 }
 
+ 
 -(IBAction)goBack:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
@@ -78,7 +77,7 @@
 // Init a map on user location
 // Get Salons from webservice
 -(void) initMapWithSalons {
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance (userLocation.location.coordinate, 1000, 1000);
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance (_myLocation.coordinate, 1000, 1000);
     [_mapView setRegion:region animated:NO];
     [_mapView setUserTrackingMode:MKUserTrackingModeFollow animated:YES];
     [self getSalons];
@@ -113,10 +112,7 @@
 // Get Salons from webservices then add them to the map
 - (void)getSalons
 {
-    NSLog(@"user latitude %+.6f, user longitude %+.6f\n",
-          userLocation.location.coordinate.latitude,
-          userLocation.location.coordinate.longitude);
-    NSString *urlString = [NSString stringWithFormat:@"%@/salons/nearby?lat=%f&lng=%f&limit=0.01", BASE_URL, userLocation.location.coordinate.latitude, userLocation.location.coordinate.longitude];
+    NSString *urlString = [NSString stringWithFormat:@"%@/salons/nearby?lat=%f&lng=%f&limit=0.01&max=1&limit=10", BASE_URL, _myLocation.coordinate.latitude, _myLocation.coordinate.longitude];
     NSLog(@"URL: %@", urlString);
     NSURL *urlforrequest = [NSURL URLWithString:urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:urlforrequest];
@@ -126,6 +122,7 @@
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         salons = (NSArray *)responseObject;
         [self addSalonsToMap];
+        [_hairdresserTableView reloadData];
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error Retrieving Weather"
@@ -149,21 +146,31 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 5;
+    return [salons count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 45;
+    
+    return 130;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Results";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+   
+    static NSString *CellIdentifier = @"salonCell";
+    SalonTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault   reuseIdentifier:CellIdentifier];
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"SalonTableViewCell" owner:self options:nil];
+        cell = [nib objectAtIndex:0];
     }
-    return cell;
+    NSDictionary *salon = [[salons objectAtIndex:indexPath.row] objectForKey:@"obj"];
+    NSDictionary *price = [salon objectForKey:@"price"];
+
+    cell.name.text = [salon objectForKey:@"name"];
+    cell.manPrice.text = [NSString stringWithFormat:@"%@ €",[[price objectForKey:@"men"] stringValue]];
+    cell.womanPrice.text = [NSString stringWithFormat:@"%@ €",[[price objectForKey:@"women"] stringValue]];
+   return cell;
 }
 
 
@@ -182,6 +189,7 @@
         {
             annotationView=[[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:myIdentifier];
             annotationView.image = [UIImage imageNamed:@"custom-map-pin.png"];
+            annotationView.contentMode = UIViewContentModeScaleAspectFit;
             annotationView.centerOffset = CGPointMake(0, -annotationView.image.size.height / 2);
             annotationView.canShowCallout = YES;
         }

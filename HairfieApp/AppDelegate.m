@@ -15,13 +15,56 @@
 @end
 
 @implementation AppDelegate
-            
+
+@synthesize manager = _manager, latitude = _latitude, longitude = _longitude, myLocation = _myLocation;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
  
+    _manager = [[CLLocationManager alloc] init];
+   
     return YES;
 
 }
+
+
+-(void)startTrackingLocation:(BOOL)forceLocation
+{
+
+        if (forceLocation == YES)
+    {
+        NSLog(@"tst");
+        
+        _manager.delegate = self;
+        _manager.desiredAccuracy = kCLLocationAccuracyBest;
+        [_manager startUpdatingLocation];
+    }
+    
+}
+
+-(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+    UIAlertView *errorAlert = [[UIAlertView alloc]initWithTitle:@"Error" message:@"There was an error retrieving your location" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    [errorAlert show];
+    NSLog(@"Error: %@",error.description);
+}
+
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
+{
+
+   _myLocation = [locations lastObject];
+    
+    NSLog(@"Update location");
+
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"newLocationNotif"
+                                                        object:self
+                                                      userInfo:[NSDictionary dictionaryWithObject:_myLocation
+                                                                                           forKey:@"newLocationResult"]];
+    
+    _latitude = [NSString stringWithFormat:@"%.8f",_myLocation.coordinate.latitude];
+    _longitude = [NSString stringWithFormat:@"%.8f",_myLocation.coordinate.longitude];
+    [manager stopUpdatingLocation];
+}
+
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

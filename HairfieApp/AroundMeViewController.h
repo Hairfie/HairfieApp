@@ -9,18 +9,26 @@
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
 #import <MapKit/MapKit.h>
+#import "AppDelegate.h"
 
-@interface AroundMeViewController : UIViewController <CLLocationManagerDelegate, MKMapViewDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface AroundMeViewController : UIViewController <MKMapViewDelegate, UITableViewDataSource, UITableViewDelegate>
+{
+    NSString *test;
+}
 
 @property (nonatomic) NSString *longitude;
 @property (nonatomic) NSString *latitude;
+@property (nonatomic) AppDelegate *delegate;
 
 @property (nonatomic) IBOutlet MKMapView *mapView;
 @property (nonatomic) IBOutlet UITableView *hairdresserTableView;
 
 @property (nonatomic)  CLLocationManager *manager;
 @property (nonatomic)     CLGeocoder *geocoder;
-@property (nonatomic)     CLPlacemark *placemark;
+@property (nonatomic)     CLLocation *myLocation;
+
+
+
 
 -(IBAction)goBack:(id)sender;
 
