@@ -22,9 +22,12 @@
 @property (nonatomic) IBOutlet UILabel *currentSales;
 @property (nonatomic) IBOutlet UILabel *bookButton;
 @property (nonatomic) IBOutlet UIImageView *salonPicture;
+@property (nonatomic) NSString *imgUrl;
 
 @property (weak, nonatomic) IBOutlet RatingView *ratingView;
 @property (weak, nonatomic) IBOutlet UILabel *statusLabel;
 @property (weak, nonatomic) IBOutlet UIView *statusLabelView;
+
+- (void) customInit;
 
 @end

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6185.11" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6190.4"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -30,9 +29,6 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5u0-Dr-YmC">
-                        <rect key="frame" x="6" y="6" width="41" height="41"/>
-                    </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="line-separator.png" translatesAutoresizingMaskIntoConstraints="NO" id="zmR-ew-ZmH">
                         <rect key="frame" x="55" y="48" width="128" height="1"/>
                     </imageView>
@@ -45,8 +41,8 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Where" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RFB-yQ-a3b">
-                        <rect key="frame" x="212" y="3" width="101" height="21"/>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="5 km" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RFB-yQ-a3b">
+                        <rect key="frame" x="247" y="3" width="46" height="21"/>
                         <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="11"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
@@ -109,6 +105,9 @@
                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="picto-list-nav.png" translatesAutoresizingMaskIntoConstraints="NO" id="EqC-7r-TQb">
+                        <rect key="frame" x="298" y="7" width="10" height="13"/>
+                    </imageView>
                 </subviews>
             </tableViewCellContentView>
             <connections>
@@ -117,7 +116,6 @@
                 <outlet property="manPrice" destination="l8t-JB-gux" id="urY-BW-K30"/>
                 <outlet property="name" destination="dgp-W4-2QP" id="AKh-Jl-uCf"/>
                 <outlet property="ratingView" destination="whW-Nh-WXc" id="oIM-nV-gMX"/>
-                <outlet property="salonPicture" destination="5u0-Dr-YmC" id="veu-Nh-d8M"/>
                 <outlet property="statusLabel" destination="vIA-lT-8IX" id="tQn-mE-Ndt"/>
                 <outlet property="womanPrice" destination="ysg-wz-O3K" id="nUl-8H-ftK"/>
             </connections>
@@ -128,6 +126,7 @@
         <image name="line-separator.png" width="255" height="2"/>
         <image name="list-button-call.png" width="136" height="105"/>
         <image name="picto-list-man.png" width="27" height="27"/>
+        <image name="picto-list-nav.png" width="19" height="25"/>
         <image name="picto-list-promo.png" width="30" height="28"/>
         <image name="picto-list-woman.png" width="23" height="27"/>
         <image name="statusLabelView.png" width="38" height="23"/>

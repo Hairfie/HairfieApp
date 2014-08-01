@@ -111,6 +111,7 @@
     annotObj.coordinate = coord;
     
     [_mapView addAnnotation:annotObj];
+     [_hairdresserTableView reloadData];
 }
 
 // Get Salons from webservices then add them to the map
@@ -168,10 +169,18 @@
     }
     NSDictionary *salon = [[salons objectAtIndex:indexPath.row] objectForKey:@"obj"];
     NSDictionary *price = [salon objectForKey:@"price"];
-
+    NSString *pic = [salon objectForKey:@"gps_picture"];
+    
+    
+    cell.imgUrl = @"http://maps.googleapis.com/maps/api/streetview?size=60x40&location=48.8690533,2.3380922";
+    //cell.imgUrl = [NSString stringWithFormat:@"%@",pic];
+  
+    
     cell.name.text = [salon objectForKey:@"name"];
     cell.manPrice.text = [NSString stringWithFormat:@"%@ €",[[price objectForKey:@"men"] stringValue]];
     cell.womanPrice.text = [NSString stringWithFormat:@"%@ €",[[price objectForKey:@"women"] stringValue]];
+    
+    [cell customInit];
    return cell;
 }
 

@@ -10,15 +10,19 @@
 #import <QuartzCore/QuartzCore.h>
 
 @implementation SalonTableViewCell
-
-@synthesize name = _name, hairfieNb = _hairfieNb, womanPrice = _womanPrice, manPrice = _manPrice, hairfieDescription = _hairfieDescription ,currentSales = _currentSales, bookButton = _bookButton, ratingView = _ratingView, statusLabel = _statusLabel, statusLabelView = _statusLabelView;
+{
+    UIImageView *profilePicture;
+}
+@synthesize name = _name, hairfieNb = _hairfieNb, womanPrice = _womanPrice, manPrice = _manPrice, hairfieDescription = _hairfieDescription ,currentSales = _currentSales, bookButton = _bookButton, ratingView = _ratingView, statusLabel = _statusLabel, statusLabelView = _statusLabelView, salonPicture = _salonPicture, imgUrl = _imgUrl;
 
 - (void)awakeFromNib {
     // Initialization code
     
-    UIImageView *profilePicture = [[UIImageView alloc] initWithFrame:CGRectMake(6, 6, 41, 41)];
-    profilePicture.image = [UIImage imageNamed:@"leosquare.jpg"];
+    profilePicture = [[UIImageView alloc] initWithFrame:CGRectMake(6, 6, 41, 41)];
     
+    // mettre viariable photo salon ici
+    NSLog(@"test img name in cell : %@", _imgUrl);
+    [self customInit];
     profilePicture.layer.cornerRadius = profilePicture.frame.size.height / 2;
     profilePicture.clipsToBounds = YES;
     profilePicture.layer.borderWidth = 1.0f;
@@ -40,6 +44,12 @@
     _ratingView.delegate = self;
     _statusLabel.text = [NSString stringWithFormat:@"3"];
     
+}
+
+- (void) customInit {
+
+    
+    profilePicture.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:_imgUrl]]];
 }
 
 - (void)rateView:(RatingView *)rateView ratingDidChange:(float)rating {
