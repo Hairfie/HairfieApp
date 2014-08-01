@@ -7,16 +7,17 @@
 //
 
 #import "SalonTableViewCell.h"
-
+#import <QuartzCore/QuartzCore.h>
 
 @implementation SalonTableViewCell
 
-@synthesize name = _name, hairfieNb = _hairfieNb, womanPrice = _womanPrice, manPrice = _manPrice, hairfieDescription = _hairfieDescription ,currentSales = _currentSales, bookButton = _bookButton, ratingView = _ratingView, statusLabel = _statusLabel;
+@synthesize name = _name, hairfieNb = _hairfieNb, womanPrice = _womanPrice, manPrice = _manPrice, hairfieDescription = _hairfieDescription ,currentSales = _currentSales, bookButton = _bookButton, ratingView = _ratingView, statusLabel = _statusLabel, statusLabelView = _statusLabelView;
 
 - (void)awakeFromNib {
     // Initialization code
     _bookButton.text = [NSString stringWithFormat:NSLocalizedString(@"book", nil)];
-
+    _statusLabelView.layer.cornerRadius = 5;
+    _statusLabelView.layer.masksToBounds = YES;
     _ratingView.notSelectedImage = [UIImage imageNamed:@"not_selected_star.png"];
     _ratingView.halfSelectedImage = [UIImage imageNamed:@"half_selected_star.png"];
     _ratingView.fullSelectedImage = [UIImage imageNamed:@"selected_star.png"];

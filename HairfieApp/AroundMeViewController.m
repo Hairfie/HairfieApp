@@ -38,13 +38,17 @@
                                                  name:@"newLocationNotif"
                                                object:nil];
 
-  //  [_delegate startTrackingLocation:YES];
+    
     _hairdresserTableView.delegate = self;
     _hairdresserTableView.dataSource = self;
     _mapView.delegate = self;
     _mapView.showsUserLocation = YES;
    
     // Do any additional setup after loading the view.
+}
+
+-(UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleLightContent;
 }
 
 -(void) updatedLocation:(NSNotification*)notif {
@@ -65,7 +69,6 @@
     [_delegate startTrackingLocation:YES];
   //  userLocation = _mapView.userLocation;
      [self initMapWithSalons];
-    [_hairdresserTableView reloadData];
 }
 
  
@@ -89,6 +92,7 @@
         NSDictionary *salon = [salons objectAtIndex:i];
         [self addSalonToMap:salon];
     }
+    [_hairdresserTableView reloadData];
 }
 
 // Add a salon to the map
@@ -122,8 +126,6 @@
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         salons = (NSArray *)responseObject;
         [self addSalonsToMap];
-        [_hairdresserTableView reloadData];
-        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error Retrieving Weather"
                                                             message:[error localizedDescription]

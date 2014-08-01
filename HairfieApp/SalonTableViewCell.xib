@@ -39,9 +39,9 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="line-separator.png" translatesAutoresizingMaskIntoConstraints="NO" id="ib8-KQ-fq1">
                         <rect key="frame" x="55" y="75" width="128" height="1"/>
                     </imageView>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dgp-W4-2QP">
-                        <rect key="frame" x="55" y="6" width="143" height="23"/>
-                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="18"/>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="13" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dgp-W4-2QP">
+                        <rect key="frame" x="55" y="6" width="182" height="23"/>
+                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="16"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -97,15 +97,21 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="whW-Nh-WXc" customClass="RatingView">
-                        <rect key="frame" x="55" y="80" width="91" height="29"/>
+                        <rect key="frame" x="65" y="80" width="91" height="29"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vIA-lT-8IX">
-                        <rect key="frame" x="154" y="84" width="29" height="21"/>
-                        <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="11"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wt8-J1-Vni">
+                        <rect key="frame" x="158" y="89" width="19" height="12"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vIA-lT-8IX">
+                                <rect key="frame" x="0.0" y="0.0" width="19" height="12"/>
+                                <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="11"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.90588235294117647" green="0.29803921568627451" blue="0.23529411764705882" alpha="1" colorSpace="deviceRGB"/>
+                    </view>
                 </subviews>
             </tableViewCellContentView>
             <connections>
@@ -116,6 +122,7 @@
                 <outlet property="ratingView" destination="whW-Nh-WXc" id="oIM-nV-gMX"/>
                 <outlet property="salonPicture" destination="5u0-Dr-YmC" id="veu-Nh-d8M"/>
                 <outlet property="statusLabel" destination="vIA-lT-8IX" id="tQn-mE-Ndt"/>
+                <outlet property="statusLabelView" destination="Wt8-J1-Vni" id="JkA-dR-Z3P"/>
                 <outlet property="womanPrice" destination="ysg-wz-O3K" id="nUl-8H-ftK"/>
             </connections>
             <point key="canvasLocation" x="324" y="274.5"/>

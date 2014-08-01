@@ -16,6 +16,10 @@
 
 @implementation HomeViewController
 
+-(UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleLightContent;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = [NSString stringWithFormat:NSLocalizedString(@"Home", nil)];
