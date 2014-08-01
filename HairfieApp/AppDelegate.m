@@ -16,7 +16,7 @@
 
 @implementation AppDelegate
 
-@synthesize manager = _manager, latitude = _latitude, longitude = _longitude, myLocation = _myLocation;
+@synthesize manager = _manager, myLocation = _myLocation;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
  
@@ -29,16 +29,12 @@
 
 -(void)startTrackingLocation:(BOOL)forceLocation
 {
-
-        if (forceLocation == YES)
+    if (forceLocation == YES)
     {
-        NSLog(@"tst");
-        
         _manager.delegate = self;
         _manager.desiredAccuracy = kCLLocationAccuracyBest;
         [_manager startUpdatingLocation];
     }
-    
 }
 
 -(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
@@ -51,16 +47,11 @@
 {
 
    _myLocation = [locations lastObject];
-    
-    NSLog(@"Update location");
-
     [[NSNotificationCenter defaultCenter] postNotificationName:@"newLocationNotif"
                                                         object:self
                                                       userInfo:[NSDictionary dictionaryWithObject:_myLocation
                                                                                            forKey:@"newLocationResult"]];
     
-    _latitude = [NSString stringWithFormat:@"%.8f",_myLocation.coordinate.latitude];
-    _longitude = [NSString stringWithFormat:@"%.8f",_myLocation.coordinate.longitude];
     [manager stopUpdatingLocation];
 }
 

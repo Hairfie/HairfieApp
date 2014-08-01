@@ -97,21 +97,18 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="whW-Nh-WXc" customClass="RatingView">
-                        <rect key="frame" x="65" y="80" width="91" height="29"/>
+                        <rect key="frame" x="62" y="80" width="91" height="29"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wt8-J1-Vni">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="statusLabelView.png" translatesAutoresizingMaskIntoConstraints="NO" id="H5N-5e-qGx">
                         <rect key="frame" x="158" y="89" width="19" height="12"/>
-                        <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vIA-lT-8IX">
-                                <rect key="frame" x="0.0" y="0.0" width="19" height="12"/>
-                                <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="11"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" red="0.90588235294117647" green="0.29803921568627451" blue="0.23529411764705882" alpha="1" colorSpace="deviceRGB"/>
-                    </view>
+                    </imageView>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vIA-lT-8IX">
+                        <rect key="frame" x="158" y="89" width="19" height="12"/>
+                        <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="11"/>
+                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
             </tableViewCellContentView>
             <connections>
@@ -122,7 +119,6 @@
                 <outlet property="ratingView" destination="whW-Nh-WXc" id="oIM-nV-gMX"/>
                 <outlet property="salonPicture" destination="5u0-Dr-YmC" id="veu-Nh-d8M"/>
                 <outlet property="statusLabel" destination="vIA-lT-8IX" id="tQn-mE-Ndt"/>
-                <outlet property="statusLabelView" destination="Wt8-J1-Vni" id="JkA-dR-Z3P"/>
                 <outlet property="womanPrice" destination="ysg-wz-O3K" id="nUl-8H-ftK"/>
             </connections>
             <point key="canvasLocation" x="324" y="274.5"/>
@@ -134,5 +130,6 @@
         <image name="picto-list-man.png" width="27" height="27"/>
         <image name="picto-list-promo.png" width="30" height="28"/>
         <image name="picto-list-woman.png" width="23" height="27"/>
+        <image name="statusLabelView.png" width="38" height="23"/>
     </resources>
 </document>
