@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "MenuViewController.h"
+#import "Constants.h"
 
 
 @interface AppDelegate ()
@@ -31,6 +32,10 @@
 {
     if (forceLocation == YES)
     {
+        NSLog(@"Test");
+        if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")) {
+            [_manager requestWhenInUseAuthorization];
+        }
         _manager.delegate = self;
         _manager.desiredAccuracy = kCLLocationAccuracyBest;
         [_manager startUpdatingLocation];
