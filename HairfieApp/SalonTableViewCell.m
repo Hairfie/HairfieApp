@@ -21,8 +21,6 @@
     profilePicture = [[UIImageView alloc] initWithFrame:CGRectMake(6, 6, 41, 41)];
     
     // mettre viariable photo salon ici
-    NSLog(@"test img name in cell : %@", _imgUrl);
-    [self customInit];
     profilePicture.layer.cornerRadius = profilePicture.frame.size.height / 2;
     profilePicture.clipsToBounds = YES;
     profilePicture.layer.borderWidth = 1.0f;
@@ -46,10 +44,16 @@
     
 }
 
-- (void) customInit {
-
+- (void) customInit:(NSDictionary*)salon
+{
     
-    profilePicture.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:_imgUrl]]];
+    NSDictionary *price = [salon objectForKey:@"price"];
+    NSString *imgUrl = [salon objectForKey:@"gps_picture"];
+
+    _name.text = [salon objectForKey:@"name"];
+    _manPrice.text = [NSString stringWithFormat:@"%@ €",[[price objectForKey:@"men"] stringValue]];
+    _womanPrice.text = [NSString stringWithFormat:@"%@ €",[[price objectForKey:@"women"] stringValue]];
+    profilePicture.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imgUrl]]];
 }
 
 - (void)rateView:(RatingView *)rateView ratingDidChange:(float)rating {

@@ -28,6 +28,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *statusLabel;
 @property (weak, nonatomic) IBOutlet UIView *statusLabelView;
 
-- (void) customInit;
+- (void) customInit:(NSDictionary*)salon;
 
 @end
