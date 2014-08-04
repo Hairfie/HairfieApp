@@ -48,6 +48,10 @@
 		B36731DF198FAFB800E11C56 /* button-add-favorite.png in Resources */ = {isa = PBXBuildFile; fileRef = B36731DE198FAFB800E11C56 /* button-add-favorite.png */; };
 		B36731E2198FB17800E11C56 /* picto-man-white.png in Resources */ = {isa = PBXBuildFile; fileRef = B36731E0198FB17800E11C56 /* picto-man-white.png */; };
 		B36731E3198FB17800E11C56 /* picto-woman-white.png in Resources */ = {isa = PBXBuildFile; fileRef = B36731E1198FB17800E11C56 /* picto-woman-white.png */; };
+		B36731E5198FD87600E11C56 /* picto-home-black.png in Resources */ = {isa = PBXBuildFile; fileRef = B36731E4198FD87600E11C56 /* picto-home-black.png */; };
+		B36731EB198FE0B000E11C56 /* half_selected_review.png in Resources */ = {isa = PBXBuildFile; fileRef = B36731E8198FE0B000E11C56 /* half_selected_review.png */; };
+		B36731EC198FE0B000E11C56 /* selected_review.png in Resources */ = {isa = PBXBuildFile; fileRef = B36731E9198FE0B000E11C56 /* selected_review.png */; };
+		B36731ED198FE0B000E11C56 /* not_selected_review.png in Resources */ = {isa = PBXBuildFile; fileRef = B36731EA198FE0B000E11C56 /* not_selected_review.png */; };
 		B37F9A4D198F8F5E00881071 /* page-salon-bttn-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = B37F9A4A198F8F5E00881071 /* page-salon-bttn-bg.png */; };
 		B37F9A4E198F8F5E00881071 /* picto-list-phone.png in Resources */ = {isa = PBXBuildFile; fileRef = B37F9A4B198F8F5E00881071 /* picto-list-phone.png */; };
 		B37F9A4F198F8F5E00881071 /* picto-list-clock.png in Resources */ = {isa = PBXBuildFile; fileRef = B37F9A4C198F8F5E00881071 /* picto-list-clock.png */; };
@@ -176,6 +180,10 @@
 		B36731DE198FAFB800E11C56 /* button-add-favorite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-add-favorite.png"; sourceTree = "<group>"; };
 		B36731E0198FB17800E11C56 /* picto-man-white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "picto-man-white.png"; sourceTree = "<group>"; };
 		B36731E1198FB17800E11C56 /* picto-woman-white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "picto-woman-white.png"; sourceTree = "<group>"; };
+		B36731E4198FD87600E11C56 /* picto-home-black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "picto-home-black.png"; sourceTree = "<group>"; };
+		B36731E8198FE0B000E11C56 /* half_selected_review.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = half_selected_review.png; sourceTree = "<group>"; };
+		B36731E9198FE0B000E11C56 /* selected_review.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = selected_review.png; sourceTree = "<group>"; };
+		B36731EA198FE0B000E11C56 /* not_selected_review.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = not_selected_review.png; sourceTree = "<group>"; };
 		B37F9A4A198F8F5E00881071 /* page-salon-bttn-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "page-salon-bttn-bg.png"; sourceTree = "<group>"; };
 		B37F9A4B198F8F5E00881071 /* picto-list-phone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "picto-list-phone.png"; sourceTree = "<group>"; };
 		B37F9A4C198F8F5E00881071 /* picto-list-clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "picto-list-clock.png"; sourceTree = "<group>"; };
@@ -305,7 +313,6 @@
 		1511518E1982B7A8001157A2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				B37F9A49198F8F4B00881071 /* Page Salon */,
 				B3A12820198AA1B1004D90BD /* custom-map-pin.png */,
 				B3A12813198A7F3A004D90BD /* custom-pin.png */,
 				B3F6622A1987D52A0041F298 /* Source_Sans_Pro */,
@@ -418,12 +425,12 @@
 			name = "Salon Detail";
 			sourceTree = "<group>";
 		};
-		B37F9A49198F8F4B00881071 /* Page Salon */ = {
+		B36731E6198FDFCF00E11C56 /* Pictos */ = {
 			isa = PBXGroup;
 			children = (
+				B36731E4198FD87600E11C56 /* picto-home-black.png */,
 				B36731E0198FB17800E11C56 /* picto-man-white.png */,
 				B36731E1198FB17800E11C56 /* picto-woman-white.png */,
-				B36731DE198FAFB800E11C56 /* button-add-favorite.png */,
 				B37F9A4A198F8F5E00881071 /* page-salon-bttn-bg.png */,
 				B37F9A50198F910B00881071 /* picto-sales.png */,
 				B37F9A51198F910B00881071 /* picto-hairdresser.png */,
@@ -432,7 +439,27 @@
 				B37F9A4B198F8F5E00881071 /* picto-list-phone.png */,
 				B37F9A4C198F8F5E00881071 /* picto-list-clock.png */,
 			);
-			name = "Page Salon";
+			name = Pictos;
+			sourceTree = "<group>";
+		};
+		B36731E7198FE0A300E11C56 /* review */ = {
+			isa = PBXGroup;
+			children = (
+				B36731E8198FE0B000E11C56 /* half_selected_review.png */,
+				B36731E9198FE0B000E11C56 /* selected_review.png */,
+				B36731EA198FE0B000E11C56 /* not_selected_review.png */,
+			);
+			name = review;
+			sourceTree = "<group>";
+		};
+		B37F9A49198F8F4B00881071 /* Salon Detail */ = {
+			isa = PBXGroup;
+			children = (
+				B36731E7198FE0A300E11C56 /* review */,
+				B36731DE198FAFB800E11C56 /* button-add-favorite.png */,
+				B36731E6198FDFCF00E11C56 /* Pictos */,
+			);
+			name = "Salon Detail";
 			sourceTree = "<group>";
 		};
 		B3923189198BA9C800E0817D /* Around Me Controller + Views */ = {
@@ -510,6 +537,7 @@
 		B3EDF8991987C43500431B70 /* Ressources */ = {
 			isa = PBXGroup;
 			children = (
+				B37F9A49198F8F4B00881071 /* Salon Detail */,
 				B3BD86A0198BD13E00BD8591 /* star rating */,
 				B3AD59B9198B9D2600909ADE /* List  */,
 				B34231701988FB500058866B /* arrow-nav.png */,
@@ -649,6 +677,7 @@
 				B3EDF87419878F6C00431B70 /* Localizable.strings in Resources */,
 				B34231611988E1DC0058866B /* favorites-picto.png in Resources */,
 				B342315E1988E1DC0058866B /* business-picto.png in Resources */,
+				B36731EB198FE0B000E11C56 /* half_selected_review.png in Resources */,
 				B34231621988E1DC0058866B /* home-picto.png in Resources */,
 				B3AD59C2198B9D3500909ADE /* picto-list-man.png in Resources */,
 				B3F662381987D52A0041F298 /* OFL.txt in Resources */,
@@ -663,6 +692,8 @@
 				B3BD86AB198BD3DA00BD8591 /* not_selected_star.png in Resources */,
 				B3AD59C1198B9D3500909ADE /* picto-list-promo.png in Resources */,
 				B3F6623B1987D52A0041F298 /* SourceSansPro-Bold.ttf in Resources */,
+				B36731ED198FE0B000E11C56 /* not_selected_review.png in Resources */,
+				B36731EC198FE0B000E11C56 /* selected_review.png in Resources */,
 				B3E65FD51986A9E500AF0C15 /* selected-cell.jpg in Resources */,
 				B3A12821198AA1B1004D90BD /* custom-map-pin.png in Resources */,
 				B3AD59B8198B9A3700909ADE /* SalonTableViewCell.xib in Resources */,
@@ -685,6 +716,7 @@
 				B3EDF88A198794C900431B70 /* Main.storyboard in Resources */,
 				B342315D1988E1DC0058866B /* settings-picto.png in Resources */,
 				B37F9A4E198F8F5E00881071 /* picto-list-phone.png in Resources */,
+				B36731E5198FD87600E11C56 /* picto-home-black.png in Resources */,
 				B3F662421987D52A0041F298 /* SourceSansPro-Regular.ttf in Resources */,
 				B3BD86AA198BD3DA00BD8591 /* half_selected_star.png in Resources */,
 				B3BD86AE198BDDB700BD8591 /* statusLabelView.png in Resources */,

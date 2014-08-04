@@ -7,14 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RatingView.h"
 
-@interface SalonDetailViewController : UIViewController <UIScrollViewDelegate>
+@interface SalonDetailViewController : UIViewController <UIScrollViewDelegate, RatingViewDelegate>
 
 @property (nonatomic) IBOutlet UIScrollView *imageSliderView;
 @property (nonatomic) IBOutlet UIPageControl *pageControl;
 
 
-@property (nonatomic) IBOutlet UIView *infoView;
+@property (nonatomic) IBOutlet UIScrollView *infoView;
 @property (nonatomic) IBOutlet UIView *hairfieView;
 @property (nonatomic) IBOutlet UIView *hairdresserView;
 @property (nonatomic) IBOutlet UIView *salesView;
@@ -24,6 +25,9 @@
 @property (nonatomic) IBOutlet UIButton *hairfieBttn;
 @property (nonatomic) IBOutlet UIButton *hairdresserBttn;
 @property (nonatomic) IBOutlet UIButton *salesBttn;
+
+@property (weak, nonatomic) IBOutlet RatingView *ratingView;
+
 
 -(IBAction)goBack:(id)sender;
 -(IBAction)changePage:(id)sender;
