@@ -18,17 +18,15 @@
 - (void)awakeFromNib {
     // Initialization code
     
-    profilePicture = [[UIImageView alloc] initWithFrame:CGRectMake(6, 6, 41, 41)];
-    
     // mettre viariable photo salon ici
-    profilePicture.layer.cornerRadius = profilePicture.frame.size.height / 2;
-    profilePicture.clipsToBounds = YES;
-    profilePicture.layer.borderWidth = 1.0f;
-    profilePicture.layer.borderColor = [UIColor whiteColor].CGColor;
-    [self.viewForBaselineLayout addSubview:profilePicture];
+    _salonPicture.layer.cornerRadius = 5;
+    _salonPicture.layer.masksToBounds = YES;
+    _bookButton.layer.cornerRadius = 5;
+    _bookButton.layer.masksToBounds = YES;
+
     
     
-    _bookButton.text = [NSString stringWithFormat:NSLocalizedString(@"book", nil)];
+  //  _bookButton.text = [NSString stringWithFormat:NSLocalizedString(@"book", nil)];
    
     _statusLabelView.layer.cornerRadius = 5;
     _statusLabelView.layer.masksToBounds = YES;
@@ -53,7 +51,7 @@
     _name.text = [salon objectForKey:@"name"];
     _manPrice.text = [NSString stringWithFormat:@"%@ €",[[price objectForKey:@"men"] stringValue]];
     _womanPrice.text = [NSString stringWithFormat:@"%@ €",[[price objectForKey:@"women"] stringValue]];
-    profilePicture.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imgUrl]]];
+    _salonPicture.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imgUrl]]];
 }
 
 - (void)rateView:(RatingView *)rateView ratingDidChange:(float)rating {

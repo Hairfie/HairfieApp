@@ -7,6 +7,8 @@
 //
 
 #import "SalonDetailViewController.h"
+#import "ReviewTableViewCell.h"
+#import "SimilarTableViewCell.h"
 
 @interface SalonDetailViewController ()
 
@@ -14,14 +16,29 @@
 
 @implementation SalonDetailViewController
 
-@synthesize imageSliderView =_imageSliderView, pageControl = _pageControl, infoView = _infoView, hairfieView = _hairfieView, hairdresserView = _hairdresserView, salesView = _salesView, infoBttn = _infoBttn, hairfieBttn = _hairfieBttn, hairdresserBttn = _hairdresserBttn, salesBttn = _salesBttn, ratingView = _ratingView;
+@synthesize imageSliderView =_imageSliderView, pageControl = _pageControl, infoView = _infoView, hairfieView = _hairfieView, hairdresserView = _hairdresserView, salesView = _salesView, infoBttn = _infoBttn, hairfieBttn = _hairfieBttn, hairdresserBttn = _hairdresserBttn, salesBttn = _salesBttn, ratingView = _ratingView, reviewTableView = _reviewTableView, addReviewBttn = _addReviewBttn, moreReviewBttn = _moreReviewBttn, similarTableView = _similarTableView;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _mainScrollView.contentSize = CGSizeMake(320, 866);
-    _mainScrollView.canCancelContentTouches = YES;
-    _infoView.contentSize = CGSizeMake(320, 700);
-    _infoView.scrollEnabled = NO;
+    _mainScrollView.contentSize = CGSizeMake(320, 1800);
+ //   _mainScrollView.canCancelContentTouches = YES;
+    _reviewTableView.delegate = self;
+    _reviewTableView.dataSource = self;
+    _reviewTableView.userInteractionEnabled = NO;
+    _reviewTableView.scrollEnabled = NO;
+    _reviewTableView.backgroundColor = [UIColor clearColor];
+    
+    _similarTableView.delegate = self;
+    _similarTableView.dataSource = self;
+    _similarTableView.userInteractionEnabled = NO;
+    _similarTableView.scrollEnabled = NO;
+    _similarTableView.backgroundColor = [UIColor clearColor];
+    
+    _addReviewBttn.layer.cornerRadius = 5;
+    _addReviewBttn.layer.masksToBounds = YES;
+    
+    _moreReviewBttn.layer.cornerRadius = 5;
+    _moreReviewBttn.layer.masksToBounds = YES;
 //[_infoBttn setBackgroundColor:[UIColor colorWithRed:70/255 green:85/255 blue:103/255 alpha:1]];
     
   // LOAD Pictures in page control (horizontal scroll view)
@@ -73,45 +90,8 @@
     int page = floor((scrollview.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
     _pageControl.currentPage = page;
     }
-    if (scrollview == _mainScrollView)
-    {
-        if (_mainScrollView.contentOffset.y == 158.0)
-        {
-            _mainScrollView.scrollEnabled = NO;
-            _infoView.scrollEnabled = YES;
-        }
-        
-        NSLog(@"tetet %f", _mainScrollView.contentOffset.y);
-    }
-    if (scrollview == _infoView)
-    {
-            if (_infoView.contentOffset.y == 0)
-            {
-                _mainScrollView.scrollEnabled = YES;
-                _infoView.scrollEnabled = NO;
-            }
-        
-        NSLog(@"tette %f", _infoView.contentOffset.y);
-    }
 }
 
--(void)scrollViewDidScrollToTop:(UIScrollView *)scrollView
-{
-    NSLog(@"jviens ici");
-}
-
--(void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    
-    if (scrollView == _infoView)
-        
-    {
-        if (scrollView.contentOffset.y == 0)
-            _mainScrollView.scrollEnabled = YES;
-        
-    }
-    NSLog(@"jviens ici");
-}
 
 -(IBAction)changeTab:(id)sender
 {
@@ -180,6 +160,60 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+
+
+
+// Table view delegate
+
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 2;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (tableView == _reviewTableView)
+    return 130;
+    else if (tableView == _similarTableView)
+        return 100;
+    return 90;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    if (tableView == _reviewTableView)
+    {
+    static NSString *CellIdentifier = @"reviewCell";
+    ReviewTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    if (cell == nil) {
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ReviewTableViewCell" owner:self options:nil];
+        cell = [nib objectAtIndex:0];
+    }
+    return cell;
+
+    }
+    else if (tableView == _similarTableView)
+    {
+        NSLog(@"AHAHAHA");
+        static NSString *CellIdentifier = @"similarCell";
+        SimilarTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        
+        if (cell == nil) {
+            NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"SimilarTableViewCell" owner:self options:nil];
+            cell = [nib objectAtIndex:0];
+        }
+        return cell;
+    }
+    return nil;
+}
 
 
 /*
