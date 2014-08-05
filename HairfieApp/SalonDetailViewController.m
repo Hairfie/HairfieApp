@@ -19,9 +19,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     _infoView.contentSize = CGSizeMake(320, 700);
+//[_infoBttn setBackgroundColor:[UIColor colorWithRed:70/255 green:85/255 blue:103/255 alpha:1]];
     
-    // LOAD Pictures in page control (horizontal scroll view)
-    
+  // LOAD Pictures in page control (horizontal scroll view)
+
     NSArray *tutoArray = [[NSArray alloc] init];
     tutoArray = [[NSArray alloc] initWithObjects:@"settings-picto.png", @"business-picto.png", @"likes-picto.png", @"home-picto.png", @"favorites-picto.png", nil];
     for (int i = 0; i < [tutoArray count]; i++) {
@@ -41,7 +42,6 @@
     _imageSliderView.contentSize = CGSizeMake(_imageSliderView.frame.size.width * [tutoArray count], _imageSliderView.frame.size.height);
     
     // Init Rating View
-    
     
     _ratingView.notSelectedImage = [UIImage imageNamed:@"not_selected_review.png"];
     _ratingView.halfSelectedImage = [UIImage imageNamed:@"half_selected_review.png"];
@@ -74,17 +74,50 @@
 
 -(IBAction)changeTab:(id)sender
 {
+    
     if(sender == _infoBttn)
-        [self.view bringSubviewToFront:_infoView];
+    {
+        [self setButtonSelected:_infoBttn andBringViewUpfront:_infoView];
+    }
     else if(sender == _hairfieBttn)
-        [self.view bringSubviewToFront:_hairfieView];
+    {
+        [self setButtonSelected:_hairfieBttn andBringViewUpfront:_hairfieView];
+    }
     else if(sender == _hairdresserBttn)
-        [self.view bringSubviewToFront:_hairdresserView];
+    {
+        [self setButtonSelected:_hairdresserBttn andBringViewUpfront:_hairdresserView];
+    }
     else if(sender == _salesBttn)
-        [self.view bringSubviewToFront:_salesView];
+    {
+         [self setButtonSelected:_salesBttn andBringViewUpfront:_salesView];
+    }
+}
+-(void)setButtonSelected:(UIButton*) button andBringViewUpfront:(UIView*) view
+{
+    [self.view bringSubviewToFront:view];
+    [self unSelectAll];
+    [button setBackgroundColor:[UIColor colorWithRed:50/255.0f green:67/255.0f blue:87/255.0f alpha:1]];
 }
 
+-(void) setNormalStateColor:(UIButton*) button
+{
+    [button setBackgroundColor:[UIColor colorWithRed:50/255.0f green:67/255.0f blue:87/255.0f alpha:0.9]];
+}
 
+-(void) unSelectAll
+{
+    
+    [self setNormalStateColor:_infoBttn];
+    [self setNormalStateColor:_hairfieBttn];
+    [self setNormalStateColor:_hairdresserBttn];
+    [self setNormalStateColor:_salesBttn];
+   /* _infoBttn.selected = NO;
+
+    
+    _hairfieBttn.selected = NO;
+    _hairdresserBttn.selected = NO;
+    _salesBttn.selected = NO;*/
+}
 
 
 -(IBAction)changePage:(id)sender {

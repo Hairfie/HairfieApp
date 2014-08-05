@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "RatingView.h"
+#import "MyButton.h"
 
 @interface SalonDetailViewController : UIViewController <UIScrollViewDelegate, RatingViewDelegate>
 
@@ -27,6 +28,7 @@
 @property (nonatomic) IBOutlet UIButton *salesBttn;
 
 @property (weak, nonatomic) IBOutlet RatingView *ratingView;
+
 
 
 -(IBAction)goBack:(id)sender;
