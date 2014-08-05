@@ -17,9 +17,12 @@
 
 
 @property (nonatomic) IBOutlet UIScrollView *infoView;
+@property (nonatomic) IBOutlet UIScrollView *mainScrollView;
+
 @property (nonatomic) IBOutlet UIView *hairfieView;
 @property (nonatomic) IBOutlet UIView *hairdresserView;
 @property (nonatomic) IBOutlet UIView *salesView;
+@property (nonatomic) IBOutlet UIView *tabView;
 
 
 @property (nonatomic) IBOutlet UIButton *infoBttn;
