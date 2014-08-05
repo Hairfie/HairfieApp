@@ -20,7 +20,7 @@
 @property (nonatomic) IBOutlet UILabel *manPrice;
 @property (nonatomic) IBOutlet UILabel *womanPrice;
 @property (nonatomic) IBOutlet UILabel *currentSales;
-@property (nonatomic) IBOutlet UILabel *bookButton;
+@property (nonatomic) IBOutlet UIButton *bookButton;
 @property (nonatomic) IBOutlet UIImageView *salonPicture;
 @property (nonatomic) NSString *imgUrl;
 

@@ -10,7 +10,7 @@
 #import "RatingView.h"
 #import "MyButton.h"
 
-@interface SalonDetailViewController : UIViewController <UIScrollViewDelegate, RatingViewDelegate>
+@interface SalonDetailViewController : UIViewController <UIScrollViewDelegate, RatingViewDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic) IBOutlet UIScrollView *imageSliderView;
 @property (nonatomic) IBOutlet UIPageControl *pageControl;
@@ -32,7 +32,11 @@
 
 @property (weak, nonatomic) IBOutlet RatingView *ratingView;
 
+@property (nonatomic) IBOutlet UITableView *reviewTableView;
+@property (nonatomic) IBOutlet UITableView *similarTableView;
 
+@property (nonatomic) IBOutlet UIButton *addReviewBttn;
+@property (nonatomic) IBOutlet UIButton *moreReviewBttn;
 
 -(IBAction)goBack:(id)sender;
 -(IBAction)changePage:(id)sender;
