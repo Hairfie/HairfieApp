@@ -21,7 +21,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     _mainScrollView.contentSize = CGSizeMake(320, 1800);
- //   _mainScrollView.canCancelContentTouches = YES;
     _reviewTableView.delegate = self;
     _reviewTableView.dataSource = self;
     _reviewTableView.userInteractionEnabled = NO;
@@ -39,7 +38,6 @@
     
     _moreReviewBttn.layer.cornerRadius = 5;
     _moreReviewBttn.layer.masksToBounds = YES;
-//[_infoBttn setBackgroundColor:[UIColor colorWithRed:70/255 green:85/255 blue:103/255 alpha:1]];
     
   // LOAD Pictures in page control (horizontal scroll view)
 
@@ -97,21 +95,13 @@
 {
     NSLog(@"test");
     if(sender == _infoBttn)
-    {
         [self setButtonSelected:_infoBttn andBringViewUpfront:_infoView];
-    }
     else if(sender == _hairfieBttn)
-    {
         [self setButtonSelected:_hairfieBttn andBringViewUpfront:_hairfieView];
-    }
     else if(sender == _hairdresserBttn)
-    {
         [self setButtonSelected:_hairdresserBttn andBringViewUpfront:_hairdresserView];
-    }
     else if(sender == _salesBttn)
-    {
          [self setButtonSelected:_salesBttn andBringViewUpfront:_salesView];
-    }
 }
 -(void)setButtonSelected:(UIButton*) button andBringViewUpfront:(UIView*) view
 {
@@ -161,8 +151,6 @@
 }
 
 
-
-
 // Table view delegate
 
 
@@ -176,10 +164,10 @@
     return 2;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     if (tableView == _reviewTableView)
-    return 130;
+        return 130;
     else if (tableView == _similarTableView)
         return 100;
     return 90;
@@ -190,14 +178,14 @@
     
     if (tableView == _reviewTableView)
     {
-    static NSString *CellIdentifier = @"reviewCell";
-    ReviewTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        static NSString *CellIdentifier = @"reviewCell";
+        ReviewTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    if (cell == nil) {
-        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ReviewTableViewCell" owner:self options:nil];
-        cell = [nib objectAtIndex:0];
-    }
-    return cell;
+        if (cell == nil) {
+            NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ReviewTableViewCell" owner:self options:nil];
+            cell = [nib objectAtIndex:0];
+        }
+        return cell;
 
     }
     else if (tableView == _similarTableView)

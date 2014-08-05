@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "RatingView.h"
-#import "MyButton.h"
 
 @interface SalonDetailViewController : UIViewController <UIScrollViewDelegate, RatingViewDelegate, UITableViewDataSource, UITableViewDelegate>
 
