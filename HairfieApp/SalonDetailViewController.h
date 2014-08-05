@@ -16,7 +16,7 @@
 @property (nonatomic) IBOutlet UIPageControl *pageControl;
 
 
-@property (nonatomic) IBOutlet UIScrollView *infoView;
+@property (nonatomic) IBOutlet UIView *infoView;
 @property (nonatomic) IBOutlet UIScrollView *mainScrollView;
 
 @property (nonatomic) IBOutlet UIView *hairfieView;
