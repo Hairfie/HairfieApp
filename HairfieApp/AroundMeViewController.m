@@ -11,12 +11,11 @@
 #import "CustomPinView.h"
 #import "AppDelegate.h"
 #import "SalonTableViewCell.h"
+#import "Constants.h"
 
 #import "AFHTTPRequestOperation.h"
 #import "AFHTTPRequestOperationManager.h"
 #import "AFHTTPSessionManager.h"
-
-#define BASE_URL @"http://salons.hairfie.com/api"
 
 @interface AroundMeViewController ()
 

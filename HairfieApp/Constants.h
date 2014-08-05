@@ -9,6 +9,8 @@
 #ifndef HairfieApp_constants_h
 #define HairfieApp_constants_h
 
+#define BASE_URL @"http://salons.hairfie.com/api"
+
 
 #define SYSTEM_VERSION_EQUAL_TO(v)                  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedSame)
 #define SYSTEM_VERSION_GREATER_THAN(v)              ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedDescending)
