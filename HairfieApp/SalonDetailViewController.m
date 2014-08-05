@@ -18,7 +18,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _mainScrollView.contentSize = CGSizeMake(320, 866);
+    _mainScrollView.canCancelContentTouches = YES;
     _infoView.contentSize = CGSizeMake(320, 700);
+    _infoView.scrollEnabled = NO;
 //[_infoBttn setBackgroundColor:[UIColor colorWithRed:70/255 green:85/255 blue:103/255 alpha:1]];
     
   // LOAD Pictures in page control (horizontal scroll view)
@@ -70,11 +73,49 @@
     int page = floor((scrollview.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
     _pageControl.currentPage = page;
     }
+    if (scrollview == _mainScrollView)
+    {
+        if (_mainScrollView.contentOffset.y == 158.0)
+        {
+            _mainScrollView.scrollEnabled = NO;
+            _infoView.scrollEnabled = YES;
+        }
+        
+        NSLog(@"tetet %f", _mainScrollView.contentOffset.y);
+    }
+    if (scrollview == _infoView)
+    {
+            if (_infoView.contentOffset.y == 0)
+            {
+                _mainScrollView.scrollEnabled = YES;
+                _infoView.scrollEnabled = NO;
+            }
+        
+        NSLog(@"tette %f", _infoView.contentOffset.y);
+    }
+}
+
+-(void)scrollViewDidScrollToTop:(UIScrollView *)scrollView
+{
+    NSLog(@"jviens ici");
+}
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    
+    if (scrollView == _infoView)
+        
+    {
+        if (scrollView.contentOffset.y == 0)
+            _mainScrollView.scrollEnabled = YES;
+        
+    }
+    NSLog(@"jviens ici");
 }
 
 -(IBAction)changeTab:(id)sender
 {
-    
+    NSLog(@"test");
     if(sender == _infoBttn)
     {
         [self setButtonSelected:_infoBttn andBringViewUpfront:_infoView];
@@ -94,7 +135,7 @@
 }
 -(void)setButtonSelected:(UIButton*) button andBringViewUpfront:(UIView*) view
 {
-    [self.view bringSubviewToFront:view];
+    [_tabView bringSubviewToFront:view];
     [self unSelectAll];
     [button setBackgroundColor:[UIColor colorWithRed:50/255.0f green:67/255.0f blue:87/255.0f alpha:1]];
 }
