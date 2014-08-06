@@ -25,7 +25,7 @@
 @property (nonatomic) NSString *imgUrl;
 
 @property (weak, nonatomic) IBOutlet RatingView *ratingView;
-@property (weak, nonatomic) IBOutlet UILabel *statusLabel;
+@property (weak, nonatomic) IBOutlet UILabel *ratingLabel;
 @property (weak, nonatomic) IBOutlet UIView *statusLabelView;
 
 - (void) customInit:(NSDictionary*)salon;

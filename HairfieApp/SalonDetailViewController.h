@@ -29,13 +29,27 @@
 @property (nonatomic) IBOutlet UIButton *hairdresserBttn;
 @property (nonatomic) IBOutlet UIButton *salesBttn;
 
-@property (weak, nonatomic) IBOutlet RatingView *ratingView;
+@property (weak, nonatomic) IBOutlet RatingView *salonRating;
+@property (weak, nonatomic) IBOutlet RatingView *reviewRating;
+@property (weak, nonatomic) IBOutlet UILabel *ratingLabel;
+
+@property (nonatomic) IBOutlet UILabel *name;
+@property (nonatomic) IBOutlet UILabel *address;
+@property (nonatomic) IBOutlet UILabel *city;
+@property (nonatomic) IBOutlet UILabel *manPrice;
+@property (nonatomic) IBOutlet UILabel *womanPrice;
+@property (nonatomic) IBOutlet UILabel *telephone;
+
+
+
 
 @property (nonatomic) IBOutlet UITableView *reviewTableView;
 @property (nonatomic) IBOutlet UITableView *similarTableView;
 
 @property (nonatomic) IBOutlet UIButton *addReviewBttn;
 @property (nonatomic) IBOutlet UIButton *moreReviewBttn;
+
+@property (nonatomic) NSDictionary *dataSalon;
 
 -(IBAction)goBack:(id)sender;
 -(IBAction)changePage:(id)sender;

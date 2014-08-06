@@ -42,6 +42,11 @@
 
 }
 
+- (void)rateView:(RatingView *)rateView ratingDidChange:(float)rating {
+    //   _statusLabel.text = [NSString stringWithFormat:@"%.f", rating];
+}
+
+
 /*
 #pragma mark - Navigation
 

@@ -16,10 +16,13 @@
 
 @implementation SalonDetailViewController
 
-@synthesize imageSliderView =_imageSliderView, pageControl = _pageControl, infoView = _infoView, hairfieView = _hairfieView, hairdresserView = _hairdresserView, salesView = _salesView, infoBttn = _infoBttn, hairfieBttn = _hairfieBttn, hairdresserBttn = _hairdresserBttn, salesBttn = _salesBttn, ratingView = _ratingView, reviewTableView = _reviewTableView, addReviewBttn = _addReviewBttn, moreReviewBttn = _moreReviewBttn, similarTableView = _similarTableView;
+@synthesize imageSliderView =_imageSliderView, pageControl = _pageControl, infoView = _infoView, hairfieView = _hairfieView, hairdresserView = _hairdresserView, salesView = _salesView, infoBttn = _infoBttn, hairfieBttn = _hairfieBttn, hairdresserBttn = _hairdresserBttn, salesBttn = _salesBttn, reviewRating = _reviewRating, reviewTableView = _reviewTableView, addReviewBttn = _addReviewBttn, moreReviewBttn = _moreReviewBttn, similarTableView = _similarTableView, dataSalon = _dataSalon, ratingLabel = _ratingLabel, name = _name , womanPrice = _womanPrice, manPrice = _manPrice, salonRating = _salonRating, address = _address, city = _city;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self initKnownData:_dataSalon];
+    
     _mainScrollView.contentSize = CGSizeMake(320, 1800);
     _reviewTableView.delegate = self;
     _reviewTableView.dataSource = self;
@@ -59,15 +62,18 @@
     _imageSliderView.pagingEnabled = YES;
     _imageSliderView.contentSize = CGSizeMake(_imageSliderView.frame.size.width * [tutoArray count], _imageSliderView.frame.size.height);
     
+    
+    
+    
     // Init Rating View
     
-    _ratingView.notSelectedImage = [UIImage imageNamed:@"not_selected_review.png"];
-    _ratingView.halfSelectedImage = [UIImage imageNamed:@"half_selected_review.png"];
-    _ratingView.fullSelectedImage = [UIImage imageNamed:@"selected_review.png"];
-    _ratingView.rating = 0;
-    _ratingView.editable = YES;
-    _ratingView.maxRating = 5;
-    _ratingView.delegate = self;
+    _reviewRating.notSelectedImage = [UIImage imageNamed:@"not_selected_review.png"];
+    _reviewRating.halfSelectedImage = [UIImage imageNamed:@"half_selected_review.png"];
+    _reviewRating.fullSelectedImage = [UIImage imageNamed:@"selected_review.png"];
+    _reviewRating.rating = 0;
+    _reviewRating.editable = YES;
+    _reviewRating.maxRating = 5;
+    _reviewRating.delegate = self;
     
     
     // Do any additional setup after loading the view.
@@ -175,7 +181,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+ 
     if (tableView == _reviewTableView)
     {
         static NSString *CellIdentifier = @"reviewCell";
@@ -185,7 +191,11 @@
             NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ReviewTableViewCell" owner:self options:nil];
             cell = [nib objectAtIndex:0];
         }
+        
+        
         return cell;
+        
+
 
     }
     else if (tableView == _similarTableView)
@@ -202,6 +212,37 @@
     }
     return nil;
 }
+
+- (void) initKnownData:(NSDictionary*)salon
+{
+    
+    NSLog(@"%@", salon);
+     NSDictionary *salonDetail = [salon objectForKey:@"obj"];
+    NSDictionary *price = [salonDetail objectForKey:@"price"];
+    NSArray *phoneNumber = [salonDetail objectForKey:@"phone_numbers"];
+   
+    NSLog(@"number %@", phoneNumber);
+    
+    _name.text = [salonDetail objectForKey:@"name"];
+    _manPrice.text = [NSString stringWithFormat:@"%@ €",[[price objectForKey:@"men"] stringValue]];
+    _womanPrice.text = [NSString stringWithFormat:@"%@ €",[[price objectForKey:@"women"] stringValue]];
+    
+   if (phoneNumber == nil || [phoneNumber count] == 0)
+       _telephone.text = [NSString stringWithFormat:@"No data"];
+    else
+    _telephone.text = [phoneNumber objectAtIndex:0];
+    _salonRating.notSelectedImage = [UIImage imageNamed:@"not_selected_star.png"];
+    _salonRating.halfSelectedImage = [UIImage imageNamed:@"half_selected_star.png"];
+    _salonRating.fullSelectedImage = [UIImage imageNamed:@"selected_star.png"];
+    _salonRating.editable = NO;
+    _salonRating.maxRating = 5;
+    _salonRating.delegate = self;
+    _salonRating.rating = [[salonDetail objectForKey:@"average_review"] floatValue];
+    _ratingLabel.text = [[salonDetail objectForKey:@"average_review"] stringValue];
+    _address.text = [salonDetail objectForKey:@"street"];
+    _city.text = [salonDetail objectForKey:@"city"];
+}
+
 
 
 /*

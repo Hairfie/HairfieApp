@@ -10,8 +10,9 @@
 #import "MyAnnotation.h"
 #import "CustomPinView.h"
 #import "AppDelegate.h"
+
 #import "SalonTableViewCell.h"
-#import "Constants.h"
+#import "SalonDetailViewController.h"
 
 #import "AFHTTPRequestOperation.h"
 #import "AFHTTPRequestOperationManager.h"
@@ -25,6 +26,7 @@
 {
     NSArray *salons;
     CLLocation *myLocation;
+    NSInteger rowSelected;
 }
 @synthesize manager = _manager, geocoder = _geocoder, mapView = _mapView, hairdresserTableView = _hairdresserTableView, delegate = _delegate, myLocation = _myLocation;
 
@@ -116,7 +118,7 @@
 // Get Salons from webservices then add them to the map
 - (void)getSalons
 {
-    NSString *urlString = [NSString stringWithFormat:@"%@/salons/nearby?lat=%f&lng=%f&limit=0.01&max=1&limit=10", BASE_URL, _myLocation.coordinate.latitude, _myLocation.coordinate.longitude];
+    NSString *urlString = [NSString stringWithFormat:@"%@/salons/nearby?lat=%f&lng=%f&max=1&limit=10", BASE_URL, _myLocation.coordinate.latitude, _myLocation.coordinate.longitude];
     NSLog(@"URL: %@", urlString);
     NSURL *urlforrequest = [NSURL URLWithString:urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:urlforrequest];
@@ -173,6 +175,29 @@
 }
 
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+   
+   // SalonDetailViewController *salonDetail = [[SalonDetailViewController alloc] init];
+    
+  //  salonDetail.dataSalon = [salons objectAtIndex:indexPath.row];
+  //  NSLog(@"%@", [salons objectAtIndex:indexPath.row]);
+    rowSelected = indexPath.row;
+   [self performSegueWithIdentifier:@"salonDetail" sender:self];
+    //[self prepareForSegue:@"detailSalon" sender:self];
+}
+
+-(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"salonDetail"])
+    {
+        SalonDetailViewController *salonDetail = [segue destinationViewController];
+        [salonDetail setDataSalon:[salons objectAtIndex:rowSelected]];
+    }
+    
+}
+
+
 // MKAnnotation delegate methods
 
 // Set up the MKAnnotation View
@@ -196,6 +221,10 @@
     }
     return nil;
 }
+
+
+
+
 
 
 // Method for showing custom view on annotation
