@@ -9,14 +9,17 @@
 #import "SalonDetailViewController.h"
 #import "ReviewTableViewCell.h"
 #import "SimilarTableViewCell.h"
+#import "HairfieApp-Swift.h"
 
 @interface SalonDetailViewController ()
 
 @end
 
-@implementation SalonDetailViewController
+@implementation SalonDetailViewController {
+    BOOL isOpen;
+}
 
-@synthesize imageSliderView =_imageSliderView, pageControl = _pageControl, infoView = _infoView, hairfieView = _hairfieView, hairdresserView = _hairdresserView, salesView = _salesView, infoBttn = _infoBttn, hairfieBttn = _hairfieBttn, hairdresserBttn = _hairdresserBttn, salesBttn = _salesBttn, reviewRating = _reviewRating, reviewTableView = _reviewTableView, addReviewBttn = _addReviewBttn, moreReviewBttn = _moreReviewBttn, similarTableView = _similarTableView, dataSalon = _dataSalon, ratingLabel = _ratingLabel, name = _name , womanPrice = _womanPrice, manPrice = _manPrice, salonRating = _salonRating, address = _address, city = _city, salonAvailability = _salonAvailability, nbReviews = _nbReviews;
+@synthesize imageSliderView =_imageSliderView, pageControl = _pageControl, infoView = _infoView, hairfieView = _hairfieView, hairdresserView = _hairdresserView, salesView = _salesView, infoBttn = _infoBttn, hairfieBttn = _hairfieBttn, hairdresserBttn = _hairdresserBttn, salesBttn = _salesBttn, reviewRating = _reviewRating, reviewTableView = _reviewTableView, addReviewBttn = _addReviewBttn, moreReviewBttn = _moreReviewBttn, similarTableView = _similarTableView, dataSalon = _dataSalon, ratingLabel = _ratingLabel, name = _name , womanPrice = _womanPrice, manPrice = _manPrice, salonRating = _salonRating, address = _address, city = _city, salonAvailability = _salonAvailability, nbReviews = _nbReviews, isOpenLabel = _isOpenLabel;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -219,6 +222,20 @@
     NSDictionary *price = [salonDetail objectForKey:@"price"];
     NSArray *phoneNumber = [salonDetail objectForKey:@"phone_numbers"];
     NSDictionary *reviews = [salonDetail objectForKey:@"reviews"];
+    NSDictionary *timetables =[salonDetail objectForKey:@"timetables"];
+    
+    if (timetables == nil)
+        _isOpenLabel.text = @"Pas d'informations";
+    else
+    {
+        OpeningTimes * op = [[OpeningTimes alloc] init];
+        isOpen = [op isOpen:timetables];
+        if (isOpen)
+            _isOpenLabel.text = @"Ouvert aujourd'hui";
+        else
+            _isOpenLabel.text = @"Fermé aujourd'hui";
+    }
+
     
     if (phoneNumber == nil || [phoneNumber count] == 0)
         _telephone.text = [NSString stringWithFormat:@"No data"];
