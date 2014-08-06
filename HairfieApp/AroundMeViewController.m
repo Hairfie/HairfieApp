@@ -117,7 +117,7 @@
 // Get Salons from webservices then add them to the map
 - (void)getSalons
 {
-    NSString *urlString = [NSString stringWithFormat:@"%@/salons/nearby?lat=%f&lng=%f&max=1&limit=10", BASE_URL, _myLocation.coordinate.latitude, _myLocation.coordinate.longitude];
+    NSString *urlString = [NSString stringWithFormat:@"%@/salons/nearby?lat=%f&lng=%f&max=10&limit=10", BASE_URL, _myLocation.coordinate.latitude, _myLocation.coordinate.longitude];
     NSLog(@"URL: %@", urlString);
     NSURL *urlforrequest = [NSURL URLWithString:urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:urlforrequest];

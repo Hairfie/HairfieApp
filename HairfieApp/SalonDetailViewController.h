@@ -43,6 +43,7 @@
 @property (nonatomic) IBOutlet UILabel *womanPrice;
 @property (nonatomic) IBOutlet UILabel *telephone;
 @property (nonatomic) IBOutlet UILabel *nbReviews;
+@property (nonatomic) IBOutlet UILabel *isOpenLabel;
 
 
 

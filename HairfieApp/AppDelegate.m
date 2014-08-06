@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "MenuViewController.h"
+#import "HairfieApp-Swift.h"
 
 
 @interface AppDelegate ()
