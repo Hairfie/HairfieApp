@@ -16,7 +16,6 @@
 @property (nonatomic) IBOutlet UILabel *name;
 @property (nonatomic) IBOutlet UILabel *hairfieNb;
 @property (nonatomic) IBOutlet UILabel *location;
-@property (nonatomic) IBOutlet UILabel *hairfieDescription;
 @property (nonatomic) IBOutlet UILabel *manPrice;
 @property (nonatomic) IBOutlet UILabel *womanPrice;
 @property (nonatomic) IBOutlet UILabel *currentSales;
@@ -24,8 +23,9 @@
 @property (nonatomic) IBOutlet UIImageView *salonPicture;
 @property (nonatomic) NSString *imgUrl;
 
-@property (weak, nonatomic) IBOutlet RatingView *ratingView;
+@property (weak, nonatomic) IBOutlet RatingView *salonRating;
 @property (weak, nonatomic) IBOutlet UILabel *ratingLabel;
+@property (weak, nonatomic) IBOutlet UILabel *nbReviews;
 @property (weak, nonatomic) IBOutlet UIView *statusLabelView;
 
 - (void) customInit:(NSDictionary*)salon;

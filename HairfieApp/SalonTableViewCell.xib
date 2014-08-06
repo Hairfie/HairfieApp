@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6185.11" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
+        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6190.4"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -15,6 +16,7 @@
             <string>SourceSansPro-Light</string>
         </mutableArray>
         <mutableArray key="SourceSansPro-Regular.ttf">
+            <string>SourceSansPro-Regular</string>
             <string>SourceSansPro-Regular</string>
             <string>SourceSansPro-Regular</string>
         </mutableArray>
@@ -106,17 +108,23 @@
                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ls3-kw-2xJ">
+                        <rect key="frame" x="197" y="70" width="102" height="12"/>
+                        <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="11"/>
+                        <color key="textColor" red="0.66666666666666663" green="0.67450980392156867" blue="0.68235294117647061" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
             </tableViewCellContentView>
             <connections>
-                <outlet property="bookButton" destination="XuR-lL-gXg" id="PUj-RY-6kK"/>
-                <outlet property="location" destination="RFB-yQ-a3b" id="fP0-6N-vZk"/>
-                <outlet property="manPrice" destination="l8t-JB-gux" id="urY-BW-K30"/>
-                <outlet property="name" destination="dgp-W4-2QP" id="AKh-Jl-uCf"/>
-                <outlet property="ratingLabel" destination="vIA-lT-8IX" id="sGI-Mc-Xuw"/>
-                <outlet property="ratingView" destination="whW-Nh-WXc" id="oIM-nV-gMX"/>
-                <outlet property="salonPicture" destination="caZ-XP-9Ir" id="Ohh-eg-LE1"/>
-                <outlet property="womanPrice" destination="ysg-wz-O3K" id="nUl-8H-ftK"/>
+                <outlet property="bookButton" destination="XuR-lL-gXg" id="n96-gT-6KP"/>
+                <outlet property="manPrice" destination="l8t-JB-gux" id="jQU-AH-fyt"/>
+                <outlet property="name" destination="dgp-W4-2QP" id="QWc-Tw-ceg"/>
+                <outlet property="nbReviews" destination="ls3-kw-2xJ" id="SxR-jr-wX7"/>
+                <outlet property="ratingLabel" destination="vIA-lT-8IX" id="PXP-TG-hnC"/>
+                <outlet property="salonPicture" destination="caZ-XP-9Ir" id="prc-5k-Q2I"/>
+                <outlet property="salonRating" destination="whW-Nh-WXc" id="SLz-tA-W6E"/>
+                <outlet property="womanPrice" destination="ysg-wz-O3K" id="dNr-Ry-vmG"/>
             </connections>
             <point key="canvasLocation" x="324" y="286"/>
         </tableViewCell>

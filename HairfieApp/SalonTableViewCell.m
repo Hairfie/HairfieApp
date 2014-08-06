@@ -13,7 +13,18 @@
 {
     UIImageView *profilePicture;
 }
-@synthesize name = _name, hairfieNb = _hairfieNb, womanPrice = _womanPrice, manPrice = _manPrice, hairfieDescription = _hairfieDescription ,currentSales = _currentSales, bookButton = _bookButton, ratingView = _ratingView, ratingLabel = _ratingLabel, statusLabelView = _statusLabelView, salonPicture = _salonPicture, imgUrl = _imgUrl;
+@synthesize name = _name,
+hairfieNb = _hairfieNb,
+womanPrice = _womanPrice,
+manPrice = _manPrice,
+currentSales = _currentSales,
+bookButton = _bookButton,
+ratingLabel = _ratingLabel,
+salonRating = _salonRating,
+statusLabelView = _statusLabelView,
+salonPicture = _salonPicture,
+imgUrl = _imgUrl,
+nbReviews = _nbReviews;
 
 - (void)awakeFromNib {
     // Initialization code
@@ -21,6 +32,7 @@
     // mettre viariable photo salon ici
     _salonPicture.layer.cornerRadius = 5;
     _salonPicture.layer.masksToBounds = YES;
+    
     _bookButton.layer.cornerRadius = 5;
     _bookButton.layer.masksToBounds = YES;
 
@@ -31,27 +43,40 @@
     _statusLabelView.layer.cornerRadius = 5;
     _statusLabelView.layer.masksToBounds = YES;
     
-    _ratingView.notSelectedImage = [UIImage imageNamed:@"not_selected_star.png"];
-    _ratingView.halfSelectedImage = [UIImage imageNamed:@"half_selected_star.png"];
-    _ratingView.fullSelectedImage = [UIImage imageNamed:@"selected_star.png"];
+    _salonRating.notSelectedImage = [UIImage imageNamed:@"not_selected_star.png"];
+    _salonRating.halfSelectedImage = [UIImage imageNamed:@"half_selected_star.png"];
+    _salonRating.fullSelectedImage = [UIImage imageNamed:@"selected_star.png"];
     
-    _ratingView.editable = NO;
-    _ratingView.maxRating = 5;
-    _ratingView.delegate = self;
+    _salonRating.editable = NO;
+    _salonRating.maxRating = 5;
+    _salonRating.delegate = self;
 }
 
 - (void) customInit:(NSDictionary*)salon
 {
     
     NSDictionary *price = [salon objectForKey:@"price"];
+    NSDictionary *review = [salon objectForKey:@"reviews"];
     NSString *imgUrl = [salon objectForKey:@"gps_picture"];
 
     _name.text = [salon objectForKey:@"name"];
     _manPrice.text = [NSString stringWithFormat:@"%@ €",[[price objectForKey:@"men"] stringValue]];
     _womanPrice.text = [NSString stringWithFormat:@"%@ €",[[price objectForKey:@"women"] stringValue]];
     _salonPicture.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imgUrl]]];
-    _ratingView.rating = [[salon objectForKey:@"average_review"] floatValue];
-    _ratingLabel.text = [[salon objectForKey:@"average_review"] stringValue];
+    _salonPicture.contentMode = UIViewContentModeScaleAspectFill;
+   
+    if ([[review objectForKey:@"total"] integerValue] == 0)
+    {
+        _salonRating.rating = 0;
+        _ratingLabel.text = @"0";
+        _nbReviews.text = @"- 0 review";
+    }
+    else
+    {
+        _salonRating.rating = [[review objectForKey:@"average"] floatValue];
+        _ratingLabel.text = [[review objectForKey:@"average"] stringValue];
+        _nbReviews.text =[NSString stringWithFormat:@"- %@ reviews",[review objectForKey:@"total"]];
+    }
 }
 
 - (void)rateView:(RatingView *)rateView ratingDidChange:(float)rating {

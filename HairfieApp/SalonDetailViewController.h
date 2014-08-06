@@ -33,13 +33,15 @@
 @property (weak, nonatomic) IBOutlet RatingView *reviewRating;
 @property (weak, nonatomic) IBOutlet UILabel *ratingLabel;
 
+@property (nonatomic) IBOutlet UILabel *salonAvailability;
+
 @property (nonatomic) IBOutlet UILabel *name;
 @property (nonatomic) IBOutlet UILabel *address;
 @property (nonatomic) IBOutlet UILabel *city;
 @property (nonatomic) IBOutlet UILabel *manPrice;
 @property (nonatomic) IBOutlet UILabel *womanPrice;
 @property (nonatomic) IBOutlet UILabel *telephone;
-
+@property (nonatomic) IBOutlet UILabel *nbReviews;
 
 
 

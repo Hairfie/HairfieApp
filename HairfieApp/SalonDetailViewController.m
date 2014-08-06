@@ -16,12 +16,14 @@
 
 @implementation SalonDetailViewController
 
-@synthesize imageSliderView =_imageSliderView, pageControl = _pageControl, infoView = _infoView, hairfieView = _hairfieView, hairdresserView = _hairdresserView, salesView = _salesView, infoBttn = _infoBttn, hairfieBttn = _hairfieBttn, hairdresserBttn = _hairdresserBttn, salesBttn = _salesBttn, reviewRating = _reviewRating, reviewTableView = _reviewTableView, addReviewBttn = _addReviewBttn, moreReviewBttn = _moreReviewBttn, similarTableView = _similarTableView, dataSalon = _dataSalon, ratingLabel = _ratingLabel, name = _name , womanPrice = _womanPrice, manPrice = _manPrice, salonRating = _salonRating, address = _address, city = _city;
+@synthesize imageSliderView =_imageSliderView, pageControl = _pageControl, infoView = _infoView, hairfieView = _hairfieView, hairdresserView = _hairdresserView, salesView = _salesView, infoBttn = _infoBttn, hairfieBttn = _hairfieBttn, hairdresserBttn = _hairdresserBttn, salesBttn = _salesBttn, reviewRating = _reviewRating, reviewTableView = _reviewTableView, addReviewBttn = _addReviewBttn, moreReviewBttn = _moreReviewBttn, similarTableView = _similarTableView, dataSalon = _dataSalon, ratingLabel = _ratingLabel, name = _name , womanPrice = _womanPrice, manPrice = _manPrice, salonRating = _salonRating, address = _address, city = _city, salonAvailability = _salonAvailability, nbReviews = _nbReviews;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     [self initKnownData:_dataSalon];
+    
+    _imageSliderView.canCancelContentTouches = NO;
     
     _mainScrollView.contentSize = CGSizeMake(320, 1800);
     _reviewTableView.delegate = self;
@@ -46,6 +48,8 @@
 
     NSArray *tutoArray = [[NSArray alloc] init];
     tutoArray = [[NSArray alloc] initWithObjects:@"settings-picto.png", @"business-picto.png", @"likes-picto.png", @"home-picto.png", @"favorites-picto.png", nil];
+    _pageControl.numberOfPages = [tutoArray count];
+    
     for (int i = 0; i < [tutoArray count]; i++) {
         CGRect frame;
         frame.origin.x = _imageSliderView.frame.size.width * i;
@@ -192,15 +196,11 @@
             cell = [nib objectAtIndex:0];
         }
         
-        
         return cell;
-        
-
 
     }
     else if (tableView == _similarTableView)
     {
-        NSLog(@"AHAHAHA");
         static NSString *CellIdentifier = @"similarCell";
         SimilarTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         
@@ -215,32 +215,43 @@
 
 - (void) initKnownData:(NSDictionary*)salon
 {
-    
-    NSLog(@"%@", salon);
-     NSDictionary *salonDetail = [salon objectForKey:@"obj"];
+    NSDictionary *salonDetail = [salon objectForKey:@"obj"];
     NSDictionary *price = [salonDetail objectForKey:@"price"];
     NSArray *phoneNumber = [salonDetail objectForKey:@"phone_numbers"];
-   
-    NSLog(@"number %@", phoneNumber);
+    NSDictionary *reviews = [salonDetail objectForKey:@"reviews"];
+    
+    if (phoneNumber == nil || [phoneNumber count] == 0)
+        _telephone.text = [NSString stringWithFormat:@"No data"];
+    else
+        _telephone.text = [phoneNumber objectAtIndex:0];
     
     _name.text = [salonDetail objectForKey:@"name"];
     _manPrice.text = [NSString stringWithFormat:@"%@ €",[[price objectForKey:@"men"] stringValue]];
     _womanPrice.text = [NSString stringWithFormat:@"%@ €",[[price objectForKey:@"women"] stringValue]];
-    
-   if (phoneNumber == nil || [phoneNumber count] == 0)
-       _telephone.text = [NSString stringWithFormat:@"No data"];
-    else
-    _telephone.text = [phoneNumber objectAtIndex:0];
     _salonRating.notSelectedImage = [UIImage imageNamed:@"not_selected_star.png"];
     _salonRating.halfSelectedImage = [UIImage imageNamed:@"half_selected_star.png"];
     _salonRating.fullSelectedImage = [UIImage imageNamed:@"selected_star.png"];
     _salonRating.editable = NO;
     _salonRating.maxRating = 5;
     _salonRating.delegate = self;
-    _salonRating.rating = [[salonDetail objectForKey:@"average_review"] floatValue];
-    _ratingLabel.text = [[salonDetail objectForKey:@"average_review"] stringValue];
+    
+    if ([[reviews objectForKey:@"total"] integerValue] == 0)
+    {
+        _salonRating.rating = 0;
+        _ratingLabel.text = @"0";
+        _nbReviews.text = @"- 0 review";
+    }
+    else
+    {
+        _salonRating.rating = [[reviews objectForKey:@"average"] floatValue];
+        _ratingLabel.text = [[reviews objectForKey:@"average"] stringValue];
+        _nbReviews.text =[NSString stringWithFormat:@"- %@ reviews",[reviews objectForKey:@"total"]];
+    }
     _address.text = [salonDetail objectForKey:@"street"];
     _city.text = [salonDetail objectForKey:@"city"];
+    
+    
+    //_salonAvailability
 }
 
 
