@@ -28,8 +28,6 @@
 @property (nonatomic)  CLLocation *myLocation;
 
 
-
-
 -(IBAction)goBack:(id)sender;
 
 @end

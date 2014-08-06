@@ -16,7 +16,7 @@
 
 @implementation SalonDetailViewController
 
-@synthesize imageSliderView =_imageSliderView, pageControl = _pageControl, infoView = _infoView, hairfieView = _hairfieView, hairdresserView = _hairdresserView, salesView = _salesView, infoBttn = _infoBttn, hairfieBttn = _hairfieBttn, hairdresserBttn = _hairdresserBttn, salesBttn = _salesBttn, reviewRating = _reviewRating, reviewTableView = _reviewTableView, addReviewBttn = _addReviewBttn, moreReviewBttn = _moreReviewBttn, similarTableView = _similarTableView, dataSalon = _dataSalon, ratingLabel = _ratingLabel, name = _name , womanPrice = _womanPrice, manPrice = _manPrice, salonRating = _salonRating, address = _address, city = _city, salonAvailability = _salonAvailability, nbReviews = _nbReviews;
+@synthesize imageSliderView =_imageSliderView, pageControl = _pageControl, infoView = _infoView, hairfieView = _hairfieView, hairdresserView = _hairdresserView, salesView = _salesView, infoBttn = _infoBttn, hairfieBttn = _hairfieBttn, hairdresserBttn = _hairdresserBttn, salesBttn = _salesBttn, reviewRating = _reviewRating, reviewTableView = _reviewTableView, addReviewBttn = _addReviewBttn, moreReviewBttn = _moreReviewBttn, similarTableView = _similarTableView, dataSalon = _dataSalon, ratingLabel = _ratingLabel, name = _name , womanPrice = _womanPrice, manPrice = _manPrice, salonRating = _salonRating, address = _address, city = _city, salonAvailability = _salonAvailability, nbReviews = _nbReviews, previewMap = _previewMap;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -44,10 +44,14 @@
     _moreReviewBttn.layer.cornerRadius = 5;
     _moreReviewBttn.layer.masksToBounds = YES;
     
+    _previewMap.layer.cornerRadius = 5;
+    _previewMap.layer.masksToBounds = YES;
+    _previewMap.layer.borderWidth = 3;
+    _previewMap.layer.borderColor = [UIColor colorWithRed:249/255.0 green:249/255.0 blue:249/255.0 alpha:1].CGColor;
   // LOAD Pictures in page control (horizontal scroll view)
 
     NSArray *tutoArray = [[NSArray alloc] init];
-    tutoArray = [[NSArray alloc] initWithObjects:@"settings-picto.png", @"business-picto.png", @"likes-picto.png", @"home-picto.png", @"favorites-picto.png", nil];
+    tutoArray = [[NSArray alloc] initWithObjects:@"photo-example.jpeg", @"photo-example.jpeg", @"photo-example.jpeg", @"photo-example.jpeg", @"photo-example.jpeg", nil];
     _pageControl.numberOfPages = [tutoArray count];
     
     for (int i = 0; i < [tutoArray count]; i++) {
@@ -60,7 +64,7 @@
    
         
         imageView.image = [UIImage imageNamed:[tutoArray objectAtIndex:i]];
-        imageView.contentMode = UIViewContentModeCenter;
+        imageView.contentMode = UIViewContentModeScaleToFill;
         [_imageSliderView addSubview:imageView];
    }
     _imageSliderView.pagingEnabled = YES;
@@ -103,7 +107,6 @@
 
 -(IBAction)changeTab:(id)sender
 {
-    NSLog(@"test");
     if(sender == _infoBttn)
         [self setButtonSelected:_infoBttn andBringViewUpfront:_infoView];
     else if(sender == _hairfieBttn)
@@ -144,7 +147,6 @@
 -(IBAction)changePage:(id)sender {
     
     UIPageControl *pager = sender;
-    NSLog(@"%ld", pager.currentPage);
     CGPoint offset = CGPointMake(pager.currentPage * _imageSliderView.frame.size.width, 0);
     [_imageSliderView setContentOffset:offset animated:YES];
 }

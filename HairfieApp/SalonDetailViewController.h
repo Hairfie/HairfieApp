@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "RatingView.h"
+#import <MapKit/MapKit.h>
 
 @interface SalonDetailViewController : UIViewController <UIScrollViewDelegate, RatingViewDelegate, UITableViewDataSource, UITableViewDelegate>
 
@@ -52,6 +53,8 @@
 @property (nonatomic) IBOutlet UIButton *moreReviewBttn;
 
 @property (nonatomic) NSDictionary *dataSalon;
+
+@property (nonatomic) IBOutlet MKMapView *previewMap;
 
 -(IBAction)goBack:(id)sender;
 -(IBAction)changePage:(id)sender;

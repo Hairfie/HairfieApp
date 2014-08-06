@@ -9,5 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface LikeViewController : UIViewController <UINavigationControllerDelegate>
+{
+    IBOutlet UIView *myView;
+}
+
+
 
 @end

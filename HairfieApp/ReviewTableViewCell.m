@@ -19,7 +19,7 @@
 - (void)awakeFromNib {
     
     
-    profilePicture = [[UIImageView alloc] initWithFrame:CGRectMake(20, 9, 41, 41)];
+    profilePicture = [[UIImageView alloc] initWithFrame:CGRectMake(10, 9, 41, 41)];
     
     // mettre viariable photo salon ici
     profilePicture.layer.cornerRadius = profilePicture.frame.size.height / 2;
