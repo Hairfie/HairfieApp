@@ -7,6 +7,7 @@
 //
 
 #import "LikeViewController.h"
+#import "AppDelegate.h"
 
 @interface LikeViewController ()
 
@@ -19,7 +20,10 @@
 }
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
+    [super viewDidLoad];    
+    
+    
+    
     // Do any additional setup after loading the view.
 }
 

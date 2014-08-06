@@ -39,7 +39,6 @@
                                                  name:@"newLocationNotif"
                                                object:nil];
 
-    
     _hairdresserTableView.delegate = self;
     _hairdresserTableView.dataSource = self;
     _mapView.delegate = self;
