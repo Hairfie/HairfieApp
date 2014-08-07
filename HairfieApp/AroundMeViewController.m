@@ -27,6 +27,7 @@
     NSArray *salons;
     CLLocation *myLocation;
     NSInteger rowSelected;
+    UITapGestureRecognizer *tap;
 }
 @synthesize manager = _manager, geocoder = _geocoder, mapView = _mapView, hairdresserTableView = _hairdresserTableView, delegate = _delegate, myLocation = _myLocation;
 
@@ -38,13 +39,71 @@
                                              selector:@selector(updatedLocation:)
                                                  name:@"newLocationNotif"
                                                object:nil];
-
+   
     _hairdresserTableView.delegate = self;
     _hairdresserTableView.dataSource = self;
+    _hairdresserTableView.backgroundColor = [UIColor clearColor];
     _mapView.delegate = self;
     _mapView.showsUserLocation = YES;
-   
+    
     // Do any additional setup after loading the view.
+}
+
+
+-(void)toggleMap:(UIGestureRecognizer*)recognizer
+{
+   // [_hairdresserTableView.tableHeaderView setFrame:CGRectMake(0, 0, 320, 568)];
+   // [_hairdresserTableView setContentOffset:CGPointMake(0, 500)];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    
+    //NSLog(@"test %f", _mapView.frame.size.height + _hairdresserTableView.contentOffset.y*-1);
+    if (_hairdresserTableView.contentOffset.y <0)
+    {
+        NSLog(@"%f",_hairdresserTableView.contentOffset.y );
+     //   [_mapView setFrame:CGRectMake(0, -20, _mapView.frame.size.width, _mapView.frame.size.width + (_hairdresserTableView.contentOffset.y*-1))];
+        
+    }
+}
+-(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    NSLog(@"%f",_hairdresserTableView.contentOffset.y );
+        if (_hairdresserTableView.contentOffset.y < -60)
+        {
+        
+            [self hideTableView];
+        }
+}
+
+
+//METHODES pour cacher/remettre la tableview et agrandir la mapview dans la recherche
+
+-(void)hideTableView
+{
+    [UIView beginAnimations:@"animate" context:nil];
+    [UIView setAnimationDuration:0.5];
+    [_mapView setFrame:CGRectMake(0, -20, _mapView.frame.size.width, 500)];
+    [_hairdresserTableView setFrame:CGRectMake(0, 450, _hairdresserTableView.frame.size.width, _hairdresserTableView.frame.size.height)];
+    _hairdresserTableView.scrollEnabled = NO;
+    tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showTable:)];
+    [_hairdresserTableView addGestureRecognizer:tap];
+    [UIView commitAnimations];
+     NSLog(@"dimensions hide %@", NSStringFromCGRect(_hairdresserTableView.frame));
+}
+
+-(void) showTable:(UIGestureRecognizer*)gesture
+{
+    [UIView beginAnimations:@"animate" context:nil];
+    [UIView setAnimationDuration:0.5];
+    [_mapView setFrame:CGRectMake(0, -20, _mapView.frame.size.width, 170)];
+    [_hairdresserTableView setFrame:CGRectMake(0, 150, _hairdresserTableView.frame.size.width, _hairdresserTableView.frame.size.height)];
+    _hairdresserTableView.scrollEnabled = YES;
+    [_hairdresserTableView removeGestureRecognizer:tap];
+    [UIView commitAnimations];
+    NSLog(@"dimensions show %@", NSStringFromCGRect(_hairdresserTableView.frame));
+
+    
 }
 
 -(UIStatusBarStyle)preferredStatusBarStyle{
@@ -211,7 +270,8 @@
         if(!annotationView)
         {
             annotationView=[[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:myIdentifier];
-            annotationView.image = [UIImage imageNamed:@"custom-map-pin.png"];
+            annotationView.image = [UIImage imageNamed:@"map_pin.png"];
+            [annotationView setFrame:CGRectMake(0, 0, 34, 47)];
             annotationView.contentMode = UIViewContentModeScaleAspectFit;
             annotationView.centerOffset = CGPointMake(0, -annotationView.image.size.height / 2);
             annotationView.canShowCallout = YES;

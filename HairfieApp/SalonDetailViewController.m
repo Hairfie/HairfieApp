@@ -25,7 +25,8 @@
     [super viewDidLoad];
     
     [self initKnownData:_dataSalon];
-    
+    [self unSelectAll];
+    [self setButtonSelected:_infoBttn andBringViewUpfront:_infoView];
     _imageSliderView.canCancelContentTouches = NO;
     
     _mainScrollView.contentSize = CGSizeMake(320, 1800);
@@ -89,6 +90,8 @@
     
     // Do any additional setup after loading the view.
 }
+
+
 
 
 - (void)rateView:(RatingView *)rateView ratingDidChange:(float)rating {

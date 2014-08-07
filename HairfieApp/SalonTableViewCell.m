@@ -65,6 +65,13 @@ nbReviews = _nbReviews;
     _salonPicture.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imgUrl]]];
     _salonPicture.contentMode = UIViewContentModeScaleAspectFill;
    
+    if ([[salon objectForKey:@"hairfies"]integerValue] == 0)
+        _hairfieNb.text = @"0 hairfie";
+    else if ([[salon objectForKey:@"hairfies"]integerValue] == 1)
+        _hairfieNb.text = @"1 hairfie";
+    else
+        _hairfieNb.text = [NSString stringWithFormat:@"%@ hairfies",[[salon objectForKey:@"hairfies"] stringValue]];
+    
     if ([[review objectForKey:@"total"] integerValue] == 0)
     {
         _salonRating.rating = 0;

@@ -11,7 +11,7 @@
 #import <MapKit/MapKit.h>
 #import "AppDelegate.h"
 
-@interface AroundMeViewController : UIViewController <MKMapViewDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface AroundMeViewController : UIViewController <MKMapViewDelegate, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate,UIGestureRecognizerDelegate>
 {
     NSString *test;
 }
@@ -20,6 +20,7 @@
 @property (nonatomic) NSString *latitude;
 @property (nonatomic) AppDelegate *delegate;
 
+
 @property (nonatomic) IBOutlet MKMapView *mapView;
 @property (nonatomic) IBOutlet UITableView *hairdresserTableView;
 
@@ -27,6 +28,7 @@
 @property (nonatomic)  CLGeocoder *geocoder;
 @property (nonatomic)  CLLocation *myLocation;
 
+@property (nonatomic) IBOutlet UIScrollView *globalScroll;
 
 -(IBAction)goBack:(id)sender;
 
