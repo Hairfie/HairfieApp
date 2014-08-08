@@ -10,6 +10,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import <MapKit/MapKit.h>
 #import "AppDelegate.h"
+#import "OLEContainerScrollView.h"
 
 @interface AroundMeViewController : UIViewController <MKMapViewDelegate, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate,UIGestureRecognizerDelegate>
 {
@@ -23,14 +24,12 @@
 
 @property (nonatomic) IBOutlet MKMapView *mapView;
 @property (nonatomic) IBOutlet UITableView *hairdresserTableView;
+@property (nonatomic) IBOutlet OLEContainerScrollView *scrollView;
 
 @property (nonatomic)  CLLocationManager *manager;
 @property (nonatomic)  CLGeocoder *geocoder;
 @property (nonatomic)  CLLocation *myLocation;
 
-@property (nonatomic) IBOutlet UIScrollView *globalScroll;
-
-@property (nonatomic) IBOutlet UIView *gestureView;
 
 -(IBAction)goBack:(id)sender;
 

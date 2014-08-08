@@ -47,7 +47,8 @@
     _mapView.showsUserLocation = YES;
     tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideTableView:)];
     [_mapView addGestureRecognizer:tap];
-
+    [_scrollView.contentView addSubview:_mapView];
+    [_scrollView.contentView addSubview:_hairdresserTableView];
     // Do any additional setup after loading the view.
 }
 
@@ -55,6 +56,8 @@
 
 -(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
+    
+    NSLog(@"%f", _scrollView.contentOffset.y);
     if (_hairdresserTableView.contentOffset.y < -60)
     {
         [self hideTableView:tap];
@@ -68,8 +71,10 @@
 {
     [UIView beginAnimations:@"animate" context:nil];
     [UIView setAnimationDuration:0.4];
-    [_mapView setFrame:CGRectMake(0, 30, _mapView.frame.size.width, 500)];
-    [_hairdresserTableView setFrame:CGRectMake(0, 500, _hairdresserTableView.frame.size.width, _hairdresserTableView.frame.size.height)];
+    [_mapView setFrame:CGRectMake(0, 0, _mapView.frame.size.width, 456)];
+    [_scrollView scrollRectToVisible:CGRectMake(0, -464, _scrollView.frame.size.width, _scrollView.frame.size.height) animated:NO];
+    
+    //[_hairdresserTableView setFrame:CGRectMake(0, 464, _hairdresserTableView.frame.size.width, _hairdresserTableView.frame.size.height)];
     _hairdresserTableView.scrollEnabled = NO;
      [_mapView removeGestureRecognizer:tap];
     tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showTableView:)];
@@ -81,8 +86,9 @@
 {
     [UIView beginAnimations:@"animate" context:nil];
     [UIView setAnimationDuration:0.4];
-    [_mapView setFrame:CGRectMake(0, 30, _mapView.frame.size.width, 195)];
-    [_hairdresserTableView setFrame:CGRectMake(0, 225, _hairdresserTableView.frame.size.width, _hairdresserTableView.frame.size.height)];
+    [_mapView setFrame:CGRectMake(0, 0, _mapView.frame.size.width, 220)];
+     [_scrollView scrollRectToVisible:CGRectMake(0, -220, _scrollView.frame.size.width, _scrollView.frame.size.height) animated:NO];
+   // [_hairdresserTableView setFrame:CGRectMake(0, 220, _hairdresserTableView.frame.size.width, _hairdresserTableView.frame.size.height)];
     _hairdresserTableView.scrollEnabled = YES;
     [_hairdresserTableView removeGestureRecognizer:tap];
     tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideTableView:)];
