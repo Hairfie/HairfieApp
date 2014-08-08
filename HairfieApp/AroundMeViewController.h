@@ -30,6 +30,8 @@
 
 @property (nonatomic) IBOutlet UIScrollView *globalScroll;
 
+@property (nonatomic) IBOutlet UIView *gestureView;
+
 -(IBAction)goBack:(id)sender;
 
 @end
