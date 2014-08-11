@@ -53,18 +53,6 @@
 }
 
 
-
--(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
-{
-    
-    NSLog(@"%f", _scrollView.contentOffset.y);
-    if (_hairdresserTableView.contentOffset.y < -60)
-    {
-        [self hideTableView:tap];
-    }
-}
-
-
 //METHODES pour cacher/remettre la tableview et agrandir la mapview dans la recherche
 
 -(void)hideTableView:(UIGestureRecognizer*)gesture
@@ -73,10 +61,7 @@
     [UIView setAnimationDuration:0.4];
     [_mapView setFrame:CGRectMake(0, 0, _mapView.frame.size.width, 456)];
     [_scrollView scrollRectToVisible:CGRectMake(0, -464, _scrollView.frame.size.width, _scrollView.frame.size.height) animated:NO];
-    
-    //[_hairdresserTableView setFrame:CGRectMake(0, 464, _hairdresserTableView.frame.size.width, _hairdresserTableView.frame.size.height)];
-    _hairdresserTableView.scrollEnabled = NO;
-     [_mapView removeGestureRecognizer:tap];
+    [_mapView removeGestureRecognizer:tap];
     tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showTableView:)];
     [_hairdresserTableView addGestureRecognizer:tap];
     [UIView commitAnimations];
@@ -88,12 +73,9 @@
     [UIView setAnimationDuration:0.4];
     [_mapView setFrame:CGRectMake(0, 0, _mapView.frame.size.width, 220)];
      [_scrollView scrollRectToVisible:CGRectMake(0, -220, _scrollView.frame.size.width, _scrollView.frame.size.height) animated:NO];
-   // [_hairdresserTableView setFrame:CGRectMake(0, 220, _hairdresserTableView.frame.size.width, _hairdresserTableView.frame.size.height)];
-    _hairdresserTableView.scrollEnabled = YES;
     [_hairdresserTableView removeGestureRecognizer:tap];
     tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideTableView:)];
     [_mapView addGestureRecognizer:tap];
-    [self.view bringSubviewToFront:_hairdresserTableView];
     [UIView commitAnimations];
 }
 

@@ -52,9 +52,6 @@
 // 3
 - (CustomCollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    //omCollectionViewCell *cell = [cv dequeueReusableCellWithReuseIdentifier:@"HairfieCell" forIndexPath:indexPath];
-    
-    
     static NSString *CellIdentifier = @"hairfieCell";
     CustomCollectionViewCell *cell = [cv dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
     
