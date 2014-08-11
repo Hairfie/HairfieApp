@@ -90,9 +90,10 @@
             NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"HairfieDetailTableViewCell" owner:self options:nil];
             cell = [nib objectAtIndex:0];
         }
+
     
      _infoTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    cell.backgroundColor = [UIColor clearColor];
+   
      UIView *separatorView = [[UIView alloc] initWithFrame:CGRectMake(0, 43, 1024, 1)];
     separatorView.layer.borderColor = [UIColor colorWithRed:236/255.0f green:237/255.0f  blue:237/255.0f  alpha:1].CGColor;
      separatorView.layer.borderWidth = 1.0;
@@ -116,6 +117,7 @@
         cell.pictoView.image = [UIImage imageNamed:@"picto-hairfie-detail-price.png"];
         cell.contentLabel.text = @"$ 40";
     }
+        cell.backgroundColor = [UIColor clearColor];
          return cell;
    }
     if (tableView == _commentTableView)
