@@ -14,7 +14,7 @@
 
 @implementation ReviewTableViewCell
 
-@synthesize ratingView = _ratingView, name = _name, content = _content, statusLabel = _statusLabel, postDate = _postDate;
+@synthesize ratingView = _ratingView, nameLabel = _nameLabel, contentLabel = _contentLabel, statusLabel = _statusLabel, postDate = _postDate;
 
 - (void)awakeFromNib {
     

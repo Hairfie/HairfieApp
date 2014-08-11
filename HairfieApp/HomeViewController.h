@@ -14,7 +14,7 @@
 @property (nonatomic) IBOutlet UILabel *AroundMeLabel;
 @property (nonatomic) IBOutlet UICollectionView *hairfieCollection;
 @property (nonatomic) IBOutlet UIView *topView;
-@property (nonatomic) IBOutlet OLEContainerScrollView *test;
+@property (nonatomic) IBOutlet OLEContainerScrollView *containerView;
 
 
 @end
