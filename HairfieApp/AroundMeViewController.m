@@ -39,7 +39,6 @@
                                              selector:@selector(updatedLocation:)
                                                  name:@"newLocationNotif"
                                                object:nil];
-   
     _hairdresserTableView.delegate = self;
     _hairdresserTableView.dataSource = self;
     _hairdresserTableView.backgroundColor = [UIColor clearColor];
@@ -53,7 +52,7 @@
 }
 
 
-//METHODES pour cacher/remettre la tableview et agrandir la mapview dans la recherche
+//METHODES pour cacher/afficher la tableview et agrandir la mapview dans la recherche
 
 -(void)hideTableView:(UIGestureRecognizer*)gesture
 {
@@ -72,7 +71,7 @@
     [UIView beginAnimations:@"animate" context:nil];
     [UIView setAnimationDuration:0.4];
     [_mapView setFrame:CGRectMake(0, 0, _mapView.frame.size.width, 220)];
-     [_scrollView scrollRectToVisible:CGRectMake(0, -220, _scrollView.frame.size.width, _scrollView.frame.size.height) animated:NO];
+    [_scrollView scrollRectToVisible:CGRectMake(0, -220, _scrollView.frame.size.width, _scrollView.frame.size.height) animated:NO];
     [_hairdresserTableView removeGestureRecognizer:tap];
     tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideTableView:)];
     [_mapView addGestureRecognizer:tap];
@@ -128,6 +127,7 @@
 }
 
 // Add a salon to the map
+
 - (void) addSalonToMap: (NSDictionary *) salon {
     NSDictionary *info = [salon valueForKey:@"obj"];
     NSDictionary *coords = [info valueForKey:@"gps"];
@@ -141,12 +141,12 @@
     
     annotObj.title = titleStr;
     annotObj.coordinate = coord;
-    
     [_mapView addAnnotation:annotObj];
-     [_hairdresserTableView reloadData];
+    [_hairdresserTableView reloadData];
 }
 
 // Get Salons from webservices then add them to the map
+
 - (void)getSalons
 {
     NSString *urlString = [NSString stringWithFormat:@"%@/salons/nearby?lat=%f&lng=%f&max=10&limit=10", BASE_URL, _myLocation.coordinate.latitude, _myLocation.coordinate.longitude];
@@ -169,8 +169,6 @@
     }];
     [operation start];
 }
-
-
 
 // TableView Delegate Functions
 

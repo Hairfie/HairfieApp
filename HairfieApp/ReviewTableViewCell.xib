@@ -50,9 +50,6 @@ amet :) </string>
                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tlr-bU-rvH">
-                        <rect key="frame" x="10" y="9" width="41" height="41"/>
-                    </imageView>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="-  Juillet 2014" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iQQ-fs-L7o">
                         <rect key="frame" x="184" y="44" width="95" height="22"/>
                         <fontDescription key="fontDescription" name="SourceSansPro-It" family="Source Sans Pro" pointSize="12"/>
@@ -66,13 +63,13 @@ amet :) </string>
                 </subviews>
             </tableViewCellContentView>
             <connections>
-                <outlet property="content" destination="Nji-PB-7xc" id="Yh2-5J-1qP"/>
-                <outlet property="name" destination="kn3-uG-q6x" id="yDB-i5-GCr"/>
+                <outlet property="contentLabel" destination="Nji-PB-7xc" id="uAT-ud-1AQ"/>
+                <outlet property="nameLabel" destination="kn3-uG-q6x" id="fJF-Bn-jNk"/>
                 <outlet property="postDate" destination="iQQ-fs-L7o" id="5dd-Ku-j2U"/>
                 <outlet property="ratingView" destination="jt4-BJ-KnO" id="zvQ-tb-ifA"/>
                 <outlet property="statusLabel" destination="JhK-D0-1Or" id="KFl-o7-Uas"/>
             </connections>
-            <point key="canvasLocation" x="119" y="80.5"/>
+            <point key="canvasLocation" x="123" y="57.5"/>
         </tableViewCell>
     </objects>
     <resources>

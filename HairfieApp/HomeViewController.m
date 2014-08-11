@@ -17,6 +17,8 @@
 
 @implementation HomeViewController
 
+@synthesize containerView = _containerView;
+
 -(UIStatusBarStyle)preferredStatusBarStyle{
     return UIStatusBarStyleLightContent;
 }
@@ -25,8 +27,8 @@
     [super viewDidLoad];
     self.navigationItem.title = [NSString stringWithFormat:NSLocalizedString(@"Home", nil)];
      [_hairfieCollection registerNib:[UINib nibWithNibName:@"CustomCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"hairfieCell"];
-    [_test.contentView addSubview:_topView];
-    [_test.contentView addSubview:_hairfieCollection];
+    [_containerView.contentView addSubview:_topView];
+    [_containerView.contentView addSubview:_hairfieCollection];
     
     // Do any additional setup after loading the view.
 }
@@ -41,7 +43,7 @@
 // Collection View Datasource + Delegate
 
 - (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section {
-    return 30;
+    return 5;
 }
 // 2
 - (NSInteger)numberOfSectionsInCollectionView: (UICollectionView *)collectionView {
@@ -68,6 +70,12 @@
     return cell;
 }
 
+
+-(void) collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self performSegueWithIdentifier:@"hairfieDetail" sender:self];
+    
+}
 
 
 
