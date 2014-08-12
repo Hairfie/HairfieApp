@@ -249,7 +249,7 @@
     if (phoneNumbers == nil || [phoneNumbers count] == 0)
     {
         _telephone.text = [NSString stringWithFormat:@"Pas de numéro connu"];
-        _callBttn.hidden = YES;
+        //_callBttn.hidden = YES;
     }
     else
     {
