@@ -17,9 +17,10 @@
 
 @implementation SalonDetailViewController {
     BOOL isOpen;
+    NSString *phoneNumber;
 }
 
-@synthesize imageSliderView =_imageSliderView, pageControl = _pageControl, infoView = _infoView, hairfieView = _hairfieView, hairdresserView = _hairdresserView, salesView = _salesView, infoBttn = _infoBttn, hairfieBttn = _hairfieBttn, hairdresserBttn = _hairdresserBttn, salesBttn = _salesBttn, reviewRating = _reviewRating, reviewTableView = _reviewTableView, addReviewBttn = _addReviewBttn, moreReviewBttn = _moreReviewBttn, similarTableView = _similarTableView, dataSalon = _dataSalon, ratingLabel = _ratingLabel, name = _name , womanPrice = _womanPrice, manPrice = _manPrice, salonRating = _salonRating, address = _address, city = _city, salonAvailability = _salonAvailability, nbReviews = _nbReviews, previewMap = _previewMap, isOpenLabel = _isOpenLabel;
+@synthesize imageSliderView =_imageSliderView, pageControl = _pageControl, infoView = _infoView, hairfieView = _hairfieView, hairdresserView = _hairdresserView, salesView = _salesView, infoBttn = _infoBttn, hairfieBttn = _hairfieBttn, hairdresserBttn = _hairdresserBttn, salesBttn = _salesBttn, reviewRating = _reviewRating, reviewTableView = _reviewTableView, addReviewBttn = _addReviewBttn, moreReviewBttn = _moreReviewBttn, similarTableView = _similarTableView, dataSalon = _dataSalon, ratingLabel = _ratingLabel, name = _name , womanPrice = _womanPrice, manPrice = _manPrice, salonRating = _salonRating, address = _address, city = _city, salonAvailability = _salonAvailability, nbReviews = _nbReviews, previewMap = _previewMap, isOpenLabel = _isOpenLabel, callBttn = _callBttn;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -47,6 +48,9 @@
     
     _moreReviewBttn.layer.cornerRadius = 5;
     _moreReviewBttn.layer.masksToBounds = YES;
+    
+    _callBttn.layer.cornerRadius = 5;
+    _callBttn.layer.masksToBounds = YES;
     
     _previewMap.layer.cornerRadius = 5;
     _previewMap.layer.masksToBounds = YES;
@@ -225,7 +229,7 @@
 {
     NSDictionary *salonDetail = [salon objectForKey:@"obj"];
     NSDictionary *price = [salonDetail objectForKey:@"price"];
-    NSArray *phoneNumber = [salonDetail objectForKey:@"phone_numbers"];
+    NSArray *phoneNumbers = [salonDetail objectForKey:@"phone_numbers"];
     NSDictionary *reviews = [salonDetail objectForKey:@"reviews"];
     NSDictionary *timetables =[salonDetail objectForKey:@"timetables"];
     
@@ -242,10 +246,16 @@
     }
 
     
-    if (phoneNumber == nil || [phoneNumber count] == 0)
-        _telephone.text = [NSString stringWithFormat:@"No data"];
+    if (phoneNumbers == nil || [phoneNumbers count] == 0)
+    {
+        _telephone.text = [NSString stringWithFormat:@"Pas de numéro connu"];
+        _callBttn.hidden = YES;
+    }
     else
-        _telephone.text = [phoneNumber objectAtIndex:0];
+    {
+        _telephone.text = [phoneNumbers objectAtIndex:0];
+        phoneNumber =[phoneNumbers objectAtIndex:0];
+    }
     
     _name.text = [salonDetail objectForKey:@"name"];
     _manPrice.text = [NSString stringWithFormat:@"%@ €",[[price objectForKey:@"men"] stringValue]];
@@ -276,6 +286,9 @@
     //_salonAvailability
 }
 
+-(IBAction)callPhone:(id)sender {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"telprompt://%@", phoneNumber]]];
+}
 
 
 /*
