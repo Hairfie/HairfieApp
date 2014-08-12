@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6185.11" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="m6Z-pY-ich">
     <dependencies>
+        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6190.4"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -279,6 +280,9 @@
                                         <state key="normal" image="picto-take-picture.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="takePicture:" destination="eci-2w-4CQ" eventType="touchUpInside" id="eJr-bf-Ai4"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.15686274509803921" green="0.19215686274509802" blue="0.22352941176470587" alpha="1" colorSpace="calibratedRGB"/>
@@ -373,10 +377,10 @@
             </objects>
             <point key="canvasLocation" x="1129" y="-1787"/>
         </scene>
-        <!--View Controller-->
+        <!--Camera Overlay View-->
         <scene sceneID="3pv-5t-4yF">
             <objects>
-                <viewController id="xqu-lr-pjy" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="cameraView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="xqu-lr-pjy" customClass="CameraOverlayView" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="b97-xb-IE1">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -385,13 +389,6 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Post Hairfie" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fhM-UQ-Vu5">
-                                        <rect key="frame" x="99" y="21" width="136" height="23"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="18"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="aBS-ig-r4Z">
                                         <rect key="frame" x="10" y="24" width="11" height="18"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -400,20 +397,51 @@
                                         </state>
                                         <connections>
                                             <action selector="goBack:" destination="yCa-NQ-lwN" eventType="touchUpInside" id="evp-pG-dth"/>
+                                            <action selector="goBack:" destination="xqu-lr-pjy" eventType="touchUpOutside" id="pEF-aS-E0x"/>
                                             <action selector="goBack:" destination="wuV-Ro-JC1" eventType="touchUpInside" id="vNh-3u-feF"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Post Hairfie" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fhM-UQ-Vu5">
+                                        <rect key="frame" x="92" y="21" width="136" height="23"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="18"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.15686274510000001" green="0.19215686269999999" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="W3L-OT-nMd">
+                                <rect key="frame" x="122" y="471" width="77" height="77"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="take-picture-button.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="kJv-cO-WIt">
+                                <rect key="frame" x="268" y="75" width="32" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="switch-camera-button.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="p9p-km-Ot3">
+                                <rect key="frame" x="15" y="498" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="OzM-Vn-vue"/>
+                    <connections>
+                        <outlet property="galleryPicture" destination="p9p-km-Ot3" id="RbE-hF-Lch"/>
+                        <outlet property="switchCamera" destination="kJv-cO-WIt" id="Wba-2c-bp7"/>
+                        <outlet property="takePicture" destination="W3L-OT-nMd" id="qdr-dq-Vyd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uja-CM-Mrk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1629" y="-1779"/>
+            <point key="canvasLocation" x="1660" y="-1882"/>
         </scene>
         <!--Hairfie Detail View Controller-->
         <scene sceneID="dLB-PY-NHH">
@@ -710,7 +738,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="goBack:" destination="5vw-Wx-iMq" eventType="touchUpInside" id="oKv-ng-n2j"/>
+                                            <action selector="goBack:" destination="5vw-Wx-iMq" eventType="touchUpInside" id="paw-Ie-prT"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -754,7 +782,7 @@
             <objects>
                 <viewController storyboardIdentifier="Test" id="yCa-NQ-lwN" customClass="SalonDetailViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ci2-Vx-ERq">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="1200"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="TP8-cF-gFr">
@@ -1189,12 +1217,17 @@ le blabla, et c’est super chouette</string>
                                     <outlet property="delegate" destination="yCa-NQ-lwN" id="VbL-QY-U5Z"/>
                                 </connections>
                             </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="1tc-xu-ezG">
+                                <rect key="frame" x="0.0" y="538" width="320" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Reserver">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="ekI-yZ-Ou7"/>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="320" height="1200"/>
                     <connections>
                         <outlet property="addReviewBttn" destination="0NA-EQ-tPn" id="r8b-Ea-WJN"/>
                         <outlet property="address" destination="lUE-45-Pi0" id="Kmb-py-lDb"/>
@@ -1589,6 +1622,8 @@ le blabla, et c’est super chouette</string>
         <image name="picto-woman-white.png" width="21" height="25"/>
         <image name="search-bar.png" width="446" height="54"/>
         <image name="statusLabelView.png" width="38" height="23"/>
+        <image name="switch-camera-button.png" width="64" height="64"/>
+        <image name="take-picture-button.png" width="153" height="153"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

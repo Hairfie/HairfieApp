@@ -90,6 +90,9 @@
 		B3BD86AC198BD3DA00BD8591 /* selected_star.png in Resources */ = {isa = PBXBuildFile; fileRef = B3BD86A9198BD3DA00BD8591 /* selected_star.png */; };
 		B3BD86AE198BDDB700BD8591 /* statusLabelView.png in Resources */ = {isa = PBXBuildFile; fileRef = B3BD86AD198BDDB700BD8591 /* statusLabelView.png */; };
 		B3BD86B0198BE0DF00BD8591 /* picto-list-nav.png in Resources */ = {isa = PBXBuildFile; fileRef = B3BD86AF198BE0DF00BD8591 /* picto-list-nav.png */; };
+		B3C45BD1199A4670000E6C8E /* switch-camera-button.png in Resources */ = {isa = PBXBuildFile; fileRef = B3C45BCF199A4670000E6C8E /* switch-camera-button.png */; };
+		B3C45BD2199A4670000E6C8E /* take-picture-button.png in Resources */ = {isa = PBXBuildFile; fileRef = B3C45BD0199A4670000E6C8E /* take-picture-button.png */; };
+		B3C45BD6199A4A1B000E6C8E /* CameraOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = B3C45BD5199A4A1B000E6C8E /* CameraOverlayView.m */; };
 		B3CCE7781998B6CA00067DB9 /* HairfieDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3CCE7771998B6CA00067DB9 /* HairfieDetailViewController.m */; };
 		B3CCE77A1998BB1B00067DB9 /* picto-hairfie-comment.png in Resources */ = {isa = PBXBuildFile; fileRef = B3CCE7791998BB1B00067DB9 /* picto-hairfie-comment.png */; };
 		B3CCE77E1998BCA400067DB9 /* picto-hairfie-detail-like.png in Resources */ = {isa = PBXBuildFile; fileRef = B3CCE77D1998BCA400067DB9 /* picto-hairfie-detail-like.png */; };
@@ -264,6 +267,10 @@
 		B3BD86A9198BD3DA00BD8591 /* selected_star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = selected_star.png; sourceTree = "<group>"; };
 		B3BD86AD198BDDB700BD8591 /* statusLabelView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = statusLabelView.png; sourceTree = "<group>"; };
 		B3BD86AF198BE0DF00BD8591 /* picto-list-nav.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "picto-list-nav.png"; sourceTree = "<group>"; };
+		B3C45BCF199A4670000E6C8E /* switch-camera-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "switch-camera-button.png"; sourceTree = "<group>"; };
+		B3C45BD0199A4670000E6C8E /* take-picture-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "take-picture-button.png"; sourceTree = "<group>"; };
+		B3C45BD4199A4A1B000E6C8E /* CameraOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraOverlayView.h; sourceTree = "<group>"; };
+		B3C45BD5199A4A1B000E6C8E /* CameraOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraOverlayView.m; sourceTree = "<group>"; };
 		B3CCE7761998B6CA00067DB9 /* HairfieDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HairfieDetailViewController.h; sourceTree = "<group>"; };
 		B3CCE7771998B6CA00067DB9 /* HairfieDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HairfieDetailViewController.m; sourceTree = "<group>"; };
 		B3CCE7791998BB1B00067DB9 /* picto-hairfie-comment.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "picto-hairfie-comment.png"; sourceTree = "<group>"; };
@@ -373,6 +380,7 @@
 		1511518D1982B7A8001157A2 /* HairfieApp */ = {
 			isa = PBXGroup;
 			children = (
+				B3C45BD3199A49F0000E6C8E /* Camera Overlay View */,
 				B3EDF88C198794C900431B70 /* Main.storyboard */,
 				151151921982B7A8001157A2 /* AppDelegate.h */,
 				151151931982B7A8001157A2 /* AppDelegate.m */,
@@ -389,6 +397,8 @@
 		1511518E1982B7A8001157A2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B3C45BCF199A4670000E6C8E /* switch-camera-button.png */,
+				B3C45BD0199A4670000E6C8E /* take-picture-button.png */,
 				B3CCE793199921C700067DB9 /* picto-menu-point.png */,
 				B342316B1988EFD20058866B /* aroundme-bttn.png */,
 				B345BADA19950EDB007BB61A /* hairfie.jpg */,
@@ -634,6 +644,15 @@
 			name = "star rating";
 			sourceTree = "<group>";
 		};
+		B3C45BD3199A49F0000E6C8E /* Camera Overlay View */ = {
+			isa = PBXGroup;
+			children = (
+				B3C45BD4199A4A1B000E6C8E /* CameraOverlayView.h */,
+				B3C45BD5199A4A1B000E6C8E /* CameraOverlayView.m */,
+			);
+			name = "Camera Overlay View";
+			sourceTree = "<group>";
+		};
 		B3CCE7751998B6AB00067DB9 /* Hairfie Detail */ = {
 			isa = PBXGroup;
 			children = (
@@ -858,6 +877,7 @@
 				B36731E3198FB17800E11C56 /* picto-woman-white.png in Resources */,
 				B3F662401987D52A0041F298 /* SourceSansPro-Light.ttf in Resources */,
 				B345BAD9199502A3007BB61A /* CustomCollectionViewCell.xib in Resources */,
+				B3C45BD2199A4670000E6C8E /* take-picture-button.png in Resources */,
 				B3AD59BF198B9D3500909ADE /* picto-list-resume.png in Resources */,
 				B3CCE794199921C700067DB9 /* picto-menu-point.png in Resources */,
 				B3BD86AC198BD3DA00BD8591 /* selected_star.png in Resources */,
@@ -882,6 +902,7 @@
 				B3CCE77E1998BCA400067DB9 /* picto-hairfie-detail-like.png in Resources */,
 				B342315D1988E1DC0058866B /* settings-picto.png in Resources */,
 				B37F9A4E198F8F5E00881071 /* picto-list-phone.png in Resources */,
+				B3C45BD1199A4670000E6C8E /* switch-camera-button.png in Resources */,
 				B36731E5198FD87600E11C56 /* picto-home-black.png in Resources */,
 				B3F662421987D52A0041F298 /* SourceSansPro-Regular.ttf in Resources */,
 				B3BD86AA198BD3DA00BD8591 /* half_selected_star.png in Resources */,
@@ -912,6 +933,7 @@
 			files = (
 				B308700F198782BC0080E6D2 /* LikeViewController.m in Sources */,
 				B3E65FBA1986917800AF0C15 /* ECSlidingViewController.m in Sources */,
+				B3C45BD6199A4A1B000E6C8E /* CameraOverlayView.m in Sources */,
 				B3CCE78A1998CDAC00067DB9 /* HairfieDetailTableViewCell.m in Sources */,
 				B345BAE819951A7E007BB61A /* OLEContainerScrollView+Swizzling.m in Sources */,
 				B345BAEB19951A7E007BB61A /* OLESwizzling.m in Sources */,

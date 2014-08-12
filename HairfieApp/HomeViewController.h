@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "OLEContainerScrollView.h"
+#import "CameraOverlayView.h"
 
 @interface HomeViewController : UIViewController <UINavigationControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UIScrollViewDelegate>
 
@@ -15,6 +16,7 @@
 @property (nonatomic) IBOutlet UICollectionView *hairfieCollection;
 @property (nonatomic) IBOutlet UIView *topView;
 @property (nonatomic) IBOutlet OLEContainerScrollView *containerView;
+@property (nonatomic) CameraOverlayView *camera;
 
 
 @end

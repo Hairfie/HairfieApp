@@ -29,7 +29,8 @@
      [_hairfieCollection registerNib:[UINib nibWithNibName:@"CustomCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"hairfieCell"];
     [_containerView.contentView addSubview:_topView];
     [_containerView.contentView addSubview:_hairfieCollection];
-    
+    _camera = [[CameraOverlayView alloc] init];
+    _camera.delegate = self;
     // Do any additional setup after loading the view.
 }
 
@@ -76,6 +77,24 @@
     [self performSegueWithIdentifier:@"hairfieDetail" sender:self];
     
 }
+
+
+
+-(IBAction)takePicture:(id)sender
+{
+    if ([UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera])
+    {
+        
+        _camera.sourceType = UIImagePickerControllerSourceTypeCamera;
+        _camera.cameraDevice = UIImagePickerControllerCameraDeviceRear;
+        _camera.showsCameraControls = NO;
+        _camera.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
+        
+        [self presentViewController:_camera animated:YES completion:nil];
+        
+    }
+}
+
 
 
 
