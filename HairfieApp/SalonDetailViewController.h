@@ -24,6 +24,8 @@
 @property (nonatomic) IBOutlet UIView *salesView;
 @property (nonatomic) IBOutlet UIView *tabView;
 
+@property (nonatomic) IBOutlet UIButton *callBttn;
+
 
 @property (nonatomic) IBOutlet UIButton *infoBttn;
 @property (nonatomic) IBOutlet UIButton *hairfieBttn;
