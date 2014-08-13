@@ -10,6 +10,8 @@
 #import "ReviewTableViewCell.h"
 #import "SimilarTableViewCell.h"
 #import "HairfieApp-Swift.h"
+#import <CoreLocation/CoreLocation.h>
+#import "MyAnnotation.h"
 
 @interface SalonDetailViewController ()
 
@@ -61,7 +63,7 @@
     _previewMap.layer.masksToBounds = YES;
     _previewMap.layer.borderWidth = 3;
     _previewMap.layer.borderColor = [UIColor colorWithRed:249/255.0 green:249/255.0 blue:249/255.0 alpha:1].CGColor;
-    
+    _previewMap.delegate = self;
   // LOAD Pictures in page control (horizontal scroll view)
 
     NSArray *tutoArray = [[NSArray alloc] init];
@@ -99,6 +101,7 @@
     
     
     // Do any additional setup after loading the view.
+    
 }
 
 
@@ -293,7 +296,71 @@
     _city.text = [salonDetail objectForKey:@"city"];
     
     
-    //_salonAvailability
+    NSString *fullAddress = [NSString stringWithFormat:@"%@, %@", [salonDetail objectForKey:@"street"], [salonDetail objectForKey:@"city"]];
+    [self getCoordinatesFromAdress:fullAddress];
+   
+  
+    
+}
+
+
+-(void) getCoordinatesFromAdress:(NSString*)address
+{
+    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+    [geocoder geocodeAddressString:address completionHandler:^(NSArray* placemarks, NSError* error){
+        for (CLPlacemark* aPlacemark in placemarks)
+        {
+            // Process the placemark.
+            _haidresserLat = [NSString stringWithFormat:@"%.4f",aPlacemark.location.coordinate.latitude];
+            _haidresserLng = [NSString stringWithFormat:@"%.4f",aPlacemark.location.coordinate.longitude];
+             [self updateMapView];
+            }
+    }];
+
+}
+
+
+- (void)updateMapView {
+    
+    // create a region and pass it to the Map View
+    CLLocationCoordinate2D coord;
+    coord.longitude = [[NSString stringWithFormat:@"%@", _haidresserLng] floatValue];
+    coord.latitude = [[NSString stringWithFormat:@"%@", _haidresserLat] floatValue];
+
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance (coord, 260, 216);
+    region.center = coord;
+    
+    MyAnnotation *annotObj =[[MyAnnotation alloc]init];
+    
+    annotObj.title = _name.text;
+    annotObj.coordinate = coord;
+    [_previewMap addAnnotation:annotObj];
+//    [_previewMap regionThatFits:region];
+    //[_previewMap setRegion:region animated:NO];
+    [_previewMap showAnnotations:@[annotObj] animated:NO];
+    _previewMap.camera.altitude = 1000;
+  
+}
+
+
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id)annotation {
+    
+    static NSString *myIdentifier =@"MyAnnotation";
+    if([annotation isKindOfClass:[MyAnnotation class]])
+    {
+        MKAnnotationView *annotationView=[mapView dequeueReusableAnnotationViewWithIdentifier:myIdentifier];
+        if(!annotationView)
+        {
+            annotationView=[[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:myIdentifier];
+            annotationView.image = [UIImage imageNamed:@"map_pin.png"];
+            [annotationView setFrame:CGRectMake(0, 0, 17, 24)];
+            annotationView.contentMode = UIViewContentModeScaleAspectFit;
+            annotationView.centerOffset = CGPointMake(0, -annotationView.image.size.height / 2);
+            annotationView.canShowCallout = YES;
+        }
+        return annotationView;
+    }
+    return nil;
 }
 
 -(IBAction)callPhone:(id)sender {

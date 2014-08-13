@@ -10,7 +10,7 @@
 #import "RatingView.h"
 #import <MapKit/MapKit.h>
 
-@interface SalonDetailViewController : UIViewController <UIScrollViewDelegate, RatingViewDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface SalonDetailViewController : UIViewController <UIScrollViewDelegate, RatingViewDelegate, UITableViewDataSource, UITableViewDelegate, MKMapViewDelegate>
 
 @property (nonatomic) IBOutlet UIScrollView *imageSliderView;
 @property (nonatomic) IBOutlet UIPageControl *pageControl;
@@ -49,6 +49,8 @@
 @property (nonatomic) IBOutlet UILabel *nbReviews;
 @property (nonatomic) IBOutlet UILabel *isOpenLabel;
 
+@property (nonatomic) NSString *haidresserLat;
+@property (nonatomic) NSString *haidresserLng;
 
 
 @property (nonatomic) IBOutlet UITableView *reviewTableView;
