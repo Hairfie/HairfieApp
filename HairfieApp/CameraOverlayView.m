@@ -30,9 +30,9 @@
                             buttonWithType:UIButtonTypeCustom];
     [goBackButton setImage:goBackImg forState:UIControlStateNormal];
     [goBackButton addTarget:self action:@selector(goBack) forControlEvents:UIControlEventTouchUpInside];
-    [goBackButton setFrame:CGRectMake(10, 24, 11, 18)];
+    [goBackButton setFrame:CGRectMake(10, 32, 20, 20)];
     
-    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(92, 21, 136, 23)];
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(92, 30, 136, 23)];
     titleLabel.text = @"Post Hairfie";
     titleLabel.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:18];
     titleLabel.textAlignment = NSTextAlignmentCenter;
@@ -49,8 +49,6 @@
     [takePictureButton setImage:takePictureImg forState:UIControlStateNormal];
     [takePictureButton addTarget:self action:@selector(takePicture) forControlEvents:UIControlEventTouchUpInside];
     [takePictureButton setFrame:CGRectMake(122, 401, 77, 77)];
-    takePictureButton.layer.borderWidth = 2;
-    takePictureButton.layer.borderColor = [UIColor colorWithRed:255 green:255 blue:255 alpha:0.5].CGColor;
     
     takePictureButton.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin;
     UIImage *switchCameraImg = [UIImage imageNamed:@"switch-camera-button.png"];
