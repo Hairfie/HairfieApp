@@ -18,6 +18,6 @@
 @property (nonatomic) IBOutlet UIImageView *salonPicture;
 @property (nonatomic) IBOutlet UIButton *bookButton;
 
-
+- (void) customInit:(NSDictionary*)salon;
 
 @end
