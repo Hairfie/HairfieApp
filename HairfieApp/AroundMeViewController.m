@@ -21,6 +21,7 @@
 
 #import <SDWebImage/UIImageView+WebCache.h>
 
+
 @interface AroundMeViewController ()
 
 @end
@@ -31,6 +32,7 @@
     CLLocation *myLocation;
     NSInteger rowSelected;
     UITapGestureRecognizer *tap;
+    SDWebImageManager *SDmanager;
 }
 @synthesize manager = _manager, geocoder = _geocoder, mapView = _mapView, hairdresserTableView = _hairdresserTableView, delegate = _delegate, myLocation = _myLocation;
 
@@ -52,6 +54,9 @@
     [_hairdresserTableView setSeparatorInset:UIEdgeInsetsZero];
     [_scrollView.contentView addSubview:_mapView];
     [_scrollView.contentView addSubview:_hairdresserTableView];
+    
+    SDmanager = [SDWebImageManager sharedManager];
+
     // Do any additional setup after loading the view.
 }
 
@@ -210,6 +215,19 @@
             NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"SalonTableViewCell" owner:self options:nil];
             cell = [nib objectAtIndex:0];
         }
+        
+        [SDWebImageDownloader.sharedDownloader downloadImageWithURL:[NSURL URLWithString:[salon objectForKey:@"gps_picture"]]
+                                                        options:0
+                                                        progress:^(NSInteger receivedSize, NSInteger expectedSize) { }
+                                                        completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished)
+         {
+             if (image && finished)
+             {
+                 
+                 cell.salonPicture.image = [image croppedImage:CGRectMake(0, 0, cell.salonPicture.frame.size.width, cell.salonPicture.frame.size.height)];
+             }
+         }];
+        
         [cell customInit:salon];
         return cell;
     }

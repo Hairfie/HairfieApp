@@ -10,6 +10,7 @@
 		151151911982B7A8001157A2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 151151901982B7A8001157A2 /* main.m */; };
 		151151941982B7A8001157A2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 151151931982B7A8001157A2 /* AppDelegate.m */; };
 		151151A81982B7A8001157A2 /* HairfieAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 151151A71982B7A8001157A2 /* HairfieAppTests.m */; };
+		15697B31199BB03800DA83FE /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 15697B30199BB03800DA83FE /* UIImage+Resize.m */; };
 		15E6AE761992635900A11947 /* OpeningTimes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E6AE751992635900A11947 /* OpeningTimes.swift */; };
 		15ED728C199B9C6400453A74 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15ED728B199B9C6400453A74 /* ImageIO.framework */; };
 		7D10889D4045404FAF307C78 /* libPods-HairfieApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 33C90A5A8A0E44DCA71D5A3A /* libPods-HairfieApp.a */; };
@@ -159,6 +160,8 @@
 		151151A11982B7A8001157A2 /* HairfieAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HairfieAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		151151A61982B7A8001157A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		151151A71982B7A8001157A2 /* HairfieAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HairfieAppTests.m; sourceTree = "<group>"; };
+		15697B2F199BB01B00DA83FE /* UIImage+Resize.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
+		15697B30199BB03800DA83FE /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
 		157D7715198FF309006C1947 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		158431C3198A72FB001621B4 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
 		15E6AE751992635900A11947 /* OpeningTimes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpeningTimes.swift; sourceTree = "<group>"; };
@@ -417,6 +420,7 @@
 			children = (
 				B3EBE752199BACFD0073B844 /* bg-book-no-info.png */,
 				B3EBE753199BACFD0073B844 /* bg-book.png */,
+				15697B2E199BAFD000DA83FE /* UIImage Subclasses */,
 				B3BB481F199B983800F8CD5B /* arrow-nav.png */,
 				B3C45BCF199A4670000E6C8E /* switch-camera-button.png */,
 				B3C45BD0199A4670000E6C8E /* take-picture-button.png */,
@@ -456,6 +460,15 @@
 				151151A61982B7A8001157A2 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		15697B2E199BAFD000DA83FE /* UIImage Subclasses */ = {
+			isa = PBXGroup;
+			children = (
+				15697B2F199BB01B00DA83FE /* UIImage+Resize.h */,
+				15697B30199BB03800DA83FE /* UIImage+Resize.m */,
+			);
+			name = "UIImage Subclasses";
 			sourceTree = "<group>";
 		};
 		38C395959A7A499C87409BBF /* Frameworks */ = {
@@ -1071,6 +1084,7 @@
 				B345BAEA19951A7E007BB61A /* OLEContainerScrollViewContentView.m in Sources */,
 				B342316A1988ED070058866B /* BusinessViewController.m in Sources */,
 				B3423213198924290058866B /* AFNetworkReachabilityManager.m in Sources */,
+				15697B31199BB03800DA83FE /* UIImage+Resize.m in Sources */,
 				B308701719878C030080E6D2 /* SettingsViewController.m in Sources */,
 				B3A1281A198A85D8004D90BD /* CustomPinView.m in Sources */,
 			);

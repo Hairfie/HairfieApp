@@ -12,7 +12,10 @@
 #import "AppDelegate.h"
 #import "OLEContainerScrollView.h"
 
-@interface AroundMeViewController : UIViewController <MKMapViewDelegate, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate,UIGestureRecognizerDelegate>
+#import <SDWebImage/UIImageView+WebCache.h>
+#import "UIImage+Resize.h"
+
+@interface AroundMeViewController : UIViewController <MKMapViewDelegate, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate,UIGestureRecognizerDelegate,SDWebImageManagerDelegate>
 {
     NSString *test;
 }
