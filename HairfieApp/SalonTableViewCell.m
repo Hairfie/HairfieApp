@@ -36,9 +36,7 @@ nbReviews = _nbReviews;
     _bookButton.layer.cornerRadius = 5;
     _bookButton.layer.masksToBounds = YES;
 
-    
-    
-  //  _bookButton.text = [NSString stringWithFormat:NSLocalizedString(@"book", nil)];
+       //  _bookButton.text = [NSString stringWithFormat:NSLocalizedString(@"book", nil)];
    
     _statusLabelView.layer.cornerRadius = 5;
     _statusLabelView.layer.masksToBounds = YES;

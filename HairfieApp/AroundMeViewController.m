@@ -49,6 +49,7 @@
     _mapView.showsUserLocation = YES;
     tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideTableView:)];
     [_mapView addGestureRecognizer:tap];
+    [_hairdresserTableView setSeparatorInset:UIEdgeInsetsZero];
     [_scrollView.contentView addSubview:_mapView];
     [_scrollView.contentView addSubview:_hairdresserTableView];
     // Do any additional setup after loading the view.
@@ -202,17 +203,16 @@
     
     if ([[price objectForKey:@"women"] integerValue] != 0 && [[price objectForKey:@"men"]integerValue] != 0)
     {
-    static NSString *CellIdentifier = @"salonCell";
-    SalonTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-    if (cell == nil) {
-        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"SalonTableViewCell" owner:self options:nil];
-        cell = [nib objectAtIndex:0];
+        static NSString *CellIdentifier = @"salonCell";
+        SalonTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        
+        if (cell == nil) {
+            NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"SalonTableViewCell" owner:self options:nil];
+            cell = [nib objectAtIndex:0];
+        }
+        [cell customInit:salon];
+        return cell;
     }
-    [cell customInit:salon];
-    return cell;
-    }
-    
     else
     {
         static NSString *CellIdentifier = @"similarCell";
@@ -223,7 +223,6 @@
             cell = [nib objectAtIndex:0];
         }
         [cell customInit:salon];
-        tableView.rowHeight = 200;
         return cell;
     }
     
@@ -233,14 +232,8 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-   
-   // SalonDetailViewController *salonDetail = [[SalonDetailViewController alloc] init];
-    
-  //  salonDetail.dataSalon = [salons objectAtIndex:indexPath.row];
-  //  NSLog(@"%@", [salons objectAtIndex:indexPath.row]);
     rowSelected = indexPath.row;
-   [self performSegueWithIdentifier:@"salonDetail" sender:self];
-    //[self prepareForSegue:@"detailSalon" sender:self];
+    [self performSegueWithIdentifier:@"salonDetail" sender:self];
 }
 
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -250,7 +243,6 @@
         SalonDetailViewController *salonDetail = [segue destinationViewController];
         [salonDetail setDataSalon:[salons objectAtIndex:rowSelected]];
     }
-    
 }
 
 
@@ -278,9 +270,6 @@
     }
     return nil;
 }
-
-
-
 
 
 
