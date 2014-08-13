@@ -9,6 +9,8 @@
 #import "SalonTableViewCell.h"
 #import <QuartzCore/QuartzCore.h>
 
+#import <SDWebImage/UIImageView+WebCache.h>
+
 @implementation SalonTableViewCell
 {
     UIImageView *profilePicture;
@@ -50,6 +52,8 @@ nbReviews = _nbReviews;
     _salonRating.editable = NO;
     _salonRating.maxRating = 5;
     _salonRating.delegate = self;
+    
+    _salonPicture.image = [UIImage imageNamed:@"map_pin.png"];
 }
 
 - (void) customInit:(NSDictionary*)salon
@@ -57,12 +61,11 @@ nbReviews = _nbReviews;
     
     NSDictionary *price = [salon objectForKey:@"price"];
     NSDictionary *review = [salon objectForKey:@"reviews"];
-    NSString *imgUrl = [salon objectForKey:@"gps_picture"];
 
     _name.text = [salon objectForKey:@"name"];
     _manPrice.text = [NSString stringWithFormat:@"%@ €",[[price objectForKey:@"men"] stringValue]];
     _womanPrice.text = [NSString stringWithFormat:@"%@ €",[[price objectForKey:@"women"] stringValue]];
-    _salonPicture.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imgUrl]]];
+    
     _salonPicture.contentMode = UIViewContentModeScaleAspectFill;
    
     if ([[salon objectForKey:@"hairfies"]integerValue] == 0)
