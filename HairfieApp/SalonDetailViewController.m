@@ -20,7 +20,7 @@
     NSString *phoneNumber;
 }
 
-@synthesize imageSliderView =_imageSliderView, pageControl = _pageControl, infoView = _infoView, hairfieView = _hairfieView, hairdresserView = _hairdresserView, salesView = _salesView, infoBttn = _infoBttn, hairfieBttn = _hairfieBttn, hairdresserBttn = _hairdresserBttn, salesBttn = _salesBttn, reviewRating = _reviewRating, reviewTableView = _reviewTableView, addReviewBttn = _addReviewBttn, moreReviewBttn = _moreReviewBttn, similarTableView = _similarTableView, dataSalon = _dataSalon, ratingLabel = _ratingLabel, name = _name , womanPrice = _womanPrice, manPrice = _manPrice, salonRating = _salonRating, address = _address, city = _city, salonAvailability = _salonAvailability, nbReviews = _nbReviews, previewMap = _previewMap, isOpenLabel = _isOpenLabel, callBttn = _callBttn;
+@synthesize imageSliderView =_imageSliderView, pageControl = _pageControl, infoView = _infoView, hairfieView = _hairfieView, hairdresserView = _hairdresserView, salesView = _salesView, infoBttn = _infoBttn, hairfieBttn = _hairfieBttn, hairdresserBttn = _hairdresserBttn, salesBttn = _salesBttn, reviewRating = _reviewRating, reviewTableView = _reviewTableView, addReviewBttn = _addReviewBttn, moreReviewBttn = _moreReviewBttn, similarTableView = _similarTableView, dataSalon = _dataSalon, ratingLabel = _ratingLabel, name = _name , womanPrice = _womanPrice, manPrice = _manPrice, salonRating = _salonRating, address = _address, city = _city, salonAvailability = _salonAvailability, nbReviews = _nbReviews, previewMap = _previewMap, isOpenLabel = _isOpenLabel, callBttn = _callBttn, telephoneBgView = _telephoneBgView;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -52,10 +52,14 @@
     _callBttn.layer.cornerRadius = 5;
     _callBttn.layer.masksToBounds = YES;
     
+    _telephoneBgView.layer.cornerRadius = 5;
+    _telephoneBgView.layer.masksToBounds = YES;
+    
     _previewMap.layer.cornerRadius = 5;
     _previewMap.layer.masksToBounds = YES;
     _previewMap.layer.borderWidth = 3;
     _previewMap.layer.borderColor = [UIColor colorWithRed:249/255.0 green:249/255.0 blue:249/255.0 alpha:1].CGColor;
+    
   // LOAD Pictures in page control (horizontal scroll view)
 
     NSArray *tutoArray = [[NSArray alloc] init];
@@ -245,15 +249,17 @@
             _isOpenLabel.text = @"Fermé aujourd'hui";
     }
 
-    
     if (phoneNumbers == nil || [phoneNumbers count] == 0)
     {
+       
         _telephone.text = [NSString stringWithFormat:@"Pas de numéro connu"];
+        [_telephoneBgView setFrame:CGRectMake(34, 77, 133, 19)];
         _callBttn.hidden = YES;
     }
     else
     {
-        _telephone.text = [phoneNumbers objectAtIndex:0];
+        _telephone.text = [self formatPhoneNumber:[phoneNumbers objectAtIndex:0]];
+         [_telephoneBgView setFrame:CGRectMake(34, 77, 87, 19)];
         phoneNumber =[phoneNumbers objectAtIndex:0];
     }
     
@@ -290,6 +296,22 @@
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"telprompt://%@", phoneNumber]]];
 }
 
+
+// add spaces every 2 char on phone number
+
+-(NSString*)formatPhoneNumber:(NSString*) str
+{
+    NSMutableString* mStr= [NSMutableString string];
+    for(NSUInteger i=0 ; i<str.length; i++)
+    {
+        [mStr appendString: [str substringWithRange: NSMakeRange(i,1)]];
+        if(i%2 && i!=0)
+        {
+            [mStr appendString: @" "];
+        }
+    }
+    return  mStr;
+}
 
 /*
 #pragma mark - Navigation

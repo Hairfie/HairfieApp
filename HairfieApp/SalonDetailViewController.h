@@ -23,6 +23,8 @@
 @property (nonatomic) IBOutlet UIView *hairdresserView;
 @property (nonatomic) IBOutlet UIView *salesView;
 @property (nonatomic) IBOutlet UIView *tabView;
+@property (nonatomic) IBOutlet UIView *telephoneBgView;
+
 
 @property (nonatomic) IBOutlet UIButton *callBttn;
 
