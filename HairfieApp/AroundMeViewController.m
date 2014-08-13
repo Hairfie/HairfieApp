@@ -19,6 +19,8 @@
 #import "AFHTTPRequestOperationManager.h"
 #import "AFHTTPSessionManager.h"
 
+#import <SDWebImage/UIImageView+WebCache.h>
+
 @interface AroundMeViewController ()
 
 @end
