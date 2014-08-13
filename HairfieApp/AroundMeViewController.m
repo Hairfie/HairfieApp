@@ -185,7 +185,12 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    NSDictionary *salon = [[salons objectAtIndex:indexPath.row] objectForKey:@"obj"];
+    NSDictionary *price = [salon objectForKey:@"price"];
+    if ([[price objectForKey:@"women"] integerValue] != 0 && [[price objectForKey:@"men"]integerValue] != 0)
     return 140;
+    else
+        return 100;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -216,6 +221,7 @@
             cell = [nib objectAtIndex:0];
         }
         [cell customInit:salon];
+        tableView.rowHeight = 200;
         return cell;
     }
     
