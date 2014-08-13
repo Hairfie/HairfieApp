@@ -20,7 +20,6 @@
             <string>SourceSansPro-Light</string>
             <string>SourceSansPro-Light</string>
             <string>SourceSansPro-Light</string>
-            <string>SourceSansPro-Light</string>
         </mutableArray>
         <mutableArray key="SourceSansPro-Regular.ttf">
             <string>SourceSansPro-Regular</string>
@@ -1219,12 +1218,13 @@ le blabla, et c’est super chouette</string>
                                     <outlet property="delegate" destination="yCa-NQ-lwN" id="VbL-QY-U5Z"/>
                                 </connections>
                             </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="lsC-xV-ly5">
-                                <rect key="frame" x="43" y="528" width="233" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="lsC-xV-ly5">
+                                <rect key="frame" x="10" y="523" width="300" height="38"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.90196084980000002" green="0.33333334329999997" blue="0.29019609089999998" alpha="1" colorSpace="deviceRGB"/>
-                                <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="17"/>
-                                <state key="normal" title="Réserver">
+                                <inset key="titleEdgeInsets" minX="80" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <inset key="imageEdgeInsets" minX="100" minY="10" maxX="220" maxY="10"/>
+                                <state key="normal" title="Réserver" image="picto-phone-white.png">
                                     <color key="titleColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1236,6 +1236,7 @@ le blabla, et c’est super chouette</string>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="ekI-yZ-Ou7"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
                         <outlet property="addReviewBttn" destination="0NA-EQ-tPn" id="r8b-Ea-WJN"/>
                         <outlet property="address" destination="lUE-45-Pi0" id="Kmb-py-lDb"/>
@@ -1626,6 +1627,7 @@ le blabla, et c’est super chouette</string>
         <image name="picto-list-resume.png" width="22" height="32"/>
         <image name="picto-man-white.png" width="24" height="25"/>
         <image name="picto-menu-point.png" width="70" height="70"/>
+        <image name="picto-phone-white.png" width="32" height="31"/>
         <image name="picto-sales.png" width="42" height="42"/>
         <image name="picto-take-picture.png" width="68" height="52"/>
         <image name="picto-woman-white.png" width="21" height="25"/>

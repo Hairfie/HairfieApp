@@ -254,7 +254,7 @@
        
         _telephone.text = [NSString stringWithFormat:@"Pas de numéro connu"];
         [_telephoneBgView setFrame:CGRectMake(34, 77, 133, 19)];
-        _callBttn.hidden = YES;
+        //_callBttn.hidden = YES;
     }
     else
     {
