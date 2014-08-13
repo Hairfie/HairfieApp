@@ -49,6 +49,8 @@
     [takePictureButton setImage:takePictureImg forState:UIControlStateNormal];
     [takePictureButton addTarget:self action:@selector(takePicture) forControlEvents:UIControlEventTouchUpInside];
     [takePictureButton setFrame:CGRectMake(122, 401, 77, 77)];
+    takePictureButton.layer.borderWidth = 2;
+    takePictureButton.layer.borderColor = [UIColor colorWithRed:255 green:255 blue:255 alpha:0.5].CGColor;
     
     takePictureButton.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin;
     UIImage *switchCameraImg = [UIImage imageNamed:@"switch-camera-button.png"];
