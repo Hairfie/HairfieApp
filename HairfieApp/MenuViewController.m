@@ -28,6 +28,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     self.slidingViewController.topViewAnchoredGesture = ECSlidingViewControllerAnchoredGesturePanning | ECSlidingViewControllerAnchoredGestureTapping;
     _menuTableView.backgroundColor = [UIColor clearColor];
     _menuTableView.opaque = NO;
@@ -132,6 +133,9 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
     }
 }
 
+-(UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleLightContent;
+}
 
 
 #pragma mark state preservation / restoration
