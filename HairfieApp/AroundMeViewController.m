@@ -13,6 +13,7 @@
 
 #import "SalonTableViewCell.h"
 #import "SalonDetailViewController.h"
+#import "SimilarTableViewCell.h"
 
 #import "AFHTTPRequestOperation.h"
 #import "AFHTTPRequestOperationManager.h"
@@ -189,7 +190,11 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-   
+    NSDictionary *salon = [[salons objectAtIndex:indexPath.row] objectForKey:@"obj"];
+    NSDictionary *price = [salon objectForKey:@"price"];
+    
+    if ([[price objectForKey:@"women"] integerValue] != 0 && [[price objectForKey:@"men"]integerValue] != 0)
+    {
     static NSString *CellIdentifier = @"salonCell";
     SalonTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
@@ -197,10 +202,24 @@
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"SalonTableViewCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
-    NSDictionary *salon = [[salons objectAtIndex:indexPath.row] objectForKey:@"obj"];
     [cell customInit:salon];
-
     return cell;
+    }
+    
+    else
+    {
+        static NSString *CellIdentifier = @"similarCell";
+        SimilarTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        
+        if (cell == nil) {
+            NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"SimilarTableViewCell" owner:self options:nil];
+            cell = [nib objectAtIndex:0];
+        }
+        [cell customInit:salon];
+        return cell;
+    }
+    
+    return nil;
 }
 
 

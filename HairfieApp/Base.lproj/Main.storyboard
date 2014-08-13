@@ -1029,10 +1029,6 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="320" height="1000"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <subviews>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="phone-label-bg.png" id="bDX-S4-qfm">
-                                                                <rect key="frame" x="34" y="77" width="87" height="19"/>
-                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            </imageView>
                                                             <view contentMode="scaleToFill" id="EHF-6D-85J" userLabel="2">
                                                                 <rect key="frame" x="18" y="110" width="160" height="1"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1132,8 +1128,13 @@
                                                                 </subviews>
                                                                 <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
                                                             </view>
-                                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="01 42 52 89 61" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="roh-0y-ZB9">
-                                                                <rect key="frame" x="37" y="75" width="84" height="22"/>
+                                                            <view contentMode="scaleToFill" id="RnB-5U-bkN">
+                                                                <rect key="frame" x="34" y="77" width="87" height="19"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <color key="backgroundColor" red="0.36078431370000003" green="0.67450980390000004" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                            </view>
+                                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="01 64 99 38 47" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="roh-0y-ZB9">
+                                                                <rect key="frame" x="37" y="76" width="132" height="20"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                 <rect key="contentStretch" x="1.3877787807814457e-17" y="0.0" width="1" height="1"/>
                                                                 <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="14"/>
@@ -1217,11 +1218,13 @@ le blabla, et c’est super chouette</string>
                                     <outlet property="delegate" destination="yCa-NQ-lwN" id="VbL-QY-U5Z"/>
                                 </connections>
                             </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="lsC-xV-ly5">
-                                <rect key="frame" x="10" y="520" width="300" height="38"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="lsC-xV-ly5">
+                                <rect key="frame" x="10" y="523" width="300" height="38"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.90196084980000002" green="0.33333334329999997" blue="0.29019609089999998" alpha="1" colorSpace="deviceRGB"/>
-                                <state key="normal" title="Réserver">
+                                <inset key="titleEdgeInsets" minX="80" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <inset key="imageEdgeInsets" minX="100" minY="10" maxX="220" maxY="10"/>
+                                <state key="normal" title="Réserver" image="picto-phone-white.png">
                                     <color key="titleColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1263,6 +1266,7 @@ le blabla, et c’est super chouette</string>
                         <outlet property="similarTableView" destination="ohv-6p-TtB" id="u8I-lT-agh"/>
                         <outlet property="tabView" destination="dwh-n7-4Nq" id="DXo-ae-F7n"/>
                         <outlet property="telephone" destination="roh-0y-ZB9" id="b6S-8j-MiS"/>
+                        <outlet property="telephoneBgView" destination="RnB-5U-bkN" id="o1Y-qO-1Xr"/>
                         <outlet property="womanPrice" destination="4hE-1d-ajR" id="pCj-Gn-PFi"/>
                     </connections>
                 </viewController>
@@ -1612,7 +1616,6 @@ le blabla, et c’est super chouette</string>
         <image name="menu-icon.png" width="43" height="24"/>
         <image name="nav-disclosure.png" width="15" height="25"/>
         <image name="navigation-bg.jpg" width="640" height="1136"/>
-        <image name="phone-label-bg.png" width="206" height="38"/>
         <image name="picto-camera.png" width="42" height="36"/>
         <image name="picto-clock-black.png" width="32" height="32"/>
         <image name="picto-hairdresser.png" width="40" height="49"/>
@@ -1624,6 +1627,7 @@ le blabla, et c’est super chouette</string>
         <image name="picto-list-resume.png" width="22" height="32"/>
         <image name="picto-man-white.png" width="24" height="25"/>
         <image name="picto-menu-point.png" width="70" height="70"/>
+        <image name="picto-phone-white.png" width="32" height="31"/>
         <image name="picto-sales.png" width="42" height="42"/>
         <image name="picto-take-picture.png" width="68" height="52"/>
         <image name="picto-woman-white.png" width="21" height="25"/>
