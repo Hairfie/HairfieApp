@@ -271,8 +271,16 @@
     }
     
     _name.text = [salonDetail objectForKey:@"name"];
-    _manPrice.text = [NSString stringWithFormat:@"%@ €",[[price objectForKey:@"men"] stringValue]];
-    _womanPrice.text = [NSString stringWithFormat:@"%@ €",[[price objectForKey:@"women"] stringValue]];
+    
+    if ([[price objectForKey:@"women"] integerValue] != 0 && [[price objectForKey:@"men"]integerValue] != 0)
+    {
+        _manPrice.text = [NSString stringWithFormat:@"%@ €",[[price objectForKey:@"men"] stringValue]];
+        _womanPrice.text = [NSString stringWithFormat:@"%@ €",[[price objectForKey:@"women"] stringValue]];
+        _pricesView.hidden = NO;
+    }
+    else
+        _pricesView.hidden = YES;
+    
     _salonRating.notSelectedImage = [UIImage imageNamed:@"not_selected_star.png"];
     _salonRating.halfSelectedImage = [UIImage imageNamed:@"half_selected_star.png"];
     _salonRating.fullSelectedImage = [UIImage imageNamed:@"selected_star.png"];

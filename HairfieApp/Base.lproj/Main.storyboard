@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6185.11" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="m6Z-pY-ich">
     <dependencies>
+        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6190.4"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -714,7 +715,7 @@
             <objects>
                 <viewController storyboardIdentifier="Test" id="yCa-NQ-lwN" customClass="SalonDetailViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ci2-Vx-ERq">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="2000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="TP8-cF-gFr">
@@ -775,16 +776,6 @@
                                                     <action selector="changePage:" destination="yCa-NQ-lwN" eventType="valueChanged" id="cqo-oF-ulr"/>
                                                 </connections>
                                             </pageControl>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="picto-woman-white.png" id="Tn9-ea-lni">
-                                                <rect key="frame" x="15" y="157" width="11" height="13"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            </imageView>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="picto-man-white.png" id="WCL-Jl-gqM">
-                                                <rect key="frame" x="63" y="157" width="12" height="13"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            </imageView>
                                             <view contentMode="scaleToFill" id="cyM-3f-egs" customClass="RatingView">
                                                 <rect key="frame" x="15" y="132" width="91" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -815,20 +806,37 @@
                                                 <color key="textColor" red="0.72549019607843135" green="0.72549019607843135" blue="0.72156862745098038" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.69999999999999973" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$ 50" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4hE-1d-ajR">
-                                                <rect key="frame" x="31" y="153" width="27" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="12"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$ 30" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qsU-v2-agS">
-                                                <rect key="frame" x="81" y="153" width="39" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="12"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
+                                            <view contentMode="scaleToFill" id="kaV-kC-Vr9">
+                                                <rect key="frame" x="0.0" y="152" width="120" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="picto-man-white.png" id="WCL-Jl-gqM">
+                                                        <rect key="frame" x="62" y="4" width="12" height="13"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </imageView>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="picto-woman-white.png" id="Tn9-ea-lni">
+                                                        <rect key="frame" x="15" y="4" width="11" height="13"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </imageView>
+                                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$ 30" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qsU-v2-agS">
+                                                        <rect key="frame" x="79" y="0.0" width="39" height="21"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="12"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.69999999999999973" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$ 150" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4hE-1d-ajR">
+                                                        <rect key="frame" x="29" y="0.0" width="31" height="21"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="12"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="bOC-5g-rER">
                                                 <rect key="frame" x="15" y="15" width="35" height="35"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1151,7 +1159,7 @@ le blabla, et c’est super chouette</string>
                                 </connections>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="lsC-xV-ly5">
-                                <rect key="frame" x="10" y="523" width="300" height="38"/>
+                                <rect key="frame" x="10" y="1936" width="300" height="38"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.90196084980000002" green="0.33333334329999997" blue="0.29019609089999998" alpha="1" colorSpace="deviceRGB"/>
                                 <inset key="titleEdgeInsets" minX="80" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -1169,6 +1177,8 @@ le blabla, et c’est super chouette</string>
                     </view>
                     <navigationItem key="navigationItem" id="ekI-yZ-Ou7"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="2000"/>
                     <connections>
                         <outlet property="addReviewBttn" destination="0NA-EQ-tPn" id="r8b-Ea-WJN"/>
                         <outlet property="address" destination="lUE-45-Pi0" id="Kmb-py-lDb"/>
@@ -1189,6 +1199,7 @@ le blabla, et c’est super chouette</string>
                         <outlet property="nbReviews" destination="NKq-Ph-MUC" id="HF7-SG-S33"/>
                         <outlet property="pageControl" destination="Ihj-mT-3wL" id="fKE-XI-6XX"/>
                         <outlet property="previewMap" destination="lIJ-E0-tXY" id="Fd5-oz-TAF"/>
+                        <outlet property="pricesView" destination="kaV-kC-Vr9" id="zSp-XG-Sm0"/>
                         <outlet property="ratingLabel" destination="VvP-G6-2wm" id="eSE-S5-pPb"/>
                         <outlet property="reviewRating" destination="uw6-N4-qpv" id="xyj-6j-BFz"/>
                         <outlet property="reviewTableView" destination="dhe-xA-ya5" id="Aey-aJ-yEs"/>
