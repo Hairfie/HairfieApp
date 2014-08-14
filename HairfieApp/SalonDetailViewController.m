@@ -264,15 +264,16 @@ else if (tableView == _similarTableView)
 
     if (phoneNumbers == nil || [phoneNumbers count] == 0)
     {
-       
+        NSLog(@"tetete");
         _telephone.text = [NSString stringWithFormat:@"Pas de numéro connu"];
-        [_telephoneBgView setFrame:CGRectMake(34, 77, 133, 19)];
+        _telephoneBGViewWidth.constant = 133;
+        NSLog(@"%f", _telephoneBgView.frame.size.width);
         //_callBttn.hidden = YES;
     }
     else
     {
         _telephone.text = [self formatPhoneNumber:[phoneNumbers objectAtIndex:0]];
-         [_telephoneBgView setFrame:CGRectMake(34, 77, 87, 19)];
+        _telephoneBGViewWidth.constant = 87;
         phoneNumber =[phoneNumbers objectAtIndex:0];
     }
     
@@ -300,13 +301,19 @@ else if (tableView == _similarTableView)
         _ratingLabel.text = @"0";
         _nbReviews.text = @"- 0 review";
         _reviewTableView.hidden = YES;
-        [_addReviewBttn setFrame:CGRectMake(210, 353, 90, 25)];
+        //[_addReviewBttn removeFromSuperview];
+        //[_addReviewBttn setFrame:CGRectMake(200, 353, 90, 25)];
+        //[_infoView addSubview:_addReviewBttn ];
+        /*
+        _heightConstraint.constant = 353;
+        _widthConstraint.constant = 200;
+        _similarLabelYPosition.constant = 390;
+        _similarSeparatorYPosition.constant = 413;
+        _similarTableYPosition.constant = 422;
+         */
         _moreReviewBttn.hidden = YES;
-        [_similarSalon setFrame:CGRectMake(10, 400, 150, 23)];
-        [_similarSeparatorView setFrame:CGRectMake(10, 423, 150, 1)];
-        [_similarTableView setFrame:CGRectMake(0, 432, 320, 200)];
-      
-        _mainScrollView.contentSize =CGSizeMake(320, 920);
+        
+        //_mainScrollView.contentSize =CGSizeMake(320, 1300);
           NSLog(@"SCROLL %f", _mainScrollView.contentSize.height);
        // _mainScrollView.contentSize = CGSizeMake(320, 1000);
         

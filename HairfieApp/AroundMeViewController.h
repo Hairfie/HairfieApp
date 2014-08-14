@@ -29,6 +29,8 @@
 @property (nonatomic) IBOutlet UITableView *hairdresserTableView;
 @property (nonatomic) IBOutlet OLEContainerScrollView *scrollView;
 
+@property (nonatomic) IBOutlet UIView *headerView;
+
 @property (nonatomic)  CLLocationManager *manager;
 @property (nonatomic)  CLGeocoder *geocoder;
 @property (nonatomic)  CLLocation *myLocation;

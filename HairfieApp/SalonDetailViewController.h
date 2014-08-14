@@ -51,8 +51,7 @@
 @property (nonatomic) IBOutlet UILabel *telephone;
 @property (nonatomic) IBOutlet UILabel *nbReviews;
 @property (nonatomic) IBOutlet UILabel *isOpenLabel;
-@property (nonatomic) IBOutlet UILabel *similarSalon;
-@property (nonatomic) IBOutlet UIView *similarSeparatorView;
+
 
 @property (nonatomic) NSString *haidresserLat;
 @property (nonatomic) NSString *haidresserLng;
@@ -67,6 +66,10 @@
 @property (nonatomic) NSDictionary *dataSalon;
 
 @property (nonatomic) IBOutlet MKMapView *previewMap;
+
+
+@property (nonatomic) IBOutlet NSLayoutConstraint *telephoneBGViewWidth;
+
 
 -(IBAction)goBack:(id)sender;
 -(IBAction)changePage:(id)sender;

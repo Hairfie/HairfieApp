@@ -17,7 +17,6 @@
 
 @implementation HomeViewController
 
-@synthesize containerView = _containerView;
 
 -(UIStatusBarStyle)preferredStatusBarStyle{
     return UIStatusBarStyleLightContent;
@@ -27,8 +26,6 @@
     [super viewDidLoad];
     self.navigationItem.title = [NSString stringWithFormat:NSLocalizedString(@"Home", nil)];
      [_hairfieCollection registerNib:[UINib nibWithNibName:@"CustomCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"hairfieCell"];
-    [_containerView.contentView addSubview:_topView];
-    [_containerView.contentView addSubview:_hairfieCollection];
     _camera = [[CameraOverlayView alloc] init];
     _camera.delegate = self;
     // Do any additional setup after loading the view.
@@ -42,6 +39,24 @@
 
 
 // Collection View Datasource + Delegate
+
+// header view size
+
+-(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
+{
+    
+    return CGSizeMake(320, 200);
+}
+
+// header view data source
+
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+{
+    UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"headerView" forIndexPath:indexPath];
+    
+    return headerView;
+}
+
 
 - (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section {
     return 5;
@@ -62,11 +77,9 @@
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"CustomCollectionViewCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
-    
     cell.name.text = @"Kimi Smith";
     cell.hairfieView.image = [UIImage imageNamed:@"hairfie.jpg"];
     cell.layer.borderColor = [UIColor colorWithRed:234/255.0f green:236/255.0f blue:238/255.0f alpha:1].CGColor;
-   // cell.layer.borderColor = [UIColor redColor].CGColor;
     cell.layer.borderWidth = 1.0f;
     return cell;
 }
