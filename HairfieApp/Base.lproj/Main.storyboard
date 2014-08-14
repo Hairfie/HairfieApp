@@ -715,7 +715,7 @@
             <objects>
                 <viewController storyboardIdentifier="Test" id="yCa-NQ-lwN" customClass="SalonDetailViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ci2-Vx-ERq">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="2000"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="TP8-cF-gFr">
@@ -750,14 +750,9 @@
                                 <color key="backgroundColor" red="0.15686274510000001" green="0.19215686269999999" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" indicatorStyle="white" id="OVC-wS-RAs">
-                                <rect key="frame" x="0.0" y="60" width="320" height="1153"/>
+                                <rect key="frame" x="0.0" y="60" width="320" height="508"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" id="tTt-s3-VJm">
-                                        <rect key="frame" x="0.0" y="180" width="320" height="58"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.36078431370000003" green="0.67450980390000004" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
-                                    </view>
                                     <view contentMode="scaleToFill" id="TiH-mI-ns4">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="180"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -808,7 +803,7 @@
                                             </label>
                                             <view contentMode="scaleToFill" id="kaV-kC-Vr9">
                                                 <rect key="frame" x="0.0" y="152" width="120" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="picto-man-white.png" id="WCL-Jl-gqM">
                                                         <rect key="frame" x="62" y="4" width="12" height="13"/>
@@ -846,6 +841,11 @@
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" id="tTt-s3-VJm">
+                                        <rect key="frame" x="0.0" y="180" width="320" height="58"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.36078431370000003" green="0.67450980390000004" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
                                     <view contentMode="scaleToFill" id="den-6s-pLj">
                                         <rect key="frame" x="0.0" y="183" width="320" height="55"/>
@@ -1105,11 +1105,6 @@
                                                                 <color key="textColor" red="0.42745098039215684" green="0.46274509803921571" blue="0.51372549019607838" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="ohv-6p-TtB">
-                                                                <rect key="frame" x="0.0" y="698" width="320" height="332"/>
-                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                            </tableView>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="3v1-r0-6Ua">
                                                                 <rect key="frame" x="180" y="612" width="128" height="25"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1140,6 +1135,11 @@ le blabla, et c’est super chouette</string>
                                                                 <color key="textColor" red="0.5450980392" green="0.5568627451" blue="0.57254901960000004" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
+                                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="ohv-6p-TtB">
+                                                                <rect key="frame" x="0.0" y="689" width="320" height="332"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            </tableView>
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </view>
@@ -1159,8 +1159,8 @@ le blabla, et c’est super chouette</string>
                                 </connections>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="lsC-xV-ly5">
-                                <rect key="frame" x="10" y="1936" width="300" height="38"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <rect key="frame" x="10" y="523" width="300" height="38"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.90196084980000002" green="0.33333334329999997" blue="0.29019609089999998" alpha="1" colorSpace="deviceRGB"/>
                                 <inset key="titleEdgeInsets" minX="80" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <inset key="imageEdgeInsets" minX="100" minY="10" maxX="220" maxY="10"/>
@@ -1177,8 +1177,6 @@ le blabla, et c’est super chouette</string>
                     </view>
                     <navigationItem key="navigationItem" id="ekI-yZ-Ou7"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="320" height="2000"/>
                     <connections>
                         <outlet property="addReviewBttn" destination="0NA-EQ-tPn" id="r8b-Ea-WJN"/>
                         <outlet property="address" destination="lUE-45-Pi0" id="Kmb-py-lDb"/>
@@ -1206,6 +1204,8 @@ le blabla, et c’est super chouette</string>
                         <outlet property="salesBttn" destination="ROZ-VN-cJb" id="NXK-Xi-QLC"/>
                         <outlet property="salesView" destination="Nqe-Fb-dED" id="tsU-VW-hID"/>
                         <outlet property="salonRating" destination="cyM-3f-egs" id="mJD-5n-fjH"/>
+                        <outlet property="similarSalon" destination="K8b-h2-e7P" id="UoK-No-aaF"/>
+                        <outlet property="similarSeparatorView" destination="5bI-qd-4u6" id="SAK-dV-gJM"/>
                         <outlet property="similarTableView" destination="ohv-6p-TtB" id="u8I-lT-agh"/>
                         <outlet property="tabView" destination="dwh-n7-4Nq" id="DXo-ae-F7n"/>
                         <outlet property="telephone" destination="roh-0y-ZB9" id="b6S-8j-MiS"/>

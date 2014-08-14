@@ -34,7 +34,7 @@
     [self setButtonSelected:_infoBttn andBringViewUpfront:_infoView];
     _imageSliderView.canCancelContentTouches = NO;
     
-    _mainScrollView.contentSize = CGSizeMake(320, 1800);
+    
     _reviewTableView.delegate = self;
     _reviewTableView.dataSource = self;
     _reviewTableView.userInteractionEnabled = NO;
@@ -194,6 +194,12 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if (tableView == _reviewTableView)
+    return 2;
+else if (tableView == _similarTableView)
+    return 2;
+
+    
     return 2;
 }
 
@@ -293,9 +299,24 @@
         _salonRating.rating = 0;
         _ratingLabel.text = @"0";
         _nbReviews.text = @"- 0 review";
+        _reviewTableView.hidden = YES;
+        [_addReviewBttn setFrame:CGRectMake(210, 353, 90, 25)];
+        _moreReviewBttn.hidden = YES;
+        [_similarSalon setFrame:CGRectMake(10, 400, 150, 23)];
+        [_similarSeparatorView setFrame:CGRectMake(10, 423, 150, 1)];
+        [_similarTableView setFrame:CGRectMake(0, 432, 320, 200)];
+      
+        _mainScrollView.contentSize =CGSizeMake(320, 920);
+          NSLog(@"SCROLL %f", _mainScrollView.contentSize.height);
+       // _mainScrollView.contentSize = CGSizeMake(320, 1000);
+        
+        
+        
     }
     else
     {
+         _mainScrollView.contentSize = CGSizeMake(320, 1180);
+        
         _salonRating.rating = [[reviews objectForKey:@"average"] floatValue];
         _ratingLabel.text = [[reviews objectForKey:@"average"] stringValue];
         _nbReviews.text =[NSString stringWithFormat:@"- %@ reviews",[reviews objectForKey:@"total"]];

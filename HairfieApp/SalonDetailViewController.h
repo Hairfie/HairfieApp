@@ -30,6 +30,8 @@
 @property (nonatomic) IBOutlet UIButton *callBttn;
 
 
+// Page inside detail Salon
+
 @property (nonatomic) IBOutlet UIButton *infoBttn;
 @property (nonatomic) IBOutlet UIButton *hairfieBttn;
 @property (nonatomic) IBOutlet UIButton *hairdresserBttn;
@@ -49,6 +51,8 @@
 @property (nonatomic) IBOutlet UILabel *telephone;
 @property (nonatomic) IBOutlet UILabel *nbReviews;
 @property (nonatomic) IBOutlet UILabel *isOpenLabel;
+@property (nonatomic) IBOutlet UILabel *similarSalon;
+@property (nonatomic) IBOutlet UIView *similarSeparatorView;
 
 @property (nonatomic) NSString *haidresserLat;
 @property (nonatomic) NSString *haidresserLng;
