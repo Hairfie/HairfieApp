@@ -26,6 +26,8 @@
 		B330B5C5198658970059AE56 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B330B5C4198658970059AE56 /* HomeViewController.m */; };
 		B330B5CB198681B20059AE56 /* menu-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B330B5CA198681B20059AE56 /* menu-icon.png */; };
 		B337B6F619A22B11003B0EA5 /* HairfieDetailCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B337B6F419A22B11003B0EA5 /* HairfieDetailCollectionReusableView.m */; };
+		B337B6FA19A25116003B0EA5 /* HorairesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B337B6F919A25116003B0EA5 /* HorairesViewController.m */; };
+		B337B6FD19A252B7003B0EA5 /* ReviewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B337B6FC19A252B7003B0EA5 /* ReviewsViewController.m */; };
 		B342315D1988E1DC0058866B /* settings-picto.png in Resources */ = {isa = PBXBuildFile; fileRef = B34231571988E1DC0058866B /* settings-picto.png */; };
 		B342315E1988E1DC0058866B /* business-picto.png in Resources */ = {isa = PBXBuildFile; fileRef = B34231581988E1DC0058866B /* business-picto.png */; };
 		B342315F1988E1DC0058866B /* friends-picto.png in Resources */ = {isa = PBXBuildFile; fileRef = B34231591988E1DC0058866B /* friends-picto.png */; };
@@ -190,6 +192,10 @@
 		B330B5CA198681B20059AE56 /* menu-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu-icon.png"; path = "../menu-icon.png"; sourceTree = "<group>"; };
 		B337B6F319A22B11003B0EA5 /* HairfieDetailCollectionReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HairfieDetailCollectionReusableView.h; sourceTree = "<group>"; };
 		B337B6F419A22B11003B0EA5 /* HairfieDetailCollectionReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HairfieDetailCollectionReusableView.m; sourceTree = "<group>"; };
+		B337B6F819A25116003B0EA5 /* HorairesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HorairesViewController.h; sourceTree = "<group>"; };
+		B337B6F919A25116003B0EA5 /* HorairesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HorairesViewController.m; sourceTree = "<group>"; };
+		B337B6FB19A252B7003B0EA5 /* ReviewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewsViewController.h; sourceTree = "<group>"; };
+		B337B6FC19A252B7003B0EA5 /* ReviewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewsViewController.m; sourceTree = "<group>"; };
 		B34231571988E1DC0058866B /* settings-picto.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings-picto.png"; sourceTree = "<group>"; };
 		B34231581988E1DC0058866B /* business-picto.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "business-picto.png"; sourceTree = "<group>"; };
 		B34231591988E1DC0058866B /* friends-picto.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "friends-picto.png"; sourceTree = "<group>"; };
@@ -595,6 +601,10 @@
 				B3DD7A7D19911245007B1621 /* ReviewTableViewCell.h */,
 				B3DD7A7E19911245007B1621 /* ReviewTableViewCell.m */,
 				B3DD7A7F19911245007B1621 /* ReviewTableViewCell.xib */,
+				B337B6FB19A252B7003B0EA5 /* ReviewsViewController.h */,
+				B337B6FC19A252B7003B0EA5 /* ReviewsViewController.m */,
+				B337B6F819A25116003B0EA5 /* HorairesViewController.h */,
+				B337B6F919A25116003B0EA5 /* HorairesViewController.m */,
 			);
 			name = "Salon Detail";
 			sourceTree = "<group>";
@@ -1049,6 +1059,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B308700F198782BC0080E6D2 /* LikeViewController.m in Sources */,
+				B337B6FA19A25116003B0EA5 /* HorairesViewController.m in Sources */,
 				B3E65FBA1986917800AF0C15 /* ECSlidingViewController.m in Sources */,
 				B3C45BD6199A4A1B000E6C8E /* CameraOverlayView.m in Sources */,
 				B3CCE78A1998CDAC00067DB9 /* HairfieDetailTableViewCell.m in Sources */,
@@ -1088,6 +1099,7 @@
 				B3E65FBB1986917800AF0C15 /* UIViewController+ECSlidingViewController.m in Sources */,
 				B34231671988ECF50058866B /* FriendViewController.m in Sources */,
 				B345BAEA19951A7E007BB61A /* OLEContainerScrollViewContentView.m in Sources */,
+				B337B6FD19A252B7003B0EA5 /* ReviewsViewController.m in Sources */,
 				B342316A1988ED070058866B /* BusinessViewController.m in Sources */,
 				B3423213198924290058866B /* AFNetworkReachabilityManager.m in Sources */,
 				15697B31199BB03800DA83FE /* UIImage+Resize.m in Sources */,

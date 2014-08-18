@@ -25,7 +25,6 @@
     _commentTableView.backgroundColor = [UIColor clearColor];
     _moreCommentBttn.layer.cornerRadius = 5;
     _moreCommentBttn.layer.masksToBounds = YES;
-    _hairfieImageView.image = [UIImage imageNamed:@"hairfie.jpg"];
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -50,10 +49,8 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"tetete");
     if (tableView == _infoTableView)
     {
-        NSLog(@"JE VIENS ICI");
         static NSString *CellIdentifier = @"infoCell";
         HairfieDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         

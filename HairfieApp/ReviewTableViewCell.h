@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "RatingView.h"
+
 @interface ReviewTableViewCell : UITableViewCell <RatingViewDelegate>
 {
     UIImageView *profilePicture;

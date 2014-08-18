@@ -12,6 +12,7 @@
 #import "HairfieApp-Swift.h"
 #import <CoreLocation/CoreLocation.h>
 #import "MyAnnotation.h"
+#import "ReviewsViewController.h"
 
 @interface SalonDetailViewController ()
 
@@ -69,7 +70,7 @@
     NSArray *tutoArray = [[NSArray alloc] init];
     tutoArray = [[NSArray alloc] initWithObjects:@"photo-example.jpeg", @"photo-example.jpeg", @"photo-example.jpeg", @"photo-example.jpeg", @"photo-example.jpeg", nil];
     _pageControl.numberOfPages = [tutoArray count];
-    
+
     for (int i = 0; i < [tutoArray count]; i++) {
         CGRect frame;
         frame.origin.x = _imageSliderView.frame.size.width * i;
@@ -110,7 +111,7 @@
 }
 
 - (void)rateView:(RatingView *)rateView ratingDidChange:(float)rating {
-    //   _statusLabel.text = [NSString stringWithFormat:@"%.f", rating];
+    [self performSegueWithIdentifier:@"addReview" sender:self];
 }
 
 
@@ -118,6 +119,7 @@
 {
     if (scrollview == _imageSliderView)
     {
+       
     // Update the page when more than 50% of the previous/next page is visible
     CGFloat pageWidth = scrollview.frame.size.width;
     int page = floor((scrollview.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
@@ -264,11 +266,10 @@ else if (tableView == _similarTableView)
 
     if (phoneNumbers == nil || [phoneNumbers count] == 0)
     {
-        NSLog(@"tetete");
         _telephone.text = [NSString stringWithFormat:@"Pas de numéro connu"];
         _telephoneLabelWidth.constant = 133;
-        NSLog(@"%f", _telephoneBgView.frame.size.width);
-        //_callBttn.hidden = YES;
+        _callBttn.hidden = YES;
+        _callBttn.enabled = NO;
     }
     else
     {
@@ -385,6 +386,15 @@ else if (tableView == _similarTableView)
 
 -(IBAction)callPhone:(id)sender {
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"telprompt://%@", phoneNumber]]];
+}
+
+-(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"addReview"])
+    {
+        ReviewsViewController *review = [segue destinationViewController];
+        review.reviewRating.rating = _reviewRating.rating;
+    }
 }
 
 
