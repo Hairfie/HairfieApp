@@ -10,6 +10,9 @@
 
 @implementation CustomCollectionViewCell
 
+@synthesize hairfieView = _hairfieView, nbLikes = _nbLikes, name = _name;
+
+
 - (void)awakeFromNib {
     // Initialization code
     UIImageView *profilePicture = [[UIImageView alloc] initWithFrame:CGRectMake(10, 170, 30, 30)];

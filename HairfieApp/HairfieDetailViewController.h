@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HairfieDetailViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate>
+@interface HairfieDetailViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UITableViewDelegate, UITableViewDataSource>
 
 
 @property (nonatomic) IBOutlet UIScrollView *myScrollView;
@@ -23,7 +23,7 @@
 @property (nonatomic) IBOutlet UIButton *moreCommentBttn;
 
 @property (nonatomic) IBOutlet UICollectionView *hairfieCollection;
-
+@property (nonatomic) IBOutlet UICollectionReusableView *test;
 
 -(IBAction)goBack:(id)sender;
 

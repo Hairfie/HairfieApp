@@ -52,9 +52,7 @@
     _mapView.showsUserLocation = YES;
     _hairdresserTableView.tableHeaderView = _headerView;
     [_hairdresserTableView setSeparatorInset:UIEdgeInsetsZero];
-    [_scrollView.contentView addSubview:_mapView];
-    [_scrollView.contentView addSubview:_hairdresserTableView];
-    
+ 
     SDmanager = [SDWebImageManager sharedManager];
 
     // Do any additional setup after loading the view.

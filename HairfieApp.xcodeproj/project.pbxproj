@@ -25,6 +25,7 @@
 		B330B5C2198656F20059AE56 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B330B5C1198656F20059AE56 /* CoreGraphics.framework */; };
 		B330B5C5198658970059AE56 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B330B5C4198658970059AE56 /* HomeViewController.m */; };
 		B330B5CB198681B20059AE56 /* menu-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B330B5CA198681B20059AE56 /* menu-icon.png */; };
+		B337B6F619A22B11003B0EA5 /* HairfieDetailCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B337B6F419A22B11003B0EA5 /* HairfieDetailCollectionReusableView.m */; };
 		B342315D1988E1DC0058866B /* settings-picto.png in Resources */ = {isa = PBXBuildFile; fileRef = B34231571988E1DC0058866B /* settings-picto.png */; };
 		B342315E1988E1DC0058866B /* business-picto.png in Resources */ = {isa = PBXBuildFile; fileRef = B34231581988E1DC0058866B /* business-picto.png */; };
 		B342315F1988E1DC0058866B /* friends-picto.png in Resources */ = {isa = PBXBuildFile; fileRef = B34231591988E1DC0058866B /* friends-picto.png */; };
@@ -187,6 +188,8 @@
 		B330B5C4198658970059AE56 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		B330B5C619865B2E0059AE56 /* HairfiePrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HairfiePrefixHeader.pch; sourceTree = "<group>"; };
 		B330B5CA198681B20059AE56 /* menu-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu-icon.png"; path = "../menu-icon.png"; sourceTree = "<group>"; };
+		B337B6F319A22B11003B0EA5 /* HairfieDetailCollectionReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HairfieDetailCollectionReusableView.h; sourceTree = "<group>"; };
+		B337B6F419A22B11003B0EA5 /* HairfieDetailCollectionReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HairfieDetailCollectionReusableView.m; sourceTree = "<group>"; };
 		B34231571988E1DC0058866B /* settings-picto.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings-picto.png"; sourceTree = "<group>"; };
 		B34231581988E1DC0058866B /* business-picto.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "business-picto.png"; sourceTree = "<group>"; };
 		B34231591988E1DC0058866B /* friends-picto.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "friends-picto.png"; sourceTree = "<group>"; };
@@ -708,6 +711,8 @@
 				B3CCE78C1998F4F600067DB9 /* CommentTableViewCell.h */,
 				B3CCE78D1998F4F600067DB9 /* CommentTableViewCell.m */,
 				B3CCE78E1998F4F600067DB9 /* CommentTableViewCell.xib */,
+				B337B6F319A22B11003B0EA5 /* HairfieDetailCollectionReusableView.h */,
+				B337B6F419A22B11003B0EA5 /* HairfieDetailCollectionReusableView.m */,
 			);
 			name = "Hairfie Detail";
 			sourceTree = "<group>";
@@ -1069,6 +1074,7 @@
 				B3423212198924290058866B /* AFHTTPSessionManager.m in Sources */,
 				B330B5C5198658970059AE56 /* HomeViewController.m in Sources */,
 				B3F6624D1987E87E0041F298 /* MenuTableViewCell.m in Sources */,
+				B337B6F619A22B11003B0EA5 /* HairfieDetailCollectionReusableView.m in Sources */,
 				B3423215198924290058866B /* AFURLConnectionOperation.m in Sources */,
 				B3423216198924290058866B /* AFURLRequestSerialization.m in Sources */,
 				B3423218198924290058866B /* AFURLSessionManager.m in Sources */,

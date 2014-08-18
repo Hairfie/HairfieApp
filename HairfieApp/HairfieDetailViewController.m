@@ -10,6 +10,7 @@
 #import "HairfieDetailTableViewCell.h"
 #import "CommentTableViewCell.h"
 #import "CustomCollectionViewCell.h"
+#import "HairfieDetailCollectionReusableView.h"
 
 @interface HairfieDetailViewController ()
 
@@ -22,9 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     _infoTableView.backgroundColor = [UIColor clearColor];
-    _myScrollView.contentSize = CGSizeMake(320, 2320);
-    _hairfieImageView.clipsToBounds = YES;
-   // [self addGradientToView:_hairfieImageView];
+   // _hairfieImageView.clipsToBounds = YES;
     _infoTableView.scrollEnabled = NO;
     _hairfieCollection.delegate = self;
     _hairfieCollection.dataSource = self;
@@ -32,7 +31,9 @@
     _addCommentBttn.layer.masksToBounds = YES;
      _moreCommentBttn.layer.cornerRadius = 5;
     _moreCommentBttn.layer.masksToBounds = YES;
-      [_hairfieCollection registerNib:[UINib nibWithNibName:@"CustomCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"hairfieRelated"];
+    [_hairfieCollection registerNib:[UINib nibWithNibName:@"CustomCollectionViewCell" bundle:nil]forCellWithReuseIdentifier:@"hairfieRelated"];
+    [_hairfieCollection registerNib:[UINib nibWithNibName:@"HairfieDetailCollectionReusableView" bundle:nil]forCellWithReuseIdentifier:@"headerCollection"];
+
 //[_hairfieCollection setFrame:CGRectMake(0, 601, 320, 800)];
 }
 
@@ -75,7 +76,7 @@
 {
     if (tableView == _infoTableView)
         return 3;
-    return 2;
+    return 1;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -88,7 +89,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+  
    if (tableView == _infoTableView)
    {
         static NSString *CellIdentifier = @"infoCell";
@@ -128,7 +129,7 @@
         cell.backgroundColor = [UIColor clearColor];
          return cell;
    }
-    if (tableView == _commentTableView)
+    else
     {
         static NSString *CellIdentifier = @"commentCell";
         CommentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -139,11 +140,9 @@
         }
         return cell;
     }
-    
-     _myScrollView.contentSize = CGSizeMake(320, _hairfieCollection.frame.origin.y + _hairfieCollection.frame.size.height);
-    
     return nil;
 }
+
 
 // Collection View delegate
 
@@ -151,14 +150,47 @@
 - (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section {
     return 4;
 }
-// 2
+
 - (NSInteger)numberOfSectionsInCollectionView: (UICollectionView *)collectionView {
     return 1;
 }
 
 
-// 3
+// header view size
+
+-(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
+{
+    
+    return CGSizeMake(320, 1000);
+}
+
+// header view data source
+
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+{
+    UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"hairfieDetailHeaderView" forIndexPath:indexPath];
+   
+    /*
+    UICollectionReusableView *headerView = nil;
+    
+    if (kind == UICollectionElementKindSectionHeader) {
+        UINib *nib = [UINib nibWithNibName:@"HairfieDetailCollectionReusableView" bundle:nil];
+        
+        
+        [_hairfieCollection registerNib:nib forCellWithReuseIdentifier:@"headerCollection"];
+    
+        HairfieDetailCollectionReusableView *collectionHeader = [_hairfieCollection dequeueReusableCellWithReuseIdentifier:@"headerCollection" forIndexPath:indexPath];
+        
+        
+        headerView = collectionHeader;
+    }
+*/
+    return headerView;
+}
+
+
 - (CustomCollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    
       static NSString *CellIdentifier = @"hairfieRelated";
     CustomCollectionViewCell *cell = [cv dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
     
