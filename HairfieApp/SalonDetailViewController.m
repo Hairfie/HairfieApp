@@ -22,7 +22,7 @@
     NSString *phoneNumber;
 }
 
-@synthesize imageSliderView =_imageSliderView, pageControl = _pageControl, infoView = _infoView, hairfieView = _hairfieView, hairdresserView = _hairdresserView, salesView = _salesView, infoBttn = _infoBttn, hairfieBttn = _hairfieBttn, hairdresserBttn = _hairdresserBttn, salesBttn = _salesBttn, reviewRating = _reviewRating, reviewTableView = _reviewTableView, addReviewBttn = _addReviewBttn, moreReviewBttn = _moreReviewBttn, similarTableView = _similarTableView, dataSalon = _dataSalon, ratingLabel = _ratingLabel, name = _name , womanPrice = _womanPrice, manPrice = _manPrice, salonRating = _salonRating, address = _address, city = _city, salonAvailability = _salonAvailability, nbReviews = _nbReviews, previewMap = _previewMap, isOpenLabel = _isOpenLabel, callBttn = _callBttn, telephoneBgView = _telephoneBgView;
+@synthesize imageSliderView =_imageSliderView, pageControl = _pageControl,hairfieView = _hairfieView, hairdresserView = _hairdresserView, salesView = _salesView, infoBttn = _infoBttn, hairfieBttn = _hairfieBttn, hairdresserBttn = _hairdresserBttn, salesBttn = _salesBttn, reviewRating = _reviewRating, reviewTableView = _reviewTableView, addReviewBttn = _addReviewBttn, moreReviewBttn = _moreReviewBttn, similarTableView = _similarTableView, dataSalon = _dataSalon, ratingLabel = _ratingLabel, name = _name , womanPrice = _womanPrice, manPrice = _manPrice, salonRating = _salonRating, address = _address, city = _city, salonAvailability = _salonAvailability, nbReviews = _nbReviews, previewMap = _previewMap, isOpenLabel = _isOpenLabel, callBttn = _callBttn, telephoneBgView = _telephoneBgView;
 
 
 
@@ -31,7 +31,7 @@
     
     [self initKnownData:_dataSalon];
     [self unSelectAll];
-    [self setButtonSelected:_infoBttn andBringViewUpfront:_infoView];
+    [_infoBttn setSelected:YES];
     _imageSliderView.canCancelContentTouches = NO;
     
     
@@ -128,14 +128,15 @@
 
 -(IBAction)changeTab:(id)sender
 {
-    if(sender == _infoBttn)
-        [self setButtonSelected:_infoBttn andBringViewUpfront:_infoView];
+  /*  if(sender == _infoBttn)
+        [self setButtonSelected:_infoBttn andBringViewUpfront:];
     else if(sender == _hairfieBttn)
         [self setButtonSelected:_hairfieBttn andBringViewUpfront:_hairfieView];
     else if(sender == _hairdresserBttn)
         [self setButtonSelected:_hairdresserBttn andBringViewUpfront:_hairdresserView];
     else if(sender == _salesBttn)
          [self setButtonSelected:_salesBttn andBringViewUpfront:_salesView];
+   */
 }
 -(void)setButtonSelected:(UIButton*) button andBringViewUpfront:(UIView*) view
 {
@@ -156,8 +157,7 @@
     [self setNormalStateColor:_hairfieBttn];
     [self setNormalStateColor:_hairdresserBttn];
     [self setNormalStateColor:_salesBttn];
-   /* _infoBttn.selected = NO;
-
+/*
     
     _hairfieBttn.selected = NO;
     _hairdresserBttn.selected = NO;
@@ -197,7 +197,7 @@
     if (tableView == _reviewTableView)
     return 2;
 else if (tableView == _similarTableView)
-    return 2;
+    return 3;
 
     
     return 2;
@@ -266,14 +266,14 @@ else if (tableView == _similarTableView)
     {
         NSLog(@"tetete");
         _telephone.text = [NSString stringWithFormat:@"Pas de numéro connu"];
-        _telephoneBGViewWidth.constant = 133;
+        _telephoneLabelWidth.constant = 133;
         NSLog(@"%f", _telephoneBgView.frame.size.width);
         //_callBttn.hidden = YES;
     }
     else
     {
         _telephone.text = [self formatPhoneNumber:[phoneNumbers objectAtIndex:0]];
-        _telephoneBGViewWidth.constant = 87;
+        _telephoneLabelWidth.constant = 87;
         phoneNumber =[phoneNumbers objectAtIndex:0];
     }
     
@@ -301,42 +301,26 @@ else if (tableView == _similarTableView)
         _ratingLabel.text = @"0";
         _nbReviews.text = @"- 0 review";
         _reviewTableView.hidden = YES;
-        //[_addReviewBttn removeFromSuperview];
-        //[_addReviewBttn setFrame:CGRectMake(200, 353, 90, 25)];
-        //[_infoView addSubview:_addReviewBttn ];
-        /*
-        _heightConstraint.constant = 353;
-        _widthConstraint.constant = 200;
-        _similarLabelYPosition.constant = 390;
-        _similarSeparatorYPosition.constant = 413;
-        _similarTableYPosition.constant = 422;
-         */
+        _addReviewButtonYpos.constant = 590;
+        _addReviewButtonXpos.constant = 200;
         _moreReviewBttn.hidden = YES;
-        
-        //_mainScrollView.contentSize =CGSizeMake(320, 1300);
-          NSLog(@"SCROLL %f", _mainScrollView.contentSize.height);
-       // _mainScrollView.contentSize = CGSizeMake(320, 1000);
-        
-        
-        
+        _moreReviewBttn.enabled = NO;
+        _mainViewHeight.constant = 1030;
     }
     else
     {
-         _mainScrollView.contentSize = CGSizeMake(320, 1180);
-        
         _salonRating.rating = [[reviews objectForKey:@"average"] floatValue];
         _ratingLabel.text = [[reviews objectForKey:@"average"] stringValue];
         _nbReviews.text =[NSString stringWithFormat:@"- %@ reviews",[reviews objectForKey:@"total"]];
     }
+    
     _address.text = [salonDetail objectForKey:@"street"];
     _city.text = [salonDetail objectForKey:@"city"];
     
+    // MapView Setup
     
     NSString *fullAddress = [NSString stringWithFormat:@"%@, %@", [salonDetail objectForKey:@"street"], [salonDetail objectForKey:@"city"]];
     [self getCoordinatesFromAdress:fullAddress];
-   
-  
-    
 }
 
 

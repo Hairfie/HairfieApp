@@ -16,7 +16,7 @@
 @property (nonatomic) IBOutlet UIPageControl *pageControl;
 
 
-@property (nonatomic) IBOutlet UIView *infoView;
+@property (nonatomic) IBOutlet UIView *mainView;
 @property (nonatomic) IBOutlet UIScrollView *mainScrollView;
 
 @property (nonatomic) IBOutlet UIView *hairfieView;
@@ -68,8 +68,16 @@
 @property (nonatomic) IBOutlet MKMapView *previewMap;
 
 
-@property (nonatomic) IBOutlet NSLayoutConstraint *telephoneBGViewWidth;
+// View Info
 
+
+
+// Constraints modified for salon info = null
+
+@property (nonatomic) IBOutlet NSLayoutConstraint *telephoneLabelWidth;
+@property (nonatomic) IBOutlet NSLayoutConstraint *addReviewButtonYpos;
+@property (nonatomic) IBOutlet NSLayoutConstraint *addReviewButtonXpos;
+@property (nonatomic) IBOutlet NSLayoutConstraint *mainViewHeight;
 
 -(IBAction)goBack:(id)sender;
 -(IBAction)changePage:(id)sender;

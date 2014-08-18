@@ -47,10 +47,10 @@
     _hairdresserTableView.delegate = self;
     _hairdresserTableView.dataSource = self;
     _hairdresserTableView.backgroundColor = [UIColor clearColor];
+    
     _mapView.delegate = self;
     _mapView.showsUserLocation = YES;
-    tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideTableView:)];
-    [_mapView addGestureRecognizer:tap];
+    _hairdresserTableView.tableHeaderView = _headerView;
     [_hairdresserTableView setSeparatorInset:UIEdgeInsetsZero];
     [_scrollView.contentView addSubview:_mapView];
     [_scrollView.contentView addSubview:_hairdresserTableView];
@@ -59,6 +59,7 @@
 
     // Do any additional setup after loading the view.
 }
+
 
 
 //METHODES pour cacher/afficher la tableview et agrandir la mapview dans la recherche
@@ -181,12 +182,13 @@
 
 // TableView Delegate Functions
 
-
+/*
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
+    
     return _headerView;
 }
-
+*/
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
