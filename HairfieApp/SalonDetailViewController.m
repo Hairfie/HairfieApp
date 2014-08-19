@@ -54,9 +54,6 @@
     _moreReviewBttn.layer.cornerRadius = 5;
     _moreReviewBttn.layer.masksToBounds = YES;
     
-    _callBttn.layer.cornerRadius = 5;
-    _callBttn.layer.masksToBounds = YES;
-    
     _telephoneBgView.layer.cornerRadius = 5;
     _telephoneBgView.layer.masksToBounds = YES;
     

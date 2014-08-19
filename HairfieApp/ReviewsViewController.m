@@ -39,8 +39,7 @@
          [_reviewTextView becomeFirstResponder];
         _reviewTableView.scrollEnabled = NO;
         _reviewTextView.text = @"";
-        [_addReviewButton setTitle:@"cancel" forState:UIControlStateNormal];
-        [_reviewTableView reloadData];
+               [_reviewTableView reloadData];
     }
     _reviewTableView.scrollEnabled = YES;
 }
@@ -49,7 +48,7 @@
 - (void)rateView:(RatingView *)rateView ratingDidChange:(float)rating {
     _isReviewing = YES;
     _reviewTableView.scrollEnabled = NO;
-    [_addReviewButton setTitle:@"cancel" forState:UIControlStateNormal];
+   
     [_reviewTableView reloadData];
 
 }
@@ -75,7 +74,7 @@
     [_reviewTextView resignFirstResponder];
     _isReviewing = NO;
     _reviewTableView.scrollEnabled = YES;
-    [_addReviewButton setTitle:@"add" forState:UIControlStateNormal];
+    _reviewRating.rating = 0;
     
     [_reviewTableView reloadData];
 }
@@ -87,14 +86,6 @@
         _isReviewing = YES;
         
         _reviewTableView.scrollEnabled = NO;
-        [_addReviewButton setTitle:@"cancel" forState:UIControlStateNormal];
-    }
-    else
-    {
-        _isReviewing = NO;
-        _reviewTableView.scrollEnabled = YES;
-        _reviewRating.rating = 0;
-        [_addReviewButton setTitle:@"add" forState:UIControlStateNormal];
         
     }
     [_reviewTableView reloadData];
@@ -141,7 +132,7 @@ shouldChangeTextInRange: (NSRange) range
     
         _isReviewing = NO;
         NSLog(@"JVIENS LA");
-        [_addReviewButton setTitle:@"add" forState:UIControlStateNormal];
+        
         _reviewTableView.scrollEnabled = YES;
         _reviewTextView.text = @"Ajoutez votre review...";
         _reviewRating.rating = 0;
@@ -160,14 +151,13 @@ shouldChangeTextInRange: (NSRange) range
     {
         _isReviewing = YES;
         textView.text = @"Ajoutez votre review...";
-        [_addReviewButton setTitle:@"cancel" forState:UIControlStateNormal];
         _reviewTableView.scrollEnabled = NO;
     }
     else
     {
         NSString *contentReview = textView.text;
         _isReviewing = NO;
-         [_addReviewButton setTitle:@"add" forState:UIControlStateNormal];
+         
         [_reviewTableView reloadData];
         _reviewTableView.scrollEnabled = YES;
     }
