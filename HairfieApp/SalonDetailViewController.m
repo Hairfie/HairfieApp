@@ -105,6 +105,11 @@
     
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    _reviewRating.rating = 0;
+}
+
 
 -(UIStatusBarStyle)preferredStatusBarStyle{
     return UIStatusBarStyleLightContent;
@@ -393,7 +398,8 @@ else if (tableView == _similarTableView)
     if ([segue.identifier isEqualToString:@"addReview"])
     {
         ReviewsViewController *review = [segue destinationViewController];
-        review.reviewRating.rating = _reviewRating.rating;
+        review.ratingValue = _reviewRating.rating;
+        review.isReviewing = YES;
     }
 }
 
