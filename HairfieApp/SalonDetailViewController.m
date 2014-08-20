@@ -116,6 +116,7 @@
         
 -(void)viewWillAppear:(BOOL)animated
 {
+    [self updateMapView];
     _reviewRating.rating = 0;
 }
 
@@ -340,8 +341,11 @@ else if (tableView == _similarTableView)
     
     // MapView Setup
     
-    NSString *fullAddress = [NSString stringWithFormat:@"%@, %@", [salonDetail objectForKey:@"street"], [salonDetail objectForKey:@"city"]];
-    [self getCoordinatesFromAdress:fullAddress];
+    //NSString *fullAddress = [NSString stringWithFormat:@"%@, %@", [salonDetail objectForKey:@"street"], [salonDetail objectForKey:@"city"]];
+    //[self getCoordinatesFromAdress:fullAddress];
+    _haidresserLat = [[salonDetail objectForKey:@"gps"] valueForKey:@"lat"];
+    _haidresserLng = [[salonDetail objectForKey:@"gps"] valueForKey:@"lng"];
+
 }
 
 
@@ -368,8 +372,8 @@ else if (tableView == _similarTableView)
     coord.longitude = [[NSString stringWithFormat:@"%@", _haidresserLng] floatValue];
     coord.latitude = [[NSString stringWithFormat:@"%@", _haidresserLat] floatValue];
 
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance (coord, 260, 216);
-    region.center = coord;
+//    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance (coord, 260, 216);
+//    region.center = coord;
     
     MyAnnotation *annotObj =[[MyAnnotation alloc]init];
     
