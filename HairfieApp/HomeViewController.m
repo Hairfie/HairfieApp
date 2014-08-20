@@ -28,6 +28,14 @@
      [_hairfieCollection registerNib:[UINib nibWithNibName:@"CustomCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"hairfieCell"];
     _camera = [[CameraOverlayView alloc] init];
     _camera.delegate = self;
+    
+    UILabel *cou = [[UILabel alloc] initWithFrame:CGRectMake(50, 50, 110, 40)];
+    cou.text = @"COUCOU";
+    
+    cou.layer.cornerRadius = 5;
+    cou.layer.masksToBounds = YES;
+    cou.backgroundColor = [UIColor greenColor];
+    [self.view addSubview:cou];
     // Do any additional setup after loading the view.
 }
 

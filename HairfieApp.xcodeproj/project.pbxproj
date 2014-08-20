@@ -28,6 +28,10 @@
 		B337B6F619A22B11003B0EA5 /* HairfieDetailCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B337B6F419A22B11003B0EA5 /* HairfieDetailCollectionReusableView.m */; };
 		B337B6FA19A25116003B0EA5 /* HorairesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B337B6F919A25116003B0EA5 /* HorairesViewController.m */; };
 		B337B6FD19A252B7003B0EA5 /* ReviewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B337B6FC19A252B7003B0EA5 /* ReviewsViewController.m */; };
+		B33E4C4319A48FE70024F5F7 /* HoraireTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B33E4C4119A48FE70024F5F7 /* HoraireTableViewCell.m */; };
+		B33E4C4419A48FE70024F5F7 /* HoraireTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B33E4C4219A48FE70024F5F7 /* HoraireTableViewCell.xib */; };
+		B33E4C4619A49E2E0024F5F7 /* add-comment-textfield.png in Resources */ = {isa = PBXBuildFile; fileRef = B33E4C4519A49E2E0024F5F7 /* add-comment-textfield.png */; };
+		B33E4C4919A4AA4C0024F5F7 /* CommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B33E4C4819A4AA4C0024F5F7 /* CommentViewController.m */; };
 		B342315D1988E1DC0058866B /* settings-picto.png in Resources */ = {isa = PBXBuildFile; fileRef = B34231571988E1DC0058866B /* settings-picto.png */; };
 		B342315E1988E1DC0058866B /* business-picto.png in Resources */ = {isa = PBXBuildFile; fileRef = B34231581988E1DC0058866B /* business-picto.png */; };
 		B342315F1988E1DC0058866B /* friends-picto.png in Resources */ = {isa = PBXBuildFile; fileRef = B34231591988E1DC0058866B /* friends-picto.png */; };
@@ -196,6 +200,12 @@
 		B337B6F919A25116003B0EA5 /* HorairesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HorairesViewController.m; sourceTree = "<group>"; };
 		B337B6FB19A252B7003B0EA5 /* ReviewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewsViewController.h; sourceTree = "<group>"; };
 		B337B6FC19A252B7003B0EA5 /* ReviewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewsViewController.m; sourceTree = "<group>"; };
+		B33E4C4019A48FE70024F5F7 /* HoraireTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HoraireTableViewCell.h; sourceTree = "<group>"; };
+		B33E4C4119A48FE70024F5F7 /* HoraireTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HoraireTableViewCell.m; sourceTree = "<group>"; };
+		B33E4C4219A48FE70024F5F7 /* HoraireTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HoraireTableViewCell.xib; sourceTree = "<group>"; };
+		B33E4C4519A49E2E0024F5F7 /* add-comment-textfield.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add-comment-textfield.png"; sourceTree = "<group>"; };
+		B33E4C4719A4AA4C0024F5F7 /* CommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentViewController.h; sourceTree = "<group>"; };
+		B33E4C4819A4AA4C0024F5F7 /* CommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentViewController.m; sourceTree = "<group>"; };
 		B34231571988E1DC0058866B /* settings-picto.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings-picto.png"; sourceTree = "<group>"; };
 		B34231581988E1DC0058866B /* business-picto.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "business-picto.png"; sourceTree = "<group>"; };
 		B34231591988E1DC0058866B /* friends-picto.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "friends-picto.png"; sourceTree = "<group>"; };
@@ -605,6 +615,9 @@
 				B337B6FC19A252B7003B0EA5 /* ReviewsViewController.m */,
 				B337B6F819A25116003B0EA5 /* HorairesViewController.h */,
 				B337B6F919A25116003B0EA5 /* HorairesViewController.m */,
+				B33E4C4019A48FE70024F5F7 /* HoraireTableViewCell.h */,
+				B33E4C4119A48FE70024F5F7 /* HoraireTableViewCell.m */,
+				B33E4C4219A48FE70024F5F7 /* HoraireTableViewCell.xib */,
 			);
 			name = "Salon Detail";
 			sourceTree = "<group>";
@@ -718,6 +731,8 @@
 				B3CCE7871998CDAC00067DB9 /* HairfieDetailTableViewCell.h */,
 				B3CCE7881998CDAC00067DB9 /* HairfieDetailTableViewCell.m */,
 				B3CCE7891998CDAC00067DB9 /* HairfieDetailTableViewCell.xib */,
+				B33E4C4719A4AA4C0024F5F7 /* CommentViewController.h */,
+				B33E4C4819A4AA4C0024F5F7 /* CommentViewController.m */,
 				B3CCE78C1998F4F600067DB9 /* CommentTableViewCell.h */,
 				B3CCE78D1998F4F600067DB9 /* CommentTableViewCell.m */,
 				B3CCE78E1998F4F600067DB9 /* CommentTableViewCell.xib */,
@@ -763,6 +778,7 @@
 		B3EDF89A1987C44500431B70 /* Feed + detail hairfie */ = {
 			isa = PBXGroup;
 			children = (
+				B33E4C4519A49E2E0024F5F7 /* add-comment-textfield.png */,
 				B3CCE7851998BFBB00067DB9 /* picto-hairfie-detail-hairdresser.png */,
 				B3CCE77F1998BF7400067DB9 /* picto-hairfie-detail-price.png */,
 				B3CCE7801998BF7400067DB9 /* picto-hairfie-detail-employee.png */,
@@ -953,6 +969,7 @@
 				B345BADB19950EDB007BB61A /* hairfie.jpg in Resources */,
 				B3BD86B0198BE0DF00BD8591 /* picto-list-nav.png in Resources */,
 				B3DD7A7C199110FF007B1621 /* test-contour.png in Resources */,
+				B33E4C4419A48FE70024F5F7 /* HoraireTableViewCell.xib in Resources */,
 				B3A1281C198A8609004D90BD /* CustomPinView.xib in Resources */,
 				B38A8D471993B8E300239BC1 /* map_pin.png in Resources */,
 				B3AD59C3198B9D3500909ADE /* picto-list-woman.png in Resources */,
@@ -977,6 +994,7 @@
 				B3923188198B9F8000E0817D /* line-separator.png in Resources */,
 				B3E65FD31986A32D00AF0C15 /* navigation-bg.jpg in Resources */,
 				B3F6624E1987E87E0041F298 /* MenuTableViewCell.xib in Resources */,
+				B33E4C4619A49E2E0024F5F7 /* add-comment-textfield.png in Resources */,
 				B345BA981994D4C2007BB61A /* button-add-favorite.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1081,6 +1099,7 @@
 				B345BAE919951A7E007BB61A /* OLEContainerScrollView.m in Sources */,
 				B308700C198782AF0080E6D2 /* FavoriteViewController.m in Sources */,
 				B3E65FB81986917800AF0C15 /* ECSlidingInteractiveTransition.m in Sources */,
+				B33E4C4919A4AA4C0024F5F7 /* CommentViewController.m in Sources */,
 				B3E65FB71986917800AF0C15 /* ECSlidingAnimationController.m in Sources */,
 				B3423212198924290058866B /* AFHTTPSessionManager.m in Sources */,
 				B330B5C5198658970059AE56 /* HomeViewController.m in Sources */,
@@ -1088,6 +1107,7 @@
 				B337B6F619A22B11003B0EA5 /* HairfieDetailCollectionReusableView.m in Sources */,
 				B3423215198924290058866B /* AFURLConnectionOperation.m in Sources */,
 				B3423216198924290058866B /* AFURLRequestSerialization.m in Sources */,
+				B33E4C4319A48FE70024F5F7 /* HoraireTableViewCell.m in Sources */,
 				B3423218198924290058866B /* AFURLSessionManager.m in Sources */,
 				B3DD7A851991288F007B1621 /* SimilarTableViewCell.m in Sources */,
 				15E6AE761992635900A11947 /* OpeningTimes.swift in Sources */,

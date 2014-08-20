@@ -8,6 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CommentViewController : UIViewController
+@interface CommentViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextViewDelegate>
+
+
+@property (nonatomic) IBOutlet UITableView *commentTableView;
+@property (nonatomic) BOOL isCommenting;
+@property (nonatomic) UIView *headerView;
+@property (nonatomic) UITextView *commentTextView;
+@property (nonatomic) UITapGestureRecognizer *dismiss;
+
+
+-(IBAction)addComment:(id)sender;
+-(IBAction)goBack:(id)sender;
+
+
 
 @end

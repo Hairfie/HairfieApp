@@ -10,4 +10,7 @@
 
 @interface HoraireTableViewCell : UITableViewCell
 
+@property (nonatomic) IBOutlet UILabel *day;
+@property (nonatomic) IBOutlet UILabel *time;
+
 @end

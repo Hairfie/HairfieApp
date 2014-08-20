@@ -11,6 +11,7 @@
 #import "CommentTableViewCell.h"
 #import "CustomCollectionViewCell.h"
 #import "HairfieDetailCollectionReusableView.h"
+#import "CommentViewController.h"
 
 @interface HairfieDetailViewController ()
 
@@ -33,7 +34,7 @@
     _moreCommentBttn.layer.masksToBounds = YES;
     [_hairfieCollection registerNib:[UINib nibWithNibName:@"CustomCollectionViewCell" bundle:nil]forCellWithReuseIdentifier:@"hairfieRelated"];
     [_hairfieCollection registerNib:[UINib nibWithNibName:@"HairfieDetailCollectionReusableView" bundle:nil]forCellWithReuseIdentifier:@"headerCollection"];
-
+    [_addComment setValue:[UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:0.5] forKeyPath:@"_placeholderLabel.textColor"];
 //[_hairfieCollection setFrame:CGRectMake(0, 601, 320, 800)];
 }
 
@@ -207,6 +208,14 @@
 }
 
 
+-(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"addComment"])
+    {
+        CommentViewController *comment = [segue destinationViewController];
+        comment.isCommenting = YES;
+    }
+}
 
 
 /*

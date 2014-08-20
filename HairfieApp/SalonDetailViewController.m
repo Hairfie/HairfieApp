@@ -13,6 +13,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import "MyAnnotation.h"
 #import "ReviewsViewController.h"
+#import "HorairesViewController.h"
 
 @interface SalonDetailViewController ()
 
@@ -62,29 +63,8 @@
     _previewMap.layer.borderWidth = 3;
     _previewMap.layer.borderColor = [UIColor colorWithRed:249/255.0 green:249/255.0 blue:249/255.0 alpha:1].CGColor;
     _previewMap.delegate = self;
-  // LOAD Pictures in page control (horizontal scroll view)
-
-    NSArray *tutoArray = [[NSArray alloc] init];
-    tutoArray = [[NSArray alloc] initWithObjects:@"photo-example.jpeg", @"photo-example.jpeg", @"photo-example.jpeg", @"photo-example.jpeg", @"photo-example.jpeg", nil];
-    _pageControl.numberOfPages = [tutoArray count];
-
-    for (int i = 0; i < [tutoArray count]; i++) {
-        CGRect frame;
-        frame.origin.x = _imageSliderView.frame.size.width * i;
-        frame.origin.y = 0;
-        frame.size = _imageSliderView.frame.size;
-   
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:frame];
-   
-        
-        imageView.image = [UIImage imageNamed:[tutoArray objectAtIndex:i]];
-        imageView.contentMode = UIViewContentModeScaleToFill;
-        [_imageSliderView addSubview:imageView];
-   }
-    _imageSliderView.pagingEnabled = YES;
-    _imageSliderView.contentSize = CGSizeMake(_imageSliderView.frame.size.width * [tutoArray count], _imageSliderView.frame.size.height);
     
-    
+    _infoBttn.alpha = 1;
     
     
     // Init Rating View
@@ -99,6 +79,31 @@
     
     
     // Do any additional setup after loading the view.
+    
+}
+
+-(void) setupGallery
+{
+    NSArray *tutoArray = [[NSArray alloc] init];
+    tutoArray = [[NSArray alloc] initWithObjects:@"photo-example.jpeg", @"photo-example.jpeg", @"photo-example.jpeg", @"photo-example.jpeg", @"photo-example.jpeg", nil];
+    
+    _pageControl.numberOfPages = [tutoArray count];
+    
+    for (int i = 0; i < [tutoArray count]; i++) {
+        CGRect frame;
+        frame.origin.x = _imageSliderView.frame.size.width * i;
+        frame.origin.y = 0;
+        frame.size = _imageSliderView.frame.size;
+        
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:frame];
+        
+        
+        imageView.image = [UIImage imageNamed:[tutoArray objectAtIndex:i]];
+        imageView.contentMode = UIViewContentModeScaleToFill;
+        [_imageSliderView addSubview:imageView];
+    }
+    _imageSliderView.pagingEnabled = YES;
+    _imageSliderView.contentSize = CGSizeMake(_imageSliderView.frame.size.width * [tutoArray count], _imageSliderView.frame.size.height);
     
 }
 
@@ -270,8 +275,6 @@ else if (tableView == _similarTableView)
     {
         _telephone.text = [NSString stringWithFormat:@"Pas de numéro connu"];
         _telephoneLabelWidth.constant = 133;
-        _callBttn.hidden = YES;
-        _callBttn.enabled = NO;
     }
     else
     {
@@ -279,7 +282,7 @@ else if (tableView == _similarTableView)
         _telephoneLabelWidth.constant = 87;
         phoneNumber =[phoneNumbers objectAtIndex:0];
     }
-    
+    NSLog(@"_tel %ld", [_telephone.text length]);
     _name.text = [salonDetail objectForKey:@"name"];
     
     if ([[price objectForKey:@"women"] integerValue] != 0 && [[price objectForKey:@"men"]integerValue] != 0)
@@ -398,6 +401,14 @@ else if (tableView == _similarTableView)
         review.ratingValue = _reviewRating.rating;
         review.isReviewing = YES;
     }
+    if ([segue.identifier isEqualToString:@"showTimetable"])
+    {
+        HorairesViewController *horaires = [segue destinationViewController];
+       
+        NSDictionary *salon = [_dataSalon objectForKey:@"obj"];
+        
+        horaires.salon = [salon objectForKey:@"timetables"];
+        }
 }
 
 

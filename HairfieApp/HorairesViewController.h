@@ -8,7 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HorairesViewController : UIViewController
+@interface HorairesViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+
+
+@property (nonatomic) NSDictionary *salon;
+@property (nonatomic) IBOutlet UITableView *horaireTableView;
+
+@property (nonatomic) IBOutlet NSLayoutConstraint *tableViewHeight;
 
 -(IBAction)goBack:(id)sender;
 
