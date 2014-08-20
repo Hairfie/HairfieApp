@@ -16,6 +16,8 @@
 @property (nonatomic) IBOutlet UITableView *infoTableView;
 @property (nonatomic) IBOutlet UITableView *commentTableView;
 
+@property (nonatomic) IBOutlet UITextField *addComment;
+
 @property (nonatomic) IBOutlet UIView *infoView;
 @property (nonatomic) IBOutlet UIView *hairfieView;
 

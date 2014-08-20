@@ -7,6 +7,7 @@
 //
 
 #import "HorairesViewController.h"
+#import "HoraireTableViewCell.h"
 
 @interface HorairesViewController ()
 
@@ -14,8 +15,15 @@
 
 @implementation HorairesViewController
 
+@synthesize salon =_salon;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+     NSLog(@"%@", _salon);
+    
+    
+    _tableViewHeight.constant = _salon.count * 65;
+    
     // Do any additional setup after loading the view.
 }
 
@@ -33,6 +41,46 @@
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [_salon count];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 65;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"horaireCell";
+    HoraireTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    if (cell == nil) {
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"HoraireTableViewCell" owner:self options:nil];
+        cell = [nib objectAtIndex:0];
+    }
+    
+    
+    NSString *key = [_salon allKeys][indexPath.row];
+    NSString *day = key;
+    NSString *time = _salon[key];
+    
+   
+    cell.day.text = day;
+    cell.time.text = time;
+    
+    return cell;
+}
+
+
 
 /*
 #pragma mark - Navigation
