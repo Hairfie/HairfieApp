@@ -288,7 +288,7 @@
             annotationView.image = [UIImage imageNamed:@"map_pin.png"];
             [annotationView setFrame:CGRectMake(0, 0, 17, 24)];
             annotationView.contentMode = UIViewContentModeScaleAspectFit;
-            annotationView.centerOffset = CGPointMake(0, -annotationView.image.size.height / 2);
+            //annotationView.centerOffset = CGPointMake(0, -annotationView.image.size.height / 2);
             annotationView.canShowCallout = YES;
         }
         return annotationView;
