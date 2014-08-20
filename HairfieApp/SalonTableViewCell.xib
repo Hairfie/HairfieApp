@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6205" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6198"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -18,106 +17,95 @@
         <mutableArray key="SourceSansPro-Regular.ttf">
             <string>SourceSansPro-Regular</string>
             <string>SourceSansPro-Regular</string>
-            <string>SourceSansPro-Regular</string>
         </mutableArray>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="salonCell" rowHeight="139" id="KGk-i7-Jjw" customClass="SalonTableViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="140"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="salonCell" rowHeight="100" id="KGk-i7-Jjw" customClass="SalonTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="110"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="5 Km" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RFB-yQ-a3b">
-                        <rect key="frame" x="250" y="3" width="46" height="21"/>
+                        <rect key="frame" x="250" y="15" width="46" height="21"/>
                         <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="11"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="50 €" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ysg-wz-O3K">
-                        <rect key="frame" x="96" y="40" width="27" height="21"/>
-                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="12"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="50 €" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l8t-JB-gux">
-                        <rect key="frame" x="147" y="41" width="23" height="21"/>
+                        <rect key="frame" x="96" y="50" width="27" height="20"/>
                         <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="12"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="(3)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yVD-iH-qaf">
-                        <rect key="frame" x="196" y="41" width="21" height="21"/>
+                        <rect key="frame" x="196" y="50" width="21" height="20"/>
                         <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="12"/>
                         <color key="textColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="picto-list-man.png" translatesAutoresizingMaskIntoConstraints="NO" id="5DO-tp-Cg1">
-                        <rect key="frame" x="127" y="45" width="13" height="13"/>
+                        <rect key="frame" x="127" y="54" width="13" height="13"/>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="picto-list-woman.png" translatesAutoresizingMaskIntoConstraints="NO" id="UhA-ae-pzF">
-                        <rect key="frame" x="78" y="44" width="12" height="14"/>
+                        <rect key="frame" x="78" y="53" width="12" height="14"/>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="picto-list-promo.png" translatesAutoresizingMaskIntoConstraints="NO" id="TP4-Bh-ncn">
-                        <rect key="frame" x="177" y="45" width="15" height="14"/>
+                        <rect key="frame" x="177" y="54" width="15" height="14"/>
                     </imageView>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="335 Hairfies" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Anj-AM-Hr7">
-                        <rect key="frame" x="78" y="20" width="63" height="23"/>
+                        <rect key="frame" x="78" y="34" width="63" height="17"/>
                         <fontDescription key="fontDescription" name="SourceSansPro-It" family="Source Sans Pro" pointSize="13"/>
                         <color key="textColor" red="0.59607843137254901" green="0.63137254901960782" blue="0.6705882352941176" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="picto-list-nav.png" translatesAutoresizingMaskIntoConstraints="NO" id="EqC-7r-TQb">
-                        <rect key="frame" x="301" y="7" width="10" height="13"/>
+                        <rect key="frame" x="301" y="19" width="10" height="13"/>
                     </imageView>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="13" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dgp-W4-2QP">
-                        <rect key="frame" x="78" y="3" width="182" height="23"/>
+                        <rect key="frame" x="78" y="20" width="182" height="16"/>
                         <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="16"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="caZ-XP-9Ir">
-                        <rect key="frame" x="10" y="7" width="60" height="75"/>
+                        <rect key="frame" x="10" y="20" width="60" height="70"/>
                     </imageView>
                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="whW-Nh-WXc" customClass="RatingView">
-                        <rect key="frame" x="78" y="65" width="91" height="21"/>
+                        <rect key="frame" x="78" y="71" width="91" height="17"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="statusLabelView.png" translatesAutoresizingMaskIntoConstraints="NO" id="H5N-5e-qGx">
-                        <rect key="frame" x="174" y="70" width="19" height="12"/>
+                        <rect key="frame" x="174" y="74" width="19" height="12"/>
                     </imageView>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vIA-lT-8IX">
-                        <rect key="frame" x="174" y="70" width="19" height="12"/>
+                        <rect key="frame" x="174" y="74" width="19" height="12"/>
                         <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="11"/>
                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ls3-kw-2xJ">
-                        <rect key="frame" x="200" y="70" width="102" height="12"/>
+                        <rect key="frame" x="200" y="74" width="102" height="12"/>
                         <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="11"/>
                         <color key="textColor" red="0.66666666666666663" green="0.67450980392156867" blue="0.68235294117647061" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6hq-ur-Lxr">
-                        <rect key="frame" x="69" y="94" width="233" height="30"/>
-                        <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="13"/>
-                        <inset key="contentEdgeInsets" minX="33" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        <state key="normal" title="Réserver" backgroundImage="bg-book.png">
-                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                        </state>
-                    </button>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="picto-phone-white.png" translatesAutoresizingMaskIntoConstraints="NO" id="H6T-AQ-B1s">
-                        <rect key="frame" x="136" y="101" width="15" height="15"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="picto-aroundme-salon.png" translatesAutoresizingMaskIntoConstraints="NO" id="AIm-6E-4q6">
+                        <rect key="frame" x="29" y="78" width="23" height="23"/>
                     </imageView>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="50 €" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l8t-JB-gux">
+                        <rect key="frame" x="146" y="50" width="23" height="20"/>
+                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="12"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
             </tableViewCellContentView>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <connections>
-                <outlet property="bookButton" destination="6hq-ur-Lxr" id="iSP-wY-TaN"/>
                 <outlet property="hairfieNb" destination="Anj-AM-Hr7" id="oma-qt-IeC"/>
                 <outlet property="manPrice" destination="l8t-JB-gux" id="jQU-AH-fyt"/>
                 <outlet property="name" destination="dgp-W4-2QP" id="QWc-Tw-ceg"/>
@@ -127,16 +115,15 @@
                 <outlet property="salonRating" destination="whW-Nh-WXc" id="SLz-tA-W6E"/>
                 <outlet property="womanPrice" destination="ysg-wz-O3K" id="dNr-Ry-vmG"/>
             </connections>
-            <point key="canvasLocation" x="324" y="286"/>
+            <point key="canvasLocation" x="324" y="266"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="bg-book.png" width="1" height="1"/>
+        <image name="picto-aroundme-salon.png" width="45" height="44"/>
         <image name="picto-list-man.png" width="27" height="27"/>
         <image name="picto-list-nav.png" width="19" height="25"/>
         <image name="picto-list-promo.png" width="30" height="28"/>
         <image name="picto-list-woman.png" width="23" height="27"/>
-        <image name="picto-phone-white.png" width="32" height="31"/>
         <image name="statusLabelView.png" width="38" height="23"/>
     </resources>
 </document>

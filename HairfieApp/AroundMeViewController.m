@@ -54,7 +54,7 @@
     [_hairdresserTableView setSeparatorInset:UIEdgeInsetsZero];
  
     SDmanager = [SDWebImageManager sharedManager];
-
+   [self initMapWithSalons];
     // Do any additional setup after loading the view.
 }
 
@@ -103,11 +103,11 @@
 }
 
 
--(void)viewDidAppear:(BOOL)animated
+-(void)viewWillAppear:(BOOL)animated
 {
     [_delegate startTrackingLocation:YES];
   //  userLocation = _mapView.userLocation;
-     [self initMapWithSalons];
+    
 }
 
  
@@ -150,7 +150,7 @@
     annotObj.title = titleStr;
     annotObj.coordinate = coord;
     [_mapView addAnnotation:annotObj];
-    [_hairdresserTableView reloadData];
+  //  [_hairdresserTableView reloadData];
 }
 
 // Get Salons from webservices then add them to the map
@@ -203,7 +203,7 @@
     NSDictionary *salon = [[salons objectAtIndex:indexPath.row] objectForKey:@"obj"];
     NSDictionary *price = [salon objectForKey:@"price"];
     if ([[price objectForKey:@"women"] integerValue] != 0 && [[price objectForKey:@"men"]integerValue] != 0)
-    return 140;
+    return 110;
     else
         return 100;
 }

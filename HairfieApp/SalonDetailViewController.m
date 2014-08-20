@@ -107,6 +107,12 @@
     
 }
 
+-(IBAction)showTimeTable:(id)sender
+{
+    if (isOpen == YES)
+        [self performSegueWithIdentifier:@"showTimetable" sender:self];
+}
+        
 -(void)viewWillAppear:(BOOL)animated
 {
     _reviewRating.rating = 0;
@@ -217,7 +223,7 @@ else if (tableView == _similarTableView)
     if (tableView == _reviewTableView)
         return 130;
     else if (tableView == _similarTableView)
-        return 100;
+        return 110;
     return 90;
 }
 
@@ -279,7 +285,7 @@ else if (tableView == _similarTableView)
             _isOpenLabel.text = @"Fermé aujourd'hui";
         }
     }
-
+    
     if (phoneNumbers == nil || [phoneNumbers count] == 0)
     {
         _telephone.text = [NSString stringWithFormat:@"Pas de numéro connu"];
@@ -291,7 +297,6 @@ else if (tableView == _similarTableView)
         _telephoneLabelWidth.constant = 87;
         phoneNumber =[phoneNumbers objectAtIndex:0];
     }
-    NSLog(@"_tel %ld", [_telephone.text length]);
     _name.text = [salonDetail objectForKey:@"name"];
     
     if ([[price objectForKey:@"women"] integerValue] != 0 && [[price objectForKey:@"men"]integerValue] != 0)
@@ -320,7 +325,7 @@ else if (tableView == _similarTableView)
         _addReviewButtonXpos.constant = 200;
         _moreReviewBttn.hidden = YES;
         _moreReviewBttn.enabled = NO;
-        _mainViewHeight.constant = 1030;
+        _mainViewHeight.constant = 1050;
     }
     else
     {
