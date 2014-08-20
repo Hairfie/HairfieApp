@@ -109,7 +109,8 @@
 
 -(IBAction)showTimeTable:(id)sender
 {
-    if (isOpen == YES)
+    
+    if (_isOpenLabelDetail.hidden == NO)
         [self performSegueWithIdentifier:@"showTimetable" sender:self];
 }
         
