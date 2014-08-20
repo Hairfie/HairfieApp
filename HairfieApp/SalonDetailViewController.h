@@ -51,6 +51,9 @@
 @property (nonatomic) IBOutlet UILabel *telephone;
 @property (nonatomic) IBOutlet UILabel *nbReviews;
 @property (nonatomic) IBOutlet UILabel *isOpenLabel;
+@property (nonatomic) IBOutlet UILabel *isOpenLabelDetail;
+@property (nonatomic) IBOutlet UIImageView *isOpenImage;
+@property (nonatomic) IBOutlet UIImageView *isOpenImageDetail;
 
 
 @property (nonatomic) NSString *haidresserLat;

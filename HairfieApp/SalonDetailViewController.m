@@ -24,7 +24,7 @@
     NSString *phoneNumber;
 }
 
-@synthesize imageSliderView =_imageSliderView, pageControl = _pageControl,hairfieView = _hairfieView, hairdresserView = _hairdresserView, salesView = _salesView, infoBttn = _infoBttn, hairfieBttn = _hairfieBttn, hairdresserBttn = _hairdresserBttn, salesBttn = _salesBttn, reviewRating = _reviewRating, reviewTableView = _reviewTableView, addReviewBttn = _addReviewBttn, moreReviewBttn = _moreReviewBttn, similarTableView = _similarTableView, dataSalon = _dataSalon, ratingLabel = _ratingLabel, name = _name , womanPrice = _womanPrice, manPrice = _manPrice, salonRating = _salonRating, address = _address, city = _city, salonAvailability = _salonAvailability, nbReviews = _nbReviews, previewMap = _previewMap, isOpenLabel = _isOpenLabel, callBttn = _callBttn, telephoneBgView = _telephoneBgView;
+@synthesize imageSliderView =_imageSliderView, pageControl = _pageControl,hairfieView = _hairfieView, hairdresserView = _hairdresserView, salesView = _salesView, infoBttn = _infoBttn, hairfieBttn = _hairfieBttn, hairdresserBttn = _hairdresserBttn, salesBttn = _salesBttn, reviewRating = _reviewRating, reviewTableView = _reviewTableView, addReviewBttn = _addReviewBttn, moreReviewBttn = _moreReviewBttn, similarTableView = _similarTableView, dataSalon = _dataSalon, ratingLabel = _ratingLabel, name = _name , womanPrice = _womanPrice, manPrice = _manPrice, salonRating = _salonRating, address = _address, city = _city, salonAvailability = _salonAvailability, nbReviews = _nbReviews, previewMap = _previewMap, isOpenLabel = _isOpenLabel, isOpenLabelDetail = _isOpenLabelDetail, isOpenImage = _isOpenImage, isOpenImageDetail = _isOpenImageDetail, callBttn = _callBttn, telephoneBgView = _telephoneBgView;
 
 
 
@@ -259,16 +259,25 @@ else if (tableView == _similarTableView)
     NSDictionary *reviews = [salonDetail objectForKey:@"reviews"];
     NSDictionary *timetables =[salonDetail objectForKey:@"timetables"];
     
-    if (timetables == nil)
-        _isOpenLabel.text = @"Pas d'informations";
-    else
-    {
+    if (timetables == nil) {
+        _isOpenImageDetail.hidden = YES;
+        _isOpenLabelDetail.hidden = YES;
+         _isOpenLabel.text = @"Pas d'informations";
+    }
+    else {
         OpeningTimes * op = [[OpeningTimes alloc] init];
         isOpen = [op isOpen:timetables];
-        if (isOpen)
+        if (isOpen) {
+            UIColor *green = [UIColor colorWithRed:50/255.0 green:178/255.0 blue:81/255.0 alpha:1];
             _isOpenLabel.text = @"Ouvert aujourd'hui";
-        else
+            _isOpenLabel.textColor = green;
+            
+            _isOpenImage.image = [_isOpenImage.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+            [_isOpenImage setTintColor:green];
+        }
+        else {
             _isOpenLabel.text = @"Fermé aujourd'hui";
+        }
     }
 
     if (phoneNumbers == nil || [phoneNumbers count] == 0)
