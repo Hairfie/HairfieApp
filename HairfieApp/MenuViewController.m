@@ -29,7 +29,10 @@
 {
     [super viewDidLoad];
     
-    self.slidingViewController.topViewAnchoredGesture = ECSlidingViewControllerAnchoredGesturePanning | ECSlidingViewControllerAnchoredGestureTapping;
+         self.slidingViewController.topViewAnchoredGesture = ECSlidingViewControllerAnchoredGesturePanning | ECSlidingViewControllerAnchoredGestureTapping;
+  
+   // self.slidingViewController.shouldGroupAccessibilityChildren = YES;
+   // [self.view addGestureRecognizer:self.slidingViewController.panGesture];
     _menuTableView.backgroundColor = [UIColor clearColor];
     _menuTableView.opaque = NO;
     _menuTableView.backgroundView = nil;
@@ -58,8 +61,11 @@
 }
 
 #pragma mark - Table view data source
+-(void) viewWillAppear:(BOOL)animated
+{
+  //  [self.slidingViewController.topViewController.view addGestureRecognizer:self.slidingViewController.panGesture];
 
-
+}
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
@@ -106,6 +112,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSInteger row = indexPath.row;
+    [self.slidingViewController.topViewController.view addGestureRecognizer:self.slidingViewController.panGesture];
 
     if (row == 0)
     {

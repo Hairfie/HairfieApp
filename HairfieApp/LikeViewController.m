@@ -22,6 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];    
     
+    [self.view addGestureRecognizer:self.slidingViewController.panGesture];
     
     
     // Do any additional setup after loading the view.

@@ -8,6 +8,7 @@
 
 #import "HomeViewController.h"
 #import "CustomCollectionViewCell.h"
+#import "UIViewController+ECSlidingViewController.h"
 
 @interface HomeViewController ()
 
@@ -28,6 +29,8 @@
      [_hairfieCollection registerNib:[UINib nibWithNibName:@"CustomCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"hairfieCell"];
     _camera = [[CameraOverlayView alloc] init];
     _camera.delegate = self;
+    
+    [self.view addGestureRecognizer:self.slidingViewController.panGesture];
     // Do any additional setup after loading the view.
 }
 
