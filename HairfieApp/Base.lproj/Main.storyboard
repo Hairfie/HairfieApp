@@ -299,7 +299,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Réserve le meilleur coiffeur près de chez toi !" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="200" translatesAutoresizingMaskIntoConstraints="NO" id="YLi-t7-pTs">
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Réserve le meilleur coiffeur près de chez toi !" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="200" translatesAutoresizingMaskIntoConstraints="NO" id="YLi-t7-pTs">
                                             <rect key="frame" x="60" y="18" width="200" height="46"/>
                                             <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="18"/>
                                             <color key="textColor" red="0.15686274509803921" green="0.19215686274509802" blue="0.22352941176470587" alpha="1" colorSpace="calibratedRGB"/>
@@ -1197,7 +1197,7 @@ le blabla, et c’est super chouette blablibloublabloubla et bloubabou bibobabou
                                     <constraint firstAttribute="bottom" secondItem="guP-Fw-zqY" secondAttribute="bottom" id="tDi-Hf-XWS"/>
                                 </constraints>
                             </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0TP-lk-MOz" userLabel="Call Salon">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0TP-lk-MOz" userLabel="Call Salon">
                                 <rect key="frame" x="0.0" y="528" width="320" height="40"/>
                                 <color key="backgroundColor" red="0.90588235289999997" green="0.29803921570000003" blue="0.23529411759999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -1227,6 +1227,7 @@ le blabla, et c’est super chouette blablibloublabloubla et bloubabou bibobabou
                             <constraint firstItem="EAd-rH-izx" firstAttribute="top" secondItem="5Lw-Ud-rlB" secondAttribute="bottom" id="OE3-Pj-e0f"/>
                             <constraint firstAttribute="trailing" secondItem="5Lw-Ud-rlB" secondAttribute="trailing" id="hpP-4c-plj"/>
                             <constraint firstItem="5Lw-Ud-rlB" firstAttribute="top" secondItem="ebK-Fy-Pfs" secondAttribute="bottom" id="jfF-R3-qLU"/>
+                            <constraint firstItem="EAd-rH-izx" firstAttribute="top" secondItem="0TP-lk-MOz" secondAttribute="bottom" id="o0R-wY-Dyq"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="KGy-rj-yyt"/>
