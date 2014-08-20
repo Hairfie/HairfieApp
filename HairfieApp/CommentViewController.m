@@ -19,8 +19,6 @@
     [super viewDidLoad];
     [self setupHeaderView];
     _dismiss = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
-    
-    // Do any additional setup after loading the view.
 }
 
 -(void) viewWillAppear:(BOOL)animated
@@ -32,7 +30,7 @@
         _commentTextView.text = @"";
         [_commentTableView reloadData];
     }
-    _commentTableView.scrollEnabled = YES;
+   else _commentTableView.scrollEnabled = YES;
 }
 
 
@@ -76,6 +74,7 @@
 
 -(void) hideKeyboard
 {
+    
     [_commentTextView resignFirstResponder];
     _isCommenting = NO;
     _commentTableView.scrollEnabled = YES;
@@ -84,8 +83,8 @@
 
 -(IBAction)addComment:(id)sender
 {
-    [_commentTextView becomeFirstResponder];
     
+    [_commentTextView becomeFirstResponder];
     if (_isCommenting == NO)
     {
         _isCommenting = YES;
@@ -93,9 +92,6 @@
     }
     [_commentTableView reloadData];
 }
-
-
-
 
 // Text View Delegate
 

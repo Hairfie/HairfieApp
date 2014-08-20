@@ -33,6 +33,7 @@
     
     [self initKnownData:_dataSalon];
     [self unSelectAll];
+    [self setupGallery];
     [_infoBttn setSelected:YES];
     _imageSliderView.canCancelContentTouches = NO;
     
@@ -85,31 +86,24 @@
 -(void) setupGallery
 {
     NSArray *tutoArray = [[NSArray alloc] init];
-    tutoArray = [[NSArray alloc] initWithObjects:@"photo-example.jpeg", @"photo-example.jpeg", @"photo-example.jpeg", @"photo-example.jpeg", @"photo-example.jpeg", nil];
-    
+    tutoArray = [[NSArray alloc] initWithObjects:@"default-picture.jpg", @"photo-example.jpeg", @"default-picture.jpg", @"photo-example.jpeg", @"default-picture.jpg", nil];
     _pageControl.numberOfPages = [tutoArray count];
-    
     for (int i = 0; i < [tutoArray count]; i++) {
         CGRect frame;
         frame.origin.x = _imageSliderView.frame.size.width * i;
         frame.origin.y = 0;
         frame.size = _imageSliderView.frame.size;
-        
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:frame];
-        
-        
         imageView.image = [UIImage imageNamed:[tutoArray objectAtIndex:i]];
         imageView.contentMode = UIViewContentModeScaleToFill;
         [_imageSliderView addSubview:imageView];
     }
     _imageSliderView.pagingEnabled = YES;
     _imageSliderView.contentSize = CGSizeMake(_imageSliderView.frame.size.width * [tutoArray count], _imageSliderView.frame.size.height);
-    
 }
 
 -(IBAction)showTimeTable:(id)sender
 {
-    
     if (_isOpenLabelDetail.hidden == NO)
         [self performSegueWithIdentifier:@"showTimetable" sender:self];
 }
@@ -423,7 +417,7 @@ else if (tableView == _similarTableView)
         NSDictionary *salon = [_dataSalon objectForKey:@"obj"];
         
         horaires.salon = [salon objectForKey:@"timetables"];
-        }
+    }
 }
 
 

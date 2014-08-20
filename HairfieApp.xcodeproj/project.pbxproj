@@ -25,6 +25,7 @@
 		B330B5C2198656F20059AE56 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B330B5C1198656F20059AE56 /* CoreGraphics.framework */; };
 		B330B5C5198658970059AE56 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B330B5C4198658970059AE56 /* HomeViewController.m */; };
 		B330B5CB198681B20059AE56 /* menu-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B330B5CA198681B20059AE56 /* menu-icon.png */; };
+		B3320B2019A4F34100855BBB /* default-picture.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B3320B1F19A4F34100855BBB /* default-picture.jpg */; };
 		B337B6F619A22B11003B0EA5 /* HairfieDetailCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B337B6F419A22B11003B0EA5 /* HairfieDetailCollectionReusableView.m */; };
 		B337B6FA19A25116003B0EA5 /* HorairesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B337B6F919A25116003B0EA5 /* HorairesViewController.m */; };
 		B337B6FD19A252B7003B0EA5 /* ReviewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B337B6FC19A252B7003B0EA5 /* ReviewsViewController.m */; };
@@ -196,6 +197,7 @@
 		B330B5C4198658970059AE56 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		B330B5C619865B2E0059AE56 /* HairfiePrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HairfiePrefixHeader.pch; sourceTree = "<group>"; };
 		B330B5CA198681B20059AE56 /* menu-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu-icon.png"; path = "../menu-icon.png"; sourceTree = "<group>"; };
+		B3320B1F19A4F34100855BBB /* default-picture.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "default-picture.jpg"; sourceTree = "<group>"; };
 		B337B6F319A22B11003B0EA5 /* HairfieDetailCollectionReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HairfieDetailCollectionReusableView.h; sourceTree = "<group>"; };
 		B337B6F419A22B11003B0EA5 /* HairfieDetailCollectionReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HairfieDetailCollectionReusableView.m; sourceTree = "<group>"; };
 		B337B6F819A25116003B0EA5 /* HorairesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HorairesViewController.h; sourceTree = "<group>"; };
@@ -441,19 +443,7 @@
 		1511518E1982B7A8001157A2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				B3EBE752199BACFD0073B844 /* bg-book-no-info.png */,
-				B3EBE753199BACFD0073B844 /* bg-book.png */,
 				15697B2E199BAFD000DA83FE /* UIImage Subclasses */,
-				B3BB481F199B983800F8CD5B /* arrow-nav.png */,
-				B3C45BCF199A4670000E6C8E /* switch-camera-button.png */,
-				B3C45BD0199A4670000E6C8E /* take-picture-button.png */,
-				B3CCE793199921C700067DB9 /* picto-menu-point.png */,
-				B342316B1988EFD20058866B /* aroundme-bttn.png */,
-				B345BADA19950EDB007BB61A /* hairfie.jpg */,
-				B318D6EA199279D100DC20EF /* photo-example.jpeg */,
-				B3A12820198AA1B1004D90BD /* custom-map-pin.png */,
-				B3A12813198A7F3A004D90BD /* custom-pin.png */,
-				B38A8D461993B8E300239BC1 /* map_pin.png */,
 				B3F6622A1987D52A0041F298 /* Source_Sans_Pro */,
 				B3EDF8991987C43500431B70 /* Ressources */,
 				B3EDF8971987ABB900431B70 /* leosquare.jpg */,
@@ -770,6 +760,19 @@
 		B3EDF8991987C43500431B70 /* Ressources */ = {
 			isa = PBXGroup;
 			children = (
+				B3320B1F19A4F34100855BBB /* default-picture.jpg */,
+				B3EBE752199BACFD0073B844 /* bg-book-no-info.png */,
+				B3EBE753199BACFD0073B844 /* bg-book.png */,
+				B3BB481F199B983800F8CD5B /* arrow-nav.png */,
+				B3C45BCF199A4670000E6C8E /* switch-camera-button.png */,
+				B3C45BD0199A4670000E6C8E /* take-picture-button.png */,
+				B3CCE793199921C700067DB9 /* picto-menu-point.png */,
+				B342316B1988EFD20058866B /* aroundme-bttn.png */,
+				B345BADA19950EDB007BB61A /* hairfie.jpg */,
+				B318D6EA199279D100DC20EF /* photo-example.jpeg */,
+				B3A12820198AA1B1004D90BD /* custom-map-pin.png */,
+				B3A12813198A7F3A004D90BD /* custom-pin.png */,
+				B38A8D461993B8E300239BC1 /* map_pin.png */,
 				B33E4C4A19A4CA0B0024F5F7 /* picto-aroundme-domicile.png */,
 				B33E4C4B19A4CA0B0024F5F7 /* picto-aroundme-salon.png */,
 				B37F9A49198F8F4B00881071 /* Salon Detail */,
@@ -953,6 +956,7 @@
 				B3F6623B1987D52A0041F298 /* SourceSansPro-Bold.ttf in Resources */,
 				B36731ED198FE0B000E11C56 /* not_selected_review.png in Resources */,
 				B3DD7A8119911245007B1621 /* ReviewTableViewCell.xib in Resources */,
+				B3320B2019A4F34100855BBB /* default-picture.jpg in Resources */,
 				B36731EC198FE0B000E11C56 /* selected_review.png in Resources */,
 				B345BADD19951707007BB61A /* picto-hairfie-like.png in Resources */,
 				B3E65FD51986A9E500AF0C15 /* selected-cell.jpg in Resources */,

@@ -16,7 +16,7 @@
 @property (nonatomic) UIView *headerView;
 @property (nonatomic) UITextView *commentTextView;
 @property (nonatomic) UITapGestureRecognizer *dismiss;
-
+@property (nonatomic) IBOutlet UIButton *addCommentBttn;
 
 -(IBAction)addComment:(id)sender;
 -(IBAction)goBack:(id)sender;

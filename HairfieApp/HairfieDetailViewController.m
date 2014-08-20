@@ -35,7 +35,16 @@
     [_hairfieCollection registerNib:[UINib nibWithNibName:@"CustomCollectionViewCell" bundle:nil]forCellWithReuseIdentifier:@"hairfieRelated"];
     [_hairfieCollection registerNib:[UINib nibWithNibName:@"HairfieDetailCollectionReusableView" bundle:nil]forCellWithReuseIdentifier:@"headerCollection"];
     [_addComment setValue:[UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:0.5] forKeyPath:@"_placeholderLabel.textColor"];
-//[_hairfieCollection setFrame:CGRectMake(0, 601, 320, 800)];
+    
+    UIImageView *profilePicture = [[UIImageView alloc] initWithFrame:CGRectMake(20, 408, 40, 40)];
+    profilePicture.image = [UIImage imageNamed:@"leosquare.jpg"];
+    
+    profilePicture.layer.cornerRadius = profilePicture.frame.size.height / 2;
+    profilePicture.clipsToBounds = YES;
+    profilePicture.layer.borderWidth = 2.0f;
+    profilePicture.layer.borderColor = [UIColor colorWithRed:40.0/255.0f green:49.0/255.0f blue:57.0/255.0f alpha:0.1].CGColor;
+    //[self.view addSubview:profilePicture];
+    //[_hairfieCollection setFrame:CGRectMake(0, 601, 320, 800)];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -162,7 +171,7 @@
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
 {
     
-    return CGSizeMake(320, 1000);
+    return CGSizeMake(320, 1065);
 }
 
 // header view data source
