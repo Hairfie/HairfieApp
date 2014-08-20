@@ -725,22 +725,26 @@
                                 <color key="separatorColor" red="0.15686274509803921" green="0.19215686274509802" blue="0.22352941176470587" alpha="0.20000000000000001" colorSpace="calibratedRGB"/>
                                 <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="JdB-iM-MZs">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="213"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="rgP-Ov-xjU">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="170"/>
+                                        <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="rgP-Ov-xjU">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="160"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="200" id="7rN-eQ-r2y"/>
+                                                <constraint firstAttribute="height" constant="160" id="7rN-eQ-r2y"/>
                                                 <constraint firstAttribute="width" constant="320" id="DFD-Bh-CWl"/>
                                             </constraints>
                                         </mapView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SIu-2c-8qy">
-                                            <rect key="frame" x="8" y="178" width="42" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="COIFFEUR À COTÉ DE VOUS" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SIu-2c-8qy">
+                                            <rect key="frame" x="8" y="171" width="230" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.42352941176470588" green="0.46274509803921571" blue="0.51372549019607838" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="40n-9T-Tcz" userLabel="Separator 1">
+                                            <rect key="frame" x="8" y="191" width="230" height="1"/>
+                                            <color key="backgroundColor" red="0.85490196080000003" green="0.85490196080000003" blue="0.87058823529999996" alpha="1" colorSpace="calibratedRGB"/>
+                                        </view>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </view>
@@ -812,7 +816,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eNk-OA-e58" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1595" y="-2735"/>
+            <point key="canvasLocation" x="1595" y="-2770"/>
         </scene>
         <!--Salon Detail View Controller-->
         <scene sceneID="ikO-8j-QFY">
@@ -857,7 +861,7 @@
                                 <rect key="frame" x="0.0" y="60" width="320" height="568"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="guP-Fw-zqY">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="1210"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="1230"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="POI-R8-aQS" userLabel="Page Control View">
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="180"/>
@@ -1028,9 +1032,8 @@
                                                             <constraint firstAttribute="width" constant="87" id="8X2-ll-edA"/>
                                                         </constraints>
                                                     </view>
-                                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="01 64 99 38 47" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="132" translatesAutoresizingMaskIntoConstraints="NO" id="HKB-Hy-iot" userLabel="Telephone Number">
-                                                        <rect key="frame" x="37" y="75" width="132" height="20"/>
-                                                        <rect key="contentStretch" x="1.3877787807814457e-17" y="0.0" width="1" height="1"/>
+                                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" text="01 64 99 38 47" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="141" translatesAutoresizingMaskIntoConstraints="NO" id="HKB-Hy-iot" userLabel="Telephone Number">
+                                                        <rect key="frame" x="37" y="75" width="141" height="20"/>
                                                         <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="14"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
@@ -1052,7 +1055,7 @@
                                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
                                                         <connections>
-                                                            <segue destination="oWk-He-lbw" kind="push" identifier="showTimetable" id="cZh-Ii-Us2"/>
+                                                            <action selector="showTimeTable:" destination="pDa-if-Gwb" eventType="touchUpInside" id="2Z3-XT-gZF"/>
                                                         </connections>
                                                     </button>
                                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Ouvert aujourd'hui" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="116" translatesAutoresizingMaskIntoConstraints="NO" id="QXv-0J-1yO" userLabel="Is Opened">
@@ -1170,7 +1173,7 @@ le blabla, et c’est super chouette blablibloublabloubla et bloubabou bibobabou
                                                         <color key="backgroundColor" red="0.81176470590000005" green="0.81176470590000005" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
                                                     </view>
                                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="wW3-x4-wkc" userLabel="Similar Table View">
-                                                        <rect key="frame" x="0.0" y="31" width="320" height="332"/>
+                                                        <rect key="frame" x="0.0" y="31" width="320" height="330"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </tableView>
                                                 </subviews>
@@ -1182,7 +1185,7 @@ le blabla, et c’est super chouette blablibloublabloubla et bloubabou bibobabou
                                             <constraint firstItem="aTG-pn-ebO" firstAttribute="top" secondItem="9aj-2o-ahb" secondAttribute="bottom" constant="26" id="0ep-hS-BFt"/>
                                             <constraint firstItem="9aj-2o-ahb" firstAttribute="top" secondItem="guP-Fw-zqY" secondAttribute="top" constant="836" id="7GY-nM-OFm"/>
                                             <constraint firstItem="9aj-2o-ahb" firstAttribute="leading" secondItem="guP-Fw-zqY" secondAttribute="leading" constant="71" id="Ba8-cx-4cw"/>
-                                            <constraint firstAttribute="height" constant="1210" id="iPD-6f-Gsc"/>
+                                            <constraint firstAttribute="height" constant="1230" id="iPD-6f-Gsc"/>
                                             <constraint firstAttribute="width" constant="320" placeholder="YES" id="qTU-dP-tF6"/>
                                         </constraints>
                                     </view>
@@ -1258,6 +1261,7 @@ le blabla, et c’est super chouette blablibloublabloubla et bloubabou bibobabou
                         <outlet property="telephoneBgView" destination="RrZ-5c-jUF" id="aV2-Oo-lTl"/>
                         <outlet property="telephoneLabelWidth" destination="8X2-ll-edA" id="baC-99-BsI"/>
                         <outlet property="womanPrice" destination="7L9-mB-SBz" id="DK4-qS-2Us"/>
+                        <segue destination="oWk-He-lbw" kind="push" identifier="showTimetable" id="aqA-eY-dNj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TsP-dW-B6k" userLabel="First Responder" sceneMemberID="firstResponder"/>
