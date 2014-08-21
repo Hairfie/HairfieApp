@@ -285,12 +285,13 @@ else if (tableView == _similarTableView)
     if (phoneNumbers == nil || [phoneNumbers count] == 0)
     {
         _telephone.text = [NSString stringWithFormat:@"Pas de numéro connu"];
-        _telephoneLabelWidth.constant = 123;
+        _telephoneLabelWidth.constant = 133;
+        _isPhoneAvailable.hidden = YES;
     }
     else
     {
         _telephone.text = [self formatPhoneNumber:[phoneNumbers objectAtIndex:0]];
-        _telephoneLabelWidth.constant = 80;
+        _telephoneLabelWidth.constant = 87;
         phoneNumber =[phoneNumbers objectAtIndex:0];
     }
     _name.text = [salonDetail objectForKey:@"name"];
@@ -317,11 +318,11 @@ else if (tableView == _similarTableView)
         _ratingLabel.text = @"0";
         _nbReviews.text = @"- 0 review";
         _reviewTableView.hidden = YES;
-        _addReviewButtonYpos.constant = 590;
+        _addReviewButtonYpos.constant = 570;
         _addReviewButtonXpos.constant = 200;
         _moreReviewBttn.hidden = YES;
         _moreReviewBttn.enabled = NO;
-        _mainViewHeight.constant = 1050;
+        _mainViewHeight.constant = 1030;
     }
     else
     {
