@@ -10,7 +10,7 @@
 #import "RatingView.h"
 #import <MapKit/MapKit.h>
 
-@interface SalonDetailViewController : UIViewController <UIScrollViewDelegate, RatingViewDelegate, UITableViewDataSource, UITableViewDelegate, MKMapViewDelegate>
+@interface SalonDetailViewController : UIViewController <UIScrollViewDelegate, RatingViewDelegate, UITableViewDataSource, UITableViewDelegate, MKMapViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property (nonatomic) IBOutlet UIScrollView *imageSliderView;
 @property (nonatomic) IBOutlet UIPageControl *pageControl;
@@ -19,10 +19,8 @@
 @property (nonatomic) IBOutlet UIView *mainView;
 @property (nonatomic) IBOutlet UIScrollView *mainScrollView;
 
-@property (nonatomic) IBOutlet UIView *hairfieView;
-@property (nonatomic) IBOutlet UIView *hairdresserView;
-@property (nonatomic) IBOutlet UIView *salesView;
 @property (nonatomic) IBOutlet UIView *tabView;
+
 @property (nonatomic) IBOutlet UIView *telephoneBgView;
 @property (nonatomic) IBOutlet UIView *pricesView;
 
@@ -35,7 +33,15 @@
 @property (nonatomic) IBOutlet UIButton *infoBttn;
 @property (nonatomic) IBOutlet UIButton *hairfieBttn;
 @property (nonatomic) IBOutlet UIButton *hairdresserBttn;
-@property (nonatomic) IBOutlet UIButton *salesBttn;
+@property (nonatomic) IBOutlet UIButton *priceAndSaleBttn;
+
+@property (nonatomic) IBOutlet UIView *infoView;
+@property (nonatomic) IBOutlet UIView *hairfieView;
+@property (nonatomic) IBOutlet UIView *hairdresserView;
+@property (nonatomic) IBOutlet UIView *priceAndSaleView;
+@property (nonatomic) IBOutlet UIView *containerView;
+
+/////////
 
 @property (weak, nonatomic) IBOutlet RatingView *salonRating;
 @property (weak, nonatomic) IBOutlet RatingView *reviewRating;
@@ -72,9 +78,20 @@
 @property (nonatomic) IBOutlet MKMapView *previewMap;
 
 
-// View Info
+// View Hairfie
 
+@property (nonatomic) IBOutlet UICollectionView *hairfieCollection;
+@property (nonatomic) IBOutlet NSLayoutConstraint *hairfieCollectionHeight;
 
+// View Hairdressers
+
+@property (nonatomic) IBOutlet UITableView *hairdresserTableView;
+@property (nonatomic) IBOutlet NSLayoutConstraint *hairdresserTableViewHeight;
+
+// View Sales
+
+@property (nonatomic) IBOutlet UITableView *pricesTableView;
+@property (nonatomic) IBOutlet NSLayoutConstraint *pricesTableViewHeight;
 
 // Constraints modified for salon info = null
 
@@ -82,6 +99,8 @@
 @property (nonatomic) IBOutlet NSLayoutConstraint *addReviewButtonYpos;
 @property (nonatomic) IBOutlet NSLayoutConstraint *addReviewButtonXpos;
 @property (nonatomic) IBOutlet NSLayoutConstraint *mainViewHeight;
+
+
 
 -(IBAction)goBack:(id)sender;
 -(IBAction)changePage:(id)sender;

@@ -14,6 +14,9 @@
 #import "MyAnnotation.h"
 #import "ReviewsViewController.h"
 #import "HorairesViewController.h"
+#import "CustomCollectionViewCell.h"
+#import "HairdressersTableViewCell.h"
+#import "PricesTableViewCell.h"
 
 @interface SalonDetailViewController ()
 
@@ -22,9 +25,14 @@
 @implementation SalonDetailViewController {
     BOOL isOpen;
     NSString *phoneNumber;
+    
+    // Variables de test (vu qu'il y a pas de backend)
+    
+    NSArray *coiffureArray;
+    NSArray *coiffeurArray;
 }
 
-@synthesize imageSliderView =_imageSliderView, pageControl = _pageControl,hairfieView = _hairfieView, hairdresserView = _hairdresserView, salesView = _salesView, infoBttn = _infoBttn, hairfieBttn = _hairfieBttn, hairdresserBttn = _hairdresserBttn, salesBttn = _salesBttn, reviewRating = _reviewRating, reviewTableView = _reviewTableView, addReviewBttn = _addReviewBttn, moreReviewBttn = _moreReviewBttn, similarTableView = _similarTableView, dataSalon = _dataSalon, ratingLabel = _ratingLabel, name = _name , womanPrice = _womanPrice, manPrice = _manPrice, salonRating = _salonRating, address = _address, city = _city, salonAvailability = _salonAvailability, nbReviews = _nbReviews, previewMap = _previewMap, isOpenLabel = _isOpenLabel, isOpenLabelDetail = _isOpenLabelDetail, isOpenImage = _isOpenImage, isOpenImageDetail = _isOpenImageDetail, callBttn = _callBttn, telephoneBgView = _telephoneBgView;
+@synthesize imageSliderView =_imageSliderView, pageControl = _pageControl,hairfieView = _hairfieView, hairdresserView = _hairdresserView, priceAndSaleView = _priceAndSaleView, infoBttn = _infoBttn, hairfieBttn = _hairfieBttn, hairdresserBttn = _hairdresserBttn, priceAndSaleBttn = _priceAndSaleBttn, reviewRating = _reviewRating, reviewTableView = _reviewTableView, addReviewBttn = _addReviewBttn, moreReviewBttn = _moreReviewBttn, similarTableView = _similarTableView, dataSalon = _dataSalon, ratingLabel = _ratingLabel, name = _name , womanPrice = _womanPrice, manPrice = _manPrice, salonRating = _salonRating, address = _address, city = _city, salonAvailability = _salonAvailability, nbReviews = _nbReviews, previewMap = _previewMap, isOpenLabel = _isOpenLabel, isOpenLabelDetail = _isOpenLabelDetail, isOpenImage = _isOpenImage, isOpenImageDetail = _isOpenImageDetail, callBttn = _callBttn, telephoneBgView = _telephoneBgView;
 
 
 
@@ -32,11 +40,15 @@
     [super viewDidLoad];
     
     [self initKnownData:_dataSalon];
-    [self unSelectAll];
     [self setupGallery];
-    [_infoBttn setSelected:YES];
+    [self setButtonSelected:_infoBttn andBringViewUpfront:_infoView];
+    _infoView.hidden = NO;
     _imageSliderView.canCancelContentTouches = NO;
+    _hairfieCollection.scrollEnabled = NO;
     
+    _pricesTableView.layer.borderWidth = 1;
+    _pricesTableView.layer.borderColor = [UIColor colorWithRed:214/255.0f green:217/255.0f blue:221/255.0f alpha:1].CGColor;
+    [_pricesTableView setSeparatorInset:UIEdgeInsetsZero];
     
     _reviewTableView.delegate = self;
     _reviewTableView.dataSource = self;
@@ -65,7 +77,14 @@
     _previewMap.layer.borderColor = [UIColor colorWithRed:249/255.0 green:249/255.0 blue:249/255.0 alpha:1].CGColor;
     _previewMap.delegate = self;
     
-    _infoBttn.alpha = 1;
+    coiffeurArray = [[NSArray alloc] init];
+    coiffeurArray = [[NSArray alloc] initWithObjects:@"Charlyne M.", @"Johanna G.", @"Lisa T.", @"Audrey M.", @"Ghislain J.", nil];
+    _hairdresserTableViewHeight.constant = [coiffeurArray count] * 60;
+    _hairdresserTableView.scrollEnabled = NO;
+    
+    coiffureArray = [[NSArray alloc] init];
+    coiffureArray = [[NSArray alloc] initWithObjects:@"COUPE HOMME BASIQUE", @"COUPE HOMME BASIQUE", @"LISSAGE BRESILIEN", @"COLORATION", @"BRUSHING", nil];
+    _pricesTableViewHeight.constant = [coiffureArray count] * 41;
     
     
     // Init Rating View
@@ -78,6 +97,10 @@
     _reviewRating.maxRating = 5;
     _reviewRating.delegate = self;
     
+    
+    // Hairfie View
+    
+    [_hairfieCollection registerNib:[UINib nibWithNibName:@"CustomCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"hairfieCell"];
     
     // Do any additional setup after loading the view.
     
@@ -137,42 +160,52 @@
 }
 
 
--(IBAction)changeTab:(id)sender
-{
-  /*  if(sender == _infoBttn)
-        [self setButtonSelected:_infoBttn andBringViewUpfront:];
-    else if(sender == _hairfieBttn)
-        [self setButtonSelected:_hairfieBttn andBringViewUpfront:_hairfieView];
-    else if(sender == _hairdresserBttn)
+-(IBAction)changeTab:(id)sender {
+    if(sender == _infoBttn){
+    [self setButtonSelected:_infoBttn andBringViewUpfront:_infoView];
+          _infoView.hidden = NO;
+    }
+    else if(sender == _hairfieBttn) {
+        
+    [self setButtonSelected:_hairfieBttn andBringViewUpfront:_hairfieView];
+    _mainViewHeight.constant = 980;
+     _hairfieView.hidden = NO;
+    }
+    else if(sender == _hairdresserBttn) {
+          _mainViewHeight.constant = 600;
         [self setButtonSelected:_hairdresserBttn andBringViewUpfront:_hairdresserView];
-    else if(sender == _salesBttn)
-         [self setButtonSelected:_salesBttn andBringViewUpfront:_salesView];
-   */
+        _hairdresserView.hidden = NO;
+    }
+    else if(sender == _priceAndSaleBttn) {
+          _mainViewHeight.constant = 600;
+        [self setButtonSelected:_priceAndSaleBttn andBringViewUpfront:_priceAndSaleView];
+         _priceAndSaleView.hidden = NO;
+    }
 }
--(void)setButtonSelected:(UIButton*) button andBringViewUpfront:(UIView*) view
-{
-    [_tabView bringSubviewToFront:view];
+
+-(void)setButtonSelected:(UIButton*) button andBringViewUpfront:(UIView*) view {
+    [_containerView bringSubviewToFront:view];
     [self unSelectAll];
     [button setBackgroundColor:[UIColor colorWithRed:50/255.0f green:67/255.0f blue:87/255.0f alpha:1]];
+    NSLog(@"coucou2");
 }
 
 -(void) setNormalStateColor:(UIButton*) button
 {
     [button setBackgroundColor:[UIColor colorWithRed:50/255.0f green:67/255.0f blue:87/255.0f alpha:0.9]];
+    NSLog(@"coucou");
 }
 
 -(void) unSelectAll
 {
-    
+    _infoView.hidden = YES;
+    _hairfieView.hidden = YES;
+    _hairdresserView.hidden = YES;
+    _priceAndSaleView.hidden = YES;
     [self setNormalStateColor:_infoBttn];
     [self setNormalStateColor:_hairfieBttn];
     [self setNormalStateColor:_hairdresserBttn];
-    [self setNormalStateColor:_salesBttn];
-/*
-    
-    _hairfieBttn.selected = NO;
-    _hairdresserBttn.selected = NO;
-    _salesBttn.selected = NO;*/
+    [self setNormalStateColor:_priceAndSaleBttn];
 }
 
 
@@ -206,11 +239,13 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (tableView == _reviewTableView)
-    return 2;
-else if (tableView == _similarTableView)
-    return 3;
-
-    
+        return 2;
+    else if (tableView == _similarTableView)
+        return 3;
+    if (tableView == _hairdresserTableView)
+        return 5;
+    if(tableView == _pricesTableView)
+        return 5;
     return 2;
 }
 
@@ -220,6 +255,10 @@ else if (tableView == _similarTableView)
         return 130;
     else if (tableView == _similarTableView)
         return 110;
+    else if (tableView == _hairdresserTableView)
+        return 60;
+    else if (tableView == _pricesTableView)
+        return 41;
     return 90;
 }
 
@@ -248,8 +287,44 @@ else if (tableView == _similarTableView)
             NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"SimilarTableViewCell" owner:self options:nil];
             cell = [nib objectAtIndex:0];
         }
+        // Provisoire data
+        
+        cell.name.text = [NSString stringWithFormat:@"Similar salon %ld",indexPath.row + 1];
+        cell.salonPicture.image = [UIImage imageNamed:@"placeholder-image.jpg"];
+        
         return cell;
     }
+    else if (tableView == _hairdresserTableView)
+    {
+        static NSString *CellIdentifier = @"hairdresserCell";
+        HairdressersTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        
+        if (cell == nil) {
+            NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"HairdressersTableViewCell" owner:self options:nil];
+            cell = [nib objectAtIndex:0];
+        }
+
+        cell.name.text = [coiffeurArray objectAtIndex:indexPath.row];
+        cell.nbHairfie.text = @"335 Hairfies";
+        cell.nbHairfie.textColor = [UIColor colorWithRed:224/255.0f green:106/255.0f blue:71/255.0f alpha:1];
+        return cell;
+    }
+    
+    else if (tableView == _pricesTableView)
+    {
+        static NSString *CellIdentifier = @"priceCell";
+        PricesTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        
+        if (cell == nil) {
+            NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"PricesTableViewCell" owner:self options:nil];
+            cell = [nib objectAtIndex:0];
+        }
+        cell.itemName.text = [coiffureArray objectAtIndex:indexPath.row];
+        cell.price.text = @"$ 100";
+        return cell;
+    }
+
+    
     return nil;
 }
 
@@ -318,7 +393,7 @@ else if (tableView == _similarTableView)
         _ratingLabel.text = @"0";
         _nbReviews.text = @"- 0 review";
         _reviewTableView.hidden = YES;
-        _addReviewButtonYpos.constant = 570;
+        _addReviewButtonYpos.constant = 338;
         _addReviewButtonXpos.constant = 200;
         _moreReviewBttn.hidden = YES;
         _moreReviewBttn.enabled = NO;
@@ -416,6 +491,38 @@ else if (tableView == _similarTableView)
     }
     return  mStr;
 }
+
+
+// Collection View Delegate
+
+- (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section
+{
+    _hairfieCollectionHeight.constant = (6 * 220) / 2;
+    return 6;
+}
+// 2
+- (NSInteger)numberOfSectionsInCollectionView: (UICollectionView *)collectionView {
+    return 1;
+}
+
+
+// 3
+- (CustomCollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    static NSString *CellIdentifier = @"hairfieCell";
+    CustomCollectionViewCell *cell = [cv dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
+    
+    if (cell == nil) {
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"CustomCollectionViewCell" owner:self options:nil];
+        cell = [nib objectAtIndex:0];
+    }
+    cell.name.text = @"Kimi Smith";
+    cell.hairfieView.image = [UIImage imageNamed:@"hairfie.jpg"];
+    cell.layer.borderColor = [UIColor colorWithRed:234/255.0f green:236/255.0f blue:238/255.0f alpha:1].CGColor;
+    cell.layer.borderWidth = 1.0f;
+    return cell;
+}
+
 
 /*
 #pragma mark - Navigation

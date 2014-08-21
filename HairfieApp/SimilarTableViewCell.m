@@ -36,9 +36,7 @@
 
 - (void) customInit:(NSDictionary*)salon
 {
-    
     NSString *imgUrl = [salon objectForKey:@"gps_picture"];
-    
     _name.text = [salon objectForKey:@"name"];
     _salonPicture.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imgUrl]]];
     _salonPicture.contentMode = UIViewContentModeScaleAspectFill;
