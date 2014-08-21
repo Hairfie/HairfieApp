@@ -285,12 +285,12 @@ else if (tableView == _similarTableView)
     if (phoneNumbers == nil || [phoneNumbers count] == 0)
     {
         _telephone.text = [NSString stringWithFormat:@"Pas de numéro connu"];
-        _telephoneLabelWidth.constant = 133;
+        _telephoneLabelWidth.constant = 123;
     }
     else
     {
         _telephone.text = [self formatPhoneNumber:[phoneNumbers objectAtIndex:0]];
-        _telephoneLabelWidth.constant = 87;
+        _telephoneLabelWidth.constant = 80;
         phoneNumber =[phoneNumbers objectAtIndex:0];
     }
     _name.text = [salonDetail objectForKey:@"name"];
@@ -334,48 +334,23 @@ else if (tableView == _similarTableView)
     _city.text = [salonDetail objectForKey:@"city"];
     
     // MapView Setup
-    
-    //NSString *fullAddress = [NSString stringWithFormat:@"%@, %@", [salonDetail objectForKey:@"street"], [salonDetail objectForKey:@"city"]];
-    //[self getCoordinatesFromAdress:fullAddress];
     _haidresserLat = [[salonDetail objectForKey:@"gps"] valueForKey:@"lat"];
     _haidresserLng = [[salonDetail objectForKey:@"gps"] valueForKey:@"lng"];
 
 }
 
 
--(void) getCoordinatesFromAdress:(NSString*)address
-{
-    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
-    [geocoder geocodeAddressString:address completionHandler:^(NSArray* placemarks, NSError* error){
-        for (CLPlacemark* aPlacemark in placemarks)
-        {
-            // Process the placemark.
-            _haidresserLat = [NSString stringWithFormat:@"%.4f",aPlacemark.location.coordinate.latitude];
-            _haidresserLng = [NSString stringWithFormat:@"%.4f",aPlacemark.location.coordinate.longitude];
-             [self updateMapView];
-            }
-    }];
-
-}
 
 
 - (void)updateMapView {
     
-    // create a region and pass it to the Map View
     CLLocationCoordinate2D coord;
     coord.longitude = [[NSString stringWithFormat:@"%@", _haidresserLng] floatValue];
     coord.latitude = [[NSString stringWithFormat:@"%@", _haidresserLat] floatValue];
-
-//    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance (coord, 260, 216);
-//    region.center = coord;
-    
     MyAnnotation *annotObj =[[MyAnnotation alloc]init];
-    
     annotObj.title = _name.text;
     annotObj.coordinate = coord;
     [_previewMap addAnnotation:annotObj];
-//    [_previewMap regionThatFits:region];
-    //[_previewMap setRegion:region animated:NO];
     [_previewMap showAnnotations:@[annotObj] animated:NO];
     _previewMap.camera.altitude = 1000;
   
