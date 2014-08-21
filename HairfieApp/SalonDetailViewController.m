@@ -17,6 +17,7 @@
 #import "CustomCollectionViewCell.h"
 #import "HairdressersTableViewCell.h"
 #import "PricesTableViewCell.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface SalonDetailViewController ()
 
@@ -40,7 +41,6 @@
     [super viewDidLoad];
     
     [self initKnownData:_dataSalon];
-    [self setupGallery];
     [self setButtonSelected:_infoBttn andBringViewUpfront:_infoView];
     _infoView.hidden = NO;
     _imageSliderView.canCancelContentTouches = NO;
@@ -106,23 +106,53 @@
     
 }
 
--(void) setupGallery
+-(void) setupGallery:(NSArray*) pictures
 {
-    NSArray *tutoArray = [[NSArray alloc] init];
-    tutoArray = [[NSArray alloc] initWithObjects:@"default-picture.jpg", @"photo-example.jpeg", @"default-picture.jpg", @"photo-example.jpeg", @"default-picture.jpg", nil];
-    _pageControl.numberOfPages = [tutoArray count];
-    for (int i = 0; i < [tutoArray count]; i++) {
+    NSLog(@"array %@", pictures);
+    if ([pictures count] == 1)
+        _pageControl.hidden = YES;
+    if ([pictures count] == 0)
+    {
+        _pageControl.numberOfPages = 1;
+        _pageControl.hidden = YES;
+        CGRect frame;
+        frame.origin.x = 0;
+        frame.origin.y = 0;
+        frame.size = _imageSliderView.frame.size;
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:frame];
+        imageView.image = [UIImage imageNamed:@"default-picture.jpg"];
+        NSLog(@"image view %@", imageView);
+         imageView.contentMode = UIViewContentModeScaleToFill;
+        [_imageSliderView addSubview:imageView];
+    }
+    else {
+        
+    _pageControl.numberOfPages = [pictures count];
+    for (int i = 0; i < [pictures count]; i++) {
         CGRect frame;
         frame.origin.x = _imageSliderView.frame.size.width * i;
         frame.origin.y = 0;
         frame.size = _imageSliderView.frame.size;
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:frame];
-        imageView.image = [UIImage imageNamed:[tutoArray objectAtIndex:i]];
+        
+        [SDWebImageDownloader.sharedDownloader downloadImageWithURL:[NSURL URLWithString:[pictures objectAtIndex:i]]
+                                                            options:0
+                                                           progress:^(NSInteger receivedSize, NSInteger expectedSize) { }
+                                                          completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished)
+         {
+             if (image && finished)
+             {
+                 imageView.image = image;
+             }
+         }];
+
         imageView.contentMode = UIViewContentModeScaleToFill;
         [_imageSliderView addSubview:imageView];
     }
+   
+    }
     _imageSliderView.pagingEnabled = YES;
-    _imageSliderView.contentSize = CGSizeMake(_imageSliderView.frame.size.width * [tutoArray count], _imageSliderView.frame.size.height);
+    _imageSliderView.contentSize = CGSizeMake(_imageSliderView.frame.size.width * [pictures count], _imageSliderView.frame.size.height);
 }
 
 -(IBAction)showTimeTable:(id)sender
@@ -187,13 +217,11 @@
     [_containerView bringSubviewToFront:view];
     [self unSelectAll];
     [button setBackgroundColor:[UIColor colorWithRed:50/255.0f green:67/255.0f blue:87/255.0f alpha:1]];
-    NSLog(@"coucou2");
 }
 
 -(void) setNormalStateColor:(UIButton*) button
 {
     [button setBackgroundColor:[UIColor colorWithRed:50/255.0f green:67/255.0f blue:87/255.0f alpha:0.9]];
-    NSLog(@"coucou");
 }
 
 -(void) unSelectAll
@@ -335,7 +363,8 @@
     NSArray *phoneNumbers = [salonDetail objectForKey:@"phone_numbers"];
     NSDictionary *reviews = [salonDetail objectForKey:@"reviews"];
     NSDictionary *timetables =[salonDetail objectForKey:@"timetables"];
-    
+    NSArray *pictures = [salonDetail objectForKey:@"pictures"];
+    [self setupGallery:pictures];
     if (timetables == nil) {
         _isOpenImageDetail.hidden = YES;
         _isOpenLabelDetail.hidden = YES;

@@ -222,7 +222,6 @@
             NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"SalonTableViewCell" owner:self options:nil];
             cell = [nib objectAtIndex:0];
         }
-        
         [SDWebImageDownloader.sharedDownloader downloadImageWithURL:[NSURL URLWithString:[salon objectForKey:@"gps_picture"]]
                                                         options:0
                                                         progress:^(NSInteger receivedSize, NSInteger expectedSize) { }
