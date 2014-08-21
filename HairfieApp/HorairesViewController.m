@@ -71,7 +71,7 @@
     
     NSString *key = [_salon allKeys][indexPath.row];
     NSString *day = key;
-    NSString *time = _salon[key];
+    NSString *time = [_salon[key] componentsJoinedByString: @" / "];
     
    
     cell.day.text = day;
