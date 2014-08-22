@@ -19,11 +19,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-     NSLog(@"%@", _salon);
-    
-    
     _tableViewHeight.constant = _salon.count * 65;
-    
     // Do any additional setup after loading the view.
 }
 
@@ -68,12 +64,16 @@
         cell = [nib objectAtIndex:0];
     }
     
-    
     NSString *key = [_salon allKeys][indexPath.row];
     NSString *day = key;
-    NSString *time = [_salon[key] componentsJoinedByString: @" / "];
+    NSMutableArray *timeArray = [[NSMutableArray alloc] init];
     
-   
+    for(int i = 0;  i < [_salon[key] count]; i++)
+    {
+    [timeArray addObject:[NSString stringWithFormat:@"%@ - %@", [[_salon[key] objectAtIndex:i] valueForKey:@"from"] , [[_salon[key] objectAtIndex:i] valueForKey:@"to"]]];
+    }
+    
+    NSString *time = [timeArray componentsJoinedByString:@" / "];
     cell.day.text = day;
     cell.time.text = time;
     

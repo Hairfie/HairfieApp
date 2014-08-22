@@ -11,6 +11,8 @@
 #import "CustomPinView.h"
 #import "AppDelegate.h"
 
+#
+
 #import "SalonTableViewCell.h"
 #import "SalonDetailViewController.h"
 #import "SimilarTableViewCell.h"
@@ -54,7 +56,6 @@
     [_hairdresserTableView setSeparatorInset:UIEdgeInsetsZero];
  
     SDmanager = [SDWebImageManager sharedManager];
-   [self initMapWithSalons];
     // Do any additional setup after loading the view.
 }
 
@@ -157,6 +158,31 @@
 
 - (void)getSalons
 {
+  
+    //Error Block
+    void (^loadErrorBlock)(NSError *) = ^(NSError *error){
+        NSLog(@"Error on load %@", error.description);
+    };
+    void (^loadSuccessBlock)(NSArray *) = ^(NSArray *models){
+        NSLog(@"Success count %ld", models.count);
+        salons = models;
+        [_hairdresserTableView reloadData];
+       // [self addSalonsToMap];
+    };
+    
+    if (salons.count == 0)
+    {
+    NSString *repoName = @"businesses";
+    
+    [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/businesses/nearby" verb:@"GET"] forMethod:@"businesses.nearby"];
+    
+    LBModelRepository *businessData = [[AppDelegate lbAdaptater] repositoryWithModelName:repoName];
+    
+    NSString *gpsString = [NSString stringWithFormat:@"%f,%f", _myLocation.coordinate.longitude, _myLocation.coordinate.latitude];
+    [businessData invokeStaticMethod:@"nearby" parameters:@{@"here": gpsString, @"limit" : @"10"} success:loadSuccessBlock failure:loadErrorBlock];
+    }
+    
+   /*
     NSString *urlString = [NSString stringWithFormat:@"%@/salons/nearby?lat=%f&lng=%f&max=10&limit=10", BASE_URL, _myLocation.coordinate.latitude, _myLocation.coordinate.longitude];
     NSLog(@"URL: %@", urlString);
     NSURL *urlforrequest = [NSURL URLWithString:urlString];
@@ -168,7 +194,7 @@
         salons = (NSArray *)responseObject;
         [self addSalonsToMap];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error Retrieving Weather"
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error Retrieving Location"
                                                             message:[error localizedDescription]
                                                            delegate:nil
                                                   cancelButtonTitle:@"Ok"
@@ -176,6 +202,7 @@
         [alertView show];
     }];
     [operation start];
+    */
 }
 
 // TableView Delegate Functions
@@ -195,25 +222,22 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [salons count];
+  //  return [salons count];
+    return 10;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    NSDictionary *salon = [[salons objectAtIndex:indexPath.row] objectForKey:@"obj"];
-    NSDictionary *price = [salon objectForKey:@"price"];
-    if ([[price objectForKey:@"women"] integerValue] != 0 && [[price objectForKey:@"men"]integerValue] != 0)
-    return 110;
-    else
-        return 100;
+        return 110;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSDictionary *salon = [[salons objectAtIndex:indexPath.row] objectForKey:@"obj"];
-    NSDictionary *price = [salon objectForKey:@"price"];
-    
-    if ([[price objectForKey:@"women"] integerValue] != 0 && [[price objectForKey:@"men"]integerValue] != 0)
+   // NSDictionary *salon = [salons objectAtIndex:indexPath.row];
+   // NSDictionary *price = [salon objectForKey:@"price"];
+   
+    LBModel *model = (LBModel *)[salons objectAtIndex:indexPath.row];
+   
+    if ( indexPath.row % 2 == 0)//[[price objectForKey:@"women"] integerValue] != 0 && [[price objectForKey:@"men"]integerValue] != 0)
     {
         static NSString *CellIdentifier = @"salonCell";
         SalonTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -221,8 +245,10 @@
         if (cell == nil) {
             NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"SalonTableViewCell" owner:self options:nil];
             cell = [nib objectAtIndex:0];
+            
         }
-        [SDWebImageDownloader.sharedDownloader downloadImageWithURL:[NSURL URLWithString:[salon objectForKey:@"gps_picture"]]
+     
+        [SDWebImageDownloader.sharedDownloader downloadImageWithURL:[NSURL URLWithString:[model objectForKeyedSubscript:@"thumb"]]
                                                         options:0
                                                         progress:^(NSInteger receivedSize, NSInteger expectedSize) { }
                                                         completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished)
@@ -230,13 +256,18 @@
              if (image && finished)
              {
                  
-                 cell.salonPicture.image = [image croppedImage:CGRectMake(0, 0, cell.salonPicture.frame.size.width, cell.salonPicture.frame.size.height)];
+                 cell.salonPicture.image = image;
              }
          }];
         
-        [cell customInit:salon];
-        return cell;
-    }
+        
+            cell.name.text = [model objectForKeyedSubscript:@"name"];
+            return cell;
+       // [cell customInit:salon];
+        }
+    
+
+    
     else
     {
         static NSString *CellIdentifier = @"similarCell";
@@ -246,7 +277,21 @@
             NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"SimilarTableViewCell" owner:self options:nil];
             cell = [nib objectAtIndex:0];
         }
-        [cell customInit:salon];
+        
+        [SDWebImageDownloader.sharedDownloader downloadImageWithURL:[NSURL URLWithString:[model objectForKeyedSubscript:@"thumb"]]
+                                                            options:0
+                                                           progress:^(NSInteger receivedSize, NSInteger expectedSize) { }
+                                                          completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished)
+         {
+             if (image && finished)
+             {
+                 
+                 cell.salonPicture.image = image;
+             }
+         }];
+        
+         cell.name.text = [model objectForKeyedSubscript:@"name"];
+       // [cell customInit:salon];
         return cell;
     }
     
@@ -258,6 +303,7 @@
 {
     rowSelected = indexPath.row;
     [self performSegueWithIdentifier:@"salonDetail" sender:self];
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -265,8 +311,9 @@
     if ([segue.identifier isEqualToString:@"salonDetail"])
     {
         SalonDetailViewController *salonDetail = [segue destinationViewController];
+        
         [salonDetail setDataSalon:[salons objectAtIndex:rowSelected]];
-    }
+        }
 }
 
 

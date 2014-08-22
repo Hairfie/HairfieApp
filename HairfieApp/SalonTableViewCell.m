@@ -51,7 +51,7 @@ nbReviews = _nbReviews;
     _salonRating.maxRating = 5;
     _salonRating.delegate = self;
     
-    _salonPicture.image = [UIImage imageNamed:@"map_pin.png"];
+    _salonPicture.image = [UIImage imageNamed:@"placeholder-image.jpg"];
 }
 
 - (void) customInit:(NSDictionary*)salon

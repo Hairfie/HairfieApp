@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
+#import <LoopBack/LoopBack.h>
+
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, CLLocationManagerDelegate>
 
@@ -15,7 +17,7 @@
 @property (nonatomic)     CLLocationManager *manager;
 @property (nonatomic)     CLLocation *myLocation;
 
-
++ ( LBRESTAdapter *) lbAdaptater;
 
 -(void)startTrackingLocation:(BOOL)forceLocation;
 

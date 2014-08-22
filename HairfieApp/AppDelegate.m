@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 #import "MenuViewController.h"
 #import "HairfieApp-Swift.h"
-
+#import "Constants.h"
 
 @interface AppDelegate ()
 
@@ -18,6 +18,18 @@
 @implementation AppDelegate
 
 @synthesize manager = _manager, myLocation = _myLocation;
+
+
+
+
+static LBRESTAdapter * _lbAdaptater = nil;
++ (LBRESTAdapter *) lbAdaptater
+{
+    if ( !_lbAdaptater)
+        _lbAdaptater = [LBRESTAdapter adapterWithURL:[NSURL URLWithString:API_URL]];
+    return _lbAdaptater;
+}
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
  
@@ -32,7 +44,6 @@
 {
     if (forceLocation == YES)
     {
-        NSLog(@"Test");
         if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")) {
             [_manager requestWhenInUseAuthorization];
         }

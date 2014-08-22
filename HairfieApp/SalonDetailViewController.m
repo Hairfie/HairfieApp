@@ -39,7 +39,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     [self initKnownData:_dataSalon];
     [self setButtonSelected:_infoBttn andBringViewUpfront:_infoView];
     _infoView.hidden = NO;
@@ -108,7 +107,6 @@
 
 -(void) setupGallery:(NSArray*) pictures
 {
-    NSLog(@"array %@", pictures);
     if ([pictures count] == 1)
         _pageControl.hidden = YES;
     if ([pictures count] == 0)
@@ -121,8 +119,7 @@
         frame.size = _imageSliderView.frame.size;
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:frame];
         imageView.image = [UIImage imageNamed:@"default-picture.jpg"];
-        NSLog(@"image view %@", imageView);
-         imageView.contentMode = UIViewContentModeScaleToFill;
+        imageView.contentMode = UIViewContentModeScaleToFill;
         [_imageSliderView addSubview:imageView];
     }
     else {
@@ -358,14 +355,17 @@
 
 - (void) initKnownData:(NSDictionary*)salon
 {
-    NSDictionary *salonDetail = [salon objectForKey:@"obj"];
-    NSDictionary *price = [salonDetail objectForKey:@"price"];
-    NSArray *phoneNumbers = [salonDetail objectForKey:@"phone_numbers"];
-    NSDictionary *reviews = [salonDetail objectForKey:@"reviews"];
-    NSDictionary *timetables =[salonDetail objectForKey:@"timetables"];
-    NSArray *pictures = [salonDetail objectForKey:@"pictures"];
-    [self setupGallery:pictures];
-    if (timetables == nil) {
+   
+    NSDictionary *price = [salon objectForKey:@"price"];
+    NSArray *phoneNumbers = [salon objectForKey:@"phone_numbers"];
+    NSDictionary *reviews = [salon objectForKey:@"reviews"];
+    NSDictionary *timetables =[salon objectForKey:@"timetables"];
+    NSArray *pictures = [salon objectForKey:@"pictures"];
+   
+   [self setupGallery:pictures];
+
+    if (!timetables) {
+        NSLog(@"je devrais etre ici");
         _isOpenImageDetail.hidden = YES;
         _isOpenLabelDetail.hidden = YES;
          _isOpenLabel.text = @"Pas d'informations";
@@ -385,7 +385,7 @@
             _isOpenLabel.text = @"Fermé aujourd'hui";
         }
     }
-    
+
     if (phoneNumbers == nil || [phoneNumbers count] == 0)
     {
         _telephone.text = [NSString stringWithFormat:@"Pas de numéro connu"];
@@ -398,7 +398,7 @@
         _telephoneLabelWidth.constant = 87;
         phoneNumber =[phoneNumbers objectAtIndex:0];
     }
-    _name.text = [salonDetail objectForKey:@"name"];
+    _name.text = [salon objectForKey:@"name"];
     
     if ([[price objectForKey:@"women"] integerValue] != 0 && [[price objectForKey:@"men"]integerValue] != 0)
     {
@@ -435,12 +435,13 @@
         _nbReviews.text =[NSString stringWithFormat:@"- %@ reviews",[reviews objectForKey:@"total"]];
     }
     
-    _address.text = [salonDetail objectForKey:@"street"];
-    _city.text = [salonDetail objectForKey:@"city"];
+    _address.text = [[salon objectForKey:@"address"] valueForKey:@"street"];
+    _zipCode.text = [[salon objectForKey:@"address"] valueForKey:@"zipcode"];
+    _city.text = [[salon objectForKey:@"address"] valueForKey:@"city"];
     
     // MapView Setup
-    _haidresserLat = [[salonDetail objectForKey:@"gps"] valueForKey:@"lat"];
-    _haidresserLng = [[salonDetail objectForKey:@"gps"] valueForKey:@"lng"];
+    _haidresserLat = [[salon objectForKey:@"gps"] valueForKey:@"lat"];
+    _haidresserLng = [[salon objectForKey:@"gps"] valueForKey:@"lng"];
 
 }
 
@@ -498,9 +499,9 @@
     {
         HorairesViewController *horaires = [segue destinationViewController];
        
-        NSDictionary *salon = [_dataSalon objectForKey:@"obj"];
         
-        horaires.salon = [salon objectForKey:@"timetables"];
+        
+        horaires.salon = [_dataSalon objectForKey:@"timetables"];
     }
 }
 

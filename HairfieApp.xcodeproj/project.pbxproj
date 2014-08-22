@@ -130,6 +130,8 @@
 		B3DD7A851991288F007B1621 /* SimilarTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B3DD7A831991288F007B1621 /* SimilarTableViewCell.m */; };
 		B3DD7A861991288F007B1621 /* SimilarTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3DD7A841991288F007B1621 /* SimilarTableViewCell.xib */; };
 		B3DD7A8819912A6C007B1621 /* picto-phone-white.png in Resources */ = {isa = PBXBuildFile; fileRef = B3DD7A8719912A6C007B1621 /* picto-phone-white.png */; };
+		B3E4B46019A73C010036BAD8 /* LoopBack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3E4B45F19A73C010036BAD8 /* LoopBack.framework */; };
+		B3E4B46319A73C830036BAD8 /* BusinessModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E4B46219A73C830036BAD8 /* BusinessModel.m */; };
 		B3E4B5981992530100CBBDC8 /* nav-disclosure.png in Resources */ = {isa = PBXBuildFile; fileRef = B3E4B5971992530100CBBDC8 /* nav-disclosure.png */; };
 		B3E65FB61986917800AF0C15 /* ECPercentDrivenInteractiveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E65FAA1986917800AF0C15 /* ECPercentDrivenInteractiveTransition.m */; };
 		B3E65FB71986917800AF0C15 /* ECSlidingAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E65FAC1986917800AF0C15 /* ECSlidingAnimationController.m */; };
@@ -344,6 +346,9 @@
 		B3DD7A831991288F007B1621 /* SimilarTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimilarTableViewCell.m; sourceTree = "<group>"; };
 		B3DD7A841991288F007B1621 /* SimilarTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SimilarTableViewCell.xib; sourceTree = "<group>"; };
 		B3DD7A8719912A6C007B1621 /* picto-phone-white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "picto-phone-white.png"; sourceTree = "<group>"; };
+		B3E4B45F19A73C010036BAD8 /* LoopBack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = LoopBack.framework; sourceTree = "<group>"; };
+		B3E4B46119A73C830036BAD8 /* BusinessModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessModel.h; sourceTree = "<group>"; };
+		B3E4B46219A73C830036BAD8 /* BusinessModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessModel.m; sourceTree = "<group>"; };
 		B3E4B5971992530100CBBDC8 /* nav-disclosure.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nav-disclosure.png"; sourceTree = "<group>"; };
 		B3E65FA91986917800AF0C15 /* ECPercentDrivenInteractiveTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECPercentDrivenInteractiveTransition.h; sourceTree = "<group>"; };
 		B3E65FAA1986917800AF0C15 /* ECPercentDrivenInteractiveTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECPercentDrivenInteractiveTransition.m; sourceTree = "<group>"; };
@@ -387,6 +392,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				15ED728C199B9C6400453A74 /* ImageIO.framework in Frameworks */,
+				B3E4B46019A73C010036BAD8 /* LoopBack.framework in Frameworks */,
 				B342317719891AA40058866B /* MapKit.framework in Frameworks */,
 				B3423175198907A80058866B /* CoreLocation.framework in Frameworks */,
 				B3EDF89219879BEF00431B70 /* QuartzCore.framework in Frameworks */,
@@ -411,6 +417,7 @@
 		151151821982B7A8001157A2 = {
 			isa = PBXGroup;
 			children = (
+				B3E4B45F19A73C010036BAD8 /* LoopBack.framework */,
 				B3423174198907A80058866B /* CoreLocation.framework */,
 				B3EDF89119879BEF00431B70 /* QuartzCore.framework */,
 				B330B5C1198656F20059AE56 /* CoreGraphics.framework */,
@@ -448,6 +455,7 @@
 				1511518E1982B7A8001157A2 /* Supporting Files */,
 				15E6AE751992635900A11947 /* OpeningTimes.swift */,
 				B303B953199B9403008F6BAA /* Images.xcassets */,
+				B3E4B46419A73C890036BAD8 /* MODEL */,
 			);
 			path = HairfieApp;
 			sourceTree = "<group>";
@@ -760,6 +768,15 @@
 				B337B6F419A22B11003B0EA5 /* HairfieDetailCollectionReusableView.m */,
 			);
 			name = "Hairfie Detail";
+			sourceTree = "<group>";
+		};
+		B3E4B46419A73C890036BAD8 /* MODEL */ = {
+			isa = PBXGroup;
+			children = (
+				B3E4B46119A73C830036BAD8 /* BusinessModel.h */,
+				B3E4B46219A73C830036BAD8 /* BusinessModel.m */,
+			);
+			name = MODEL;
 			sourceTree = "<group>";
 		};
 		B3E65FA81986917800AF0C15 /* ECSlidingViewController */ = {
@@ -1129,6 +1146,7 @@
 				B36731D7198F939A00E11C56 /* SalonDetailViewController.m in Sources */,
 				B3423214198924290058866B /* AFSecurityPolicy.m in Sources */,
 				B345BAD8199502A3007BB61A /* CustomCollectionViewCell.m in Sources */,
+				B3E4B46319A73C830036BAD8 /* BusinessModel.m in Sources */,
 				B3BD869F198BCFE500BD8591 /* RatingView.m in Sources */,
 				B3423211198924290058866B /* AFHTTPRequestOperationManager.m in Sources */,
 				B3423210198924290058866B /* AFHTTPRequestOperation.m in Sources */,
@@ -1299,6 +1317,10 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = HairfieApp/HairfiePrefixHeader.pch;
 				INFOPLIST_FILE = HairfieApp/Info.plist;
@@ -1320,6 +1342,10 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = HairfiePrefixHeader.pch;
 				INFOPLIST_FILE = HairfieApp/Info.plist;

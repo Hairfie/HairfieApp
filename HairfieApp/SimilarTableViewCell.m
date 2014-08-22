@@ -30,7 +30,7 @@
 
     _statusLabel.text = [NSString stringWithFormat:@"- donnez votre avis !"];
 
-    
+    _salonPicture.image = [UIImage imageNamed:@"placeholder-image.jpg"];
     // Initialization code
 }
 
