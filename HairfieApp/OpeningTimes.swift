@@ -21,7 +21,7 @@ import Foundation
         dateFormatter.dateFormat = format
         let todayStr:String? = dateFormatter.stringFromDate(today)
         
-        if(timetables[todayStr]) {
+        if(timetables[todayStr!] != nil) {
             return true
         }
         else {
