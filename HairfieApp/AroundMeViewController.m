@@ -59,7 +59,10 @@
     
     _searchBttn.layer.cornerRadius = 5;
     _searchBttn.layer.masksToBounds = YES;
- 
+    
+    _searchAroundMeImage.image = [_searchAroundMeImage.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    [_searchAroundMeImage setTintColor:[UIColor colorWithRed:92/255.0 green:172/255.0 blue:225/255.0 alpha:1]];
+    _searchByLocation.text = @"Around Me";
     SDmanager = [SDWebImageManager sharedManager];
     // Do any additional setup after loading the view.
 }
@@ -69,9 +72,8 @@
     [_searchByLocation resignFirstResponder];
     _searchByLocation.text = @"Around me";
   //  _searchByLocation.textColor = [UIColor colorWithRed:92/255.0f  green:172/255.0f  blue:225/255.0f alpha:1];
-    UIColor *green = [UIColor colorWithRed:92/255.0 green:172/255.0 blue:225/255.0 alpha:1];
-    _searchAroundMeImage.image = [_searchAroundMeImage.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-    [_searchAroundMeImage setTintColor:green];
+    
+    [_searchAroundMeImage setTintColor:[UIColor colorWithRed:92/255.0 green:172/255.0 blue:225/255.0 alpha:1]];
 }
 
 -(IBAction)cancelSearch:(id)sender
@@ -86,12 +88,15 @@
 
 -(BOOL)textViewShouldBeginEditing:(UITextView *)textView
 {
+    NSLog(@"test");
     return YES;
 }
 
 - (IBAction)showAdvancedSearch:(id)sender{
     _searchHeaderView.hidden = NO;
     _searchByName.text = @"";
+    [_searchAroundMeImage setTintColor:[UIColor colorWithRed:92/255.0 green:172/255.0 blue:225/255.0 alpha:1]];
+    _searchByLocation.text = @"Around Me";
     [_searchByName performSelector:@selector(becomeFirstResponder) withObject:nil afterDelay:0.0];
 }
 
@@ -107,9 +112,17 @@
         _searchByLocation.text = @"";
         _searchAroundMe.enabled = YES;
     } else {
-        [self cancelSearch:self];
+        [self doSearch:self];
     }
     return YES;
+}
+
+-(IBAction)doSearch:(id)sender
+{
+    NSString *searchQuery;
+    searchQuery = [NSString stringWithFormat:@"%@,%@", _searchByName.text, _searchByLocation.text];
+    NSLog(@"Search for %@", searchQuery);
+    [self cancelSearch:self];
 }
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField
@@ -118,8 +131,9 @@
     {
         _searchAroundMe.enabled = YES;
         _searchAroundMeImage.tintColor = [UIColor lightGrayColor];
+        textField.text = @"";
     }
-    textField.text = @"";
+   // textField.text = @"";
 }
 
 //METHODES pour cacher/afficher la tableview et agrandir la mapview dans la recherche
