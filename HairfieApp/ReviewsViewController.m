@@ -31,9 +31,8 @@
 
 
 -(void) viewWillAppear:(BOOL)animated
-{    [self setupHeaderView];
-    
-    
+{
+    [self setupHeaderView];
     if (_isReviewing == YES)
     {
          [_reviewTextView becomeFirstResponder];

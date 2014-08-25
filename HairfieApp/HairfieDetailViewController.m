@@ -36,13 +36,18 @@
     [_hairfieCollection registerNib:[UINib nibWithNibName:@"HairfieDetailCollectionReusableView" bundle:nil]forCellWithReuseIdentifier:@"headerCollection"];
     [_addComment setValue:[UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:0.5] forKeyPath:@"_placeholderLabel.textColor"];
     
-    UIImageView *profilePicture = [[UIImageView alloc] initWithFrame:CGRectMake(20, 408, 40, 40)];
+    
+    
+    UIImageView *profilePicture = [[UIImageView alloc] initWithFrame:CGRectMake(20, 10, 40, 40)];
     profilePicture.image = [UIImage imageNamed:@"leosquare.jpg"];
     
     profilePicture.layer.cornerRadius = profilePicture.frame.size.height / 2;
     profilePicture.clipsToBounds = YES;
     profilePicture.layer.borderWidth = 2.0f;
     profilePicture.layer.borderColor = [UIColor colorWithRed:40.0/255.0f green:49.0/255.0f blue:57.0/255.0f alpha:0.1].CGColor;
+    [_infoView addSubview:profilePicture];
+    
+    //UIView *test =
     //[self.view addSubview:profilePicture];
     //[_hairfieCollection setFrame:CGRectMake(0, 601, 320, 800)];
 }
@@ -179,22 +184,19 @@
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
     UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"hairfieDetailHeaderView" forIndexPath:indexPath];
-   
-    /*
-    UICollectionReusableView *headerView = nil;
+  
     
-    if (kind == UICollectionElementKindSectionHeader) {
-        UINib *nib = [UINib nibWithNibName:@"HairfieDetailCollectionReusableView" bundle:nil];
-        
-        
-        [_hairfieCollection registerNib:nib forCellWithReuseIdentifier:@"headerCollection"];
+    // Hairfitter profile pic (added manually because circled view)
     
-        HairfieDetailCollectionReusableView *collectionHeader = [_hairfieCollection dequeueReusableCellWithReuseIdentifier:@"headerCollection" forIndexPath:indexPath];
-        
-        
-        headerView = collectionHeader;
-    }
-*/
+    UIImageView *profilePicture = [[UIImageView alloc] initWithFrame:CGRectMake(20, 367, 40, 40)];
+    profilePicture.image = [UIImage imageNamed:@"leosquare.jpg"];
+    
+    profilePicture.layer.cornerRadius = profilePicture.frame.size.height / 2;
+    profilePicture.clipsToBounds = YES;
+    profilePicture.layer.borderWidth = 2.0f;
+    profilePicture.layer.borderColor = [UIColor colorWithRed:40.0/255.0f green:49.0/255.0f blue:57.0/255.0f alpha:0.1].CGColor;
+    [headerView addSubview:profilePicture];
+    
     return headerView;
 }
 

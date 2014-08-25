@@ -15,7 +15,7 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "UIImage+Resize.h"
 
-@interface AroundMeViewController : UIViewController <MKMapViewDelegate, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate,UIGestureRecognizerDelegate,SDWebImageManagerDelegate>
+@interface AroundMeViewController : UIViewController <MKMapViewDelegate, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate,UIGestureRecognizerDelegate,SDWebImageManagerDelegate, UITextViewDelegate, UITextFieldDelegate>
 {
     NSString *test;
 }
@@ -30,6 +30,18 @@
 @property (nonatomic) IBOutlet OLEContainerScrollView *scrollView;
 
 @property (nonatomic) IBOutlet UIView *headerView;
+@property (nonatomic) IBOutlet UIView *searchHeaderView;
+
+// Search Active
+
+@property (nonatomic) IBOutlet UITextView *searchField;
+@property (nonatomic) IBOutlet UIButton *cancelBttn;
+@property (nonatomic) IBOutlet UIButton *searchBttn;
+@property (nonatomic) IBOutlet UITextField *searchByName;
+@property (nonatomic) IBOutlet UITextField *searchByLocation;
+@property (nonatomic) IBOutlet UIButton *searchAroundMe;
+@property (nonatomic) IBOutlet UIImageView *searchAroundMeImage;
+////
 
 @property (nonatomic)  CLLocationManager *manager;
 @property (nonatomic)  CLGeocoder *geocoder;

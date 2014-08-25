@@ -46,20 +46,81 @@
                                              selector:@selector(updatedLocation:)
                                                  name:@"newLocationNotif"
                                                object:nil];
+    _searchHeaderView.hidden = YES;
+     _searchByName.delegate = self;
     _hairdresserTableView.delegate = self;
     _hairdresserTableView.dataSource = self;
     _hairdresserTableView.backgroundColor = [UIColor clearColor];
-    
+    _searchAroundMe.enabled = NO;
     _mapView.delegate = self;
     _mapView.showsUserLocation = YES;
     _hairdresserTableView.tableHeaderView = _headerView;
     [_hairdresserTableView setSeparatorInset:UIEdgeInsetsZero];
+    
+    _searchBttn.layer.cornerRadius = 5;
+    _searchBttn.layer.masksToBounds = YES;
  
     SDmanager = [SDWebImageManager sharedManager];
     // Do any additional setup after loading the view.
 }
 
+-(IBAction)searchAroundMe:(id)sender
+{
+    [_searchByLocation resignFirstResponder];
+    _searchByLocation.text = @"Around me";
+  //  _searchByLocation.textColor = [UIColor colorWithRed:92/255.0f  green:172/255.0f  blue:225/255.0f alpha:1];
+    UIColor *green = [UIColor colorWithRed:92/255.0 green:172/255.0 blue:225/255.0 alpha:1];
+    _searchAroundMeImage.image = [_searchAroundMeImage.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    [_searchAroundMeImage setTintColor:green];
+}
 
+-(IBAction)cancelSearch:(id)sender
+{
+    _searchHeaderView.hidden = YES;
+    _searchByLocation.text = @"";
+    _searchByName.text = @"";
+    [_searchField resignFirstResponder];
+    [_searchByLocation resignFirstResponder];
+    [_searchByName resignFirstResponder];
+}
+
+-(BOOL)textViewShouldBeginEditing:(UITextView *)textView
+{
+    return YES;
+}
+
+- (IBAction)showAdvancedSearch:(id)sender{
+    _searchHeaderView.hidden = NO;
+    _searchByName.text = @"";
+    [_searchByName performSelector:@selector(becomeFirstResponder) withObject:nil afterDelay:0.0];
+}
+
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    NSInteger nextTag = textField.tag + 1;
+    // Try to find next responder
+    UIResponder* nextResponder = [textField.superview viewWithTag:nextTag];
+    if (nextResponder) {
+        // Found next responder, so set it.
+        [nextResponder becomeFirstResponder];
+        _searchByLocation.text = @"";
+        _searchAroundMe.enabled = YES;
+    } else {
+        [self cancelSearch:self];
+    }
+    return YES;
+}
+
+-(void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    if (textField == _searchByLocation)
+    {
+        _searchAroundMe.enabled = YES;
+        _searchAroundMeImage.tintColor = [UIColor lightGrayColor];
+    }
+    textField.text = @"";
+}
 
 //METHODES pour cacher/afficher la tableview et agrandir la mapview dans la recherche
 
@@ -111,7 +172,6 @@
     
 }
 
- 
 -(IBAction)goBack:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
@@ -138,42 +198,54 @@
 // Add a salon to the map
 
 - (void) addSalonToMap: (NSDictionary *) salon {
-    NSDictionary *info = [salon valueForKey:@"obj"];
-    NSDictionary *coords = [info valueForKey:@"gps"];
-    NSString *titleStr = [info valueForKey:@"name"];
+    
+    NSDictionary *coords = [salon valueForKey:@"gps"];
+    NSString *titleStr = [salon valueForKey:@"name"];
 
     CLLocationCoordinate2D coord;
     coord.longitude = [[NSString stringWithFormat:@"%@",[coords valueForKey:@"lng"]] floatValue];
     coord.latitude = [[NSString stringWithFormat:@"%@",[coords valueForKey:@"lat"]] floatValue];
     
     MyAnnotation *annotObj =[[MyAnnotation alloc]init];
-    
     annotObj.title = titleStr;
     annotObj.coordinate = coord;
     [_mapView addAnnotation:annotObj];
-  //  [_hairdresserTableView reloadData];
 }
 
 // Get Salons from webservices then add them to the map
 
 - (void)getSalons
 {
-  
+    UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    [spinner setFrame:CGRectMake(50, 50, spinner.frame.size.width, spinner.frame.size.height)];
+    spinner.hidesWhenStopped = YES;
+    UIView *loadingView = [[UIView alloc] initWithFrame:CGRectMake(40, 200, 240, 200)];
+    loadingView.backgroundColor = [UIColor colorWithRed:255/255.0f green:255/255.0f blue:255/255.0f alpha:0.4];
+    [loadingView addSubview:spinner];
+    
     //Error Block
     void (^loadErrorBlock)(NSError *) = ^(NSError *error){
         NSLog(@"Error on load %@", error.description);
+        _hairdresserTableView.userInteractionEnabled = YES;
+        [loadingView removeFromSuperview];
+        [spinner stopAnimating];
     };
     void (^loadSuccessBlock)(NSArray *) = ^(NSArray *models){
         NSLog(@"Success count %ld", models.count);
         salons = models;
         [_hairdresserTableView reloadData];
-       // [self addSalonsToMap];
+        [self addSalonsToMap];
+        _hairdresserTableView.userInteractionEnabled = YES;
+        [loadingView removeFromSuperview];
+        [spinner stopAnimating];
     };
     
     if (salons.count == 0)
     {
+        [self.view addSubview:loadingView];
+        [spinner startAnimating];
     NSString *repoName = @"businesses";
-    
+        _hairdresserTableView.userInteractionEnabled = NO;
     [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/businesses/nearby" verb:@"GET"] forMethod:@"businesses.nearby"];
     
     LBModelRepository *businessData = [[AppDelegate lbAdaptater] repositoryWithModelName:repoName];
@@ -331,7 +403,7 @@
         if(!annotationView)
         {
             annotationView=[[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:myIdentifier];
-            annotationView.image = [UIImage imageNamed:@"map_pin.png"];
+            annotationView.image = [UIImage imageNamed:@"pin-salon.png"];
             [annotationView setFrame:CGRectMake(0, 0, 17, 24)];
             annotationView.contentMode = UIViewContentModeScaleAspectFit;
             //annotationView.centerOffset = CGPointMake(0, -annotationView.image.size.height / 2);
