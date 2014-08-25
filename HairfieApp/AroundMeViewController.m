@@ -347,9 +347,10 @@
          }];
         
         
-            cell.name.text = [model objectForKeyedSubscript:@"name"];
-            return cell;
-       // [cell customInit:salon];
+        
+         [cell customInit:model];
+        return cell;
+        
         }
     
 
@@ -376,13 +377,15 @@
              }
          }];
         
-         cell.name.text = [model objectForKeyedSubscript:@"name"];
-       // [cell customInit:salon];
+        cell.name.text = [model objectForKeyedSubscript:@"name"];
+        [cell customInit:model];
         return cell;
     }
     
     return nil;
 }
+
+
 
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

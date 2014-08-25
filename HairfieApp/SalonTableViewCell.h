@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "RatingView.h"
+#import <LoopBack/LoopBack.h>
 
 
 @interface SalonTableViewCell : UITableViewCell <RatingViewDelegate>
@@ -28,6 +29,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *nbReviews;
 @property (weak, nonatomic) IBOutlet UIView *statusLabelView;
 
-- (void) customInit:(NSDictionary*)salon;
+- (void) customInit:(LBModel*)model;
 
 @end

@@ -34,12 +34,9 @@
     // Initialization code
 }
 
-- (void) customInit:(NSDictionary*)salon
+- (void) customInit:(LBModel*)model
 {
-    NSString *imgUrl = [salon objectForKey:@"gps_picture"];
-    _name.text = [salon objectForKey:@"name"];
-    _salonPicture.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imgUrl]]];
-    _salonPicture.contentMode = UIViewContentModeScaleAspectFill;
+    _name.text = [model objectForKeyedSubscript:@"name"];
 
 }
 
