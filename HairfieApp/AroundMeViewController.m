@@ -231,17 +231,15 @@
 - (void)getSalons
 {
     UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    [spinner setFrame:CGRectMake(50, 50, spinner.frame.size.width, spinner.frame.size.height)];
+    [spinner setFrame:CGRectMake(150, self.view.frame.size.height/2, spinner.frame.size.width, spinner.frame.size.height)];
     spinner.hidesWhenStopped = YES;
-    UIView *loadingView = [[UIView alloc] initWithFrame:CGRectMake(40, 200, 240, 200)];
-    loadingView.backgroundColor = [UIColor colorWithRed:255/255.0f green:255/255.0f blue:255/255.0f alpha:0.4];
-    [loadingView addSubview:spinner];
+    
     
     //Error Block
     void (^loadErrorBlock)(NSError *) = ^(NSError *error){
         NSLog(@"Error on load %@", error.description);
         _hairdresserTableView.userInteractionEnabled = YES;
-        [loadingView removeFromSuperview];
+        [spinner removeFromSuperview];
         [spinner stopAnimating];
     };
     void (^loadSuccessBlock)(NSArray *) = ^(NSArray *models){
@@ -250,13 +248,13 @@
         [_hairdresserTableView reloadData];
         [self addSalonsToMap];
         _hairdresserTableView.userInteractionEnabled = YES;
-        [loadingView removeFromSuperview];
+        [spinner removeFromSuperview];
         [spinner stopAnimating];
     };
     
     if (salons.count == 0)
     {
-        [self.view addSubview:loadingView];
+        [self.view addSubview:spinner];
         [spinner startAnimating];
     NSString *repoName = @"businesses";
         _hairdresserTableView.userInteractionEnabled = NO;
