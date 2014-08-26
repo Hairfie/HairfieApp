@@ -41,6 +41,8 @@
 @property (nonatomic) IBOutlet UITextField *searchByLocation;
 @property (nonatomic) IBOutlet UIButton *searchAroundMe;
 @property (nonatomic) IBOutlet UIImageView *searchAroundMeImage;
+@property (nonatomic) BOOL isSearching;
+
 ////
 
 @property (nonatomic)  CLLocationManager *manager;

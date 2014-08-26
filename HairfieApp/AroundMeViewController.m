@@ -35,6 +35,7 @@
     NSInteger rowSelected;
     UITapGestureRecognizer *tap;
     SDWebImageManager *SDmanager;
+    NSString *gpsString;
 }
 @synthesize manager = _manager, geocoder = _geocoder, mapView = _mapView, hairdresserTableView = _hairdresserTableView, delegate = _delegate, myLocation = _myLocation;
 
@@ -46,6 +47,8 @@
                                              selector:@selector(updatedLocation:)
                                                  name:@"newLocationNotif"
                                                object:nil];
+    _isSearching = YES;
+     _hairdresserTableView.hidden = YES;
     _searchHeaderView.hidden = YES;
      _searchByName.delegate = self;
     _hairdresserTableView.delegate = self;
@@ -121,8 +124,28 @@
 {
     NSString *searchQuery;
     searchQuery = [NSString stringWithFormat:@"%@,%@", _searchByName.text, _searchByLocation.text];
-    NSLog(@"Search for %@", searchQuery);
+    NSString *queryLocation = _searchByLocation.text;
+    NSLog(@"Search for %@", queryLocation);
+    [self geocodeAddress:queryLocation];
     [self cancelSearch:self];
+    _isSearching = YES;
+   
+}
+
+-(void)geocodeAddress:(NSString *)address
+{
+    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+    [geocoder geocodeAddressString:address completionHandler:^(NSArray* placemarks, NSError* error){
+        for (CLPlacemark* aPlacemark in placemarks)
+        {
+            // Process the placemark.
+            NSString *latDest = [NSString stringWithFormat:@"%.4f",aPlacemark.location.coordinate.latitude];
+            NSString *lngDest = [NSString stringWithFormat:@"%.4f",aPlacemark.location.coordinate.longitude];
+            
+            gpsString = [NSString stringWithFormat:@"%@,%@", lngDest, latDest];
+            [self initMapWithSalons:aPlacemark.location];
+        }
+    }];
 }
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField
@@ -168,8 +191,9 @@
 
 -(void) updatedLocation:(NSNotification*)notif {
     _myLocation = (CLLocation*)[[notif userInfo] valueForKey:@"newLocationResult"];
+    gpsString = [NSString stringWithFormat:@"%f,%f", _myLocation.coordinate.longitude, _myLocation.coordinate.latitude];
     
-    [self initMapWithSalons];
+    [self initMapWithSalons:nil];
   
 }
 
@@ -193,11 +217,19 @@
 
 // Init a map on user location
 // Get Salons from webservice
--(void) initMapWithSalons {
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance (_myLocation.coordinate, 1000, 1000);
+
+-(void) initMapWithSalons:(CLLocation *)customLocation {
+    
+    MKCoordinateRegion region;
+    if (customLocation == nil) {
+        region = MKCoordinateRegionMakeWithDistance (_myLocation.coordinate, 1000, 1000);
+        [_mapView setUserTrackingMode:MKUserTrackingModeFollow animated:YES];
+    } else {
+        region = MKCoordinateRegionMakeWithDistance (customLocation.coordinate, 1000, 1000);
+    }
+    
     [_mapView setRegion:region animated:NO];
-    [_mapView setUserTrackingMode:MKUserTrackingModeFollow animated:YES];
-    [self getSalons];
+    [self getSalons:gpsString];
 }
 
 -(void) addSalonsToMap {
@@ -228,7 +260,7 @@
 
 // Get Salons from webservices then add them to the map
 
-- (void)getSalons
+- (void)getSalons:(NSString*)address
 {
     UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     [spinner setFrame:CGRectMake(150, self.view.frame.size.height/2, spinner.frame.size.width, spinner.frame.size.height)];
@@ -241,52 +273,32 @@
         _hairdresserTableView.userInteractionEnabled = YES;
         [spinner removeFromSuperview];
         [spinner stopAnimating];
+        _isSearching = NO;
     };
     void (^loadSuccessBlock)(NSArray *) = ^(NSArray *models){
         NSLog(@"Success count %ld", models.count);
         salons = models;
-        [_hairdresserTableView reloadData];
+        _hairdresserTableView.hidden = NO;
         [self addSalonsToMap];
+         [_hairdresserTableView reloadData];
         _hairdresserTableView.userInteractionEnabled = YES;
         [spinner removeFromSuperview];
         [spinner stopAnimating];
+        _isSearching = NO;
     };
     
-    if (salons.count == 0)
+    if (_isSearching == TRUE)
     {
+        _hairdresserTableView.hidden = YES;
         [self.view addSubview:spinner];
         [spinner startAnimating];
-    NSString *repoName = @"businesses";
+        NSString *repoName = @"businesses";
         _hairdresserTableView.userInteractionEnabled = NO;
-    [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/businesses/nearby" verb:@"GET"] forMethod:@"businesses.nearby"];
-    
-    LBModelRepository *businessData = [[AppDelegate lbAdaptater] repositoryWithModelName:repoName];
-    
-    NSString *gpsString = [NSString stringWithFormat:@"%f,%f", _myLocation.coordinate.longitude, _myLocation.coordinate.latitude];
-    [businessData invokeStaticMethod:@"nearby" parameters:@{@"here": gpsString, @"limit" : @"10"} success:loadSuccessBlock failure:loadErrorBlock];
+        [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/businesses/nearby" verb:@"GET"] forMethod:@"businesses.nearby"];
+        
+        LBModelRepository *businessData = [[AppDelegate lbAdaptater] repositoryWithModelName:repoName];
+        [businessData invokeStaticMethod:@"nearby" parameters:@{@"here": address, @"limit" : @"10"} success:loadSuccessBlock failure:loadErrorBlock];
     }
-    
-   /*
-    NSString *urlString = [NSString stringWithFormat:@"%@/salons/nearby?lat=%f&lng=%f&max=10&limit=10", BASE_URL, _myLocation.coordinate.latitude, _myLocation.coordinate.longitude];
-    NSLog(@"URL: %@", urlString);
-    NSURL *urlforrequest = [NSURL URLWithString:urlString];
-    NSURLRequest *request = [NSURLRequest requestWithURL:urlforrequest];
-    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-    operation.responseSerializer = [AFJSONResponseSerializer serializer];
-    
-    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        salons = (NSArray *)responseObject;
-        [self addSalonsToMap];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error Retrieving Location"
-                                                            message:[error localizedDescription]
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"Ok"
-                                                  otherButtonTitles:nil];
-        [alertView show];
-    }];
-    [operation start];
-    */
 }
 
 // TableView Delegate Functions
@@ -306,8 +318,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-  //  return [salons count];
-    return 10;
+    return [salons count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
