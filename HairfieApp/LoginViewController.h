@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LoginViewController : UIViewController <UINavigationControllerDelegate>
+@interface LoginViewController : UIViewController <UINavigationControllerDelegate, UITextFieldDelegate>
 
-@property (nonatomic) IBOutlet UIView *noAccountView;
+@property (nonatomic) IBOutlet UIButton *noAccountButton;
+@property (nonatomic) IBOutlet UITextField *emailField;
+@property (nonatomic) IBOutlet UITextField *passwordField;
 
 @end

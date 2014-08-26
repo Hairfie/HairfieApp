@@ -293,7 +293,7 @@
     
     
     
-    if (_isSearching == TRUE)
+    if (_isSearching == YES)
     {
         _hairdresserTableView.hidden = YES;
         [self.view addSubview:spinner];

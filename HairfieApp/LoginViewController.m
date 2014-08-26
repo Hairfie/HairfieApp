@@ -7,7 +7,7 @@
 //
 
 #import "LoginViewController.h"
-
+#import "AppDelegate.h"
 @interface LoginViewController ()
 
 @end
@@ -17,14 +17,47 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _noAccountView.layer.borderColor = [UIColor whiteColor].CGColor;
-    _noAccountView.layer.borderWidth = 0.5;
-    _noAccountView.backgroundColor = [UIColor clearColor];
-    _noAccountView.layer.cornerRadius = 5;
-    _noAccountView.layer.masksToBounds = YES;
+    _noAccountButton.layer.borderColor = [UIColor whiteColor].CGColor;
+    _noAccountButton.layer.borderWidth = 0.5;
+    _noAccountButton.backgroundColor = [UIColor clearColor];
+    _noAccountButton.layer.cornerRadius = 5;
+    _noAccountButton.layer.masksToBounds = YES;
     // Do any additional setup after loading the view.
 }
 
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    NSInteger nextTag = textField.tag + 1;
+    // Try to find next responder
+    UIResponder* nextResponder = [textField.superview viewWithTag:nextTag];
+    if (nextResponder) {
+        // Found next responder, so set it.
+        [nextResponder becomeFirstResponder];
+    } else {
+        [self doLogin];
+    }
+    return YES;
+}
+
+-(void)doLogin
+{
+    
+    void (^loadErrorBlock)(NSError *) = ^(NSError *error){
+        NSLog(@"Error on load %@", error.description);
+    };
+    void (^loadSuccessBlock)(NSArray *) = ^(NSArray *results){
+        [self performSegueWithIdentifier:@"loginSuccess" sender:self];
+    };
+    
+     NSString *repoName = @"users";
+    [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/users/login" verb:@"POST"] forMethod:@"users.login"];
+    
+    LBModelRepository *loginData = [[AppDelegate lbAdaptater] repositoryWithModelName:repoName];
+    [loginData invokeStaticMethod:@"login" parameters:@{@"email": _emailField.text, @"password" : _passwordField.text} success:loadSuccessBlock failure:loadErrorBlock];
+
+    
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
