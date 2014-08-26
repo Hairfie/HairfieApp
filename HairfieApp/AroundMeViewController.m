@@ -91,7 +91,6 @@
 
 -(BOOL)textViewShouldBeginEditing:(UITextView *)textView
 {
-    NSLog(@"test");
     return YES;
 }
 
@@ -125,27 +124,31 @@
     NSString *searchQuery;
     searchQuery = [NSString stringWithFormat:@"%@,%@", _searchByName.text, _searchByLocation.text];
     NSString *queryLocation = _searchByLocation.text;
-    NSLog(@"Search for %@", queryLocation);
+     _isSearching = YES;
     [self geocodeAddress:queryLocation];
     [self cancelSearch:self];
-    _isSearching = YES;
+   
    
 }
 
 -(void)geocodeAddress:(NSString *)address
 {
-    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
-    [geocoder geocodeAddressString:address completionHandler:^(NSArray* placemarks, NSError* error){
-        for (CLPlacemark* aPlacemark in placemarks)
-        {
-            // Process the placemark.
-            NSString *latDest = [NSString stringWithFormat:@"%.4f",aPlacemark.location.coordinate.latitude];
-            NSString *lngDest = [NSString stringWithFormat:@"%.4f",aPlacemark.location.coordinate.longitude];
-            
-            gpsString = [NSString stringWithFormat:@"%@,%@", lngDest, latDest];
-            [self initMapWithSalons:aPlacemark.location];
-        }
-    }];
+    if ([address isEqualToString:@"Around Me"]) {
+        [self initMapWithSalons:nil];
+    } else {
+        CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+        [geocoder geocodeAddressString:address completionHandler:^(NSArray* placemarks, NSError* error){
+            for (CLPlacemark* aPlacemark in placemarks)
+            {
+                // Process the placemark.
+                NSString *latDest = [NSString stringWithFormat:@"%.4f",aPlacemark.location.coordinate.latitude];
+                NSString *lngDest = [NSString stringWithFormat:@"%.4f",aPlacemark.location.coordinate.longitude];
+                
+                gpsString = [NSString stringWithFormat:@"%@,%@", lngDest, latDest];
+                [self initMapWithSalons:aPlacemark.location];
+            }
+        }];
+    }
 }
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField
@@ -156,7 +159,6 @@
         _searchAroundMeImage.tintColor = [UIColor lightGrayColor];
         textField.text = @"";
     }
-   // textField.text = @"";
 }
 
 //METHODES pour cacher/afficher la tableview et agrandir la mapview dans la recherche
@@ -224,12 +226,15 @@
     if (customLocation == nil) {
         region = MKCoordinateRegionMakeWithDistance (_myLocation.coordinate, 1000, 1000);
         [_mapView setUserTrackingMode:MKUserTrackingModeFollow animated:YES];
+         gpsString = [NSString stringWithFormat:@"%f,%f", _myLocation.coordinate.longitude, _myLocation.coordinate.latitude];
+         
     } else {
         region = MKCoordinateRegionMakeWithDistance (customLocation.coordinate, 1000, 1000);
+        
     }
-    
+     [self getSalons:gpsString];
     [_mapView setRegion:region animated:NO];
-    [self getSalons:gpsString];
+   
 }
 
 -(void) addSalonsToMap {
@@ -276,7 +281,6 @@
         _isSearching = NO;
     };
     void (^loadSuccessBlock)(NSArray *) = ^(NSArray *models){
-        NSLog(@"Success count %ld", models.count);
         salons = models;
         _hairdresserTableView.hidden = NO;
         [self addSalonsToMap];
@@ -286,6 +290,8 @@
         [spinner stopAnimating];
         _isSearching = NO;
     };
+    
+    
     
     if (_isSearching == TRUE)
     {
