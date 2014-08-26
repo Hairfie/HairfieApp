@@ -135,6 +135,11 @@
 		B3DD7A851991288F007B1621 /* SimilarTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B3DD7A831991288F007B1621 /* SimilarTableViewCell.m */; };
 		B3DD7A861991288F007B1621 /* SimilarTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3DD7A841991288F007B1621 /* SimilarTableViewCell.xib */; };
 		B3DD7A8819912A6C007B1621 /* picto-phone-white.png in Resources */ = {isa = PBXBuildFile; fileRef = B3DD7A8719912A6C007B1621 /* picto-phone-white.png */; };
+		B3E0B14C19ACA8B400C3EACE /* hairfie-typo.png in Resources */ = {isa = PBXBuildFile; fileRef = B3E0B14B19ACA8B400C3EACE /* hairfie-typo.png */; };
+		B3E0B14F19ACAA5400C3EACE /* login-form.png in Resources */ = {isa = PBXBuildFile; fileRef = B3E0B14E19ACAA5400C3EACE /* login-form.png */; };
+		B3E0B15119ACB39200C3EACE /* facebook-connect.png in Resources */ = {isa = PBXBuildFile; fileRef = B3E0B15019ACB39200C3EACE /* facebook-connect.png */; };
+		B3E0B15319ACB53F00C3EACE /* login-separator.png in Resources */ = {isa = PBXBuildFile; fileRef = B3E0B15219ACB53F00C3EACE /* login-separator.png */; };
+		B3E0B15619ACB6ED00C3EACE /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E0B15519ACB6ED00C3EACE /* LoginViewController.m */; };
 		B3E4B46019A73C010036BAD8 /* LoopBack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3E4B45F19A73C010036BAD8 /* LoopBack.framework */; };
 		B3E4B46319A73C830036BAD8 /* BusinessModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E4B46219A73C830036BAD8 /* BusinessModel.m */; };
 		B3E4B5981992530100CBBDC8 /* nav-disclosure.png in Resources */ = {isa = PBXBuildFile; fileRef = B3E4B5971992530100CBBDC8 /* nav-disclosure.png */; };
@@ -356,6 +361,12 @@
 		B3DD7A831991288F007B1621 /* SimilarTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimilarTableViewCell.m; sourceTree = "<group>"; };
 		B3DD7A841991288F007B1621 /* SimilarTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SimilarTableViewCell.xib; sourceTree = "<group>"; };
 		B3DD7A8719912A6C007B1621 /* picto-phone-white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "picto-phone-white.png"; sourceTree = "<group>"; };
+		B3E0B14B19ACA8B400C3EACE /* hairfie-typo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hairfie-typo.png"; sourceTree = "<group>"; };
+		B3E0B14E19ACAA5400C3EACE /* login-form.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-form.png"; sourceTree = "<group>"; };
+		B3E0B15019ACB39200C3EACE /* facebook-connect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebook-connect.png"; sourceTree = "<group>"; };
+		B3E0B15219ACB53F00C3EACE /* login-separator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-separator.png"; sourceTree = "<group>"; };
+		B3E0B15419ACB6ED00C3EACE /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		B3E0B15519ACB6ED00C3EACE /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		B3E4B45F19A73C010036BAD8 /* LoopBack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = LoopBack.framework; sourceTree = "<group>"; };
 		B3E4B46119A73C830036BAD8 /* BusinessModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessModel.h; sourceTree = "<group>"; };
 		B3E4B46219A73C830036BAD8 /* BusinessModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessModel.m; sourceTree = "<group>"; };
@@ -543,6 +554,8 @@
 				B34231681988ED070058866B /* BusinessViewController.h */,
 				B34231691988ED070058866B /* BusinessViewController.m */,
 				B3170E761989AC7E00F41EAD /* HairfieApp-Bridging-Header.h */,
+				B3E0B15419ACB6ED00C3EACE /* LoginViewController.h */,
+				B3E0B15519ACB6ED00C3EACE /* LoginViewController.m */,
 			);
 			name = Pages;
 			sourceTree = "<group>";
@@ -782,6 +795,17 @@
 			name = "Hairfie Detail";
 			sourceTree = "<group>";
 		};
+		B3E0B14D19ACAA4500C3EACE /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				B3E0B15219ACB53F00C3EACE /* login-separator.png */,
+				B3E0B15019ACB39200C3EACE /* facebook-connect.png */,
+				B3E0B14B19ACA8B400C3EACE /* hairfie-typo.png */,
+				B3E0B14E19ACAA5400C3EACE /* login-form.png */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
 		B3E4B46419A73C890036BAD8 /* MODEL */ = {
 			isa = PBXGroup;
 			children = (
@@ -840,6 +864,7 @@
 				B3AD59B9198B9D2600909ADE /* List  */,
 				B3F662471987E4670041F298 /* Menu */,
 				B3EDF89A1987C44500431B70 /* Feed + detail hairfie */,
+				B3E0B14D19ACAA4500C3EACE /* Login */,
 			);
 			name = Ressources;
 			sourceTree = "<group>";
@@ -996,6 +1021,7 @@
 				B36731EB198FE0B000E11C56 /* half_selected_review.png in Resources */,
 				B3CCE7821998BF7400067DB9 /* picto-hairfie-detail-price.png in Resources */,
 				B3DD7A861991288F007B1621 /* SimilarTableViewCell.xib in Resources */,
+				B3E0B14C19ACA8B400C3EACE /* hairfie-typo.png in Resources */,
 				B34231621988E1DC0058866B /* home-picto.png in Resources */,
 				B35A829F19A5FF02003B1321 /* placeholder-image.jpg in Resources */,
 				B3AD59C2198B9D3500909ADE /* picto-list-man.png in Resources */,
@@ -1057,6 +1083,7 @@
 				B3EDF88A198794C900431B70 /* Main.storyboard in Resources */,
 				B345BAD31994FD06007BB61A /* around-me-bttn.png in Resources */,
 				B3CCE77E1998BCA400067DB9 /* picto-hairfie-detail-like.png in Resources */,
+				B3E0B15119ACB39200C3EACE /* facebook-connect.png in Resources */,
 				B342315D1988E1DC0058866B /* settings-picto.png in Resources */,
 				B37F9A4E198F8F5E00881071 /* picto-list-phone.png in Resources */,
 				B3C45BD1199A4670000E6C8E /* switch-camera-button.png in Resources */,
@@ -1074,7 +1101,9 @@
 				B3E65FD31986A32D00AF0C15 /* navigation-bg.jpg in Resources */,
 				B3F6624E1987E87E0041F298 /* MenuTableViewCell.xib in Resources */,
 				B33E4C4619A49E2E0024F5F7 /* add-comment-textfield.png in Resources */,
+				B3E0B15319ACB53F00C3EACE /* login-separator.png in Resources */,
 				B345BA981994D4C2007BB61A /* button-add-favorite.png in Resources */,
+				B3E0B14F19ACAA5400C3EACE /* login-form.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1181,6 +1210,7 @@
 				B308700C198782AF0080E6D2 /* FavoriteViewController.m in Sources */,
 				B3E65FB81986917800AF0C15 /* ECSlidingInteractiveTransition.m in Sources */,
 				B33E4C4919A4AA4C0024F5F7 /* CommentViewController.m in Sources */,
+				B3E0B15619ACB6ED00C3EACE /* LoginViewController.m in Sources */,
 				B3E65FB71986917800AF0C15 /* ECSlidingAnimationController.m in Sources */,
 				B3423212198924290058866B /* AFHTTPSessionManager.m in Sources */,
 				B330B5C5198658970059AE56 /* HomeViewController.m in Sources */,
