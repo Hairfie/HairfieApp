@@ -26,6 +26,8 @@
     _infoView.layer.borderColor = [UIColor colorWithRed:206/255.0f green:208/255.0f blue:210/255.0f alpha:1].CGColor;
     _isChecked = NO;
     
+    _dismiss = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
+    
     UIButton *addPictureBttn = [[UIButton alloc] initWithFrame:CGRectMake(127, 10, 66, 66)];
     addPictureBttn.layer.cornerRadius = addPictureBttn.frame.size.height / 2;
     addPictureBttn.clipsToBounds = YES;
@@ -33,7 +35,7 @@
     addPictureBttn.layer.borderColor = [UIColor colorWithRed:206/255.0f green:208/255.0f blue:210/255.0f alpha:1].CGColor;
     addPictureBttn.backgroundColor = [UIColor clearColor];
     [addPictureBttn addTarget:self
-                 action:@selector(addPicture)
+                 action:@selector(takePicture)
        forControlEvents:UIControlEventTouchUpInside];
     
     UILabel *addPictureLabel = [[UILabel alloc] initWithFrame:CGRectMake(135, 17, 50, 50)];
@@ -45,6 +47,8 @@
     
     [_mainScrollView addSubview:addPictureBttn];
     [_mainScrollView addSubview:addPictureLabel];
+    [self.view addGestureRecognizer:_dismiss];
+
     // Do any additional setup after loading the view.
 }
 
@@ -73,6 +77,61 @@
         [_checkBoxButton setImage:[UIImage imageNamed:@"checkbox-true.png"] forState:UIControlStateNormal];
         _isChecked = YES;
     }
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    NSInteger nextTag = textField.tag + 1;
+    // Try to find next responder
+    UIResponder* nextResponder = [textField.superview viewWithTag:nextTag];
+    if (nextResponder) {
+        // Found next responder, so set it.
+        [nextResponder becomeFirstResponder];
+    } else {
+        NSLog(@"Fin");
+        [self.view removeGestureRecognizer:_dismiss];
+    }
+    return YES;
+}
+
+-(void) hideKeyboard
+{
+    [_titleField resignFirstResponder];
+    [_firstNameField resignFirstResponder];
+    [_lastNameField resignFirstResponder];
+    [_emailField resignFirstResponder];
+    [_passwordField resignFirstResponder];
+    
+}
+
+-(void)takePicture
+{
+   
+    UIAlertView *chooseCameraType = [[UIAlertView alloc] initWithTitle:@"Choose camera type" message:@"Take picture or pick one from the saved photos" delegate:self cancelButtonTitle:@"Photo Albums" otherButtonTitles:@"Camera", nil];
+    chooseCameraType.delegate = self;
+    [chooseCameraType show];
+    
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    /*
+    if (buttonIndex == 0) {
+        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeSavedPhotosAlbum]) {
+            _camera.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+    }
+    } if (buttonIndex == 1) {
+        if ([UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera]) {
+            _camera.sourceType = UIImagePickerControllerSourceTypeCamera;
+            _camera.cameraDevice = UIImagePickerControllerCameraDeviceRear;
+            _camera.showsCameraControls = NO;
+            _camera.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
+            
+            [self presentViewController:_camera animated:YES completion:nil];
+       
+        }
+    }
+     */
 }
 
 

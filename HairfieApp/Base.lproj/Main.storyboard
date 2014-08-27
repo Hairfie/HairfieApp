@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6205" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="dEN-gt-xJT">
     <dependencies>
-        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6198"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -2322,6 +2321,46 @@ connaissance et accepte les CGU de Hairfie</string>
                                                         <color key="textColor" red="0.58039215690000001" green="0.60392156860000001" blue="0.63529411759999999" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
+                                                    <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Leo" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Tva-Y8-S7U" userLabel="firstNameField">
+                                                        <rect key="frame" x="130" y="48" width="150" height="49"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="xPO-Am-yIh" id="yR0-gz-IIv"/>
+                                                        </connections>
+                                                    </textField>
+                                                    <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Martin" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2SP-sz-YuZ" userLabel="lastNameField">
+                                                        <rect key="frame" x="130" y="95" width="150" height="49"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="xPO-Am-yIh" id="z6M-36-qLl"/>
+                                                        </connections>
+                                                    </textField>
+                                                    <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="leo@hairfie.com" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="p5r-Oe-PWK" userLabel="emailField">
+                                                        <rect key="frame" x="130" y="142" width="150" height="49"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="xPO-Am-yIh" id="QSJ-lG-kAj"/>
+                                                        </connections>
+                                                    </textField>
+                                                    <textField opaque="NO" clipsSubviews="YES" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="blabla" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="L0e-Ke-TqA" userLabel="passwordField">
+                                                        <rect key="frame" x="130" y="191" width="150" height="49"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits" returnKeyType="join"/>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="xPO-Am-yIh" id="QhS-Ww-H86"/>
+                                                        </connections>
+                                                    </textField>
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="coucou" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XzV-Ew-VQT" userLabel="titleField">
+                                                        <rect key="frame" x="130" y="0.0" width="150" height="49"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="xPO-Am-yIh" id="5WN-PY-3uB"/>
+                                                        </connections>
+                                                    </textField>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </view>
@@ -2377,10 +2416,15 @@ connaissance et accepte les CGU de Hairfie</string>
                     <size key="freeformSize" width="320" height="568"/>
                     <connections>
                         <outlet property="checkBoxButton" destination="5Fx-Rv-sNo" id="LPN-oo-aw6"/>
+                        <outlet property="emailField" destination="p5r-Oe-PWK" id="S00-eS-ls4"/>
+                        <outlet property="firstNameField" destination="Tva-Y8-S7U" id="9DM-il-G95"/>
                         <outlet property="infoView" destination="2PB-ep-9Tl" id="B3a-hO-LBt"/>
+                        <outlet property="lastNameField" destination="2SP-sz-YuZ" id="bif-tc-MQ0"/>
                         <outlet property="mainScrollView" destination="Mbp-BX-Md7" id="zkb-vc-PSj"/>
+                        <outlet property="passwordField" destination="L0e-Ke-TqA" id="MR1-c3-3se"/>
                         <outlet property="signUpButton" destination="FoT-k3-XMR" id="qtN-ew-Xa3"/>
                         <outlet property="statusBarButton" destination="p25-Kp-Jfd" id="9nI-4W-mgU"/>
+                        <outlet property="titleField" destination="XzV-Ew-VQT" id="i1b-Ek-9Re"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y37-BW-Jd5" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -22,6 +22,7 @@
     _noAccountButton.backgroundColor = [UIColor clearColor];
     _noAccountButton.layer.cornerRadius = 5;
     _noAccountButton.layer.masksToBounds = YES;
+    
     // Do any additional setup after loading the view.
 }
 
@@ -56,6 +57,7 @@
     LBModelRepository *loginData = [[AppDelegate lbAdaptater] repositoryWithModelName:repoName];
     [loginData invokeStaticMethod:@"login" parameters:@{@"email": _emailField.text, @"password" : _passwordField.text} success:loadSuccessBlock failure:loadErrorBlock];
 
+    [self performSegueWithIdentifier:@"loginSuccess" sender:self];
     
 }
 - (void)didReceiveMemoryWarning {
