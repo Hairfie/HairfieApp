@@ -87,9 +87,9 @@ nbReviews = _nbReviews;
      _ratingLabel.text = [[review objectForKey:@"average"] stringValue];
      _nbReviews.text =[NSString stringWithFormat:@"- %@ reviews",[review objectForKey:@"total"]];
      }
-     
-      _location.text = [NSString stringWithFormat:@"%.1f km", [[model objectForKeyedSubscript:@"distance"]floatValue]];
      */
+      _location.text = [NSString stringWithFormat:@"%.1f km", [[model objectForKeyedSubscript:@"distance"]floatValue] / 1000];
+     
 }
 
 - (void)rateView:(RatingView *)rateView ratingDidChange:(float)rating {

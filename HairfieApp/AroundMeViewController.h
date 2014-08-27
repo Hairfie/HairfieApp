@@ -32,6 +32,8 @@
 @property (nonatomic) IBOutlet UIView *headerView;
 @property (nonatomic) IBOutlet UIView *searchHeaderView;
 
+@property (nonatomic) IBOutlet UILabel *searchDesc;
+
 // Search Active
 
 @property (nonatomic) IBOutlet UITextView *searchField;
@@ -43,7 +45,9 @@
 @property (nonatomic) IBOutlet UIImageView *searchAroundMeImage;
 @property (nonatomic) BOOL isSearching;
 
-////
+// Search In Progress
+
+@property (nonatomic) IBOutlet UILabel *searchInProgress;
 
 @property (nonatomic)  CLLocationManager *manager;
 @property (nonatomic)  CLGeocoder *geocoder;

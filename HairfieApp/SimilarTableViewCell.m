@@ -37,7 +37,7 @@
 - (void) customInit:(LBModel*)model
 {
     _name.text = [model objectForKeyedSubscript:@"name"];
-
+    _location.text = [NSString stringWithFormat:@"%.1f km", [[model objectForKeyedSubscript:@"distance"]floatValue] / 1000];
 }
 
 

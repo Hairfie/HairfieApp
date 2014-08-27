@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6205" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="dEN-gt-xJT">
     <dependencies>
+        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6198"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -13,6 +14,8 @@
             <string>SourceSansPro-Bold</string>
         </mutableArray>
         <mutableArray key="SourceSansPro-Light.ttf">
+            <string>SourceSansPro-Light</string>
+            <string>SourceSansPro-Light</string>
             <string>SourceSansPro-Light</string>
             <string>SourceSansPro-Light</string>
             <string>SourceSansPro-Light</string>
@@ -292,7 +295,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="68"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NBs-J9-DzN">
-                                        <rect key="frame" x="16" y="26" width="47" height="33"/>
+                                        <rect key="frame" x="15" y="26" width="47" height="33"/>
                                         <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="16"/>
                                         <state key="normal" title="Fermer">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -305,6 +308,17 @@
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5kT-jQ-A5o">
+                                        <rect key="frame" x="260" y="28" width="45" height="30"/>
+                                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="16"/>
+                                        <state key="normal" title="Log in">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="doLogin:" destination="GUZ-sY-RBq" eventType="touchUpInside" id="535-VC-CrG"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.15686274510000001" green="0.19215686269999999" blue="0.22352941179999999" alpha="1" colorSpace="deviceRGB"/>
                             </view>
@@ -392,7 +406,8 @@
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="175" translatesAutoresizingMaskIntoConstraints="NO" id="LWY-mG-i5I">
                                 <rect key="frame" x="73" y="494" width="175" height="44"/>
-                                <string key="text">Nouveau sur Hairfie ?Inscivez-vous maintenant</string>
+                                <string key="text">Nouveau sur Hairfie ?
+Inscivez-vous maintenant</string>
                                 <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="16"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -924,25 +939,25 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="separatorColor" red="0.15686274509803921" green="0.19215686274509802" blue="0.22352941176470587" alpha="0.20000000000000001" colorSpace="calibratedRGB"/>
                                 <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <view key="tableHeaderView" contentMode="scaleToFill" id="JdB-iM-MZs">
+                                <view key="tableHeaderView" contentMode="scaleToFill" id="zB0-FQ-0pr">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="rgP-Ov-xjU">
+                                        <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="y19-nC-OPE">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="160"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="160" id="7rN-eQ-r2y"/>
-                                                <constraint firstAttribute="width" constant="320" id="DFD-Bh-CWl"/>
+                                                <constraint firstAttribute="width" constant="320" id="cq1-5w-q6x"/>
+                                                <constraint firstAttribute="height" constant="160" id="jCB-Rx-38w"/>
                                             </constraints>
                                         </mapView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="COIFFEUR À COTÉ DE VOUS" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SIu-2c-8qy">
-                                            <rect key="frame" x="8" y="171" width="230" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.42352941176470588" green="0.46274509803921571" blue="0.51372549019607838" alpha="1" colorSpace="calibratedRGB"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="COIFFEUR À COTÉ DE VOUS" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tmt-Fz-YI7">
+                                            <rect key="frame" x="8" y="168" width="304" height="21"/>
+                                            <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="17"/>
+                                            <color key="textColor" red="0.42352941179999998" green="0.46274509800000002" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="40n-9T-Tcz" userLabel="Separator 1">
-                                            <rect key="frame" x="8" y="191" width="230" height="1"/>
+                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="C0h-rh-lUI" userLabel="Separator 1">
+                                            <rect key="frame" x="0.0" y="196" width="320" height="1"/>
                                             <color key="backgroundColor" red="0.85490196080000003" green="0.85490196080000003" blue="0.87058823529999996" alpha="1" colorSpace="calibratedRGB"/>
                                         </view>
                                     </subviews>
@@ -1038,7 +1053,7 @@
                                     <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Ex : Paris, Marseille..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="78j-ql-0jW" userLabel="Location Search">
                                         <rect key="frame" x="54" y="108" width="254" height="27"/>
                                         <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
                                         <connections>
                                             <outlet property="delegate" destination="5vw-Wx-iMq" id="HAt-ch-ABl"/>
                                         </connections>
@@ -1085,19 +1100,21 @@
                     <connections>
                         <outlet property="cancelBttn" destination="Spq-xF-T3n" id="7ih-bG-Uab"/>
                         <outlet property="hairdresserTableView" destination="tHR-dR-4MZ" id="fF7-Up-LEG"/>
-                        <outlet property="headerView" destination="JdB-iM-MZs" id="yPs-zS-Kcw"/>
-                        <outlet property="mapView" destination="rgP-Ov-xjU" id="TlD-FO-2Qd"/>
+                        <outlet property="headerView" destination="zB0-FQ-0pr" id="EUs-It-oYn"/>
+                        <outlet property="mapView" destination="y19-nC-OPE" id="OJP-o6-P4h"/>
                         <outlet property="searchAroundMe" destination="nd8-Fy-b9k" id="A9h-Sn-mAc"/>
                         <outlet property="searchAroundMeImage" destination="9rO-o8-XJA" id="Q9J-vD-jHh"/>
                         <outlet property="searchBttn" destination="wCc-8K-jnR" id="jkI-Ty-j6G"/>
                         <outlet property="searchByLocation" destination="78j-ql-0jW" id="T4T-yo-Jbz"/>
                         <outlet property="searchByName" destination="hHb-73-Yqu" id="lB0-8B-i8V"/>
+                        <outlet property="searchDesc" destination="Tmt-Fz-YI7" id="3uM-FN-nUf"/>
                         <outlet property="searchHeaderView" destination="sWx-gi-x3o" id="VyM-4z-bXw"/>
+                        <outlet property="searchInProgress" destination="n3Z-ph-r39" id="H1Y-TT-Kjj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eNk-OA-e58" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1658" y="-1665"/>
+            <point key="canvasLocation" x="1695" y="-1685"/>
         </scene>
         <!--Salon Detail View Controller-->
         <scene sceneID="ikO-8j-QFY">
@@ -2242,14 +2259,16 @@ le blabla, et c’est super chouette.</string>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="245" translatesAutoresizingMaskIntoConstraints="NO" id="22a-47-D4V">
                                                 <rect key="frame" x="50" y="350" width="245" height="73"/>
-                                                <string key="text">Je souhaite recevoir des communications de Hairfie et ainsi recevoir des informations et promotion sur les salons de coiffures et coiffeur à domicile.</string>
+                                                <string key="text">Je souhaite recevoir des communications de Hairfie et ainsi recevoir des informations et promotion sur les salons de coiffures et 
+coiffeur à domicile.</string>
                                                 <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="14"/>
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="232" translatesAutoresizingMaskIntoConstraints="NO" id="82W-jK-smS">
                                                 <rect key="frame" x="44" y="431" width="232" height="38"/>
-                                                <string key="text">En cliquant sur “Je m’inscris”, je reconnais avoir prisconnaissance et accepter les CGU de Hairfie</string>
+                                                <string key="text">En cliquant sur “Je m’inscris”, je reconnais avoir pris
+connaissance et accepte les CGU de Hairfie</string>
                                                 <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="11"/>
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>

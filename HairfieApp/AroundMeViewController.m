@@ -59,10 +59,8 @@
     _mapView.showsUserLocation = YES;
     _hairdresserTableView.tableHeaderView = _headerView;
     [_hairdresserTableView setSeparatorInset:UIEdgeInsetsZero];
-    
     _searchBttn.layer.cornerRadius = 5;
     _searchBttn.layer.masksToBounds = YES;
-    
     _searchAroundMeImage.image = [_searchAroundMeImage.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     [_searchAroundMeImage setTintColor:[UIColor colorWithRed:92/255.0 green:172/255.0 blue:225/255.0 alpha:1]];
     _searchByLocation.text = @"Around Me";
@@ -73,7 +71,7 @@
 -(IBAction)searchAroundMe:(id)sender
 {
     [_searchByLocation resignFirstResponder];
-    _searchByLocation.text = @"Around me";
+    _searchByLocation.text = @"Around Me";
   //  _searchByLocation.textColor = [UIColor colorWithRed:92/255.0f  green:172/255.0f  blue:225/255.0f alpha:1];
     
     [_searchAroundMeImage setTintColor:[UIColor colorWithRed:92/255.0 green:172/255.0 blue:225/255.0 alpha:1]];
@@ -82,8 +80,6 @@
 -(IBAction)cancelSearch:(id)sender
 {
     _searchHeaderView.hidden = YES;
-    _searchByLocation.text = @"";
-    _searchByName.text = @"";
     [_searchField resignFirstResponder];
     [_searchByLocation resignFirstResponder];
     [_searchByName resignFirstResponder];
@@ -96,9 +92,8 @@
 
 - (IBAction)showAdvancedSearch:(id)sender{
     _searchHeaderView.hidden = NO;
-    _searchByName.text = @"";
+    if ([_searchByLocation.text isEqualToString:@"Around Me"])
     [_searchAroundMeImage setTintColor:[UIColor colorWithRed:92/255.0 green:172/255.0 blue:225/255.0 alpha:1]];
-    _searchByLocation.text = @"Around Me";
     [_searchByName performSelector:@selector(becomeFirstResponder) withObject:nil afterDelay:0.0];
 }
 
@@ -122,13 +117,30 @@
 -(IBAction)doSearch:(id)sender
 {
     NSString *searchQuery;
-    searchQuery = [NSString stringWithFormat:@"%@,%@", _searchByName.text, _searchByLocation.text];
+    searchQuery = [NSString stringWithFormat:@"\"%@\" near \"%@\"", _searchByName.text, _searchByLocation.text];
+    
+    //_searchInProgress.text = searchQuery;
     NSString *queryLocation = _searchByLocation.text;
      _isSearching = YES;
+    UIView *headerSearch = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
+    UILabel *searchLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 310, 30)];
+    searchLabel.font = [UIFont fontWithName:@"SourceSansPro-Light" size:16];
+    searchLabel.textColor = [UIColor colorWithRed:109/255.0f green:118/255.0f blue:131/255.0f alpha:1];
+    
+    searchLabel.text = searchQuery;
+    [headerSearch addSubview:searchLabel];
+    if ([_searchByLocation.text isEqualToString:@"Around Me"])
+    {
+        _hairdresserTableView.tableHeaderView = _headerView;
+       if (![_searchByName.text isEqualToString:@""])
+        _searchDesc.text = [NSString stringWithFormat:@"%@ À COTÉ DE VOUS", [_searchByName.text uppercaseString]];
+        else
+            _searchDesc.text = @"COIFFEURS À COTÉ DE VOUS";
+    }
+    else
+        _hairdresserTableView.tableHeaderView = headerSearch;
     [self geocodeAddress:queryLocation];
     [self cancelSearch:self];
-   
-   
 }
 
 -(void)geocodeAddress:(NSString *)address
@@ -363,7 +375,7 @@
         
         
         
-         [cell customInit:model];
+        [cell customInit:model];
         return cell;
         
         }

@@ -35,12 +35,12 @@
         // Found next responder, so set it.
         [nextResponder becomeFirstResponder];
     } else {
-        [self doLogin];
+        [self doLogin:self];
     }
     return YES;
 }
 
--(void)doLogin
+-(IBAction)doLogin:(id)sender
 {
     
     void (^loadErrorBlock)(NSError *) = ^(NSError *error){

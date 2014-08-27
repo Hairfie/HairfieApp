@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet RatingView *ratingView;
 @property (weak, nonatomic) IBOutlet UILabel *statusLabel;
 @property (nonatomic) IBOutlet UILabel *name;
+@property (nonatomic) IBOutlet UILabel *location;
 @property (nonatomic) IBOutlet UIImageView *salonPicture;
 @property (nonatomic) IBOutlet UIButton *bookButton;
 

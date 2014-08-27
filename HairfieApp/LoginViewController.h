@@ -14,4 +14,6 @@
 @property (nonatomic) IBOutlet UITextField *emailField;
 @property (nonatomic) IBOutlet UITextField *passwordField;
 
+-(IBAction)doLogin:(id)sender;
+
 @end
