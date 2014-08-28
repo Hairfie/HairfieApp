@@ -116,10 +116,12 @@
 
 -(IBAction)doSearch:(id)sender
 {
-    NSString *searchQuery;
-    searchQuery = [NSString stringWithFormat:@"\"%@\" near \"%@\"", _searchByName.text, _searchByLocation.text];
-    
-    //_searchInProgress.text = searchQuery;
+    if([_searchByLocation.text length] == 0) {
+        _searchByLocation.text = @"Around Me";
+    }
+
+    NSString *searchQuery = [self styleSearchQuery];
+    _searchInProgress.text = searchQuery;
     NSString *queryLocation = _searchByLocation.text;
      _isSearching = YES;
     UIView *headerSearch = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
@@ -129,6 +131,7 @@
     
     searchLabel.text = searchQuery;
     [headerSearch addSubview:searchLabel];
+
     if ([_searchByLocation.text isEqualToString:@"Around Me"])
     {
         _hairdresserTableView.tableHeaderView = _headerView;
@@ -141,6 +144,18 @@
         _hairdresserTableView.tableHeaderView = headerSearch;
     [self geocodeAddress:queryLocation];
     [self cancelSearch:self];
+}
+
+- (NSString*) styleSearchQuery {
+    NSString *searchQuery;
+    if([_searchByLocation.text isEqualToString:@"Around Me"]) {
+        searchQuery = [NSString stringWithFormat:@"\"%@\" à côté de vous", _searchByName.text];
+    } else {
+       searchQuery = [NSString stringWithFormat:@"\"%@\" à côté de \"%@\"", _searchByName.text, _searchByLocation.text];
+    }
+    
+    
+    return searchQuery;
 }
 
 -(void)geocodeAddress:(NSString *)address
@@ -315,7 +330,7 @@
         [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/businesses/nearby" verb:@"GET"] forMethod:@"businesses.nearby"];
         
         LBModelRepository *businessData = [[AppDelegate lbAdaptater] repositoryWithModelName:repoName];
-        [businessData invokeStaticMethod:@"nearby" parameters:@{@"here": address, @"limit" : @"10"} success:loadSuccessBlock failure:loadErrorBlock];
+        [businessData invokeStaticMethod:@"nearby" parameters:@{@"here": address, @"limit" : @"10", @"query" : _searchByName.text} success:loadSuccessBlock failure:loadErrorBlock];
     }
 }
 
