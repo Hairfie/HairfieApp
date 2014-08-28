@@ -190,6 +190,8 @@
 -(IBAction)changeTab:(id)sender {
     if(sender == _infoBttn){
     [self setButtonSelected:_infoBttn andBringViewUpfront:_infoView];
+      
+         _mainViewHeight.constant = 1030;
           _infoView.hidden = NO;
     }
     else if(sender == _hairfieBttn) {
