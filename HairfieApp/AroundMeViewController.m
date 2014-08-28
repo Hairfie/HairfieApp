@@ -119,6 +119,7 @@
     if([_searchByLocation.text length] == 0) {
         _searchByLocation.text = @"Around Me";
     }
+    [_mapView removeAnnotations:_mapView.annotations];
 
     NSString *searchQuery = [self styleSearchQuery];
     _searchInProgress.text = searchQuery;
