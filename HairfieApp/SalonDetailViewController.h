@@ -71,6 +71,8 @@
 @property (nonatomic) IBOutlet UITableView *similarTableView;
 @property (nonatomic) IBOutlet UITableView *detailTableView;
 
+@property (nonatomic) IBOutlet UIView *detailedContainerView;
+
 @property (nonatomic) IBOutlet UIButton *addReviewBttn;
 @property (nonatomic) IBOutlet UIButton *moreReviewBttn;
 

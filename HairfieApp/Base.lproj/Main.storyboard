@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6205" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="dEN-gt-xJT">
     <dependencies>
-        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6198"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -1372,13 +1371,6 @@ Inscivez-vous maintenant</string>
                                                                     <constraint firstAttribute="width" constant="8" id="kCX-xh-KGk"/>
                                                                 </constraints>
                                                             </imageView>
-                                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" image="nav-disclosure.png" translatesAutoresizingMaskIntoConstraints="NO" id="8dn-rc-MTo">
-                                                                <rect key="frame" x="296" y="83" width="8" height="13"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="13" id="OLZ-cG-YtG"/>
-                                                                    <constraint firstAttribute="width" constant="8" id="bW5-OB-MMd"/>
-                                                                </constraints>
-                                                            </imageView>
                                                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ru1-3Q-E4m" userLabel="Separator 3">
                                                                 <rect key="frame" x="10" y="164" width="300" height="1"/>
                                                                 <color key="backgroundColor" red="0.85490196080000003" green="0.85490196080000003" blue="0.87058823529999996" alpha="1" colorSpace="calibratedRGB"/>
@@ -1686,6 +1678,7 @@ le blabla, et c’est super chouette.</string>
                         <outlet property="address" destination="5iT-Mx-8vK" id="uWz-El-obZ"/>
                         <outlet property="city" destination="3VZ-B5-oF7" id="bCx-gT-mCp"/>
                         <outlet property="containerView" destination="guP-Fw-zqY" id="F4U-Dr-9jF"/>
+                        <outlet property="detailedContainerView" destination="pQj-wF-6sZ" id="wb1-Qt-5ii"/>
                         <outlet property="hairdresserBttn" destination="C6D-1X-n7l" id="wda-Ax-GTB"/>
                         <outlet property="hairdresserTableView" destination="FpJ-1K-79p" id="Fzd-8i-FUf"/>
                         <outlet property="hairdresserTableViewHeight" destination="hRH-in-5yv" id="aVP-bl-hxo"/>
@@ -1701,7 +1694,6 @@ le blabla, et c’est super chouette.</string>
                         <outlet property="isOpenImageDetail" destination="4ys-iO-FG6" id="Evv-43-rP8"/>
                         <outlet property="isOpenLabel" destination="QXv-0J-1yO" id="vrP-Q4-FNB"/>
                         <outlet property="isOpenLabelDetail" destination="mxf-SU-fU8" id="1yq-eH-55J"/>
-                        <outlet property="isPhoneAvailable" destination="8dn-rc-MTo" id="EiT-Sn-hha"/>
                         <outlet property="mainViewHeight" destination="iPD-6f-Gsc" id="i9P-xc-Ckg"/>
                         <outlet property="manPrice" destination="Vpu-ko-4aC" id="WTd-7J-pbW"/>
                         <outlet property="moreReviewBttn" destination="VBB-fJ-v6H" id="ogl-4e-YVP"/>
