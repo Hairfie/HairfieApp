@@ -25,7 +25,7 @@
 
 @implementation SalonDetailViewController {
     BOOL isOpen;
-    NSString *phoneNumber;
+    NSArray *phoneNumbers;
     
     // Variables de test (vu qu'il y a pas de backend)
     
@@ -33,7 +33,7 @@
     NSArray *coiffeurArray;
 }
 
-@synthesize imageSliderView =_imageSliderView, pageControl = _pageControl,hairfieView = _hairfieView, hairdresserView = _hairdresserView, priceAndSaleView = _priceAndSaleView, infoBttn = _infoBttn, hairfieBttn = _hairfieBttn, hairdresserBttn = _hairdresserBttn, priceAndSaleBttn = _priceAndSaleBttn, reviewRating = _reviewRating, reviewTableView = _reviewTableView, addReviewBttn = _addReviewBttn, moreReviewBttn = _moreReviewBttn, similarTableView = _similarTableView, dataSalon = _dataSalon, ratingLabel = _ratingLabel, name = _name , womanPrice = _womanPrice, manPrice = _manPrice, salonRating = _salonRating, address = _address, city = _city, salonAvailability = _salonAvailability, nbReviews = _nbReviews, previewMap = _previewMap, isOpenLabel = _isOpenLabel, isOpenLabelDetail = _isOpenLabelDetail, isOpenImage = _isOpenImage, isOpenImageDetail = _isOpenImageDetail, callBttn = _callBttn, telephoneBgView = _telephoneBgView;
+@synthesize imageSliderView =_imageSliderView, pageControl = _pageControl,hairfieView = _hairfieView, hairdresserView = _hairdresserView, priceAndSaleView = _priceAndSaleView, infoBttn = _infoBttn, hairfieBttn = _hairfieBttn, hairdresserBttn = _hairdresserBttn, priceAndSaleBttn = _priceAndSaleBttn, reviewRating = _reviewRating, reviewTableView = _reviewTableView, addReviewBttn = _addReviewBttn, moreReviewBttn = _moreReviewBttn, similarTableView = _similarTableView, dataSalon = _dataSalon, ratingLabel = _ratingLabel, name = _name , womanPrice = _womanPrice, manPrice = _manPrice, salonRating = _salonRating, address = _address, city = _city, salonAvailability = _salonAvailability, nbReviews = _nbReviews, previewMap = _previewMap, isOpenLabel = _isOpenLabel, isOpenLabelDetail = _isOpenLabelDetail, isOpenImage = _isOpenImage, isOpenImageDetail = _isOpenImageDetail, callBttn = _callBttn, telephoneBgView = _telephoneBgView, detailedContainerView = _detailedContainerView;
 
 
 
@@ -357,7 +357,7 @@
 {
    
     NSDictionary *price = [salon objectForKey:@"price"];
-    NSArray *phoneNumbers = [salon objectForKey:@"phone_numbers"];
+    phoneNumbers = [salon objectForKey:@"phone_numbers"];
     NSDictionary *reviews = [salon objectForKey:@"reviews"];
     NSDictionary *timetables =[salon objectForKey:@"timetables"];
     NSArray *pictures = [salon objectForKey:@"pictures"];
@@ -365,7 +365,6 @@
    [self setupGallery:pictures];
 
     if (![timetables isEqual:[NSNull null]]) {
-        NSLog(@"je devrais etre ici");
         _isOpenImageDetail.hidden = YES;
         _isOpenLabelDetail.hidden = YES;
         _isOpenLabel.text = @"Pas d'informations";
@@ -394,9 +393,8 @@
     }
     else
     {
-        _telephone.text = [self formatPhoneNumber:[phoneNumbers objectAtIndex:0]];
-        _telephoneLabelWidth.constant = 87;
-        phoneNumber =[phoneNumbers objectAtIndex:0];
+        [self addPhoneNumbersToView];
+        
     }
     _name.text = [salon objectForKey:@"name"];
     
@@ -484,7 +482,15 @@
 }
 
 -(IBAction)callPhone:(id)sender {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"telprompt://%@", phoneNumber]]];
+    NSLog(@"callPhone %@", [phoneNumbers objectAtIndex:0]);
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"telprompt://%@", [phoneNumbers objectAtIndex:0]]]];
+}
+
+-(IBAction)callPhoneWithNumber:(UIButton *)sender {
+
+    NSString *number = [phoneNumbers objectAtIndex:sender.tag];
+    NSLog(@"callPhone %@", number);
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"telprompt://%@", number]]];
 }
 
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -502,6 +508,34 @@
         
         
         horaires.salon = [_dataSalon objectForKey:@"timetables"];
+    }
+}
+
+-(void)addPhoneNumbersToView {
+    
+    _telephone.hidden = YES;
+    _telephoneBgView.hidden = YES;
+    
+    #define OffsetBetweenButtons 135
+    
+    for(int buttonIndex=0; buttonIndex<[phoneNumbers count]; buttonIndex++){
+    
+        UIButton *phoneBtn=[UIButton buttonWithType:UIButtonTypeRoundedRect];
+        NSString *phone =[phoneNumbers objectAtIndex:buttonIndex];
+        
+        phoneBtn.frame= CGRectMake(35 + OffsetBetweenButtons * buttonIndex, 75, 115, 25);
+        phoneBtn.backgroundColor = [UIColor lightBlue];
+        phoneBtn.layer.cornerRadius = 5;
+        phoneBtn.layer.masksToBounds = YES;
+        
+        phoneBtn.tag = buttonIndex;
+        
+        [phoneBtn setTitle:[self formatPhoneNumber:phone] forState:UIControlStateNormal];
+        [phoneBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [phoneBtn.titleLabel setTextAlignment: NSTextAlignmentCenter];
+        
+        [phoneBtn addTarget:self action:@selector(callPhoneWithNumber:) forControlEvents:UIControlEventTouchUpInside];
+        [_detailedContainerView addSubview:phoneBtn];
     }
 }
 
