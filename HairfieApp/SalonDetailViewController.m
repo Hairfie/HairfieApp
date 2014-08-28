@@ -364,11 +364,11 @@
    
    [self setupGallery:pictures];
 
-    if (!timetables) {
+    if (![timetables isEqual:[NSNull null]]) {
         NSLog(@"je devrais etre ici");
         _isOpenImageDetail.hidden = YES;
         _isOpenLabelDetail.hidden = YES;
-         _isOpenLabel.text = @"Pas d'informations";
+        _isOpenLabel.text = @"Pas d'informations";
     }
     else {
         OpeningTimes * op = [[OpeningTimes alloc] init];
@@ -386,7 +386,7 @@
         }
     }
 
-    if (phoneNumbers == nil || [phoneNumbers count] == 0)
+    if ([phoneNumbers isEqual:[NSNull null]] || [phoneNumbers count] == 0)
     {
         _telephone.text = [NSString stringWithFormat:@"Pas de numéro connu"];
         _telephoneLabelWidth.constant = 133;
