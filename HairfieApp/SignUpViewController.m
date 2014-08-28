@@ -7,14 +7,16 @@
 //
 
 #import "SignUpViewController.h"
-#import "SignUpTableViewCell.h"
 
 @interface SignUpViewController ()
 
 @end
 
 @implementation SignUpViewController
-
+{
+    UIAlertView *chooseCameraType;
+    UIImagePickerController *imagePicker;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -35,7 +37,7 @@
     addPictureBttn.layer.borderColor = [UIColor colorWithRed:206/255.0f green:208/255.0f blue:210/255.0f alpha:1].CGColor;
     addPictureBttn.backgroundColor = [UIColor clearColor];
     [addPictureBttn addTarget:self
-                 action:@selector(takePicture)
+                 action:@selector(chooseCameraType)
        forControlEvents:UIControlEventTouchUpInside];
     
     UILabel *addPictureLabel = [[UILabel alloc] initWithFrame:CGRectMake(135, 17, 50, 50)];
@@ -47,9 +49,12 @@
     
     [_mainScrollView addSubview:addPictureBttn];
     [_mainScrollView addSubview:addPictureLabel];
-    [self.view addGestureRecognizer:_dismiss];
-
+  
     // Do any additional setup after loading the view.
+}
+
+-(UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleLightContent;
 }
 
 -(void)addPicture {
@@ -79,6 +84,11 @@
     }
 }
 
+-(void) textFieldDidBeginEditing:(UITextField *)textField
+{
+     [_mainScrollView addGestureRecognizer:_dismiss];
+}
+
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     NSInteger nextTag = textField.tag + 1;
@@ -89,7 +99,8 @@
         [nextResponder becomeFirstResponder];
     } else {
         NSLog(@"Fin");
-        [self.view removeGestureRecognizer:_dismiss];
+        [_mainScrollView removeGestureRecognizer:_dismiss];
+        [textField resignFirstResponder];
     }
     return YES;
 }
@@ -101,13 +112,12 @@
     [_lastNameField resignFirstResponder];
     [_emailField resignFirstResponder];
     [_passwordField resignFirstResponder];
-    
 }
 
--(void)takePicture
+-(void)chooseCameraType
 {
    
-    UIAlertView *chooseCameraType = [[UIAlertView alloc] initWithTitle:@"Choose camera type" message:@"Take picture or pick one from the saved photos" delegate:self cancelButtonTitle:@"Photo Albums" otherButtonTitles:@"Camera", nil];
+    chooseCameraType = [[UIAlertView alloc] initWithTitle:@"Choose camera type" message:@"Take picture or pick one from the saved photos" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Camera", @"Library",nil];
     chooseCameraType.delegate = self;
     [chooseCameraType show];
     
@@ -115,25 +125,143 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    /*
-    if (buttonIndex == 0) {
+    
+    imagePicker = [[UIImagePickerController alloc]init];
+     [imagePicker setDelegate:self];
+    if (buttonIndex == 2) {
         if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeSavedPhotosAlbum]) {
-            _camera.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
-    }
+            //_camera.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+            imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            imagePicker.allowsEditing = YES;
+           
+            [self presentViewController:imagePicker animated:YES completion:nil];
+        }
     } if (buttonIndex == 1) {
         if ([UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera]) {
-            _camera.sourceType = UIImagePickerControllerSourceTypeCamera;
-            _camera.cameraDevice = UIImagePickerControllerCameraDeviceRear;
-            _camera.showsCameraControls = NO;
-            _camera.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
+            imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+            imagePicker.cameraDevice = UIImagePickerControllerCameraDeviceRear;
+            imagePicker.showsCameraControls = NO;
             
-            [self presentViewController:_camera animated:YES completion:nil];
-       
+            imagePicker.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
+            [self initOverlayView];
+            
+                       [self presentViewController:imagePicker animated:YES completion:nil];
         }
     }
-     */
 }
 
+
+-(void) initOverlayView
+{
+    
+    UIView *overlayView = [[UIView alloc] init];
+    
+    overlayView.frame =  imagePicker.cameraOverlayView.frame;
+    
+    UIView *navigationView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 60)];
+    navigationView.backgroundColor = [UIColor colorWithRed:40/255.0f green:49/255.0f blue:57/255.0f alpha:1];
+    
+    
+    UIImage *goBackImg = [UIImage imageNamed:@"arrow-nav.png"];
+    UIButton *goBackButton = [UIButton
+                              buttonWithType:UIButtonTypeCustom];
+    [goBackButton setImage:goBackImg forState:UIControlStateNormal];
+    [goBackButton addTarget:self action:@selector(cancelTakePicture) forControlEvents:UIControlEventTouchUpInside];
+    [goBackButton setFrame:CGRectMake(10, 32, 20, 20)];
+    
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(92, 30, 136, 23)];
+    titleLabel.text = @"Post Hairfie";
+    titleLabel.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:18];
+    titleLabel.textAlignment = NSTextAlignmentCenter;
+    titleLabel.textColor = [UIColor whiteColor];
+    [navigationView addSubview:titleLabel];
+    [navigationView addSubview:goBackButton];
+    [overlayView addSubview:navigationView];
+    
+    
+    UIImage *takePictureImg = [UIImage imageNamed:@"take-picture-button.png"];
+    
+    UIButton *takePictureButton = [UIButton
+                                   buttonWithType:UIButtonTypeCustom];
+    [takePictureButton setImage:takePictureImg forState:UIControlStateNormal];
+    [takePictureButton addTarget:self action:@selector(snapPicture) forControlEvents:UIControlEventTouchUpInside];
+    [takePictureButton setFrame:CGRectMake(122, 401, 77, 77)];
+    
+    takePictureButton.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin;
+    UIImage *switchCameraImg = [UIImage imageNamed:@"switch-camera-button.png"];
+    
+    UIButton *switchCameraButton = [UIButton
+                                    buttonWithType:UIButtonTypeCustom];
+    [switchCameraButton setImage:switchCameraImg forState:UIControlStateNormal];
+    [switchCameraButton addTarget:self action:@selector(switchCamera) forControlEvents:UIControlEventTouchUpInside];
+    [switchCameraButton setFrame:CGRectMake(268, 75, 32, 32)];
+    
+    [overlayView addSubview:switchCameraButton];
+    [overlayView addSubview:takePictureButton];
+    
+    imagePicker.cameraOverlayView = overlayView;
+}
+
+
+- (void)switchCamera
+{
+    
+    // NSLog(@"Switch Camera");
+    
+    if (imagePicker.cameraDevice == UIImagePickerControllerCameraDeviceRear)
+    {
+        imagePicker.cameraDevice = UIImagePickerControllerCameraDeviceFront;
+    }
+    else
+    {
+        imagePicker.cameraDevice = UIImagePickerControllerCameraDeviceRear;
+    }
+    
+}
+
+-(void)snapPicture
+{
+   
+    [imagePicker takePicture];
+    
+}
+
+-(void) cancelTakePicture
+{
+    [imagePicker dismissViewControllerAnimated:YES completion:nil];
+    
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    UIImage *image = [info valueForKey:UIImagePickerControllerOriginalImage];
+    [self setProfilePicture:image];
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    
+}
+
+-(void)setProfilePicture:(UIImage*) image
+{
+    UIImageView *profilePicture = [[UIImageView alloc] initWithFrame:CGRectMake(127, 10, 66, 66)];
+    
+    profilePicture.contentMode = UIViewContentModeScaleAspectFill;
+    profilePicture.layer.cornerRadius = profilePicture.frame.size.height / 2;
+    profilePicture.clipsToBounds = YES;
+    profilePicture.layer.borderWidth = 1.0f;
+    profilePicture.layer.borderColor = [UIColor whiteColor].CGColor;
+    profilePicture.image = image;
+    
+    [_mainScrollView addSubview:profilePicture];
+
+}
+
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage : (UIImage *)image editingInfo:(NSDictionary *)editingInfo {
+    
+
+    [self setProfilePicture:image];
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    
+}
 
 
 /*

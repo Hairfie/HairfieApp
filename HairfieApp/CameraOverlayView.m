@@ -89,9 +89,14 @@
 }
 
 
+
+
+
 -(void)takePicture
 {
-    NSLog(@"Take Picture");
+    UIImagePickerController *test = [[UIImagePickerController alloc] init];
+    [test takePicture];
+    
 }
 
 

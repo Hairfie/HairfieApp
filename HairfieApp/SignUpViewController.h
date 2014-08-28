@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "CameraOverlayView.h"
 
-@interface SignUpViewController : UIViewController <UINavigationControllerDelegate, UITextFieldDelegate, UIAlertViewDelegate>
+@interface SignUpViewController : UIViewController <UINavigationControllerDelegate, UITextFieldDelegate, UIAlertViewDelegate, UIImagePickerControllerDelegate>
 
 @property (nonatomic) IBOutlet UIButton *signUpButton;
 @property (nonatomic) IBOutlet UIButton *statusBarButton;

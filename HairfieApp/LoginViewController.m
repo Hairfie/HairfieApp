@@ -26,6 +26,9 @@
     // Do any additional setup after loading the view.
 }
 
+-(UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleLightContent;
+}
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
@@ -48,6 +51,10 @@
         NSLog(@"Error on load %@", error.description);
     };
     void (^loadSuccessBlock)(NSArray *) = ^(NSArray *results){
+        NSLog(@"results %@", results);
+        //[AppDelegate us]
+        
+        
         [self performSegueWithIdentifier:@"loginSuccess" sender:self];
     };
     
@@ -56,9 +63,9 @@
     
     LBModelRepository *loginData = [[AppDelegate lbAdaptater] repositoryWithModelName:repoName];
     [loginData invokeStaticMethod:@"login" parameters:@{@"email": _emailField.text, @"password" : _passwordField.text} success:loadSuccessBlock failure:loadErrorBlock];
-
-    [self performSegueWithIdentifier:@"loginSuccess" sender:self];
     
+    
+
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

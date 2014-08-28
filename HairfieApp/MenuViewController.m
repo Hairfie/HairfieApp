@@ -11,6 +11,9 @@
 #import "UIViewController+ECSlidingViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "MenuTableViewCell.h"
+#import "AppDelegate.h"
+#import <LoopBack/LoopBack.h>
+#import "Constants.h"
 
 
 
@@ -58,6 +61,10 @@
     [_menuPictos addObject:@"friends-picto.png"];
     [_menuPictos addObject:@"business-picto.png"];
     [_menuPictos addObject:@"settings-picto.png"];
+}
+
+-(UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleLightContent;
 }
 
 #pragma mark - Table view data source
@@ -140,8 +147,24 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
     }
 }
 
--(UIStatusBarStyle)preferredStatusBarStyle{
-    return UIStatusBarStyleLightContent;
+
+-(IBAction)logOut:(id)sender
+{
+    void (^loadErrorBlock)(NSError *) = ^(NSError *error){
+        NSLog(@"Error on load %@", error.description);
+    };
+    void (^loadSuccessBlock)(NSArray *) = ^(NSArray *results){
+        NSLog(@"results %@", results);
+      
+    };
+    
+    NSString *repoName = @"users";
+    [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/users/logout" verb:@"POST"] forMethod:@"users.logout"];
+    
+    LBModelRepository *loginData = [[AppDelegate lbAdaptater] repositoryWithModelName:repoName];
+    
+    [loginData invokeStaticMethod:@"logout" parameters:@{} success:loadSuccessBlock failure:loadErrorBlock];
+    
 }
 
 

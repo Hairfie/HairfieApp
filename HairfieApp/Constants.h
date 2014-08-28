@@ -11,7 +11,7 @@
 
 #define BASE_URL @"http://salons.hairfie.com/api"
 #define API_URL @"http://api.staging.hairfie.com/api/"
-
+#define LOGOUT_URL @"http://api.staging.hairfie.com:80/api"
 
 #define SYSTEM_VERSION_EQUAL_TO(v)                  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedSame)
 #define SYSTEM_VERSION_GREATER_THAN(v)              ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedDescending)
