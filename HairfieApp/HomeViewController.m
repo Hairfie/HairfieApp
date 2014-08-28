@@ -136,7 +136,7 @@
     overlayView.frame =  _imagePicker.cameraOverlayView.frame;
     
     UIView *navigationView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 60)];
-    navigationView.backgroundColor = [UIColor colorWithRed:40/255.0f green:49/255.0f blue:57/255.0f alpha:1];
+    navigationView.backgroundColor = [UIColor blackHairfie];
     
     
     UIImage *goBackImg = [UIImage imageNamed:@"arrow-nav.png"];

@@ -35,18 +35,18 @@
     [_hairfieCollection registerNib:[UINib nibWithNibName:@"CustomCollectionViewCell" bundle:nil]forCellWithReuseIdentifier:@"hairfieRelated"];
     [_hairfieCollection registerNib:[UINib nibWithNibName:@"HairfieDetailCollectionReusableView" bundle:nil]forCellWithReuseIdentifier:@"headerCollection"];
     [_addComment setValue:[UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:0.5] forKeyPath:@"_placeholderLabel.textColor"];
-    
-    
-    
+
+
+
     UIImageView *profilePicture = [[UIImageView alloc] initWithFrame:CGRectMake(20, 10, 40, 40)];
     profilePicture.image = [UIImage imageNamed:@"leosquare.jpg"];
-    
+
     profilePicture.layer.cornerRadius = profilePicture.frame.size.height / 2;
     profilePicture.clipsToBounds = YES;
     profilePicture.layer.borderWidth = 2.0f;
-    profilePicture.layer.borderColor = [UIColor colorWithRed:40.0/255.0f green:49.0/255.0f blue:57.0/255.0f alpha:0.1].CGColor;
+    profilePicture.layer.borderColor = [[UIColor blackHairfie] colorWithAlphaComponent:0.1].CGColor;
     [_infoView addSubview:profilePicture];
-    
+
     //UIView *test =
     //[self.view addSubview:profilePicture];
     //[_hairfieCollection setFrame:CGRectMake(0, 601, 320, 800)];
@@ -104,31 +104,31 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  
+
    if (tableView == _infoTableView)
    {
         static NSString *CellIdentifier = @"infoCell";
         HairfieDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        
+
         if (cell == nil) {
             NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"HairfieDetailTableViewCell" owner:self options:nil];
             cell = [nib objectAtIndex:0];
         }
 
-    
+
      _infoTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-   
+
      UIView *separatorView = [[UIView alloc] initWithFrame:CGRectMake(0, 43, 1024, 1)];
     separatorView.layer.borderColor = [UIColor colorWithRed:236/255.0f green:237/255.0f  blue:237/255.0f  alpha:1].CGColor;
      separatorView.layer.borderWidth = 1.0;
      [cell.contentView addSubview:separatorView];
-    
+
     if (indexPath.row == 0)
     {
         cell.pictoView.image = [UIImage imageNamed:@"picto-hairfie-detail-hairdresser.png"];
         cell.contentLabel.text = @"Franck Provost, 75002 Paris";
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        
+
     }
     if (indexPath.row == 1)
     {
@@ -148,7 +148,7 @@
     {
         static NSString *CellIdentifier = @"commentCell";
         CommentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        
+
         if (cell == nil) {
             NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"CommentTableViewCell" owner:self options:nil];
             cell = [nib objectAtIndex:0];
@@ -175,7 +175,7 @@
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
 {
-    
+
     return CGSizeMake(320, 1065);
 }
 
@@ -184,33 +184,33 @@
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
     UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"hairfieDetailHeaderView" forIndexPath:indexPath];
-  
-    
+
+
     // Hairfitter profile pic (added manually because circled view)
-    
+
     UIImageView *profilePicture = [[UIImageView alloc] initWithFrame:CGRectMake(20, 367, 40, 40)];
     profilePicture.image = [UIImage imageNamed:@"leosquare.jpg"];
-    
+
     profilePicture.layer.cornerRadius = profilePicture.frame.size.height / 2;
     profilePicture.clipsToBounds = YES;
     profilePicture.layer.borderWidth = 2.0f;
-    profilePicture.layer.borderColor = [UIColor colorWithRed:40.0/255.0f green:49.0/255.0f blue:57.0/255.0f alpha:0.1].CGColor;
+    profilePicture.layer.borderColor = [[UIColor blackHairfie] colorWithAlphaComponent:0.1].CGColor;
     [headerView addSubview:profilePicture];
-    
+
     return headerView;
 }
 
 
 - (CustomCollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    
+
       static NSString *CellIdentifier = @"hairfieRelated";
     CustomCollectionViewCell *cell = [cv dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
-    
+
     if (cell == nil) {
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"CustomCollectionViewCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
-    
+
     cell.name.text = @"Kimi Smith";
     cell.hairfieView.image = [UIImage imageNamed:@"hairfie.jpg"];
     cell.layer.borderColor = [UIColor colorWithRed:234/255.0f green:236/255.0f blue:238/255.0f alpha:1].CGColor;

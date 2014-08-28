@@ -46,7 +46,7 @@
     _hairfieCollection.scrollEnabled = NO;
     
     _pricesTableView.layer.borderWidth = 1;
-    _pricesTableView.layer.borderColor = [UIColor colorWithRed:214/255.0f green:217/255.0f blue:221/255.0f alpha:1].CGColor;
+    _pricesTableView.layer.borderColor = [UIColor lightGreyHairfie].CGColor;
     [_pricesTableView setSeparatorInset:UIEdgeInsetsZero];
     
     _reviewTableView.delegate = self;
@@ -373,12 +373,11 @@
         OpeningTimes * op = [[OpeningTimes alloc] init];
         isOpen = [op isOpen:timetables];
         if (isOpen) {
-            UIColor *green = [UIColor colorWithRed:50/255.0 green:178/255.0 blue:81/255.0 alpha:1];
             _isOpenLabel.text = @"Ouvert aujourd'hui";
-            _isOpenLabel.textColor = green;
+            _isOpenLabel.textColor = [UIColor greenHairfie];
             
             _isOpenImage.image = [_isOpenImage.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-            [_isOpenImage setTintColor:green];
+            [_isOpenImage setTintColor:[UIColor greenHairfie]];
         }
         else {
             _isOpenLabel.text = @"Fermé aujourd'hui";
@@ -524,7 +523,7 @@
         NSString *phone =[phoneNumbers objectAtIndex:buttonIndex];
         
         phoneBtn.frame= CGRectMake(35 + OffsetBetweenButtons * buttonIndex, 75, 115, 25);
-        phoneBtn.backgroundColor = [UIColor lightBlue];
+        phoneBtn.backgroundColor = [UIColor lightBlueHairfie];
         phoneBtn.layer.cornerRadius = 5;
         phoneBtn.layer.masksToBounds = YES;
         
@@ -582,7 +581,7 @@
     }
     cell.name.text = @"Kimi Smith";
     cell.hairfieView.image = [UIImage imageNamed:@"hairfie.jpg"];
-    cell.layer.borderColor = [UIColor colorWithRed:234/255.0f green:236/255.0f blue:238/255.0f alpha:1].CGColor;
+    cell.layer.borderColor = [UIColor whiteHairfie].CGColor;
     cell.layer.borderWidth = 1.0f;
     return cell;
 }

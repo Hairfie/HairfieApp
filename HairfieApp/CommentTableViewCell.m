@@ -15,12 +15,12 @@
 
 - (void)awakeFromNib {
     profilePicture = [[UIImageView alloc] initWithFrame:CGRectMake(20, 9, 41, 41)];
-    
+
     // mettre viariable photo salon ici
     profilePicture.layer.cornerRadius = profilePicture.frame.size.height / 2;
     profilePicture.clipsToBounds = YES;
     profilePicture.layer.borderWidth = 1.0f;
-    profilePicture.layer.borderColor = [UIColor colorWithRed:69/255.0f green:69/255.0f blue:89/255.0f alpha:0.6].CGColor;
+    profilePicture.layer.borderColor = [UIColor greyHairfie].CGColor;
     profilePicture.image = [UIImage imageNamed:@"leosquare.jpg"];
     [self.viewForBaselineLayout addSubview:profilePicture];
 

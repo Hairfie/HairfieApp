@@ -54,27 +54,27 @@
     _headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 210)];
     _headerView.backgroundColor = [UIColor whiteColor];
     UIView *frontView = [[UIView alloc] initWithFrame:CGRectMake(10, 10, 300, 200)];
-    
+
     _commentTextView = [[UITextView alloc] initWithFrame:CGRectMake(20, 10, 280, 176)];
     _commentTextView.delegate = self;
     _commentTextView.backgroundColor = [UIColor clearColor];
     _commentTextView.text = @"Ajoutez votre commentaire...";
-    _commentTextView.textColor = [UIColor colorWithRed:40/255.0f green:49/255.0f blue:57/255.0f alpha:0.6];
+    _commentTextView.textColor = [[UIColor blackHairfie] colorWithAlphaComponent:0.6];
     _commentTextView.returnKeyType = UIReturnKeyDone;
-    
-    
+
+
     frontView.backgroundColor = [UIColor colorWithRed:50/255.0f green:67/255.0f blue:87/255.0f alpha:0.1];
     frontView.layer.cornerRadius = 5;
     frontView.layer.masksToBounds = YES;
-    
+
     [_headerView addSubview:frontView];
-    
+
     [frontView addSubview:_commentTextView];
 }
 
 -(void) hideKeyboard
 {
-    
+
     [_commentTextView resignFirstResponder];
     _isCommenting = NO;
     _commentTableView.scrollEnabled = YES;
@@ -83,7 +83,7 @@
 
 -(IBAction)addComment:(id)sender
 {
-    
+
     [_commentTextView becomeFirstResponder];
     if (_isCommenting == NO)
     {
@@ -105,7 +105,7 @@
     textView.text = @"";
     [textView becomeFirstResponder];
     [self.view addGestureRecognizer:_dismiss];
-    
+
 }
 - (BOOL)textViewShouldEndEditing:(UITextView *)textView
 {
@@ -118,15 +118,15 @@ shouldChangeTextInRange: (NSRange) range
   replacementText: (NSString*) text
 {
     if ([text isEqualToString:@"\n"]) {
-        
+
         _isCommenting = NO;
         NSLog(@"JVIENS LA");
-        
+
         _commentTableView.scrollEnabled = YES;
         _commentTextView.text = @"Ajoutez votre commentaire...";
         [_commentTableView reloadData];
         [textView resignFirstResponder];
-        
+
         return NO;
     }
     _commentTableView.scrollEnabled = NO;
@@ -145,15 +145,15 @@ shouldChangeTextInRange: (NSRange) range
     {
         NSString *contentComment = textView.text;
         _isCommenting = NO;
-        
+
         [_commentTableView reloadData];
         _commentTableView.scrollEnabled = YES;
     }
-    
+
     [textView resignFirstResponder];
     [self.view removeGestureRecognizer:_dismiss];
-    
-    
+
+
 }
 
 
@@ -193,13 +193,13 @@ shouldChangeTextInRange: (NSRange) range
 {
     static NSString *CellIdentifier = @"commentCell";
     CommentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
+
     if (cell == nil) {
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"CommentTableViewCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
     cell.backgroundColor = [UIColor whiteColor];
-    
+
     return cell;
 }
 

@@ -62,7 +62,7 @@
     _searchBttn.layer.cornerRadius = 5;
     _searchBttn.layer.masksToBounds = YES;
     _searchAroundMeImage.image = [_searchAroundMeImage.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-    [_searchAroundMeImage setTintColor:[UIColor colorWithRed:92/255.0 green:172/255.0 blue:225/255.0 alpha:1]];
+    [_searchAroundMeImage setTintColor:[UIColor lightBlueHairfie]];
     _searchByLocation.text = @"Around Me";
     SDmanager = [SDWebImageManager sharedManager];
     // Do any additional setup after loading the view.
@@ -72,9 +72,9 @@
 {
     [_searchByLocation resignFirstResponder];
     _searchByLocation.text = @"Around Me";
-  //  _searchByLocation.textColor = [UIColor colorWithRed:92/255.0f  green:172/255.0f  blue:225/255.0f alpha:1];
-    
-    [_searchAroundMeImage setTintColor:[UIColor colorWithRed:92/255.0 green:172/255.0 blue:225/255.0 alpha:1]];
+  //  _searchByLocation.textColor = [UIColor lightBlueHairfie];
+
+    [_searchAroundMeImage setTintColor:[UIColor lightBlueHairfie]];
 }
 
 -(IBAction)cancelSearch:(id)sender
@@ -93,7 +93,7 @@
 - (IBAction)showAdvancedSearch:(id)sender{
     _searchHeaderView.hidden = NO;
     if ([_searchByLocation.text isEqualToString:@"Around Me"])
-    [_searchAroundMeImage setTintColor:[UIColor colorWithRed:92/255.0 green:172/255.0 blue:225/255.0 alpha:1]];
+    [_searchAroundMeImage setTintColor:[UIColor lightBlueHairfie]];
     [_searchByName performSelector:@selector(becomeFirstResponder) withObject:nil afterDelay:0.0];
 }
 
@@ -129,7 +129,7 @@
     UILabel *searchLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 310, 30)];
     searchLabel.font = [UIFont fontWithName:@"SourceSansPro-Light" size:16];
     searchLabel.textColor = [UIColor colorWithRed:109/255.0f green:118/255.0f blue:131/255.0f alpha:1];
-    
+
     searchLabel.text = searchQuery;
     [headerSearch addSubview:searchLabel];
 
@@ -154,8 +154,8 @@
     } else {
        searchQuery = [NSString stringWithFormat:@"\"%@\" à côté de \"%@\"", _searchByName.text, _searchByLocation.text];
     }
-    
-    
+
+
     return searchQuery;
 }
 
@@ -171,7 +171,7 @@
                 // Process the placemark.
                 NSString *latDest = [NSString stringWithFormat:@"%.4f",aPlacemark.location.coordinate.latitude];
                 NSString *lngDest = [NSString stringWithFormat:@"%.4f",aPlacemark.location.coordinate.longitude];
-                
+
                 gpsString = [NSString stringWithFormat:@"%@,%@", lngDest, latDest];
                 [self initMapWithSalons:aPlacemark.location];
             }
@@ -222,9 +222,9 @@
 -(void) updatedLocation:(NSNotification*)notif {
     _myLocation = (CLLocation*)[[notif userInfo] valueForKey:@"newLocationResult"];
     gpsString = [NSString stringWithFormat:@"%f,%f", _myLocation.coordinate.longitude, _myLocation.coordinate.latitude];
-    
+
     [self initMapWithSalons:nil];
-  
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -237,7 +237,7 @@
 {
     [_delegate startTrackingLocation:YES];
   //  userLocation = _mapView.userLocation;
-    
+
 }
 
 -(IBAction)goBack:(id)sender
@@ -249,24 +249,24 @@
 // Get Salons from webservice
 
 -(void) initMapWithSalons:(CLLocation *)customLocation {
-    
+
     MKCoordinateRegion region;
     if (customLocation == nil) {
         region = MKCoordinateRegionMakeWithDistance (_myLocation.coordinate, 1000, 1000);
         [_mapView setUserTrackingMode:MKUserTrackingModeFollow animated:YES];
          gpsString = [NSString stringWithFormat:@"%f,%f", _myLocation.coordinate.longitude, _myLocation.coordinate.latitude];
-         
+
     } else {
         region = MKCoordinateRegionMakeWithDistance (customLocation.coordinate, 1000, 1000);
-        
+
     }
      [self getSalons:gpsString];
     [_mapView setRegion:region animated:NO];
-   
+
 }
 
 -(void) addSalonsToMap {
-    
+
     for ( int i= 0; i<[salons count]; i++) {
         NSDictionary *salon = [salons objectAtIndex:i];
         [self addSalonToMap:salon];
@@ -277,14 +277,14 @@
 // Add a salon to the map
 
 - (void) addSalonToMap: (NSDictionary *) salon {
-    
+
     NSDictionary *coords = [salon valueForKey:@"gps"];
     NSString *titleStr = [salon valueForKey:@"name"];
 
     CLLocationCoordinate2D coord;
     coord.longitude = [[NSString stringWithFormat:@"%@",[coords valueForKey:@"lng"]] floatValue];
     coord.latitude = [[NSString stringWithFormat:@"%@",[coords valueForKey:@"lat"]] floatValue];
-    
+
     MyAnnotation *annotObj =[[MyAnnotation alloc]init];
     annotObj.title = titleStr;
     annotObj.coordinate = coord;
@@ -298,8 +298,8 @@
     UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     [spinner setFrame:CGRectMake(150, self.view.frame.size.height/2, spinner.frame.size.width, spinner.frame.size.height)];
     spinner.hidesWhenStopped = YES;
-    
-    
+
+
     //Error Block
     void (^loadErrorBlock)(NSError *) = ^(NSError *error){
         NSLog(@"Error on load %@", error.description);
@@ -318,9 +318,9 @@
         [spinner stopAnimating];
         _isSearching = NO;
     };
-    
-    
-    
+
+
+
     if (_isSearching == YES)
     {
         _hairdresserTableView.hidden = YES;
@@ -329,7 +329,7 @@
         NSString *repoName = @"businesses";
         _hairdresserTableView.userInteractionEnabled = NO;
         [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/businesses/nearby" verb:@"GET"] forMethod:@"businesses.nearby"];
-        
+
         LBModelRepository *businessData = [[AppDelegate lbAdaptater] repositoryWithModelName:repoName];
         [businessData invokeStaticMethod:@"nearby" parameters:@{@"here": address, @"limit" : @"10", @"query" : _searchByName.text} success:loadSuccessBlock failure:loadErrorBlock];
     }
@@ -340,7 +340,7 @@
 /*
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    
+
     return _headerView;
 }
 */
@@ -363,20 +363,20 @@
 {
    // NSDictionary *salon = [salons objectAtIndex:indexPath.row];
    // NSDictionary *price = [salon objectForKey:@"price"];
-   
+
     LBModel *model = (LBModel *)[salons objectAtIndex:indexPath.row];
-   
+
     if ( indexPath.row % 2 == 0)//[[price objectForKey:@"women"] integerValue] != 0 && [[price objectForKey:@"men"]integerValue] != 0)
     {
         static NSString *CellIdentifier = @"salonCell";
         SalonTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        
+
         if (cell == nil) {
             NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"SalonTableViewCell" owner:self options:nil];
             cell = [nib objectAtIndex:0];
-            
+
         }
-     
+
         [SDWebImageDownloader.sharedDownloader downloadImageWithURL:[NSURL URLWithString:[model objectForKeyedSubscript:@"thumb"]]
                                                         options:0
                                                         progress:^(NSInteger receivedSize, NSInteger expectedSize) { }
@@ -384,30 +384,30 @@
          {
              if (image && finished)
              {
-                 
+
                  cell.salonPicture.image = image;
              }
          }];
-        
-        
-        
+
+
+
         [cell customInit:model];
         return cell;
-        
-        }
-    
 
-    
+        }
+
+
+
     else
     {
         static NSString *CellIdentifier = @"similarCell";
         SimilarTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        
+
         if (cell == nil) {
             NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"SimilarTableViewCell" owner:self options:nil];
             cell = [nib objectAtIndex:0];
         }
-        
+
         [SDWebImageDownloader.sharedDownloader downloadImageWithURL:[NSURL URLWithString:[model objectForKeyedSubscript:@"thumb"]]
                                                             options:0
                                                            progress:^(NSInteger receivedSize, NSInteger expectedSize) { }
@@ -415,16 +415,16 @@
          {
              if (image && finished)
              {
-                 
+
                  cell.salonPicture.image = image;
              }
          }];
-        
+
         cell.name.text = [model objectForKeyedSubscript:@"name"];
         [cell customInit:model];
         return cell;
     }
-    
+
     return nil;
 }
 
@@ -443,7 +443,7 @@
     if ([segue.identifier isEqualToString:@"salonDetail"])
     {
         SalonDetailViewController *salonDetail = [segue destinationViewController];
-        
+
         [salonDetail setDataSalon:[salons objectAtIndex:rowSelected]];
         }
 }
@@ -480,18 +480,18 @@
 
 /*
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)annotationView {
-    
+
     CustomPinView *calloutView = [[CustomPinView alloc] initWithFrame:CGRectMake(0.0, 0.0, 70, 30.0)];
-    
+
     calloutView.myTitle.text = annotationView.annotation.title;
-    
-    
+
+
     calloutView.center = CGPointMake(CGRectGetWidth(annotationView.bounds) / 2.0, 0.0);
     [annotationView addSubview:calloutView];
-   
-    
+
+
 }
- 
+
 // Methods for when the user deselect the annotation
 
 - (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view {
@@ -499,7 +499,7 @@
         if (![subview isKindOfClass:[CustomPinView class]]) {
             continue;
         }
-        
+
         [subview removeFromSuperview];
     }
 }

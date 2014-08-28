@@ -47,7 +47,7 @@
 - (void)rateView:(RatingView *)rateView ratingDidChange:(float)rating {
     _isReviewing = YES;
     _reviewTableView.scrollEnabled = NO;
-   
+
     [_reviewTableView reloadData];
 
 }
@@ -74,7 +74,7 @@
     _isReviewing = NO;
     _reviewTableView.scrollEnabled = YES;
     _reviewRating.rating = 0;
-    
+
     [_reviewTableView reloadData];
 }
 
@@ -83,9 +83,9 @@
     if (_isReviewing == NO)
     {
         _isReviewing = YES;
-        
+
         _reviewTableView.scrollEnabled = NO;
-        
+
     }
     [_reviewTableView reloadData];
 }
@@ -115,7 +115,7 @@
     textView.text = @"";
     [textView becomeFirstResponder];
     [self.view addGestureRecognizer:_dismiss];
-    
+
 }
 - (BOOL)textViewShouldEndEditing:(UITextView *)textView
 {
@@ -128,10 +128,10 @@ shouldChangeTextInRange: (NSRange) range
   replacementText: (NSString*) text
 {
     if ([text isEqualToString:@"\n"]) {
-    
+
         _isReviewing = NO;
         NSLog(@"JVIENS LA");
-        
+
         _reviewTableView.scrollEnabled = YES;
         _reviewTextView.text = @"Ajoutez votre review...";
         _reviewRating.rating = 0;
@@ -156,15 +156,15 @@ shouldChangeTextInRange: (NSRange) range
     {
         NSString *contentReview = textView.text;
         _isReviewing = NO;
-         
+
         [_reviewTableView reloadData];
         _reviewTableView.scrollEnabled = YES;
     }
-    
+
     [textView resignFirstResponder];
     [self.view removeGestureRecognizer:_dismiss];
-    
-    
+
+
 }
 
 
@@ -172,24 +172,24 @@ shouldChangeTextInRange: (NSRange) range
 {
     _bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, _reviewHeight)];
     _bgView.backgroundColor = [UIColor whiteColor];
-    
-    
+
+
     UIView *frontView = [[UIView alloc] initWithFrame:CGRectMake(10, 10, 300, 196)];
-    
+
     _reviewTextView = [[UITextView alloc] initWithFrame:CGRectMake(20, 10, 280, 176)];
     _reviewTextView.delegate = self;
     _reviewTextView.backgroundColor = [UIColor clearColor];
     _reviewTextView.text = @"Ajoutez votre review...";
-    _reviewTextView.textColor = [UIColor colorWithRed:40/255.0f green:49/255.0f blue:57/255.0f alpha:0.6];
+    _reviewTextView.textColor = [[UIColor blackHairfie] colorWithAlphaComponent:0.6];
     _reviewTextView.returnKeyType = UIReturnKeyDone;
-    
-    
+
+
     frontView.backgroundColor = [UIColor colorWithRed:50/255.0f green:67/255.0f blue:87/255.0f alpha:0.1];
     frontView.layer.cornerRadius = 5;
     frontView.layer.masksToBounds = YES;
-    
+
     [_bgView addSubview:frontView];
-    
+
     [frontView addSubview:_reviewTextView];
 
 }
@@ -230,13 +230,13 @@ shouldChangeTextInRange: (NSRange) range
 {
     static NSString *CellIdentifier = @"reviewCell";
     ReviewTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
+
     if (cell == nil) {
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ReviewTableViewCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
     cell.backgroundColor = [UIColor whiteColor];
-    
+
     return cell;
 }
 

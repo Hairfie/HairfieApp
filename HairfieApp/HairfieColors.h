@@ -10,6 +10,16 @@
 
 @interface UIColor (HairfieColors)
 
-+(UIColor *)lightBlue;
++(UIColor *)lightBlueHairfie;
+
++(UIColor *)blackHairfie;
++(UIColor *)darkBlueHairfie;
++(UIColor *)blueHairfie;
++(UIColor *)redHairfie;
++(UIColor *)greyHairfie;
++(UIColor *)greenHairfie;
++(UIColor *)whiteHairfie;
++(UIColor *)lightGreyHairfie;
+
 
 @end
