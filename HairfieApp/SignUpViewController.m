@@ -205,9 +205,6 @@
 
 - (void)switchCamera
 {
-    
-    // NSLog(@"Switch Camera");
-    
     if (imagePicker.cameraDevice == UIImagePickerControllerCameraDeviceRear)
     {
         imagePicker.cameraDevice = UIImagePickerControllerCameraDeviceFront;
@@ -216,14 +213,11 @@
     {
         imagePicker.cameraDevice = UIImagePickerControllerCameraDeviceRear;
     }
-    
 }
 
 -(void)snapPicture
 {
-   
     [imagePicker takePicture];
-    
 }
 
 -(void) cancelTakePicture

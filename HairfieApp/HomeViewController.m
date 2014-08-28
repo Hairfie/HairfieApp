@@ -27,9 +27,6 @@
     [super viewDidLoad];
     self.navigationItem.title = [NSString stringWithFormat:NSLocalizedString(@"Home", nil)];
      [_hairfieCollection registerNib:[UINib nibWithNibName:@"CustomCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"hairfieCell"];
-    _camera = [[CameraOverlayView alloc] init];
-    _camera.delegate = self;
-    
     [self.view addGestureRecognizer:self.slidingViewController.panGesture];
     // Do any additional setup after loading the view.
 }
@@ -95,7 +92,7 @@
 }
 
 
-
+/*
 -(IBAction)takePicture:(id)sender
 {
     if ([UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera])
@@ -110,7 +107,152 @@
         
     }
 }
+*/
 
+
+
+-(IBAction)takePicture:(id)sender
+{
+    _imagePicker = [[UIImagePickerController alloc]init];
+    [_imagePicker setDelegate:self];
+    
+    if ([UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera]) {
+        _imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        _imagePicker.cameraDevice = UIImagePickerControllerCameraDeviceRear;
+        _imagePicker.showsCameraControls = NO;
+        _imagePicker.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
+        [self initOverlayView];
+        
+        [self presentViewController:_imagePicker animated:YES completion:nil];
+    }
+}
+
+
+-(void) initOverlayView
+{
+    
+    UIView *overlayView = [[UIView alloc] init];
+    
+    overlayView.frame =  _imagePicker.cameraOverlayView.frame;
+    
+    UIView *navigationView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 60)];
+    navigationView.backgroundColor = [UIColor colorWithRed:40/255.0f green:49/255.0f blue:57/255.0f alpha:1];
+    
+    
+    UIImage *goBackImg = [UIImage imageNamed:@"arrow-nav.png"];
+    UIButton *goBackButton = [UIButton
+                              buttonWithType:UIButtonTypeCustom];
+    [goBackButton setImage:goBackImg forState:UIControlStateNormal];
+    [goBackButton addTarget:self action:@selector(cancelTakePicture) forControlEvents:UIControlEventTouchUpInside];
+    [goBackButton setFrame:CGRectMake(10, 32, 20, 20)];
+    
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(92, 30, 136, 23)];
+    titleLabel.text = @"Post Hairfie";
+    titleLabel.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:18];
+    titleLabel.textAlignment = NSTextAlignmentCenter;
+    titleLabel.textColor = [UIColor whiteColor];
+    [navigationView addSubview:titleLabel];
+    [navigationView addSubview:goBackButton];
+    [overlayView addSubview:navigationView];
+    
+    
+    UIImage *takePictureImg = [UIImage imageNamed:@"take-picture-button.png"];
+    
+    UIButton *takePictureButton = [UIButton
+                                   buttonWithType:UIButtonTypeCustom];
+    [takePictureButton setImage:takePictureImg forState:UIControlStateNormal];
+    [takePictureButton addTarget:self action:@selector(snapPicture) forControlEvents:UIControlEventTouchUpInside];
+    [takePictureButton setFrame:CGRectMake(122, 387, 77, 77)];
+    
+    takePictureButton.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin;
+    
+    
+    UIImage *goToLibraryImg = [UIImage imageNamed:@"leosquare.jpg"];
+    
+    UIButton *goToLibrary = [UIButton
+                                   buttonWithType:UIButtonTypeCustom];
+    [goToLibrary setImage:goToLibraryImg forState:UIControlStateNormal];
+    goToLibrary.layer.cornerRadius = 5;
+    goToLibrary.layer.masksToBounds = YES;
+    goToLibrary.layer.borderWidth = 1;
+    goToLibrary.layer.borderColor = [UIColor whiteColor].CGColor;
+    [goToLibrary addTarget:self action:@selector(switchCameraSourceType) forControlEvents:UIControlEventTouchUpInside];
+    [goToLibrary setFrame:CGRectMake(20, 420, 44, 44)];
+    
+    goToLibrary.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin;
+    
+    UIImage *switchCameraImg = [UIImage imageNamed:@"switch-camera-button.png"];
+    
+    UIButton *switchCameraButton = [UIButton
+                                    buttonWithType:UIButtonTypeCustom];
+    [switchCameraButton setImage:switchCameraImg forState:UIControlStateNormal];
+    [switchCameraButton addTarget:self action:@selector(switchCamera) forControlEvents:UIControlEventTouchUpInside];
+    [switchCameraButton setFrame:CGRectMake(268, 75, 32, 32)];
+    
+    [overlayView addSubview:switchCameraButton];
+    [overlayView addSubview:takePictureButton];
+    [overlayView addSubview:goToLibrary];
+    _imagePicker.cameraOverlayView = overlayView;
+}
+
+
+- (void)switchCamera
+{
+    if (_imagePicker.cameraDevice == UIImagePickerControllerCameraDeviceRear)
+    {
+        _imagePicker.cameraDevice = UIImagePickerControllerCameraDeviceFront;
+    }
+    else
+    {
+        _imagePicker.cameraDevice = UIImagePickerControllerCameraDeviceRear;
+    }
+}
+
+-(void) switchCameraSourceType
+{
+    [_imagePicker dismissViewControllerAnimated:NO completion:nil];
+    _imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    _imagePicker.allowsEditing = YES;
+    [self presentViewController:_imagePicker animated:YES completion:nil];
+}
+
+-(void)snapPicture
+{
+    [_imagePicker takePicture];
+}
+
+-(void) cancelTakePicture
+{
+    [_imagePicker dismissViewControllerAnimated:YES completion:nil];
+    
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    UIImage *image = [info valueForKey:UIImagePickerControllerOriginalImage];
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage : (UIImage *)image editingInfo:(NSDictionary *)editingInfo {
+    
+   
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    
+}
+-(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [_imagePicker dismissViewControllerAnimated:NO completion:nil];
+    if ([UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera]) {
+        _imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        _imagePicker.cameraDevice = UIImagePickerControllerCameraDeviceRear;
+        _imagePicker.showsCameraControls = NO;
+        _imagePicker.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
+        [self presentViewController:_imagePicker animated:YES completion:nil];
+        
+    }
+}
 
 
 

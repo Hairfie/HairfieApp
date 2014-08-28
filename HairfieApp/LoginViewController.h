@@ -7,13 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AppDelegate.h"
 
 @interface LoginViewController : UIViewController <UINavigationControllerDelegate, UITextFieldDelegate>
 
 @property (nonatomic) IBOutlet UIButton *noAccountButton;
 @property (nonatomic) IBOutlet UITextField *emailField;
 @property (nonatomic) IBOutlet UITextField *passwordField;
-
+@property (nonatomic) AppDelegate *delegate;
 -(IBAction)doLogin:(id)sender;
 
 @end

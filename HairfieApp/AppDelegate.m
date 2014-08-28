@@ -11,6 +11,7 @@
 #import "HairfieApp-Swift.h"
 #import "Constants.h"
 
+
 @interface AppDelegate ()
 
 @end
@@ -34,7 +35,9 @@ static LBRESTAdapter * _lbAdaptater = nil;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
  
     _manager = [[CLLocationManager alloc] init];
-   
+    _currentUser = [[User alloc] init];
+    _keychainItem = [[KeychainItemWrapper alloc] initWithIdentifier:@"hairfieLogin" accessGroup:nil];
+    
     return YES;
 
 }

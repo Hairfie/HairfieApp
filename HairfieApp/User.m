@@ -10,5 +10,5 @@
 
 @implementation User
 
-
+@synthesize userId, userToken;
 @end

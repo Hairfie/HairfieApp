@@ -18,7 +18,9 @@
 
 
 @implementation MenuViewController
-
+{
+    AppDelegate *appDelegate;
+}
 @synthesize menuTableView = _menuTableView;
 @synthesize profileView = _profileView;
 @synthesize menuItems = _menuItems;
@@ -32,8 +34,13 @@
 {
     [super viewDidLoad];
     
+     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    _name.text = [defaults objectForKey:@"name"];
+    [AppDelegate lbAdaptater].accessToken = [defaults objectForKey:@"userToken"];
+
          self.slidingViewController.topViewAnchoredGesture = ECSlidingViewControllerAnchoredGesturePanning | ECSlidingViewControllerAnchoredGestureTapping;
-  
+    appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
    // self.slidingViewController.shouldGroupAccessibilityChildren = YES;
    // [self.view addGestureRecognizer:self.slidingViewController.panGesture];
     _menuTableView.backgroundColor = [UIColor clearColor];
@@ -53,7 +60,8 @@
     
     [_profileView addSubview:profilePicture];
     _menuItems = [[NSArray alloc] init];
-    _menuItems = [NSArray arrayWithObjects: NSLocalizedString(@"Home", nil), NSLocalizedString(@"Favorites", nil),NSLocalizedString(@"Likes", nil), NSLocalizedString(@"Friends", nil),NSLocalizedString(@"Business", nil),NSLocalizedString(@"Settings", nil), nil];
+    _menuItems = [NSArray arrayWithObjects: NSLocalizedString(@"Home", nil), NSLocalizedString(@"Favorites", nil),NSLocalizedString(@"Likes", nil), NSLocalizedString(@"Friends", nil),NSLocalizedString(@"Business", nil),NSLocalizedString(@"Settings", nil),NSLocalizedString(@"Logout", nil), nil];
+    
     _menuPictos = [[NSMutableArray alloc] init];
     [_menuPictos addObject:@"home-picto.png"];
     [_menuPictos addObject:@"favorites-picto.png"];
@@ -61,6 +69,7 @@
     [_menuPictos addObject:@"friends-picto.png"];
     [_menuPictos addObject:@"business-picto.png"];
     [_menuPictos addObject:@"settings-picto.png"];
+    [_menuPictos addObject:@"picto-logout.png"];
 }
 
 -(UIStatusBarStyle)preferredStatusBarStyle{
@@ -145,25 +154,32 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
     {
         [self performSegueWithIdentifier:@"SettingSegue" sender:self];
     }
+    if (row == 6)
+    {
+        [self logOut:self];
+    }
 }
 
 
 -(IBAction)logOut:(id)sender
 {
+  
+    NSLog(@"ALORS");
     void (^loadErrorBlock)(NSError *) = ^(NSError *error){
         NSLog(@"Error on load %@", error.description);
     };
-    void (^loadSuccessBlock)(NSArray *) = ^(NSArray *results){
+    void (^loadSuccessBlock)(NSDictionary *) = ^(NSDictionary *results){
         NSLog(@"results %@", results);
-      
+        [AppDelegate lbAdaptater].accessToken = nil;
+         [self.navigationController popViewControllerAnimated:NO];
     };
     
     NSString *repoName = @"users";
+
+        
     [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/users/logout" verb:@"POST"] forMethod:@"users.logout"];
-    
-    LBModelRepository *loginData = [[AppDelegate lbAdaptater] repositoryWithModelName:repoName];
-    
-    [loginData invokeStaticMethod:@"logout" parameters:@{} success:loadSuccessBlock failure:loadErrorBlock];
+    LBModelRepository *logOutData = [[AppDelegate lbAdaptater] repositoryWithModelName:repoName];
+    [logOutData invokeStaticMethod:@"logout" parameters:@{} success:loadSuccessBlock failure:loadErrorBlock];
     
 }
 

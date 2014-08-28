@@ -7,16 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CameraOverlayView.h"
 
-@interface HomeViewController : UIViewController <UINavigationControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UIScrollViewDelegate>
+@interface HomeViewController : UIViewController <UINavigationControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UIScrollViewDelegate, UIImagePickerControllerDelegate>
 
 @property (nonatomic) IBOutlet UILabel *AroundMeLabel;
 @property (nonatomic) IBOutlet UICollectionView *hairfieCollection;
 @property (nonatomic) IBOutlet UIView *topView;
-@property (nonatomic) CameraOverlayView *camera;
 @property (nonatomic) IBOutlet UIScrollView *scrollTest;
 @property (nonatomic) IBOutlet UICollectionReusableView *headerView;
-
+@property (nonatomic) UIImagePickerController *imagePicker;
 
 @end

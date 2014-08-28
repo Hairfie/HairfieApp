@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6205" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="dEN-gt-xJT">
     <dependencies>
+        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6198"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -12,6 +13,7 @@
             <string>SourceSansPro-Bold</string>
         </mutableArray>
         <mutableArray key="SourceSansPro-Light.ttf">
+            <string>SourceSansPro-Light</string>
             <string>SourceSansPro-Light</string>
             <string>SourceSansPro-Light</string>
             <string>SourceSansPro-Light</string>
@@ -104,21 +106,11 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="150"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JEN-8N-MSc">
-                                        <rect key="frame" x="130" y="64" width="46" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <rect key="frame" x="130" y="64" width="183" height="21"/>
+                                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c7T-Tq-LY4">
-                                        <rect key="frame" x="262" y="112" width="53" height="30"/>
-                                        <state key="normal" title="Log out">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="logOut:" destination="tx8-KR-901" eventType="touchUpInside" id="FOK-18-wzf"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                             </view>
@@ -263,6 +255,7 @@
                     </view>
                     <connections>
                         <outlet property="menuTableView" destination="fXv-Hv-mwB" id="2IP-YF-Fwt"/>
+                        <outlet property="name" destination="JEN-8N-MSc" id="9EQ-Vc-HWZ"/>
                         <outlet property="profileView" destination="9xK-Dr-6cp" id="fWz-6V-l2M"/>
                     </connections>
                 </viewController>

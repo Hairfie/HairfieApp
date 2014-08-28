@@ -10,6 +10,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import <LoopBack/LoopBack.h>
 #import "User.h"
+#import "KeychainItemWrapper.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, CLLocationManagerDelegate>
 
@@ -18,7 +19,7 @@
 @property (nonatomic)     CLLocation *myLocation;
 @property (nonatomic) User *currentUser;
 + ( LBRESTAdapter *) lbAdaptater;
-
+@property (nonatomic) KeychainItemWrapper *keychainItem;
 -(void)startTrackingLocation:(BOOL)forceLocation;
 
 @end
