@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CameraOverlayView : UIImagePickerController
+@interface CameraOverlayView : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 
+-(IBAction)goBack:(id)sender;
 
 @end

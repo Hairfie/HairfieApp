@@ -28,6 +28,8 @@
     self.navigationItem.title = [NSString stringWithFormat:NSLocalizedString(@"Home", nil)];
      [_hairfieCollection registerNib:[UINib nibWithNibName:@"CustomCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"hairfieCell"];
     [self.view addGestureRecognizer:self.slidingViewController.panGesture];
+    
+    
     // Do any additional setup after loading the view.
 }
 
@@ -192,6 +194,7 @@
     [overlayView addSubview:switchCameraButton];
     [overlayView addSubview:takePictureButton];
     [overlayView addSubview:goToLibrary];
+    
     _imagePicker.cameraOverlayView = overlayView;
 }
 
@@ -251,6 +254,16 @@
         _imagePicker.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
         [self presentViewController:_imagePicker animated:YES completion:nil];
         
+    }
+}
+
+-(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"camera"])
+    {
+        UIImagePickerController *pickerController = [segue destinationViewController];
+        pickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+        pickerController.delegate = self;
     }
 }
 

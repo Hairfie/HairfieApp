@@ -20,7 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+  
     UIView *navigationView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 60)];
     navigationView.backgroundColor = [UIColor blackHairfie];
     
@@ -29,7 +29,7 @@
     UIButton *goBackButton = [UIButton
                             buttonWithType:UIButtonTypeCustom];
     [goBackButton setImage:goBackImg forState:UIControlStateNormal];
-    [goBackButton addTarget:self action:@selector(goBack) forControlEvents:UIControlEventTouchUpInside];
+    [goBackButton addTarget:self action:@selector(goBack:) forControlEvents:UIControlEventTouchUpInside];
     [goBackButton setFrame:CGRectMake(10, 32, 20, 20)];
     
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(92, 30, 136, 23)];
@@ -58,6 +58,8 @@
     [switchCameraButton setImage:switchCameraImg forState:UIControlStateNormal];
     [switchCameraButton addTarget:self action:@selector(switchCamera) forControlEvents:UIControlEventTouchUpInside];
     [switchCameraButton setFrame:CGRectMake(268, 75, 32, 32)];
+   
+    
     
     [self.view addSubview:switchCameraButton];
     [self.view addSubview:takePictureButton];
@@ -66,7 +68,7 @@
 }
 
 
--(void)goBack
+-(IBAction)goBack:(id)sender
 {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -77,13 +79,13 @@
     
    // NSLog(@"Switch Camera");
     
-     if (self.cameraDevice == UIImagePickerControllerCameraDeviceRear)
+   //  if (self.cameraDevice == UIImagePickerControllerCameraDeviceRear)
      {
-         self.cameraDevice = UIImagePickerControllerCameraDeviceFront;
+   //      self.cameraDevice = UIImagePickerControllerCameraDeviceFront;
      }
-     else
+   //  else
      {
-         self.cameraDevice = UIImagePickerControllerCameraDeviceRear;
+  //       self.cameraDevice = UIImagePickerControllerCameraDeviceRear;
      }
     
 }
@@ -94,6 +96,7 @@
 
 -(void)takePicture
 {
+    
     UIImagePickerController *test = [[UIImagePickerController alloc] init];
     [test takePicture];
     

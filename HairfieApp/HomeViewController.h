@@ -16,5 +16,7 @@
 @property (nonatomic) IBOutlet UIScrollView *scrollTest;
 @property (nonatomic) IBOutlet UICollectionReusableView *headerView;
 @property (nonatomic) UIImagePickerController *imagePicker;
+@property (nonatomic) IBOutlet UIView *overlayView;
+
 
 @end

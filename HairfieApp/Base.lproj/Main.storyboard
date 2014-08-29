@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6206.8" systemVersion="14A329r" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="dEN-gt-xJT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6205" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="dEN-gt-xJT">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7026.1"/>
-        <deployment defaultVersion="1808" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6198"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="SourceSansPro-Bold.ttf">
@@ -46,8 +45,15 @@
             <string>SourceSansPro-Light</string>
             <string>SourceSansPro-Light</string>
             <string>SourceSansPro-Light</string>
+            <string>SourceSansPro-Light</string>
+            <string>SourceSansPro-Light</string>
+            <string>SourceSansPro-Light</string>
+            <string>SourceSansPro-Light</string>
+            <string>SourceSansPro-Light</string>
+            <string>SourceSansPro-Light</string>
         </mutableArray>
         <mutableArray key="SourceSansPro-Regular.ttf">
+            <string>SourceSansPro-Regular</string>
             <string>SourceSansPro-Regular</string>
             <string>SourceSansPro-Regular</string>
             <string>SourceSansPro-Regular</string>
@@ -610,11 +616,51 @@ Inscivez-vous maintenant</string>
                     <size key="freeformSize" width="320" height="568"/>
                     <connections>
                         <outlet property="hairfieCollection" destination="cI1-7M-VAJ" id="9ks-2M-oDw"/>
+                        <segue destination="QW8-eh-zsD" kind="push" identifier="camera" id="IQn-cj-Sbx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tyk-UX-pm7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1254" y="-1744"/>
+        </scene>
+        <!--Image Picker Controller-->
+        <scene sceneID="DFO-ad-oPT">
+            <objects>
+                <viewController id="QW8-eh-zsD" customClass="UIImagePickerController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="BCq-T9-xed"/>
+                        <viewControllerLayoutGuide type="bottom" id="j1p-Ri-5Sm"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="nui-gI-JXj">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JC7-rw-pY7">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jAd-r5-GN6">
+                                        <rect key="frame" x="10" y="30" width="20" height="20"/>
+                                        <state key="normal" image="arrow-nav.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Poster Hairfie" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Kt-9X-8hz">
+                                        <rect key="frame" x="92" y="27" width="136" height="23"/>
+                                        <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="18"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.15686274510000001" green="0.19215686269999999" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="tko-RM-suj"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ndA-pC-BXu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1253" y="-2430"/>
         </scene>
         <!--Hairfie Detail View Controller-->
         <scene sceneID="dLB-PY-NHH">
@@ -2287,75 +2333,82 @@ connaissance et accepte les CGU de Hairfie</string>
                                                         <color key="backgroundColor" red="0.85490196080000003" green="0.85490196080000003" blue="0.87058823529999996" alpha="1" colorSpace="calibratedRGB"/>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Civilité" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jH3-q7-CYz">
-                                                        <rect key="frame" x="14" y="14" width="56" height="20"/>
+                                                        <rect key="frame" x="14" y="0.0" width="56" height="49"/>
                                                         <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="17"/>
                                                         <color key="textColor" red="0.58039215690000001" green="0.60392156860000001" blue="0.63529411759999999" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Nom" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fr5-Q8-6OH">
-                                                        <rect key="frame" x="14" y="110" width="56" height="22"/>
+                                                        <rect key="frame" x="14" y="95" width="56" height="49"/>
                                                         <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="17"/>
                                                         <color key="textColor" red="0.58039215690000001" green="0.60392156860000001" blue="0.63529411759999999" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="E-mail" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4h2-pf-vzG">
-                                                        <rect key="frame" x="14" y="156" width="56" height="22"/>
+                                                        <rect key="frame" x="14" y="142" width="56" height="49"/>
                                                         <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="17"/>
                                                         <color key="textColor" red="0.58039215690000001" green="0.60392156860000001" blue="0.63529411759999999" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Mot de passe" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y6b-hV-M6i">
-                                                        <rect key="frame" x="14" y="204" width="91" height="22"/>
+                                                        <rect key="frame" x="14" y="191" width="91" height="49"/>
                                                         <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="17"/>
                                                         <color key="textColor" red="0.58039215690000001" green="0.60392156860000001" blue="0.63529411759999999" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Prénom" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sdr-Tz-3nl">
-                                                        <rect key="frame" x="14" y="62" width="56" height="20"/>
+                                                        <rect key="frame" x="14" y="48" width="56" height="49"/>
                                                         <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="17"/>
                                                         <color key="textColor" red="0.58039215690000001" green="0.60392156860000001" blue="0.63529411759999999" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Leo" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Tva-Y8-S7U" userLabel="firstNameField">
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Leo" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Tva-Y8-S7U" userLabel="firstNameField">
                                                         <rect key="frame" x="130" y="48" width="150" height="49"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="15"/>
                                                         <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                                         <connections>
                                                             <outlet property="delegate" destination="xPO-Am-yIh" id="yR0-gz-IIv"/>
                                                         </connections>
                                                     </textField>
-                                                    <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Martin" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2SP-sz-YuZ" userLabel="lastNameField">
+                                                    <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Martin" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2SP-sz-YuZ" userLabel="lastNameField">
                                                         <rect key="frame" x="130" y="95" width="150" height="49"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="15"/>
                                                         <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                                         <connections>
                                                             <outlet property="delegate" destination="xPO-Am-yIh" id="z6M-36-qLl"/>
                                                         </connections>
                                                     </textField>
-                                                    <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="leo@hairfie.com" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="p5r-Oe-PWK" userLabel="emailField">
+                                                    <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="leo@hairfie.com" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="p5r-Oe-PWK" userLabel="emailField">
                                                         <rect key="frame" x="130" y="142" width="150" height="49"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="15"/>
+                                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next"/>
                                                         <connections>
                                                             <outlet property="delegate" destination="xPO-Am-yIh" id="QSJ-lG-kAj"/>
                                                         </connections>
                                                     </textField>
-                                                    <textField opaque="NO" clipsSubviews="YES" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="blabla" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="L0e-Ke-TqA" userLabel="passwordField">
+                                                    <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="blabla" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="L0e-Ke-TqA" userLabel="passwordField">
                                                         <rect key="frame" x="130" y="191" width="150" height="49"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits" returnKeyType="join"/>
+                                                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="15"/>
+                                                        <textInputTraits key="textInputTraits" returnKeyType="join" secureTextEntry="YES"/>
                                                         <connections>
                                                             <outlet property="delegate" destination="xPO-Am-yIh" id="QhS-Ww-H86"/>
                                                         </connections>
                                                     </textField>
-                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="coucou" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XzV-Ew-VQT" userLabel="titleField">
-                                                        <rect key="frame" x="130" y="0.0" width="150" height="49"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6tt-qA-okr">
+                                                        <rect key="frame" x="130" y="0.0" width="150" height="49.5"/>
+                                                        <state key="normal">
+                                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
                                                         <connections>
-                                                            <outlet property="delegate" destination="xPO-Am-yIh" id="5WN-PY-3uB"/>
+                                                            <action selector="showTitlePicker:" destination="xPO-Am-yIh" eventType="touchUpInside" id="08L-O1-f6Y"/>
                                                         </connections>
-                                                    </textField>
+                                                    </button>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="osd-uO-iAK">
+                                                        <rect key="frame" x="130" y="14" width="142" height="21"/>
+                                                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="16"/>
+                                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </view>
@@ -2383,7 +2436,7 @@ connaissance et accepte les CGU de Hairfie</string>
                                     <constraint firstAttribute="bottom" secondItem="8C2-A8-iLC" secondAttribute="bottom" id="ixK-g7-iPL"/>
                                 </constraints>
                             </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FoT-k3-XMR" userLabel="Call Salon">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FoT-k3-XMR" userLabel="Create Account">
                                 <rect key="frame" x="0.0" y="538" width="320" height="30"/>
                                 <color key="backgroundColor" red="0.90588235289999997" green="0.29803921570000003" blue="0.23529411759999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -2395,7 +2448,39 @@ connaissance et accepte les CGU de Hairfie</string>
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="createAccount:" destination="xPO-Am-yIh" eventType="touchUpInside" id="UQT-DS-DhR"/>
+                                </connections>
                             </button>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Tu-6x-BjS">
+                                <rect key="frame" x="0.0" y="352" width="320" height="216"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h0G-bU-HNQ">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Civilité" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uqK-Ua-FFL">
+                                                <rect key="frame" x="135" y="9" width="51" height="21"/>
+                                                <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="17"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.36078431370000003" green="0.67450980390000004" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
+                                    </view>
+                                    <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2AC-Ib-Vv7">
+                                        <rect key="frame" x="0.0" y="37" width="320" height="162"/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="xPO-Am-yIh" id="syN-Kj-qaC"/>
+                                            <outlet property="delegate" destination="xPO-Am-yIh" id="cuC-nk-EWC"/>
+                                        </connections>
+                                    </pickerView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="216" id="J0O-WK-TBm"/>
+                                    <constraint firstAttribute="width" constant="320" id="yY8-gR-gXP"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -2404,6 +2489,7 @@ connaissance et accepte les CGU de Hairfie</string>
                             <constraint firstItem="Mbp-BX-Md7" firstAttribute="leading" secondItem="SQr-kJ-z7v" secondAttribute="leading" id="YAW-9C-1qO"/>
                             <constraint firstItem="Mbp-BX-Md7" firstAttribute="top" secondItem="xBF-E1-okj" secondAttribute="bottom" id="nph-dh-l1C"/>
                             <constraint firstAttribute="trailing" secondItem="Mbp-BX-Md7" secondAttribute="trailing" id="sXF-Rc-yLE"/>
+                            <constraint firstItem="hLb-as-kRX" firstAttribute="top" secondItem="1Tu-6x-BjS" secondAttribute="bottom" id="wBp-K5-hkw"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="tM4-5o-9hr"/>
@@ -2419,12 +2505,16 @@ connaissance et accepte les CGU de Hairfie</string>
                         <outlet property="passwordField" destination="L0e-Ke-TqA" id="MR1-c3-3se"/>
                         <outlet property="signUpButton" destination="FoT-k3-XMR" id="qtN-ew-Xa3"/>
                         <outlet property="statusBarButton" destination="p25-Kp-Jfd" id="9nI-4W-mgU"/>
-                        <outlet property="titleField" destination="XzV-Ew-VQT" id="i1b-Ek-9Re"/>
+                        <outlet property="titleButton" destination="6tt-qA-okr" id="y8R-Si-N3I"/>
+                        <outlet property="titleView" destination="1Tu-6x-BjS" id="pWy-Bb-gnx"/>
+                        <outlet property="userTitle" destination="2AC-Ib-Vv7" id="Y4W-oD-Ecl"/>
+                        <outlet property="userTitleLabel" destination="osd-uO-iAK" id="5dN-78-ett"/>
+                        <segue destination="m6Z-pY-ich" kind="push" identifier="createAccount" id="HOe-ge-VCi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y37-BW-Jd5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-886" y="657"/>
+            <point key="canvasLocation" x="-886" y="545"/>
         </scene>
     </scenes>
     <resources>
@@ -2474,5 +2564,6 @@ connaissance et accepte les CGU de Hairfie</string>
     <inferredMetricsTieBreakers>
         <segue reference="DYR-eo-mJz"/>
         <segue reference="sgS-Io-6JC"/>
+        <segue reference="HOe-ge-VCi"/>
     </inferredMetricsTieBreakers>
 </document>

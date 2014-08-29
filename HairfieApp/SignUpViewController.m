@@ -7,6 +7,8 @@
 //
 
 #import "SignUpViewController.h"
+#import "AppDelegate.h"
+#import "HomeViewController.h"
 
 @interface SignUpViewController ()
 
@@ -16,9 +18,13 @@
 {
     UIAlertView *chooseCameraType;
     UIImagePickerController *imagePicker;
+    NSArray *title;
+    AppDelegate *delegate;
+    NSDictionary *userData;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    delegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     
     _statusBarButton.layer.cornerRadius = 5;
     _statusBarButton.layer.masksToBounds = YES;
@@ -26,10 +32,9 @@
     _infoView.layer.masksToBounds = YES;
     _infoView.layer.borderWidth = 1;
     _infoView.layer.borderColor = [UIColor colorWithRed:206/255.0f green:208/255.0f blue:210/255.0f alpha:1].CGColor;
-    _isChecked = NO;
-    
+    _isNewsletterChecked = NO;
     _dismiss = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
-    
+    title = [NSArray arrayWithObjects:@"Femme", @"Homme", nil];
     UIButton *addPictureBttn = [[UIButton alloc] initWithFrame:CGRectMake(127, 10, 66, 66)];
     addPictureBttn.layer.cornerRadius = addPictureBttn.frame.size.height / 2;
     addPictureBttn.clipsToBounds = YES;
@@ -46,17 +51,116 @@
     addPictureLabel.text = @"Add Photo";
     addPictureLabel.textAlignment = NSTextAlignmentCenter;
     addPictureLabel.numberOfLines = 2;
-    
+     _userTitleLabel.text = @"Femme";
+    _titleView.hidden = YES;
+
     [_mainScrollView addSubview:addPictureBttn];
     [_mainScrollView addSubview:addPictureLabel];
-  
+
     // Do any additional setup after loading the view.
+}
+
+-(void) setUserTitle
+{
+    NSLog(@"control");
+}
+
+- (NSInteger)numberOfComponentsInPickerView:
+(UIPickerView *)pickerView
+{
+    return 1;
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView
+numberOfRowsInComponent:(NSInteger)component
+{
+    return title.count;
+}
+
+- (NSString *)pickerView:(UIPickerView *)pickerView
+             titleForRow:(NSInteger)row
+            forComponent:(NSInteger)component
+{
+    return title[row];
+} 
+
+
+-(IBAction)showTitlePicker:(id)sender
+{
+    [self hideKeyboard];
+    _titleView.hidden = NO;
+    
+}
+
+-(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row
+      inComponent:(NSInteger)component
+{
+    NSLog(@"%@", [title objectAtIndex:row]);
+    _userTitleLabel.text = [title objectAtIndex:row];
+    [_firstNameField becomeFirstResponder];
+    _titleView.hidden = YES;
+    
 }
 
 -(UIStatusBarStyle)preferredStatusBarStyle{
     return UIStatusBarStyleLightContent;
 }
 
+-(IBAction)createAccount:(id)sender
+{
+    [self hideKeyboard];
+    void (^loadErrorBlock)(NSError *) = ^(NSError *error){
+        NSLog(@"Error : %@", error.description);
+    };
+    void (^loadSuccessBlock)(NSDictionary *) = ^(NSDictionary *results){
+        
+        NSLog(@"results %@", results);
+        userData = results;
+        delegate.currentUser.name = [NSString stringWithFormat:@"%@ %@", [results objectForKey:@"firstName"], [results objectForKey:@"lastName"]];
+        delegate.currentUser.imageLink = [results objectForKey:@"picture"];
+        
+        [self performSegueWithIdentifier:@"createAccount" sender:self];
+    };
+    
+    if ([self isValidEmail: _emailField.text])
+    {
+        
+        NSNumber *newsletter;
+        if (_isNewsletterChecked == TRUE)
+            newsletter = @true;
+        else
+            newsletter = @false;
+        NSString *gender;
+        if([_userTitleLabel.text isEqualToString:@"Homme"])
+                gender = @"male";
+        else
+            gender = @"female";
+        
+        NSString *repoName = @"users";
+        [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/users" verb:@"POST"] forMethod:@"users"];
+        
+        LBModelRepository *loginData = [[AppDelegate lbAdaptater] repositoryWithModelName:repoName];
+        
+        [loginData invokeStaticMethod:@"" parameters:@{@"firstName":_firstNameField.text, @"lastName":_lastNameField.text, @"email": _emailField.text, @"password" : _passwordField.text, @"newsletter":newsletter, @"gender":gender} success:loadSuccessBlock failure:loadErrorBlock];
+    }
+    else
+    {
+        UIAlertView *badLogin = [[UIAlertView alloc] initWithTitle:@"Login Failed" message:@"The email/password in incorrect" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        
+        [badLogin show];
+    }
+}
+
+-(BOOL) isValidEmail:(NSString *)checkString
+{
+    BOOL stricterFilter = NO;
+    NSString *stricterFilterString = @"[A-Z0-9a-z\\._%+-]+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2,4}";
+    NSString *laxString = @".+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2}[A-Za-z]*";
+    NSString *emailRegex = stricterFilter ? stricterFilterString : laxString;
+    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+    return [emailTest evaluateWithObject:checkString];
+}
+        
 -(void)addPicture {
     
     NSLog(@"add Picture");
@@ -74,13 +178,13 @@
 
 -(IBAction)checkBox:(id)sender
 {
-    if(_isChecked == YES)
+    if(_isNewsletterChecked == YES)
     {
         [_checkBoxButton setImage:[UIImage imageNamed:@"checkbox-false.png"] forState:UIControlStateNormal];
-        _isChecked = NO;
+        _isNewsletterChecked = NO;
     } else {
         [_checkBoxButton setImage:[UIImage imageNamed:@"checkbox-true.png"] forState:UIControlStateNormal];
-        _isChecked = YES;
+        _isNewsletterChecked = YES;
     }
 }
 
@@ -91,6 +195,7 @@
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
+
     NSInteger nextTag = textField.tag + 1;
     // Try to find next responder
     UIResponder* nextResponder = [textField.superview viewWithTag:nextTag];
@@ -256,7 +361,6 @@
     [picker dismissViewControllerAnimated:YES completion:nil];
     
 }
-
 
 /*
 #pragma mark - Navigation

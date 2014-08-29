@@ -12,5 +12,8 @@
 
 @property (nonatomic) NSString *userToken;
 @property (nonatomic) NSString *userId;
+@property (nonatomic) NSString *name;
+@property (nonatomic) NSString *gender;
+@property (nonatomic) NSString *imageLink;
 
 @end

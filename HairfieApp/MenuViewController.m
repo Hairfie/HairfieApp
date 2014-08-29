@@ -14,6 +14,7 @@
 #import "AppDelegate.h"
 #import <LoopBack/LoopBack.h>
 #import "Constants.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 
 
@@ -33,15 +34,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    
-    _name.text = [defaults objectForKey:@"name"];
-    [AppDelegate lbAdaptater].accessToken = [defaults objectForKey:@"userToken"];
 
-         self.slidingViewController.topViewAnchoredGesture = ECSlidingViewControllerAnchoredGesturePanning | ECSlidingViewControllerAnchoredGestureTapping;
+
+    self.slidingViewController.topViewAnchoredGesture = ECSlidingViewControllerAnchoredGesturePanning | ECSlidingViewControllerAnchoredGestureTapping;
     appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-   // self.slidingViewController.shouldGroupAccessibilityChildren = YES;
+    _name.text = appDelegate.currentUser.name;
+    [self initProfilePicture];
+    
+    // self.slidingViewController.shouldGroupAccessibilityChildren = YES;
    // [self.view addGestureRecognizer:self.slidingViewController.panGesture];
     _menuTableView.backgroundColor = [UIColor clearColor];
     _menuTableView.opaque = NO;
@@ -50,16 +50,7 @@
     
     _profileView.backgroundColor = [UIColor clearColor];
    
-    UIImageView *profilePicture = [[UIImageView alloc] initWithFrame:CGRectMake(60, 50, 50, 50)];
-    profilePicture.image = [UIImage imageNamed:@"leosquare.jpg"];
-    
-    profilePicture.layer.cornerRadius = profilePicture.frame.size.height / 2;
-    profilePicture.clipsToBounds = YES;
-    profilePicture.layer.borderWidth = 1.0f;
-    profilePicture.layer.borderColor = [UIColor whiteColor].CGColor;
-    
-    [_profileView addSubview:profilePicture];
-    _menuItems = [[NSArray alloc] init];
+       _menuItems = [[NSArray alloc] init];
     _menuItems = [NSArray arrayWithObjects: NSLocalizedString(@"Home", nil), NSLocalizedString(@"Favorites", nil),NSLocalizedString(@"Likes", nil), NSLocalizedString(@"Friends", nil),NSLocalizedString(@"Business", nil),NSLocalizedString(@"Settings", nil),NSLocalizedString(@"Logout", nil), nil];
     
     _menuPictos = [[NSMutableArray alloc] init];
@@ -72,6 +63,36 @@
     [_menuPictos addObject:@"picto-logout.png"];
 }
 
+
+
+-(void) initProfilePicture
+{
+    
+    
+    UIImageView *profilePicture = [[UIImageView alloc] initWithFrame:CGRectMake(60, 50, 50, 50)];
+    profilePicture.layer.cornerRadius = profilePicture.frame.size.height / 2;
+    profilePicture.clipsToBounds = YES;
+    profilePicture.layer.borderWidth = 1.0f;
+    profilePicture.layer.borderColor = [UIColor whiteColor].CGColor;
+    
+    
+    [SDWebImageDownloader.sharedDownloader downloadImageWithURL:[NSURL URLWithString:appDelegate.currentUser.imageLink]
+                                                        options:0
+                                                       progress:^(NSInteger receivedSize, NSInteger expectedSize) { }
+                                                      completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished)
+     {
+         if (image && finished)
+         {
+             
+             profilePicture.image = image;
+         }
+     }];
+    
+    [_profileView addSubview:profilePicture];
+    
+    
+
+}
 -(UIStatusBarStyle)preferredStatusBarStyle{
     return UIStatusBarStyleLightContent;
 }
@@ -163,21 +184,22 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 
 -(IBAction)logOut:(id)sender
 {
-  
-    NSLog(@"ALORS");
+    NSLog(@"token %@", [AppDelegate lbAdaptater].accessToken);
+    //NSLog(@"ALORS");
     void (^loadErrorBlock)(NSError *) = ^(NSError *error){
-        NSLog(@"Error on load %@", error.description);
+        //NSLog(@"Error on load %@", error.description);
     };
     void (^loadSuccessBlock)(NSDictionary *) = ^(NSDictionary *results){
-        NSLog(@"results %@", results);
+        //NSLog(@"results %@", results);
         [AppDelegate lbAdaptater].accessToken = nil;
-         [self.navigationController popViewControllerAnimated:NO];
+        [self.navigationController popToRootViewControllerAnimated:NO];
     };
     
     NSString *repoName = @"users";
 
         
     [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/users/logout" verb:@"POST"] forMethod:@"users.logout"];
+    
     LBModelRepository *logOutData = [[AppDelegate lbAdaptater] repositoryWithModelName:repoName];
     [logOutData invokeStaticMethod:@"logout" parameters:@{} success:loadSuccessBlock failure:loadErrorBlock];
     

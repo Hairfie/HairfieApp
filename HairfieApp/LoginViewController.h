@@ -15,6 +15,8 @@
 @property (nonatomic) IBOutlet UITextField *emailField;
 @property (nonatomic) IBOutlet UITextField *passwordField;
 @property (nonatomic) AppDelegate *delegate;
+@property (nonatomic) UITapGestureRecognizer *dismiss;
+
 -(IBAction)doLogin:(id)sender;
 
 @end
