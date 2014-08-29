@@ -75,10 +75,12 @@
         
     };
     void (^loadSuccessBlock)(NSDictionary *) = ^(NSDictionary *results){
-        
-     
+        NSLog(@"results %@", [results objectForKey:@"user"]);
+        NSDictionary *userData = [results objectForKey:@"user"];
         _delegate.currentUser.userToken = [results objectForKey:@"id"];
         _delegate.currentUser.userId = [results objectForKey:@"userId"];
+        _delegate.currentUser.name = [NSString stringWithFormat:@"%@ %@",[userData objectForKey:@"firstName"], [userData objectForKey:@"lastName"] ];
+        _delegate.currentUser.imageLink = [userData objectForKey:@"picture"];
         [AppDelegate lbAdaptater].accessToken = [results objectForKey:@"id"];
         [_delegate.keychainItem setObject:[results objectForKey:@"id"] forKey:(__bridge id)kSecValueData];
            NSLog(@"JAI CE TOKEN %@",  [AppDelegate lbAdaptater].accessToken);
@@ -91,7 +93,7 @@
     if ([self isValidEmail: _emailField.text])
     {
      NSString *repoName = @"users";
-    [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/users/login" verb:@"POST"] forMethod:@"users.login"];
+    [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/users/login?include=user" verb:@"POST"] forMethod:@"users.login"];
     
     LBModelRepository *loginData = [[AppDelegate lbAdaptater] repositoryWithModelName:repoName];
     [loginData invokeStaticMethod:@"login" parameters:@{@"email": _emailField.text, @"password" : _passwordField.text} success:loadSuccessBlock failure:loadErrorBlock];
