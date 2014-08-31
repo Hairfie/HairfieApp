@@ -10,6 +10,7 @@
 #import "MenuViewController.h"
 #import "HairfieApp-Swift.h"
 #import "Constants.h"
+#import "CredentialStore.h"
 
 
 @interface AppDelegate ()
@@ -18,7 +19,7 @@
 
 @implementation AppDelegate
 
-@synthesize manager = _manager, myLocation = _myLocation;
+@synthesize manager = _manager, myLocation = _myLocation, credentialStore = _credentialStore;
 
 
 
@@ -26,8 +27,15 @@
 static LBRESTAdapter * _lbAdaptater = nil;
 + (LBRESTAdapter *) lbAdaptater
 {
-    if ( !_lbAdaptater)
+    CredentialStore *store = [[CredentialStore alloc] init];
+    NSString *authToken = [store authToken];
+    
+    if ( !_lbAdaptater) {
         _lbAdaptater = [LBRESTAdapter adapterWithURL:[NSURL URLWithString:API_URL]];
+        if(authToken) {
+            _lbAdaptater.accessToken = authToken;
+        }
+    }
     return _lbAdaptater;
 }
 
@@ -37,6 +45,8 @@ static LBRESTAdapter * _lbAdaptater = nil;
     _manager = [[CLLocationManager alloc] init];
     _currentUser = [[User alloc] init];
     _keychainItem = [[KeychainItemWrapper alloc] initWithIdentifier:@"hairfieLogin" accessGroup:nil];
+    _credentialStore = [[CredentialStore alloc] init];
+    NSLog(@"LOGIN STATUS : %d", [_credentialStore isLoggedIn]);
     
     return YES;
 

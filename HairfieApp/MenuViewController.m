@@ -15,6 +15,7 @@
 #import <LoopBack/LoopBack.h>
 #import "Constants.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "CredentialStore.h"
 
 
 
@@ -192,6 +193,9 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
     void (^loadSuccessBlock)(NSDictionary *) = ^(NSDictionary *results){
         //NSLog(@"results %@", results);
         [AppDelegate lbAdaptater].accessToken = nil;
+        CredentialStore *store = [[CredentialStore alloc] init];
+        [store clearSavedCredentials];
+    
         [self.navigationController popToRootViewControllerAnimated:NO];
     };
     

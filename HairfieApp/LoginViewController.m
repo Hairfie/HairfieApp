@@ -9,9 +9,9 @@
 #import "LoginViewController.h"
 #import "User.h"
 #import "AppDelegate.h"
+#import "CredentialStore.h"
 
 @interface LoginViewController ()
-
 @end
 
 @implementation LoginViewController
@@ -87,6 +87,12 @@
 //        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 //        [defaults setObject:[results objectForKey:@"id"] forKey:@"userToken"];
 //        [defaults setObject:_emailField.text forKey:@"email"];
+        
+        NSString *authToken = [AppDelegate lbAdaptater].accessToken;
+        [AppDelegate _credentialStore];
+        
+        [self.credentialStore setAuthToken:authToken];
+        
         [self performSegueWithIdentifier:@"loginSuccess" sender:self];
     };
     

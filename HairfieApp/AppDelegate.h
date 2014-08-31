@@ -11,6 +11,7 @@
 #import <LoopBack/LoopBack.h>
 #import "User.h"
 #import "KeychainItemWrapper.h"
+#import "CredentialStore.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, CLLocationManagerDelegate>
 
@@ -18,6 +19,7 @@
 @property (nonatomic)     CLLocationManager *manager;
 @property (nonatomic)     CLLocation *myLocation;
 @property (nonatomic) User *currentUser;
+@property (nonatomic) CredentialStore *credentialStore;
 + ( LBRESTAdapter *) lbAdaptater;
 @property (nonatomic) KeychainItemWrapper *keychainItem;
 -(void)startTrackingLocation:(BOOL)forceLocation;
