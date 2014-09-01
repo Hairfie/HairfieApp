@@ -142,6 +142,7 @@ numberOfRowsInComponent:(NSInteger)component
         LBModelRepository *loginData = [[AppDelegate lbAdaptater] repositoryWithModelName:repoName];
         
         [loginData invokeStaticMethod:@"" parameters:@{@"firstName":_firstNameField.text, @"lastName":_lastNameField.text, @"email": _emailField.text, @"password" : _passwordField.text, @"newsletter":newsletter, @"gender":gender} success:loadSuccessBlock failure:loadErrorBlock];
+        
     }
     else
     {

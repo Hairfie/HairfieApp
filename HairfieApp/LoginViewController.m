@@ -72,9 +72,8 @@
 -(IBAction)doLogin:(id)sender
 {
    
-    
     void (^loadErrorBlock)(NSError *) = ^(NSError *error) {
-        NSLog(@"Error on load %i", error.code);
+        NSLog(@"Error on load %zd", error.code);
         if (error.code == -1011) {
             UIAlertView *badLogin = [[UIAlertView alloc] initWithTitle:@"Login Failed" message:@"The password in incorrect" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
             [badLogin show];
@@ -153,23 +152,7 @@
     };
     
     void (^loadSuccessBlock)(NSDictionary *) = ^(NSDictionary *results) {
-        
-      //  NSDictionary *userData = [results objectForKey:@"user"];
-        
-        NSLog(@"Results Facebook %@", results);
-        
-        
-     /*
-        _delegate.currentUser.userToken = [results objectForKey:@"id"];
-        _delegate.currentUser.userId = [results objectForKey:@"userId"];
-        
-        _delegate.currentUser.name = [NSString stringWithFormat:@"%@ %@",[userData objectForKey:@"firstName"], [userData objectForKey:@"lastName"]];
-        _delegate.currentUser.imageLink = [userData objectForKey:@"picture"];
-        
-        // Access Token
-        */
-        
-        
+
         [AppDelegate lbAdaptater].accessToken = [results objectForKey:@"id"];
         
         [_delegate.credentialStore setAuthTokenAndUserId:[results objectForKey:@"id"] forUser:[results objectForKey:@"userId"]];

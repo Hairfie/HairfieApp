@@ -27,15 +27,12 @@
 
 - (void) getCurrentUser {
     
-    NSLog(@"Jviens la %@", [AppDelegate lbAdaptater].accessToken);
-    
     void (^loadErrorBlock)(NSError *) = ^(NSError *error){
         NSLog(@"Error on load %zd", error.code);
         
     };
     void (^loadSuccessBlock)(LBModel *) = ^(LBModel *user){
         
-        NSLog(@"User fetch LA : %@", user);
         email = user[@"email"];
         imageLink = user[@"picture"];
         name = [NSString stringWithFormat:@"%@ %@",user[@"firstName"], user[@"lastName"]];
