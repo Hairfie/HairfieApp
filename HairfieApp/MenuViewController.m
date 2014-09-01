@@ -178,37 +178,32 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
     }
     if (row == 6)
     {
-        [self logOut:self];
+        [self logOut];
     }
 }
 
 
--(IBAction)logOut:(id)sender
+-(void)logOut
 {
-    NSLog(@"token %@", [AppDelegate lbAdaptater].accessToken);
-    //NSLog(@"ALORS");
+    [appDelegate.credentialStore clearSavedCredentials];
     void (^loadErrorBlock)(NSError *) = ^(NSError *error){
-        //NSLog(@"Error on load %@", error.description);
+        NSLog(@"Error on load %@", error.description);
     };
     void (^loadSuccessBlock)(NSDictionary *) = ^(NSDictionary *results){
-        //NSLog(@"results %@", results);
-        [AppDelegate lbAdaptater].accessToken = nil;
-        CredentialStore *store = [[CredentialStore alloc] init];
-        [store clearSavedCredentials];
-    
+        NSLog(@"results %@", results);
+        
         [self.navigationController popToRootViewControllerAnimated:NO];
     };
     
     NSString *repoName = @"users";
-
-        
+   // NSLog(@"Token %@", [AppDelegate lbAdaptater].accessToken);
+    
     [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/users/logout" verb:@"POST"] forMethod:@"users.logout"];
     
     LBModelRepository *logOutData = [[AppDelegate lbAdaptater] repositoryWithModelName:repoName];
     [logOutData invokeStaticMethod:@"logout" parameters:@{} success:loadSuccessBlock failure:loadErrorBlock];
     
 }
-
 
 #pragma mark state preservation / restoration
 - (void)encodeRestorableStateWithCoder:(NSCoder *)coder {
