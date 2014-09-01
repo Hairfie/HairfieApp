@@ -11,7 +11,8 @@
 #import "HairfieApp-Swift.h"
 #import "Constants.h"
 #import "CredentialStore.h"
-
+#import "HomeViewController.h"
+#import "ECSlidingViewController.h"
 
 @interface AppDelegate ()
 
@@ -35,19 +36,11 @@ static LBRESTAdapter * _lbAdaptater = nil;
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
- 
     _manager = [[CLLocationManager alloc] init];
     _currentUser = [[User alloc] init];
-    //_keychainItem = [[KeychainItemWrapper alloc] initWithIdentifier:@"hairfieLogin" accessGroup:nil];
-  
     _credentialStore = [[CredentialStore alloc] init];
-    
-    NSLog(@"LOGIN STATUS : %d", [_credentialStore isLoggedIn]);
-    
-    
-    
+   
     return YES;
-
 }
 
 
