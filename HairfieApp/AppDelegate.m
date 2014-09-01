@@ -38,6 +38,8 @@ static LBRESTAdapter * _lbAdaptater = nil;
     _currentUser = [[User alloc] init];
     _keychainItem = [[KeychainItemWrapper alloc] initWithIdentifier:@"hairfieLogin" accessGroup:nil];
     
+    
+    
     return YES;
 
 }

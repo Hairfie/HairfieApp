@@ -8,7 +8,7 @@
 
 #import "LoginViewController.h"
 #import "User.h"
-#import "AppDelegate.h"
+#import "AppDelegate.h" 
 
 @interface LoginViewController ()
 
@@ -19,19 +19,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
    // if (![[_delegate.keychainItem objectForKey:(__bridge id)kSecValueData] isEqualToString:@""]);
  //       [self doLogin:self];
     
-    NSLog(@"Token Saved %@", [_delegate.keychainItem objectForKey:(__bridge id)kSecValueData]);
-    _noAccountButton.layer.borderColor = [UIColor whiteColor].CGColor;
+     _noAccountButton.layer.borderColor = [UIColor whiteColor].CGColor;
     _noAccountButton.layer.borderWidth = 0.5;
     _noAccountButton.backgroundColor = [UIColor clearColor];
     _noAccountButton.layer.cornerRadius = 5;
     _noAccountButton.layer.masksToBounds = YES;
     _delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     _dismiss = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissTextFields)];
-    
-    
     [self.view addGestureRecognizer:_dismiss];
     // Do any additional setup after loading the view.
 }
@@ -68,14 +66,11 @@
         if (error.code == -1011)
         {
             UIAlertView *badLogin = [[UIAlertView alloc] initWithTitle:@"Login Failed" message:@"The password in incorrect" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-            
             [badLogin show];
         }
         //[self performSegueWithIdentifier:@"loginSuccess" sender:self];
-        
     };
     void (^loadSuccessBlock)(NSDictionary *) = ^(NSDictionary *results){
-        NSLog(@"results %@", [results objectForKey:@"user"]);
         NSDictionary *userData = [results objectForKey:@"user"];
         _delegate.currentUser.userToken = [results objectForKey:@"id"];
         _delegate.currentUser.userId = [results objectForKey:@"userId"];
@@ -83,29 +78,22 @@
         _delegate.currentUser.imageLink = [userData objectForKey:@"picture"];
         [AppDelegate lbAdaptater].accessToken = [results objectForKey:@"id"];
         [_delegate.keychainItem setObject:[results objectForKey:@"id"] forKey:(__bridge id)kSecValueData];
-           NSLog(@"JAI CE TOKEN %@",  [AppDelegate lbAdaptater].accessToken);
-//        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-//        [defaults setObject:[results objectForKey:@"id"] forKey:@"userToken"];
-//        [defaults setObject:_emailField.text forKey:@"email"];
-        [self performSegueWithIdentifier:@"loginSuccess" sender:self];
+       [self performSegueWithIdentifier:@"loginSuccess" sender:self];
     };
     
     if ([self isValidEmail: _emailField.text])
     {
      NSString *repoName = @"users";
     [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/users/login?include=user" verb:@"POST"] forMethod:@"users.login"];
-    
     LBModelRepository *loginData = [[AppDelegate lbAdaptater] repositoryWithModelName:repoName];
     [loginData invokeStaticMethod:@"login" parameters:@{@"email": _emailField.text, @"password" : _passwordField.text} success:loadSuccessBlock failure:loadErrorBlock];
     }
     else
     {
         UIAlertView *badLogin = [[UIAlertView alloc] initWithTitle:@"Login Failed" message:@"The email/password in incorrect" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-        
         [badLogin show];
     }
 }
-
 
 -(BOOL) isValidEmail:(NSString *)checkString
 {
