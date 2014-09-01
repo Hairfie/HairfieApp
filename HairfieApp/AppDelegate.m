@@ -43,8 +43,8 @@ static LBRESTAdapter * _lbAdaptater = nil;
     _credentialStore = [[CredentialStore alloc] init];
     
     NSLog(@"LOGIN STATUS : %d", [_credentialStore isLoggedIn]);
-    
-    
+    NSLog(@"USER ID : %@", [_credentialStore userId]);
+
     
     return YES;
 

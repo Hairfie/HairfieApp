@@ -89,7 +89,9 @@
         
         [_delegate.keychainItem setObject:[results objectForKey:@"id"] forKey:(__bridge id)kSecValueData];
         
-        [_delegate.credentialStore setAuthToken:[results objectForKey:@"id"]];
+        //[_delegate.credentialStore setAuthToken:[results objectForKey:@"id"]];
+        [_delegate.credentialStore setAuthTokenAndUserId:[results objectForKey:@"id"] forUser:[results objectForKey:@"userId"]];
+
         [self performSegueWithIdentifier:@"loginSuccess" sender:self];
     };
     

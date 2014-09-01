@@ -11,6 +11,8 @@
 
 #define SERVICE_NAME @"Hairfie"
 #define AUTH_TOKEN_KEY @"auth_token"
+#define USER_ID_KEY @"user_id"
+
 
 @implementation CredentialStore
 
@@ -20,16 +22,28 @@
 
 - (void)clearSavedCredentials {
     [self setAuthToken:nil];
+    [self setAuthTokenAndUserId:nil forUser:nil];
 }
 
 - (NSString *)authToken {
     return [self secureValueForKey:AUTH_TOKEN_KEY];
 }
 
+- (NSString *)userId {
+    return [self secureValueForKey:USER_ID_KEY];
+}
+
 - (void)setAuthToken:(NSString *)authToken {
     [self setSecureValue:authToken forKey:AUTH_TOKEN_KEY];
     NSLog(@"Store token");
     [[NSNotificationCenter defaultCenter] postNotificationName:@"token-changed" object:self];
+}
+
+- (void)setAuthTokenAndUserId:(NSString *)authToken forUser:(NSString *)userId {
+    [self setSecureValue:authToken forKey:AUTH_TOKEN_KEY];
+    [self setSecureValue:userId forKey:USER_ID_KEY];
+    NSLog(@"Store and Id token");
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"token-user-changed" object:self];
 }
 
 - (void)setSecureValue:(NSString *)value forKey:(NSString *)key {
