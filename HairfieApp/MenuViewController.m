@@ -36,16 +36,11 @@
 {
     [super viewDidLoad];
 
-
     self.slidingViewController.topViewAnchoredGesture = ECSlidingViewControllerAnchoredGesturePanning | ECSlidingViewControllerAnchoredGestureTapping;
-    appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-   
-    NSLog(@"current username %@", appDelegate.currentUser.name);
-    _name.text = appDelegate.currentUser.name;
-    [self initProfilePicture];
     
-    // self.slidingViewController.shouldGroupAccessibilityChildren = YES;
-   // [self.view addGestureRecognizer:self.slidingViewController.panGesture];
+    appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+   [self initCurrentUser];
+    
     _menuTableView.backgroundColor = [UIColor clearColor];
     _menuTableView.opaque = NO;
     _menuTableView.backgroundView = nil;
@@ -53,7 +48,7 @@
     
     _profileView.backgroundColor = [UIColor clearColor];
    
-       _menuItems = [[NSArray alloc] init];
+    _menuItems = [[NSArray alloc] init];
     _menuItems = [NSArray arrayWithObjects: NSLocalizedString(@"Home", nil), NSLocalizedString(@"Favorites", nil),NSLocalizedString(@"Likes", nil), NSLocalizedString(@"Friends", nil),NSLocalizedString(@"Business", nil),NSLocalizedString(@"Settings", nil),NSLocalizedString(@"Logout", nil), nil];
     
     _menuPictos = [[NSMutableArray alloc] init];
@@ -68,11 +63,12 @@
 
 
 
--(void) initProfilePicture
+-(void) initCurrentUser
 {
     
+    _name.text = appDelegate.currentUser.name;
     
-    UIImageView *profilePicture = [[UIImageView alloc] initWithFrame:CGRectMake(60, 50, 50, 50)];
+    UIImageView *profilePicture = [[UIImageView alloc] initWithFrame:CGRectMake(30, 50, 50, 50)];
     profilePicture.layer.cornerRadius = profilePicture.frame.size.height / 2;
     profilePicture.clipsToBounds = YES;
     profilePicture.layer.borderWidth = 1.0f;
@@ -92,10 +88,10 @@
      }];
     
     [_profileView addSubview:profilePicture];
-    
-    
-
 }
+
+
+
 -(UIStatusBarStyle)preferredStatusBarStyle{
     return UIStatusBarStyleLightContent;
 }

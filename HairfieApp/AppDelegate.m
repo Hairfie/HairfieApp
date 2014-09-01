@@ -34,13 +34,14 @@ static LBRESTAdapter * _lbAdaptater = nil;
     return _lbAdaptater;
 }
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+   
+  //  _currentUser = [[User alloc] init];
+   
     _manager = [[CLLocationManager alloc] init];
-    _currentUser = [[User alloc] init];
     _credentialStore = [[CredentialStore alloc] init];
-
-
+    _currentUser = [[User alloc] init];
+    
     NSLog(@"LOGIN STATUS : %d", [_credentialStore isLoggedIn]);
     NSLog(@"USER ID : %@", [_credentialStore userId]);
 
