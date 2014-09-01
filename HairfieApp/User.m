@@ -14,7 +14,7 @@
 {
     AppDelegate *delegate;
 }
-@synthesize userId, userToken;
+@synthesize userId, userToken, email;
 
 - (id)init {
     self = [super init];
@@ -29,12 +29,16 @@
         NSLog(@"Error on load %ld", error.code);
         
     };
-    void (^loadSuccessBlock)(LBModel *) = ^(LBModel *model){
-        NSLog(@"model %@", model);
-        //NSDictionary *userData = [results objectForKey:@"user"];
+    void (^loadSuccessBlock)(LBModel *) = ^(LBModel *user){
         
-//        _delegate.currentUser.name = [NSString stringWithFormat:@"%@ %@",[userData objectForKey:@"firstName"], [userData objectForKey:@"lastName"] ];
-//        _delegate.currentUser.imageLink = [userData objectForKey:@"picture"];
+        self.email = user[@"email"];
+        self.imageLink = user[@"picture"];
+        self.name = [NSString stringWithFormat:@"%@ %@",user[@"firstName"], user[@"lastName"]];
+        
+        
+        NSLog(@"Current User : %@", user);
+        NSLog(@"Login with : %@", self.name);
+
         
     };
     

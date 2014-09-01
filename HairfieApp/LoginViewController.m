@@ -31,6 +31,7 @@
     if ([_delegate.credentialStore isLoggedIn])
     {
         [AppDelegate lbAdaptater].accessToken = [_delegate.credentialStore authToken];
+        [_delegate.currentUser getCurrentUser];
         
         [self performSegueWithIdentifier:@"loginSuccess" sender:self];
     }
@@ -86,14 +87,9 @@
         
         // Access Token
         
-<<<<<<< HEAD
         [AppDelegate lbAdaptater].accessToken = [results objectForKey:@"id"];
-        [_delegate.credentialStore setAuthToken:[results objectForKey:@"id"]];
-=======
-        //[_delegate.credentialStore setAuthToken:[results objectForKey:@"id"]];
         [_delegate.credentialStore setAuthTokenAndUserId:[results objectForKey:@"id"] forUser:[results objectForKey:@"userId"]];
 
->>>>>>> 1fbeadcaa2b92b7cb5aabca98b05361b3a8d42d6
         [self performSegueWithIdentifier:@"loginSuccess" sender:self];
     };
     
