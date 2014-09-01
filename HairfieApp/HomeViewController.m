@@ -27,6 +27,7 @@
     [super viewDidLoad];
     self.navigationItem.title = [NSString stringWithFormat:NSLocalizedString(@"Home", nil)];
      [_hairfieCollection registerNib:[UINib nibWithNibName:@"CustomCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"hairfieCell"];
+    
     [self.view addGestureRecognizer:self.slidingViewController.panGesture];
     
     

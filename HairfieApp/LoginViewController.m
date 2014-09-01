@@ -67,7 +67,7 @@
 -(IBAction)doLogin:(id)sender
 {
     void (^loadErrorBlock)(NSError *) = ^(NSError *error) {
-        NSLog(@"Error on load %ld", error.code);
+        NSLog(@"Error on load %d", error.code);
         if (error.code == -1011) {
             UIAlertView *badLogin = [[UIAlertView alloc] initWithTitle:@"Login Failed" message:@"The password in incorrect" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
             [badLogin show];

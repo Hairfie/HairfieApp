@@ -39,6 +39,8 @@
 
     self.slidingViewController.topViewAnchoredGesture = ECSlidingViewControllerAnchoredGesturePanning | ECSlidingViewControllerAnchoredGestureTapping;
     appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+   
+    NSLog(@"current username %@", appDelegate.currentUser.name);
     _name.text = appDelegate.currentUser.name;
     [self initProfilePicture];
     
