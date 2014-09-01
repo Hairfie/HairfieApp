@@ -13,6 +13,8 @@
 - (BOOL)isLoggedIn;
 - (void)clearSavedCredentials;
 - (NSString *)authToken;
+- (NSString *)userId;
 - (void)setAuthToken:(NSString *)authToken;
+- (void)setAuthTokenAndUserId:(NSString *)authToken forUser:(NSString *)userId;
 
 @end

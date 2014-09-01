@@ -39,7 +39,15 @@ static LBRESTAdapter * _lbAdaptater = nil;
     _manager = [[CLLocationManager alloc] init];
     _currentUser = [[User alloc] init];
     _credentialStore = [[CredentialStore alloc] init];
+<<<<<<< HEAD
    
+=======
+    
+    NSLog(@"LOGIN STATUS : %d", [_credentialStore isLoggedIn]);
+    NSLog(@"USER ID : %@", [_credentialStore userId]);
+
+    
+>>>>>>> 1fbeadcaa2b92b7cb5aabca98b05361b3a8d42d6
     return YES;
 }
 
