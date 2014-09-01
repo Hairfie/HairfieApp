@@ -39,7 +39,8 @@ static LBRESTAdapter * _lbAdaptater = nil;
     _manager = [[CLLocationManager alloc] init];
     _currentUser = [[User alloc] init];
     _credentialStore = [[CredentialStore alloc] init];
-    
+
+
     NSLog(@"LOGIN STATUS : %d", [_credentialStore isLoggedIn]);
     NSLog(@"USER ID : %@", [_credentialStore userId]);
 
@@ -74,7 +75,7 @@ static LBRESTAdapter * _lbAdaptater = nil;
                                                         object:self
                                                       userInfo:[NSDictionary dictionaryWithObject:_myLocation
                                                                                            forKey:@"newLocationResult"]];
-    
+
     [manager stopUpdatingLocation];
 }
 
