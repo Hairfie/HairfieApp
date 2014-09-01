@@ -15,5 +15,11 @@
 @property (nonatomic) NSString *name;
 @property (nonatomic) NSString *gender;
 @property (nonatomic) NSString *imageLink;
+@property (nonatomic) NSString *email;
+
+//@property (nonatomic) AppDelegate *delegate;
+
+
+- (void)getCurrentUser;
 
 @end
