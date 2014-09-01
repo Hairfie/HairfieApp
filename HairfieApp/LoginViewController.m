@@ -11,6 +11,8 @@
 #import "AppDelegate.h"
 #import "CredentialStore.h"
 #import "MenuViewController.h"
+#import <Social/Social.h>
+#import <Accounts/Accounts.h>
 
 @interface LoginViewController ()
 @end
@@ -69,8 +71,10 @@
 
 -(IBAction)doLogin:(id)sender
 {
+   
+    
     void (^loadErrorBlock)(NSError *) = ^(NSError *error) {
-        NSLog(@"Error on load %d", error.code);
+        NSLog(@"Error on load %i", error.code);
         if (error.code == -1011) {
             UIAlertView *badLogin = [[UIAlertView alloc] initWithTitle:@"Login Failed" message:@"The password in incorrect" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
             [badLogin show];
@@ -108,6 +112,83 @@
         [badLogin show];
     }
 }
+
+
+-(IBAction)getFacebookUserInfo:(id)sender
+{
+    ACAccountStore *account = [[ACAccountStore alloc] init];
+    ACAccountType *accountType = [account accountTypeWithAccountTypeIdentifier:
+                                  ACAccountTypeIdentifierFacebook];
+    
+    
+    NSDictionary *options = @{@"ACFacebookAppIdKey" : @"726709544031609",
+                              @"ACFacebookPermissionsKey" : @[@"email"]};
+    
+    [account requestAccessToAccountsWithType:accountType
+                                     options:options
+                                  completion:^(BOOL granted, NSError *error)
+    {
+        
+       
+        if (granted == YES)
+        {
+            NSLog(@"go to login ");
+            NSArray *accounts = [account accountsWithAccountType:accountType];
+            ACAccount *fbAccount = [[ACAccount alloc] init];
+            fbAccount = [accounts lastObject];
+            ACAccountCredential *fbCredential = [fbAccount credential];
+            NSString *fbAuthToken = [fbCredential oauthToken];
+            [self loginWithFbToken:fbAuthToken];
+        }
+    }];
+}
+
+
+-(void)loginWithFbToken:(NSString*)fbAuthToken
+{
+    LBRESTAdapter *fbLbAdaptater = [LBRESTAdapter adapterWithURL:[NSURL URLWithString:@"http://api.staging.hairfie.com/"]];
+    
+    void (^loadErrorBlock)(NSError *) = ^(NSError *error) {
+        NSLog(@"Error on load %@", error.description);
+    };
+    
+    void (^loadSuccessBlock)(NSDictionary *) = ^(NSDictionary *results) {
+        
+      //  NSDictionary *userData = [results objectForKey:@"user"];
+        
+        NSLog(@"Results Facebook %@", results);
+        
+        
+     /*
+        _delegate.currentUser.userToken = [results objectForKey:@"id"];
+        _delegate.currentUser.userId = [results objectForKey:@"userId"];
+        
+        _delegate.currentUser.name = [NSString stringWithFormat:@"%@ %@",[userData objectForKey:@"firstName"], [userData objectForKey:@"lastName"]];
+        _delegate.currentUser.imageLink = [userData objectForKey:@"picture"];
+        
+        // Access Token
+        */
+        
+        
+        [AppDelegate lbAdaptater].accessToken = [results objectForKey:@"id"];
+        
+        [_delegate.credentialStore setAuthTokenAndUserId:[results objectForKey:@"id"] forUser:[results objectForKey:@"userId"]];
+        [_delegate.currentUser getCurrentUser];
+        [self performSegueWithIdentifier:@"loginSuccess" sender:self];
+    };
+        NSString *repoName = @"auth/facebook/token";
+    
+    
+    
+        [[fbLbAdaptater contract] addItem:[SLRESTContractItem itemWithPattern:@"" verb:@"POST"] forMethod:@"facebook.login"];
+        
+        LBModelRepository *loginData = [fbLbAdaptater repositoryWithModelName:repoName];
+    
+        [loginData invokeStaticMethod:@"" parameters:@{@"access_token":fbAuthToken} success:loadSuccessBlock failure:loadErrorBlock];
+}
+
+
+
 
 -(BOOL) isValidEmail:(NSString *)checkString
 {

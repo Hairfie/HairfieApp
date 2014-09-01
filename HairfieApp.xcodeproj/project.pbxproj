@@ -31,6 +31,8 @@
 		B337B6F619A22B11003B0EA5 /* HairfieDetailCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B337B6F419A22B11003B0EA5 /* HairfieDetailCollectionReusableView.m */; };
 		B337B6FA19A25116003B0EA5 /* HorairesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B337B6F919A25116003B0EA5 /* HorairesViewController.m */; };
 		B337B6FD19A252B7003B0EA5 /* ReviewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B337B6FC19A252B7003B0EA5 /* ReviewsViewController.m */; };
+		B33DF76319B4A9A900B4877F /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B33DF76219B4A9A900B4877F /* Social.framework */; };
+		B33DF76519B4AA5900B4877F /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B33DF76419B4AA5900B4877F /* Accounts.framework */; };
 		B33E4C4319A48FE70024F5F7 /* HoraireTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B33E4C4119A48FE70024F5F7 /* HoraireTableViewCell.m */; };
 		B33E4C4419A48FE70024F5F7 /* HoraireTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B33E4C4219A48FE70024F5F7 /* HoraireTableViewCell.xib */; };
 		B33E4C4619A49E2E0024F5F7 /* add-comment-textfield.png in Resources */ = {isa = PBXBuildFile; fileRef = B33E4C4519A49E2E0024F5F7 /* add-comment-textfield.png */; };
@@ -239,6 +241,8 @@
 		B337B6F919A25116003B0EA5 /* HorairesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HorairesViewController.m; sourceTree = "<group>"; };
 		B337B6FB19A252B7003B0EA5 /* ReviewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewsViewController.h; sourceTree = "<group>"; };
 		B337B6FC19A252B7003B0EA5 /* ReviewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewsViewController.m; sourceTree = "<group>"; };
+		B33DF76219B4A9A900B4877F /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		B33DF76419B4AA5900B4877F /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		B33E4C4019A48FE70024F5F7 /* HoraireTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HoraireTableViewCell.h; sourceTree = "<group>"; };
 		B33E4C4119A48FE70024F5F7 /* HoraireTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HoraireTableViewCell.m; sourceTree = "<group>"; };
 		B33E4C4219A48FE70024F5F7 /* HoraireTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HoraireTableViewCell.xib; sourceTree = "<group>"; };
@@ -447,6 +451,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B33DF76519B4AA5900B4877F /* Accounts.framework in Frameworks */,
+				B33DF76319B4A9A900B4877F /* Social.framework in Frameworks */,
 				B39BA17A19AF52D100A48BD5 /* Security.framework in Frameworks */,
 				15ED728C199B9C6400453A74 /* ImageIO.framework in Frameworks */,
 				B3E4B46019A73C010036BAD8 /* LoopBack.framework in Frameworks */,
@@ -580,6 +586,8 @@
 		38C395959A7A499C87409BBF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B33DF76419B4AA5900B4877F /* Accounts.framework */,
+				B33DF76219B4A9A900B4877F /* Social.framework */,
 				B39BA17919AF52D100A48BD5 /* Security.framework */,
 				15ED728B199B9C6400453A74 /* ImageIO.framework */,
 				33C90A5A8A0E44DCA71D5A3A /* libPods-HairfieApp.a */,

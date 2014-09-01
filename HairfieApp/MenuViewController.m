@@ -39,7 +39,11 @@
     self.slidingViewController.topViewAnchoredGesture = ECSlidingViewControllerAnchoredGesturePanning | ECSlidingViewControllerAnchoredGestureTapping;
     
     appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-   [self initCurrentUser];
+   
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(currentUserChanged:) name:@"currentUser" object:nil];
+    
+    
+    [self initCurrentUser];
     
     _menuTableView.backgroundColor = [UIColor clearColor];
     _menuTableView.opaque = NO;
@@ -61,6 +65,11 @@
     [_menuPictos addObject:@"picto-logout.png"];
 }
 
+
+-(void)currentUserChanged:(NSNotification*)notification
+{
+    [self initCurrentUser];
+}
 
 
 -(void) initCurrentUser

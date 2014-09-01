@@ -27,32 +27,26 @@
 
 - (void) getCurrentUser {
     
-    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+    NSLog(@"Jviens la %@", [AppDelegate lbAdaptater].accessToken);
     
     void (^loadErrorBlock)(NSError *) = ^(NSError *error){
-        NSLog(@"Error on load %d", error.code);
-        dispatch_semaphore_signal(semaphore);
+        NSLog(@"Error on load %zd", error.code);
+        
     };
     void (^loadSuccessBlock)(LBModel *) = ^(LBModel *user){
         
+        NSLog(@"User fetch LA : %@", user);
         email = user[@"email"];
         imageLink = user[@"picture"];
         name = [NSString stringWithFormat:@"%@ %@",user[@"firstName"], user[@"lastName"]];
-        dispatch_semaphore_signal(semaphore);
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"currentUser" object:self];
     };
     
-    
-   
     LBModelRepository *userRepository = [[AppDelegate lbAdaptater] repositoryWithModelName:@"users"];
-
+    
     [userRepository findById:[delegate.credentialStore userId]
                       success:loadSuccessBlock
                       failure:loadErrorBlock];
-    
-    while (dispatch_semaphore_wait(semaphore, DISPATCH_TIME_NOW))
-    {
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:10]];
-    }
 }
 
 @end

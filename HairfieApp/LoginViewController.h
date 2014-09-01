@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
+#import <LoopBack/LoopBack.h>
 
 @interface LoginViewController : UIViewController <UINavigationControllerDelegate, UITextFieldDelegate>
 
