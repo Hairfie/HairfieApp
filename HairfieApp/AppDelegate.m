@@ -27,14 +27,8 @@
 static LBRESTAdapter * _lbAdaptater = nil;
 + (LBRESTAdapter *) lbAdaptater
 {
-    CredentialStore *store = [[CredentialStore alloc] init];
-    NSString *authToken = [store authToken];
-    
     if ( !_lbAdaptater) {
         _lbAdaptater = [LBRESTAdapter adapterWithURL:[NSURL URLWithString:API_URL]];
-        if(authToken) {
-            _lbAdaptater.accessToken = authToken;
-        }
     }
     return _lbAdaptater;
 }
@@ -44,9 +38,13 @@ static LBRESTAdapter * _lbAdaptater = nil;
  
     _manager = [[CLLocationManager alloc] init];
     _currentUser = [[User alloc] init];
-    _keychainItem = [[KeychainItemWrapper alloc] initWithIdentifier:@"hairfieLogin" accessGroup:nil];
+    //_keychainItem = [[KeychainItemWrapper alloc] initWithIdentifier:@"hairfieLogin" accessGroup:nil];
+  
     _credentialStore = [[CredentialStore alloc] init];
+    
     NSLog(@"LOGIN STATUS : %d", [_credentialStore isLoggedIn]);
+    
+    
     
     return YES;
 

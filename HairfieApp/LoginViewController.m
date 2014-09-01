@@ -22,7 +22,6 @@
    // if (![[_delegate.keychainItem objectForKey:(__bridge id)kSecValueData] isEqualToString:@""]);
  //       [self doLogin:self];
     
-    NSLog(@"Token Saved %@", [_delegate.keychainItem objectForKey:(__bridge id)kSecValueData]);
     _noAccountButton.layer.borderColor = [UIColor whiteColor].CGColor;
     _noAccountButton.layer.borderWidth = 0.5;
     _noAccountButton.backgroundColor = [UIColor clearColor];
@@ -77,22 +76,20 @@
     void (^loadSuccessBlock)(NSDictionary *) = ^(NSDictionary *results){
         NSLog(@"results %@", [results objectForKey:@"user"]);
         NSDictionary *userData = [results objectForKey:@"user"];
-        _delegate.currentUser.userToken = [results objectForKey:@"id"];
-        _delegate.currentUser.userId = [results objectForKey:@"userId"];
+        
+        //_delegate.currentUser.userToken = [results objectForKey:@"id"];
+        //_delegate.currentUser.userId = [results objectForKey:@"userId"];
+      
+        
         _delegate.currentUser.name = [NSString stringWithFormat:@"%@ %@",[userData objectForKey:@"firstName"], [userData objectForKey:@"lastName"] ];
         _delegate.currentUser.imageLink = [userData objectForKey:@"picture"];
+        
+        //access token old
         [AppDelegate lbAdaptater].accessToken = [results objectForKey:@"id"];
+        
         [_delegate.keychainItem setObject:[results objectForKey:@"id"] forKey:(__bridge id)kSecValueData];
-           NSLog(@"JAI CE TOKEN %@",  [AppDelegate lbAdaptater].accessToken);
-//        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-//        [defaults setObject:[results objectForKey:@"id"] forKey:@"userToken"];
-//        [defaults setObject:_emailField.text forKey:@"email"];
         
-        NSString *authToken = [AppDelegate lbAdaptater].accessToken;
-        [AppDelegate _credentialStore];
-        
-        [self.credentialStore setAuthToken:authToken];
-        
+        [_delegate.credentialStore setAuthToken:[results objectForKey:@"id"]];
         [self performSegueWithIdentifier:@"loginSuccess" sender:self];
     };
     

@@ -22,6 +22,7 @@
 @property (nonatomic) CredentialStore *credentialStore;
 + ( LBRESTAdapter *) lbAdaptater;
 @property (nonatomic) KeychainItemWrapper *keychainItem;
+
 -(void)startTrackingLocation:(BOOL)forceLocation;
 
 @end
