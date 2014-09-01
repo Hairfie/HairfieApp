@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
+#import "User.h"
 
 @interface MenuViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
@@ -17,7 +18,9 @@
 @property (nonatomic, strong) NSArray *menuItems;
 @property (nonatomic, strong) NSMutableArray *menuPictos;
 @property (nonatomic) IBOutlet UILabel *name;
+@property (nonatomic) User *currentUser;
 
 - (IBAction)unwindToMenuViewController:(UIStoryboardSegue *)segue;
+-(void) initCurrentUser;
 
 @end

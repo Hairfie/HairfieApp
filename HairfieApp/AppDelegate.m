@@ -10,7 +10,9 @@
 #import "MenuViewController.h"
 #import "HairfieApp-Swift.h"
 #import "Constants.h"
-
+#import "CredentialStore.h"
+#import "HomeViewController.h"
+#import "ECSlidingViewController.h"
 
 @interface AppDelegate ()
 
@@ -18,7 +20,7 @@
 
 @implementation AppDelegate
 
-@synthesize manager = _manager, myLocation = _myLocation;
+@synthesize manager = _manager, myLocation = _myLocation, credentialStore = _credentialStore;
 
 
 
@@ -26,22 +28,25 @@
 static LBRESTAdapter * _lbAdaptater = nil;
 + (LBRESTAdapter *) lbAdaptater
 {
-    if ( !_lbAdaptater)
+    if ( !_lbAdaptater) {
         _lbAdaptater = [LBRESTAdapter adapterWithURL:[NSURL URLWithString:API_URL]];
+    }
     return _lbAdaptater;
 }
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
- 
+   
+  //  _currentUser = [[User alloc] init];
+   
     _manager = [[CLLocationManager alloc] init];
+    _credentialStore = [[CredentialStore alloc] init];
     _currentUser = [[User alloc] init];
-    _keychainItem = [[KeychainItemWrapper alloc] initWithIdentifier:@"hairfieLogin" accessGroup:nil];
     
-    
-    
-    return YES;
 
+    NSLog(@"LOGIN STATUS : %d", [_credentialStore isLoggedIn]);
+    NSLog(@"USER ID : %@", [_credentialStore userId]);
+
+    return YES;
 }
 
 
@@ -72,11 +77,9 @@ static LBRESTAdapter * _lbAdaptater = nil;
                                                         object:self
                                                       userInfo:[NSDictionary dictionaryWithObject:_myLocation
                                                                                            forKey:@"newLocationResult"]];
-    
+
     [manager stopUpdatingLocation];
 }
-
-
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

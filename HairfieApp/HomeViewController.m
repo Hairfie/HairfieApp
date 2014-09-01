@@ -10,6 +10,7 @@
 #import "CustomCollectionViewCell.h"
 #import "UIViewController+ECSlidingViewController.h"
 
+
 @interface HomeViewController ()
 
 @end
@@ -29,6 +30,10 @@
      [_hairfieCollection registerNib:[UINib nibWithNibName:@"CustomCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"hairfieCell"];
     [self.view addGestureRecognizer:self.slidingViewController.panGesture];
     
+    
+    
+    //self.view.translatesAutoresizingMaskIntoConstraints = NO;
+    //[self.view.translatesAutoresizingMaskIntoConstraints]
     
     // Do any additional setup after loading the view.
 }

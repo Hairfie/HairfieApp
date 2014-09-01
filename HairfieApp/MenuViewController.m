@@ -15,6 +15,7 @@
 #import <LoopBack/LoopBack.h>
 #import "Constants.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "CredentialStore.h"
 
 
 
@@ -35,14 +36,11 @@
 {
     [super viewDidLoad];
 
-
     self.slidingViewController.topViewAnchoredGesture = ECSlidingViewControllerAnchoredGesturePanning | ECSlidingViewControllerAnchoredGestureTapping;
-    appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    _name.text = appDelegate.currentUser.name;
-    [self initProfilePicture];
     
-    // self.slidingViewController.shouldGroupAccessibilityChildren = YES;
-   // [self.view addGestureRecognizer:self.slidingViewController.panGesture];
+    appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+   [self initCurrentUser];
+    
     _menuTableView.backgroundColor = [UIColor clearColor];
     _menuTableView.opaque = NO;
     _menuTableView.backgroundView = nil;
@@ -50,7 +48,7 @@
     
     _profileView.backgroundColor = [UIColor clearColor];
    
-       _menuItems = [[NSArray alloc] init];
+    _menuItems = [[NSArray alloc] init];
     _menuItems = [NSArray arrayWithObjects: NSLocalizedString(@"Home", nil), NSLocalizedString(@"Favorites", nil),NSLocalizedString(@"Likes", nil), NSLocalizedString(@"Friends", nil),NSLocalizedString(@"Business", nil),NSLocalizedString(@"Settings", nil),NSLocalizedString(@"Logout", nil), nil];
     
     _menuPictos = [[NSMutableArray alloc] init];
@@ -65,11 +63,12 @@
 
 
 
--(void) initProfilePicture
+-(void) initCurrentUser
 {
     
+    _name.text = appDelegate.currentUser.name;
     
-    UIImageView *profilePicture = [[UIImageView alloc] initWithFrame:CGRectMake(60, 50, 50, 50)];
+    UIImageView *profilePicture = [[UIImageView alloc] initWithFrame:CGRectMake(30, 50, 50, 50)];
     profilePicture.layer.cornerRadius = profilePicture.frame.size.height / 2;
     profilePicture.clipsToBounds = YES;
     profilePicture.layer.borderWidth = 1.0f;
@@ -89,10 +88,10 @@
      }];
     
     [_profileView addSubview:profilePicture];
-    
-    
-
 }
+
+
+
 -(UIStatusBarStyle)preferredStatusBarStyle{
     return UIStatusBarStyleLightContent;
 }
@@ -177,34 +176,32 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
     }
     if (row == 6)
     {
-        [self logOut:self];
+        [self logOut];
     }
 }
 
 
--(IBAction)logOut:(id)sender
+-(void)logOut
 {
-    NSLog(@"token %@", [AppDelegate lbAdaptater].accessToken);
-    //NSLog(@"ALORS");
+    [appDelegate.credentialStore clearSavedCredentials];
     void (^loadErrorBlock)(NSError *) = ^(NSError *error){
-        //NSLog(@"Error on load %@", error.description);
+        NSLog(@"Error on load %@", error.description);
     };
     void (^loadSuccessBlock)(NSDictionary *) = ^(NSDictionary *results){
-        //NSLog(@"results %@", results);
-        [AppDelegate lbAdaptater].accessToken = nil;
+        NSLog(@"results %@", results);
+        
         [self.navigationController popToRootViewControllerAnimated:NO];
     };
     
     NSString *repoName = @"users";
-
-        
+   // NSLog(@"Token %@", [AppDelegate lbAdaptater].accessToken);
+    
     [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/users/logout" verb:@"POST"] forMethod:@"users.logout"];
     
     LBModelRepository *logOutData = [[AppDelegate lbAdaptater] repositoryWithModelName:repoName];
     [logOutData invokeStaticMethod:@"logout" parameters:@{} success:loadSuccessBlock failure:loadErrorBlock];
     
 }
-
 
 #pragma mark state preservation / restoration
 - (void)encodeRestorableStateWithCoder:(NSCoder *)coder {
