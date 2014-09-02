@@ -7,8 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <LoopBack/LoopBack.h>
 
-@interface User : NSObject
+
+@interface User : LBModel
 
 @property (nonatomic) NSString *userToken;
 @property (nonatomic) NSString *userId;
@@ -16,10 +18,5 @@
 @property (nonatomic) NSString *gender;
 @property (nonatomic) NSString *imageLink;
 @property (nonatomic) NSString *email;
-
-//@property (nonatomic) AppDelegate *delegate;
-
-
-- (void)getCurrentUser;
 
 @end

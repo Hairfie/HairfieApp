@@ -8,6 +8,7 @@
 
 #import "LoginViewController.h"
 #import "User.h"
+#import "UserAuthenticator.h"
 #import "AppDelegate.h"
 #import "CredentialStore.h"
 #import "MenuViewController.h"
@@ -32,8 +33,8 @@
     if ([_delegate.credentialStore isLoggedIn])
     {
          [AppDelegate lbAdaptater].accessToken = [_delegate.credentialStore authToken];
-       
-        [_delegate.currentUser getCurrentUser];
+        UserAuthenticator *auth = [[UserAuthenticator alloc] init];
+        _delegate.currentUser = auth.getCurrentUser;
         
         [self performSegueWithIdentifier:@"loginSuccess" sender:self];
     }
