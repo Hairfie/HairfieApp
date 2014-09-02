@@ -9,10 +9,14 @@
 #import "HomeViewController.h"
 #import "CustomCollectionViewCell.h"
 #import "UIViewController+ECSlidingViewController.h"
+#import "AroundMeViewController.h"
+#import "AdvanceSearch.h"
 
 
 @interface HomeViewController ()
-
+{
+    AdvanceSearch *searchView;
+}
 @end
 
 
@@ -29,13 +33,32 @@
     self.navigationItem.title = [NSString stringWithFormat:NSLocalizedString(@"Home", nil)];
      [_hairfieCollection registerNib:[UINib nibWithNibName:@"CustomCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"hairfieCell"];
     [self.view addGestureRecognizer:self.slidingViewController.panGesture];
-    
-    
-    
+     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willSearch:) name:@"searchQuery" object:nil];
+    _searchView.hidden = YES;
+    [_searchView initView];
+ 
     //self.view.translatesAutoresizingMaskIntoConstraints = NO;
     //[self.view.translatesAutoresizingMaskIntoConstraints]
     
     // Do any additional setup after loading the view.
+}
+
+-(void)willSearch:(NSNotification*)notification
+{
+    [self performSegueWithIdentifier:@"searchFromFeed" sender:self];
+    NSLog(@"cool %@, %@", _searchView.searchByName.text, _searchView.searchByLocation.text);
+}
+
+-(void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    //_advancedSearchView.hidden = NO;
+   
+    _searchView.hidden = NO;
+    if ([_searchView.searchByLocation.text isEqualToString:@"Around Me"])
+        [_searchView.searchAroundMeImage setTintColor:[UIColor lightBlueHairfie]];
+    [_searchView.searchByName performSelector:@selector(becomeFirstResponder) withObject:nil afterDelay:0.0];
+
+    [textField resignFirstResponder];
 }
 
 
@@ -269,6 +292,13 @@
         UIImagePickerController *pickerController = [segue destinationViewController];
         pickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
         pickerController.delegate = self;
+    }
+    if ([segue.identifier isEqualToString:@"searchFromFeed"])
+    {
+        AroundMeViewController *aroundMe = [segue destinationViewController];
+        aroundMe.searchInProgressFromSegue = _searchView.searchRequest;
+        aroundMe.gpsStringFromSegue = _searchView.gpsString;
+        aroundMe.locationFromSegue = _searchView.locationSearch;
     }
 }
 

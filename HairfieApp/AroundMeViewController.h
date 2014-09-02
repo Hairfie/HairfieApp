@@ -32,7 +32,18 @@
 @property (nonatomic) IBOutlet UIView *headerView;
 @property (nonatomic) IBOutlet UIView *searchHeaderView;
 
-@property (nonatomic) IBOutlet UILabel *searchDesc;
+@property (nonatomic, strong) IBOutlet UILabel *searchDesc;
+
+
+// Data from Segue
+
+@property (nonatomic,strong) NSString *searchInProgressFromSegue;
+@property (nonatomic,strong) NSString *gpsStringFromSegue;
+@property (nonatomic, strong) CLLocation *locationFromSegue;
+
+
+
+
 
 // Search Active
 

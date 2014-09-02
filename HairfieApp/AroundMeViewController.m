@@ -43,10 +43,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     _delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+   
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(updatedLocation:)
                                                  name:@"newLocationNotif"
                                                object:nil];
+
+    NSLog(@"search for %@ with gps %@", _searchInProgressFromSegue, _gpsStringFromSegue);
+    
+    _searchInProgress.text = _searchInProgressFromSegue;
+    _searchDesc.text = _searchInProgressFromSegue;
+    
     _isSearching = YES;
      _hairdresserTableView.hidden = YES;
     _searchHeaderView.hidden = YES;
@@ -125,24 +132,17 @@
     _searchInProgress.text = searchQuery;
     NSString *queryLocation = _searchByLocation.text;
      _isSearching = YES;
-    UIView *headerSearch = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
-    UILabel *searchLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 310, 30)];
-    searchLabel.font = [UIFont fontWithName:@"SourceSansPro-Light" size:16];
-    searchLabel.textColor = [UIColor colorWithRed:109/255.0f green:118/255.0f blue:131/255.0f alpha:1];
 
-    searchLabel.text = searchQuery;
-    [headerSearch addSubview:searchLabel];
 
-    if ([_searchByLocation.text isEqualToString:@"Around Me"])
+    if (![_searchByLocation.text isEqualToString:@"Around Me"])
     {
-        _hairdresserTableView.tableHeaderView = _headerView;
-       if (![_searchByName.text isEqualToString:@""])
-        _searchDesc.text = [NSString stringWithFormat:@"%@ À COTÉ DE VOUS", [_searchByName.text uppercaseString]];
-        else
-            _searchDesc.text = @"COIFFEURS À COTÉ DE VOUS";
+        [_hairdresserTableView setContentOffset:CGPointMake(0, 136)];
     }
-    else
-        _hairdresserTableView.tableHeaderView = headerSearch;
+        if (![_searchByName.text isEqualToString:@""] && [_searchByLocation.text isEqualToString:@"Around Me"])
+            _searchDesc.text = [NSString stringWithFormat:@"%@ À COTÉ DE VOUS", [_searchByName.text uppercaseString]];
+        else
+            _searchDesc.text = searchQuery;
+
     [self geocodeAddress:queryLocation];
     [self cancelSearch:self];
 }
@@ -154,7 +154,6 @@
     } else {
        searchQuery = [NSString stringWithFormat:@"\"%@\" à côté de \"%@\"", _searchByName.text, _searchByLocation.text];
     }
-
 
     return searchQuery;
 }
@@ -219,12 +218,30 @@
     return UIStatusBarStyleLightContent;
 }
 
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    NSLog(@"scroll %f", scrollView.contentOffset.y);
+}
+
+
 -(void) updatedLocation:(NSNotification*)notif {
+   
+  
+    if (_gpsStringFromSegue != nil)
+    {
+        NSLog(@"location lat %f // long %f", _locationFromSegue.coordinate.latitude,_locationFromSegue.coordinate.longitude);
+        [self initMapWithSalons:_locationFromSegue];
+        [_hairdresserTableView setContentOffset:CGPointMake(0, 136)];
+       // [_hairdresserTableView scrollRectToVisible:CGRectMake(0, 136, _hairdresserTableView.frame.size.width, _hairdresserTableView.frame.size.height) animated:NO];
+    }
+    else
+    {
+        NSLog(@"fasfkdskfadskfdk");
     _myLocation = (CLLocation*)[[notif userInfo] valueForKey:@"newLocationResult"];
     gpsString = [NSString stringWithFormat:@"%f,%f", _myLocation.coordinate.longitude, _myLocation.coordinate.latitude];
-
+   
     [self initMapWithSalons:nil];
-
+     }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -260,7 +277,10 @@
         region = MKCoordinateRegionMakeWithDistance (customLocation.coordinate, 1000, 1000);
 
     }
-     [self getSalons:gpsString];
+    if (_gpsStringFromSegue != nil)
+        [self getSalons:_gpsStringFromSegue];
+    else
+        [self getSalons:gpsString];
     [_mapView setRegion:region animated:NO];
 
 }
@@ -318,9 +338,7 @@
         [spinner stopAnimating];
         _isSearching = NO;
     };
-
-
-
+    
     if (_isSearching == YES)
     {
         _hairdresserTableView.hidden = YES;
