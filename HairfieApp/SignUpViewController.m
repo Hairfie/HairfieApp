@@ -116,8 +116,10 @@ numberOfRowsInComponent:(NSInteger)component
         
         NSLog(@"results %@", results);
         userData = results;
-        delegate.currentUser.name = [NSString stringWithFormat:@"%@ %@", [results objectForKey:@"firstName"], [results objectForKey:@"lastName"]];
-        delegate.currentUser.imageLink = [results objectForKey:@"picture"];
+        delegate.currentUser.firstName = [results objectForKey:@"firstName"];
+        delegate.currentUser.lastName = [results objectForKey:@"firstName"];
+
+        delegate.currentUser.picture = [results objectForKey:@"picture"];
         
         [self performSegueWithIdentifier:@"createAccount" sender:self];
     };
@@ -142,6 +144,7 @@ numberOfRowsInComponent:(NSInteger)component
         LBModelRepository *loginData = [[AppDelegate lbAdaptater] repositoryWithModelName:repoName];
         
         [loginData invokeStaticMethod:@"" parameters:@{@"firstName":_firstNameField.text, @"lastName":_lastNameField.text, @"email": _emailField.text, @"password" : _passwordField.text, @"newsletter":newsletter, @"gender":gender} success:loadSuccessBlock failure:loadErrorBlock];
+        
     }
     else
     {

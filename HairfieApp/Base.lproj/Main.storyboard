@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6205" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="dEN-gt-xJT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6206.8" systemVersion="14A329r" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="dEN-gt-xJT">
     <dependencies>
-        <deployment defaultVersion="1808" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6198"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7026.1"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="SourceSansPro-Bold.ttf">
@@ -52,8 +51,12 @@
             <string>SourceSansPro-Light</string>
             <string>SourceSansPro-Light</string>
             <string>SourceSansPro-Light</string>
+            <string>SourceSansPro-Light</string>
         </mutableArray>
         <mutableArray key="SourceSansPro-Regular.ttf">
+            <string>SourceSansPro-Regular</string>
+            <string>SourceSansPro-Regular</string>
+            <string>SourceSansPro-Regular</string>
             <string>SourceSansPro-Regular</string>
             <string>SourceSansPro-Regular</string>
             <string>SourceSansPro-Regular</string>
@@ -362,13 +365,13 @@
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="gdjuvigny@gmail.com" minimumFontSize="13" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="PDP-6X-E2p">
                                         <rect key="frame" x="135" y="129" width="154" height="30"/>
                                         <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="15"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next"/>
                                         <connections>
                                             <outlet property="delegate" destination="GUZ-sY-RBq" id="hm6-yt-fkt"/>
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="blabla" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="WbU-U2-e0D">
-                                        <rect key="frame" x="135" y="175" width="154" height="30"/>
+                                        <rect key="frame" x="135" y="174" width="84" height="30"/>
                                         <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="15"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="go" secureTextEntry="YES"/>
                                         <connections>
@@ -384,6 +387,9 @@
                                         <state key="normal" image="facebook-connect.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="getFacebookUserInfo:" destination="GUZ-sY-RBq" eventType="touchUpInside" id="YLZ-nd-cCv"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Connexion avec Facebook" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qDF-ta-QyE">
                                         <rect key="frame" x="77" y="267" width="221" height="21"/>
@@ -404,6 +410,17 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zCD-fq-GEc">
+                                        <rect key="frame" x="248" y="174" width="50" height="30"/>
+                                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="14"/>
+                                        <state key="normal" title="oublié?">
+                                            <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="bJ2-VN-StI" kind="push" id="9ZP-dx-PpS"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a4A-y1-G4L">
@@ -443,6 +460,79 @@ Inscivez-vous maintenant</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UBT-PJ-Rh2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1176" y="-32"/>
+        </scene>
+        <!--Forgotten Password View Controller-->
+        <scene sceneID="3Mt-9G-xbV">
+            <objects>
+                <viewController id="bJ2-VN-StI" customClass="ForgottenPasswordViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Wks-a1-pNo"/>
+                        <viewControllerLayoutGuide type="bottom" id="8NB-z8-CdT"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Pgl-1P-fOa">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nsi-yt-tDT" userLabel="Top Bar View">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y0h-cy-9hV" userLabel="Go Back">
+                                        <rect key="frame" x="10" y="30" width="20" height="20"/>
+                                        <state key="normal" image="arrow-nav.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="goBack:" destination="bJ2-VN-StI" eventType="touchUpInside" id="xVi-bW-8na"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Forgotten password" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4rD-c0-czG">
+                                        <rect key="frame" x="92" y="27" width="151" height="23"/>
+                                        <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="18"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.15686274510000001" green="0.19215686269999999" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lVy-V0-7lZ">
+                                <rect key="frame" x="16" y="175" width="288" height="30"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.67450980390000004" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="15"/>
+                                <state key="normal" title="Reset password">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="getNewPassword:" destination="bJ2-VN-StI" eventType="touchUpInside" id="iDo-c5-bxt"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Enter your email below :" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6bA-hO-AiP">
+                                <rect key="frame" x="16" y="93" width="185" height="21"/>
+                                <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="17"/>
+                                <color key="textColor" red="0.1960784314" green="0.26274509800000001" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="name@domain.com" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qMT-1t-qtT">
+                                <rect key="frame" x="16" y="122" width="288" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="send"/>
+                                <connections>
+                                    <outlet property="delegate" destination="bJ2-VN-StI" id="0tp-06-8pz"/>
+                                </connections>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="QLj-ii-XPb"/>
+                    <connections>
+                        <outlet property="emailField" destination="qMT-1t-qtT" id="am2-os-hxg"/>
+                        <outlet property="sendButton" destination="lVy-V0-7lZ" id="dW1-BS-Brf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="izH-oc-pb7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-822" y="-478"/>
         </scene>
         <!--Sliding View Controller-->
         <scene sceneID="CtK-M5-Pj8">
@@ -511,7 +601,7 @@ Inscivez-vous maintenant</string>
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Réserve le meilleur coiffeur près de chez toi !" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="200" translatesAutoresizingMaskIntoConstraints="NO" id="YLi-t7-pTs">
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Réserve le meilleur coiffeur près de chez toi !" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="200" translatesAutoresizingMaskIntoConstraints="NO" id="YLi-t7-pTs">
                                             <rect key="frame" x="60" y="21" width="200" height="42"/>
                                             <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="18"/>
                                             <color key="textColor" red="0.15686274509803921" green="0.19215686274509802" blue="0.22352941176470587" alpha="1" colorSpace="calibratedRGB"/>
@@ -2568,8 +2658,8 @@ connaissance et accepte les CGU de Hairfie</string>
         </simulatedScreenMetrics>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="H0a-7y-EaD"/>
         <segue reference="DYR-eo-mJz"/>
         <segue reference="sgS-Io-6JC"/>
-        <segue reference="H0a-7y-EaD"/>
     </inferredMetricsTieBreakers>
 </document>

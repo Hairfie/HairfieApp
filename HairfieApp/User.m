@@ -13,7 +13,10 @@
 
 @implementation User
 
-@synthesize userId, userToken, email, name, imageLink;
+@synthesize userId, userToken, email, firstName, lastName, picture;
 
+-(NSString *)name {
+    return [NSString stringWithFormat:@"%@ %@", firstName, lastName];
+}
 
 @end

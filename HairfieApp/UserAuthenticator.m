@@ -25,35 +25,27 @@
     return self;
 }
 
-- (User *) getCurrentUser {
+- (void) getCurrentUser {
     
     UserRepository *userRepository = (UserRepository *)[[AppDelegate lbAdaptater] repositoryWithClass:[UserRepository class]];
     __block User *user;
     
-    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
-    
     void (^loadErrorBlock)(NSError *) = ^(NSError *error){
-        NSLog(@"Error on load %d", error.code);
-        dispatch_semaphore_signal(semaphore);
+        NSLog(@"Error on load %@", error.description);
     };
     void (^loadSuccessBlock)(LBModel *) = ^(LBModel *model){
-        user = (User *)model;
+        user = model;
+        delegate.currentUser = user;
         NSLog(@"User : %@", user);
-        dispatch_semaphore_signal(semaphore);
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"currentUser" object:self];
     };
     
+    NSString *userId = [delegate.credentialStore userId];
     
-    
-    [userRepository findById:[delegate.credentialStore userId]
+    [userRepository findById:userId
                      success:loadSuccessBlock
                      failure:loadErrorBlock];
     
-    while (dispatch_semaphore_wait(semaphore, DISPATCH_TIME_NOW))
-    {
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:10]];
-    }
-    
-    return user;
 }
 
 @end

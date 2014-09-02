@@ -39,7 +39,11 @@
     self.slidingViewController.topViewAnchoredGesture = ECSlidingViewControllerAnchoredGesturePanning | ECSlidingViewControllerAnchoredGestureTapping;
     
     appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-   [self initCurrentUser];
+   
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(currentUserChanged:) name:@"currentUser" object:nil];
+    
+    
+    [self initCurrentUser];
     
     _menuTableView.backgroundColor = [UIColor clearColor];
     _menuTableView.opaque = NO;
@@ -62,6 +66,11 @@
 }
 
 
+-(void)currentUserChanged:(NSNotification*)notification
+{
+    [self initCurrentUser];
+}
+
 
 -(void) initCurrentUser
 {
@@ -75,7 +84,7 @@
     profilePicture.layer.borderColor = [UIColor whiteColor].CGColor;
     
     
-    [SDWebImageDownloader.sharedDownloader downloadImageWithURL:[NSURL URLWithString:appDelegate.currentUser.imageLink]
+    [SDWebImageDownloader.sharedDownloader downloadImageWithURL:[NSURL URLWithString:appDelegate.currentUser.picture]
                                                         options:0
                                                        progress:^(NSInteger receivedSize, NSInteger expectedSize) { }
                                                       completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished)

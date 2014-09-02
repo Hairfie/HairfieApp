@@ -11,6 +11,6 @@
 
 @interface UserAuthenticator : NSObject
 
-- (User *) getCurrentUser;
+- (void) getCurrentUser;
 
 @end
