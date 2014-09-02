@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ForgottenPasswordViewController : UIViewController <UINavigationControllerDelegate, UITextFieldDelegate>
+@interface ForgottenPasswordViewController : UIViewController <UINavigationControllerDelegate, UITextFieldDelegate, UIAlertViewDelegate>
 
 @property (nonatomic) IBOutlet UIButton *sendButton;
 @property (nonatomic) IBOutlet UITextField *emailField;
