@@ -7,10 +7,12 @@
 //
 
 #import "ForgottenPasswordViewController.h"
+#import "AppDelegate.h"
 
 @interface ForgottenPasswordViewController ()
 {
     UIActivityIndicatorView *spinner;
+    AppDelegate *delegate;
 }
 @end
 
@@ -61,10 +63,35 @@
 {
     NSString *emailToRecover = emailField.text;
     NSLog(@"Gimme pw of %@", emailToRecover);
+    
+    void (^loadErrorBlock)(NSError *) = ^(NSError *error){
+        NSLog(@"Error : %@", error.description);
+        [spinner stopAnimating];
+        UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Sorry, try again later !" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        [errorAlert show];
+
+    };
+    void (^loadSuccessBlock)(NSDictionary *) = ^(NSDictionary *results){
+        
+        NSLog(@"results %@", results);
+        [spinner stopAnimating];
+        UIAlertView *successAlert = [[UIAlertView alloc] initWithTitle:@"Success" message:@"Go check your emails !" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        successAlert.delegate = self;
+        [successAlert show];
+    };
+    
+    [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/users/reset" verb:@"POST"] forMethod:@"reset"];
+    LBModelRepository *users = [[AppDelegate lbAdaptater] repositoryWithModelName:@"users"];
+    
+    [users invokeStaticMethod:@"reset" parameters:@{@"email":emailToRecover} success:loadSuccessBlock failure:loadErrorBlock];
    
     // spinner doesnt stop no back-end, stops when editing field
     [spinner startAnimating];
 
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+     [self.navigationController popViewControllerAnimated:YES];
 }
 
 /*
