@@ -43,188 +43,111 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     _delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+   
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(updatedLocation:)
                                                  name:@"newLocationNotif"
                                                object:nil];
+
+   
+    
+   // _searchInProgress.text = _searchInProgressFromSegue;
+   // _searchDesc.text = _searchInProgressFromSegue;
+    
     _isSearching = YES;
      _hairdresserTableView.hidden = YES;
-    _searchHeaderView.hidden = YES;
-     _searchByName.delegate = self;
+    [_searchView initView];
+    
+    if (_searchInProgressFromSegue == nil)
+    {
+        [_searchView.searchAroundMeImage setTintColor:[UIColor lightBlueHairfie]];
+        _searchView.searchByLocation.text = @"Around Me";
+    }
+    else
+    {
+        _searchView.searchByLocation.text = _queryLocationInProgressFromSegue;
+        _searchView.searchByName.text = _queryNameInProgressFromSegue;
+    }
+    
+    _searchView.hidden = YES;
     _hairdresserTableView.delegate = self;
     _hairdresserTableView.dataSource = self;
     _hairdresserTableView.backgroundColor = [UIColor clearColor];
-    _searchAroundMe.enabled = NO;
     _mapView.delegate = self;
     _mapView.showsUserLocation = YES;
     _hairdresserTableView.tableHeaderView = _headerView;
     [_hairdresserTableView setSeparatorInset:UIEdgeInsetsZero];
-    _searchBttn.layer.cornerRadius = 5;
-    _searchBttn.layer.masksToBounds = YES;
-    _searchAroundMeImage.image = [_searchAroundMeImage.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-    [_searchAroundMeImage setTintColor:[UIColor lightBlueHairfie]];
-    _searchByLocation.text = @"Around Me";
-    SDmanager = [SDWebImageManager sharedManager];
+      SDmanager = [SDWebImageManager sharedManager];
     // Do any additional setup after loading the view.
 }
 
--(IBAction)searchAroundMe:(id)sender
+-(void)viewWillAppear:(BOOL)animated
 {
-    [_searchByLocation resignFirstResponder];
-    _searchByLocation.text = @"Around Me";
-  //  _searchByLocation.textColor = [UIColor lightBlueHairfie];
-
-    [_searchAroundMeImage setTintColor:[UIColor lightBlueHairfie]];
+    [_delegate startTrackingLocation:YES];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willSearch:) name:@"searchQuery" object:nil];
 }
 
--(IBAction)cancelSearch:(id)sender
+-(void)viewWillDisappear:(BOOL)animated
 {
-    _searchHeaderView.hidden = YES;
-    [_searchField resignFirstResponder];
-    [_searchByLocation resignFirstResponder];
-    [_searchByName resignFirstResponder];
-}
-
--(BOOL)textViewShouldBeginEditing:(UITextView *)textView
-{
-    return YES;
-}
-
-- (IBAction)showAdvancedSearch:(id)sender{
-    _searchHeaderView.hidden = NO;
-    if ([_searchByLocation.text isEqualToString:@"Around Me"])
-    [_searchAroundMeImage setTintColor:[UIColor lightBlueHairfie]];
-    [_searchByName performSelector:@selector(becomeFirstResponder) withObject:nil afterDelay:0.0];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"searchQuery" object:nil];
 }
 
 
--(BOOL)textFieldShouldReturn:(UITextField *)textField
+-(void)willSearch:(NSNotification*)notification
 {
-    NSInteger nextTag = textField.tag + 1;
-    // Try to find next responder
-    UIResponder* nextResponder = [textField.superview viewWithTag:nextTag];
-    if (nextResponder) {
-        // Found next responder, so set it.
-        [nextResponder becomeFirstResponder];
-        _searchByLocation.text = @"";
-        _searchAroundMe.enabled = YES;
-    } else {
-        [self doSearch:self];
-    }
-    return YES;
-}
-
--(IBAction)doSearch:(id)sender
-{
-    if([_searchByLocation.text length] == 0) {
-        _searchByLocation.text = @"Around Me";
-    }
+    
     [_mapView removeAnnotations:_mapView.annotations];
-
-    NSString *searchQuery = [self styleSearchQuery];
-    _searchInProgress.text = searchQuery;
-    NSString *queryLocation = _searchByLocation.text;
-     _isSearching = YES;
-    UIView *headerSearch = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
-    UILabel *searchLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 310, 30)];
-    searchLabel.font = [UIFont fontWithName:@"SourceSansPro-Light" size:16];
-    searchLabel.textColor = [UIColor colorWithRed:109/255.0f green:118/255.0f blue:131/255.0f alpha:1];
-
-    searchLabel.text = searchQuery;
-    [headerSearch addSubview:searchLabel];
-
-    if ([_searchByLocation.text isEqualToString:@"Around Me"])
+    _searchInProgress.text = _searchView.searchRequest;
+    _isSearching = YES;
+    if (![_searchView.searchByName.text isEqualToString:@""] && [_searchView.searchByLocation.text isEqualToString:@"Around Me"])
     {
-        _hairdresserTableView.tableHeaderView = _headerView;
-       if (![_searchByName.text isEqualToString:@""])
-        _searchDesc.text = [NSString stringWithFormat:@"%@ À COTÉ DE VOUS", [_searchByName.text uppercaseString]];
-        else
+        NSLog(@"labas");
+        if ([_searchView.searchByName.text isEqualToString:@""])
             _searchDesc.text = @"COIFFEURS À COTÉ DE VOUS";
+        else
+            _searchDesc.text = [NSString stringWithFormat:@"%@ À COTÉ DE VOUS", [_searchView.searchByName.text uppercaseString]];
     }
     else
-        _hairdresserTableView.tableHeaderView = headerSearch;
-    [self geocodeAddress:queryLocation];
-    [self cancelSearch:self];
-}
-
-- (NSString*) styleSearchQuery {
-    NSString *searchQuery;
-    if([_searchByLocation.text isEqualToString:@"Around Me"]) {
-        searchQuery = [NSString stringWithFormat:@"\"%@\" à côté de vous", _searchByName.text];
-    } else {
-       searchQuery = [NSString stringWithFormat:@"\"%@\" à côté de \"%@\"", _searchByName.text, _searchByLocation.text];
-    }
-
-
-    return searchQuery;
-}
-
--(void)geocodeAddress:(NSString *)address
-{
-    if ([address isEqualToString:@"Around Me"]) {
-        [self initMapWithSalons:nil];
-    } else {
-        CLGeocoder *geocoder = [[CLGeocoder alloc] init];
-        [geocoder geocodeAddressString:address completionHandler:^(NSArray* placemarks, NSError* error){
-            for (CLPlacemark* aPlacemark in placemarks)
-            {
-                // Process the placemark.
-                NSString *latDest = [NSString stringWithFormat:@"%.4f",aPlacemark.location.coordinate.latitude];
-                NSString *lngDest = [NSString stringWithFormat:@"%.4f",aPlacemark.location.coordinate.longitude];
-
-                gpsString = [NSString stringWithFormat:@"%@,%@", lngDest, latDest];
-                [self initMapWithSalons:aPlacemark.location];
-            }
-        }];
+    {
+        _searchDesc.text = _searchView.searchRequest;
+        [self initMapWithSalons:_searchView.locationSearch];
+        [_hairdresserTableView setContentOffset:CGPointMake(0, 136)];
     }
 }
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    if (textField == _searchByLocation)
-    {
-        _searchAroundMe.enabled = YES;
-        _searchAroundMeImage.tintColor = [UIColor lightGrayColor];
-        textField.text = @"";
-    }
+    [textField resignFirstResponder];
+    _searchView.hidden = NO;
+    if ([_searchView.searchByLocation.text isEqualToString:@"Around Me"])
+        [_searchView.searchAroundMeImage setTintColor:[UIColor lightBlueHairfie]];
+    [_searchView.searchByName performSelector:@selector(becomeFirstResponder) withObject:nil afterDelay:0.0];
 }
 
-//METHODES pour cacher/afficher la tableview et agrandir la mapview dans la recherche
-
--(void)hideTableView:(UIGestureRecognizer*)gesture
-{
-    [UIView beginAnimations:@"animate" context:nil];
-    [UIView setAnimationDuration:0.4];
-    [_mapView setFrame:CGRectMake(0, 0, _mapView.frame.size.width, 456)];
-    [_scrollView scrollRectToVisible:CGRectMake(0, -464, _scrollView.frame.size.width, _scrollView.frame.size.height) animated:NO];
-    [_mapView removeGestureRecognizer:tap];
-    tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showTableView:)];
-    [_hairdresserTableView addGestureRecognizer:tap];
-    [UIView commitAnimations];
-}
-
--(void) showTableView:(UIGestureRecognizer*)gesture
-{
-    [UIView beginAnimations:@"animate" context:nil];
-    [UIView setAnimationDuration:0.4];
-    [_mapView setFrame:CGRectMake(0, 0, _mapView.frame.size.width, 220)];
-    [_scrollView scrollRectToVisible:CGRectMake(0, -220, _scrollView.frame.size.width, _scrollView.frame.size.height) animated:NO];
-    [_hairdresserTableView removeGestureRecognizer:tap];
-    tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideTableView:)];
-    [_mapView addGestureRecognizer:tap];
-    [UIView commitAnimations];
-}
 
 -(UIStatusBarStyle)preferredStatusBarStyle{
     return UIStatusBarStyleLightContent;
 }
 
 -(void) updatedLocation:(NSNotification*)notif {
-    _myLocation = (CLLocation*)[[notif userInfo] valueForKey:@"newLocationResult"];
-    gpsString = [NSString stringWithFormat:@"%f,%f", _myLocation.coordinate.longitude, _myLocation.coordinate.latitude];
-
-    [self initMapWithSalons:nil];
-
+    
+    if (_gpsStringFromSegue != nil)
+    {
+        _searchDesc.text = _searchInProgressFromSegue;
+        [self initMapWithSalons:_locationFromSegue];
+    }
+    else
+    {
+        NSLog(@"query %@", _queryNameInProgressFromSegue);
+        _myLocation = (CLLocation*)[[notif userInfo] valueForKey:@"newLocationResult"];
+        if (_queryNameInProgressFromSegue != nil) {
+            _searchView.searchByName.text = _queryNameInProgressFromSegue;
+        }
+        
+        if (_searchInProgressFromSegue != nil)
+            _searchDesc.text = _searchInProgressFromSegue;
+        [self initMapWithSalons:nil];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -233,12 +156,6 @@
 }
 
 
--(void)viewWillAppear:(BOOL)animated
-{
-    [_delegate startTrackingLocation:YES];
-  //  userLocation = _mapView.userLocation;
-
-}
 
 -(IBAction)goBack:(id)sender
 {
@@ -254,15 +171,24 @@
     if (customLocation == nil) {
         region = MKCoordinateRegionMakeWithDistance (_myLocation.coordinate, 1000, 1000);
         [_mapView setUserTrackingMode:MKUserTrackingModeFollow animated:YES];
-         gpsString = [NSString stringWithFormat:@"%f,%f", _myLocation.coordinate.longitude, _myLocation.coordinate.latitude];
-
+        gpsString = [NSString stringWithFormat:@"%f,%f", _myLocation.coordinate.longitude, _myLocation.coordinate.latitude];
+        
     } else {
         region = MKCoordinateRegionMakeWithDistance (customLocation.coordinate, 1000, 1000);
-
+        
+        gpsString = [NSString stringWithFormat:@"%f,%f", customLocation.coordinate.longitude, customLocation.coordinate.latitude];
     }
-     [self getSalons:gpsString];
+    
+    if (_gpsStringFromSegue != nil)
+    {
+        [self getSalons:_gpsStringFromSegue];
+        
+    }
+    else
+    {
+        [self getSalons:gpsString];
+    }
     [_mapView setRegion:region animated:NO];
-
 }
 
 -(void) addSalonsToMap {
@@ -271,7 +197,8 @@
         NSDictionary *salon = [salons objectAtIndex:i];
         [self addSalonToMap:salon];
     }
-    [_hairdresserTableView reloadData];
+    
+    //[_hairdresserTableView reloadData];
 }
 
 // Add a salon to the map
@@ -317,21 +244,27 @@
         [spinner removeFromSuperview];
         [spinner stopAnimating];
         _isSearching = NO;
+        if (_gpsStringFromSegue != nil)
+            [_hairdresserTableView setContentOffset:CGPointMake(0, 136)];
     };
-
-
-
+    
     if (_isSearching == YES)
     {
         _hairdresserTableView.hidden = YES;
         [self.view addSubview:spinner];
         [spinner startAnimating];
         NSString *repoName = @"businesses";
+        NSString *query;
+       if (_queryNameInProgressFromSegue != nil)
+           query = _queryNameInProgressFromSegue;
+        else
+            query = _searchView.searchByName.text;
+        
         _hairdresserTableView.userInteractionEnabled = NO;
         [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/businesses/nearby" verb:@"GET"] forMethod:@"businesses.nearby"];
 
         LBModelRepository *businessData = [[AppDelegate lbAdaptater] repositoryWithModelName:repoName];
-        [businessData invokeStaticMethod:@"nearby" parameters:@{@"here": address, @"limit" : @"10", @"query" : _searchByName.text} success:loadSuccessBlock failure:loadErrorBlock];
+        [businessData invokeStaticMethod:@"nearby" parameters:@{@"here": gpsString, @"limit" : @"10", @"query" : query} success:loadSuccessBlock failure:loadErrorBlock];
     }
 }
 

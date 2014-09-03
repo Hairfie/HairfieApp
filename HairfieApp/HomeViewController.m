@@ -9,10 +9,14 @@
 #import "HomeViewController.h"
 #import "CustomCollectionViewCell.h"
 #import "UIViewController+ECSlidingViewController.h"
+#import "AroundMeViewController.h"
+#import "AdvanceSearch.h"
 
 
 @interface HomeViewController ()
-
+{
+    AdvanceSearch *searchView;
+}
 @end
 
 
@@ -30,12 +34,41 @@
      [_hairfieCollection registerNib:[UINib nibWithNibName:@"CustomCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"hairfieCell"];
     [self.view addGestureRecognizer:self.slidingViewController.panGesture];
     
-    
-    
+    _searchView.hidden = YES;
+    [_searchView initView];
+    [_searchView.searchAroundMeImage setTintColor:[UIColor lightBlueHairfie]];
+    _searchView.searchByLocation.text = @"Around Me";
     //self.view.translatesAutoresizingMaskIntoConstraints = NO;
     //[self.view.translatesAutoresizingMaskIntoConstraints]
     
     // Do any additional setup after loading the view.
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+       [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willSearch:) name:@"searchQuery" object:nil];
+}
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"searchQuery" object:nil];
+}
+
+
+-(void)willSearch:(NSNotification*)notification
+{
+    [self performSegueWithIdentifier:@"searchFromFeed" sender:self];
+}
+
+-(void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    //_advancedSearchView.hidden = NO;
+   
+    _searchView.hidden = NO;
+    if ([_searchView.searchByLocation.text isEqualToString:@"Around Me"])
+        [_searchView.searchAroundMeImage setTintColor:[UIColor lightBlueHairfie]];
+    [_searchView.searchByName performSelector:@selector(becomeFirstResponder) withObject:nil afterDelay:0.0];
+
+    [textField resignFirstResponder];
 }
 
 
@@ -97,25 +130,6 @@
     [self performSegueWithIdentifier:@"hairfieDetail" sender:self];
     
 }
-
-
-/*
--(IBAction)takePicture:(id)sender
-{
-    if ([UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera])
-    {
-        
-        _camera.sourceType = UIImagePickerControllerSourceTypeCamera;
-        _camera.cameraDevice = UIImagePickerControllerCameraDeviceRear;
-        _camera.showsCameraControls = NO;
-        _camera.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
-        
-        [self presentViewController:_camera animated:YES completion:nil];
-        
-    }
-}
-*/
-
 
 
 -(IBAction)takePicture:(id)sender
@@ -237,7 +251,7 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    UIImage *image = [info valueForKey:UIImagePickerControllerOriginalImage];
+    //UIImage *image = [info valueForKey:UIImagePickerControllerOriginalImage];
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -258,9 +272,10 @@
         _imagePicker.showsCameraControls = NO;
         _imagePicker.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
         [self presentViewController:_imagePicker animated:YES completion:nil];
-        
     }
 }
+
+
 
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -270,7 +285,17 @@
         pickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
         pickerController.delegate = self;
     }
+    if ([segue.identifier isEqualToString:@"searchFromFeed"])
+    {
+        AroundMeViewController *aroundMe = [segue destinationViewController];
+        aroundMe.searchInProgressFromSegue = _searchView.searchRequest;
+        aroundMe.queryNameInProgressFromSegue = _searchView.searchByName.text;
+        aroundMe.queryLocationInProgressFromSegue = _searchView.searchByLocation.text;
+        aroundMe.gpsStringFromSegue = _searchView.gpsString;
+        aroundMe.locationFromSegue = _searchView.locationSearch;
+    }
 }
+
 
 // 4
 /*- (UICollectionReusableView *)collectionView:

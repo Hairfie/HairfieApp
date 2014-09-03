@@ -11,6 +11,9 @@
 #import "HomeViewController.h"
 
 @interface SignUpViewController ()
+{
+    NSString *imgPath;
+}
 
 @end
 
@@ -25,6 +28,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     delegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    
+    
     
     _statusBarButton.layer.cornerRadius = 5;
     _statusBarButton.layer.masksToBounds = YES;
@@ -118,10 +123,10 @@ numberOfRowsInComponent:(NSInteger)component
         userData = results;
         delegate.currentUser.name = [NSString stringWithFormat:@"%@ %@", [results objectForKey:@"firstName"], [results objectForKey:@"lastName"]];
         delegate.currentUser.imageLink = [results objectForKey:@"picture"];
-        
-        [self performSegueWithIdentifier:@"createAccount" sender:self];
+        [self uploadProfileImage];
+        //[self performSegueWithIdentifier:@"createAccount" sender:self];
     };
-    
+
     if ([self isValidEmail: _emailField.text])
     {
         
@@ -142,14 +147,44 @@ numberOfRowsInComponent:(NSInteger)component
         LBModelRepository *loginData = [[AppDelegate lbAdaptater] repositoryWithModelName:repoName];
         
         [loginData invokeStaticMethod:@"" parameters:@{@"firstName":_firstNameField.text, @"lastName":_lastNameField.text, @"email": _emailField.text, @"password" : _passwordField.text, @"newsletter":newsletter, @"gender":gender} success:loadSuccessBlock failure:loadErrorBlock];
-        
     }
     else
     {
-        UIAlertView *badLogin = [[UIAlertView alloc] initWithTitle:@"Login Failed" message:@"The email/password in incorrect" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        UIAlertView *badLogin = [[UIAlertView alloc] initWithTitle:@"Sign up Failed" message:@"The email/password in not valid" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
         
         [badLogin show];
     }
+}
+
+-(void) uploadProfileImage
+{
+    NSString *tmpDir = NSTemporaryDirectory();
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString *fileName = imgPath;
+    NSString *fullPath = [tmpDir stringByAppendingPathComponent:fileName];
+    
+    //Remove it if it currently exists...
+    if ([fileManager fileExistsAtPath:fullPath]) {
+        [fileManager removeItemAtPath:fullPath error:nil];
+    }
+    
+    LBFileRepository *repository = (LBFileRepository*)[[AppDelegate lbAdaptater] repositoryWithClass:[LBFileRepository class]];
+    NSString* contents = @"Upload test";
+    [contents writeToFile:fullPath atomically:YES encoding:NSUTF8StringEncoding error:nil];
+    
+    
+    void (^loadErrorBlock)(NSError *) = ^(NSError *error){
+        NSLog(@"Error : %@", error.description);
+    };
+    void (^loadSuccessBlock)(NSDictionary *) = ^(NSDictionary *results){
+        NSLog(@"results %@", results);
+    };
+
+   
+    LBFile __block *file = [repository createFileWithName:fileName localPath:tmpDir container:@"user-Profile-Picture"];
+    [file uploadWithSuccess:loadSuccessBlock failure:loadErrorBlock];
+    
+    
 }
 
 -(BOOL) isValidEmail:(NSString *)checkString
@@ -335,6 +370,10 @@ numberOfRowsInComponent:(NSInteger)component
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     UIImage *image = [info valueForKey:UIImagePickerControllerOriginalImage];
+   
+    NSURL *imagePath = [info objectForKey:@"UIImagePickerControllerReferenceURL"];
+    imgPath = [imagePath lastPathComponent];
+    
     [self setProfilePicture:image];
     [picker dismissViewControllerAnimated:YES completion:nil];
     
@@ -357,6 +396,7 @@ numberOfRowsInComponent:(NSInteger)component
 
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage : (UIImage *)image editingInfo:(NSDictionary *)editingInfo {
     
+
 
     [self setProfilePicture:image];
     [picker dismissViewControllerAnimated:YES completion:nil];
