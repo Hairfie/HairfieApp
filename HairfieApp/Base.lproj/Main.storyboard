@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6206.8" systemVersion="14A329r" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="dEN-gt-xJT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6205" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="dEN-gt-xJT">
     <dependencies>
         <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6198"/>
@@ -385,10 +385,10 @@
                                         </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Yn-uH-ydj">
-                                        <rect key="frame" x="20" y="254" width="280" height="47"/>
+                                        <rect key="frame" x="20" y="254" width="280" height="48"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="280" id="T1J-pA-h9n"/>
-                                            <constraint firstAttribute="height" constant="47" id="fnx-an-pl4"/>
+                                            <constraint firstAttribute="height" constant="48" id="fnx-an-pl4"/>
                                         </constraints>
                                         <state key="normal" image="facebook-connect.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -397,8 +397,8 @@
                                             <action selector="getFacebookUserInfo:" destination="GUZ-sY-RBq" eventType="touchUpInside" id="YLZ-nd-cCv"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Connexion avec Facebook" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qDF-ta-QyE">
-                                        <rect key="frame" x="77" y="267" width="221" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Connexion avec Facebook" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qDF-ta-QyE">
+                                        <rect key="frame" x="105" y="267" width="172" height="21"/>
                                         <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="16"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -2698,7 +2698,7 @@ connaissance et accepte les CGU de Hairfie</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y37-BW-Jd5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-816" y="545"/>
+            <point key="canvasLocation" x="-822" y="590"/>
         </scene>
     </scenes>
     <resources>
@@ -2746,9 +2746,9 @@ connaissance et accepte les CGU de Hairfie</string>
         </simulatedScreenMetrics>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="HOe-ge-VCi"/>
         <segue reference="uEN-by-6gW"/>
-        <segue reference="DYR-eo-mJz"/>
         <segue reference="sgS-Io-6JC"/>
-        <segue reference="H0a-7y-EaD"/>
+        <segue reference="DYR-eo-mJz"/>
     </inferredMetricsTieBreakers>
 </document>

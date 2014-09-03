@@ -163,13 +163,13 @@ numberOfRowsInComponent:(NSInteger)component
     NSString *fileName = imgPath;
     NSString *fullPath = [tmpDir stringByAppendingPathComponent:fileName];
     
-    //Remove it if it currently exists...
     if ([fileManager fileExistsAtPath:fullPath]) {
         [fileManager removeItemAtPath:fullPath error:nil];
     }
     
     LBFileRepository *repository = (LBFileRepository*)[[AppDelegate lbAdaptater] repositoryWithClass:[LBFileRepository class]];
     NSString* contents = @"Upload test";
+    
     [contents writeToFile:fullPath atomically:YES encoding:NSUTF8StringEncoding error:nil];
     
     
@@ -180,11 +180,10 @@ numberOfRowsInComponent:(NSInteger)component
         NSLog(@"results %@", results);
     };
 
+    NSLog(@"tmpir %@", tmpDir);
    
     LBFile __block *file = [repository createFileWithName:fileName localPath:tmpDir container:@"user-Profile-Picture"];
     [file uploadWithSuccess:loadSuccessBlock failure:loadErrorBlock];
-    
-    
 }
 
 -(BOOL) isValidEmail:(NSString *)checkString
@@ -239,7 +238,6 @@ numberOfRowsInComponent:(NSInteger)component
         // Found next responder, so set it.
         [nextResponder becomeFirstResponder];
     } else {
-        NSLog(@"Fin");
         [_mainScrollView removeGestureRecognizer:_dismiss];
         [textField resignFirstResponder];
     }
