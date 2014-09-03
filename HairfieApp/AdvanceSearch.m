@@ -27,8 +27,6 @@
 -(void)initView
 {
     _searchAroundMeImage.image = [_searchAroundMeImage.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-    [_searchAroundMeImage setTintColor:[UIColor lightBlueHairfie]];
-    _searchByLocation.text = @"Around Me";
     _searchBttn.layer.cornerRadius = 5;
     _searchBttn.layer.masksToBounds = YES;
 }
@@ -55,6 +53,8 @@
 -(IBAction)doSearch:(id)sender
 {
     _searchRequest = [self styleSearchQuery];
+    if ([_searchByLocation.text isEqualToString:@""])
+        _searchByLocation.text = @"Around Me";
     [self geocodeAddress:_searchByLocation.text];
     [self cancelSearch:self];
 }
@@ -85,7 +85,7 @@
 
 - (NSString*) styleSearchQuery {
     NSString *searchQuery;
-    if([_searchByLocation.text isEqualToString:@"Around Me"]) {
+    if([_searchByLocation.text isEqualToString:@"Around Me"] || [_searchByLocation.text isEqualToString:@""] ) {
         searchQuery = [NSString stringWithFormat:@"\"%@\" à côté de vous", _searchByName.text];
     } else {
         if ([_searchByName.text isEqualToString:@""])
@@ -93,6 +93,7 @@
         else
         searchQuery = [NSString stringWithFormat:@"\"%@\" à côté de \"%@\"", _searchByName.text, _searchByLocation.text];
     }
+    
     return searchQuery;
 }
 

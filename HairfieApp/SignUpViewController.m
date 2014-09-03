@@ -177,14 +177,11 @@ numberOfRowsInComponent:(NSInteger)component
         NSLog(@"Error : %@", error.description);
     };
     void (^loadSuccessBlock)(NSDictionary *) = ^(NSDictionary *results){
-      
         NSLog(@"results %@", results);
-       
-      
     };
 
    
-    LBFile __block *file = [repository createFileWithName:fileName localPath:tmpDir container:@"userPicture"];
+    LBFile __block *file = [repository createFileWithName:fileName localPath:tmpDir container:@"user-Profile-Picture"];
     [file uploadWithSuccess:loadSuccessBlock failure:loadErrorBlock];
     
     

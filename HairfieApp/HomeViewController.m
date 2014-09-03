@@ -36,7 +36,8 @@
     
     _searchView.hidden = YES;
     [_searchView initView];
- 
+    [_searchView.searchAroundMeImage setTintColor:[UIColor lightBlueHairfie]];
+    _searchView.searchByLocation.text = @"Around Me";
     //self.view.translatesAutoresizingMaskIntoConstraints = NO;
     //[self.view.translatesAutoresizingMaskIntoConstraints]
     
@@ -129,25 +130,6 @@
     [self performSegueWithIdentifier:@"hairfieDetail" sender:self];
     
 }
-
-
-/*
--(IBAction)takePicture:(id)sender
-{
-    if ([UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera])
-    {
-        
-        _camera.sourceType = UIImagePickerControllerSourceTypeCamera;
-        _camera.cameraDevice = UIImagePickerControllerCameraDeviceRear;
-        _camera.showsCameraControls = NO;
-        _camera.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
-        
-        [self presentViewController:_camera animated:YES completion:nil];
-        
-    }
-}
-*/
-
 
 
 -(IBAction)takePicture:(id)sender
@@ -269,7 +251,7 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    UIImage *image = [info valueForKey:UIImagePickerControllerOriginalImage];
+    //UIImage *image = [info valueForKey:UIImagePickerControllerOriginalImage];
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -293,6 +275,8 @@
     }
 }
 
+
+
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"camera"])
@@ -305,11 +289,13 @@
     {
         AroundMeViewController *aroundMe = [segue destinationViewController];
         aroundMe.searchInProgressFromSegue = _searchView.searchRequest;
-        aroundMe.queryInProgressFromSegue = _searchView.searchByName.text;
+        aroundMe.queryNameInProgressFromSegue = _searchView.searchByName.text;
+        aroundMe.queryLocationInProgressFromSegue = _searchView.searchByLocation.text;
         aroundMe.gpsStringFromSegue = _searchView.gpsString;
         aroundMe.locationFromSegue = _searchView.locationSearch;
     }
 }
+
 
 // 4
 /*- (UICollectionReusableView *)collectionView:

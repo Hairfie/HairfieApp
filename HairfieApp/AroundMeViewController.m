@@ -57,12 +57,22 @@
     _isSearching = YES;
      _hairdresserTableView.hidden = YES;
     [_searchView initView];
+    
+    if (_searchInProgressFromSegue == nil)
+    {
+        [_searchView.searchAroundMeImage setTintColor:[UIColor lightBlueHairfie]];
+        _searchView.searchByLocation.text = @"Around Me";
+    }
+    else
+    {
+        _searchView.searchByLocation.text = _queryLocationInProgressFromSegue;
+        _searchView.searchByName.text = _queryNameInProgressFromSegue;
+    }
+    
     _searchView.hidden = YES;
-
     _hairdresserTableView.delegate = self;
     _hairdresserTableView.dataSource = self;
     _hairdresserTableView.backgroundColor = [UIColor clearColor];
-
     _mapView.delegate = self;
     _mapView.showsUserLocation = YES;
     _hairdresserTableView.tableHeaderView = _headerView;
@@ -128,9 +138,10 @@
     }
     else
     {
+        NSLog(@"query %@", _queryNameInProgressFromSegue);
         _myLocation = (CLLocation*)[[notif userInfo] valueForKey:@"newLocationResult"];
-        if (_queryInProgressFromSegue != nil) {
-            _searchView.searchByName.text = _queryInProgressFromSegue;
+        if (_queryNameInProgressFromSegue != nil) {
+            _searchView.searchByName.text = _queryNameInProgressFromSegue;
         }
         
         if (_searchInProgressFromSegue != nil)
@@ -244,8 +255,8 @@
         [spinner startAnimating];
         NSString *repoName = @"businesses";
         NSString *query;
-       if (_queryInProgressFromSegue != nil)
-           query = _queryInProgressFromSegue;
+       if (_queryNameInProgressFromSegue != nil)
+           query = _queryNameInProgressFromSegue;
         else
             query = _searchView.searchByName.text;
         

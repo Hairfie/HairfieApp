@@ -38,7 +38,8 @@
 // Data from Segue
 
 @property (nonatomic,strong) NSString *searchInProgressFromSegue;
-@property (nonatomic,strong) NSString *queryInProgressFromSegue;
+@property (nonatomic,strong) NSString *queryNameInProgressFromSegue;
+@property (nonatomic,strong) NSString *queryLocationInProgressFromSegue;
 @property (nonatomic,strong) NSString *gpsStringFromSegue;
 @property (nonatomic, strong) CLLocation *locationFromSegue;
 
