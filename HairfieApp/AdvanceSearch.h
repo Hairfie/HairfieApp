@@ -14,10 +14,12 @@
 @property (nonatomic) IBOutlet UITextField *searchByLocation;
 @property (nonatomic) IBOutlet UITextField *searchByName;
 @property (nonatomic) IBOutlet UIButton *searchAroundMe;
+@property (nonatomic) IBOutlet UIButton *searchBttn;
 @property (nonatomic) IBOutlet UIImageView *searchAroundMeImage;
 @property (nonatomic) NSString *searchRequest;
 @property (nonatomic) NSString *gpsString;
 @property (nonatomic) CLLocation *locationSearch;
+
 
 -(IBAction)searchAroundMe:(id)sender;
 -(IBAction)cancelSearch:(id)sender;

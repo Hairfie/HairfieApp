@@ -33,7 +33,7 @@
     self.navigationItem.title = [NSString stringWithFormat:NSLocalizedString(@"Home", nil)];
      [_hairfieCollection registerNib:[UINib nibWithNibName:@"CustomCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"hairfieCell"];
     [self.view addGestureRecognizer:self.slidingViewController.panGesture];
-     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willSearch:) name:@"searchQuery" object:nil];
+    
     _searchView.hidden = YES;
     [_searchView initView];
  
@@ -43,10 +43,19 @@
     // Do any additional setup after loading the view.
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+       [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willSearch:) name:@"searchQuery" object:nil];
+}
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"searchQuery" object:nil];
+}
+
+
 -(void)willSearch:(NSNotification*)notification
 {
     [self performSegueWithIdentifier:@"searchFromFeed" sender:self];
-    NSLog(@"cool %@, %@", _searchView.searchByName.text, _searchView.searchByLocation.text);
 }
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField
@@ -281,7 +290,6 @@
         _imagePicker.showsCameraControls = NO;
         _imagePicker.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
         [self presentViewController:_imagePicker animated:YES completion:nil];
-        
     }
 }
 
@@ -297,6 +305,7 @@
     {
         AroundMeViewController *aroundMe = [segue destinationViewController];
         aroundMe.searchInProgressFromSegue = _searchView.searchRequest;
+        aroundMe.queryInProgressFromSegue = _searchView.searchByName.text;
         aroundMe.gpsStringFromSegue = _searchView.gpsString;
         aroundMe.locationFromSegue = _searchView.locationSearch;
     }

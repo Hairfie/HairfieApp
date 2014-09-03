@@ -7,6 +7,7 @@
 //
 
 #import "AdvanceSearch.h"
+#import "AroundMeViewController.h"
 #import <CoreLocation/CoreLocation.h>
 
 @implementation AdvanceSearch
@@ -28,6 +29,8 @@
     _searchAroundMeImage.image = [_searchAroundMeImage.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     [_searchAroundMeImage setTintColor:[UIColor lightBlueHairfie]];
     _searchByLocation.text = @"Around Me";
+    _searchBttn.layer.cornerRadius = 5;
+    _searchBttn.layer.masksToBounds = YES;
 }
 
 -(IBAction)searchAroundMe:(id)sender
@@ -46,7 +49,6 @@
     {
         _searchAroundMe.enabled = YES;
         _searchAroundMeImage.tintColor = [UIColor lightGrayColor];
-        textField.text = @"";
     }
 }
 
@@ -86,6 +88,9 @@
     if([_searchByLocation.text isEqualToString:@"Around Me"]) {
         searchQuery = [NSString stringWithFormat:@"\"%@\" à côté de vous", _searchByName.text];
     } else {
+        if ([_searchByName.text isEqualToString:@""])
+           searchQuery = [NSString stringWithFormat:@"Coiffeurs à côté de \"%@\"", _searchByLocation.text];
+        else
         searchQuery = [NSString stringWithFormat:@"\"%@\" à côté de \"%@\"", _searchByName.text, _searchByLocation.text];
     }
     return searchQuery;
@@ -95,6 +100,7 @@
 {
     if ([address isEqualToString:@"Around Me"]) {
         _gpsString = nil;
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"searchQuery" object:self];
     } else {
         CLGeocoder *geocoder = [[CLGeocoder alloc] init];
         [geocoder geocodeAddressString:address completionHandler:^(NSArray* placemarks, NSError* error){
@@ -105,9 +111,8 @@
                 NSString *lngDest = [NSString stringWithFormat:@"%.4f",aPlacemark.location.coordinate.longitude];
                 
                 _gpsString = [NSString stringWithFormat:@"%@,%@", lngDest, latDest];
-                NSLog(@"GPS : %@", _gpsString);
-               
                 _locationSearch =  aPlacemark.location;
+              
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"searchQuery" object:self];
 
             }
