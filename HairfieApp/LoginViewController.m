@@ -8,6 +8,7 @@
 
 #import "LoginViewController.h"
 #import "User.h"
+#import "UserRepository.h"
 #import "UserAuthenticator.h"
 #import "AppDelegate.h"
 #import "CredentialStore.h"
@@ -18,7 +19,9 @@
 @interface LoginViewController ()
 @end
 
-@implementation LoginViewController
+@implementation LoginViewController {
+    UserAuthenticator *userAuthenticator;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -30,14 +33,15 @@
     _noAccountButton.layer.masksToBounds = YES;
     _delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     _dismiss = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissTextFields)];
+    
+    userAuthenticator = [[UserAuthenticator alloc] init];
 
 
     if ([_delegate.credentialStore isLoggedIn])
     {
          [AppDelegate lbAdaptater].accessToken = [_delegate.credentialStore authToken];
-        UserAuthenticator *auth = [[UserAuthenticator alloc] init];
         
-        [auth getCurrentUser];
+        [userAuthenticator getCurrentUser];
         
         
         //_delegate.currentUser = auth.getCurrentUser;
@@ -86,20 +90,10 @@
     };
     void (^loadSuccessBlock)(NSDictionary *) = ^(NSDictionary *results) {
 
-        NSDictionary *userData = [results objectForKey:@"user"];
-
-        // Connected User Data
-
-        _delegate.currentUser.userToken = [results objectForKey:@"id"];
-        _delegate.currentUser.userId = [results objectForKey:@"userId"];
-        _delegate.currentUser.firstName = [results objectForKey:@"firstName"];
-        _delegate.currentUser.lastName = [results objectForKey:@"firstName"];
-        _delegate.currentUser.picture = [userData objectForKey:@"picture"];
-
-        // Access Token
-
-        [AppDelegate lbAdaptater].accessToken = [results objectForKey:@"id"];
         [_delegate.credentialStore setAuthTokenAndUserId:[results objectForKey:@"id"] forUser:[results objectForKey:@"userId"]];
+        [AppDelegate lbAdaptater].accessToken = [results objectForKey:@"id"];
+        
+        [userAuthenticator getCurrentUser];
 
         [self dismissTextFields];
         [self performSegueWithIdentifier:@"loginSuccess" sender:self];
@@ -108,7 +102,7 @@
     if ([self isValidEmail: _emailField.text]) {
 
         NSString *repoName = @"users";
-        [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/users/login?include=user" verb:@"POST"] forMethod:@"users.login"];
+        [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/users/login" verb:@"POST"] forMethod:@"users.login"];
 
         LBModelRepository *loginData = [[AppDelegate lbAdaptater] repositoryWithModelName:repoName];
         [loginData invokeStaticMethod:@"login" parameters:@{@"email": _emailField.text, @"password" : _passwordField.text} success:loadSuccessBlock failure:loadErrorBlock];
@@ -164,8 +158,8 @@
         [_delegate.credentialStore setAuthTokenAndUserId:[results objectForKey:@"id"] forUser:[results objectForKey:@"userId"]];
         
         //[_delegate.currentUser getCurrentUser];
-        UserAuthenticator *auth = [[UserAuthenticator alloc] init];
-        [auth getCurrentUser];
+        //UserAuthenticator *auth = [[UserAuthenticator alloc] init];
+        [userAuthenticator getCurrentUser];
 
         [self performSegueWithIdentifier:@"loginSuccess" sender:self];
     };
