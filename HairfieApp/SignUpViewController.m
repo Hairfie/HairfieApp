@@ -118,7 +118,6 @@ numberOfRowsInComponent:(NSInteger)component
         userData = results;
         delegate.currentUser.firstName = [results objectForKey:@"firstName"];
         delegate.currentUser.lastName = [results objectForKey:@"firstName"];
-
         delegate.currentUser.picture = [results objectForKey:@"picture"];
         
         [self performSegueWithIdentifier:@"createAccount" sender:self];
