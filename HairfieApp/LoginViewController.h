@@ -19,5 +19,6 @@
 @property (nonatomic) UITapGestureRecognizer *dismiss;
 
 -(IBAction)doLogin:(id)sender;
+-(IBAction)closeKeyboard:(id)sender;
 
 @end

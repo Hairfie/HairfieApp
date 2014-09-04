@@ -112,6 +112,10 @@
     }
 }
 
+-(IBAction)closeKeyboard:(id)sender {
+    [self.view endEditing:YES];
+}
+
 
 -(IBAction)getFacebookUserInfo:(id)sender
 {
