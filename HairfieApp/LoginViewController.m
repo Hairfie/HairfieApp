@@ -51,6 +51,14 @@
     }
 
     [self.view addGestureRecognizer:_dismiss];
+    
+    // Login without prompting anything if you have a FB session
+    [FBSession openActiveSessionWithReadPermissions:@[@"public_profile", @"email"]
+                                       allowLoginUI:NO
+                                  completionHandler:
+     ^(FBSession *session, FBSessionState state, NSError *error) {
+         [self sessionStateChanged:session state:state error:error];
+     }];
     // Do any additional setup after loading the view.
 }
 
@@ -162,12 +170,15 @@
         
         // Close the session and remove the access token from the cache
         // The session state handler (in the app delegate) will be called automatically
-        [FBSession.activeSession closeAndClearTokenInformation];
+        //[FBSession.activeSession closeAndClearTokenInformation];
+        [self sessionStateChanged:FBSession.activeSession state:FBSession.activeSession.state error:nil];
+        
         
         // If the session state is not any of the two "open" states when the button is clicked
     } else {
         // Open a session showing the user the login UI
         // You must ALWAYS ask for public_profile permissions when opening a session
+
         [FBSession openActiveSessionWithReadPermissions:@[@"public_profile", @"email"]
                                            allowLoginUI:YES
                                       completionHandler:
