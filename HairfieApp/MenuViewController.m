@@ -16,6 +16,7 @@
 #import "Constants.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "CredentialStore.h"
+#import <FacebookSDK/FacebookSDK.h>
 
 
 
@@ -198,7 +199,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
     };
     void (^loadSuccessBlock)(NSDictionary *) = ^(NSDictionary *results){
         NSLog(@"results %@", results);
-        
+        [FBSession.activeSession closeAndClearTokenInformation];
         [self.navigationController popToRootViewControllerAnimated:NO];
     };
     

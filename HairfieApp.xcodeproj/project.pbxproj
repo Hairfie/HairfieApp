@@ -14,6 +14,7 @@
 		153E1FB419B4AA8200DEC95D /* UserAuthenticator.m in Sources */ = {isa = PBXBuildFile; fileRef = 153E1FB319B4AA8200DEC95D /* UserAuthenticator.m */; };
 		1564959519AF6292008DC070 /* HairfieColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 1564959419AF6292008DC070 /* HairfieColors.m */; };
 		15697B31199BB03800DA83FE /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 15697B30199BB03800DA83FE /* UIImage+Resize.m */; };
+		15B829C919B85F6200525802 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15B829C819B85F6200525802 /* FacebookSDK.framework */; };
 		15CE407319B0E78C0088FEA7 /* CredentialStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 15CE407219B0E78C0088FEA7 /* CredentialStore.m */; };
 		15E6AE761992635900A11947 /* OpeningTimes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E6AE751992635900A11947 /* OpeningTimes.swift */; };
 		15ED728C199B9C6400453A74 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15ED728B199B9C6400453A74 /* ImageIO.framework */; };
@@ -217,6 +218,7 @@
 		15697B30199BB03800DA83FE /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
 		157D7715198FF309006C1947 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		158431C3198A72FB001621B4 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
+		15B829C819B85F6200525802 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		15CE407119B0E78C0088FEA7 /* CredentialStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CredentialStore.h; sourceTree = "<group>"; };
 		15CE407219B0E78C0088FEA7 /* CredentialStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CredentialStore.m; sourceTree = "<group>"; };
 		15E6AE751992635900A11947 /* OpeningTimes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpeningTimes.swift; sourceTree = "<group>"; };
@@ -471,6 +473,7 @@
 				B342317719891AA40058866B /* MapKit.framework in Frameworks */,
 				B3423175198907A80058866B /* CoreLocation.framework in Frameworks */,
 				B3EDF89219879BEF00431B70 /* QuartzCore.framework in Frameworks */,
+				15B829C919B85F6200525802 /* FacebookSDK.framework in Frameworks */,
 				B330B5C2198656F20059AE56 /* CoreGraphics.framework in Frameworks */,
 				B330B5C0198656EB0059AE56 /* Foundation.framework in Frameworks */,
 				B330B5BE198656DD0059AE56 /* UIKit.framework in Frameworks */,
@@ -608,6 +611,7 @@
 		38C395959A7A499C87409BBF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				15B829C819B85F6200525802 /* FacebookSDK.framework */,
 				B33DF76419B4AA5900B4877F /* Accounts.framework */,
 				B33DF76219B4A9A900B4877F /* Social.framework */,
 				B39BA17919AF52D100A48BD5 /* Security.framework */,
