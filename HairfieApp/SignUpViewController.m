@@ -121,10 +121,13 @@ numberOfRowsInComponent:(NSInteger)component
         
         NSLog(@"results %@", results);
         userData = results;
-        delegate.currentUser.name = [NSString stringWithFormat:@"%@ %@", [results objectForKey:@"firstName"], [results objectForKey:@"lastName"]];
-        delegate.currentUser.imageLink = [results objectForKey:@"picture"];
-        [self uploadProfileImage];
-        //[self performSegueWithIdentifier:@"createAccount" sender:self];
+        delegate.currentUser.firstName = [results objectForKey:@"firstName"];
+        delegate.currentUser.lastName = [results objectForKey:@"lastName"];
+        delegate.currentUser.picture = [results objectForKey:@"picture"];
+        
+        //[self uploadProfileImage];
+        
+        [self performSegueWithIdentifier:@"createAccount" sender:self];
     };
 
     if ([self isValidEmail: _emailField.text])

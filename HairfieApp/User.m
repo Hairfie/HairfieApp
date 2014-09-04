@@ -12,38 +12,11 @@
 #import "MenuViewController.h"
 
 @implementation User
-{
-    AppDelegate *delegate;
-}
-@synthesize userId, userToken, email, name, imageLink;
 
-- (id)init {
-    self = [super init];
-    if (self) {
-     delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    }
-    return self;
-}
+@synthesize userId, userToken, email, firstName, lastName, picture;
 
-- (void) getCurrentUser {
-    
-    void (^loadErrorBlock)(NSError *) = ^(NSError *error){
-        NSLog(@"Error on load %zd", error.code);
-        
-    };
-    void (^loadSuccessBlock)(LBModel *) = ^(LBModel *user){
-        
-        email = user[@"email"];
-        imageLink = user[@"picture"];
-        name = [NSString stringWithFormat:@"%@ %@",user[@"firstName"], user[@"lastName"]];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"currentUser" object:self];
-    };
-    
-    LBModelRepository *userRepository = [[AppDelegate lbAdaptater] repositoryWithModelName:@"users"];
-    
-    [userRepository findById:[delegate.credentialStore userId]
-                      success:loadSuccessBlock
-                      failure:loadErrorBlock];
+-(NSString *)name {
+    return [NSString stringWithFormat:@"%@ %@", firstName, lastName];
 }
 
 @end

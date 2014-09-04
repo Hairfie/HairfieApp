@@ -10,6 +10,8 @@
 		151151911982B7A8001157A2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 151151901982B7A8001157A2 /* main.m */; };
 		151151941982B7A8001157A2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 151151931982B7A8001157A2 /* AppDelegate.m */; };
 		151151A81982B7A8001157A2 /* HairfieAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 151151A71982B7A8001157A2 /* HairfieAppTests.m */; };
+		153E1FB019B4A79B00DEC95D /* UserRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 153E1FAF19B4A79B00DEC95D /* UserRepository.m */; };
+		153E1FB419B4AA8200DEC95D /* UserAuthenticator.m in Sources */ = {isa = PBXBuildFile; fileRef = 153E1FB319B4AA8200DEC95D /* UserAuthenticator.m */; };
 		1564959519AF6292008DC070 /* HairfieColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 1564959419AF6292008DC070 /* HairfieColors.m */; };
 		15697B31199BB03800DA83FE /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 15697B30199BB03800DA83FE /* UIImage+Resize.m */; };
 		15CE407319B0E78C0088FEA7 /* CredentialStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 15CE407219B0E78C0088FEA7 /* CredentialStore.m */; };
@@ -205,6 +207,10 @@
 		151151A11982B7A8001157A2 /* HairfieAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HairfieAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		151151A61982B7A8001157A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		151151A71982B7A8001157A2 /* HairfieAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HairfieAppTests.m; sourceTree = "<group>"; };
+		153E1FAE19B4A79B00DEC95D /* UserRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserRepository.h; sourceTree = "<group>"; };
+		153E1FAF19B4A79B00DEC95D /* UserRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserRepository.m; sourceTree = "<group>"; };
+		153E1FB219B4AA8200DEC95D /* UserAuthenticator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAuthenticator.h; sourceTree = "<group>"; };
+		153E1FB319B4AA8200DEC95D /* UserAuthenticator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAuthenticator.m; sourceTree = "<group>"; };
 		1564959319AF6292008DC070 /* HairfieColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HairfieColors.h; sourceTree = "<group>"; };
 		1564959419AF6292008DC070 /* HairfieColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HairfieColors.m; sourceTree = "<group>"; };
 		15697B2F199BB01B00DA83FE /* UIImage+Resize.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
@@ -514,6 +520,7 @@
 		1511518D1982B7A8001157A2 /* HairfieApp */ = {
 			isa = PBXGroup;
 			children = (
+				153E1FB119B4A97600DEC95D /* Repositories */,
 				15CE407019B0E7670088FEA7 /* Authentication */,
 				B3C45BD3199A49F0000E6C8E /* Camera Overlay View */,
 				B3EDF88C198794C900431B70 /* Main.storyboard */,
@@ -525,7 +532,7 @@
 				1511518E1982B7A8001157A2 /* Supporting Files */,
 				15E6AE751992635900A11947 /* OpeningTimes.swift */,
 				B303B953199B9403008F6BAA /* Images.xcassets */,
-				B3E4B46419A73C890036BAD8 /* MODEL */,
+				B3E4B46419A73C890036BAD8 /* Models */,
 			);
 			path = HairfieApp;
 			sourceTree = "<group>";
@@ -569,6 +576,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		153E1FB119B4A97600DEC95D /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				153E1FAE19B4A79B00DEC95D /* UserRepository.h */,
+				153E1FAF19B4A79B00DEC95D /* UserRepository.m */,
+			);
+			name = Repositories;
+			sourceTree = "<group>";
+		};
 		15697B2E199BAFD000DA83FE /* UIImage Subclasses */ = {
 			isa = PBXGroup;
 			children = (
@@ -581,10 +597,10 @@
 		15CE407019B0E7670088FEA7 /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
-				B3615B3619AF242800F1141D /* User.h */,
-				B3615B3719AF242800F1141D /* User.m */,
 				15CE407119B0E78C0088FEA7 /* CredentialStore.h */,
 				15CE407219B0E78C0088FEA7 /* CredentialStore.m */,
+				153E1FB219B4AA8200DEC95D /* UserAuthenticator.h */,
+				153E1FB319B4AA8200DEC95D /* UserAuthenticator.m */,
 			);
 			name = Authentication;
 			sourceTree = "<group>";
@@ -913,13 +929,15 @@
 			name = "Login + Sign UP";
 			sourceTree = "<group>";
 		};
-		B3E4B46419A73C890036BAD8 /* MODEL */ = {
+		B3E4B46419A73C890036BAD8 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				B3615B3619AF242800F1141D /* User.h */,
+				B3615B3719AF242800F1141D /* User.m */,
 				B3E4B46119A73C830036BAD8 /* BusinessModel.h */,
 				B3E4B46219A73C830036BAD8 /* BusinessModel.m */,
 			);
-			name = MODEL;
+			name = Models;
 			sourceTree = "<group>";
 		};
 		B3E65FA81986917800AF0C15 /* ECSlidingViewController */ = {
@@ -1313,9 +1331,11 @@
 				B3E4B46319A73C830036BAD8 /* BusinessModel.m in Sources */,
 				B3BD869F198BCFE500BD8591 /* RatingView.m in Sources */,
 				B3423211198924290058866B /* AFHTTPRequestOperationManager.m in Sources */,
+				153E1FB019B4A79B00DEC95D /* UserRepository.m in Sources */,
 				1564959519AF6292008DC070 /* HairfieColors.m in Sources */,
 				B3423210198924290058866B /* AFHTTPRequestOperation.m in Sources */,
 				15CE407319B0E78C0088FEA7 /* CredentialStore.m in Sources */,
+				153E1FB419B4AA8200DEC95D /* UserAuthenticator.m in Sources */,
 				B3CCE7781998B6CA00067DB9 /* HairfieDetailViewController.m in Sources */,
 				B3615B3219AF1CC800F1141D /* TPKeyboardAvoidingScrollView.m in Sources */,
 				151151941982B7A8001157A2 /* AppDelegate.m in Sources */,
