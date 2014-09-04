@@ -14,6 +14,7 @@
 
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "UIImage+Resize.h"
+#import "AdvanceSearch.h"
 
 @interface AroundMeViewController : UIViewController <MKMapViewDelegate, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate,UIGestureRecognizerDelegate,SDWebImageManagerDelegate, UITextViewDelegate, UITextFieldDelegate>
 {
@@ -31,18 +32,21 @@
 
 @property (nonatomic) IBOutlet UIView *headerView;
 @property (nonatomic) IBOutlet UIView *searchHeaderView;
+@property (nonatomic, strong) IBOutlet UILabel *searchDesc;
+@property (nonatomic) IBOutlet AdvanceSearch *searchView;
 
-@property (nonatomic) IBOutlet UILabel *searchDesc;
+// Data from Segue
+
+@property (nonatomic,strong) NSString *searchInProgressFromSegue;
+@property (nonatomic,strong) NSString *queryNameInProgressFromSegue;
+@property (nonatomic,strong) NSString *queryLocationInProgressFromSegue;
+@property (nonatomic,strong) NSString *gpsStringFromSegue;
+@property (nonatomic, strong) CLLocation *locationFromSegue;
 
 // Search Active
 
-@property (nonatomic) IBOutlet UITextView *searchField;
-@property (nonatomic) IBOutlet UIButton *cancelBttn;
-@property (nonatomic) IBOutlet UIButton *searchBttn;
-@property (nonatomic) IBOutlet UITextField *searchByName;
-@property (nonatomic) IBOutlet UITextField *searchByLocation;
-@property (nonatomic) IBOutlet UIButton *searchAroundMe;
-@property (nonatomic) IBOutlet UIImageView *searchAroundMeImage;
+@property (nonatomic) IBOutlet UITextField *searchField;
+
 @property (nonatomic) BOOL isSearching;
 
 // Search In Progress

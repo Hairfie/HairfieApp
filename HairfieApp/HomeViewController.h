@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface HomeViewController : UIViewController <UINavigationControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UIScrollViewDelegate, UIImagePickerControllerDelegate>
+#import "AdvanceSearch.h"
+@interface HomeViewController : UIViewController <UINavigationControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UIScrollViewDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate>
 
 @property (nonatomic) IBOutlet UILabel *AroundMeLabel;
 @property (nonatomic) IBOutlet UICollectionView *hairfieCollection;
@@ -17,6 +17,7 @@
 @property (nonatomic) IBOutlet UICollectionReusableView *headerView;
 @property (nonatomic) UIImagePickerController *imagePicker;
 @property (nonatomic) IBOutlet UIView *overlayView;
-
-
+@property (nonatomic) IBOutlet UITextField *searchField;
+@property (nonatomic) IBOutlet UIView *advancedSearchView;
+@property (nonatomic) IBOutlet AdvanceSearch *searchView;
 @end

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6206.8" systemVersion="14A329r" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="dEN-gt-xJT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6205" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="dEN-gt-xJT">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7026.1"/>
+        <deployment defaultVersion="1808" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6198"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="SourceSansPro-Bold.ttf">
@@ -52,8 +53,13 @@
             <string>SourceSansPro-Light</string>
             <string>SourceSansPro-Light</string>
             <string>SourceSansPro-Light</string>
+            <string>SourceSansPro-Light</string>
+            <string>SourceSansPro-Light</string>
+            <string>SourceSansPro-Light</string>
+            <string>SourceSansPro-Light</string>
         </mutableArray>
         <mutableArray key="SourceSansPro-Regular.ttf">
+            <string>SourceSansPro-Regular</string>
             <string>SourceSansPro-Regular</string>
             <string>SourceSansPro-Regular</string>
             <string>SourceSansPro-Regular</string>
@@ -379,10 +385,10 @@
                                         </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Yn-uH-ydj">
-                                        <rect key="frame" x="20" y="254" width="280" height="47"/>
+                                        <rect key="frame" x="20" y="254" width="280" height="48"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="280" id="T1J-pA-h9n"/>
-                                            <constraint firstAttribute="height" constant="47" id="fnx-an-pl4"/>
+                                            <constraint firstAttribute="height" constant="48" id="fnx-an-pl4"/>
                                         </constraints>
                                         <state key="normal" image="facebook-connect.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -391,8 +397,8 @@
                                             <action selector="getFacebookUserInfo:" destination="GUZ-sY-RBq" eventType="touchUpInside" id="YLZ-nd-cCv"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Connexion avec Facebook" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qDF-ta-QyE">
-                                        <rect key="frame" x="77" y="267" width="221" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Connexion avec Facebook" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qDF-ta-QyE">
+                                        <rect key="frame" x="105" y="267" width="172" height="21"/>
                                         <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="16"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -668,9 +674,12 @@ Inscivez-vous maintenant</string>
                                         <rect key="frame" x="44" y="27" width="223" height="27"/>
                                     </imageView>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Find hairdressers..." minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ePq-Fx-C9u">
-                                        <rect key="frame" x="73" y="26" width="195" height="30"/>
+                                        <rect key="frame" x="73" y="26" width="169" height="30"/>
                                         <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="search"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="eci-2w-4CQ" id="YAS-q8-0VI"/>
+                                        </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aH7-em-gOi">
                                         <rect key="frame" x="278" y="26" width="34" height="26"/>
@@ -687,6 +696,85 @@ Inscivez-vous maintenant</string>
                                     <constraint firstAttribute="width" constant="320" id="5w4-ia-VsG"/>
                                     <constraint firstAttribute="height" constant="64" id="dmF-ou-gtT"/>
                                 </constraints>
+                            </view>
+                            <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UlN-Ro-o4h" userLabel="Search View" customClass="AdvanceSearch">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="142"/>
+                                <subviews>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" image="search-advance-field-location.png" translatesAutoresizingMaskIntoConstraints="NO" id="MiA-gO-4hI">
+                                        <rect key="frame" x="10" y="108" width="300" height="27"/>
+                                    </imageView>
+                                    <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Ex : Paris, Marseille..." minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Hj0-p3-jlf" userLabel="Location Search">
+                                        <rect key="frame" x="54" y="108" width="254" height="27"/>
+                                        <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="UlN-Ro-o4h" id="ytW-gK-9NI"/>
+                                        </connections>
+                                    </textField>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" image="search-advance-field-name.png" translatesAutoresizingMaskIntoConstraints="NO" id="2GW-lb-kWa">
+                                        <rect key="frame" x="10" y="73" width="300" height="27"/>
+                                    </imageView>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Ex : Lissage brésilien, coloration, rouge..." minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="K7N-wZ-5Yz" userLabel="Name Search">
+                                        <rect key="frame" x="54" y="73" width="254" height="27"/>
+                                        <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="UlN-Ro-o4h" id="BHp-x0-JZT"/>
+                                        </connections>
+                                    </textField>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" image="location-button-image.png" translatesAutoresizingMaskIntoConstraints="NO" id="Ahn-y6-l2z">
+                                        <rect key="frame" x="21" y="114" width="12" height="16"/>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wWb-Dk-jCL">
+                                        <rect key="frame" x="8" y="108" width="38" height="27"/>
+                                        <state key="normal">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="searchAroundMe:" destination="UlN-Ro-o4h" eventType="touchUpInside" id="eBE-HY-w0I"/>
+                                        </connections>
+                                    </button>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TBs-i3-Gkf">
+                                        <rect key="frame" x="-8" y="0.0" width="320" height="64"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Recherche" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z7D-q0-1Wu">
+                                                <rect key="frame" x="122" y="27" width="76" height="21"/>
+                                                <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="16"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w6c-VS-3Yp" userLabel="Search">
+                                                <rect key="frame" x="220" y="27" width="90" height="27"/>
+                                                <color key="backgroundColor" red="0.87450980389999999" green="0.38431372549999998" blue="0.33333333329999998" alpha="1" colorSpace="deviceRGB"/>
+                                                <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="14"/>
+                                                <state key="normal" title="Rechercher">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="doSearch:" destination="UlN-Ro-o4h" eventType="touchUpInside" id="U4t-LW-lpr"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kp7-EM-TcZ" userLabel="Cancel">
+                                                <rect key="frame" x="20" y="31" width="20" height="20"/>
+                                                <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="14"/>
+                                                <state key="normal" image="arrow-nav.png">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="cancelSearch:" destination="UlN-Ro-o4h" eventType="touchUpInside" id="CYN-dz-U85"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.15686274510000001" green="0.19215686269999999" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" red="0.1960784314" green="0.26274509800000001" blue="0.3411764706" alpha="1" colorSpace="deviceRGB"/>
+                                <connections>
+                                    <outlet property="searchAroundMeImage" destination="Ahn-y6-l2z" id="EjL-Al-0LW"/>
+                                    <outlet property="searchBttn" destination="w6c-VS-3Yp" id="ShA-rr-heF"/>
+                                    <outlet property="searchByLocation" destination="Hj0-p3-jlf" id="hM1-em-42Z"/>
+                                    <outlet property="searchByName" destination="K7N-wZ-5Yz" id="65F-35-6FN"/>
+                                </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -712,7 +800,10 @@ Inscivez-vous maintenant</string>
                     <size key="freeformSize" width="320" height="568"/>
                     <connections>
                         <outlet property="hairfieCollection" destination="cI1-7M-VAJ" id="9ks-2M-oDw"/>
+                        <outlet property="searchField" destination="ePq-Fx-C9u" id="9tX-HK-uFj"/>
+                        <outlet property="searchView" destination="UlN-Ro-o4h" id="Gfv-cA-ACV"/>
                         <segue destination="QW8-eh-zsD" kind="push" identifier="camera" id="IQn-cj-Sbx"/>
+                        <segue destination="5vw-Wx-iMq" kind="push" identifier="searchFromFeed" id="4Cm-qL-flu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tyk-UX-pm7" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1094,7 +1185,7 @@ Inscivez-vous maintenant</string>
                                             </constraints>
                                         </mapView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="COIFFEUR À COTÉ DE VOUS" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tmt-Fz-YI7">
-                                            <rect key="frame" x="8" y="168" width="304" height="21"/>
+                                            <rect key="frame" x="8" y="168" width="304" height="22"/>
                                             <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="17"/>
                                             <color key="textColor" red="0.42352941179999998" green="0.46274509800000002" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -1121,27 +1212,6 @@ Inscivez-vous maintenant</string>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xfm-gp-qXV">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T84-uD-hx7">
-                                        <rect key="frame" x="278" y="27" width="34" height="26"/>
-                                        <state key="normal" image="picto-take-picture.png">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="djc-id-iwK" userLabel="Search Bar Button">
-                                        <rect key="frame" x="44" y="27" width="223" height="27"/>
-                                        <state key="normal" image="search-bar.png">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="showAdvancedSearch:" destination="5vw-Wx-iMq" eventType="touchUpInside" id="1Kk-KS-gdK"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.39999999999999963" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Search for haidressers..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n3Z-ph-r39">
-                                        <rect key="frame" x="80" y="29" width="150" height="23"/>
-                                        <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="14"/>
-                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ES7-vA-bDw">
                                         <rect key="frame" x="10" y="31" width="20" height="20"/>
                                         <state key="normal" image="arrow-nav.png">
@@ -1151,10 +1221,27 @@ Inscivez-vous maintenant</string>
                                             <action selector="goBack:" destination="5vw-Wx-iMq" eventType="touchUpInside" id="paw-Ie-prT"/>
                                         </connections>
                                     </button>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="search-bar.png" translatesAutoresizingMaskIntoConstraints="NO" id="I8S-C8-Tng">
+                                        <rect key="frame" x="44" y="27" width="223" height="27"/>
+                                    </imageView>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Search for hairdressers..." minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="81X-Rv-qeI">
+                                        <rect key="frame" x="73" y="26" width="169" height="30"/>
+                                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="search"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="5vw-Wx-iMq" id="kQa-g1-mTf"/>
+                                        </connections>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T84-uD-hx7">
+                                        <rect key="frame" x="278" y="27" width="34" height="26"/>
+                                        <state key="normal" image="picto-take-picture.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.15686274510000001" green="0.19215686269999999" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sWx-gi-x3o">
+                            <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sWx-gi-x3o" customClass="AdvanceSearch">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="142"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pps-Xj-Ftr">
@@ -1174,17 +1261,17 @@ Inscivez-vous maintenant</string>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="doSearch:" destination="5vw-Wx-iMq" eventType="touchUpInside" id="4UH-RX-UTv"/>
+                                                    <action selector="doSearch:" destination="sWx-gi-x3o" eventType="touchUpInside" id="Z3k-4H-Qjy"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Spq-xF-T3n" userLabel="Cancel">
-                                                <rect key="frame" x="10" y="26" width="20" height="20"/>
+                                                <rect key="frame" x="10" y="30" width="20" height="20"/>
                                                 <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="14"/>
                                                 <state key="normal" image="arrow-nav.png">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="cancelSearch:" destination="5vw-Wx-iMq" eventType="touchUpInside" id="xVW-ht-l5D"/>
+                                                    <action selector="cancelSearch:" destination="sWx-gi-x3o" eventType="touchUpInside" id="Mz4-kT-pVk"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -1193,23 +1280,23 @@ Inscivez-vous maintenant</string>
                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" image="search-advance-field-location.png" translatesAutoresizingMaskIntoConstraints="NO" id="Br4-SO-oFd">
                                         <rect key="frame" x="10" y="108" width="300" height="27"/>
                                     </imageView>
-                                    <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Ex : Paris, Marseille..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="78j-ql-0jW" userLabel="Location Search">
+                                    <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Ex : Paris, Marseille..." minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="78j-ql-0jW" userLabel="Location Search">
                                         <rect key="frame" x="54" y="108" width="254" height="27"/>
                                         <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
                                         <connections>
-                                            <outlet property="delegate" destination="5vw-Wx-iMq" id="HAt-ch-ABl"/>
+                                            <outlet property="delegate" destination="sWx-gi-x3o" id="cgX-lm-ST8"/>
                                         </connections>
                                     </textField>
                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" image="search-advance-field-name.png" translatesAutoresizingMaskIntoConstraints="NO" id="yR1-95-CnQ">
                                         <rect key="frame" x="10" y="73" width="300" height="27"/>
                                     </imageView>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Ex : Lissage brésilien, coloration, rouge..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hHb-73-Yqu" userLabel="Name Search">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Ex : Lissage brésilien, coloration, rouge..." minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="hHb-73-Yqu" userLabel="Name Search">
                                         <rect key="frame" x="54" y="73" width="254" height="27"/>
                                         <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                         <connections>
-                                            <outlet property="delegate" destination="5vw-Wx-iMq" id="1Cl-Er-uzR"/>
+                                            <outlet property="delegate" destination="sWx-gi-x3o" id="7nW-pw-aew"/>
                                         </connections>
                                     </textField>
                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" image="location-button-image.png" translatesAutoresizingMaskIntoConstraints="NO" id="9rO-o8-XJA">
@@ -1221,11 +1308,17 @@ Inscivez-vous maintenant</string>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="searchAroundMe:" destination="5vw-Wx-iMq" eventType="touchUpInside" id="KwI-gP-I21"/>
+                                            <action selector="searchAroundMe:" destination="sWx-gi-x3o" eventType="touchUpInside" id="xXu-XR-lFK"/>
                                         </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.1960784314" green="0.26274509800000001" blue="0.3411764706" alpha="1" colorSpace="deviceRGB"/>
+                                <connections>
+                                    <outlet property="searchAroundMeImage" destination="9rO-o8-XJA" id="sxS-xT-m1x"/>
+                                    <outlet property="searchBttn" destination="wCc-8K-jnR" id="H7w-Y0-kRO"/>
+                                    <outlet property="searchByLocation" destination="78j-ql-0jW" id="GyI-56-f6I"/>
+                                    <outlet property="searchByName" destination="hHb-73-Yqu" id="N4x-6h-KOv"/>
+                                </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -1241,18 +1334,13 @@ Inscivez-vous maintenant</string>
                         <size key="landscapeSize" width="568" height="320"/>
                     </simulatedScreenMetrics>
                     <connections>
-                        <outlet property="cancelBttn" destination="Spq-xF-T3n" id="7ih-bG-Uab"/>
                         <outlet property="hairdresserTableView" destination="tHR-dR-4MZ" id="fF7-Up-LEG"/>
                         <outlet property="headerView" destination="zB0-FQ-0pr" id="EUs-It-oYn"/>
                         <outlet property="mapView" destination="y19-nC-OPE" id="OJP-o6-P4h"/>
-                        <outlet property="searchAroundMe" destination="nd8-Fy-b9k" id="A9h-Sn-mAc"/>
-                        <outlet property="searchAroundMeImage" destination="9rO-o8-XJA" id="Q9J-vD-jHh"/>
-                        <outlet property="searchBttn" destination="wCc-8K-jnR" id="jkI-Ty-j6G"/>
-                        <outlet property="searchByLocation" destination="78j-ql-0jW" id="T4T-yo-Jbz"/>
-                        <outlet property="searchByName" destination="hHb-73-Yqu" id="lB0-8B-i8V"/>
                         <outlet property="searchDesc" destination="Tmt-Fz-YI7" id="3uM-FN-nUf"/>
+                        <outlet property="searchField" destination="81X-Rv-qeI" id="rfZ-mu-Cl3"/>
                         <outlet property="searchHeaderView" destination="sWx-gi-x3o" id="VyM-4z-bXw"/>
-                        <outlet property="searchInProgress" destination="n3Z-ph-r39" id="H1Y-TT-Kjj"/>
+                        <outlet property="searchView" destination="sWx-gi-x3o" id="0bo-wD-tgx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eNk-OA-e58" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2610,7 +2698,7 @@ connaissance et accepte les CGU de Hairfie</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y37-BW-Jd5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-816" y="545"/>
+            <point key="canvasLocation" x="-822" y="590"/>
         </scene>
     </scenes>
     <resources>
@@ -2658,8 +2746,9 @@ connaissance et accepte les CGU de Hairfie</string>
         </simulatedScreenMetrics>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="H0a-7y-EaD"/>
-        <segue reference="DYR-eo-mJz"/>
+        <segue reference="HOe-ge-VCi"/>
+        <segue reference="uEN-by-6gW"/>
         <segue reference="sgS-Io-6JC"/>
+        <segue reference="DYR-eo-mJz"/>
     </inferredMetricsTieBreakers>
 </document>
