@@ -117,6 +117,13 @@
     [self.view endEditing:YES];
 }
 
+-(IBAction)openEmailField:(id)sender {
+    [_emailField becomeFirstResponder];
+}
+
+-(IBAction)openPasswordField:(id)sender {
+    [_passwordField becomeFirstResponder];
+}
 
 -(IBAction)getFacebookUserInfoOld:(id)sender
 {
