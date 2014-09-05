@@ -10,7 +10,7 @@
 #define HairfieApp_constants_h
 
 #define BASE_URL @"http://salons.hairfie.com/api"
-#define API_URL @"http://api.staging.hairfie.com/api/"
+#define API_URL @"http://api.staging.hairfie.com/api/" // @"http://localhost:3000/api/"
 
 
 #define SYSTEM_VERSION_EQUAL_TO(v)                  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedSame)
