@@ -15,6 +15,7 @@
 #import "MenuViewController.h"
 #import <Social/Social.h>
 #import <Accounts/Accounts.h>
+#import "UITextField+ELFixSecureTextFieldFont.h"
 #import <FacebookSDK/FacebookSDK.h>
 
 @interface LoginViewController ()
@@ -34,10 +35,9 @@
     _noAccountButton.layer.masksToBounds = YES;
     _delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     _dismiss = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissTextFields)];
-    
     userAuthenticator = [[UserAuthenticator alloc] init];
 
-
+    [_passwordField fixSecureTextFieldFont];
     if ([_delegate.credentialStore isLoggedIn])
     {
          [AppDelegate lbAdaptater].accessToken = [_delegate.credentialStore authToken];
@@ -66,10 +66,30 @@
 {
     [_passwordField resignFirstResponder];
     [_emailField resignFirstResponder];
+    _noPasswordButton.hidden = NO;
 }
 
 -(UIStatusBarStyle)preferredStatusBarStyle{
     return UIStatusBarStyleLightContent;
+}
+
+-(void)textFieldDidBeginEditing:(UITextField *)textField
+{
+        if (textField == _passwordField)
+        {
+         
+            _noPasswordButton.hidden = YES;
+        }
+}
+
+
+-(void)textFieldDidEndEditing:(UITextField *)textField
+{
+    if (textField == _passwordField)
+    {
+        
+        _noPasswordButton.hidden = NO;
+    }
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -79,9 +99,11 @@
     UIResponder* nextResponder = [textField.superview viewWithTag:nextTag];
     if (nextResponder) {
         // Found next responder, so set it.
+        _noPasswordButton.hidden = YES;
         [nextResponder becomeFirstResponder];
     } else {
         [self doLogin:self];
+        _noPasswordButton.hidden = NO;
         [self.view removeGestureRecognizer:_dismiss];
     }
     return YES;
@@ -89,7 +111,7 @@
 
 -(IBAction)doLogin:(id)sender
 {
-   
+    [self.view endEditing:YES];
     void (^loadErrorBlock)(NSError *) = ^(NSError *error) {
         NSLog(@"Error on load %zd", error.code);
         if (error.code == -1011) {
@@ -123,6 +145,8 @@
 
 -(IBAction)closeKeyboard:(id)sender {
     [self.view endEditing:YES];
+     _noPasswordButton.hidden = NO;
+
 }
 
 -(IBAction)openEmailField:(id)sender {
@@ -206,7 +230,7 @@
         [_delegate.credentialStore setAuthTokenAndUserId:[results objectForKey:@"id"] forUser:[results objectForKey:@"userId"]];
         [userAuthenticator getCurrentUser];
 
-        [self performSegueWithIdentifier:@"loginSuccess" sender:self];
+        //[self performSegueWithIdentifier:@"loginSuccess" sender:self];
     };
 
     NSString *repoName = @"auth/facebook/token";

@@ -10,9 +10,11 @@
 #import "AppDelegate.h"
 #import <LoopBack/LoopBack.h>
 
+
 @interface LoginViewController : UIViewController <UINavigationControllerDelegate, UITextFieldDelegate>
 
 @property (nonatomic) IBOutlet UIButton *noAccountButton;
+@property (nonatomic) IBOutlet UIButton *noPasswordButton;
 @property (nonatomic) IBOutlet UITextField *emailField;
 @property (nonatomic) IBOutlet UITextField *passwordField;
 @property (nonatomic) AppDelegate *delegate;

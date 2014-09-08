@@ -24,6 +24,7 @@
 		B308700F198782BC0080E6D2 /* LikeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B308700E198782BC0080E6D2 /* LikeViewController.m */; };
 		B308701719878C030080E6D2 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B308701619878C030080E6D2 /* SettingsViewController.m */; };
 		B318D6EB199279D100DC20EF /* photo-example.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = B318D6EA199279D100DC20EF /* photo-example.jpeg */; };
+		B330408B19BDA64600BA6211 /* UITextField+ELFixSecureTextFieldFont.m in Sources */ = {isa = PBXBuildFile; fileRef = B330408A19BDA64600BA6211 /* UITextField+ELFixSecureTextFieldFont.m */; };
 		B330B5BC198656450059AE56 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B330B5BB198656450059AE56 /* MenuViewController.m */; };
 		B330B5BE198656DD0059AE56 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B330B5BD198656DD0059AE56 /* UIKit.framework */; };
 		B330B5C0198656EB0059AE56 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B330B5BF198656EA0059AE56 /* Foundation.framework */; };
@@ -235,6 +236,9 @@
 		B308701619878C030080E6D2 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		B3170E761989AC7E00F41EAD /* HairfieApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HairfieApp-Bridging-Header.h"; sourceTree = "<group>"; };
 		B318D6EA199279D100DC20EF /* photo-example.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "photo-example.jpeg"; sourceTree = "<group>"; };
+		B330408819BDA64600BA6211 /* ELFixSecureTextFieldFont-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ELFixSecureTextFieldFont-Prefix.pch"; sourceTree = "<group>"; };
+		B330408919BDA64600BA6211 /* UITextField+ELFixSecureTextFieldFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+ELFixSecureTextFieldFont.h"; sourceTree = "<group>"; };
+		B330408A19BDA64600BA6211 /* UITextField+ELFixSecureTextFieldFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+ELFixSecureTextFieldFont.m"; sourceTree = "<group>"; };
 		B330B5BA198656450059AE56 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
 		B330B5BB198656450059AE56 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 		B330B5BD198656DD0059AE56 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -668,6 +672,16 @@
 			name = "Custom Cells";
 			sourceTree = "<group>";
 		};
+		B330408719BDA64600BA6211 /* ELFixSecureTextFieldFont */ = {
+			isa = PBXGroup;
+			children = (
+				B330408819BDA64600BA6211 /* ELFixSecureTextFieldFont-Prefix.pch */,
+				B330408919BDA64600BA6211 /* UITextField+ELFixSecureTextFieldFont.h */,
+				B330408A19BDA64600BA6211 /* UITextField+ELFixSecureTextFieldFont.m */,
+			);
+			path = ELFixSecureTextFieldFont;
+			sourceTree = "<group>";
+		};
 		B34231FC198924290058866B /* AFNetworking */ = {
 			isa = PBXGroup;
 			children = (
@@ -698,6 +712,7 @@
 		B3423219198924330058866B /* External Librairies */ = {
 			isa = PBXGroup;
 			children = (
+				B330408719BDA64600BA6211 /* ELFixSecureTextFieldFont */,
 				B39BA17B19AF533E00A48BD5 /* KeyChain */,
 				B3615B2F19AF1CB300F1141D /* TPKeyboardAvoiding */,
 				B345BADE19951A7E007BB61A /* OLEContainerScrollView */,
@@ -1379,6 +1394,7 @@
 				B345BAEA19951A7E007BB61A /* OLEContainerScrollViewContentView.m in Sources */,
 				B337B6FD19A252B7003B0EA5 /* ReviewsViewController.m in Sources */,
 				B342316A1988ED070058866B /* BusinessViewController.m in Sources */,
+				B330408B19BDA64600BA6211 /* UITextField+ELFixSecureTextFieldFont.m in Sources */,
 				B3423213198924290058866B /* AFNetworkReachabilityManager.m in Sources */,
 				B3615B3819AF242800F1141D /* User.m in Sources */,
 				15697B31199BB03800DA83FE /* UIImage+Resize.m in Sources */,
