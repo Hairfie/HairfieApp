@@ -196,6 +196,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
     [appDelegate.credentialStore clearSavedCredentials];
     void (^loadErrorBlock)(NSError *) = ^(NSError *error){
         NSLog(@"Error on load %@", error.description);
+         [self.navigationController popToRootViewControllerAnimated:NO];
     };
     void (^loadSuccessBlock)(NSDictionary *) = ^(NSDictionary *results){
         NSLog(@"results %@", results);

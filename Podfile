@@ -5,6 +5,7 @@ target "HairfieApp" do
   pod 'SDWebImage', '~> 3.6'
   pod 'CPPickerView', '~> 1.2.0'
   pod 'SSKeychain'
+  pod 'ELFixSecureTextFieldFont'
 end
 
 target "HairfieAppTests" do
@@ -12,5 +13,6 @@ target "HairfieAppTests" do
   pod 'CPPickerView', '~> 1.2.0'
   pod 'SSKeychain'
 end
+
 
 
