@@ -18,5 +18,4 @@ Il faut tout d'abord installer cococapods via rubygems
 Ensuite, il faut absolument ouvrir le Workspace et pas le projet Xcode, soit via l'interface d'Xcode, soit via la commande : `open HairfieApp.xcworkspace`
 
 ## TODO
-* Faire un Gemfile
 * Faire un Makefile ou équivalent
