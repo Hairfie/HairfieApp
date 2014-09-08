@@ -18,6 +18,7 @@
 @property (nonatomic) NSString *lastName;
 @property (nonatomic) NSString *gender;
 @property (nonatomic) NSString *picture;
+@property (nonatomic) NSString *pictureUrl;
 @property (nonatomic) NSString *email;
 
 -(NSString *)name;
