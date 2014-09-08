@@ -299,66 +299,29 @@
 
     LBModel *model = (LBModel *)[salons objectAtIndex:indexPath.row];
 
-    if ( indexPath.row % 2 == 0)//[[price objectForKey:@"women"] integerValue] != 0 && [[price objectForKey:@"men"]integerValue] != 0)
-    {
-        static NSString *CellIdentifier = @"salonCell";
-        SalonTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    static NSString *CellIdentifier = @"similarCell";
+    SimilarTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 
-        if (cell == nil) {
-            NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"SalonTableViewCell" owner:self options:nil];
-            cell = [nib objectAtIndex:0];
-
-        }
-
-        [SDWebImageDownloader.sharedDownloader downloadImageWithURL:[NSURL URLWithString:[model objectForKeyedSubscript:@"thumb"]]
-                                                        options:0
-                                                        progress:^(NSInteger receivedSize, NSInteger expectedSize) { }
-                                                        completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished)
-         {
-             if (image && finished)
-             {
-
-                 cell.salonPicture.image = image;
-             }
-         }];
-
-
-
-        [cell customInit:model];
-        return cell;
-
-        }
-
-
-
-    else
-    {
-        static NSString *CellIdentifier = @"similarCell";
-        SimilarTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-
-        if (cell == nil) {
-            NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"SimilarTableViewCell" owner:self options:nil];
-            cell = [nib objectAtIndex:0];
-        }
-
-        [SDWebImageDownloader.sharedDownloader downloadImageWithURL:[NSURL URLWithString:[model objectForKeyedSubscript:@"thumb"]]
-                                                            options:0
-                                                           progress:^(NSInteger receivedSize, NSInteger expectedSize) { }
-                                                          completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished)
-         {
-             if (image && finished)
-             {
-
-                 cell.salonPicture.image = image;
-             }
-         }];
-
-        cell.name.text = [model objectForKeyedSubscript:@"name"];
-        [cell customInit:model];
-        return cell;
+    if (cell == nil) {
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"SimilarTableViewCell" owner:self options:nil];
+        cell = [nib objectAtIndex:0];
     }
 
-    return nil;
+    [SDWebImageDownloader.sharedDownloader downloadImageWithURL:[NSURL URLWithString:[model objectForKeyedSubscript:@"thumb"]]
+                                                        options:0
+                                                       progress:^(NSInteger receivedSize, NSInteger expectedSize) { }
+                                                      completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished)
+     {
+         if (image && finished)
+         {
+
+             cell.salonPicture.image = image;
+         }
+     }];
+
+    cell.name.text = [model objectForKeyedSubscript:@"name"];
+    [cell customInit:model];
+    return cell;
 }
 
 
