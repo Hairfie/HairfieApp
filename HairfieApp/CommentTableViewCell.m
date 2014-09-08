@@ -20,7 +20,7 @@
     profilePicture.layer.cornerRadius = profilePicture.frame.size.height / 2;
     profilePicture.clipsToBounds = YES;
     profilePicture.layer.borderWidth = 1.0f;
-    profilePicture.layer.borderColor = [UIColor greyHairfie].CGColor;
+    profilePicture.layer.borderColor = [[UIColor greyHairfie] colorWithAlphaComponent:0.6].CGColor;
     profilePicture.image = [UIImage imageNamed:@"leosquare.jpg"];
     [self.viewForBaselineLayout addSubview:profilePicture];
 

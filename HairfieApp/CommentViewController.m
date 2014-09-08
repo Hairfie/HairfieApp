@@ -120,7 +120,6 @@ shouldChangeTextInRange: (NSRange) range
     if ([text isEqualToString:@"\n"]) {
 
         _isCommenting = NO;
-        NSLog(@"JVIENS LA");
 
         _commentTableView.scrollEnabled = YES;
         _commentTextView.text = @"Ajoutez votre commentaire...";
