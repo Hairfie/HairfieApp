@@ -15,6 +15,7 @@
 #import "MenuViewController.h"
 #import <Social/Social.h>
 #import <Accounts/Accounts.h>
+#import <FacebookSDK/FacebookSDK.h>
 
 @interface LoginViewController ()
 @end
@@ -50,6 +51,14 @@
     }
 
     [self.view addGestureRecognizer:_dismiss];
+    
+    // Login without prompting anything if you have a FB session
+    [FBSession openActiveSessionWithReadPermissions:@[@"public_profile", @"email"]
+                                       allowLoginUI:NO
+                                  completionHandler:
+     ^(FBSession *session, FBSessionState state, NSError *error) {
+         [self sessionStateChanged:session state:state error:error];
+     }];
     // Do any additional setup after loading the view.
 }
 
@@ -116,34 +125,70 @@
     [self.view endEditing:YES];
 }
 
+-(IBAction)openEmailField:(id)sender {
+    [_emailField becomeFirstResponder];
+}
 
--(IBAction)getFacebookUserInfo:(id)sender
+-(IBAction)openPasswordField:(id)sender {
+    [_passwordField becomeFirstResponder];
+}
+
+
+- (IBAction)getFacebookUserInfo:(id)sender
 {
-    ACAccountStore *account = [[ACAccountStore alloc] init];
-    ACAccountType *accountType = [account accountTypeWithAccountTypeIdentifier:
-                                  ACAccountTypeIdentifierFacebook];
-    
-    
-    NSDictionary *options = @{@"ACFacebookAppIdKey" : @"726709544031609",
-                              @"ACFacebookPermissionsKey" : @[@"email"]};
-    
-    [account requestAccessToAccountsWithType:accountType
-                                     options:options
-                                  completion:^(BOOL granted, NSError *error)
-    {
-        
-       
-        if (granted == YES)
-        {
-            NSLog(@"go to login ");
-            NSArray *accounts = [account accountsWithAccountType:accountType];
-            ACAccount *fbAccount = [[ACAccount alloc] init];
-            fbAccount = [accounts lastObject];
-            ACAccountCredential *fbCredential = [fbAccount credential];
-            NSString *fbAuthToken = [fbCredential oauthToken];
-            [self loginWithFbToken:fbAuthToken];
+    if (FBSession.activeSession.state == FBSessionStateOpen
+        || FBSession.activeSession.state == FBSessionStateOpenTokenExtended) {
+        [self sessionStateChanged:FBSession.activeSession state:FBSession.activeSession.state error:nil];
+    } else {
+        [FBSession openActiveSessionWithReadPermissions:@[@"public_profile", @"email"]
+                                           allowLoginUI:YES
+                                      completionHandler:
+         ^(FBSession *session, FBSessionState state, NSError *error) {
+             [self sessionStateChanged:session state:state error:error];
+         }];
+    }
+}
+
+- (void)sessionStateChanged:(FBSession *)session state:(FBSessionState) state error:(NSError *)error
+{
+    if (!error && state == FBSessionStateOpen){
+        NSLog(@"Session opened");
+        FBAccessTokenData *accessTokenData = [session accessTokenData];
+        NSString *fbAuthToken = [accessTokenData accessToken];
+        [self loginWithFbToken:fbAuthToken];
+        return;
+    }
+    if (state == FBSessionStateClosed || state == FBSessionStateClosedLoginFailed){
+        NSLog(@"Session closed");
+    }
+
+    if (error){
+        NSLog(@"Error");
+        NSString *alertText;
+        NSString *alertTitle;
+
+        if ([FBErrorUtility shouldNotifyUserForError:error] == YES){
+            alertTitle = @"Something went wrong";
+            alertText = [FBErrorUtility userMessageForError:error];
+            [self showMessage:alertText withTitle:alertTitle];
+        } else {
+            if ([FBErrorUtility errorCategoryForError:error] == FBErrorCategoryUserCancelled) {
+                NSLog(@"User cancelled login");
+            } else if ([FBErrorUtility errorCategoryForError:error] == FBErrorCategoryAuthenticationReopenSession){
+                alertTitle = @"Session Error";
+                alertText = @"Your current session is no longer valid. Please log in again.";
+                [self showMessage:alertText withTitle:alertTitle];
+            } else {
+                NSDictionary *errorInformation = [[[error.userInfo objectForKey:@"com.facebook.sdk:ParsedJSONResponseKey"] objectForKey:@"body"] objectForKey:@"error"];
+                
+                // Show the user an error message
+                alertTitle = @"Something went wrong";
+                alertText = [NSString stringWithFormat:@"Please retry. \n\n If the problem persists contact us and mention this error code: %@", [errorInformation objectForKey:@"message"]];
+                [self showMessage:alertText withTitle:alertTitle];
+            }
         }
-    }];
+        [FBSession.activeSession closeAndClearTokenInformation];
+    }
 }
 
 
@@ -158,27 +203,25 @@
     void (^loadSuccessBlock)(NSDictionary *) = ^(NSDictionary *results) {
         
         [AppDelegate lbAdaptater].accessToken = [results objectForKey:@"id"];
-        
         [_delegate.credentialStore setAuthTokenAndUserId:[results objectForKey:@"id"] forUser:[results objectForKey:@"userId"]];
-        
-        //[_delegate.currentUser getCurrentUser];
-        //UserAuthenticator *auth = [[UserAuthenticator alloc] init];
         [userAuthenticator getCurrentUser];
 
         [self performSegueWithIdentifier:@"loginSuccess" sender:self];
     };
-        NSString *repoName = @"auth/facebook/token";
+
+    NSString *repoName = @"auth/facebook/token";
+
+    [[fbLbAdaptater contract] addItem:[SLRESTContractItem itemWithPattern:@"" verb:@"POST"] forMethod:@"facebook.login"];
     
-    
-    
-        [[fbLbAdaptater contract] addItem:[SLRESTContractItem itemWithPattern:@"" verb:@"POST"] forMethod:@"facebook.login"];
-        
-        LBModelRepository *loginData = [fbLbAdaptater repositoryWithModelName:repoName];
-    
-        [loginData invokeStaticMethod:@"" parameters:@{@"access_token":fbAuthToken} success:loadSuccessBlock failure:loadErrorBlock];
+    LBModelRepository *loginData = [fbLbAdaptater repositoryWithModelName:repoName];
+
+    [loginData invokeStaticMethod:@"" parameters:@{@"access_token":fbAuthToken} success:loadSuccessBlock failure:loadErrorBlock];
 }
 
-
+- (void) showMessage:(NSString *)alertText withTitle:(NSString *)alertTitle {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:alertTitle message:alertText delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+    [alert show];
+}
 
 
 -(BOOL) isValidEmail:(NSString *)checkString

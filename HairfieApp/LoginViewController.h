@@ -20,5 +20,7 @@
 
 -(IBAction)doLogin:(id)sender;
 -(IBAction)closeKeyboard:(id)sender;
+-(IBAction)openEmailField:(id)sender;
+-(IBAction)openPasswordField:(id)sender;
 
 @end
