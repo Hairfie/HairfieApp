@@ -13,6 +13,9 @@
 @interface SignUpViewController ()
 {
     NSString *imgPath;
+    NSString *imgName;
+    NSString *uploadedFileName;
+    BOOL uploadInProgress;
 }
 
 @end
@@ -125,11 +128,9 @@ numberOfRowsInComponent:(NSInteger)component
         delegate.currentUser.lastName = [results objectForKey:@"lastName"];
         delegate.currentUser.picture = [results objectForKey:@"picture"];
         
-        //[self uploadProfileImage];
-        
         [self performSegueWithIdentifier:@"createAccount" sender:self];
     };
-
+    
     if ([self isValidEmail: _emailField.text])
     {
         
@@ -143,13 +144,21 @@ numberOfRowsInComponent:(NSInteger)component
                 gender = @"male";
         else
             gender = @"female";
+        if(imgName && imgPath) {
+            [self uploadProfileImage];
+        }
         
         NSString *repoName = @"users";
         [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/users" verb:@"POST"] forMethod:@"users"];
         
         LBModelRepository *loginData = [[AppDelegate lbAdaptater] repositoryWithModelName:repoName];
         
-        [loginData invokeStaticMethod:@"" parameters:@{@"firstName":_firstNameField.text, @"lastName":_lastNameField.text, @"email": _emailField.text, @"password" : _passwordField.text, @"newsletter":newsletter, @"gender":gender} success:loadSuccessBlock failure:loadErrorBlock];
+        while (uploadInProgress) {
+            NSLog(@"Loop Loop !");
+            [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
+        }
+        
+        [loginData invokeStaticMethod:@"" parameters:@{@"firstName":_firstNameField.text, @"lastName":_lastNameField.text, @"email": _emailField.text, @"password" : _passwordField.text, @"newsletter":newsletter, @"gender":gender, @"picture":uploadedFileName} success:loadSuccessBlock failure:loadErrorBlock];
     }
     else
     {
@@ -161,33 +170,26 @@ numberOfRowsInComponent:(NSInteger)component
 
 -(void) uploadProfileImage
 {
-    NSString *tmpDir = NSTemporaryDirectory();
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSString *fileName = imgPath;
-    NSString *fullPath = [tmpDir stringByAppendingPathComponent:fileName];
-    
-    if ([fileManager fileExistsAtPath:fullPath]) {
-        [fileManager removeItemAtPath:fullPath error:nil];
-    }
+    uploadInProgress = YES;
     
     LBFileRepository *repository = (LBFileRepository*)[[AppDelegate lbAdaptater] repositoryWithClass:[LBFileRepository class]];
-    NSString* contents = @"Upload test";
-    
-    [contents writeToFile:fullPath atomically:YES encoding:NSUTF8StringEncoding error:nil];
-    
+    LBFile __block *file = [repository createFileWithName:imgName localPath:imgPath container:@"user-profile-picture"];
     
     void (^loadErrorBlock)(NSError *) = ^(NSError *error){
         NSLog(@"Error : %@", error.description);
     };
     void (^loadSuccessBlock)(NSDictionary *) = ^(NSDictionary *results){
-        NSLog(@"results %@", results);
+        NSLog(@"Upload file results %@", [[[[results objectForKey:@"result"] objectForKey:@"files"] objectForKey:@"uploadfiles"] objectAtIndex:0] );
+        uploadedFileName = [[[[[results objectForKey:@"result"] objectForKey:@"files"] objectForKey:@"uploadfiles"] objectAtIndex:0]    objectForKey:@"name"];
+        uploadInProgress = NO;
     };
-
-    NSLog(@"tmpir %@", tmpDir);
-   
-    LBFile __block *file = [repository createFileWithName:fileName localPath:tmpDir container:@"user-Profile-Picture"];
-    [file uploadWithSuccess:loadSuccessBlock failure:loadErrorBlock];
+    
+    [file invokeMethod:@"upload"
+            parameters:[file toDictionary]
+               success:loadSuccessBlock
+               failure:loadErrorBlock];
 }
+
 
 -(BOOL) isValidEmail:(NSString *)checkString
 {
@@ -370,10 +372,19 @@ numberOfRowsInComponent:(NSInteger)component
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    UIImage *image = [info valueForKey:UIImagePickerControllerOriginalImage];
-   
-    NSURL *imagePath = [info objectForKey:@"UIImagePickerControllerReferenceURL"];
-    imgPath = [imagePath lastPathComponent];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    imgName = [[info objectForKey:@"UIImagePickerControllerReferenceURL"] lastPathComponent];
+    imgPath = NSTemporaryDirectory();
+
+    NSString *fullPath = [imgPath stringByAppendingPathComponent:imgName];
+    UIImage *image = [info valueForKey:UIImagePickerControllerEditedImage];
+    
+    //Remove it if it currently exists...
+    if ([fileManager fileExistsAtPath:fullPath]) {
+        [fileManager removeItemAtPath:fullPath error:nil];
+    }
+    
+    [UIImageJPEGRepresentation(image, 1.0) writeToFile:fullPath atomically:YES];
     
     [self setProfilePicture:image];
     [picker dismissViewControllerAnimated:YES completion:nil];
