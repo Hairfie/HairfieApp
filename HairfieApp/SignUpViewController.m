@@ -14,7 +14,8 @@
 {
     NSString *imgPath;
     NSString *imgName;
-
+    NSString *uploadedFileName;
+    BOOL uploadInProgress;
 }
 
 @end
@@ -129,7 +130,7 @@ numberOfRowsInComponent:(NSInteger)component
         
         [self performSegueWithIdentifier:@"createAccount" sender:self];
     };
-
+    
     if ([self isValidEmail: _emailField.text])
     {
         
@@ -147,12 +148,17 @@ numberOfRowsInComponent:(NSInteger)component
             [self uploadProfileImage];
         }
         
-//        NSString *repoName = @"users";
-//        [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/users" verb:@"POST"] forMethod:@"users"];
-//        
-//        LBModelRepository *loginData = [[AppDelegate lbAdaptater] repositoryWithModelName:repoName];
-//        
-//        [loginData invokeStaticMethod:@"" parameters:@{@"firstName":_firstNameField.text, @"lastName":_lastNameField.text, @"email": _emailField.text, @"password" : _passwordField.text, @"newsletter":newsletter, @"gender":gender} success:loadSuccessBlock failure:loadErrorBlock];
+        NSString *repoName = @"users";
+        [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/users" verb:@"POST"] forMethod:@"users"];
+        
+        LBModelRepository *loginData = [[AppDelegate lbAdaptater] repositoryWithModelName:repoName];
+        
+        while (uploadInProgress) {
+            NSLog(@"Loop Loop !");
+            [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
+        }
+        
+        [loginData invokeStaticMethod:@"" parameters:@{@"firstName":_firstNameField.text, @"lastName":_lastNameField.text, @"email": _emailField.text, @"password" : _passwordField.text, @"newsletter":newsletter, @"gender":gender, @"picture":uploadedFileName} success:loadSuccessBlock failure:loadErrorBlock];
     }
     else
     {
@@ -164,6 +170,8 @@ numberOfRowsInComponent:(NSInteger)component
 
 -(void) uploadProfileImage
 {
+    uploadInProgress = YES;
+    
     LBFileRepository *repository = (LBFileRepository*)[[AppDelegate lbAdaptater] repositoryWithClass:[LBFileRepository class]];
     LBFile __block *file = [repository createFileWithName:imgName localPath:imgPath container:@"user-profile-picture"];
     
@@ -171,12 +179,17 @@ numberOfRowsInComponent:(NSInteger)component
         NSLog(@"Error : %@", error.description);
     };
     void (^loadSuccessBlock)(NSDictionary *) = ^(NSDictionary *results){
-        NSLog(@"Upload file results %@", results);
+        NSLog(@"Upload file results %@", [[[[results objectForKey:@"result"] objectForKey:@"files"] objectForKey:@"uploadfiles"] objectAtIndex:0] );
+        uploadedFileName = [[[[[results objectForKey:@"result"] objectForKey:@"files"] objectForKey:@"uploadfiles"] objectAtIndex:0]    objectForKey:@"name"];
+        uploadInProgress = NO;
     };
-
-
-    [file uploadWithSuccess:loadSuccessBlock failure:loadErrorBlock];
+    
+    [file invokeMethod:@"upload"
+            parameters:[file toDictionary]
+               success:loadSuccessBlock
+               failure:loadErrorBlock];
 }
+
 
 -(BOOL) isValidEmail:(NSString *)checkString
 {
