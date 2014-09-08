@@ -10,7 +10,7 @@ iOS App for Hairfie !
 
 ## Setup
 
-Il faut tout d'abord installer cococapods via rubygems (TODO : faire un Gemfile)
+Il faut tout d'abord installer cococapods via rubygems
 * `gem install cocoapods` (`sudo`au besoin)
 * `pod install` (étape à renouveller à chaque changement du Podfile)
 
