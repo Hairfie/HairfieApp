@@ -187,34 +187,49 @@
     {
         [self getSalons:gpsString];
     }
-    [_mapView setRegion:region animated:NO];
+    //[_mapView setRegion:region animated:NO];
 }
 
--(void) addSalonsToMap {
 
+
+-(void) addSalonsToMap {
+    NSMutableArray *annotations = [[NSMutableArray alloc] init];
     for ( int i= 0; i<[salons count]; i++) {
         NSDictionary *salon = [salons objectAtIndex:i];
-        [self addSalonToMap:salon];
+        [annotations addObject:[self annotationForSalon:salon]];
     }
+    [_mapView addAnnotations:annotations];
     
-    //[_hairdresserTableView reloadData];
+    MKMapRect zoomRect = MKMapRectNull;
+    for (id <MKAnnotation> annotation in _mapView.annotations) {
+        MKMapPoint annotationPoint = MKMapPointForCoordinate(annotation.coordinate);
+        MKMapRect pointRect = MKMapRectMake(annotationPoint.x, annotationPoint.y, 0, 0);
+        if (MKMapRectIsNull(zoomRect)) {
+            zoomRect = pointRect;
+        } else {
+            zoomRect = MKMapRectUnion(zoomRect, pointRect);
+        }
+    }
+    [_mapView setVisibleMapRect:zoomRect animated:NO];
+    _mapView.camera.altitude *= 1.4;
 }
 
 // Add a salon to the map
 
-- (void) addSalonToMap: (NSDictionary *) salon {
-
+- (MyAnnotation *) annotationForSalon: (NSDictionary *) salon {
+    
     NSDictionary *coords = [salon valueForKey:@"gps"];
     NSString *titleStr = [salon valueForKey:@"name"];
-
+    
     CLLocationCoordinate2D coord;
     coord.longitude = [[NSString stringWithFormat:@"%@",[coords valueForKey:@"lng"]] floatValue];
     coord.latitude = [[NSString stringWithFormat:@"%@",[coords valueForKey:@"lat"]] floatValue];
-
+    
     MyAnnotation *annotObj =[[MyAnnotation alloc]init];
     annotObj.title = titleStr;
     annotObj.coordinate = coord;
-    [_mapView addAnnotation:annotObj];
+    
+    return annotObj;
 }
 
 // Get Salons from webservices then add them to the map
