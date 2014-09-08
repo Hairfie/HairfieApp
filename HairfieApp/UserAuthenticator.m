@@ -34,9 +34,9 @@
         NSLog(@"Error on load %@", error.description);
     };
     void (^loadSuccessBlock)(LBModel *) = ^(LBModel *model){
-        user = model;
+        user = (User*)model;
+        
         delegate.currentUser = user;
-        NSLog(@"User : %@", user);
         [[NSNotificationCenter defaultCenter] postNotificationName:@"currentUser" object:self];
     };
     

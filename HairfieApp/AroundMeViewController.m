@@ -11,7 +11,6 @@
 #import "CustomPinView.h"
 #import "AppDelegate.h"
 
-#
 
 #import "SalonTableViewCell.h"
 #import "SalonDetailViewController.h"
@@ -237,6 +236,7 @@
     };
     void (^loadSuccessBlock)(NSArray *) = ^(NSArray *models){
         salons = models;
+        NSLog(@"Salons : %@", salons);
         _hairdresserTableView.hidden = NO;
         [self addSalonsToMap];
          [_hairdresserTableView reloadData];
@@ -378,7 +378,7 @@
         SalonDetailViewController *salonDetail = [segue destinationViewController];
 
         [salonDetail setDataSalon:[salons objectAtIndex:rowSelected]];
-        }
+    }
 }
 
 

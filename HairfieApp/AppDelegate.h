@@ -10,6 +10,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import <LoopBack/LoopBack.h>
 #import "User.h"
+#import "Hairfie.h"
 #import "KeychainItemWrapper.h"
 #import "CredentialStore.h"
 
@@ -19,6 +20,7 @@
 @property (nonatomic)     CLLocationManager *manager;
 @property (nonatomic)     CLLocation *myLocation;
 @property (nonatomic) User *currentUser;
+@property (nonatomic) Hairfie *hairfie;
 @property (nonatomic) CredentialStore *credentialStore;
 + ( LBRESTAdapter *) lbAdaptater;
 @property (nonatomic) KeychainItemWrapper *keychainItem;

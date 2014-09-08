@@ -10,6 +10,7 @@
 #import "User.h"
 #import "UserRepository.h"
 #import "UserAuthenticator.h"
+#import "HairfieRequest.h"
 #import "AppDelegate.h"
 #import "CredentialStore.h"
 #import "MenuViewController.h"
@@ -23,6 +24,7 @@
 
 @implementation LoginViewController {
     UserAuthenticator *userAuthenticator;
+    HairfieRequest *hairfieRequest;
 }
 
 - (void)viewDidLoad {
@@ -36,7 +38,7 @@
     _delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     _dismiss = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissTextFields)];
     userAuthenticator = [[UserAuthenticator alloc] init];
-
+    hairfieRequest = [[HairfieRequest alloc] init];
     [_passwordField fixSecureTextFieldFont];
     if ([_delegate.credentialStore isLoggedIn])
     {
@@ -125,7 +127,6 @@
         [AppDelegate lbAdaptater].accessToken = [results objectForKey:@"id"];
         
         [userAuthenticator getCurrentUser];
-
         [self dismissTextFields];
         [self performSegueWithIdentifier:@"loginSuccess" sender:self];
     };
@@ -229,8 +230,8 @@
         [AppDelegate lbAdaptater].accessToken = [results objectForKey:@"id"];
         [_delegate.credentialStore setAuthTokenAndUserId:[results objectForKey:@"id"] forUser:[results objectForKey:@"userId"]];
         [userAuthenticator getCurrentUser];
-
-        //[self performSegueWithIdentifier:@"loginSuccess" sender:self];
+        
+        [self performSegueWithIdentifier:@"loginSuccess" sender:self];
     };
 
     NSString *repoName = @"auth/facebook/token";

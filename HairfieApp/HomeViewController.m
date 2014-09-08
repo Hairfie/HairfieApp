@@ -11,11 +11,17 @@
 #import "UIViewController+ECSlidingViewController.h"
 #import "AroundMeViewController.h"
 #import "AdvanceSearch.h"
+#import "HairfieRequest.h"
+#import "HairfieDetailViewController.h"
 
 
 @interface HomeViewController ()
 {
     AdvanceSearch *searchView;
+    HairfieRequest *hairfieReq;
+    NSArray *hairfies;
+    NSInteger hairfieRow;
+    UIImage *currentHairfie;
 }
 @end
 
@@ -33,20 +39,20 @@
     self.navigationItem.title = [NSString stringWithFormat:NSLocalizedString(@"Home", nil)];
      [_hairfieCollection registerNib:[UINib nibWithNibName:@"CustomCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"hairfieCell"];
     [self.view addGestureRecognizer:self.slidingViewController.panGesture];
-    
+    hairfieReq = [[HairfieRequest alloc] init];
     _searchView.hidden = YES;
     [_searchView initView];
     [_searchView.searchAroundMeImage setTintColor:[UIColor lightBlueHairfie]];
     _searchView.searchByLocation.text = @"Around Me";
     //self.view.translatesAutoresizingMaskIntoConstraints = NO;
     //[self.view.translatesAutoresizingMaskIntoConstraints]
-    
+    [self getHairfies];
     // Do any additional setup after loading the view.
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
-       [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willSearch:) name:@"searchQuery" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willSearch:) name:@"searchQuery" object:nil];
 }
 -(void)viewWillDisappear:(BOOL)animated
 {
@@ -99,7 +105,7 @@
 
 
 - (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section {
-    return 6;
+    return 1;
 }
 // 2
 - (NSInteger)numberOfSectionsInCollectionView: (UICollectionView *)collectionView {
@@ -112,13 +118,35 @@
     
     static NSString *CellIdentifier = @"hairfieCell";
     CustomCollectionViewCell *cell = [cv dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
-    
+    LBModel *model = (LBModel *)[hairfies objectAtIndex:indexPath.row];
+
     if (cell == nil) {
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"CustomCollectionViewCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
-    cell.name.text = @"Kimi Smith";
-    cell.hairfieView.image = [UIImage imageNamed:@"hairfie.jpg"];
+    //cell.name.text = [model objectForKeyedSubscript:@"username"];
+   
+   // NSLog(@"userId : %@", [[hairfies objectAtIndex:0] valueForKey:@"userId"]);
+    
+    if (!hairfies)
+    {
+     cell.hairfieView.image = [UIImage imageNamed:@"hairfie.jpg"];
+    }
+    else
+    {
+    [SDWebImageDownloader.sharedDownloader downloadImageWithURL:[NSURL URLWithString:[model objectForKeyedSubscript:@"publicUrl"]]
+                                                        options:0
+                                                       progress:^(NSInteger receivedSize, NSInteger expectedSize) { }
+                                                      completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished)
+     {
+         if (image && finished)
+         {
+             
+             cell.hairfieView.image = image;
+             currentHairfie = image;
+         }
+     }];
+    }
     cell.layer.borderColor = [UIColor colorWithRed:234/255.0f green:236/255.0f blue:238/255.0f alpha:1].CGColor;
     cell.layer.borderWidth = 1.0f;
     return cell;
@@ -127,6 +155,7 @@
 
 -(void) collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    hairfieRow = indexPath.row;
     [self performSegueWithIdentifier:@"hairfieDetail" sender:self];
     
 }
@@ -294,6 +323,32 @@
         aroundMe.gpsStringFromSegue = _searchView.gpsString;
         aroundMe.locationFromSegue = _searchView.locationSearch;
     }
+    if ([segue.identifier isEqualToString:@"hairfieDetail"])
+    {
+        HairfieDetailViewController *hairfieDetail = [segue destinationViewController];
+        hairfieDetail.currentHairfie = [hairfies objectAtIndex:hairfieRow];
+        hairfieDetail.hairfieImage = currentHairfie;
+        
+    }
+
+}
+
+-(IBAction)buttonGetHairfies:(id)sender
+{
+    [self getHairfies];
+}
+
+
+-(void)getHairfies
+{
+        void (^loadErrorBlock)(NSError *) = ^(NSError *error){
+            NSLog(@"Error on load %@", error.description);
+        };
+       void (^loadSuccessBlock)(NSArray *) = ^(NSArray *model){
+           hairfies = model;
+           [_hairfieCollection reloadData];
+        };
+    [hairfieReq getHairfies:loadSuccessBlock failure:loadErrorBlock];
 }
 
 

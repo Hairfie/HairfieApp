@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6205" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="dEN-gt-xJT">
     <dependencies>
+        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6198"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -648,6 +649,15 @@ Inscivez-vous maintenant</string>
                                             <rect key="frame" x="72" y="70" width="176" height="1"/>
                                             <color key="backgroundColor" red="0.85490196080000003" green="0.85490196080000003" blue="0.87058823529999996" alpha="1" colorSpace="calibratedRGB"/>
                                         </view>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7vT-0A-6c4">
+                                            <rect key="frame" x="137" y="162" width="68" height="30"/>
+                                            <state key="normal" title="HAIRFIES">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="buttonGetHairfies:" destination="eci-2w-4CQ" eventType="touchUpInside" id="feV-E8-Vsr"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="bottom" secondItem="QFc-m8-YLl" secondAttribute="bottom" constant="46" id="2Fs-i9-BEp"/>
@@ -874,8 +884,8 @@ Inscivez-vous maintenant</string>
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" indicatorStyle="white" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="KAR-xV-XBM">
-                                <rect key="frame" x="0.0" y="40" width="320" height="568"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" indicatorStyle="white" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="KAR-xV-XBM">
+                                <rect key="frame" x="0.0" y="40" width="320" height="528"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="508" id="4vN-nV-gYB"/>
@@ -904,10 +914,10 @@ Inscivez-vous maintenant</string>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tju-WQ-TTI">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="388"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="358"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="hairfie.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="QAO-XE-Ki4">
-                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="365"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bko-MI-BlI">
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="355"/>
                                                 </imageView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="picto-hairfie-comment.png" translatesAutoresizingMaskIntoConstraints="NO" id="zNW-QW-lzo">
                                                     <rect key="frame" x="86" y="328" width="26" height="20"/>
@@ -1042,6 +1052,7 @@ Inscivez-vous maintenant</string>
                                     <connections>
                                         <outlet property="addCommentBttn" destination="kJ0-tl-pex" id="avV-Ss-oS1"/>
                                         <outlet property="commentTableView" destination="lix-zn-6uM" id="1FC-Hu-Qlq"/>
+                                        <outlet property="hairfieImageView" destination="bko-MI-BlI" id="WP0-IS-3e0"/>
                                         <outlet property="infoTableView" destination="l5L-6A-fPA" id="2K1-7W-WZY"/>
                                         <outlet property="infoView" destination="JYV-cu-oFX" id="hFW-W3-8e3"/>
                                         <outlet property="moreCommentBttn" destination="mqu-GV-ML1" id="5Z9-Ot-0VO"/>
@@ -2722,7 +2733,6 @@ connaissance et accepte les CGU de Hairfie</string>
         <image name="checkbox-false.png" width="46" height="46"/>
         <image name="facebook-connect.png" width="560" height="95"/>
         <image name="hairfie-typo.png" width="247" height="66"/>
-        <image name="hairfie.jpg" width="307" height="425"/>
         <image name="location-button-image.png" width="24" height="32"/>
         <image name="login-form.png" width="560" height="191"/>
         <image name="login-separator.png" width="533" height="1"/>

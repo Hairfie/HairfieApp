@@ -13,19 +13,20 @@
 
 @property (nonatomic) IBOutlet UIScrollView *myScrollView;
 @property (nonatomic) IBOutlet UIImageView *hairfieImageView;
-@property (nonatomic) IBOutlet UITableView *infoTableView;
-@property (nonatomic) IBOutlet UITableView *commentTableView;
+//@property (nonatomic) IBOutlet UITableView *infoTableView;
+//@property (nonatomic) IBOutlet UITableView *commentTableView;
+//@property (nonatomic) IBOutlet UITextField *addComment;
 
-@property (nonatomic) IBOutlet UITextField *addComment;
+//@property (nonatomic) IBOutlet UIView *infoView;
+//@property (nonatomic) IBOutlet UIView *hairfieView;
 
-@property (nonatomic) IBOutlet UIView *infoView;
-@property (nonatomic) IBOutlet UIView *hairfieView;
-
-@property (nonatomic) IBOutlet UIButton *addCommentBttn;
-@property (nonatomic) IBOutlet UIButton *moreCommentBttn;
 
 @property (nonatomic) IBOutlet UICollectionView *hairfieCollection;
-@property (nonatomic) IBOutlet UICollectionReusableView *test;
+
+
+@property (nonatomic) NSArray *currentHairfie;
+@property (nonatomic) UIImage *hairfieImage;
+
 
 -(IBAction)goBack:(id)sender;
 
