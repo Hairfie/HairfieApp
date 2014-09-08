@@ -12,6 +12,7 @@
 #import "CustomCollectionViewCell.h"
 #import "HairfieDetailCollectionReusableView.h"
 #import "CommentViewController.h"
+#import <LoopBack/LoopBack.h>
 
 @interface HairfieDetailViewController ()
 
@@ -23,6 +24,7 @@
 {
     UITableView *detailsTableView;
     UITableView *commentsTableView;
+    LBModel *model;
 }
 
 @synthesize myScrollView = _myScrollView, hairfieImageView = _hairfieImageView;
@@ -33,7 +35,7 @@
    
     _hairfieCollection.delegate = self;
     _hairfieCollection.dataSource = self;
-
+    model = (LBModel *)_currentHairfie;
     [_hairfieCollection registerNib:[UINib nibWithNibName:@"CustomCollectionViewCell" bundle:nil]forCellWithReuseIdentifier:@"hairfieRelated"];
     [_hairfieCollection registerNib:[UINib nibWithNibName:@"HairfieDetailCollectionReusableView" bundle:nil]forCellWithReuseIdentifier:@"headerCollection"];
 
@@ -128,7 +130,7 @@
     if (indexPath.row == 2)
     {
         cell.pictoView.image = [UIImage imageNamed:@"picto-hairfie-detail-price.png"];
-        cell.contentLabel.text = @"$ 40";
+        cell.contentLabel.text = [NSString stringWithFormat:@"%@ €", [[model objectForKeyedSubscript:@"price"] valueForKey:@"amount"]];
     }
         cell.backgroundColor = [UIColor clearColor];
          return cell;
@@ -241,7 +243,7 @@
     
     UILabel *descLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, 43, 280, 54)];
     descLabel.numberOfLines = 2;
-    descLabel.text = @"3 braids into one #superbraid ! #DIY #hairstyle #hairfie #hair #braids #braidedhair #fashion #style #doityourself";
+    descLabel.text = [model objectForKeyedSubscript:@"description"];
     descLabel.font = [UIFont fontWithName:@"SourceSansPro-Light" size:12];
     descLabel.textColor = [[UIColor blackHairfie] colorWithAlphaComponent:0.8];
     
