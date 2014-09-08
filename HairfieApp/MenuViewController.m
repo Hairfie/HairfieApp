@@ -85,7 +85,7 @@
     profilePicture.layer.borderColor = [UIColor whiteColor].CGColor;
     
     
-    [SDWebImageDownloader.sharedDownloader downloadImageWithURL:[NSURL URLWithString:appDelegate.currentUser.picture]
+    [SDWebImageDownloader.sharedDownloader downloadImageWithURL:[NSURL URLWithString:appDelegate.currentUser.pictureUrl]
                                                         options:0
                                                        progress:^(NSInteger receivedSize, NSInteger expectedSize) { }
                                                       completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished)

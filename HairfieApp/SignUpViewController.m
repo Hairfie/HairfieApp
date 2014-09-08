@@ -9,14 +9,9 @@
 #import "SignUpViewController.h"
 #import "AppDelegate.h"
 #import "HomeViewController.h"
+#import "UserAuthenticator.h"
 
 @interface SignUpViewController ()
-{
-    NSString *imgPath;
-    NSString *imgName;
-    NSString *uploadedFileName;
-    BOOL uploadInProgress;
-}
 
 @end
 
@@ -27,6 +22,11 @@
     NSArray *title;
     AppDelegate *delegate;
     NSDictionary *userData;
+    NSString *imgPath;
+    NSString *imgName;
+    NSString *uploadedFileName;
+    BOOL uploadInProgress;
+    UserAuthenticator *userAuthenticator;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -61,6 +61,8 @@
     addPictureLabel.numberOfLines = 2;
      _userTitleLabel.text = @"Femme";
     _titleView.hidden = YES;
+    
+    userAuthenticator = [[UserAuthenticator alloc] init];
 
     [_mainScrollView addSubview:addPictureBttn];
     [_mainScrollView addSubview:addPictureLabel];
@@ -123,10 +125,11 @@ numberOfRowsInComponent:(NSInteger)component
     void (^loadSuccessBlock)(NSDictionary *) = ^(NSDictionary *results){
         
         NSLog(@"results %@", results);
-        userData = results;
-        delegate.currentUser.firstName = [results objectForKey:@"firstName"];
-        delegate.currentUser.lastName = [results objectForKey:@"lastName"];
-        delegate.currentUser.picture = [results objectForKey:@"picture"];
+        NSDictionary *token = [results objectForKey:@"token"];
+        [delegate.credentialStore setAuthTokenAndUserId:[token objectForKey:@"id"] forUser:[token objectForKey:@"userId"]];
+        [AppDelegate lbAdaptater].accessToken = [token objectForKey:@"id"];
+        
+        [userAuthenticator getCurrentUser];
         
         [self performSegueWithIdentifier:@"createAccount" sender:self];
     };
@@ -144,9 +147,6 @@ numberOfRowsInComponent:(NSInteger)component
                 gender = @"male";
         else
             gender = @"female";
-        if(imgName && imgPath) {
-            [self uploadProfileImage];
-        }
         
         NSString *repoName = @"users";
         [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/users" verb:@"POST"] forMethod:@"users"];
@@ -157,8 +157,12 @@ numberOfRowsInComponent:(NSInteger)component
             NSLog(@"Loop Loop !");
             [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
         }
-        
-        [loginData invokeStaticMethod:@"" parameters:@{@"firstName":_firstNameField.text, @"lastName":_lastNameField.text, @"email": _emailField.text, @"password" : _passwordField.text, @"newsletter":newsletter, @"gender":gender, @"picture":uploadedFileName} success:loadSuccessBlock failure:loadErrorBlock];
+        if(uploadedFileName) {
+            [loginData invokeStaticMethod:@"" parameters:@{@"firstName":_firstNameField.text, @"lastName":_lastNameField.text, @"email": _emailField.text, @"password" : _passwordField.text, @"newsletter":newsletter, @"gender":gender, @"picture":uploadedFileName} success:loadSuccessBlock failure:loadErrorBlock];
+        } else {
+            [loginData invokeStaticMethod:@"" parameters:@{@"firstName":_firstNameField.text, @"lastName":_lastNameField.text, @"email": _emailField.text, @"password" : _passwordField.text, @"newsletter":newsletter, @"gender":gender} success:loadSuccessBlock failure:loadErrorBlock];
+        }
+
     }
     else
     {
@@ -173,7 +177,7 @@ numberOfRowsInComponent:(NSInteger)component
     uploadInProgress = YES;
     
     LBFileRepository *repository = (LBFileRepository*)[[AppDelegate lbAdaptater] repositoryWithClass:[LBFileRepository class]];
-    LBFile __block *file = [repository createFileWithName:imgName localPath:imgPath container:@"user-profile-picture"];
+    LBFile __block *file = [repository createFileWithName:imgName localPath:imgPath container:@"user-profile-pictures"];
     
     void (^loadErrorBlock)(NSError *) = ^(NSError *error){
         NSLog(@"Error : %@", error.description);
@@ -285,11 +289,12 @@ numberOfRowsInComponent:(NSInteger)component
             imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
             imagePicker.cameraDevice = UIImagePickerControllerCameraDeviceRear;
             imagePicker.showsCameraControls = NO;
+            imagePicker.allowsEditing = YES;
             
             imagePicker.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
             [self initOverlayView];
             
-                       [self presentViewController:imagePicker animated:YES completion:nil];
+            [self presentViewController:imagePicker animated:YES completion:nil];
         }
     }
 }
@@ -311,10 +316,10 @@ numberOfRowsInComponent:(NSInteger)component
                               buttonWithType:UIButtonTypeCustom];
     [goBackButton setImage:goBackImg forState:UIControlStateNormal];
     [goBackButton addTarget:self action:@selector(cancelTakePicture) forControlEvents:UIControlEventTouchUpInside];
-    [goBackButton setFrame:CGRectMake(10, 32, 20, 20)];
+    [goBackButton setFrame:CGRectMake(10, 22, 20, 20)];
     
-    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(92, 30, 136, 23)];
-    titleLabel.text = @"Post Hairfie";
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(67, 20, 186, 23)];
+    titleLabel.text = @"Take a profile picture";
     titleLabel.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:18];
     titleLabel.textAlignment = NSTextAlignmentCenter;
     titleLabel.textColor = [UIColor whiteColor];
@@ -372,29 +377,34 @@ numberOfRowsInComponent:(NSInteger)component
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    imgName = [[info objectForKey:@"UIImagePickerControllerReferenceURL"] lastPathComponent];
-    imgPath = NSTemporaryDirectory();
-
-    NSString *fullPath = [imgPath stringByAppendingPathComponent:imgName];
-    UIImage *image = [info valueForKey:UIImagePickerControllerEditedImage];
+    [self setProfilePicture:info];
+    [picker dismissViewControllerAnimated:YES completion:nil];
     
-    //Remove it if it currently exists...
+}
+
+-(void)setProfilePicture:(NSDictionary*) info
+{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    imgName = @"pictureToUpload.JPG";
+    imgPath = NSTemporaryDirectory();
+    UIImage *image;
+    
+    NSString *fullPath = [imgPath stringByAppendingPathComponent:imgName];
+    if([info valueForKey:UIImagePickerControllerEditedImage]) {
+        image = [info valueForKey:UIImagePickerControllerEditedImage];
+    } else {
+        image = [info valueForKey:UIImagePickerControllerOriginalImage];
+    }
+    
     if ([fileManager fileExistsAtPath:fullPath]) {
         [fileManager removeItemAtPath:fullPath error:nil];
     }
     
     [UIImageJPEGRepresentation(image, 1.0) writeToFile:fullPath atomically:YES];
     
-    [self setProfilePicture:image];
-    [picker dismissViewControllerAnimated:YES completion:nil];
+    [self uploadProfileImage];
     
-}
-
--(void)setProfilePicture:(UIImage*) image
-{
     UIImageView *profilePicture = [[UIImageView alloc] initWithFrame:CGRectMake(127, 10, 66, 66)];
-    
     profilePicture.contentMode = UIViewContentModeScaleAspectFill;
     profilePicture.layer.cornerRadius = profilePicture.frame.size.height / 2;
     profilePicture.clipsToBounds = YES;
@@ -406,23 +416,5 @@ numberOfRowsInComponent:(NSInteger)component
 
 }
 
--(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage : (UIImage *)image editingInfo:(NSDictionary *)editingInfo {
-    
-
-
-    [self setProfilePicture:image];
-    [picker dismissViewControllerAnimated:YES completion:nil];
-    
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
