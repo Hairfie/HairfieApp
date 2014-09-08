@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 #import "HomeViewController.h"
 #import "UserAuthenticator.h"
+#import "PictureUploader.h"
 
 @interface SignUpViewController ()
 
@@ -22,8 +23,6 @@
     NSArray *title;
     AppDelegate *delegate;
     NSDictionary *userData;
-    NSString *imgPath;
-    NSString *imgName;
     NSString *uploadedFileName;
     BOOL uploadInProgress;
     UserAuthenticator *userAuthenticator;
@@ -31,8 +30,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     delegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-    
-    
     
     _statusBarButton.layer.cornerRadius = 5;
     _statusBarButton.layer.masksToBounds = YES;
@@ -172,26 +169,20 @@ numberOfRowsInComponent:(NSInteger)component
     }
 }
 
--(void) uploadProfileImage
+-(void) uploadProfileImage:(UIImage *)image
 {
     uploadInProgress = YES;
-    
-    LBFileRepository *repository = (LBFileRepository*)[[AppDelegate lbAdaptater] repositoryWithClass:[LBFileRepository class]];
-    LBFile __block *file = [repository createFileWithName:imgName localPath:imgPath container:@"user-profile-pictures"];
-    
+    PictureUploader *picture = [[PictureUploader alloc] init];
+
     void (^loadErrorBlock)(NSError *) = ^(NSError *error){
         NSLog(@"Error : %@", error.description);
     };
-    void (^loadSuccessBlock)(NSDictionary *) = ^(NSDictionary *results){
-        NSLog(@"Upload file results %@", [[[[results objectForKey:@"result"] objectForKey:@"files"] objectForKey:@"uploadfiles"] objectAtIndex:0] );
-        uploadedFileName = [[[[[results objectForKey:@"result"] objectForKey:@"files"] objectForKey:@"uploadfiles"] objectAtIndex:0]    objectForKey:@"name"];
+    void (^loadSuccessBlock)(NSString *) = ^(NSString *fileName){
+        uploadedFileName = fileName;
         uploadInProgress = NO;
     };
     
-    [file invokeMethod:@"upload"
-            parameters:[file toDictionary]
-               success:loadSuccessBlock
-               failure:loadErrorBlock];
+    [picture uploadImage:image toContainer:@"user-profile-pictures" success:loadSuccessBlock failure:loadErrorBlock];
 }
 
 
@@ -384,25 +375,14 @@ numberOfRowsInComponent:(NSInteger)component
 
 -(void)setProfilePicture:(NSDictionary*) info
 {
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    imgName = @"pictureToUpload.JPG";
-    imgPath = NSTemporaryDirectory();
     UIImage *image;
-    
-    NSString *fullPath = [imgPath stringByAppendingPathComponent:imgName];
     if([info valueForKey:UIImagePickerControllerEditedImage]) {
         image = [info valueForKey:UIImagePickerControllerEditedImage];
     } else {
         image = [info valueForKey:UIImagePickerControllerOriginalImage];
     }
     
-    if ([fileManager fileExistsAtPath:fullPath]) {
-        [fileManager removeItemAtPath:fullPath error:nil];
-    }
-    
-    [UIImageJPEGRepresentation(image, 1.0) writeToFile:fullPath atomically:YES];
-    
-    [self uploadProfileImage];
+    [self uploadProfileImage:image];
     
     UIImageView *profilePicture = [[UIImageView alloc] initWithFrame:CGRectMake(127, 10, 66, 66)];
     profilePicture.contentMode = UIViewContentModeScaleAspectFill;
