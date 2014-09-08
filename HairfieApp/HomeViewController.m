@@ -333,11 +333,6 @@
 
 }
 
--(IBAction)buttonGetHairfies:(id)sender
-{
-    [self getHairfies];
-}
-
 
 -(void)getHairfies
 {
