@@ -22,6 +22,7 @@
     HairfieRequest *hairfieReq;
     NSArray *hairfies;
     NSInteger hairfieRow;
+    UIAlertView *chooseCameraType;
 }
 @end
 
@@ -291,7 +292,6 @@
 
 -(void)chooseCameraType
 {
-    
     chooseCameraType = [[UIAlertView alloc] initWithTitle:@"Choose camera type" message:@"Take picture or pick one from the saved photos" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Camera", @"Library",nil];
     chooseCameraType.delegate = self;
     [chooseCameraType show];
