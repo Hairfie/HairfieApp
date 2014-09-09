@@ -22,8 +22,6 @@
     HairfieRequest *hairfieReq;
     NSArray *hairfies;
     NSInteger hairfieRow;
-    UIImage *currentHairfie;
-    UIAlertView *chooseCameraType;
 }
 @end
 
@@ -134,24 +132,13 @@
    
    // NSLog(@"userId : %@", [[hairfies objectAtIndex:0] valueForKey:@"userId"]);
     
-    if (!hairfies)
-    {
+    if (!hairfies) {
      cell.hairfieView.image = [UIImage imageNamed:@"hairfie.jpg"];
     }
-    else
-    {
-    [SDWebImageDownloader.sharedDownloader downloadImageWithURL:[NSURL URLWithString:[model objectForKeyedSubscript:@"publicUrl"]]
-                                                        options:0
-                                                       progress:^(NSInteger receivedSize, NSInteger expectedSize) { }
-                                                      completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished)
-     {
-         if (image && finished)
-         {
-             
-             cell.hairfieView.image = image;
-             currentHairfie = image;
-         }
-     }];
+    else {
+        [cell.hairfieView sd_setImageWithURL:[[model objectForKeyedSubscript:@"pictureObj"] objectForKey:@"publicUrl"]
+                            placeholderImage:[UIColor imageWithColor:[UIColor colorWithRed:234/255.0f green:236/255.0f blue:238/255.0f alpha:1]]];
+        cell.hairfieView.contentMode = UIViewContentModeScaleAspectFill;
     }
     cell.layer.borderColor = [UIColor colorWithRed:234/255.0f green:236/255.0f blue:238/255.0f alpha:1].CGColor;
     cell.layer.borderWidth = 1.0f;
@@ -361,8 +348,6 @@
     {
         HairfieDetailViewController *hairfieDetail = [segue destinationViewController];
         hairfieDetail.currentHairfie = [hairfies objectAtIndex:hairfieRow];
-        hairfieDetail.hairfieImage = currentHairfie;
-        
     }
     if ([segue.identifier isEqualToString:@"cameraFilters"])
     {

@@ -21,5 +21,7 @@
 +(UIColor *)whiteHairfie;
 +(UIColor *)lightGreyHairfie;
 
++ (UIImage *)imageWithColor:(UIColor *)color;
+
 
 @end
