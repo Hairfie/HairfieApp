@@ -2652,7 +2652,7 @@ coiffeur à domicile.</string>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="232" translatesAutoresizingMaskIntoConstraints="NO" id="82W-jK-smS">
-                                                <rect key="frame" x="44" y="431" width="232" height="38"/>
+                                                <rect key="frame" x="44" y="425" width="232" height="38"/>
                                                 <string key="text">En cliquant sur “Je m’inscris”, je reconnais avoir pris
 connaissance et accepte les CGU de Hairfie</string>
                                                 <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="11"/>
@@ -2783,10 +2783,10 @@ connaissance et accepte les CGU de Hairfie</string>
                                 </constraints>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FoT-k3-XMR" userLabel="Create Account">
-                                <rect key="frame" x="0.0" y="538" width="320" height="30"/>
+                                <rect key="frame" x="0.0" y="528" width="320" height="40"/>
                                 <color key="backgroundColor" red="0.90588235289999997" green="0.29803921570000003" blue="0.23529411759999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="E95-as-nag"/>
+                                    <constraint firstAttribute="height" constant="40" id="E95-as-nag"/>
                                     <constraint firstAttribute="width" constant="320" id="GfJ-9a-wJV"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="17"/>
@@ -2798,9 +2798,16 @@ connaissance et accepte les CGU de Hairfie</string>
                                     <action selector="createAccount:" destination="xPO-Am-yIh" eventType="touchUpInside" id="UQT-DS-DhR"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Tu-6x-BjS">
+                            <view alpha="0.0" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Tu-6x-BjS">
                                 <rect key="frame" x="0.0" y="352" width="320" height="216"/>
                                 <subviews>
+                                    <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2AC-Ib-Vv7">
+                                        <rect key="frame" x="0.0" y="37" width="320" height="162"/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="xPO-Am-yIh" id="syN-Kj-qaC"/>
+                                            <outlet property="delegate" destination="xPO-Am-yIh" id="cuC-nk-EWC"/>
+                                        </connections>
+                                    </pickerView>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h0G-bU-HNQ">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
                                         <subviews>
@@ -2813,13 +2820,6 @@ connaissance et accepte les CGU de Hairfie</string>
                                         </subviews>
                                         <color key="backgroundColor" red="0.36078431370000003" green="0.67450980390000004" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
-                                    <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2AC-Ib-Vv7">
-                                        <rect key="frame" x="0.0" y="37" width="320" height="162"/>
-                                        <connections>
-                                            <outlet property="dataSource" destination="xPO-Am-yIh" id="syN-Kj-qaC"/>
-                                            <outlet property="delegate" destination="xPO-Am-yIh" id="cuC-nk-EWC"/>
-                                        </connections>
-                                    </pickerView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
