@@ -172,9 +172,10 @@ numberOfRowsInComponent:(NSInteger)component
 -(void) uploadProfileImage:(UIImage *)image
 {
     uploadInProgress = YES;
-    PictureUploader *picture = [[PictureUploader alloc] init];
+    PictureUploader *pictureUploader = [[PictureUploader alloc] init];
 
     void (^loadErrorBlock)(NSError *) = ^(NSError *error){
+        uploadInProgress = NO;
         NSLog(@"Error : %@", error.description);
     };
     void (^loadSuccessBlock)(NSString *) = ^(NSString *fileName){
@@ -182,7 +183,7 @@ numberOfRowsInComponent:(NSInteger)component
         uploadInProgress = NO;
     };
     
-    [picture uploadImage:image toContainer:@"user-profile-pictures" success:loadSuccessBlock failure:loadErrorBlock];
+    [pictureUploader uploadImage:image toContainer:@"user-profile-pictures" success:loadSuccessBlock failure:loadErrorBlock];
 }
 
 
