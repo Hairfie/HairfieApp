@@ -31,11 +31,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSLog(@"current hairfie : %@", _hairfieImage);
-   
+    NSLog(@"current hairfie : %@", _currentHairfie);
+
     _hairfieCollection.delegate = self;
     _hairfieCollection.dataSource = self;
     model = (LBModel *)_currentHairfie;
+    
     [_hairfieCollection registerNib:[UINib nibWithNibName:@"CustomCollectionViewCell" bundle:nil]forCellWithReuseIdentifier:@"hairfieRelated"];
     [_hairfieCollection registerNib:[UINib nibWithNibName:@"HairfieDetailCollectionReusableView" bundle:nil]forCellWithReuseIdentifier:@"headerCollection"];
 
@@ -196,10 +197,14 @@
     
     // HAIRFIE
     
+    
+    
     UIView *hairfieView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 358)];
     hairfieView.backgroundColor = [UIColor lightBlueHairfie];
     UIImageView *hairfieImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 355)];
-    hairfieImageView.image = _hairfieImage;
+
+    [hairfieImageView sd_setImageWithURL:[[model objectForKeyedSubscript:@"pictureObj"] objectForKey:@"publicUrl"]
+                      placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
     hairfieImageView.contentMode =UIViewContentModeScaleAspectFill;
     
     UIImageView *likePicto = [[UIImageView alloc] initWithFrame:CGRectMake(10, 328, 25, 20)];

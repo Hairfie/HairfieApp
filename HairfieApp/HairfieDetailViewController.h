@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface HairfieDetailViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UITableViewDelegate, UITableViewDataSource>
 
@@ -26,6 +27,7 @@
 
 @property (nonatomic) NSArray *currentHairfie;
 @property (nonatomic) UIImage *hairfieImage;
+
 
 
 -(IBAction)goBack:(id)sender;
