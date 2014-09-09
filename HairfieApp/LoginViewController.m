@@ -226,12 +226,11 @@
     };
     
     void (^loadSuccessBlock)(NSDictionary *) = ^(NSDictionary *results) {
-        
+        BOOL performLogin = ![_delegate.credentialStore isLoggedIn];
         [AppDelegate lbAdaptater].accessToken = [results objectForKey:@"id"];
         [_delegate.credentialStore setAuthTokenAndUserId:[results objectForKey:@"id"] forUser:[results objectForKey:@"userId"]];
         [userAuthenticator getCurrentUser];
-        
-        [self performSegueWithIdentifier:@"loginSuccess" sender:self];
+        if(performLogin)    [self performSegueWithIdentifier:@"loginSuccess" sender:self];
     };
 
     NSString *repoName = @"auth/facebook/token";
