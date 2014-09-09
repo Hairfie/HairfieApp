@@ -20,4 +20,7 @@
 @property (nonatomic) IBOutlet UITextField *searchField;
 @property (nonatomic) IBOutlet UIView *advancedSearchView;
 @property (nonatomic) IBOutlet AdvanceSearch *searchView;
+@property (nonatomic) IBOutlet UIButton *takePictureButton;
+@property (nonatomic) IBOutlet UIImage *imageTaken;
+
 @end

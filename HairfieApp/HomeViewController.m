@@ -13,6 +13,7 @@
 #import "AdvanceSearch.h"
 #import "HairfieRequest.h"
 #import "HairfieDetailViewController.h"
+#import "ApplyFiltersViewController.h"
 
 
 @interface HomeViewController ()
@@ -22,6 +23,7 @@
     NSArray *hairfies;
     NSInteger hairfieRow;
     UIImage *currentHairfie;
+    UIAlertView *chooseCameraType;
 }
 @end
 
@@ -29,6 +31,7 @@
 
 @implementation HomeViewController
 
+@synthesize imageTaken, searchView = _searchView;
 
 -(UIStatusBarStyle)preferredStatusBarStyle{
     return UIStatusBarStyleLightContent;
@@ -44,6 +47,9 @@
     [_searchView initView];
     [_searchView.searchAroundMeImage setTintColor:[UIColor lightBlueHairfie]];
     _searchView.searchByLocation.text = @"Around Me";
+    [_takePictureButton addTarget:self
+                       action:@selector(chooseCameraType)
+             forControlEvents:UIControlEventTouchUpInside];
     //self.view.translatesAutoresizingMaskIntoConstraints = NO;
     //[self.view.translatesAutoresizingMaskIntoConstraints]
     [self getHairfies];
@@ -161,23 +167,6 @@
 }
 
 
--(IBAction)takePicture:(id)sender
-{
-    _imagePicker = [[UIImagePickerController alloc]init];
-    [_imagePicker setDelegate:self];
-    
-    if ([UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera]) {
-        _imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-        _imagePicker.cameraDevice = UIImagePickerControllerCameraDeviceRear;
-        _imagePicker.showsCameraControls = NO;
-        _imagePicker.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
-        [self initOverlayView];
-        
-        [self presentViewController:_imagePicker animated:YES completion:nil];
-    }
-}
-
-
 -(void) initOverlayView
 {
     
@@ -281,17 +270,25 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     //UIImage *image = [info valueForKey:UIImagePickerControllerOriginalImage];
+    [self SetImageTakenForSegue:info];
     [picker dismissViewControllerAnimated:YES completion:nil];
+
+    [self performSegueWithIdentifier:@"cameraFilters" sender:self];
 }
 
 
-
--(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage : (UIImage *)image editingInfo:(NSDictionary *)editingInfo {
-    
+-(void)SetImageTakenForSegue:(NSDictionary*) info
+{
    
-    [picker dismissViewControllerAnimated:YES completion:nil];
-    
+    if([info valueForKey:UIImagePickerControllerEditedImage]) {
+        imageTaken = [info valueForKey:UIImagePickerControllerEditedImage];
+    } else {
+        imageTaken = [info valueForKey:UIImagePickerControllerOriginalImage];
+    }
+  
 }
+
+
 -(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
     [_imagePicker dismissViewControllerAnimated:NO completion:nil];
@@ -303,6 +300,43 @@
         [self presentViewController:_imagePicker animated:YES completion:nil];
     }
 }
+
+
+-(void)chooseCameraType
+{
+    
+    chooseCameraType = [[UIAlertView alloc] initWithTitle:@"Choose camera type" message:@"Take picture or pick one from the saved photos" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Camera", @"Library",nil];
+    chooseCameraType.delegate = self;
+    [chooseCameraType show];
+    
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    
+    _imagePicker = [[UIImagePickerController alloc]init];
+    [_imagePicker setDelegate:self];
+    if (buttonIndex == 2) {
+        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeSavedPhotosAlbum]) {
+            _imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            _imagePicker.allowsEditing = YES;
+            [self presentViewController:_imagePicker animated:YES completion:nil];
+        }
+    } if (buttonIndex == 1) {
+        if ([UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera]) {
+            _imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+            _imagePicker.cameraDevice = UIImagePickerControllerCameraDeviceRear;
+            _imagePicker.showsCameraControls = NO;
+            _imagePicker.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
+            _imagePicker.allowsEditing = YES;
+            [self initOverlayView];
+            
+            [self presentViewController:_imagePicker animated:YES completion:nil];
+        }
+    }
+}
+
+
 
 
 
@@ -329,6 +363,12 @@
         hairfieDetail.currentHairfie = [hairfies objectAtIndex:hairfieRow];
         hairfieDetail.hairfieImage = currentHairfie;
         
+    }
+    if ([segue.identifier isEqualToString:@"cameraFilters"])
+    {
+        ApplyFiltersViewController *filters = [segue destinationViewController];
+        
+        filters.hairfie = imageTaken;
     }
 
 }
