@@ -10,7 +10,12 @@
 
 @implementation Hairfie
 
-@synthesize userId, image, hairfieDesc, hairfieId, salonId, price, imageUrl;
+@synthesize userId, description, hairfieId, salonId, price, picture;
+
+
+-(NSString *)pictureUrl {
+    return [picture objectForKey:@"publicUrl"];
+}
 
 
 @end

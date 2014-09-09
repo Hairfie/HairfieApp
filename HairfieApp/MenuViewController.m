@@ -75,8 +75,10 @@
 
 -(void) initCurrentUser
 {
-    
     _name.text = appDelegate.currentUser.name;
+    
+    
+    NSLog(@"current user img url %@", appDelegate.currentUser.pictureUrl);
     
     UIImageView *profilePicture = [[UIImageView alloc] initWithFrame:CGRectMake(30, 50, 50, 50)];
     profilePicture.layer.cornerRadius = profilePicture.frame.size.height / 2;
@@ -85,17 +87,7 @@
     profilePicture.layer.borderColor = [UIColor whiteColor].CGColor;
     
     
-    [SDWebImageDownloader.sharedDownloader downloadImageWithURL:[NSURL URLWithString:appDelegate.currentUser.pictureUrl]
-                                                        options:0
-                                                       progress:^(NSInteger receivedSize, NSInteger expectedSize) { }
-                                                      completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished)
-     {
-         if (image && finished)
-         {
-             
-             profilePicture.image = image;
-         }
-     }];
+    [profilePicture sd_setImageWithURL:[NSURL URLWithString:appDelegate.currentUser.pictureUrl] placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
     
     [_profileView addSubview:profilePicture];
 }

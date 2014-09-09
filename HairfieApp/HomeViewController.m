@@ -123,7 +123,7 @@
     
     static NSString *CellIdentifier = @"hairfieCell";
     CustomCollectionViewCell *cell = [cv dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
-    LBModel *model = (LBModel *)[hairfies objectAtIndex:indexPath.row];
+    Hairfie *hairfie = (Hairfie *)[hairfies objectAtIndex:indexPath.row];
 
     if (cell == nil) {
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"CustomCollectionViewCell" owner:self options:nil];
@@ -137,7 +137,7 @@
      cell.hairfieView.image = [UIImage imageNamed:@"hairfie.jpg"];
     }
     else {
-        [cell.hairfieView sd_setImageWithURL:[[model objectForKeyedSubscript:@"pictureObj"] objectForKey:@"publicUrl"]
+        [cell.hairfieView sd_setImageWithURL:[NSURL URLWithString:hairfie.pictureUrl]
                             placeholderImage:[UIColor imageWithColor:[UIColor colorWithRed:234/255.0f green:236/255.0f blue:238/255.0f alpha:1]]];
         cell.hairfieView.contentMode = UIViewContentModeScaleAspectFill;
     }
@@ -347,7 +347,8 @@
     if ([segue.identifier isEqualToString:@"hairfieDetail"])
     {
         HairfieDetailViewController *hairfieDetail = [segue destinationViewController];
-        hairfieDetail.currentHairfie = [hairfies objectAtIndex:hairfieRow];
+        hairfieDetail.currentHairfie = (Hairfie*)[hairfies objectAtIndex:hairfieRow];
+       
     }
     if ([segue.identifier isEqualToString:@"cameraFilters"])
     {

@@ -13,7 +13,7 @@
 #import "HairfieDetailCollectionReusableView.h"
 #import "CommentViewController.h"
 #import <LoopBack/LoopBack.h>
-
+#import "Hairfie.h"
 @interface HairfieDetailViewController ()
 
 
@@ -24,7 +24,6 @@
 {
     UITableView *detailsTableView;
     UITableView *commentsTableView;
-    LBModel *model;
 }
 
 @synthesize myScrollView = _myScrollView, hairfieImageView = _hairfieImageView;
@@ -35,7 +34,6 @@
 
     _hairfieCollection.delegate = self;
     _hairfieCollection.dataSource = self;
-    model = (LBModel *)_currentHairfie;
     
     [_hairfieCollection registerNib:[UINib nibWithNibName:@"CustomCollectionViewCell" bundle:nil]forCellWithReuseIdentifier:@"hairfieRelated"];
     [_hairfieCollection registerNib:[UINib nibWithNibName:@"HairfieDetailCollectionReusableView" bundle:nil]forCellWithReuseIdentifier:@"headerCollection"];
@@ -131,10 +129,14 @@
     if (indexPath.row == 2)
     {
         cell.pictoView.image = [UIImage imageNamed:@"picto-hairfie-detail-price.png"];
-        cell.contentLabel.text = [NSString stringWithFormat:@"%@ €", [[model objectForKeyedSubscript:@"price"] valueForKey:@"amount"]];
+        if(![_currentHairfie.price isEqual:[NSNull null]])
+            cell.contentLabel.text = [NSString stringWithFormat:@"%@ €", [_currentHairfie.price objectForKey:@"amount"]];
+        else
+            cell.contentLabel.text = @"No price available";
     }
-        cell.backgroundColor = [UIColor clearColor];
-         return cell;
+    cell.backgroundColor = [UIColor clearColor];
+    return cell;
+       
    }
     else
     {
@@ -203,7 +205,7 @@
     hairfieView.backgroundColor = [UIColor lightBlueHairfie];
     UIImageView *hairfieImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 355)];
 
-    [hairfieImageView sd_setImageWithURL:[[model objectForKeyedSubscript:@"pictureObj"] objectForKey:@"publicUrl"]
+    [hairfieImageView sd_setImageWithURL:[NSURL URLWithString:_currentHairfie.pictureUrl]
                       placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
     hairfieImageView.contentMode =UIViewContentModeScaleAspectFill;
     
@@ -248,7 +250,7 @@
     
     UILabel *descLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, 43, 280, 54)];
     descLabel.numberOfLines = 2;
-    descLabel.text = [model objectForKeyedSubscript:@"description"];
+    descLabel.text = _currentHairfie.description;
     descLabel.font = [UIFont fontWithName:@"SourceSansPro-Light" size:12];
     descLabel.textColor = [[UIColor blackHairfie] colorWithAlphaComponent:0.8];
     

@@ -11,13 +11,13 @@
 
 @interface Hairfie : LBModel
 
-@property (nonatomic) NSString *image;
-@property (nonatomic) NSString *imageUrl;
+@property (nonatomic) NSDictionary *picture;
 @property (nonatomic) NSString *userId;
-@property (nonatomic) NSString *hairfieDesc;
+@property (nonatomic) NSString *description;
 @property (nonatomic) NSString *salonId;
 @property (nonatomic) NSDictionary *price;
 @property (nonatomic) NSString *hairfieId;
 
+-(NSString *)pictureUrl;
 
 @end

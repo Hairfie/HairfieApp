@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "Hairfie.h"
 
 @interface HairfieDetailViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UITableViewDelegate, UITableViewDataSource>
 
@@ -25,7 +26,7 @@
 @property (nonatomic) IBOutlet UICollectionView *hairfieCollection;
 
 
-@property (nonatomic) NSArray *currentHairfie;
+@property (nonatomic) Hairfie *currentHairfie;
 @property (nonatomic) UIImage *hairfieImage;
 
 

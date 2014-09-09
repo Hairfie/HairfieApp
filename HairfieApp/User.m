@@ -19,4 +19,8 @@
     return [NSString stringWithFormat:@"%@ %@", firstName, lastName];
 }
 
+-(NSString *)pictureUrl {
+    return [picture objectForKey:@"publicUrl"];
+}
+
 @end
