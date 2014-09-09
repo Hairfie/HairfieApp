@@ -134,7 +134,7 @@
     }
     else
     {
-    [SDWebImageDownloader.sharedDownloader downloadImageWithURL:[NSURL URLWithString:[model objectForKeyedSubscript:@"pictureUrl"]]
+    [SDWebImageDownloader.sharedDownloader downloadImageWithURL:[NSURL URLWithString:[[model objectForKeyedSubscript:@"pictureObj"] objectForKey:@"publicUrl"]]
                                                         options:0
                                                        progress:^(NSInteger receivedSize, NSInteger expectedSize) { }
                                                       completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished)
