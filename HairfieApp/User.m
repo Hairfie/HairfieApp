@@ -19,8 +19,20 @@
     return [NSString stringWithFormat:@"%@ %@", firstName, lastName];
 }
 
+-(NSString *)pictureUrlwithWidth:(NSString *)width andHeight:(NSString *)height {
+    NSString  *url = [[picture objectForKey:@"publicUrl"] stringByAppendingString:@"?"];
+    if(width)  url = [NSString stringWithFormat:@"%@&width=%@", url, width];
+    if(height) url = [NSString stringWithFormat:@"%@&height=%@", url, height];
+
+    return url;
+}
+
 -(NSString *)pictureUrl {
-    return [picture objectForKey:@"publicUrl"];
+    return [self pictureUrlwithWidth:nil andHeight:nil];
+}
+
+-(NSString *)thumbUrl {
+    return [self pictureUrlwithWidth:@"100" andHeight:@"100"];
 }
 
 @end
