@@ -31,9 +31,11 @@
     __block User *user;
     
     void (^loadErrorBlock)(NSError *) = ^(NSError *error){
+        
         NSLog(@"Error on load %@", error.description);
     };
     void (^loadSuccessBlock)(LBModel *) = ^(LBModel *model){
+
         user = (User*)model;
         
         delegate.currentUser = user;

@@ -219,7 +219,7 @@
 
 -(void)loginWithFbToken:(NSString*)fbAuthToken
 {
-    LBRESTAdapter *fbLbAdaptater = [LBRESTAdapter adapterWithURL:[NSURL URLWithString:@"http://api.staging.hairfie.com/"]];
+    LBRESTAdapter *fbLbAdaptater = [LBRESTAdapter adapterWithURL:[NSURL URLWithString:BASE_URL]];
     
     void (^loadErrorBlock)(NSError *) = ^(NSError *error) {
         NSLog(@"Error on load %@", error.description);
