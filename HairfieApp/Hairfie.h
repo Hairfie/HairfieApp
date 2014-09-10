@@ -24,11 +24,8 @@
 
 
 -(NSString *)pictureUrl;
-<<<<<<< HEAD
 -(NSString *)hairfieCellUrl;
 -(NSString *)hairfieDetailUrl;
-=======
 -(NSString *)displayPrice;
->>>>>>> 3662683c407d1f2f41483458627aa2eb8cdcf780
 
 @end
