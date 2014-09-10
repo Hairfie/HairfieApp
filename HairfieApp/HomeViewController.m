@@ -14,6 +14,7 @@
 #import "HairfieRequest.h"
 #import "HairfieDetailViewController.h"
 #import "ApplyFiltersViewController.h"
+#import "UserRepository.h"
 
 
 @interface HomeViewController ()
@@ -124,14 +125,12 @@
     static NSString *CellIdentifier = @"hairfieCell";
     CustomCollectionViewCell *cell = [cv dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
     Hairfie *hairfie = (Hairfie *)[hairfies objectAtIndex:indexPath.row];
+    
 
     if (cell == nil) {
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"CustomCollectionViewCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
-    //cell.name.text = [model objectForKeyedSubscript:@"username"];
-   
-   // NSLog(@"userId : %@", [[hairfies objectAtIndex:0] valueForKey:@"userId"]);
     
     if (!hairfies) {
      cell.hairfieView.image = [UIImage imageNamed:@"hairfie.jpg"];
@@ -140,6 +139,7 @@
         [cell.hairfieView sd_setImageWithURL:[NSURL URLWithString:hairfie.pictureUrl]
                             placeholderImage:[UIColor imageWithColor:[UIColor colorWithRed:234/255.0f green:236/255.0f blue:238/255.0f alpha:1]]];
         cell.hairfieView.contentMode = UIViewContentModeScaleAspectFill;
+        [cell initWithUser:hairfie.user];
     }
     cell.layer.borderColor = [UIColor colorWithRed:234/255.0f green:236/255.0f blue:238/255.0f alpha:1].CGColor;
     cell.layer.borderWidth = 1.0f;
@@ -365,8 +365,8 @@
         void (^loadErrorBlock)(NSError *) = ^(NSError *error){
             NSLog(@"Error on load %@", error.description);
         };
-       void (^loadSuccessBlock)(NSArray *) = ^(NSArray *model){
-           hairfies = model;
+       void (^loadSuccessBlock)(NSArray *) = ^(NSArray *models){
+           hairfies = models;
            [_hairfieCollection reloadData];
         };
     [hairfieReq getHairfies:loadSuccessBlock failure:loadErrorBlock];

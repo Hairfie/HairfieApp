@@ -7,23 +7,32 @@
 //
 
 #import "CustomCollectionViewCell.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
-@implementation CustomCollectionViewCell
+@implementation CustomCollectionViewCell {
+    UIImageView *profilePicture;
+}
 
-@synthesize hairfieView = _hairfieView, nbLikes = _nbLikes, name = _name;
+@synthesize hairfieView = _hairfieView, nbLikes = _nbLikes, name = _name, profilePicture = _profilePicture;
 
 
 - (void)awakeFromNib {
-    // Initialization code
-    UIImageView *profilePicture = [[UIImageView alloc] initWithFrame:CGRectMake(10, 170, 30, 30)];
-    profilePicture.image = [UIImage imageNamed:@"leosquare.jpg"];
+
+}
+
+-(void)initWithUser:(User *)user {
+    _name.text = user.displayName;
     
-    profilePicture.layer.cornerRadius = profilePicture.frame.size.height / 2;
-    profilePicture.clipsToBounds = YES;
-    profilePicture.layer.borderWidth = 1.0f;
-    profilePicture.layer.borderColor = [UIColor whiteColor].CGColor;
+    _profilePicture = [[UIImageView alloc] initWithFrame:CGRectMake(10, 170, 30, 30)];
+    [_profilePicture sd_setImageWithURL:[NSURL URLWithString:user.thumbUrl]
+                      placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]
+     ];
+    _profilePicture.layer.cornerRadius = _profilePicture.frame.size.height / 2;
+    _profilePicture.clipsToBounds = YES;
+    _profilePicture.layer.borderWidth = 1.0f;
+    _profilePicture.layer.borderColor = [UIColor whiteColor].CGColor;
     
-    [self.contentView addSubview:profilePicture];
+    [self.contentView addSubview:_profilePicture];
 }
 
 @end

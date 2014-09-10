@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <LoopBack/LoopBack.h> 
+#import "User.h"
 
 @interface Hairfie : LBModel
 
@@ -17,6 +18,7 @@
 @property (nonatomic) NSString *salonId;
 @property (nonatomic) NSDictionary *price;
 @property (nonatomic) NSString *hairfieId;
+@property (nonatomic) User *user;
 
 -(NSString *)pictureUrl;
 

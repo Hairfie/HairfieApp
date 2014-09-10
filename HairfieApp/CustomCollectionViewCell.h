@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "User.h"
 
 @interface CustomCollectionViewCell : UICollectionViewCell
 
@@ -14,6 +15,9 @@
 @property (nonatomic, strong) IBOutlet UILabel *name;
 @property (nonatomic, strong) IBOutlet UILabel *nbLikes;
 
+@property (nonatomic) UIImageView *profilePicture;
 
+
+-(void)initWithUser:(User *)user;
 
 @end

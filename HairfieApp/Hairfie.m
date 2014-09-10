@@ -7,15 +7,21 @@
 //
 
 #import "Hairfie.h"
+#import "UserRepository.h"
+#import "AppDelegate.h"
 
 @implementation Hairfie
 
-@synthesize userId, description, hairfieId, salonId, price, picture;
+@synthesize description, hairfieId, salonId, price, picture, user = _user;
 
+
+- (void) setUser:(NSDictionary *) userDic {
+    UserRepository *userRepository = (UserRepository *)[[AppDelegate lbAdaptater] repositoryWithClass:[UserRepository class]];
+    _user = (User *)[userRepository modelWithDictionary:userDic];
+}
 
 -(NSString *)pictureUrl {
     return [picture objectForKey:@"publicUrl"];
 }
-
 
 @end

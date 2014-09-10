@@ -19,6 +19,10 @@
     return [NSString stringWithFormat:@"%@ %@", firstName, lastName];
 }
 
+-(NSString *)displayName {
+    return [NSString stringWithFormat:@"%@ %@.", firstName, [lastName substringToIndex:1]];
+}
+
 -(NSString *)pictureUrlwithWidth:(NSString *)width andHeight:(NSString *)height {
     NSString  *url = [[picture objectForKey:@"publicUrl"] stringByAppendingString:@"?"];
     if(width)  url = [NSString stringWithFormat:@"%@&width=%@", url, width];

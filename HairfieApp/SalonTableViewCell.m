@@ -57,37 +57,11 @@ nbReviews = _nbReviews;
 - (void) customInit:(LBModel *)model
 {
     
-    // NSDictionary *price = [model objectForKeyedSubscript:@"price"];
-    // NSDictionary *review = [model objectForKeyedSubscript:@"reviews"];
     
     _name.text = [model objectForKeyedSubscript:@"name"];
     
-    /*
-     _manPrice.text = [NSString stringWithFormat:@"%@ €",[[price objectForKey:@"men"] stringValue]];
-     _womanPrice.text = [NSString stringWithFormat:@"%@ €",[[price objectForKey:@"women"] stringValue]];
-     */
     _salonPicture.contentMode = UIViewContentModeScaleAspectFill;
     
-    /*  if ([[model objectForKeyedSubscript:@"hairfies"]integerValue] == 0)
-     _hairfieNb.text = @"0 hairfie";
-     else if ([[model objectForKeyedSubscript:@"hairfies"]integerValue] == 1)
-     _hairfieNb.text = @"1 hairfie";
-     else
-     _hairfieNb.text = [NSString stringWithFormat:@"%@ hairfies",[[model objectForKeyedSubscript:@"hairfies"] stringValue]];
-     
-     if ([[review objectForKey:@"total"] integerValue] == 0)
-     {
-     _salonRating.rating = 0;
-     _ratingLabel.text = @"0";
-     _nbReviews.text = @"- 0 review";
-     }
-     else
-     {
-     _salonRating.rating = [[review objectForKey:@"average"] floatValue];
-     _ratingLabel.text = [[review objectForKey:@"average"] stringValue];
-     _nbReviews.text =[NSString stringWithFormat:@"- %@ reviews",[review objectForKey:@"total"]];
-     }
-     */
       _location.text = [NSString stringWithFormat:@"%.1f km", [[model objectForKeyedSubscript:@"distance"]floatValue] / 1000];
      
 }
