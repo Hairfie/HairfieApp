@@ -10,6 +10,7 @@
 #import "PictureUploader.h"
 #import "AppDelegate.h"
 #import "HairfieRepository.h"
+#import "Business.h"
 
 #import <LoopBack/LoopBack.h>
 
@@ -161,8 +162,14 @@
     }
     
     
+    Business *business = (Business*)_salonChosen;
+    
+    
+    
     NSDictionary *hairfieDic = [[NSDictionary alloc] initWithObjectsAndKeys:uploadedFileName, @"picture",_hairfieDesc.text, @"description", nil];
 
+    if ([business objectForKeyedSubscript:@"name"])
+        [hairfieDic setValue:[business objectForKeyedSubscript:@"id"] forKey:@"businessId"];
     
     HairfieRepository *hairfieRepository = (HairfieRepository *)[[AppDelegate lbAdaptater] repositoryWithClass:[HairfieRepository class]];
     
