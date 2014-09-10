@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <LoopBack/LoopBack.h> 
 #import "User.h"
+#import "Business.h"
 
 @interface Hairfie : LBModel
 
