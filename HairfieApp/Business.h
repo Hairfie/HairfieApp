@@ -17,5 +17,7 @@
 @property (nonatomic) NSDictionary *address;
 
 -(NSString *)displayAddress;
+-(NSString *)displayNameAndAddress;
+
 
 @end
