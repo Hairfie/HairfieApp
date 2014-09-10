@@ -366,7 +366,7 @@
             NSLog(@"Error on load %@", error.description);
         };
        void (^loadSuccessBlock)(NSArray *) = ^(NSArray *models){
-           hairfies = models;
+           hairfies = [[models reverseObjectEnumerator] allObjects];
            [_hairfieCollection reloadData];
         };
     [hairfieReq getHairfies:loadSuccessBlock failure:loadErrorBlock];
