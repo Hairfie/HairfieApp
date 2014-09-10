@@ -10,6 +10,8 @@
 #import "PictureUploader.h"
 #import "AppDelegate.h"
 #import "HairfieRepository.h"
+#import "BusinessRepository.h"
+#import "Business.h"
 
 #import <LoopBack/LoopBack.h>
 
@@ -25,9 +27,6 @@
 
 -(void)viewDidLoad
 {
-    _priceTextView.layer.cornerRadius = 5;
-    _priceTextView.layer.borderColor = [UIColor lightGreyHairfie].CGColor;
-    _priceTextView.layer.borderWidth = 0.5;
     UIColor *placeholder = [[UIColor whiteColor] colorWithAlphaComponent:0.6];
     
     [_emailTextField setValue:placeholder
@@ -47,10 +46,21 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    LBModel *model = (LBModel *)_salonChosen;
+    
     if (_salonChosen != nil)
-        _salonLabel.text = [model objectForKeyedSubscript:@"name"];
+        _salonLabel.text = [_salonChosen objectForKeyedSubscript:@"name"];
 }
+
+- (BOOL) textView: (UITextView*) textView
+shouldChangeTextInRange: (NSRange) range
+  replacementText: (NSString*) text
+{
+    if ([text isEqualToString:@"\n"]) {
+        [textView resignFirstResponder];
+    }
+    return YES;
+}
+
 
 -(IBAction)goBack:(id)sender
 {
@@ -152,6 +162,12 @@
     }
 }
 
+-(void)textFieldDidEndEditing:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+
+}
+
 
 -(IBAction)postHairfie:(id)sender
 {
@@ -160,9 +176,26 @@
         [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
     }
     
-    
-    NSDictionary *hairfieDic = [[NSDictionary alloc] initWithObjectsAndKeys:uploadedFileName, @"picture",_hairfieDesc.text, @"description", nil];
 
+    NSMutableDictionary *hairfieDic = [[NSMutableDictionary alloc] init];
+                                       
+    [hairfieDic setObject:uploadedFileName forKey:@"picture"];
+    [hairfieDic setObject:_hairfieDesc.text forKey:@"description"];
+    
+//                                       initWithObjectsAndKeys:uploadedFileName, @"picture",_hairfieDesc.text, @"description", nil];
+
+    if (_salonChosen){
+        BusinessRepository *businessRepository = (BusinessRepository *)[[AppDelegate lbAdaptater] repositoryWithClass:[BusinessRepository class]];
+        Business *business = (Business *)[businessRepository modelWithDictionary:_salonChosen];
+        
+        [hairfieDic setObject:business.businessId forKey:@"businessId"];
+    }
+    if (![_priceTextField.text isEqualToString:@""])
+    {
+        NSDictionary *price = [[NSDictionary alloc] initWithObjectsAndKeys:@"EUR", @"currency", _priceTextField.text, @"amount", nil];
+        [hairfieDic setObject:price forKey:@"price"];
+    }
+    
     
     HairfieRepository *hairfieRepository = (HairfieRepository *)[[AppDelegate lbAdaptater] repositoryWithClass:[HairfieRepository class]];
     

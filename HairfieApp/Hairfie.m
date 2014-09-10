@@ -22,6 +22,14 @@
     _user = (User *)[userRepository modelWithDictionary:userDic];
 }
 
+-(NSString *)pictureUrlwithWidth:(NSString *)width andHeight:(NSString *)height {
+    NSString  *url = [[picture objectForKey:@"publicUrl"] stringByAppendingString:@"?"];
+    if(width)  url = [NSString stringWithFormat:@"%@&width=%@", url, width];
+    if(height) url = [NSString stringWithFormat:@"%@&height=%@", url, height];
+    
+    return url;
+}
+
 - (void) setBusiness:(NSDictionary *) businessDic {
     if([businessDic isKindOfClass:[NSNull class]]) {
         
@@ -32,8 +40,17 @@
    }
 
 -(NSString *)pictureUrl {
-    return [picture objectForKey:@"publicUrl"];
+    return [self pictureUrlwithWidth:nil andHeight:nil];
 }
+
+-(NSString *)hairfieCellUrl {
+    return [self pictureUrlwithWidth:@"150" andHeight:@"210"];
+}
+
+-(NSString *)hairfieDetailUrl {
+    return [self pictureUrlwithWidth:@"320" andHeight:@"355"];
+}
+
 
 -(NSString *)displayPrice {
     if([price isEqual:[NSNull null]]) return @"";

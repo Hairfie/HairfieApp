@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HairfiePostDetailsViewController : UIViewController <UINavigationControllerDelegate, UITextViewDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface HairfiePostDetailsViewController : UIViewController <UINavigationControllerDelegate, UITextViewDelegate, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 
-@property (nonatomic) IBOutlet UITextView *priceTextView;
+@property (nonatomic) IBOutlet UITextField *priceTextField;
 @property (nonatomic) IBOutlet UITextView *hairfieDesc;
 @property (nonatomic) IBOutlet UIImageView *hairfieImageView;
 @property (nonatomic) IBOutlet UITextField *emailTextField;
@@ -25,6 +25,6 @@
 @property (nonatomic) IBOutlet NSLayoutConstraint *tableViewHeight;
 @property (nonatomic) IBOutlet NSLayoutConstraint *tableViewYPos;
 
-@property (nonatomic) NSArray *salonChosen;
+@property (nonatomic) NSDictionary *salonChosen;
 
 @end

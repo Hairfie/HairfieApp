@@ -205,11 +205,11 @@
     hairfieView.backgroundColor = [UIColor lightBlueHairfie];
     UIImageView *hairfieImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 355)];
 
-    [hairfieImageView sd_setImageWithURL:[NSURL URLWithString:_currentHairfie.pictureUrl]
+    [hairfieImageView sd_setImageWithURL:[NSURL URLWithString:_currentHairfie.hairfieDetailUrl]
                       placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
     
-    hairfieImageView.contentMode =UIViewContentModeScaleAspectFill;
-    
+    hairfieImageView.contentMode = UIViewContentModeScaleAspectFill;
+    hairfieImageView.clipsToBounds = YES;
     UIImageView *likePicto = [[UIImageView alloc] initWithFrame:CGRectMake(10, 328, 25, 20)];
     likePicto.image = [UIImage imageNamed:@"picto-hairfie-detail-like.png"];
     UILabel *nbLike = [[UILabel alloc] initWithFrame:CGRectMake(43, 328, 35, 21)];
