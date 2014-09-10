@@ -12,7 +12,7 @@
 
 @interface Business : LBModel
 
-@property (nonatomic) NSString *_id;
+@property (nonatomic) NSString *businessId;
 @property (nonatomic) NSString *name;
 @property (nonatomic) NSDictionary *address;
 

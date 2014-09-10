@@ -24,5 +24,7 @@
 
 
 -(NSString *)pictureUrl;
+-(NSString *)hairfieCellUrl;
+-(NSString *)hairfieDetailUrl;
 
 @end

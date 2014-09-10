@@ -130,6 +130,8 @@
 {
     HairfiePostDetailsViewController *details = [self.navigationController.viewControllers objectAtIndex:[self.navigationController.viewControllers count]-2];
     details.salonChosen = [salons objectAtIndex:indexPath.row];
+   
+    NSLog(@"salon %@", [details.salonChosen objectForKey:@"id"]);
     
     [self.navigationController popViewControllerAnimated:YES];
 }

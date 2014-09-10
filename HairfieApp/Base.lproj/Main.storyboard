@@ -941,7 +941,7 @@ Inscivez-vous maintenant</string>
                                                 <rect key="frame" x="8" y="14" width="180" height="106"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="60g-nd-hW0" id="54s-39-mhm"/>
                                                 </connections>
@@ -1020,6 +1020,9 @@ Inscivez-vous maintenant</string>
                                         <rect key="frame" x="72" y="284" width="237" height="39"/>
                                         <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="done"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="60g-nd-hW0" id="xU4-Ai-RjW"/>
+                                        </connections>
                                     </textField>
                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" image="send-email-client-button.png" translatesAutoresizingMaskIntoConstraints="NO" id="dml-Z3-tjI">
                                         <rect key="frame" x="10" y="337" width="300" height="39"/>
@@ -1088,6 +1091,7 @@ Inscivez-vous maintenant</string>
                         <outlet property="emailTextField" destination="Bkw-ZB-kaJ" id="Mkx-PA-S09"/>
                         <outlet property="hairfieDesc" destination="gFo-ft-JjF" id="12p-0m-f8C"/>
                         <outlet property="hairfieImageView" destination="GIY-2G-FaB" id="zZA-KP-CH3"/>
+                        <outlet property="priceTextField" destination="obk-hf-bm5" id="XRS-oF-vAX"/>
                         <outlet property="salonLabel" destination="kQl-Vg-Bbo" id="QQg-AX-QDI"/>
                         <outlet property="tableViewHeight" destination="Zyc-NL-YHa" id="Xyc-IU-q6c"/>
                         <outlet property="tableViewYPos" destination="kvS-l1-oz2" id="EAZ-R9-BQC"/>

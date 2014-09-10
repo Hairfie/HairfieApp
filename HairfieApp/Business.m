@@ -11,7 +11,12 @@
 
 @implementation Business
 
-@synthesize _id, name, address;
+@synthesize businessId, name, address;
+
+-(void)setId:(NSString *)chosenId
+{
+    businessId = chosenId;
+}
 
 -(NSString *)displayAddress {
     return [NSString stringWithFormat:@"%@ %@", [address objectForKey:@"street"], [address objectForKey:@"city"]];

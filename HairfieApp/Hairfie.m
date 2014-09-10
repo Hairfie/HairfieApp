@@ -22,8 +22,26 @@
     _user = (User *)[userRepository modelWithDictionary:userDic];
 }
 
--(NSString *)pictureUrl {
-    return [picture objectForKey:@"publicUrl"];
+
+-(NSString *)pictureUrlwithWidth:(NSString *)width andHeight:(NSString *)height {
+    NSString  *url = [[picture objectForKey:@"publicUrl"] stringByAppendingString:@"?"];
+    if(width)  url = [NSString stringWithFormat:@"%@&width=%@", url, width];
+    if(height) url = [NSString stringWithFormat:@"%@&height=%@", url, height];
+    
+    return url;
 }
+
+-(NSString *)pictureUrl {
+    return [self pictureUrlwithWidth:nil andHeight:nil];
+}
+
+-(NSString *)hairfieCellUrl {
+    return [self pictureUrlwithWidth:@"150" andHeight:@"210"];
+}
+
+-(NSString *)hairfieDetailUrl {
+    return [self pictureUrlwithWidth:@"320" andHeight:@"355"];
+}
+
 
 @end
