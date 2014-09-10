@@ -21,6 +21,8 @@
 @property (nonatomic) NSString *email;
 
 -(NSString *)name;
+-(NSString *)pictureUrlwithWidth:(NSString *)width andHeight:(NSString *)height;
 -(NSString *)pictureUrl;
+-(NSString *)thumbUrl;
 
 @end
