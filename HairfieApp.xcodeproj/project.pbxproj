@@ -16,6 +16,7 @@
 		15697B31199BB03800DA83FE /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 15697B30199BB03800DA83FE /* UIImage+Resize.m */; };
 		15A2180F19BE296A0090E83B /* PictureUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A2180E19BE296A0090E83B /* PictureUploader.m */; };
 		15B829C919B85F6200525802 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15B829C819B85F6200525802 /* FacebookSDK.framework */; };
+		15B8ADE319C09A3E009846AA /* BusinessRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B8ADE219C09A3E009846AA /* BusinessRepository.m */; };
 		15CE407319B0E78C0088FEA7 /* CredentialStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 15CE407219B0E78C0088FEA7 /* CredentialStore.m */; };
 		15E6AE761992635900A11947 /* OpeningTimes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E6AE751992635900A11947 /* OpeningTimes.swift */; };
 		15ED728C199B9C6400453A74 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15ED728B199B9C6400453A74 /* ImageIO.framework */; };
@@ -172,7 +173,7 @@
 		B3E0B16219ACE33000C3EACE /* checkbox-true.png in Resources */ = {isa = PBXBuildFile; fileRef = B3E0B16019ACE33000C3EACE /* checkbox-true.png */; };
 		B3E0B16319ACE33000C3EACE /* checkbox-false.png in Resources */ = {isa = PBXBuildFile; fileRef = B3E0B16119ACE33000C3EACE /* checkbox-false.png */; };
 		B3E4B46019A73C010036BAD8 /* LoopBack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3E4B45F19A73C010036BAD8 /* LoopBack.framework */; };
-		B3E4B46319A73C830036BAD8 /* BusinessModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E4B46219A73C830036BAD8 /* BusinessModel.m */; };
+		B3E4B46319A73C830036BAD8 /* Business.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E4B46219A73C830036BAD8 /* Business.m */; };
 		B3E4B5981992530100CBBDC8 /* nav-disclosure.png in Resources */ = {isa = PBXBuildFile; fileRef = B3E4B5971992530100CBBDC8 /* nav-disclosure.png */; };
 		B3E65FB61986917800AF0C15 /* ECPercentDrivenInteractiveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E65FAA1986917800AF0C15 /* ECPercentDrivenInteractiveTransition.m */; };
 		B3E65FB71986917800AF0C15 /* ECSlidingAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E65FAC1986917800AF0C15 /* ECSlidingAnimationController.m */; };
@@ -241,6 +242,8 @@
 		15A2180D19BE296A0090E83B /* PictureUploader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PictureUploader.h; sourceTree = "<group>"; };
 		15A2180E19BE296A0090E83B /* PictureUploader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PictureUploader.m; sourceTree = "<group>"; };
 		15B829C819B85F6200525802 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
+		15B8ADE119C09A3E009846AA /* BusinessRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessRepository.h; sourceTree = "<group>"; };
+		15B8ADE219C09A3E009846AA /* BusinessRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessRepository.m; sourceTree = "<group>"; };
 		15CE407119B0E78C0088FEA7 /* CredentialStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CredentialStore.h; sourceTree = "<group>"; };
 		15CE407219B0E78C0088FEA7 /* CredentialStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CredentialStore.m; sourceTree = "<group>"; };
 		15E6AE751992635900A11947 /* OpeningTimes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpeningTimes.swift; sourceTree = "<group>"; };
@@ -459,8 +462,8 @@
 		B3E0B16019ACE33000C3EACE /* checkbox-true.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkbox-true.png"; sourceTree = "<group>"; };
 		B3E0B16119ACE33000C3EACE /* checkbox-false.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkbox-false.png"; sourceTree = "<group>"; };
 		B3E4B45F19A73C010036BAD8 /* LoopBack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = LoopBack.framework; sourceTree = "<group>"; };
-		B3E4B46119A73C830036BAD8 /* BusinessModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessModel.h; sourceTree = "<group>"; };
-		B3E4B46219A73C830036BAD8 /* BusinessModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessModel.m; sourceTree = "<group>"; };
+		B3E4B46119A73C830036BAD8 /* Business.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Business.h; sourceTree = "<group>"; };
+		B3E4B46219A73C830036BAD8 /* Business.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Business.m; sourceTree = "<group>"; };
 		B3E4B5971992530100CBBDC8 /* nav-disclosure.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nav-disclosure.png"; sourceTree = "<group>"; };
 		B3E65FA91986917800AF0C15 /* ECPercentDrivenInteractiveTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECPercentDrivenInteractiveTransition.h; sourceTree = "<group>"; };
 		B3E65FAA1986917800AF0C15 /* ECPercentDrivenInteractiveTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECPercentDrivenInteractiveTransition.m; sourceTree = "<group>"; };
@@ -638,6 +641,8 @@
 				153E1FAF19B4A79B00DEC95D /* UserRepository.m */,
 				B330409319BDB21200BA6211 /* HairfieRepository.h */,
 				B330409419BDB21200BA6211 /* HairfieRepository.m */,
+				15B8ADE119C09A3E009846AA /* BusinessRepository.h */,
+				15B8ADE219C09A3E009846AA /* BusinessRepository.m */,
 			);
 			name = Repositories;
 			sourceTree = "<group>";
@@ -1038,8 +1043,8 @@
 			children = (
 				B3615B3619AF242800F1141D /* User.h */,
 				B3615B3719AF242800F1141D /* User.m */,
-				B3E4B46119A73C830036BAD8 /* BusinessModel.h */,
-				B3E4B46219A73C830036BAD8 /* BusinessModel.m */,
+				B3E4B46119A73C830036BAD8 /* Business.h */,
+				B3E4B46219A73C830036BAD8 /* Business.m */,
 				B330408C19BDAC7000BA6211 /* Hairfie.h */,
 				B330408D19BDAC7000BA6211 /* Hairfie.m */,
 			);
@@ -1457,7 +1462,7 @@
 				B36731D7198F939A00E11C56 /* SalonDetailViewController.m in Sources */,
 				B3423214198924290058866B /* AFSecurityPolicy.m in Sources */,
 				B345BAD8199502A3007BB61A /* CustomCollectionViewCell.m in Sources */,
-				B3E4B46319A73C830036BAD8 /* BusinessModel.m in Sources */,
+				B3E4B46319A73C830036BAD8 /* Business.m in Sources */,
 				B3BD869F198BCFE500BD8591 /* RatingView.m in Sources */,
 				B3423211198924290058866B /* AFHTTPRequestOperationManager.m in Sources */,
 				15A2180F19BE296A0090E83B /* PictureUploader.m in Sources */,
@@ -1494,6 +1499,7 @@
 				B330409219BDB1EA00BA6211 /* HairfieRequest.m in Sources */,
 				B33E4C4319A48FE70024F5F7 /* HoraireTableViewCell.m in Sources */,
 				B3423218198924290058866B /* AFURLSessionManager.m in Sources */,
+				15B8ADE319C09A3E009846AA /* BusinessRepository.m in Sources */,
 				B3F5522219BF313E0033230E /* HairfiePostDetailsViewController.m in Sources */,
 				B3DD7A851991288F007B1621 /* SimilarTableViewCell.m in Sources */,
 				15E6AE761992635900A11947 /* OpeningTimes.swift in Sources */,

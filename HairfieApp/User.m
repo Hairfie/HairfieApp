@@ -13,7 +13,7 @@
 
 @implementation User
 
-@synthesize userId, userToken, email, firstName, lastName, picture;
+@synthesize userId, userToken, email, firstName, lastName, picture, hairfies;
 
 -(NSString *)name {
     return [NSString stringWithFormat:@"%@ %@", firstName, lastName];
@@ -21,6 +21,15 @@
 
 -(NSString *)displayName {
     return [NSString stringWithFormat:@"%@ %@.", firstName, [lastName substringToIndex:1]];
+}
+
+-(NSString *)displayHairfies {
+    if(hairfies) {
+        return  [NSString stringWithFormat:@"%ld hairfies", (long) hairfies];;
+    } else {
+        return  @"0 hairfies";
+    }
+    
 }
 
 -(NSString *)pictureUrlwithWidth:(NSString *)width andHeight:(NSString *)height {

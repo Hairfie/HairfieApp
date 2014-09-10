@@ -8,6 +8,7 @@
 
 #import "Hairfie.h"
 #import "UserRepository.h"
+#import "BusinessRepository.h"
 #import "AppDelegate.h"
 
 @implementation Hairfie
