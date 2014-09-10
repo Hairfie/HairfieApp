@@ -8,14 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HairfiePostDetailsViewController : UIViewController <UINavigationControllerDelegate>
+@interface HairfiePostDetailsViewController : UIViewController <UINavigationControllerDelegate, UITextViewDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic) IBOutlet UITextView *priceTextView;
+@property (nonatomic) IBOutlet UITextView *hairfieDesc;
 @property (nonatomic) IBOutlet UIImageView *hairfieImageView;
 @property (nonatomic) IBOutlet UITextField *emailTextField;
+@property (nonatomic) IBOutlet UITableView *dataChoice;
+@property (nonatomic) BOOL isSalon;
+@property (nonatomic) BOOL isHairdresser;
+@property (nonatomic) BOOL salonOrHairdresser;
 
 @property (nonatomic) UIImage *hairfie;
 
-
+@property (nonatomic) IBOutlet NSLayoutConstraint *tableViewHeight;
+@property (nonatomic) IBOutlet NSLayoutConstraint *tableViewYPos;
 
 @end
