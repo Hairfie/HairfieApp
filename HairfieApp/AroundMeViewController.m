@@ -137,7 +137,6 @@
     }
     else
     {
-        NSLog(@"query %@", _queryNameInProgressFromSegue);
         _myLocation = (CLLocation*)[[notif userInfo] valueForKey:@"newLocationResult"];
         if (_queryNameInProgressFromSegue != nil) {
             _searchView.searchByName.text = _queryNameInProgressFromSegue;
