@@ -130,6 +130,7 @@
 
 -(void) updatedLocation:(NSNotification*)notif {
     
+    NSLog(@"icicicicicici");
     if (_gpsStringFromSegue != nil)
     {
         _searchDesc.text = _searchInProgressFromSegue;

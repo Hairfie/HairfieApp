@@ -7,10 +7,17 @@
 //
 
 #import "HairfiePostDetailsViewController.h"
+#import "PictureUploader.h"
+#import "AppDelegate.h"
+#import "HairfieRepository.h"
+
+#import <LoopBack/LoopBack.h>
 
 @implementation HairfiePostDetailsViewController
 {
     NSArray *salonTypes;
+    NSString *uploadedFileName;
+    BOOL uploadInProgress;
 }
 -(UIStatusBarStyle)preferredStatusBarStyle{
     return UIStatusBarStyleLightContent;
@@ -35,6 +42,14 @@
     _isHairdresser = NO;
     salonTypes = [[NSArray alloc] initWithObjects:@"I did it", @"Hairdresser in a Salon", nil];
     _tableViewHeight.constant = [salonTypes count] * _dataChoice.rowHeight;
+    [self uploadProfileImage:_hairfie];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    LBModel *model = (LBModel *)_salonChosen;
+    if (_salonChosen != nil)
+        _salonLabel.text = [model objectForKeyedSubscript:@"name"];
 }
 
 -(IBAction)goBack:(id)sender
@@ -123,9 +138,6 @@
     return cell;
 }
 
-
-
-
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row != 0)
@@ -133,15 +145,57 @@
         [self performSegueWithIdentifier:@"choseSalonType" sender:self];
         [self showSalonsChoices:self];
     }
+    else
+    {
+        _salonLabel.text = @"I did it";
+        [self showSalonsChoices:self];
+    }
 }
 
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+-(IBAction)postHairfie:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"choseSalonType"])
-    {
-        NSLog(@"Cool");
+    while (uploadInProgress) {
+        NSLog(@"Loop Loop !");
+        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
     }
+    
+    
+    NSDictionary *hairfieDic = [[NSDictionary alloc] initWithObjectsAndKeys:uploadedFileName, @"picture",_hairfieDesc.text, @"description", nil];
+
+    
+    HairfieRepository *hairfieRepository = (HairfieRepository *)[[AppDelegate lbAdaptater] repositoryWithClass:[HairfieRepository class]];
+    
+    Hairfie *hairfieToPost = (Hairfie *)[hairfieRepository modelWithDictionary:hairfieDic];
+    
+    
+    void (^loadErrorBlock)(NSError *) = ^(NSError *error){
+        NSLog(@"Error : %@", error.description);
+    };
+    void (^loadSuccessBlock)(Hairfie *) = ^(Hairfie *hairfiePosted){
+        
+        NSLog(@"Hairfie Posté");
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    };
+    [hairfieToPost saveWithSuccess:loadSuccessBlock failure:loadErrorBlock];
+}
+
+-(void) uploadProfileImage:(UIImage *)image
+{
+    uploadInProgress = YES;
+    PictureUploader *pictureUploader = [[PictureUploader alloc] init];
+    
+    void (^loadErrorBlock)(NSError *) = ^(NSError *error){
+        uploadInProgress = NO;
+        NSLog(@"Error : %@", error.description);
+    };
+    void (^loadSuccessBlock)(NSString *) = ^(NSString *fileName){
+        NSLog(@"Uploaded !");
+        uploadedFileName = fileName;
+        uploadInProgress = NO;
+    };
+    
+    [pictureUploader uploadImage:image toContainer:@"hairfies" success:loadSuccessBlock failure:loadErrorBlock];
 }
 
 @end

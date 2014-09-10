@@ -207,6 +207,7 @@
 
     [hairfieImageView sd_setImageWithURL:[NSURL URLWithString:_currentHairfie.pictureUrl]
                       placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
+    
     hairfieImageView.contentMode =UIViewContentModeScaleAspectFill;
     
     UIImageView *likePicto = [[UIImageView alloc] initWithFrame:CGRectMake(10, 328, 25, 20)];

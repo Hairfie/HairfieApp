@@ -1072,6 +1072,9 @@ Inscivez-vous maintenant</string>
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="postHairfie:" destination="60g-nd-hW0" eventType="touchUpInside" id="Ht6-ka-obl"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1085,6 +1088,7 @@ Inscivez-vous maintenant</string>
                         <outlet property="emailTextField" destination="Bkw-ZB-kaJ" id="Mkx-PA-S09"/>
                         <outlet property="hairfieDesc" destination="gFo-ft-JjF" id="12p-0m-f8C"/>
                         <outlet property="hairfieImageView" destination="GIY-2G-FaB" id="zZA-KP-CH3"/>
+                        <outlet property="salonLabel" destination="kQl-Vg-Bbo" id="QQg-AX-QDI"/>
                         <outlet property="tableViewHeight" destination="Zyc-NL-YHa" id="Xyc-IU-q6c"/>
                         <outlet property="tableViewYPos" destination="kvS-l1-oz2" id="EAZ-R9-BQC"/>
                         <segue destination="8ER-eF-RXx" kind="push" identifier="choseSalonType" id="KDo-Hs-2DW"/>
@@ -1127,6 +1131,9 @@ Inscivez-vous maintenant</string>
                                         <state key="normal" title="Rechercher">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="doSearch:" destination="8ER-eF-RXx" eventType="touchUpInside" id="eGq-eg-5Am"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Poster Hairfie" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JCe-6y-ilS">
                                         <rect key="frame" x="105" y="28" width="111" height="23"/>
@@ -1147,18 +1154,34 @@ Inscivez-vous maintenant</string>
                                 <rect key="frame" x="16" y="103" width="220" height="1"/>
                                 <color key="backgroundColor" red="0.85490196080000003" green="0.85490196080000003" blue="0.87058823529999996" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="hairfie-post-search-name.png" translatesAutoresizingMaskIntoConstraints="NO" id="kXJ-f8-oNk">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="hairfie-post-search-name.png" translatesAutoresizingMaskIntoConstraints="NO" id="kXJ-f8-oNk">
                                 <rect key="frame" x="10" y="123" width="300" height="37"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="XR7-EU-A45"/>
+                                    <constraint firstAttribute="height" constant="37" id="wc6-PO-7CI"/>
+                                </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="hairfie-post-search-location.png" translatesAutoresizingMaskIntoConstraints="NO" id="vkc-vI-YoB">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="hairfie-post-search-location.png" translatesAutoresizingMaskIntoConstraints="NO" id="vkc-vI-YoB">
                                 <rect key="frame" x="10" y="168" width="300" height="37"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="37" id="Npa-0t-sU4"/>
+                                    <constraint firstAttribute="width" constant="300" id="Uqg-AG-POl"/>
+                                </constraints>
                             </imageView>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" image="location-button-search.png" translatesAutoresizingMaskIntoConstraints="NO" id="K7r-6a-dl7">
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" image="location-button-search.png" translatesAutoresizingMaskIntoConstraints="NO" id="K7r-6a-dl7">
                                 <rect key="frame" x="10" y="173" width="38" height="27"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="38" id="Bwx-vp-Qql"/>
+                                    <constraint firstAttribute="height" constant="27" id="s1z-9k-eZf"/>
+                                </constraints>
                             </imageView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="b0O-kw-LnI">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="b0O-kw-LnI">
                                 <rect key="frame" x="0.0" y="225" width="320" height="345"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="320" id="8bx-ab-9ro"/>
+                                    <constraint firstAttribute="height" constant="345" id="Uia-pi-eNq"/>
+                                </constraints>
                                 <connections>
                                     <outlet property="dataSource" destination="8ER-eF-RXx" id="iIX-4Q-C7d"/>
                                     <outlet property="delegate" destination="8ER-eF-RXx" id="mFl-pe-heH"/>
@@ -1200,6 +1223,7 @@ Inscivez-vous maintenant</string>
                         <outlet property="searchByLocation" destination="mad-ds-AlL" id="Zrb-Vk-T27"/>
                         <outlet property="searchByName" destination="Fwq-a8-tlo" id="UO1-7E-NKb"/>
                         <outlet property="tableView" destination="b0O-kw-LnI" id="J0t-S9-IhD"/>
+                        <outlet property="tableViewHeight" destination="Uia-pi-eNq" id="KNM-wd-fKy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="puL-1O-nxO" userLabel="First Responder" sceneMemberID="firstResponder"/>
