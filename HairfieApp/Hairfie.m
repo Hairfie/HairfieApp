@@ -17,6 +17,7 @@
 
 
 - (void) setUser:(NSDictionary *) userDic {
+    
     UserRepository *userRepository = (UserRepository *)[[AppDelegate lbAdaptater] repositoryWithClass:[UserRepository class]];
     _user = (User *)[userRepository modelWithDictionary:userDic];
 }

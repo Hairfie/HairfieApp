@@ -15,6 +15,7 @@
 @property (nonatomic) IBOutlet UIImageView *hairfieImageView;
 @property (nonatomic) IBOutlet UITextField *emailTextField;
 @property (nonatomic) IBOutlet UITableView *dataChoice;
+@property (nonatomic) IBOutlet UILabel *salonLabel;
 @property (nonatomic) BOOL isSalon;
 @property (nonatomic) BOOL isHairdresser;
 @property (nonatomic) BOOL salonOrHairdresser;
@@ -23,5 +24,7 @@
 
 @property (nonatomic) IBOutlet NSLayoutConstraint *tableViewHeight;
 @property (nonatomic) IBOutlet NSLayoutConstraint *tableViewYPos;
+
+@property (nonatomic) NSArray *salonChosen;
 
 @end

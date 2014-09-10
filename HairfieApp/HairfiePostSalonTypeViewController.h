@@ -17,5 +17,6 @@
 @property (nonatomic) IBOutlet UIButton *searchBttn;
 
 @property (nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic) IBOutlet NSLayoutConstraint *tableViewHeight;
 
 @end

@@ -59,6 +59,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willSearch:) name:@"searchQuery" object:nil];
+    [self getHairfies];
 }
 -(void)viewWillDisappear:(BOOL)animated
 {

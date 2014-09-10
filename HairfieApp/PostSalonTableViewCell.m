@@ -10,4 +10,10 @@
 
 @implementation PostSalonTableViewCell
 
+
+- (void)awakeFromNib {
+    _salonPicture.layer.cornerRadius = 5;
+    _salonPicture.layer.masksToBounds = YES;
+}
+
 @end
