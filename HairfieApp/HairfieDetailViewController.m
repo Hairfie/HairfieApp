@@ -116,7 +116,7 @@
     if (indexPath.row == 0)
     {
         cell.pictoView.image = [UIImage imageNamed:@"picto-hairfie-detail-hairdresser.png"];
-        cell.contentLabel.text = @"Franck Provost, 75002 Paris";
+        cell.contentLabel.text = _currentHairfie.business.displayNameAndAddress;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
     }
@@ -130,7 +130,7 @@
     {
         cell.pictoView.image = [UIImage imageNamed:@"picto-hairfie-detail-price.png"];
         if(![_currentHairfie.price isEqual:[NSNull null]])
-            cell.contentLabel.text = [NSString stringWithFormat:@"%@ €", [_currentHairfie.price objectForKey:@"amount"]];
+            cell.contentLabel.text = _currentHairfie.displayPrice;
         else
             cell.contentLabel.text = @"No price available";
     }

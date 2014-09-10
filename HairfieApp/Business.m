@@ -22,4 +22,8 @@
     return [NSString stringWithFormat:@"%@ %@", [address objectForKey:@"street"], [address objectForKey:@"city"]];
 }
 
+-(NSString *)displayNameAndAddress {
+    return [NSString stringWithFormat:@"%@ %@", name, [self displayAddress]];
+}
+
 @end

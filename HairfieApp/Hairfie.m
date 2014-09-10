@@ -22,7 +22,6 @@
     _user = (User *)[userRepository modelWithDictionary:userDic];
 }
 
-
 -(NSString *)pictureUrlwithWidth:(NSString *)width andHeight:(NSString *)height {
     NSString  *url = [[picture objectForKey:@"publicUrl"] stringByAppendingString:@"?"];
     if(width)  url = [NSString stringWithFormat:@"%@&width=%@", url, width];
@@ -30,6 +29,15 @@
     
     return url;
 }
+
+- (void) setBusiness:(NSDictionary *) businessDic {
+    if([businessDic isKindOfClass:[NSNull class]]) {
+        
+    } else {
+        BusinessRepository *businessRepository = (BusinessRepository *)[[AppDelegate lbAdaptater] repositoryWithClass:[BusinessRepository class]];
+        _business = (Business *)[businessRepository modelWithDictionary:businessDic];
+    }
+   }
 
 -(NSString *)pictureUrl {
     return [self pictureUrlwithWidth:nil andHeight:nil];
@@ -43,5 +51,13 @@
     return [self pictureUrlwithWidth:@"320" andHeight:@"355"];
 }
 
+
+-(NSString *)displayPrice {
+    if([price isEqual:[NSNull null]]) return @"";
+    
+    if([[price objectForKey:@"currency"] isEqual:@"EUR"]) return [NSString stringWithFormat:@"%@ €", [price objectForKey:@"amount"]];
+
+    return @"";
+}
 
 @end
