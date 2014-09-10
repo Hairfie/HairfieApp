@@ -22,8 +22,25 @@
     _user = (User *)[userRepository modelWithDictionary:userDic];
 }
 
+- (void) setBusiness:(NSDictionary *) businessDic {
+    if([businessDic isKindOfClass:[NSNull class]]) {
+        
+    } else {
+        BusinessRepository *businessRepository = (BusinessRepository *)[[AppDelegate lbAdaptater] repositoryWithClass:[BusinessRepository class]];
+        _business = (Business *)[businessRepository modelWithDictionary:businessDic];
+    }
+   }
+
 -(NSString *)pictureUrl {
     return [picture objectForKey:@"publicUrl"];
+}
+
+-(NSString *)displayPrice {
+    if([price isEqual:[NSNull null]]) return @"";
+    
+    if([[price objectForKey:@"currency"] isEqual:@"EUR"]) return [NSString stringWithFormat:@"%@ €", [price objectForKey:@"amount"]];
+
+    return @"";
 }
 
 @end

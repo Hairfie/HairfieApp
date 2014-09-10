@@ -24,5 +24,6 @@
 
 
 -(NSString *)pictureUrl;
+-(NSString *)displayPrice;
 
 @end
