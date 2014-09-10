@@ -16,10 +16,12 @@
 @property (nonatomic) NSDictionary *picture;
 @property (nonatomic) NSString *userId;
 @property (nonatomic) NSString *description;
-@property (nonatomic) NSString *salonId;
+@property (nonatomic) NSString *businessId;
 @property (nonatomic) NSDictionary *price;
 @property (nonatomic) NSString *hairfieId;
 @property (nonatomic) User *user;
+@property (nonatomic) Business *business;
+
 
 -(NSString *)pictureUrl;
 
