@@ -13,7 +13,7 @@
 
 @implementation Hairfie
 
-@synthesize description, hairfieId, salonId, price, picture, user = _user;
+@synthesize description, hairfieId, businessId, price, picture, user = _user, business = _business;
 
 
 - (void) setUser:(NSDictionary *) userDic {
