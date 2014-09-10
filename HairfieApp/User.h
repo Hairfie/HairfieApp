@@ -19,9 +19,12 @@
 @property (nonatomic) NSString *gender;
 @property (nonatomic) NSDictionary *picture;
 @property (nonatomic) NSString *email;
+@property (nonatomic) NSInteger *hairfies;
+
 
 -(NSString *)name;
 -(NSString *)displayName;
+-(NSString *)displayHairfies;
 -(NSString *)pictureUrlwithWidth:(NSString *)width andHeight:(NSString *)height;
 -(NSString *)pictureUrl;
 -(NSString *)thumbUrl;
