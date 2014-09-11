@@ -25,8 +25,6 @@
 
 @implementation SalonDetailViewController {
     BOOL isOpen;
-    NSArray *phoneNumbers;
-    
     // Variables de test (vu qu'il y a pas de backend)
     
     NSArray *coiffureArray;
@@ -357,8 +355,6 @@
 
 - (void) initKnownData:(Business*)business
 {
-    phoneNumbers = business.phoneNumbers; // TODO: remove this binding
-   
     [self setupGallery:business.pictures];
     
     if (![[business timetable] isEqual:[NSNull null]]) {
@@ -478,13 +474,13 @@
 }
 
 -(IBAction)callPhone:(id)sender {
-    NSLog(@"callPhone %@", [phoneNumbers objectAtIndex:0]);
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"telprompt://%@", [phoneNumbers objectAtIndex:0]]]];
+    NSLog(@"callPhone %@", [self.business.phoneNumbers objectAtIndex:0]);
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"telprompt://%@", [self.business.phoneNumbers objectAtIndex:0]]]];
 }
 
 -(IBAction)callPhoneWithNumber:(UIButton *)sender {
 
-    NSString *number = [phoneNumbers objectAtIndex:sender.tag];
+    NSString *number = [self.business.phoneNumbers objectAtIndex:sender.tag];
     NSLog(@"callPhone %@", number);
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"telprompt://%@", number]]];
 }
@@ -507,17 +503,17 @@
     }
 }
 
--(void)addPhoneNumbersToView {
-    
+-(void)addPhoneNumbersToView
+{
     _telephone.hidden = YES;
     _telephoneBgView.hidden = YES;
     
     #define OffsetBetweenButtons 135
     
-    for(int buttonIndex=0; buttonIndex<[phoneNumbers count]; buttonIndex++){
+    for(int buttonIndex=0; buttonIndex<[self.business.phoneNumbers count]; buttonIndex++){
     
         UIButton *phoneBtn=[UIButton buttonWithType:UIButtonTypeRoundedRect];
-        NSString *phone =[phoneNumbers objectAtIndex:buttonIndex];
+        NSString *phone =[self.business.phoneNumbers objectAtIndex:buttonIndex];
         
         phoneBtn.frame= CGRectMake(35 + OffsetBetweenButtons * buttonIndex, 75, 115, 25);
         phoneBtn.backgroundColor = [UIColor lightBlueHairfie];
