@@ -77,7 +77,8 @@
 @property (nonatomic) IBOutlet UIButton *addReviewBttn;
 @property (nonatomic) IBOutlet UIButton *moreReviewBttn;
 
-@property (nonatomic) Business *business;
+@property (strong, nonatomic) Business *business;
+@property (strong, nonatomic) NSArray *similarBusinesses;
 
 
 @property (nonatomic) IBOutlet MKMapView *previewMap;

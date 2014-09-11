@@ -91,7 +91,22 @@
              success:(void(^)(NSArray *businesses))aSuccessHandler
              failure:(void(^)(NSError *error))aFailureHandler
 {
-    aSuccessHandler(@[[Business sample]]);
+    [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/businesses/:businessId/similar" verb:@"GET"]
+                                        forMethod:@"businesses.similar"];
+    LBModelRepository *businessData = [[AppDelegate lbAdaptater] repositoryWithModelName:@"businesses"];
+    [businessData invokeStaticMethod:@"similar"
+                          parameters:@{@"businessId": aBusinessId, @"limit" : aLimit}
+                             success:^(NSArray *results) {
+                                 NSMutableArray *businesses = [[NSMutableArray alloc] init];
+                                 for (NSDictionary *result in results) {
+                                     [businesses addObject:[[Business alloc] initWithJson:result]];
+                                 }
+                                 
+                                 aSuccessHandler([[NSArray alloc] initWithArray: businesses]);
+                             }
+                             failure:^(NSError *error) {
+                                 aFailureHandler(error);
+                             }];
 }
 
 

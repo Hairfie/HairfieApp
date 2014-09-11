@@ -266,7 +266,7 @@
     if (tableView == _reviewTableView)
         return 2;
     else if (tableView == _similarTableView)
-        return 3;
+        return self.similarBusinesses.count;
     if (tableView == _hairdresserTableView)
         return 5;
     if(tableView == _pricesTableView)
@@ -312,10 +312,8 @@
             NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"SimilarTableViewCell" owner:self options:nil];
             cell = [nib objectAtIndex:0];
         }
-        // Provisoire data
         
-        cell.name.text = [NSString stringWithFormat:@"Similar salon %ld",indexPath.row + 1];
-        cell.salonPicture.image = [UIImage imageNamed:@"placeholder-image.jpg"];
+        [cell customInit:self.similarBusinesses[indexPath.row]];
         
         return cell;
     }
@@ -355,6 +353,10 @@
 
 - (void) initKnownData:(Business*)business
 {
+    if (business.crossSell) {
+        [self setupCrossSell];
+    }
+    
     [self setupGallery:business.pictures];
     
     if (![[business timetable] isEqual:[NSNull null]]) {
@@ -436,7 +438,22 @@
 }
 
 
-
+-(void)setupCrossSell
+{
+    NSLog(self.business.name);
+    if (!self.business.crossSell) return;
+    
+    [Business listSimilarTo:self.business.id
+                      limit:@3
+                    success:^(NSArray *businesses) {
+                        NSLog(@"Got %d similar business(es)", businesses.count);
+                        self.similarBusinesses = businesses;
+                        [self.similarTableView reloadData];
+                    }
+                    failure:^(NSError *error) {
+                        NSLog(error.localizedDescription);
+                    }];
+}
 
 - (void)updateMapView {
     
