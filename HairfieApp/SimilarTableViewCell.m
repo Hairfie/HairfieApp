@@ -34,10 +34,10 @@
     // Initialization code
 }
 
-- (void) customInit:(LBModel*)model
+- (void) customInit:(Business *)business
 {
-    _name.text = [model objectForKeyedSubscript:@"name"];
-    _location.text = [NSString stringWithFormat:@"%.1f km", [[model objectForKeyedSubscript:@"distance"]floatValue] / 1000];
+    self.name.text = business.name;
+    self.location.text = [NSString stringWithFormat:@"%.1f km", [business.distance floatValue] / 1000];
 }
 
 
