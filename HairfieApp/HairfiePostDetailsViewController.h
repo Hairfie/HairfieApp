@@ -11,13 +11,18 @@
 @interface HairfiePostDetailsViewController : UIViewController <UINavigationControllerDelegate, UITextViewDelegate, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 
 @property (nonatomic) IBOutlet UITextField *priceTextField;
+@property (nonatomic) IBOutlet UIButton *priceLabelButton;
 @property (nonatomic) IBOutlet UITextView *hairfieDesc;
 @property (nonatomic) IBOutlet UIImageView *hairfieImageView;
 @property (nonatomic) IBOutlet UITextField *emailTextField;
 @property (nonatomic) IBOutlet UITableView *dataChoice;
 @property (nonatomic) IBOutlet UILabel *salonLabel;
 @property (nonatomic) IBOutlet UIButton *salonLabelButton;
-@property (nonatomic) IBOutlet UIView *hairdresserSubwiew;
+@property (nonatomic) IBOutlet UIView *hairdresserSubview;
+@property (nonatomic) IBOutlet UIView *priceSubview;
+@property (nonatomic) IBOutlet NSLayoutConstraint *whoSubviewConstraint;
+@property (nonatomic) IBOutlet UIView *emailSubview;
+
 
 @property (nonatomic) BOOL isSalon;
 @property (nonatomic) BOOL isHairdresser;

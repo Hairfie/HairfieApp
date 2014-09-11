@@ -39,7 +39,9 @@
     [_dataChoice setSeparatorInset:UIEdgeInsetsZero];
     _isSalon = NO;
     _isHairdresser = NO;
-    _hairdresserSubwiew.hidden = YES;
+    _hairdresserSubview.hidden = YES;
+    //_whoSubviewConstraint.constant = 0.f;
+    _emailSubview.hidden = YES;
     salonTypes = [[NSArray alloc] initWithObjects:@"I did it", @"Hairdresser in a Salon", nil];
     _tableViewHeight.constant = [salonTypes count] * _dataChoice.rowHeight;
     [self addDoneButtonToPriceField];
@@ -52,7 +54,7 @@
     
     if (_salonChosen != nil) {
         [_salonLabelButton setTitle:[_salonChosen objectForKeyedSubscript:@"name"] forState:UIControlStateNormal];
-        _hairdresserSubwiew.hidden = NO;
+        _hairdresserSubview.hidden = NO;
         
     }
 }
