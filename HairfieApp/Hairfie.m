@@ -37,7 +37,7 @@
         BusinessRepository *businessRepository = (BusinessRepository *)[[AppDelegate lbAdaptater] repositoryWithClass:[BusinessRepository class]];
         _business = (Business *)[businessRepository modelWithDictionary:businessDic];
     }
-   }
+}
 
 -(NSString *)pictureUrl {
     return [self pictureUrlwithWidth:nil andHeight:nil];
