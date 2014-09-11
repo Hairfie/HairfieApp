@@ -966,7 +966,7 @@ Inscivez-vous maintenant</string>
                                             <constraint firstAttribute="height" constant="39" id="EvZ-hJ-c7N"/>
                                             <constraint firstAttribute="width" constant="230" id="xqL-CG-qHH"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="15"/>
+                                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="18"/>
                                         <state key="normal" title="Where ?">
                                             <color key="titleColor" red="0.35686274509999999" green="0.41176470590000003" blue="0.46666666670000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -991,30 +991,37 @@ Inscivez-vous maintenant</string>
                                             <action selector="showSalonsChoices:" destination="60g-nd-hW0" eventType="touchUpInside" id="bBc-mc-Jjn"/>
                                         </connections>
                                     </button>
-                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" image="hairdresser-where-hairfie-post.png" translatesAutoresizingMaskIntoConstraints="NO" id="VDS-7P-Sez">
-                                        <rect key="frame" x="10" y="225" width="300" height="39"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="300" id="cnd-mm-AWT"/>
-                                            <constraint firstAttribute="height" constant="39" id="gZ4-og-vaO"/>
-                                        </constraints>
-                                    </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Who ?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mqS-3V-2Nq">
-                                        <rect key="frame" x="31" y="225" width="148" height="39"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="148" id="WEG-EP-Mek"/>
-                                            <constraint firstAttribute="height" constant="39" id="pY3-V9-zEI"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="17"/>
-                                        <color key="textColor" red="0.35686274509999999" green="0.41176470590000003" blue="0.46666666670000001" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="arrow-dropdown.png" translatesAutoresizingMaskIntoConstraints="NO" id="QTj-aj-24V">
-                                        <rect key="frame" x="275" y="240" width="20" height="11"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="11" id="MlH-kj-mjs"/>
-                                            <constraint firstAttribute="width" constant="20" id="W0q-QU-rEc"/>
-                                        </constraints>
-                                    </imageView>
+                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xSZ-Hu-sLy">
+                                        <rect key="frame" x="0.0" y="213" width="320" height="55"/>
+                                        <subviews>
+                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" image="hairdresser-where-hairfie-post.png" translatesAutoresizingMaskIntoConstraints="NO" id="l1R-V1-aKa">
+                                                <rect key="frame" x="10" y="12" width="300" height="39"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="300" id="eBJ-gl-pzU"/>
+                                                    <constraint firstAttribute="height" constant="39" id="iZs-ye-LoW"/>
+                                                </constraints>
+                                            </imageView>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="arrow-dropdown.png" translatesAutoresizingMaskIntoConstraints="NO" id="0zk-lj-FS9">
+                                                <rect key="frame" x="275" y="27" width="20" height="11"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="20" id="BbT-rJ-qAL"/>
+                                                    <constraint firstAttribute="height" constant="11" id="yZc-bF-1Lg"/>
+                                                </constraints>
+                                            </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XXJ-UR-geU">
+                                                <rect key="frame" x="30" y="12" width="254" height="39"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="230" id="G4L-29-sjY"/>
+                                                    <constraint firstAttribute="height" constant="39" id="eTG-fa-pWf"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="18"/>
+                                                <state key="normal" title="Who ?">
+                                                    <color key="titleColor" red="0.35686274509999999" green="0.41176470590000003" blue="0.46666666670000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                            </button>
+                                        </subviews>
+                                    </view>
                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" image="hairdresser-price-hairfie-post.png" translatesAutoresizingMaskIntoConstraints="NO" id="dJj-zm-Orv">
                                         <rect key="frame" x="10" y="284" width="300" height="39"/>
                                         <constraints>
@@ -1065,8 +1072,8 @@ Inscivez-vous maintenant</string>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="2o9-JL-3ON" firstAttribute="top" secondItem="xfh-mY-dbB" secondAttribute="top" constant="165" id="8DI-3S-AVb"/>
-                                    <constraint firstItem="mqS-3V-2Nq" firstAttribute="top" secondItem="Vjl-H2-Nzu" secondAttribute="bottom" constant="85" id="E8A-2A-Wey"/>
                                     <constraint firstItem="AxN-r1-GHU" firstAttribute="top" secondItem="xfh-mY-dbB" secondAttribute="top" constant="213" id="kvS-l1-oz2"/>
+                                    <constraint firstItem="xSZ-Hu-sLy" firstAttribute="top" secondItem="Vjl-H2-Nzu" secondAttribute="bottom" constant="85" id="nIp-hk-SMc"/>
                                 </constraints>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BLb-LA-FH2">
@@ -1095,6 +1102,7 @@ Inscivez-vous maintenant</string>
                     <connections>
                         <outlet property="dataChoice" destination="AxN-r1-GHU" id="Gee-Wt-c05"/>
                         <outlet property="emailTextField" destination="Bkw-ZB-kaJ" id="Mkx-PA-S09"/>
+                        <outlet property="hairdresserSubwiew" destination="xSZ-Hu-sLy" id="NMc-NR-H2v"/>
                         <outlet property="hairfieDesc" destination="gFo-ft-JjF" id="12p-0m-f8C"/>
                         <outlet property="hairfieImageView" destination="GIY-2G-FaB" id="zZA-KP-CH3"/>
                         <outlet property="priceTextField" destination="obk-hf-bm5" id="XRS-oF-vAX"/>

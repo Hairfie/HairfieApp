@@ -44,11 +44,11 @@
 }
 
 -(NSString *)hairfieCellUrl {
-    return [self pictureUrlwithWidth:@"150" andHeight:@"210"];
+    return [self pictureUrlwithWidth:@"300" andHeight:@"420"];
 }
 
 -(NSString *)hairfieDetailUrl {
-    return [self pictureUrlwithWidth:@"320" andHeight:@"355"];
+    return [self pictureUrlwithWidth:@"640" andHeight:@"710"];
 }
 
 
