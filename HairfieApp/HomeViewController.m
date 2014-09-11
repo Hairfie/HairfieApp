@@ -24,6 +24,7 @@
     NSArray *hairfies;
     NSInteger hairfieRow;
     UIAlertView *chooseCameraType;
+    UIRefreshControl *refreshControl;
 }
 @end
 
@@ -52,8 +53,14 @@
              forControlEvents:UIControlEventTouchUpInside];
     //self.view.translatesAutoresizingMaskIntoConstraints = NO;
     //[self.view.translatesAutoresizingMaskIntoConstraints]
+    refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(getHairfies)
+             forControlEvents:UIControlEventValueChanged];
+    [_hairfieCollection addSubview:refreshControl];
+    
     [self getHairfies];
     // Do any additional setup after loading the view.
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -363,14 +370,24 @@
 
 -(void)getHairfies
 {
-        void (^loadErrorBlock)(NSError *) = ^(NSError *error){
-            NSLog(@"Error on load %@", error.description);
-        };
-       void (^loadSuccessBlock)(NSArray *) = ^(NSArray *models){
-           hairfies = [[models reverseObjectEnumerator] allObjects];
-           [_hairfieCollection reloadData];
-        };
+    void (^loadErrorBlock)(NSError *) = ^(NSError *error){
+        NSLog(@"Error on load %@", error.description);
+        [refreshControl endRefreshing];
+    };
+    void (^loadSuccessBlock)(NSArray *) = ^(NSArray *models){
+        hairfies = [[models reverseObjectEnumerator] allObjects];
+        [self customReloadData];
+    };
     [hairfieReq getHairfies:loadSuccessBlock failure:loadErrorBlock];
+}
+
+- (void)customReloadData
+{
+    [_hairfieCollection reloadData];
+    
+    if (refreshControl) {
+        [refreshControl endRefreshing];
+    }
 }
 
 
