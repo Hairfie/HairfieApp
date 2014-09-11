@@ -960,6 +960,21 @@ Inscivez-vous maintenant</string>
                                             <constraint firstAttribute="height" constant="39" id="R1H-HL-mFs"/>
                                         </constraints>
                                     </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2o9-JL-3ON">
+                                        <rect key="frame" x="31" y="166" width="230" height="39"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="39" id="EvZ-hJ-c7N"/>
+                                            <constraint firstAttribute="width" constant="230" id="xqL-CG-qHH"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="15"/>
+                                        <state key="normal" title="Where ?">
+                                            <color key="titleColor" red="0.35686274509999999" green="0.41176470590000003" blue="0.46666666670000001" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="showSalonsChoices:" destination="60g-nd-hW0" eventType="touchUpInside" id="H0G-2l-oYY"/>
+                                        </connections>
+                                    </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="arrow-dropdown.png" translatesAutoresizingMaskIntoConstraints="NO" id="Yyb-Bc-PPR">
                                         <rect key="frame" x="275" y="181" width="20" height="11"/>
                                         <constraints>
@@ -1046,21 +1061,11 @@ Inscivez-vous maintenant</string>
                                             <outlet property="delegate" destination="60g-nd-hW0" id="MQG-af-IIa"/>
                                         </connections>
                                     </tableView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Where ?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kQl-Vg-Bbo">
-                                        <rect key="frame" x="31" y="166" width="230" height="39"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="39" id="AQP-Jc-HjR"/>
-                                            <constraint firstAttribute="width" constant="230" id="XPv-Th-Qgq"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="17"/>
-                                        <color key="textColor" red="0.35686274509999999" green="0.41176470590000003" blue="0.46666666670000001" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="2o9-JL-3ON" firstAttribute="top" secondItem="xfh-mY-dbB" secondAttribute="top" constant="165" id="8DI-3S-AVb"/>
                                     <constraint firstItem="mqS-3V-2Nq" firstAttribute="top" secondItem="Vjl-H2-Nzu" secondAttribute="bottom" constant="85" id="E8A-2A-Wey"/>
-                                    <constraint firstItem="kQl-Vg-Bbo" firstAttribute="top" secondItem="xfh-mY-dbB" secondAttribute="top" constant="165" id="EQp-OV-qIN"/>
                                     <constraint firstItem="AxN-r1-GHU" firstAttribute="top" secondItem="xfh-mY-dbB" secondAttribute="top" constant="213" id="kvS-l1-oz2"/>
                                 </constraints>
                             </scrollView>
@@ -1093,7 +1098,7 @@ Inscivez-vous maintenant</string>
                         <outlet property="hairfieDesc" destination="gFo-ft-JjF" id="12p-0m-f8C"/>
                         <outlet property="hairfieImageView" destination="GIY-2G-FaB" id="zZA-KP-CH3"/>
                         <outlet property="priceTextField" destination="obk-hf-bm5" id="XRS-oF-vAX"/>
-                        <outlet property="salonLabel" destination="kQl-Vg-Bbo" id="QQg-AX-QDI"/>
+                        <outlet property="salonLabelButton" destination="2o9-JL-3ON" id="xcr-Y9-xP4"/>
                         <outlet property="tableViewHeight" destination="Zyc-NL-YHa" id="Xyc-IU-q6c"/>
                         <outlet property="tableViewYPos" destination="kvS-l1-oz2" id="EAZ-R9-BQC"/>
                         <segue destination="8ER-eF-RXx" kind="push" identifier="choseSalonType" id="KDo-Hs-2DW"/>

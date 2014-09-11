@@ -49,7 +49,7 @@
 {
     
     if (_salonChosen != nil)
-        _salonLabel.text = [_salonChosen objectForKeyedSubscript:@"name"];
+        [_salonLabelButton setTitle:[_salonChosen objectForKeyedSubscript:@"name"] forState:UIControlStateNormal];
 }
 
 - (BOOL) textView: (UITextView*) textView
@@ -70,6 +70,7 @@ shouldChangeTextInRange: (NSRange) range
 
 -(IBAction)showSalonsChoices:(id)sender
 {
+    [_hairfieDesc resignFirstResponder];
     if (_isSalon == YES) {
         _dataChoice.hidden = YES;
         _isSalon = NO;
@@ -84,6 +85,7 @@ shouldChangeTextInRange: (NSRange) range
 
 -(IBAction)showHairdresserChoices:(id)sender
 {
+    [_hairfieDesc resignFirstResponder];
     if (_isHairdresser == YES) {
         _dataChoice.hidden = YES;
         _isHairdresser = NO;
@@ -138,9 +140,11 @@ shouldChangeTextInRange: (NSRange) range
     {
         if (indexPath.row != 0)
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
         cell.textLabel.text = [salonTypes objectAtIndex:indexPath.row];
         cell.textLabel.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:16];
-        cell.textLabel.textColor = [UIColor colorWithRed:191/255.0f green:194/255.0f blue:199/255.0f alpha:1];
+        cell.textLabel.textColor =
+            [UIColor colorWithRed:191/255.0f green:194/255.0f blue:199/255.0f alpha:1];
     }
     else
     {
@@ -158,7 +162,7 @@ shouldChangeTextInRange: (NSRange) range
     }
     else
     {
-        _salonLabel.text = @"I did it";
+        [_salonLabelButton setTitle:@"I did it" forState:UIControlStateNormal];
         [self showSalonsChoices:self];
     }
 }
@@ -180,10 +184,8 @@ shouldChangeTextInRange: (NSRange) range
 
     NSMutableDictionary *hairfieDic = [[NSMutableDictionary alloc] init];
                                        
-    [hairfieDic setObject:uploadedFileName forKey:@"picture"];
+    [hairfieDic setObject:uploadedFileName  forKey:@"picture"];
     [hairfieDic setObject:_hairfieDesc.text forKey:@"description"];
-    
-//                                       initWithObjectsAndKeys:uploadedFileName, @"picture",_hairfieDesc.text, @"description", nil];
 
     if (_salonChosen){
         BusinessRepository *businessRepository = (BusinessRepository *)[[AppDelegate lbAdaptater] repositoryWithClass:[BusinessRepository class]];

@@ -16,6 +16,7 @@
 @property (nonatomic) IBOutlet UITextField *emailTextField;
 @property (nonatomic) IBOutlet UITableView *dataChoice;
 @property (nonatomic) IBOutlet UILabel *salonLabel;
+@property (nonatomic) IBOutlet UIButton *salonLabelButton;
 @property (nonatomic) BOOL isSalon;
 @property (nonatomic) BOOL isHairdresser;
 @property (nonatomic) BOOL salonOrHairdresser;
