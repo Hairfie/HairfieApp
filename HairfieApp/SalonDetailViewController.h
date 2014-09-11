@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "RatingView.h"
 #import <MapKit/MapKit.h>
+#import "Business.h"
 
 @interface SalonDetailViewController : UIViewController <UIScrollViewDelegate, RatingViewDelegate, UITableViewDataSource, UITableViewDelegate, MKMapViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate>
 
@@ -76,8 +77,7 @@
 @property (nonatomic) IBOutlet UIButton *addReviewBttn;
 @property (nonatomic) IBOutlet UIButton *moreReviewBttn;
 
-@property (nonatomic) NSDictionary *dataSalon;
-@property (nonatomic) NSDictionary *dataSalon2;
+@property (nonatomic) Business *business;
 
 
 @property (nonatomic) IBOutlet MKMapView *previewMap;

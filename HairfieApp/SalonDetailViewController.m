@@ -33,13 +33,13 @@
     NSArray *coiffeurArray;
 }
 
-@synthesize imageSliderView =_imageSliderView, pageControl = _pageControl,hairfieView = _hairfieView, hairdresserView = _hairdresserView, priceAndSaleView = _priceAndSaleView, infoBttn = _infoBttn, hairfieBttn = _hairfieBttn, hairdresserBttn = _hairdresserBttn, priceAndSaleBttn = _priceAndSaleBttn, reviewRating = _reviewRating, reviewTableView = _reviewTableView, addReviewBttn = _addReviewBttn, moreReviewBttn = _moreReviewBttn, similarTableView = _similarTableView, dataSalon = _dataSalon, ratingLabel = _ratingLabel, name = _name , womanPrice = _womanPrice, manPrice = _manPrice, salonRating = _salonRating, address = _address, city = _city, salonAvailability = _salonAvailability, nbReviews = _nbReviews, previewMap = _previewMap, isOpenLabel = _isOpenLabel, isOpenLabelDetail = _isOpenLabelDetail, isOpenImage = _isOpenImage, isOpenImageDetail = _isOpenImageDetail, callBttn = _callBttn, telephoneBgView = _telephoneBgView, detailedContainerView = _detailedContainerView;
+@synthesize imageSliderView =_imageSliderView, pageControl = _pageControl,hairfieView = _hairfieView, hairdresserView = _hairdresserView, priceAndSaleView = _priceAndSaleView, infoBttn = _infoBttn, hairfieBttn = _hairfieBttn, hairdresserBttn = _hairdresserBttn, priceAndSaleBttn = _priceAndSaleBttn, reviewRating = _reviewRating, reviewTableView = _reviewTableView, addReviewBttn = _addReviewBttn, moreReviewBttn = _moreReviewBttn, similarTableView = _similarTableView, business = _business, ratingLabel = _ratingLabel, name = _name , womanPrice = _womanPrice, manPrice = _manPrice, salonRating = _salonRating, address = _address, city = _city, salonAvailability = _salonAvailability, nbReviews = _nbReviews, previewMap = _previewMap, isOpenLabel = _isOpenLabel, isOpenLabelDetail = _isOpenLabelDetail, isOpenImage = _isOpenImage, isOpenImageDetail = _isOpenImageDetail, callBttn = _callBttn, telephoneBgView = _telephoneBgView, detailedContainerView = _detailedContainerView;
 
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self initKnownData:_dataSalon];
+    [self initKnownData:_business];
     [self setButtonSelected:_infoBttn andBringViewUpfront:_infoView];
     _infoView.hidden = NO;
     _imageSliderView.canCancelContentTouches = NO;
@@ -355,25 +355,19 @@
     return nil;
 }
 
-- (void) initKnownData:(NSDictionary*)salon
+- (void) initKnownData:(Business*)business
 {
+    phoneNumbers = business.phoneNumbers; // TODO: remove this binding
    
-    NSDictionary *price = [salon objectForKey:@"price"];
-    phoneNumbers = [salon objectForKey:@"phoneNumbers"];
-    NSDictionary *reviews = [salon objectForKey:@"reviews"];
-    NSDictionary *timetables =[salon objectForKey:@"timetables"];
-    NSArray *pictures = [salon objectForKey:@"pictures"];
-   
-   [self setupGallery:pictures];
-
-    if (![timetables isEqual:[NSNull null]]) {
+    [self setupGallery:business.pictures];
+    
+    if (![[business timetable] isEqual:[NSNull null]]) {
         _isOpenImageDetail.hidden = YES;
         _isOpenLabelDetail.hidden = YES;
         _isOpenLabel.text = @"Pas d'informations";
-    }
-    else {
+    } else {
         OpeningTimes * op = [[OpeningTimes alloc] init];
-        isOpen = [op isOpen:timetables];
+        isOpen = [op isOpen:business.timetable];
         if (isOpen) {
             _isOpenLabel.text = @"Ouvert aujourd'hui";
             _isOpenLabel.textColor = [UIColor greenHairfie];
@@ -386,7 +380,7 @@
         }
     }
 
-    if ([phoneNumbers isEqual:[NSNull null]] || [phoneNumbers count] == 0)
+    if ([[business phoneNumbers] isEqual:[NSNull null]] || business.phoneNumbers.count == 0)
     {
         _telephone.text = [NSString stringWithFormat:@"Pas de numéro connu"];
         _telephoneLabelWidth.constant = 133;
@@ -397,12 +391,12 @@
         [self addPhoneNumbersToView];
         
     }
-    _name.text = [salon objectForKey:@"name"];
+    _name.text = business.name;
     
-    if ([[price objectForKey:@"women"] integerValue] != 0 && [[price objectForKey:@"men"]integerValue] != 0)
+    if ([[[business prices] objectForKey:@"women"] integerValue] != 0 && [[[business prices] objectForKey:@"men"]integerValue] != 0)
     {
-        _manPrice.text = [NSString stringWithFormat:@"%@ €",[[price objectForKey:@"men"] stringValue]];
-        _womanPrice.text = [NSString stringWithFormat:@"%@ €",[[price objectForKey:@"women"] stringValue]];
+        _manPrice.text = [NSString stringWithFormat:@"%@ €",[[[business prices] objectForKey:@"men"] stringValue]];
+        _womanPrice.text = [NSString stringWithFormat:@"%@ €",[[[business prices] objectForKey:@"women"] stringValue]];
         _pricesView.hidden = NO;
     }
     else
@@ -415,7 +409,8 @@
     _salonRating.maxRating = 5;
     _salonRating.delegate = self;
     
-    if ([[reviews objectForKey:@"total"] integerValue] == 0)
+
+    if (business.numReviews == 0)
     {
         _salonRating.rating = 0;
         _ratingLabel.text = @"0";
@@ -429,18 +424,18 @@
     }
     else
     {
-        _salonRating.rating = [[reviews objectForKey:@"average"] floatValue];
-        _ratingLabel.text = [[reviews objectForKey:@"average"] stringValue];
-        _nbReviews.text =[NSString stringWithFormat:@"- %@ reviews",[reviews objectForKey:@"total"]];
+        _salonRating.rating = [[business ratingBetween:@0 and: @5] floatValue];
+        _ratingLabel.text = [[business ratingBetween:@0 and:@5] stringValue];
+        _nbReviews.text =[NSString stringWithFormat:@"- %@ reviews", business.rating];
     }
     
-    _address.text = [[salon objectForKey:@"address"] valueForKey:@"street"];
-    _zipCode.text = [[salon objectForKey:@"address"] valueForKey:@"zipcode"];
-    _city.text = [[salon objectForKey:@"address"] valueForKey:@"city"];
+    _address.text = business.address.street;
+    _zipCode.text = business.address.zipCode;
+    _city.text = business.address.city;
     
     // MapView Setup
-    _haidresserLat = [[salon objectForKey:@"gps"] valueForKey:@"lat"];
-    _haidresserLng = [[salon objectForKey:@"gps"] valueForKey:@"lng"];
+    _haidresserLat = [NSString stringWithFormat:@"%@", business.gps.latitude];
+    _haidresserLng = [NSString stringWithFormat:@"%@", business.gps.longitude];
 
 }
 
@@ -508,7 +503,7 @@
        
         
         
-        horaires.salon = [_dataSalon objectForKey:@"timetables"];
+        horaires.salon = _business.timetable;
     }
 }
 

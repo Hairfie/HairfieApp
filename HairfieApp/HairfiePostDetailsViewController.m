@@ -189,7 +189,7 @@ shouldChangeTextInRange: (NSRange) range
         BusinessRepository *businessRepository = (BusinessRepository *)[[AppDelegate lbAdaptater] repositoryWithClass:[BusinessRepository class]];
         Business *business = (Business *)[businessRepository modelWithDictionary:_salonChosen];
         
-        [hairfieDic setObject:business.businessId forKey:@"businessId"];
+        [hairfieDic setObject:business.id forKey:@"id"];
     }
     if (![_priceTextField.text isEqualToString:@""])
     {
