@@ -359,7 +359,7 @@
 {
    
     NSDictionary *price = [salon objectForKey:@"price"];
-    phoneNumbers = [salon objectForKey:@"phone_numbers"];
+    phoneNumbers = [salon objectForKey:@"phoneNumbers"];
     NSDictionary *reviews = [salon objectForKey:@"reviews"];
     NSDictionary *timetables =[salon objectForKey:@"timetables"];
     NSArray *pictures = [salon objectForKey:@"pictures"];
