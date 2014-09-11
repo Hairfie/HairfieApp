@@ -41,6 +41,7 @@
     _isHairdresser = NO;
     salonTypes = [[NSArray alloc] initWithObjects:@"I did it", @"Hairdresser in a Salon", nil];
     _tableViewHeight.constant = [salonTypes count] * _dataChoice.rowHeight;
+    [self addDoneButtonToPriceField];
     [self uploadProfileImage:_hairfie];
 }
 
@@ -229,6 +230,28 @@ shouldChangeTextInRange: (NSRange) range
     };
     
     [pictureUploader uploadImage:image toContainer:@"hairfies" success:loadSuccessBlock failure:loadErrorBlock];
+}
+
+-(void) addDoneButtonToPriceField {
+    UIToolbar* keyboardDoneButtonView = [[UIToolbar alloc] init];
+    [keyboardDoneButtonView sizeToFit];
+    UIBarButtonItem* doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Validate Price"
+                                                                   style:UIBarButtonItemStyleBordered
+                                                                  target:self
+                                                                  action:@selector(doneClicked:)];
+    UIBarButtonItem *flex =
+        [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                                                       target:self
+                                                       action:nil];
+
+    [keyboardDoneButtonView setItems:[NSArray arrayWithObjects:flex, doneButton, nil]];
+    _priceTextField.inputAccessoryView = keyboardDoneButtonView;
+}
+
+- (IBAction)doneClicked:(id)sender
+{
+    NSLog(@"Done Clicked.");
+    [_priceTextField endEditing:YES];
 }
 
 @end
