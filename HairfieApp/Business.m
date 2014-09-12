@@ -14,12 +14,9 @@
 @implementation Business
 
 
--(NSString *)displayAddress {
-    return [NSString stringWithFormat:@"%@ %@", self.address.street, self.address.city];
-}
 
 -(NSString *)displayNameAndAddress {
-    return [NSString stringWithFormat:@"%@ %@", self.name, [self displayAddress]];
+    return [NSString stringWithFormat:@"%@ - %@", self.name, self.address.displayAddress];
 }
 
 -(id)init

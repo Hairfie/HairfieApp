@@ -28,7 +28,6 @@
 @property (strong, nonatomic) NSNumber *rating;
 @property (nonatomic) BOOL crossSell;
 
--(NSString *)displayAddress;
 -(NSString *)displayNameAndAddress;
 
 +(void)listNearby:(GeoPoint *)aGeoPoint
@@ -41,6 +40,8 @@
                limit:(NSNumber *)aLimit
              success:(void(^)(NSArray *businesses))aSuccessHandler
              failure:(void(^)(NSError *error))aFailureHandler;
+
+-(id)initWithJson:(NSDictionary *)data;
 
 -(NSNumber *)ratingBetween:(NSNumber *)aMin
                        and:(NSNumber *)aMax;

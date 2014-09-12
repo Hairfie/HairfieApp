@@ -34,8 +34,7 @@
     if([businessDic isKindOfClass:[NSNull class]]) {
         
     } else {
-        BusinessRepository *businessRepository = (BusinessRepository *)[[AppDelegate lbAdaptater] repositoryWithClass:[BusinessRepository class]];
-        _business = (Business *)[businessRepository modelWithDictionary:businessDic];
+        _business = [[Business alloc] initWithJson:businessDic];
     }
 }
 

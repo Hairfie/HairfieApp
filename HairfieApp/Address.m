@@ -34,4 +34,8 @@
     return self;
 }
 
+-(NSString *)displayAddress {
+    return [NSString stringWithFormat:@"%@ %@", self.street, self.city];
+}
+
 @end

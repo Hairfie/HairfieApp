@@ -22,4 +22,6 @@
              zipCode:(NSString *)aZipCode
              country:(NSString *)aCountry;
 
+-(NSString *)displayAddress;
+
 @end
