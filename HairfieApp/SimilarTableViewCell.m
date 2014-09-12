@@ -7,6 +7,7 @@
 //
 
 #import "SimilarTableViewCell.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @implementation SimilarTableViewCell
 
@@ -34,10 +35,21 @@
     // Initialization code
 }
 
-- (void) customInit:(LBModel*)model
+- (void) customInit:(Business *)business
 {
-    _name.text = [model objectForKeyedSubscript:@"name"];
-    _location.text = [NSString stringWithFormat:@"%.1f km", [[model objectForKeyedSubscript:@"distance"]floatValue] / 1000];
+    NSLog(@"plop");
+    [SDWebImageDownloader.sharedDownloader downloadImageWithURL:[NSURL URLWithString:business.thumbnail]
+                                                        options:0
+                                                       progress:^(NSInteger receivedSize, NSInteger expectedSize) { }
+                                                      completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
+                                                          if (image && finished) {
+                                                              NSLog(@"Image loaded for %@", business.name);
+                                                              self.salonPicture.image = image;
+                                                          }
+                                                      }];
+    
+    self.name.text = business.name;
+    self.location.text = [NSString stringWithFormat:@"%.1f km", [business.distance floatValue] / 1000];
 }
 
 
