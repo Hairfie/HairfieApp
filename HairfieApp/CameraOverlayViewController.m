@@ -8,6 +8,7 @@
 
 #import "CameraOverlayViewController.h"
 #import "ApplyFiltersViewController.h"
+#import <AssetsLibrary/AssetsLibrary.h>
 
 
 @interface CameraOverlayViewController ()
@@ -83,21 +84,8 @@
     [takePictureButton setFrame:CGRectMake(122, 387, 77, 77)];
     
     takePictureButton.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin;
-    
-    
-    UIImage *goToLibraryImg = [UIImage imageNamed:@"leosquare.jpg"];
-    
-    UIButton *goToLibrary = [UIButton
-                             buttonWithType:UIButtonTypeCustom];
-    [goToLibrary setImage:goToLibraryImg forState:UIControlStateNormal];
-    goToLibrary.layer.cornerRadius = 5;
-    goToLibrary.layer.masksToBounds = YES;
-    goToLibrary.layer.borderWidth = 1;
-    goToLibrary.layer.borderColor = [UIColor whiteColor].CGColor;
-    [goToLibrary addTarget:self action:@selector(switchCameraSourceType) forControlEvents:UIControlEventTouchUpInside];
-    [goToLibrary setFrame:CGRectMake(20, 420, 44, 44)];
-    
-    goToLibrary.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin;
+    //UIImage *img = [UIImage imageWithCGImage:[repr fullResolutionImage]];
+    [self addLastPictureFromLibrary];
     
     UIImage *switchCameraImg = [UIImage imageNamed:@"switch-camera-button.png"];
     
@@ -109,9 +97,53 @@
     
     [overlayView addSubview:switchCameraButton];
     [overlayView addSubview:takePictureButton];
-    [overlayView addSubview:goToLibrary];
-    
     _imagePicker.cameraOverlayView = overlayView;
+}
+
+-(void) addLastPictureFromLibrary {
+    ALAssetsLibrary *assetsLibrary = [[ALAssetsLibrary alloc] init];
+    [assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupSavedPhotos
+                                 usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
+                                     if (nil != group) {
+                                         [group setAssetsFilter:[ALAssetsFilter allPhotos]];
+                                         
+                                         
+                                         [group enumerateAssetsAtIndexes:[NSIndexSet indexSetWithIndex:group.numberOfAssets - 1]
+                                                                 options:0
+                                                              usingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
+                                                                  if (nil != result) {
+                                                                      ALAssetRepresentation *repr = [result defaultRepresentation];
+                                                                      // this is the most recent saved photo
+                                                                      UIImage *img = [UIImage imageWithCGImage:[repr fullResolutionImage]];
+                                                                      [self addGoToLibraryButton:img];
+                                                                      // we only need the first (most recent) photo -- stop the enumeration
+                                                                      *stop = YES;
+                                                                  }
+                                                              }];
+                                     }
+                                     
+                                     *stop = NO;
+                                 } failureBlock:^(NSError *error) {
+                                     NSLog(@"error: %@", error);
+                                 }];
+    
+
+}
+
+-(void)addGoToLibraryButton:(UIImage *)img {
+    UIButton *goToLibrary = [UIButton
+                             buttonWithType:UIButtonTypeCustom];
+    [goToLibrary setImage:img forState:UIControlStateNormal];
+    goToLibrary.layer.cornerRadius = 5;
+    goToLibrary.layer.masksToBounds = YES;
+    goToLibrary.layer.borderWidth = 1;
+    goToLibrary.layer.borderColor = [UIColor whiteColor].CGColor;
+    [goToLibrary addTarget:self action:@selector(switchCameraSourceType) forControlEvents:UIControlEventTouchUpInside];
+    [goToLibrary setFrame:CGRectMake(20, 420, 44, 44)];
+    
+    goToLibrary.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin;
+    
+    [_imagePicker.cameraOverlayView addSubview:goToLibrary];
 }
 
 - (void)switchCamera
