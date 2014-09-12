@@ -14,11 +14,11 @@
 
 @implementation Hairfie
 
-@synthesize description, hairfieId, businessId, price, picture, user = _user, business = _business, numLikes = _numLikes;
+@synthesize id, description, price, picture, user = _user, business = _business, numLikes = _numLikes;
 
-
-- (void) setUser:(NSDictionary *) userDic {
-    
+- (void)setUser:(NSDictionary *)userDic
+{
+    NSLog(@"Set user: %@", userDic);
     UserRepository *userRepository = (UserRepository *)[[AppDelegate lbAdaptater] repositoryWithClass:[UserRepository class]];
     _user = (User *)[userRepository modelWithDictionary:userDic];
 }
@@ -65,19 +65,22 @@
     return @"";
 }
 
-+(void)listLatestByUser:(NSString *)userId
-                  limit:(NSNumber *)limit
-                   skip:(NSNumber *)skip
-                success:(void(^)(NSArray *hairfies))aSuccessHandler
-                failure:(void(^)(NSError *error))aFailureHandler
++(void)listLatestByBusiness:(NSString *)businessId
+                      limit:(NSNumber *)limit
+                       skip:(NSNumber *)skip
+                    success:(void(^)(NSArray *hairfies))aSuccessHandler
+                    failure:(void(^)(NSError *error))aFailureHandler
 {
     NSDictionary *parameters = @{
         @"filter": @{
-            @"where": @{@"userId": userId},
+            @"where": @{@"businessId": businessId},
             @"limit": limit,
             @"skip": skip
         }
     };
+    
+    [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/hairfies" verb:@"GET"]
+                                        forMethod:@"hairfies.find"];
     
     [[self repository] invokeStaticMethod:@"find"
                                parameters:parameters

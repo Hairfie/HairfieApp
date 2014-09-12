@@ -31,10 +31,17 @@
 
 -(void)setHairfie:(Hairfie *)hairfie
 {
+    if ([hairfie isKindOfClass:[Hairfie class]]) {
+        NSLog(@"It is a hairfie");
+    } else {
+        NSLog(@"It is not a hairfie");
+    }
+    
+    return;
     self.name.text = hairfie.user.displayName;
     
     self.nbLikes.text = hairfie.numLikes;
-    
+
     self.profilePicture = [[UIImageView alloc] initWithFrame:CGRectMake(10, 170, 30, 30)];
     [self.profilePicture sd_setImageWithURL:[NSURL URLWithString:hairfie.user.thumbUrl]
                            placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
