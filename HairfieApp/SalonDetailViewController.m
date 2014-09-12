@@ -424,7 +424,7 @@
     {
         _salonRating.rating = [[business ratingBetween:@0 and: @5] floatValue];
         _ratingLabel.text = [[business ratingBetween:@0 and:@5] stringValue];
-        _nbReviews.text =[NSString stringWithFormat:@"- %@ reviews", business.rating];
+        _nbReviews.text =[NSString stringWithFormat:@"- %@ reviews", business.numReviews];
     }
     
     _address.text = business.address.street;
@@ -458,6 +458,7 @@
                             limit:@10
                              skip:@0
                           success:^(NSArray *hairfies) {
+                              NSLog(@"Fetched %d hairfie(s)", hairfies.count);
                               self.hairfies = hairfies;
                               [self.hairfieCollection reloadData];
                           }
