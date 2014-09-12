@@ -224,14 +224,9 @@
 
 - (MyAnnotation *) annotationForBusiness: (Business *) business
 {
-    // TODO: encapsulate this into GeoPoint class
-    CLLocationCoordinate2D coord;
-    coord.longitude = [business.gps.longitude doubleValue];
-    coord.latitude = [business.gps.latitude doubleValue];
-    
     MyAnnotation *annotObj =[[MyAnnotation alloc] init];
     annotObj.title = business.name;
-    annotObj.coordinate = coord;
+    annotObj.coordinate = [[business.gps location] coordinate];
     
     return annotObj;
 }

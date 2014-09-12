@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreLocation/CoreLocation.h>
 
 @interface GeoPoint : NSObject
 
@@ -17,8 +18,14 @@
 
 -(id)initWithJson:(NSDictionary *)data;
 
+-(id)initWithLocation:(CLLocation *)aLocation;
+
 -(id)initWithLongitude:(NSNumber *)aLongitude
               latitude:(NSNumber *)aLatitude;
+
+-(CLLocation *)location;
+
+-(NSNumber *)distanceTo:(GeoPoint *)point;
 
 -(NSString *)asApiString;
 
