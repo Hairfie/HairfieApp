@@ -22,7 +22,7 @@
     self.hairfieView.contentMode = UIViewContentModeScaleAspectFill;
     self.layer.borderColor = [UIColor colorWithRed:234/255.0f green:236/255.0f blue:238/255.0f alpha:1].CGColor;
     self.layer.borderWidth = 1.0f;
-    
+
     self.profilePicture.layer.cornerRadius = _profilePicture.frame.size.height / 2;
     self.profilePicture.clipsToBounds = YES;
     self.profilePicture.layer.borderWidth = 1.0f;
@@ -36,16 +36,15 @@
     } else {
         NSLog(@"It is not a hairfie");
     }
-    
-    //return;
+
     self.name.text = hairfie.user.displayName;
-    
+
     self.nbLikes.text = hairfie.numLikes;
 
     self.profilePicture = [[UIImageView alloc] initWithFrame:CGRectMake(10, 170, 30, 30)];
     [self.profilePicture sd_setImageWithURL:[NSURL URLWithString:hairfie.user.thumbUrl]
                            placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
-    
+
     [self.hairfieView sd_setImageWithURL:[NSURL URLWithString:hairfie.hairfieCellUrl]
                         placeholderImage:[UIColor imageWithColor:[UIColor colorWithRed:234/255.0f
                                                                                  green:236/255.0f

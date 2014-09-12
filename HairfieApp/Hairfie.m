@@ -82,10 +82,18 @@
     [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/hairfies" verb:@"GET"]
                                         forMethod:@"hairfies.find"];
     
-    [[self repository] invokeStaticMethod:@"find"
-                               parameters:parameters
-                                  success:aSuccessHandler
-                                  failure:aFailureHandler];
+    LBModelRepository *repository = [self repository];
+    
+    [repository invokeStaticMethod:@"find"
+                        parameters:parameters
+                           success:^(NSArray *results) {
+                               NSMutableArray *hairfies = [[NSMutableArray alloc] init];
+                                for (NSDictionary *result in results) {
+                                    [hairfies addObject:[repository modelWithDictionary:result]];
+                                }
+                               aSuccessHandler([[NSArray alloc] initWithArray:hairfies]);
+                            }
+                            failure:aFailureHandler];
 }
 
 +(LBModelRepository *)repository

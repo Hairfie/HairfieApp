@@ -19,18 +19,6 @@
     return [NSString stringWithFormat:@"%@ - %@", self.name, self.address.displayAddress];
 }
 
--(id)init
-{
-    self = [super init];
-    if (self) {
-        // initialize mocked values
-        self.prices = nil;
-        self.numReviews = @3;
-        self.rating = @80;
-    }
-    return self;
-}
-
 -(id)initWithJson:(NSDictionary *)data
 {
     self = [super init];
@@ -45,6 +33,11 @@
         self.phoneNumbers = [data valueForKey:@"phoneNumbers"];
         self.timetable = [data valueForKey:@"timetable"];
         self.crossSell = [[data valueForKey:@"crossSell"] isEqualToNumber:@1];
+        
+        // mocked values
+        self.prices = nil;
+        self.numReviews = @3;
+        self.rating = @80;
      }
     return self;
 }
