@@ -7,13 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "BusinessRef.h"
-#import "UserRef.h"
+#import "Business.h"
+#import "User.h"
 
 @interface BusinessReview : NSObject
 
-@property (strong, nonatomic) BusinessRef *business;
-@property (strong, nonatomic) UserRef *author;
+@property (strong, nonatomic) Business *business;
+@property (strong, nonatomic) User *author;
 @property (strong, nonatomic) NSNumber *rating;
 @property (strong, nonatomic) NSString *comment;
 
