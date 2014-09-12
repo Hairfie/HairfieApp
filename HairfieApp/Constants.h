@@ -9,7 +9,7 @@
 #ifndef HairfieApp_constants_h
 #define HairfieApp_constants_h
 
-#define BASE_URL @"http://api.staging.hairfie.com/" // @"http://localhost:3000/"
+#define BASE_URL @"http://localhost:3000/"
 
 #define API_URL (BASE_URL @"api/")
 

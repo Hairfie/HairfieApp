@@ -29,7 +29,6 @@
     } else {
         return  @"0 hairfies";
     }
-    
 }
 
 -(NSString *)pictureUrlwithWidth:(NSString *)width andHeight:(NSString *)height {
