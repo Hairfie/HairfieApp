@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "RatingView.h"
 #import <LoopBack/LoopBack.h>
+#import "Business.h"
 
 @interface SimilarTableViewCell : UITableViewCell <RatingViewDelegate>
 
@@ -20,6 +21,6 @@
 @property (nonatomic) IBOutlet UIImageView *salonPicture;
 @property (nonatomic) IBOutlet UIButton *bookButton;
 
-- (void) customInit:(LBModel*)model;
+-(void)customInit:(Business* )business;
 
 @end

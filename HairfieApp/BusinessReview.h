@@ -1,0 +1,24 @@
+//
+//  BusinessReview.h
+//  HairfieApp
+//
+//  Created by Antoine Hérault on 11/09/2014.
+//  Copyright (c) 2014 Hairfie. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import "BusinessRef.h"
+#import "UserRef.h"
+
+@interface BusinessReview : NSObject
+
+@property (strong, nonatomic) BusinessRef *business;
+@property (strong, nonatomic) UserRef *author;
+@property (strong, nonatomic) NSNumber *rating;
+@property (strong, nonatomic) NSString *comment;
+
++(NSArray *)listByBusiness:(NSString *)aBusinessId
+                     limit:(NSNumber *)aLimit
+                      skip:(NSNumber *)aNumber;
+
+@end
