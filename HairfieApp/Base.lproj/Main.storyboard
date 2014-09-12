@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A329r" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="dEN-gt-xJT">
     <dependencies>
+        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -923,6 +924,7 @@ Inscivez-vous maintenant</string>
         <!--Hairfie Post Details View Controller-->
         <scene sceneID="EHO-4k-Ooh">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lcd-wd-fUu" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="60g-nd-hW0" customClass="HairfiePostDetailsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Say-27-PK2"/>
@@ -954,22 +956,6 @@ Inscivez-vous maintenant</string>
                                 </subviews>
                                 <color key="backgroundColor" red="0.15686274510000001" green="0.19215686269999999" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BLb-LA-FH2">
-                                <rect key="frame" x="0.0" y="521" width="320" height="47"/>
-                                <color key="backgroundColor" red="0.87450980389999999" green="0.38431372549999998" blue="0.33333333329999998" alpha="1" colorSpace="deviceRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="47" id="UZ9-dy-4Vj"/>
-                                    <constraint firstAttribute="width" constant="320" id="vOW-cA-lqg"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="16"/>
-                                <state key="normal" title="Poster le Hairfie !">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="postHairfie:" destination="60g-nd-hW0" eventType="touchUpInside" id="Ht6-ka-obl"/>
-                                </connections>
-                            </button>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xfh-mY-dbB" customClass="TPKeyboardAvoidingScrollView">
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                                 <subviews>
@@ -1105,17 +1091,6 @@ Inscivez-vous maintenant</string>
                                             </textField>
                                         </subviews>
                                     </view>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="AxN-r1-GHU">
-                                        <rect key="frame" x="10" y="213" width="300" height="150"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="150" id="Zyc-NL-YHa"/>
-                                        </constraints>
-                                        <connections>
-                                            <outlet property="dataSource" destination="60g-nd-hW0" id="Rg1-FV-TVV"/>
-                                            <outlet property="delegate" destination="60g-nd-hW0" id="MQG-af-IIa"/>
-                                        </connections>
-                                    </tableView>
                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2o9-JL-3ON">
                                         <rect key="frame" x="31" y="166" width="230" height="39"/>
                                         <constraints>
@@ -1135,11 +1110,26 @@ Inscivez-vous maintenant</string>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="2o9-JL-3ON" firstAttribute="top" secondItem="xfh-mY-dbB" secondAttribute="top" constant="165" id="8DI-3S-AVb"/>
-                                    <constraint firstItem="AxN-r1-GHU" firstAttribute="top" secondItem="xfh-mY-dbB" secondAttribute="top" constant="213" id="kvS-l1-oz2"/>
                                     <constraint firstItem="xSZ-Hu-sLy" firstAttribute="top" secondItem="Vjl-H2-Nzu" secondAttribute="bottom" constant="85" id="nIp-hk-SMc"/>
                                     <constraint firstItem="Xvm-LG-q6u" firstAttribute="top" secondItem="ihB-lj-Iee" secondAttribute="bottom" constant="4" id="pDC-ta-798"/>
                                 </constraints>
                             </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BLb-LA-FH2">
+                                <rect key="frame" x="0.0" y="521" width="320" height="47"/>
+                                <color key="backgroundColor" red="0.87450980389999999" green="0.38431372549999998" blue="0.33333333329999998" alpha="1" colorSpace="deviceRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="47" id="UZ9-dy-4Vj"/>
+                                    <constraint firstAttribute="width" constant="320" id="vOW-cA-lqg"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="16"/>
+                                <state key="normal" title="Poster le Hairfie !">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="postHairfie:" destination="60g-nd-hW0" eventType="touchUpInside" id="LmW-Y0-78B"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -1148,7 +1138,6 @@ Inscivez-vous maintenant</string>
                     </view>
                     <navigationItem key="navigationItem" id="sGl-zN-LMf"/>
                     <connections>
-                        <outlet property="dataChoice" destination="AxN-r1-GHU" id="Gee-Wt-c05"/>
                         <outlet property="emailSubview" destination="ihB-lj-Iee" id="GF1-u9-Lrg"/>
                         <outlet property="hairdresserSubview" destination="xSZ-Hu-sLy" id="NMc-NR-H2v"/>
                         <outlet property="hairfieDesc" destination="gFo-ft-JjF" id="12p-0m-f8C"/>
@@ -1157,13 +1146,10 @@ Inscivez-vous maintenant</string>
                         <outlet property="priceSubview" destination="Xvm-LG-q6u" id="nUl-p1-2cB"/>
                         <outlet property="priceTextField" destination="9jn-WQ-rGO" id="ugm-w6-LWA"/>
                         <outlet property="salonLabelButton" destination="2o9-JL-3ON" id="xcr-Y9-xP4"/>
-                        <outlet property="tableViewHeight" destination="Zyc-NL-YHa" id="Xyc-IU-q6c"/>
-                        <outlet property="tableViewYPos" destination="kvS-l1-oz2" id="EAZ-R9-BQC"/>
                         <outlet property="whoSubviewConstraint" destination="XJg-Rw-EnW" id="2c6-HE-qZz"/>
                         <segue destination="8ER-eF-RXx" kind="push" identifier="choseSalonType" id="KDo-Hs-2DW"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="lcd-wd-fUu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1082" y="-3062"/>
         </scene>

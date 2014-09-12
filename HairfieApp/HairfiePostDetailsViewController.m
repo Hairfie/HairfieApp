@@ -183,6 +183,7 @@ shouldChangeTextInRange: (NSRange) range
 
 -(IBAction)postHairfie:(id)sender
 {
+    NSLog(@"Post Hairfie");
     while (uploadInProgress) {
         NSLog(@"Loop Loop !");
         [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
