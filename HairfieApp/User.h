@@ -19,7 +19,7 @@
 @property (nonatomic) NSString *gender;
 @property (nonatomic) NSDictionary *picture;
 @property (nonatomic) NSString *email;
-@property (nonatomic) NSInteger *numHairfies;
+@property (nonatomic) NSString *numHairfies;
 
 
 -(NSString *)name;

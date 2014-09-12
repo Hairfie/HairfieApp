@@ -25,7 +25,7 @@
 
 -(NSString *)displayHairfies {
     if(numHairfies) {
-        return  [NSString stringWithFormat:@"%ld hairfies", (long) numHairfies];;
+        return  [NSString stringWithFormat:@"%@ hairfies", numHairfies];;
     } else {
         return  @"0 hairfies";
     }
