@@ -33,6 +33,7 @@
         self.phoneNumbers = [data valueForKey:@"phoneNumbers"];
         self.timetable = [data valueForKey:@"timetable"];
         self.crossSell = [[data valueForKey:@"crossSell"] isEqualToNumber:@1];
+        self.numHairfies = [data valueForKey:@"numHairfies"];
         
         // mocked values
         self.prices = nil;

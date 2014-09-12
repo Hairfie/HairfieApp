@@ -48,8 +48,13 @@
     
     self.name.text = business.name;
     self.location.text = [NSString stringWithFormat:@"%.1f km", [business.distance floatValue] / 1000];
-    
     self.ratingView.rating = [[business ratingBetween:@0 and:@5] floatValue];
+    
+    if (business.numHairfies < @2) {
+        self.numHairfiesLabel.text = [NSString stringWithFormat:@"%@ hairfie", business.numHairfies];
+    } else {
+        self.numHairfiesLabel.text = [NSString stringWithFormat:@"%@ hairfies", business.numHairfies];
+    }
 }
 
 
