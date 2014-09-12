@@ -30,4 +30,11 @@
 -(NSString *)hairfieDetailUrl;
 -(NSString *)displayPrice;
 
+
++(void)listLatestByUser:(NSString *)userId
+                  limit:(NSNumber *)limit
+                   skip:(NSNumber *)skip
+                success:(void(^)(NSArray *hairfies))aSuccessHandler
+                failure:(void(^)(NSError *error))aFailureHandler;
+
 @end

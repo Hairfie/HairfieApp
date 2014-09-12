@@ -17,8 +17,10 @@
 @property (strong, nonatomic) NSNumber *rating;
 @property (strong, nonatomic) NSString *comment;
 
-+(NSArray *)listByBusiness:(NSString *)aBusinessId
-                     limit:(NSNumber *)aLimit
-                      skip:(NSNumber *)aNumber;
++(void)listLatestByBusiness:(NSString *)aBusinessId
+                      limit:(NSNumber *)aLimit
+                       skip:(NSNumber *)aNumber
+                    success:(void(^)(NSArray *reviews))aSuccessHandler
+                    failure:(void(^)(NSError *error))aFailureHandler;
 
 @end

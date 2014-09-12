@@ -7,6 +7,7 @@
 //
 
 #import "Hairfie.h"
+#import "HairfieRepository.h"
 #import "UserRepository.h"
 #import "BusinessRepository.h"
 #import "AppDelegate.h"
@@ -62,6 +63,31 @@
     if([[price objectForKey:@"currency"] isEqual:@"EUR"]) return [NSString stringWithFormat:@"%@ €", [price objectForKey:@"amount"]];
 
     return @"";
+}
+
++(void)listLatestByUser:(NSString *)userId
+                  limit:(NSNumber *)limit
+                   skip:(NSNumber *)skip
+                success:(void(^)(NSArray *hairfies))aSuccessHandler
+                failure:(void(^)(NSError *error))aFailureHandler
+{
+    NSDictionary *parameters = @{
+        @"filter": @{
+            @"where": @{@"userId": userId},
+            @"limit": limit,
+            @"skip": skip
+        }
+    };
+    
+    [[self repository] invokeStaticMethod:@"find"
+                               parameters:parameters
+                                  success:aSuccessHandler
+                                  failure:aFailureHandler];
+}
+
++(LBModelRepository *)repository
+{
+    return [[AppDelegate lbAdaptater] repositoryWithClass:[HairfieRepository class]];
 }
 
 @end

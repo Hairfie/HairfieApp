@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Hairfie.h"
 #import "User.h"
+#import "Hairfie.h"
 
 @interface CustomCollectionViewCell : UICollectionViewCell
 
@@ -18,7 +19,6 @@
 
 @property (nonatomic) UIImageView *profilePicture;
 
-
--(void)initWithHairfie:(Hairfie *)hairfie;
+-(void)setHairfie:(Hairfie *)hairfie;
 
 @end

@@ -440,13 +440,11 @@
 
 -(void)setupCrossSell
 {
-    NSLog(self.business.name);
     if (!self.business.crossSell) return;
     
     [Business listSimilarTo:self.business.id
                       limit:@3
                     success:^(NSArray *businesses) {
-                        NSLog(@"Got %d similar business(es)", businesses.count);
                         self.similarBusinesses = businesses;
                         [self.similarTableView reloadData];
                     }
@@ -568,20 +566,18 @@
 
 // Collection View Delegate
 
-- (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section
+-(NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section
 {
-    _hairfieCollectionHeight.constant = (6 * 220) / 2;
-    return 6;
+    return self.hairfies.count;
 }
-// 2
-- (NSInteger)numberOfSectionsInCollectionView: (UICollectionView *)collectionView {
+
+-(NSInteger)numberOfSectionsInCollectionView: (UICollectionView *)collectionView
+{
     return 1;
 }
 
-
-// 3
-- (CustomCollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    
+-(CustomCollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{    
     static NSString *CellIdentifier = @"hairfieCell";
     CustomCollectionViewCell *cell = [cv dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
     
@@ -589,10 +585,13 @@
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"CustomCollectionViewCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
-    cell.name.text = @"Kimi Smith";
-    cell.hairfieView.image = [UIImage imageNamed:@"hairfie.jpg"];
+    
+    [cell setHairfie:self.hairfies[indexPath.row]];
+    
+    // TODO: why?
     cell.layer.borderColor = [UIColor whiteHairfie].CGColor;
     cell.layer.borderWidth = 1.0f;
+    
     return cell;
 }
 

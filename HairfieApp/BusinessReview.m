@@ -10,11 +10,13 @@
 
 @implementation BusinessReview
 
-+(NSArray *)listByBusiness:(NSString *)aBusinessId
-                     limit:(NSNumber *)aLimit
-                      skip:(NSNumber *)aNumber
++(void)listLatestByBusiness:(NSString *)aBusinessId
+                      limit:(NSNumber *)aLimit
+                       skip:(NSNumber *)aNumber
+                    success:(void (^)(NSArray *))aSuccessHandler
+                    failure:(void (^)(NSError *))aFailureHandler
 {
-    return @[];
+    aSuccessHandler(@[]);
 }
 
 @end

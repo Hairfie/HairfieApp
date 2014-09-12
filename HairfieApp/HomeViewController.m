@@ -144,13 +144,9 @@
      cell.hairfieView.image = [UIImage imageNamed:@"hairfie.jpg"];
     }
     else {
-        [cell.hairfieView sd_setImageWithURL:[NSURL URLWithString:hairfie.hairfieCellUrl]
-                            placeholderImage:[UIColor imageWithColor:[UIColor colorWithRed:234/255.0f green:236/255.0f blue:238/255.0f alpha:1]]];
-        cell.hairfieView.contentMode = UIViewContentModeScaleAspectFill;
-        [cell initWithHairfie:hairfie];
+        [cell setHairfie:hairfie];
     }
-    cell.layer.borderColor = [UIColor colorWithRed:234/255.0f green:236/255.0f blue:238/255.0f alpha:1].CGColor;
-    cell.layer.borderWidth = 1.0f;
+
     return cell;
 }
 
