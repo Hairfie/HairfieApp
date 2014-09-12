@@ -177,6 +177,7 @@
         ApplyFiltersViewController *filters = [segue destinationViewController];
         
         filters.hairfie = imageTaken;
+        
     }
 }
 
