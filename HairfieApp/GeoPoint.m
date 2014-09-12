@@ -30,6 +30,12 @@
                           latitude:[data valueForKey:@"lat"]];
 }
 
+-(id)initWithLocation:(CLLocation *)aLocation
+{
+    return [self initWithLongitude:[[NSNumber alloc] initWithDouble:aLocation.coordinate.longitude]
+                          latitude:[[NSNumber alloc] initWithDouble:aLocation.coordinate.latitude]];
+}
+
 -(id)initWithLongitude:(NSNumber *)aLongitude
               latitude:(NSNumber *)aLatitude
 {
@@ -39,6 +45,16 @@
         self.latitude = aLatitude;
     }
     return self;
+}
+
+-(NSNumber *)distanceTo:(GeoPoint *)point
+{
+    return [[NSNumber alloc] initWithDouble:[self.location distanceFromLocation:point.location]];
+}
+
+-(CLLocation *)location
+{
+    return [[CLLocation alloc] initWithLatitude:[self.latitude doubleValue] longitude:[self.longitude doubleValue]];
 }
 
 -(NSString *)asApiString

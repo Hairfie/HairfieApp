@@ -31,12 +31,6 @@
 
 -(void)setHairfie:(Hairfie *)hairfie
 {
-    if ([hairfie isKindOfClass:[Hairfie class]]) {
-        NSLog(@"It is a hairfie");
-    } else {
-        NSLog(@"It is not a hairfie");
-    }
-
     self.name.text = hairfie.user.displayName;
 
     self.nbLikes.text = hairfie.numLikes;
