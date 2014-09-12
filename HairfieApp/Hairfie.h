@@ -19,6 +19,8 @@
 @property (nonatomic) NSString *businessId;
 @property (nonatomic) NSDictionary *price;
 @property (nonatomic) NSString *hairfieId;
+@property (nonatomic) NSString *numLikes;
+@property (nonatomic) NSString *numComments;
 @property (nonatomic) User *user;
 @property (nonatomic) Business *business;
 

@@ -8,6 +8,7 @@
 
 #import "CustomCollectionViewCell.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "User.h"
 
 @implementation CustomCollectionViewCell {
     UIImageView *profilePicture;
@@ -20,7 +21,8 @@
 
 }
 
--(void)initWithUser:(User *)user {
+-(void)initWithHairfie:(Hairfie *)hairfie {
+    User *user = hairfie.user;
     _name.text = user.displayName;
     
     _profilePicture = [[UIImageView alloc] initWithFrame:CGRectMake(10, 170, 30, 30)];
@@ -31,6 +33,8 @@
     _profilePicture.clipsToBounds = YES;
     _profilePicture.layer.borderWidth = 1.0f;
     _profilePicture.layer.borderColor = [UIColor whiteColor].CGColor;
+    
+    _nbLikes.text = hairfie.numLikes;
     
     [self.contentView addSubview:_profilePicture];
 }

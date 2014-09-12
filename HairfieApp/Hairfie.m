@@ -13,13 +13,18 @@
 
 @implementation Hairfie
 
-@synthesize description, hairfieId, businessId, price, picture, user = _user, business = _business;
+@synthesize description, hairfieId, businessId, price, picture, user = _user, business = _business, numLikes = _numLikes;
 
 
 - (void) setUser:(NSDictionary *) userDic {
     
     UserRepository *userRepository = (UserRepository *)[[AppDelegate lbAdaptater] repositoryWithClass:[UserRepository class]];
     _user = (User *)[userRepository modelWithDictionary:userDic];
+}
+
+-(void) setNumLikes:(NSString *)numLikes {
+    NSLog(@"numlikes : %@", numLikes);
+    _numLikes = @"0";
 }
 
 -(NSString *)pictureUrlwithWidth:(NSString *)width andHeight:(NSString *)height {
