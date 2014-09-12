@@ -359,7 +359,7 @@
     
     [self setupGallery:business.pictures];
     
-    if ([business.timetable isEqual:nil]) {
+    if ([business.timetable isEqualToDictionary:@{}]) {
         _isOpenImageDetail.hidden = YES;
         _isOpenLabelDetail.hidden = YES;
         _isOpenLabel.text = @"Pas d'informations";
@@ -374,6 +374,7 @@
             [_isOpenImage setTintColor:[UIColor greenHairfie]];
         }
         else {
+            NSLog(@"%@", business);
             _isOpenLabel.text = @"Fermé aujourd'hui";
         }
     }
@@ -448,7 +449,7 @@
                         [self.similarTableView reloadData];
                     }
                     failure:^(NSError *error) {
-                        NSLog(error.localizedDescription);
+                        NSLog(@"%@", error.localizedDescription);
                     }];
 }
 
@@ -458,12 +459,11 @@
                             limit:@10
                              skip:@0
                           success:^(NSArray *hairfies) {
-                              NSLog(@"Fetched %d hairfie(s)", hairfies.count);
                               self.hairfies = hairfies;
                               [self.hairfieCollection reloadData];
                           }
                           failure:^(NSError *error) {
-                              NSLog(error.localizedDescription);
+                              NSLog(@"%@", error.localizedDescription);
                           }];
 }
 

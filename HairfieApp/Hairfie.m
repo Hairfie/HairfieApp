@@ -18,13 +18,11 @@
 
 - (void)setUser:(NSDictionary *)userDic
 {
-    NSLog(@"Set user: %@", userDic);
     UserRepository *userRepository = (UserRepository *)[[AppDelegate lbAdaptater] repositoryWithClass:[UserRepository class]];
     _user = (User *)[userRepository modelWithDictionary:userDic];
 }
 
 -(void) setNumLikes:(NSString *)numLikes {
-    NSLog(@"numlikes : %@", numLikes);
     _numLikes = @"0";
 }
 
