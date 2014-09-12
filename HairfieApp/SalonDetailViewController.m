@@ -359,7 +359,7 @@
     
     [self setupGallery:business.pictures];
     
-    if (![[business timetable] isEqual:[NSNull null]]) {
+    if ([business.timetable isEqual:nil]) {
         _isOpenImageDetail.hidden = YES;
         _isOpenLabelDetail.hidden = YES;
         _isOpenLabel.text = @"Pas d'informations";
