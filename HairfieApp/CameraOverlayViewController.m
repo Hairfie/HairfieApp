@@ -24,7 +24,6 @@
     
     _imagePicker = [[UIImagePickerController alloc]init];
     [_imagePicker setDelegate:self];
-    
     if ([UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera]) {
         _imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
         _imagePicker.cameraDevice = UIImagePickerControllerCameraDeviceRear;
@@ -37,8 +36,9 @@
     } else {
         _imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
         _imagePicker.allowsEditing = YES;
-        [self presentViewController:_imagePicker animated:YES completion:nil];
+        [self presentViewController:_imagePicker animated:NO completion:nil];
     }
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -141,24 +141,26 @@
 
 -(void) cancelTakePicture
 {
-    [_imagePicker dismissViewControllerAnimated:NO completion:nil];
-    [self.navigationController popViewControllerAnimated:YES];
-    
+    [_imagePicker dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    //UIImage *image = [info valueForKey:UIImagePickerControllerOriginalImage];
     [self SetImageTakenForSegue:info];
-    [picker dismissViewControllerAnimated:YES completion:nil];
-    
     [self performSegueWithIdentifier:@"cameraFilters" sender:self];
+    [picker dismissViewControllerAnimated:NO completion:nil];
+
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [picker dismissViewControllerAnimated:NO completion:nil];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 
 -(void)SetImageTakenForSegue:(NSDictionary*) info
 {
-    
     if([info valueForKey:UIImagePickerControllerEditedImage]) {
         imageTaken = [info valueForKey:UIImagePickerControllerEditedImage];
     } else {

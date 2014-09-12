@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CameraOverlayViewController : UIViewController
+@interface CameraOverlayViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate> {
+    UINavigationController *navController;
+}
 
 @property (nonatomic) UIImagePickerController *imagePicker;
 @property (nonatomic) IBOutlet UIView *overlayView;
