@@ -37,7 +37,6 @@
         NSLog(@"It is not a hairfie");
     }
     
-    return;
     self.name.text = hairfie.user.displayName;
     
     self.nbLikes.text = hairfie.numLikes;
