@@ -312,17 +312,7 @@
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"SimilarTableViewCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
-
-    [SDWebImageDownloader.sharedDownloader downloadImageWithURL:[NSURL URLWithString:business.thumbnail]
-                                                        options:0
-                                                       progress:^(NSInteger receivedSize, NSInteger expectedSize) { }
-                                                      completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
-                                                                    if (image && finished) {
-                                                                        cell.salonPicture.image = image;
-                                                                    }
-                                                                }];
     
-    cell.name.text = business.name;
     [cell customInit:business];
     
     return cell;
