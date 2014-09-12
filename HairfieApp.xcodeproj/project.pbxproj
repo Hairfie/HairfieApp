@@ -23,8 +23,6 @@
 		718A98B019C1EF46003CD34B /* GeoPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 718A98AF19C1EF46003CD34B /* GeoPoint.m */; };
 		71C0D3FF19C1D7600037CBF4 /* Address.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C0D3FE19C1D7600037CBF4 /* Address.m */; };
 		71C0D40219C1D9190037CBF4 /* BusinessReview.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C0D40119C1D9190037CBF4 /* BusinessReview.m */; };
-		71C0D40519C1DA4E0037CBF4 /* BusinessRef.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C0D40419C1DA4E0037CBF4 /* BusinessRef.m */; };
-		71C0D40819C1DB650037CBF4 /* UserRef.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C0D40719C1DB650037CBF4 /* UserRef.m */; };
 		71C0D40B19C1DC040037CBF4 /* Picture.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C0D40A19C1DC040037CBF4 /* Picture.m */; };
 		7D10889D4045404FAF307C78 /* libPods-HairfieApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 33C90A5A8A0E44DCA71D5A3A /* libPods-HairfieApp.a */; };
 		B303B954199B9403008F6BAA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B303B953199B9403008F6BAA /* Images.xcassets */; };
@@ -262,10 +260,6 @@
 		71C0D3FE19C1D7600037CBF4 /* Address.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Address.m; sourceTree = "<group>"; };
 		71C0D40019C1D9190037CBF4 /* BusinessReview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessReview.h; sourceTree = "<group>"; };
 		71C0D40119C1D9190037CBF4 /* BusinessReview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessReview.m; sourceTree = "<group>"; };
-		71C0D40319C1DA4E0037CBF4 /* BusinessRef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessRef.h; sourceTree = "<group>"; };
-		71C0D40419C1DA4E0037CBF4 /* BusinessRef.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessRef.m; sourceTree = "<group>"; };
-		71C0D40619C1DB650037CBF4 /* UserRef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserRef.h; sourceTree = "<group>"; };
-		71C0D40719C1DB650037CBF4 /* UserRef.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserRef.m; sourceTree = "<group>"; };
 		71C0D40919C1DC040037CBF4 /* Picture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Picture.h; sourceTree = "<group>"; };
 		71C0D40A19C1DC040037CBF4 /* Picture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Picture.m; sourceTree = "<group>"; };
 		8C8B91109EA849F389B9B603 /* Pods-HairfieAppTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HairfieAppTests.xcconfig"; path = "Pods/Pods-HairfieAppTests.xcconfig"; sourceTree = "<group>"; };
@@ -1069,10 +1063,6 @@
 				71C0D3FE19C1D7600037CBF4 /* Address.m */,
 				71C0D40019C1D9190037CBF4 /* BusinessReview.h */,
 				71C0D40119C1D9190037CBF4 /* BusinessReview.m */,
-				71C0D40319C1DA4E0037CBF4 /* BusinessRef.h */,
-				71C0D40419C1DA4E0037CBF4 /* BusinessRef.m */,
-				71C0D40619C1DB650037CBF4 /* UserRef.h */,
-				71C0D40719C1DB650037CBF4 /* UserRef.m */,
 				71C0D40919C1DC040037CBF4 /* Picture.h */,
 				71C0D40A19C1DC040037CBF4 /* Picture.m */,
 				718A98AE19C1EF46003CD34B /* GeoPoint.h */,
@@ -1530,7 +1520,6 @@
 				B3423215198924290058866B /* AFURLConnectionOperation.m in Sources */,
 				B3423216198924290058866B /* AFURLRequestSerialization.m in Sources */,
 				B330409219BDB1EA00BA6211 /* HairfieRequest.m in Sources */,
-				71C0D40519C1DA4E0037CBF4 /* BusinessRef.m in Sources */,
 				B33E4C4319A48FE70024F5F7 /* HoraireTableViewCell.m in Sources */,
 				B3423218198924290058866B /* AFURLSessionManager.m in Sources */,
 				15B8ADE319C09A3E009846AA /* BusinessRepository.m in Sources */,
@@ -1556,7 +1545,6 @@
 				B3615B3819AF242800F1141D /* User.m in Sources */,
 				15697B31199BB03800DA83FE /* UIImage+Resize.m in Sources */,
 				B308701719878C030080E6D2 /* SettingsViewController.m in Sources */,
-				71C0D40819C1DB650037CBF4 /* UserRef.m in Sources */,
 				B3A1281A198A85D8004D90BD /* CustomPinView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
