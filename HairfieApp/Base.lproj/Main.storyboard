@@ -633,7 +633,7 @@ Inscivez-vous maintenant</string>
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Réserve le meilleur coiffeur près de chez toi !" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="200" translatesAutoresizingMaskIntoConstraints="NO" id="YLi-t7-pTs">
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Réserve le meilleur coiffeur près de chez toi !" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="200" translatesAutoresizingMaskIntoConstraints="NO" id="YLi-t7-pTs">
                                             <rect key="frame" x="60" y="21" width="200" height="42"/>
                                             <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="18"/>
                                             <color key="textColor" red="0.15686274509803921" green="0.19215686274509802" blue="0.22352941176470587" alpha="1" colorSpace="calibratedRGB"/>
@@ -834,6 +834,28 @@ Inscivez-vous maintenant</string>
             </objects>
             <point key="canvasLocation" x="1254" y="-1744"/>
         </scene>
+        <!--Camera Overlay View Controller-->
+        <scene sceneID="Nkk-fp-ZzY">
+            <objects>
+                <viewController id="C0A-PA-Dfl" customClass="CameraOverlayViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2SE-lg-eJs"/>
+                        <viewControllerLayoutGuide type="bottom" id="SHl-eq-JF1"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="iev-fr-inl">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.1764705882" green="0.22352941179999999" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="7d6-Uh-w2k"/>
+                    <connections>
+                        <segue destination="QW8-eh-zsD" kind="push" identifier="cameraFilters" id="Uce-Bn-1pO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fGv-4K-iyM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="234" y="-3062"/>
+        </scene>
         <!--Apply Filters View Controller-->
         <scene sceneID="DFO-ad-oPT">
             <objects>
@@ -877,7 +899,7 @@ Inscivez-vous maintenant</string>
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.35686274509803922" green="0.41176470588235292" blue="0.46666666666666667" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.1764705882" green="0.22352941179999999" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.1960784314" green="0.26274509800000001" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
@@ -893,7 +915,7 @@ Inscivez-vous maintenant</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ndA-pC-BXu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="741" y="-3062"/>
+            <point key="canvasLocation" x="703" y="-3062"/>
         </scene>
         <!--Hairfie Post Details View Controller-->
         <scene sceneID="EHO-4k-Ooh">
@@ -1663,6 +1685,9 @@ Inscivez-vous maintenant</string>
                                         <state key="normal" image="picto-take-picture.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <segue destination="C0A-PA-Dfl" kind="push" identifier="CameraOverlay" id="K9z-px-huR"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.15686274510000001" green="0.19215686269999999" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -3179,6 +3204,7 @@ connaissance et accepte les CGU de Hairfie</string>
     <inferredMetricsTieBreakers>
         <segue reference="uEN-by-6gW"/>
         <segue reference="sgS-Io-6JC"/>
+        <segue reference="Uce-Bn-1pO"/>
         <segue reference="DYR-eo-mJz"/>
         <segue reference="H0a-7y-EaD"/>
     </inferredMetricsTieBreakers>
