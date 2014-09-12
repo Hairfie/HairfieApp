@@ -20,6 +20,7 @@
 @property (nonatomic) IBOutlet UILabel *location;
 @property (nonatomic) IBOutlet UIImageView *salonPicture;
 @property (nonatomic) IBOutlet UIButton *bookButton;
+@property (weak, nonatomic) IBOutlet UILabel *numHairfiesLabel;
 
 -(void)customInit:(Business* )business;
 
