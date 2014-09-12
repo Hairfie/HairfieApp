@@ -35,6 +35,7 @@
     UITapGestureRecognizer *tap;
     SDWebImageManager *SDmanager;
     NSString *gpsString;
+    UIRefreshControl *refreshControl;
 }
 @synthesize manager = _manager, geocoder = _geocoder, mapView = _mapView, hairdresserTableView = _hairdresserTableView, delegate = _delegate, myLocation = _myLocation;
 
@@ -47,13 +48,9 @@
                                              selector:@selector(updatedLocation:)
                                                  name:@"newLocationNotif"
                                                object:nil];
-
-   
-    
-   // _searchInProgress.text = _searchInProgressFromSegue;
-   // _searchDesc.text = _searchInProgressFromSegue;
     
     _isSearching = YES;
+    _isRefreshing = NO;
      _hairdresserTableView.hidden = YES;
     [_searchView initView];
     
@@ -77,7 +74,11 @@
     _hairdresserTableView.tableHeaderView = _headerView;
     [_hairdresserTableView setSeparatorInset:UIEdgeInsetsZero];
       SDmanager = [SDWebImageManager sharedManager];
-    // Do any additional setup after loading the view.
+    
+    refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(updateBusinesses)
+             forControlEvents:UIControlEventValueChanged];
+    [_hairdresserTableView addSubview:refreshControl];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -112,6 +113,12 @@
         [self initMapWithBusinesses:_searchView.locationSearch];
         [_hairdresserTableView setContentOffset:CGPointMake(0, 136)];
     }
+}
+
+-(void)updateBusinesses {
+    _isSearching = YES;
+    _isRefreshing = YES;
+    [self getBusinesses:gpsString];
 }
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField
@@ -244,7 +251,9 @@
         _hairdresserTableView.userInteractionEnabled = YES;
         [spinner removeFromSuperview];
         [spinner stopAnimating];
+        [refreshControl endRefreshing];
         _isSearching = NO;
+        _isRefreshing = NO;
     };
     void (^loadSuccessBlock)(NSArray *) = ^(NSArray *results){
         businesses = results;
@@ -255,16 +264,20 @@
         _hairdresserTableView.userInteractionEnabled = YES;
         [spinner removeFromSuperview];
         [spinner stopAnimating];
+        [refreshControl endRefreshing];
         _isSearching = NO;
+        _isRefreshing = NO;
         if (_gpsStringFromSegue != nil)
             [_hairdresserTableView setContentOffset:CGPointMake(0, 136)];
     };
     
     if (_isSearching == YES)
     {
-        _hairdresserTableView.hidden = YES;
-        [self.view addSubview:spinner];
-        [spinner startAnimating];
+        if(!_isRefreshing) {
+            _hairdresserTableView.hidden = YES;
+            [self.view addSubview:spinner];
+            [spinner startAnimating];
+        }
         
         GeoPoint *here = [[GeoPoint alloc] initWithString: gpsString];
         

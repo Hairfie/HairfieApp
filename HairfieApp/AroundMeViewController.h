@@ -48,6 +48,8 @@
 @property (nonatomic) IBOutlet UITextField *searchField;
 
 @property (nonatomic) BOOL isSearching;
+@property (nonatomic) BOOL isRefreshing;
+
 
 // Search In Progress
 
