@@ -37,13 +37,11 @@
 
 - (void) customInit:(Business *)business
 {
-    NSLog(@"plop");
     [SDWebImageDownloader.sharedDownloader downloadImageWithURL:[NSURL URLWithString:business.thumbnail]
                                                         options:0
                                                        progress:^(NSInteger receivedSize, NSInteger expectedSize) { }
                                                       completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
                                                           if (image && finished) {
-                                                              NSLog(@"Image loaded for %@", business.name);
                                                               self.salonPicture.image = image;
                                                           }
                                                       }];
