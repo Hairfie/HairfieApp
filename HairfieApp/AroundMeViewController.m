@@ -248,7 +248,7 @@
     };
     void (^loadSuccessBlock)(NSArray *) = ^(NSArray *results){
         businesses = results;
-        NSLog(@"Businesses : %@", businesses);
+        NSLog(@"Loaded %d business(es)", businesses.count);
         _hairdresserTableView.hidden = NO;
         [self addBusinessesToMap];
          [_hairdresserTableView reloadData];

@@ -353,9 +353,9 @@
 
 - (void) initKnownData:(Business*)business
 {
-    if (business.crossSell) {
-        [self setupCrossSell];
-    }
+    [self setupCrossSell];
+    
+    [self setupHairfies];
     
     [self setupGallery:business.pictures];
     
@@ -437,7 +437,6 @@
 
 }
 
-
 -(void)setupCrossSell
 {
     if (!self.business.crossSell) return;
@@ -451,6 +450,20 @@
                     failure:^(NSError *error) {
                         NSLog(error.localizedDescription);
                     }];
+}
+
+-(void)setupHairfies
+{
+    [Hairfie listLatestByBusiness:self.business.id
+                            limit:@10
+                             skip:@0
+                          success:^(NSArray *hairfies) {
+                              self.hairfies = hairfies;
+                              [self.hairfieCollection reloadData];
+                          }
+                          failure:^(NSError *error) {
+                              NSLog(error.localizedDescription);
+                          }];
 }
 
 - (void)updateMapView {
@@ -587,10 +600,6 @@
     }
     
     [cell setHairfie:self.hairfies[indexPath.row]];
-    
-    // TODO: why?
-    cell.layer.borderColor = [UIColor whiteHairfie].CGColor;
-    cell.layer.borderWidth = 1.0f;
     
     return cell;
 }
