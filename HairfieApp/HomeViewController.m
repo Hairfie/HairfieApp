@@ -58,7 +58,7 @@
     [self getHairfies];
     
      dismiss = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
-    [self.view addGestureRecognizer:dismiss];
+   // [self.view addGestureRecognizer:dismiss];
     // Do any additional setup after loading the view.
     
 }
@@ -75,7 +75,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willSearch:) name:@"searchQuery" object:nil];
-    [self.view addGestureRecognizer:dismiss];
+   // [self.view addGestureRecognizer:dismiss];
     [self getHairfies];
 }
 -(void)viewWillDisappear:(BOOL)animated
@@ -165,6 +165,7 @@
 -(void) collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     hairfieRow = indexPath.row;
+    NSLog(@"select hairfie");
     [self performSegueWithIdentifier:@"hairfieDetail" sender:self];
     
 }

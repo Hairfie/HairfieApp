@@ -45,7 +45,7 @@
     _tableView.layer.borderWidth = 1;
     _tableView.layer.borderColor = [UIColor lightGreyHairfie].CGColor;
     [_tableView setSeparatorInset:UIEdgeInsetsZero];
-        [self initGpsString:_myLocation];
+    [self initGpsString:_myLocation];
 }
 
 -(IBAction)goBack:(id)sender
@@ -65,7 +65,6 @@
 {
     if (textField == _searchByLocation)
     {
-        _searchByLocation.text = @"";
         _searchAroundMe.enabled = YES;
         _searchAroundMeImage.tintColor = [UIColor lightGrayColor];
     }
