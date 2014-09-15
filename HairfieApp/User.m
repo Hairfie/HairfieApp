@@ -47,4 +47,14 @@
     return [self pictureUrlwithWidth:@"100" andHeight:@"100"];
 }
 
+-(id)initWithJson:(NSDictionary *)data
+{
+    return [[User repository] modelWithDictionary:data];
+}
+
++(LBModelRepository *)repository
+{
+    return [[AppDelegate lbAdaptater] repositoryWithClass:[UserRepository class]];
+}
+
 @end
