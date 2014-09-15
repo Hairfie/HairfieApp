@@ -10,7 +10,6 @@
 #import "User.h"
 #import "UserRepository.h"
 #import "UserAuthenticator.h"
-#import "HairfieRequest.h"
 #import "AppDelegate.h"
 #import "CredentialStore.h"
 #import "MenuViewController.h"
@@ -24,7 +23,6 @@
 
 @implementation LoginViewController {
     UserAuthenticator *userAuthenticator;
-    HairfieRequest *hairfieRequest;
 }
 
 - (void)viewDidLoad {
@@ -38,7 +36,6 @@
     _delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     _dismiss = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissTextFields)];
     userAuthenticator = [[UserAuthenticator alloc] init];
-    hairfieRequest = [[HairfieRequest alloc] init];
     [_passwordField fixSecureTextFieldFont];
     if ([_delegate.credentialStore isLoggedIn])
     {

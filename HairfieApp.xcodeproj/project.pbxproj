@@ -35,7 +35,6 @@
 		B319B5C719C6E77D007F79B0 /* BusinessReviewRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = B319B5C619C6E77D007F79B0 /* BusinessReviewRepository.m */; };
 		B330408B19BDA64600BA6211 /* UITextField+ELFixSecureTextFieldFont.m in Sources */ = {isa = PBXBuildFile; fileRef = B330408A19BDA64600BA6211 /* UITextField+ELFixSecureTextFieldFont.m */; };
 		B330408E19BDAC7000BA6211 /* Hairfie.m in Sources */ = {isa = PBXBuildFile; fileRef = B330408D19BDAC7000BA6211 /* Hairfie.m */; };
-		B330409219BDB1EA00BA6211 /* HairfieRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = B330409119BDB1EA00BA6211 /* HairfieRequest.m */; };
 		B330409519BDB21200BA6211 /* HairfieRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = B330409419BDB21200BA6211 /* HairfieRepository.m */; };
 		B330B5BC198656450059AE56 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B330B5BB198656450059AE56 /* MenuViewController.m */; };
 		B330B5BE198656DD0059AE56 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B330B5BD198656DD0059AE56 /* UIKit.framework */; };
@@ -286,8 +285,6 @@
 		B330408A19BDA64600BA6211 /* UITextField+ELFixSecureTextFieldFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+ELFixSecureTextFieldFont.m"; sourceTree = "<group>"; };
 		B330408C19BDAC7000BA6211 /* Hairfie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Hairfie.h; sourceTree = "<group>"; };
 		B330408D19BDAC7000BA6211 /* Hairfie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Hairfie.m; sourceTree = "<group>"; };
-		B330409019BDB1EA00BA6211 /* HairfieRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HairfieRequest.h; sourceTree = "<group>"; };
-		B330409119BDB1EA00BA6211 /* HairfieRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HairfieRequest.m; sourceTree = "<group>"; };
 		B330409319BDB21200BA6211 /* HairfieRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HairfieRepository.h; sourceTree = "<group>"; };
 		B330409419BDB21200BA6211 /* HairfieRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HairfieRepository.m; sourceTree = "<group>"; };
 		B330B5BA198656450059AE56 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
@@ -598,7 +595,6 @@
 			isa = PBXGroup;
 			children = (
 				15A2180C19BE294F0090E83B /* Picture */,
-				B330408F19BDB1D200BA6211 /* Hairfie */,
 				153E1FB119B4A97600DEC95D /* Repositories */,
 				15CE407019B0E7670088FEA7 /* Authentication */,
 				B3C45BD3199A49F0000E6C8E /* Camera Overlay View */,
@@ -769,15 +765,6 @@
 				B330408A19BDA64600BA6211 /* UITextField+ELFixSecureTextFieldFont.m */,
 			);
 			path = ELFixSecureTextFieldFont;
-			sourceTree = "<group>";
-		};
-		B330408F19BDB1D200BA6211 /* Hairfie */ = {
-			isa = PBXGroup;
-			children = (
-				B330409019BDB1EA00BA6211 /* HairfieRequest.h */,
-				B330409119BDB1EA00BA6211 /* HairfieRequest.m */,
-			);
-			name = Hairfie;
 			sourceTree = "<group>";
 		};
 		B34231FC198924290058866B /* AFNetworking */ = {
@@ -1537,7 +1524,6 @@
 				B337B6F619A22B11003B0EA5 /* HairfieDetailCollectionReusableView.m in Sources */,
 				B3423215198924290058866B /* AFURLConnectionOperation.m in Sources */,
 				B3423216198924290058866B /* AFURLRequestSerialization.m in Sources */,
-				B330409219BDB1EA00BA6211 /* HairfieRequest.m in Sources */,
 				B33E4C4319A48FE70024F5F7 /* HoraireTableViewCell.m in Sources */,
 				B3423218198924290058866B /* AFURLSessionManager.m in Sources */,
 				15B8ADE319C09A3E009846AA /* BusinessRepository.m in Sources */,
