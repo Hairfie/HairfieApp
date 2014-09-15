@@ -21,6 +21,7 @@
 		15CE407319B0E78C0088FEA7 /* CredentialStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 15CE407219B0E78C0088FEA7 /* CredentialStore.m */; };
 		15E6AE761992635900A11947 /* OpeningTimes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E6AE751992635900A11947 /* OpeningTimes.swift */; };
 		15ED728C199B9C6400453A74 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15ED728B199B9C6400453A74 /* ImageIO.framework */; };
+		712667EB19C6E67500298FF0 /* UIRoundImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 712667EA19C6E67500298FF0 /* UIRoundImageView.m */; };
 		718A98B019C1EF46003CD34B /* GeoPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 718A98AF19C1EF46003CD34B /* GeoPoint.m */; };
 		71C0D3FF19C1D7600037CBF4 /* Address.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C0D3FE19C1D7600037CBF4 /* Address.m */; };
 		71C0D40219C1D9190037CBF4 /* BusinessReview.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C0D40119C1D9190037CBF4 /* BusinessReview.m */; };
@@ -258,6 +259,8 @@
 		15ED728B199B9C6400453A74 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		2D7E837BAA644663900B5CBF /* Pods-HairfieApp.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HairfieApp.xcconfig"; path = "Pods/Pods-HairfieApp.xcconfig"; sourceTree = "<group>"; };
 		33C90A5A8A0E44DCA71D5A3A /* libPods-HairfieApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HairfieApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		712667E919C6E67500298FF0 /* UIRoundImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIRoundImageView.h; sourceTree = "<group>"; };
+		712667EA19C6E67500298FF0 /* UIRoundImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIRoundImageView.m; sourceTree = "<group>"; };
 		718A98AE19C1EF46003CD34B /* GeoPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeoPoint.h; sourceTree = "<group>"; };
 		718A98AF19C1EF46003CD34B /* GeoPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeoPoint.m; sourceTree = "<group>"; };
 		71C0D3FB19C1D65A0037CBF4 /* Address.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Address.h; sourceTree = "<group>"; };
@@ -609,6 +612,8 @@
 				1511518E1982B7A8001157A2 /* Supporting Files */,
 				15E6AE751992635900A11947 /* OpeningTimes.swift */,
 				B303B953199B9403008F6BAA /* Images.xcassets */,
+				712667E919C6E67500298FF0 /* UIRoundImageView.h */,
+				712667EA19C6E67500298FF0 /* UIRoundImageView.m */,
 			);
 			path = HairfieApp;
 			sourceTree = "<group>";
@@ -1495,6 +1500,7 @@
 				B3423214198924290058866B /* AFSecurityPolicy.m in Sources */,
 				B345BAD8199502A3007BB61A /* CustomCollectionViewCell.m in Sources */,
 				B3E4B46319A73C830036BAD8 /* Business.m in Sources */,
+				712667EB19C6E67500298FF0 /* UIRoundImageView.m in Sources */,
 				B3BD869F198BCFE500BD8591 /* RatingView.m in Sources */,
 				B3423211198924290058866B /* AFHTTPRequestOperationManager.m in Sources */,
 				B319B5C719C6E77D007F79B0 /* BusinessReviewRepository.m in Sources */,

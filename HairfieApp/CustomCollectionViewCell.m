@@ -7,12 +7,10 @@
 //
 
 #import "CustomCollectionViewCell.h"
-#import <SDWebImage/UIImageView+WebCache.h>
+#import "UIRoundImageView.h"
 #import "User.h"
 
-@implementation CustomCollectionViewCell {
-    UIImageView *profilePicture;
-}
+@implementation CustomCollectionViewCell
 
 @synthesize hairfieView = _hairfieView, nbLikes = _nbLikes, name = _name, profilePicture = _profilePicture;
 
@@ -22,11 +20,6 @@
     self.hairfieView.contentMode = UIViewContentModeScaleAspectFill;
     self.layer.borderColor = [UIColor colorWithRed:234/255.0f green:236/255.0f blue:238/255.0f alpha:1].CGColor;
     self.layer.borderWidth = 1.0f;
-
-    self.profilePicture.layer.cornerRadius = _profilePicture.frame.size.height / 2;
-    self.profilePicture.clipsToBounds = YES;
-    self.profilePicture.layer.borderWidth = 1.0f;
-    self.profilePicture.layer.borderColor = [UIColor whiteColor].CGColor;
 }
 
 -(void)setHairfie:(Hairfie *)hairfie
@@ -35,7 +28,9 @@
 
     self.nbLikes.text = hairfie.numLikes;
 
-    self.profilePicture = [[UIImageView alloc] initWithFrame:CGRectMake(10, 170, 30, 30)];
+    self.profilePicture = [[UIRoundImageView alloc] initWithFrame:CGRectMake(10, 170, 30, 30)];
+    self.profilePicture.layer.borderWidth = 1.0f;
+    self.profilePicture.layer.borderColor = [UIColor whiteColor].CGColor;
     [self.profilePicture sd_setImageWithURL:[NSURL URLWithString:hairfie.user.thumbUrl]
                            placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
 
@@ -44,6 +39,8 @@
                                                                                  green:236/255.0f
                                                                                   blue:238/255.0f
                                                                                  alpha:1]]];
+
+    [self addSubview:self.profilePicture];
 }
 
 @end
