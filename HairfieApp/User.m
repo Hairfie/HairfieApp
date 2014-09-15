@@ -52,6 +52,17 @@
     return (User *)[[User repository] modelWithDictionary:data];
 }
 
++(void)getById:(NSString *)anId
+     success:(void (^)(User *user))aSuccessHandler
+     failure:(void (^)(NSError *error))aFailureHandler
+{
+    [[User repository] findById:anId
+                        success:^(LBModel *result) {
+                            aSuccessHandler(result);
+                        }
+                        failure:aFailureHandler];
+}
+
 +(LBModelRepository *)repository
 {
     return [[AppDelegate lbAdaptater] repositoryWithClass:[UserRepository class]];
