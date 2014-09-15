@@ -52,8 +52,8 @@
                                              }
                                      };
         
-        [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/businessreviews" verb:@"GET"]
-                                            forMethod:@"businessreviews"];
+        [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/businessReviews" verb:@"GET"]
+                                            forMethod:@"businessReviews.find"];
         
         LBModelRepository *repository = [self repository];
         
