@@ -15,15 +15,18 @@
 #import "ApplyFiltersViewController.h"
 #import "UserRepository.h"
 
+#define LOADING_CELL_IDENTIFIER @"LoadingItemCell"
+
 
 @interface HomeViewController ()
 {
     AdvanceSearch *searchView;
-    NSArray *hairfies;
+    NSMutableArray *hairfies;
     NSInteger hairfieRow;
     UIAlertView *chooseCameraType;
     UIRefreshControl *refreshControl;
     UIGestureRecognizer *dismiss;
+    NSNumber *currentPage;
 }
 @end
 
@@ -41,6 +44,9 @@
     [super viewDidLoad];
     self.navigationItem.title = [NSString stringWithFormat:NSLocalizedString(@"Home", nil)];
      [_hairfieCollection registerNib:[UINib nibWithNibName:@"CustomCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"hairfieCell"];
+    
+    [_hairfieCollection registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:LOADING_CELL_IDENTIFIER];
+    
     [self.view addGestureRecognizer:self.slidingViewController.panGesture];
     _searchView.hidden = YES;
     [_searchView initView];
@@ -48,11 +54,12 @@
     _searchView.searchByLocation.text = @"Around Me";
 
     refreshControl = [[UIRefreshControl alloc] init];
-    [refreshControl addTarget:self action:@selector(getHairfies)
+    [refreshControl addTarget:self action:@selector(getHairfies:)
              forControlEvents:UIControlEventValueChanged];
     [_hairfieCollection addSubview:refreshControl];
-   
-    [self getHairfies];
+    currentPage = @(0);
+    hairfies = [[NSMutableArray alloc] init];
+    [self getHairfies:nil];
      dismiss = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
     // Do any additional setup after loading the view.
     
@@ -71,7 +78,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willSearch:) name:@"searchQuery" object:nil];
-    [self getHairfies];
+    [self getHairfies:nil];
 }
 -(void)viewWillDisappear:(BOOL)animated
 {
@@ -127,7 +134,7 @@
 
 
 - (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section {
-    return [hairfies count];
+    return [hairfies count] + 1;
 }
 // 2
 - (NSInteger)numberOfSectionsInCollectionView: (UICollectionView *)collectionView {
@@ -137,24 +144,53 @@
 
 // 3
 - (CustomCollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"index path : %ld", indexPath.row);
+    NSLog(@"Hairfies count : %ld", [hairfies count]);
+    if (indexPath.row < [hairfies count]) {
+        
+        if(indexPath.row == ([hairfies count] - HAIRFIES_PAGE_SIZE + 1)){
+            [self fetchMoreHairfies];
+        }
+        
+        return [self hairfieCellForIndexPath:indexPath];
+    } else {
+        //[self fetchMoreHairfies];
     
+        return [self loadingCellForIndexPath:indexPath];
+    }
+}
+
+- (CustomCollectionViewCell *)hairfieCellForIndexPath:(NSIndexPath *)indexPath{
     static NSString *CellIdentifier = @"hairfieCell";
-    CustomCollectionViewCell *cell = [cv dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
+    CustomCollectionViewCell *cell = [_hairfieCollection dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
     Hairfie *hairfie = (Hairfie *)[hairfies objectAtIndex:indexPath.row];
     
-
+    
     if (cell == nil) {
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"CustomCollectionViewCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
     
     if (!hairfies) {
-     cell.hairfieView.image = [UIImage imageNamed:@"hairfie.jpg"];
+        cell.hairfieView.image = [UIImage imageNamed:@"hairfie.jpg"];
     }
     else {
         [cell setHairfie:hairfie];
     }
+    
+    return cell;
+}
 
+- (CustomCollectionViewCell *)loadingCellForIndexPath:(NSIndexPath *)indexPath {
+    CustomCollectionViewCell *cell = [_hairfieCollection dequeueReusableCellWithReuseIdentifier:LOADING_CELL_IDENTIFIER forIndexPath:indexPath];
+    
+    UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc]
+                                                  initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    activityIndicator.center = cell.center;
+    [cell addSubview:activityIndicator];
+    
+    [activityIndicator startAnimating];
+    
     return cell;
 }
 
@@ -167,6 +203,61 @@
     
 }
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    NSArray *indexPaths = [_hairfieCollection indexPathsForVisibleItems];
+
+    //NSLog(@"indexPaths scroll %@", indexPaths);
+}
+
+
+-(void)getHairfies:(NSNumber *)page
+{
+    if(page == nil) {
+        page = @(0);
+    }
+    NSNumber *offset = @([page integerValue] * HAIRFIES_PAGE_SIZE);
+
+    void (^loadErrorBlock)(NSError *) = ^(NSError *error){
+        NSLog(@"Error on load %@", error.description);
+        [refreshControl endRefreshing];
+    };
+    void (^loadSuccessBlock)(NSArray *) = ^(NSArray *models){
+        for (int i = 0; i < models.count; i++) {
+            NSNumber *dynamicIndex = @(i + [offset integerValue]);
+            if([dynamicIndex integerValue] < [hairfies count]) {
+                [hairfies replaceObjectAtIndex:[dynamicIndex integerValue] withObject:models[i]];
+            } else {
+                [hairfies addObject:models[i]];
+            }
+            //[hairfies addObject:models[i]];
+        }
+        NSLog(@"Hairfies from models count : %ld", [hairfies count]);
+        [self customReloadData];
+    };
+    NSLog(@"Get Hairfies for page : %@", page);
+
+    [Hairfie listLatestPerPage:page
+                          success:loadSuccessBlock
+                          failure:loadErrorBlock];
+}
+
+- (void)customReloadData
+{
+    [_hairfieCollection reloadData];
+    if (refreshControl) {
+        [refreshControl endRefreshing];
+    }
+}
+
+- (void)fetchMoreHairfies {
+    NSLog(@"FETCHING MORE HAIRFIES ******************");
+    int value = [currentPage intValue];
+    currentPage = [NSNumber numberWithInt:value + 1];;
+    [self getHairfies:currentPage];
+}
+
+
+#pragma mark - Navigation
 
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -189,7 +280,7 @@
     {
         HairfieDetailViewController *hairfieDetail = [segue destinationViewController];
         hairfieDetail.currentHairfie = (Hairfie*)[hairfies objectAtIndex:hairfieRow];
-       
+        
     }
     if ([segue.identifier isEqualToString:@"cameraFilters"])
     {
@@ -197,58 +288,7 @@
         
         filters.hairfie = imageTaken;
     }
-
-}
-
-
--(void)getHairfies
-{
-    void (^loadErrorBlock)(NSError *) = ^(NSError *error){
-        NSLog(@"Error on load %@", error.description);
-        [refreshControl endRefreshing];
-    };
-    void (^loadSuccessBlock)(NSArray *) = ^(NSArray *models){
-        hairfies = models;
-        [self customReloadData];
-    };
-    [Hairfie listLatestPerPage:@(0)
-                          success:loadSuccessBlock
-                          failure:loadErrorBlock];
-}
-
-- (void)customReloadData
-{
-    [_hairfieCollection reloadData];
-    if (refreshControl) {
-        [refreshControl endRefreshing];
-    }
-}
-
-
-// 4
-/*- (UICollectionReusableView *)collectionView:
- (UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
- {
- return [[UICollectionReusableView alloc] init];
- }*/
-
-
-/*
-- (void)applicationFinishedRestoringState
-{
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     
-    // Call whatever function you need to visually restore
 }
-
-
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

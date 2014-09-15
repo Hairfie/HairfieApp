@@ -23,4 +23,6 @@
 #define FB_APP_ID @"726709544031609"
 #define FB_SCOPE @[@"email"]
 
+#define HAIRFIES_PAGE_SIZE 6
+
 #endif

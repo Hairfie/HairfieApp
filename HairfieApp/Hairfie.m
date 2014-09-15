@@ -18,7 +18,7 @@
 
 - (void)setAuthor:(NSDictionary *)authorDic
 {
-    if(![authorDic isKindOfClass:[NSNull class]]) return;
+    if([authorDic isKindOfClass:[NSNull class]]) return;
     
     _author = [[User alloc] initWithJson:authorDic];
 }
@@ -101,7 +101,7 @@
 +(void)listLatestPerPage:(NSNumber *)page
                     success:(void(^)(NSArray *hairfies))aSuccessHandler
                     failure:(void(^)(NSError *error))aFailureHandler {
-    NSNumber *limit = @(6);
+    NSNumber *limit = @(HAIRFIES_PAGE_SIZE);
     NSNumber *offset = @([page integerValue] * [limit integerValue]);
     
     [self listLatest:limit skip:offset success:aSuccessHandler failure:aFailureHandler];
