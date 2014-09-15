@@ -32,10 +32,10 @@
         NSLog(@"results %@", results);
     };
     
-    NSString *repoName = @"businessReviews";
+    
     [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/businessreviews" verb:@"POST"] forMethod:@"businessreviews"];
-    LBModelRepository *reviewData = [[AppDelegate lbAdaptater] repositoryWithModelName:repoName];
-    [reviewData invokeStaticMethod:@"" parameters:@{@"comment":_comment, @"rating":_rating, @"businessId": _business.id} success:loadSuccessBlock failure:loadErrorBlock];
+    LBModelRepository *repository = (LBModelRepository*)[self repository];
+    [repository invokeStaticMethod:@"" parameters:@{@"comment":_comment, @"rating":_rating, @"businessId": _business.id} success:loadSuccessBlock failure:loadErrorBlock];
 }
 
 +(void)listLatestByBusiness:(NSString *)aBusinessId
