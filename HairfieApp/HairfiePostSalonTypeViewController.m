@@ -80,7 +80,6 @@
     if (nextResponder) {
         // Found next responder, so set it.
         [nextResponder becomeFirstResponder];
-        _searchByLocation.text = @"";
         _searchAroundMe.enabled = YES;
     } else {
         [textField resignFirstResponder];

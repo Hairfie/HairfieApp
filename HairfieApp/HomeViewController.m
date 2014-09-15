@@ -25,6 +25,7 @@
     NSInteger hairfieRow;
     UIAlertView *chooseCameraType;
     UIRefreshControl *refreshControl;
+    UIGestureRecognizer *dismiss;
 }
 @end
 
@@ -55,18 +56,32 @@
     [_hairfieCollection addSubview:refreshControl];
     
     [self getHairfies];
+    
+     dismiss = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
+    [self.view addGestureRecognizer:dismiss];
     // Do any additional setup after loading the view.
     
 }
 
+
+-(void) hideKeyboard
+{
+    [_searchView.searchByLocation resignFirstResponder];
+    [_searchView.searchByName resignFirstResponder];
+    _searchView.hidden = YES;
+}
+
+
 -(void)viewWillAppear:(BOOL)animated
 {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willSearch:) name:@"searchQuery" object:nil];
+    [self.view addGestureRecognizer:dismiss];
     [self getHairfies];
 }
 -(void)viewWillDisappear:(BOOL)animated
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"searchQuery" object:nil];
+    [self.view removeGestureRecognizer:dismiss];
 }
 
 
