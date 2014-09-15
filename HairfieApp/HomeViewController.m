@@ -214,7 +214,9 @@
         hairfies = [[models reverseObjectEnumerator] allObjects];
         [self customReloadData];
     };
-    [hairfieReq getHairfies:loadSuccessBlock failure:loadErrorBlock];
+    [Hairfie listLatestPerPage:@(0)
+                          success:loadSuccessBlock
+                          failure:loadErrorBlock];
 }
 
 - (void)customReloadData

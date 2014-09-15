@@ -28,6 +28,15 @@
 -(NSString *)hairfieDetailUrl;
 -(NSString *)displayPrice;
 
++(void)listLatest:(NSNumber *)limit
+             skip:(NSNumber *)skip
+          success:(void(^)(NSArray *hairfies))aSuccessHandler
+          failure:(void(^)(NSError *error))aFailureHandler;
+
++(void)listLatestPerPage:(NSNumber *)page
+                 success:(void(^)(NSArray *hairfies))aSuccessHandler
+                 failure:(void(^)(NSError *error))aFailureHandler;
+
 +(void)listLatestByBusiness:(NSString *)businessId
                       limit:(NSNumber *)limit
                        skip:(NSNumber *)skip

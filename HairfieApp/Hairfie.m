@@ -63,6 +63,48 @@
     return @"";
 }
 
++ (void) listLatest:(NSNumber *)limit
+               skip:(NSNumber *)skip
+            success:(void (^)(NSArray *))aSuccessHandler
+            failure:(void (^)(NSError *))aFailureHandler {
+    
+        NSDictionary *parameters = @{
+             @"filter": @{
+                     @"limit": limit,
+                     @"skip": skip,
+                     @"order": @"createdAt DESC"
+             }
+        };
+        
+        [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/hairfies" verb:@"GET"]
+                                            forMethod:@"hairfies.find"];
+        
+        LBModelRepository *repository = [self repository];
+        
+        [repository invokeStaticMethod:@"find"
+                            parameters:parameters
+                               success:^(NSArray *results) {
+                                   NSMutableArray *hairfies = [[NSMutableArray alloc] init];
+                                   for (NSDictionary *result in results) {
+                                       [hairfies addObject:[repository modelWithDictionary:result]];
+                                   }
+                                   aSuccessHandler([[NSArray alloc] initWithArray:hairfies]);
+                               }
+                               failure:aFailureHandler];
+}
+
++(void)listLatestPerPage:(NSNumber *)page
+                    success:(void(^)(NSArray *hairfies))aSuccessHandler
+                    failure:(void(^)(NSError *error))aFailureHandler {
+    NSNumber *limit = @(6);
+    NSNumber *offset = @([page integerValue] * [limit integerValue]);
+    
+    [self listLatest:limit skip:offset success:aSuccessHandler failure:aFailureHandler];
+    
+}
+
+
+
 +(void)listLatestByBusiness:(NSString *)businessId
                       limit:(NSNumber *)limit
                        skip:(NSNumber *)skip

@@ -29,15 +29,6 @@
     
       HairfieRepository *hairfieRepository = (HairfieRepository*)[[AppDelegate lbAdaptater] repositoryWithClass:[HairfieRepository class]];
     
-//    void (^loadErrorBlock)(NSError *) = ^(NSError *error){
-//        NSLog(@"Error on load %@", error.description);
-//    };
-//   void (^loadSuccessBlock)(NSArray *) = ^(NSArray *model){
-//        hairfies = model;
-//        NSLog(@"Hairfie : %@", hairfies);
-//        [[NSNotificationCenter defaultCenter] postNotificationName:@"hairfie" object:self];
-//    };
-    
     [hairfieRepository allWithSuccess:success failure:failure];
 }
 
