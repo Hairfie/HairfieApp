@@ -14,12 +14,12 @@
 
 @implementation Hairfie
 
-@synthesize id, description, price, picture, user = _user, business = _business, numLikes = _numLikes;
+@synthesize id, description, price, picture, author = _author, business = _business, numLikes = _numLikes;
 
-- (void)setUser:(NSDictionary *)userDic
+- (void)setAuthor:(NSDictionary *)authorDic
 {
-    UserRepository *userRepository = (UserRepository *)[[AppDelegate lbAdaptater] repositoryWithClass:[UserRepository class]];
-    _user = (User *)[userRepository modelWithDictionary:userDic];
+    UserRepository *authorRepository = (UserRepository *)[[AppDelegate lbAdaptater] repositoryWithClass:[UserRepository class]];
+    _author = (User *)[authorRepository modelWithDictionary:authorDic];
 }
 
 -(void) setNumLikes:(NSString *)numLikes {

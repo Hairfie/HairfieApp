@@ -19,7 +19,7 @@
 @property (strong, nonatomic) NSDictionary *price;
 @property (strong, nonatomic) NSString *numLikes;
 @property (strong, nonatomic) NSString *numComments;
-@property (strong, nonatomic) User *user;
+@property (strong, nonatomic) User *author;
 @property (strong, nonatomic) Business *business;
 
 

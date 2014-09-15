@@ -7,6 +7,7 @@
 //
 
 #import "SalonDetailViewController.h"
+#import "HairfieDetailViewController.h"
 #import "ReviewTableViewCell.h"
 #import "SimilarTableViewCell.h"
 #import "HairfieApp-Swift.h"
@@ -516,19 +517,17 @@
 
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"addReview"])
-    {
+    if ([segue.identifier isEqualToString:@"addReview"]) {
         ReviewsViewController *review = [segue destinationViewController];
         review.ratingValue = _reviewRating.rating;
         review.isReviewing = YES;
-    }
-    if ([segue.identifier isEqualToString:@"showTimetable"])
-    {
+        review.business = _business;
+    } else if ([segue.identifier isEqualToString:@"showTimetable"]) {
         HorairesViewController *horaires = [segue destinationViewController];
-       
-        
-        
         horaires.salon = _business.timetable;
+    } else if ([segue.identifier isEqualToString:@"hairfieDetail"]) {
+        HairfieDetailViewController *hairfieDetail = [segue destinationViewController];
+        hairfieDetail.currentHairfie = [self.hairfies objectAtIndex:self.selectedHairfieIndex];
     }
 }
 
@@ -603,6 +602,12 @@
     [cell setHairfie:self.hairfies[indexPath.row]];
     
     return cell;
+}
+
+-(void) collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    self.selectedHairfieIndex = indexPath.row;
+    [self performSegueWithIdentifier:@"hairfieDetail" sender:self];
 }
 
 

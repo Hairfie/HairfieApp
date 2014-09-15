@@ -30,8 +30,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSLog(@"current hairfie : %@", _currentHairfie);
-
+    
     _hairfieCollection.delegate = self;
     _hairfieCollection.dataSource = self;
     
@@ -233,19 +232,19 @@
     UIView *hairfieDetailView = [[UIView alloc] initWithFrame:CGRectMake(0, 359, 320, 100)];
   
     UIImageView *profilePicture = [[UIImageView alloc] initWithFrame:CGRectMake(20, 10, 40, 40)];
-    [profilePicture sd_setImageWithURL:[NSURL URLWithString:_currentHairfie.user.thumbUrl] placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
+    [profilePicture sd_setImageWithURL:[NSURL URLWithString:_currentHairfie.author.thumbUrl] placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
     profilePicture.layer.cornerRadius = profilePicture.frame.size.height / 2;
     profilePicture.clipsToBounds = YES;
     profilePicture.layer.borderWidth = 2.0f;
     profilePicture.layer.borderColor = [[UIColor blackHairfie] colorWithAlphaComponent:0.1].CGColor;
    
     UILabel *usernameLabel = [[UILabel alloc]initWithFrame:CGRectMake(68, 8, 111, 21)];
-    usernameLabel.text = _currentHairfie.user.displayName;
+    usernameLabel.text = _currentHairfie.author.displayName;
     usernameLabel.font = [UIFont fontWithName:@"SourceSansPro-Light" size:18];
     usernameLabel.textColor = [[UIColor blackHairfie] colorWithAlphaComponent:0.4] ;
     
     UILabel *nbHairfies = [[UILabel alloc]initWithFrame:CGRectMake(68, 30, 92, 21)];
-    nbHairfies.text = _currentHairfie.user.displayHairfies;
+    nbHairfies.text = _currentHairfie.author.displayHairfies;
     nbHairfies.font = [UIFont fontWithName:@"SourceSansPro-Light" size:13];
     nbHairfies.textColor = [[UIColor blackHairfie]colorWithAlphaComponent:0.8];
     

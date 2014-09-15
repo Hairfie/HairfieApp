@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "RatingView.h"
+#import "Business.h"
 
 @interface ReviewsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate,RatingViewDelegate, UITextViewDelegate>
 
@@ -17,6 +18,7 @@
 @property (nonatomic) BOOL isReviewing;
 @property (nonatomic) IBOutlet UIButton *addReviewButton;
 @property (nonatomic) NSInteger reviewHeight;
+@property (nonatomic) Business *business;
 
 // table header
 

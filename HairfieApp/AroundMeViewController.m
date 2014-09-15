@@ -36,6 +36,7 @@
     SDWebImageManager *SDmanager;
     NSString *gpsString;
     UIRefreshControl *refreshControl;
+    UIGestureRecognizer *dismiss;
 }
 @synthesize manager = _manager, geocoder = _geocoder, mapView = _mapView, hairdresserTableView = _hairdresserTableView, delegate = _delegate, myLocation = _myLocation;
 
@@ -48,7 +49,7 @@
                                              selector:@selector(updatedLocation:)
                                                  name:@"newLocationNotif"
                                                object:nil];
-    
+     dismiss = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
     _isSearching = YES;
     _isRefreshing = NO;
      _hairdresserTableView.hidden = YES;
@@ -79,6 +80,15 @@
     [refreshControl addTarget:self action:@selector(updateBusinesses)
              forControlEvents:UIControlEventValueChanged];
     [_hairdresserTableView addSubview:refreshControl];
+}
+
+
+-(void) hideKeyboard
+{
+    [_searchView.searchByLocation resignFirstResponder];
+    [_searchView.searchByName resignFirstResponder];
+    _searchView.hidden = YES;
+    [self.view removeGestureRecognizer:dismiss];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -128,6 +138,7 @@
     if ([_searchView.searchByLocation.text isEqualToString:@"Around Me"])
         [_searchView.searchAroundMeImage setTintColor:[UIColor lightBlueHairfie]];
     [_searchView.searchByName performSelector:@selector(becomeFirstResponder) withObject:nil afterDelay:0.0];
+    [self.view addGestureRecognizer:dismiss];
 }
 
 
@@ -137,7 +148,6 @@
 
 -(void) updatedLocation:(NSNotification*)notif {
     
-    NSLog(@"icicicicicici");
     if (_gpsStringFromSegue != nil)
     {
         _searchDesc.text = _searchInProgressFromSegue;
