@@ -18,7 +18,7 @@
 
 - (void)setAuthor:(NSDictionary *)authorDic
 {
-    if(![authorDic isKindOfClass:[NSNull class]]) return;
+    if([authorDic isKindOfClass:[NSNull class]]) return;
     
     _author = [[User alloc] initWithJson:authorDic];
 }

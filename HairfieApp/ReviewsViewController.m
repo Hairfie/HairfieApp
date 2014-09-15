@@ -15,8 +15,11 @@
 @end
 
 @implementation ReviewsViewController
-
+{
+    NSArray *reviews;
+}
 @synthesize reviewRating = _reviewRating, ratingValue = _ratingValue, dismiss = _dismiss, addReviewButton = _addReviewButton;
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -41,7 +44,8 @@
     };
     void (^loadSuccessBlock)(NSArray *) = ^(NSArray *results){
         NSLog(@"results %@", results);
-        
+        reviews = results;
+        [_reviewTableView reloadData];
     };
     
     [BusinessReview listLatestByBusiness:_business.id limit:@10 skip:@0 success:loadSuccessBlock failure:loadErrorBlock];
@@ -253,7 +257,7 @@ shouldChangeTextInRange: (NSRange) range
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 0;
+    return [reviews count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -265,13 +269,15 @@ shouldChangeTextInRange: (NSRange) range
 {
     static NSString *CellIdentifier = @"reviewCell";
     ReviewTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-
+    BusinessReview *review = (BusinessReview *)[reviews objectAtIndex:indexPath.row];
+    
     if (cell == nil) {
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ReviewTableViewCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
     cell.backgroundColor = [UIColor whiteColor];
 
+    [cell setReview:review];
     return cell;
 }
 

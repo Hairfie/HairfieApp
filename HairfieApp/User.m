@@ -49,7 +49,7 @@
 
 -(id)initWithJson:(NSDictionary *)data
 {
-    return [[User repository] modelWithDictionary:data];
+    return (User *)[[User repository] modelWithDictionary:data];
 }
 
 +(LBModelRepository *)repository

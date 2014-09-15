@@ -13,6 +13,22 @@
 @implementation BusinessReview
 
 
+
+- (void)setAuthor:(NSDictionary *)authorDic
+{
+    if([authorDic isKindOfClass:[NSNull class]]) return;
+    
+    _author = [[User alloc] initWithJson:authorDic];
+}
+
+- (void) setBusiness:(NSDictionary *) businessDic {
+    if([businessDic isKindOfClass:[NSNull class]]) {
+        
+    } else {
+        _business = [[Business alloc] initWithJson:businessDic];
+    }
+}
+
 -(id)initWithDictionary:(NSDictionary *)data
 {
     self = [super init];
@@ -23,6 +39,8 @@
 }
 
 
+
+
 -(void)save
 {
     void (^loadErrorBlock)(NSError *) = ^(NSError *error){
@@ -31,7 +49,6 @@
     void (^loadSuccessBlock)(NSDictionary *) = ^(NSDictionary *results){
         NSLog(@"results %@", results);
     };
-    
     
     [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/businessreviews" verb:@"POST"] forMethod:@"businessreviews"];
     LBModelRepository *repository = (LBModelRepository*)[self repository];

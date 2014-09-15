@@ -16,6 +16,7 @@
 @property (strong, nonatomic) User *author;
 @property (strong, nonatomic) NSNumber *rating;
 @property (strong, nonatomic) NSString *comment;
+@property (strong, nonatomic) NSString *createdAt;
 
 
 -(id)initWithDictionary:(NSDictionary *)data;

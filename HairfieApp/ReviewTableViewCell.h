@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "RatingView.h"
+#import "BusinessReview.h"
 
 @interface ReviewTableViewCell : UITableViewCell <RatingViewDelegate>
 {
@@ -21,5 +22,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *statusLabel;
 @property (weak, nonatomic) IBOutlet UILabel *postDate;
 
+-(void)setReview:(BusinessReview*)review;
 
 @end

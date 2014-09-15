@@ -7,6 +7,8 @@
 //
 
 #import "ReviewTableViewCell.h"
+#import "BusinessReview.h"
+#import "User.h"
 
 @interface ReviewTableViewCell ()
 
@@ -46,6 +48,16 @@
     //   _statusLabel.text = [NSString stringWithFormat:@"%.f", rating];
 }
 
+
+-(void)setReview:(BusinessReview*)review
+{
+    
+   // NSLog(@"author review %@", review.author.class);
+    
+    _contentLabel.text = review.comment;
+    _ratingView.rating = [review.rating floatValue];
+    _nameLabel.text = review.author.displayName;
+}
 
 /*
 #pragma mark - Navigation
