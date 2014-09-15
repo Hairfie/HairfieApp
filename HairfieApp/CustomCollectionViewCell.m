@@ -44,6 +44,8 @@
                                                                                  green:236/255.0f
                                                                                   blue:238/255.0f
                                                                                  alpha:1]]];
+
+    [self addSubview:self.profilePicture];
 }
 
 @end
