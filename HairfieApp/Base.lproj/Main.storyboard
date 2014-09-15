@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6205" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="dEN-gt-xJT">
     <dependencies>
+        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6198"/>
         <capability name="Constraints with attributes relative to the layout margin" minToolsVersion="6.0"/>
     </dependencies>
@@ -2886,6 +2887,15 @@ connaissance et accepte les CGU de Hairfie</string>
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Fx-Rv-sNo">
+                                                <rect key="frame" x="20" y="350" width="23" height="23"/>
+                                                <state key="normal" image="checkbox-false.png">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="checkBox:" destination="xPO-Am-yIh" eventType="touchUpInside" id="5a0-n5-WNy"/>
+                                                </connections>
+                                            </button>
                                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2PB-ep-9Tl">
                                                 <rect key="frame" x="20" y="96" width="280" height="240"/>
                                                 <subviews>
@@ -2985,15 +2995,6 @@ connaissance et accepte les CGU de Hairfie</string>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </view>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Fx-Rv-sNo">
-                                                <rect key="frame" x="20" y="350" width="23" height="23"/>
-                                                <state key="normal" image="checkbox-false.png">
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="checkBox:" destination="xPO-Am-yIh" eventType="touchUpInside" id="5a0-n5-WNy"/>
-                                                </connections>
-                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
@@ -3025,7 +3026,7 @@ connaissance et accepte les CGU de Hairfie</string>
                                     <action selector="createAccount:" destination="xPO-Am-yIh" eventType="touchUpInside" id="UQT-DS-DhR"/>
                                 </connections>
                             </button>
-                            <view alpha="0.0" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Tu-6x-BjS">
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Tu-6x-BjS">
                                 <rect key="frame" x="0.0" y="352" width="320" height="216"/>
                                 <subviews>
                                     <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2AC-Ib-Vv7">
@@ -3143,9 +3144,9 @@ connaissance et accepte les CGU de Hairfie</string>
         </simulatedScreenMetrics>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="HOe-ge-VCi"/>
         <segue reference="uEN-by-6gW"/>
-        <segue reference="sgS-Io-6JC"/>
         <segue reference="DYR-eo-mJz"/>
-        <segue reference="H0a-7y-EaD"/>
+        <segue reference="sgS-Io-6JC"/>
     </inferredMetricsTieBreakers>
 </document>
