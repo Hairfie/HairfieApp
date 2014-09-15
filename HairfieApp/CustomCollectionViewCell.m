@@ -26,7 +26,7 @@
 {
     self.name.text = hairfie.author.displayName;
 
-    self.nbLikes.text = hairfie.numLikes;
+    self.nbLikes.text = [NSString stringWithFormat:@"%@", hairfie.numLikes ];
 
     self.profilePicture = [[UIRoundImageView alloc] initWithFrame:CGRectMake(10, 170, 30, 30)];
     self.profilePicture.layer.borderWidth = 1.0f;

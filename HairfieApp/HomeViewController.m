@@ -51,9 +51,8 @@
     [refreshControl addTarget:self action:@selector(getHairfies)
              forControlEvents:UIControlEventValueChanged];
     [_hairfieCollection addSubview:refreshControl];
-    
+   
     [self getHairfies];
-    
      dismiss = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
     // Do any additional setup after loading the view.
     
@@ -220,7 +219,6 @@
 - (void)customReloadData
 {
     [_hairfieCollection reloadData];
-    
     if (refreshControl) {
         [refreshControl endRefreshing];
     }
