@@ -27,6 +27,9 @@
 -(NSString *)hairfieCellUrl;
 -(NSString *)hairfieDetailUrl;
 -(NSString *)displayPrice;
+-(NSString *)displayNumLikes;
+-(NSString *)displayNumComments;
+
 
 +(void)listLatest:(NSNumber *)limit
              skip:(NSNumber *)skip
