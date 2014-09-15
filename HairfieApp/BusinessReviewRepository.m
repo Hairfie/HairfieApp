@@ -11,7 +11,7 @@
 @implementation BusinessReviewRepository
 
 + (instancetype)repository {
-    return [self repositoryWithClassName:@"businessreviews"];
+    return [self repositoryWithClassName:@"businessReviews"];
 }
 
 @end

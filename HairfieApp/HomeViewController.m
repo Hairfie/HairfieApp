@@ -208,7 +208,7 @@
         [refreshControl endRefreshing];
     };
     void (^loadSuccessBlock)(NSArray *) = ^(NSArray *models){
-        hairfies = [[models reverseObjectEnumerator] allObjects];
+        hairfies = models;
         [self customReloadData];
     };
     [Hairfie listLatestPerPage:@(0)
