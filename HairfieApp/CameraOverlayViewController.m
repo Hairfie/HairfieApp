@@ -32,7 +32,6 @@
         _imagePicker.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
         _imagePicker.allowsEditing = YES;
         [self initOverlayView];
-        
         [self presentViewController:_imagePicker animated:NO completion:nil];
     } else {
         _imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
@@ -174,8 +173,10 @@
 -(void) cancelTakePicture
 {
     [_imagePicker dismissViewControllerAnimated:YES completion:nil];
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
+
+
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
@@ -187,7 +188,7 @@
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     [picker dismissViewControllerAnimated:NO completion:nil];
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 

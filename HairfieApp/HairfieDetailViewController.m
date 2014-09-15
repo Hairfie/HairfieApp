@@ -30,8 +30,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSLog(@"current hairfie : %@", _currentHairfie);
-
+    
     _hairfieCollection.delegate = self;
     _hairfieCollection.dataSource = self;
     

@@ -58,7 +58,6 @@
     [self getHairfies];
     
      dismiss = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
-   // [self.view addGestureRecognizer:dismiss];
     // Do any additional setup after loading the view.
     
 }
@@ -69,13 +68,13 @@
     [_searchView.searchByLocation resignFirstResponder];
     [_searchView.searchByName resignFirstResponder];
     _searchView.hidden = YES;
+    [self.view removeGestureRecognizer:dismiss];
 }
 
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willSearch:) name:@"searchQuery" object:nil];
-   // [self.view addGestureRecognizer:dismiss];
     [self getHairfies];
 }
 -(void)viewWillDisappear:(BOOL)animated
@@ -88,6 +87,7 @@
 -(void)willSearch:(NSNotification*)notification
 {
     [self performSegueWithIdentifier:@"searchFromFeed" sender:self];
+    [self.view removeGestureRecognizer:dismiss];
 }
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField
@@ -95,6 +95,7 @@
     //_advancedSearchView.hidden = NO;
    
     _searchView.hidden = NO;
+    [self.view addGestureRecognizer:dismiss];
     if ([_searchView.searchByLocation.text isEqualToString:@"Around Me"])
         [_searchView.searchAroundMeImage setTintColor:[UIColor lightBlueHairfie]];
     [_searchView.searchByName performSelector:@selector(becomeFirstResponder) withObject:nil afterDelay:0.0];

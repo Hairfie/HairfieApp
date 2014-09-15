@@ -7,8 +7,44 @@
 //
 
 #import "BusinessReview.h"
+#import "BusinessReviewRepository.h"
+#import "AppDelegate.h"
 
 @implementation BusinessReview
+
+
+-(id)initWithDictionary:(NSDictionary *)data
+{
+    self = [super init];
+    
+    
+    
+    
+    LBModelRepository *repository = [[AppDelegate lbAdaptater] repositoryWithClass:[BusinessReviewRepository class]];
+
+    self = (BusinessReview*)[repository modelWithDictionary:data];
+    return self;
+}
+
+
+-(void)save
+{
+    void (^loadErrorBlock)(NSError *) = ^(NSError *error){
+        NSLog(@"Error : %@", error.description);
+    };
+    void (^loadSuccessBlock)(NSDictionary *) = ^(NSDictionary *results){
+        NSLog(@"results %@", results);
+    };
+    
+    
+    NSString *repoName = @"businessReviews";
+    [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/businessreviews" verb:@"POST"] forMethod:@"businessreviews"];
+    
+    LBModelRepository *reviewData = [[AppDelegate lbAdaptater] repositoryWithModelName:repoName];
+
+    [reviewData invokeStaticMethod:@"" parameters:@{@"comment":_comment, @"rating":_rating, @"businessId": _business.id} success:loadSuccessBlock failure:loadErrorBlock];
+
+}
 
 +(void)listLatestByBusiness:(NSString *)aBusinessId
                       limit:(NSNumber *)aLimit
@@ -18,5 +54,13 @@
 {
     aSuccessHandler(@[]);
 }
+
+
++(LBModelRepository *)repository
+{
+    return [[AppDelegate lbAdaptater] repositoryWithClass:[BusinessReviewRepository class]];
+}
+
+
 
 @end

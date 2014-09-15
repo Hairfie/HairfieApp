@@ -521,6 +521,7 @@
         ReviewsViewController *review = [segue destinationViewController];
         review.ratingValue = _reviewRating.rating;
         review.isReviewing = YES;
+        review.business = _business;
     }
     if ([segue.identifier isEqualToString:@"showTimetable"])
     {

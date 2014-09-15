@@ -31,6 +31,7 @@
 		B308700F198782BC0080E6D2 /* LikeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B308700E198782BC0080E6D2 /* LikeViewController.m */; };
 		B308701719878C030080E6D2 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B308701619878C030080E6D2 /* SettingsViewController.m */; };
 		B318D6EB199279D100DC20EF /* photo-example.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = B318D6EA199279D100DC20EF /* photo-example.jpeg */; };
+		B319B5C719C6E77D007F79B0 /* BusinessReviewRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = B319B5C619C6E77D007F79B0 /* BusinessReviewRepository.m */; };
 		B330408B19BDA64600BA6211 /* UITextField+ELFixSecureTextFieldFont.m in Sources */ = {isa = PBXBuildFile; fileRef = B330408A19BDA64600BA6211 /* UITextField+ELFixSecureTextFieldFont.m */; };
 		B330408E19BDAC7000BA6211 /* Hairfie.m in Sources */ = {isa = PBXBuildFile; fileRef = B330408D19BDAC7000BA6211 /* Hairfie.m */; };
 		B330409219BDB1EA00BA6211 /* HairfieRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = B330409119BDB1EA00BA6211 /* HairfieRequest.m */; };
@@ -275,6 +276,8 @@
 		B308701619878C030080E6D2 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		B3170E761989AC7E00F41EAD /* HairfieApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HairfieApp-Bridging-Header.h"; sourceTree = "<group>"; };
 		B318D6EA199279D100DC20EF /* photo-example.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "photo-example.jpeg"; sourceTree = "<group>"; };
+		B319B5C519C6E77D007F79B0 /* BusinessReviewRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessReviewRepository.h; sourceTree = "<group>"; };
+		B319B5C619C6E77D007F79B0 /* BusinessReviewRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessReviewRepository.m; sourceTree = "<group>"; };
 		B330408819BDA64600BA6211 /* ELFixSecureTextFieldFont-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ELFixSecureTextFieldFont-Prefix.pch"; sourceTree = "<group>"; };
 		B330408919BDA64600BA6211 /* UITextField+ELFixSecureTextFieldFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+ELFixSecureTextFieldFont.h"; sourceTree = "<group>"; };
 		B330408A19BDA64600BA6211 /* UITextField+ELFixSecureTextFieldFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+ELFixSecureTextFieldFont.m"; sourceTree = "<group>"; };
@@ -658,6 +661,8 @@
 				B330409419BDB21200BA6211 /* HairfieRepository.m */,
 				15B8ADE119C09A3E009846AA /* BusinessRepository.h */,
 				15B8ADE219C09A3E009846AA /* BusinessRepository.m */,
+				B319B5C519C6E77D007F79B0 /* BusinessReviewRepository.h */,
+				B319B5C619C6E77D007F79B0 /* BusinessReviewRepository.m */,
 			);
 			name = Repositories;
 			sourceTree = "<group>";
@@ -1492,6 +1497,7 @@
 				B3E4B46319A73C830036BAD8 /* Business.m in Sources */,
 				B3BD869F198BCFE500BD8591 /* RatingView.m in Sources */,
 				B3423211198924290058866B /* AFHTTPRequestOperationManager.m in Sources */,
+				B319B5C719C6E77D007F79B0 /* BusinessReviewRepository.m in Sources */,
 				15A2180F19BE296A0090E83B /* PictureUploader.m in Sources */,
 				153E1FB019B4A79B00DEC95D /* UserRepository.m in Sources */,
 				1564959519AF6292008DC070 /* HairfieColors.m in Sources */,

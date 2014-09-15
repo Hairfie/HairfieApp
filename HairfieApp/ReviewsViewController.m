@@ -8,6 +8,7 @@
 
 #import "ReviewsViewController.h"
 #import "ReviewTableViewCell.h"
+#import "BusinessReview.h"
 
 @interface ReviewsViewController ()
 
@@ -21,13 +22,17 @@
     [super viewDidLoad];
     [self setupHeaderView];
     [self setupReviewRating];
+    
+    
+    
     _addReviewButton.layer.cornerRadius = 5;
     _addReviewButton.layer.masksToBounds = YES;
     _reviewTableView.backgroundColor = [UIColor whiteColor];
-  // _reviewHeight = 70;
     _dismiss = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
     // Do any additional setup after loading the view.
 }
+
+
 
 
 -(void) viewWillAppear:(BOOL)animated
@@ -38,7 +43,7 @@
          [_reviewTextView becomeFirstResponder];
         _reviewTableView.scrollEnabled = NO;
         _reviewTextView.text = @"";
-               [_reviewTableView reloadData];
+        [_reviewTableView reloadData];
     }
     _reviewTableView.scrollEnabled = YES;
 }
@@ -47,7 +52,7 @@
 - (void)rateView:(RatingView *)rateView ratingDidChange:(float)rating {
     _isReviewing = YES;
     _reviewTableView.scrollEnabled = NO;
-
+    [_reviewTextView becomeFirstResponder];
     [_reviewTableView reloadData];
 
 }
@@ -83,12 +88,26 @@
     if (_isReviewing == NO)
     {
         _isReviewing = YES;
-
         _reviewTableView.scrollEnabled = NO;
 
     }
-    [_reviewTableView reloadData];
+    else {
+        [self saveReview];
+        [_reviewTableView reloadData];
 }
+}
+-(void) saveReview
+{
+    
+    NSNumber *reviewValue = [NSNumber numberWithFloat:_reviewRating.rating];
+    
+    NSDictionary *reviewDic = [[NSDictionary alloc] initWithObjectsAndKeys:reviewValue, @"rating", _reviewTextView.text, @"comment", _business, @"business",nil];
+    
+  
+    BusinessReview *review = [[BusinessReview alloc] initWithDictionary:reviewDic];
+    [review save];
+}
+
 
 -(void)setupReviewRating
 {
@@ -130,10 +149,16 @@ shouldChangeTextInRange: (NSRange) range
     if ([text isEqualToString:@"\n"]) {
 
         _isReviewing = NO;
-        NSLog(@"JVIENS LA");
+        
 
         _reviewTableView.scrollEnabled = YES;
-        _reviewTextView.text = @"Ajoutez votre review...";
+        if ([_reviewTextView.text isEqualToString:@""])
+        {
+            _reviewTextView.text = @"Ajoutez votre review...";
+            
+        }
+        else
+            [self saveReview];
         _reviewRating.rating = 0;
         [_reviewTableView reloadData];
         [textView resignFirstResponder];
@@ -154,9 +179,7 @@ shouldChangeTextInRange: (NSRange) range
     }
     else
     {
-        NSString *contentReview = textView.text;
         _isReviewing = NO;
-
         [_reviewTableView reloadData];
         _reviewTableView.scrollEnabled = YES;
     }
