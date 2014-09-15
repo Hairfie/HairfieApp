@@ -24,14 +24,14 @@
 
 -(void)setHairfie:(Hairfie *)hairfie
 {
-    self.name.text = hairfie.user.displayName;
+    self.name.text = hairfie.author.displayName;
 
     self.nbLikes.text = hairfie.numLikes;
 
     self.profilePicture = [[UIRoundImageView alloc] initWithFrame:CGRectMake(10, 170, 30, 30)];
     self.profilePicture.layer.borderWidth = 1.0f;
     self.profilePicture.layer.borderColor = [UIColor whiteColor].CGColor;
-    [self.profilePicture sd_setImageWithURL:[NSURL URLWithString:hairfie.user.thumbUrl]
+    [self.profilePicture sd_setImageWithURL:[NSURL URLWithString:hairfie.author.thumbUrl]
                            placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
 
     [self.hairfieView sd_setImageWithURL:[NSURL URLWithString:hairfie.hairfieCellUrl]
