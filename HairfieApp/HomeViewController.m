@@ -11,7 +11,6 @@
 #import "UIViewController+ECSlidingViewController.h"
 #import "AroundMeViewController.h"
 #import "AdvanceSearch.h"
-#import "HairfieRequest.h"
 #import "HairfieDetailViewController.h"
 #import "ApplyFiltersViewController.h"
 #import "UserRepository.h"
@@ -20,7 +19,6 @@
 @interface HomeViewController ()
 {
     AdvanceSearch *searchView;
-    HairfieRequest *hairfieReq;
     NSArray *hairfies;
     NSInteger hairfieRow;
     UIAlertView *chooseCameraType;
@@ -44,7 +42,6 @@
     self.navigationItem.title = [NSString stringWithFormat:NSLocalizedString(@"Home", nil)];
      [_hairfieCollection registerNib:[UINib nibWithNibName:@"CustomCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"hairfieCell"];
     [self.view addGestureRecognizer:self.slidingViewController.panGesture];
-    hairfieReq = [[HairfieRequest alloc] init];
     _searchView.hidden = YES;
     [_searchView initView];
     [_searchView.searchAroundMeImage setTintColor:[UIColor lightBlueHairfie]];
@@ -215,7 +212,9 @@
         hairfies = [[models reverseObjectEnumerator] allObjects];
         [self customReloadData];
     };
-    [hairfieReq getHairfies:loadSuccessBlock failure:loadErrorBlock];
+    [Hairfie listLatestPerPage:@(0)
+                          success:loadSuccessBlock
+                          failure:loadErrorBlock];
 }
 
 - (void)customReloadData

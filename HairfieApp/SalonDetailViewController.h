@@ -80,6 +80,7 @@
 @property (strong, nonatomic) Business *business;
 @property (strong, nonatomic) NSArray *similarBusinesses;
 @property (strong, nonatomic) NSArray *hairfies;
+@property (nonatomic) NSInteger selectedHairfieIndex;
 
 
 @property (nonatomic) IBOutlet MKMapView *previewMap;
