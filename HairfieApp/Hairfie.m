@@ -60,6 +60,14 @@
     return @"";
 }
 
+-(NSString *)displayNumLikes {
+    return [NSString stringWithFormat:@"%@", _numLikes];
+}
+
+-(NSString *)displayNumComments {
+    return [NSString stringWithFormat:@"%@", _numComments];
+}
+
 + (void) listLatest:(NSNumber *)limit
                skip:(NSNumber *)skip
             success:(void (^)(NSArray *))aSuccessHandler
