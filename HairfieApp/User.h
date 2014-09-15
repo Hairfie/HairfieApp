@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <LoopBack/LoopBack.h>
+#import "UserRepository.h"
 
 
 @interface User : LBModel
@@ -21,7 +22,7 @@
 @property (nonatomic) NSString *email;
 @property (nonatomic) NSString *numHairfies;
 
-
+-(id)initWithJson:(NSDictionary *)data;
 -(NSString *)name;
 -(NSString *)displayName;
 -(NSString *)displayHairfies;

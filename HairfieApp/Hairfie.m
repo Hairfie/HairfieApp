@@ -18,12 +18,9 @@
 
 - (void)setAuthor:(NSDictionary *)authorDic
 {
-    UserRepository *authorRepository = (UserRepository *)[[AppDelegate lbAdaptater] repositoryWithClass:[UserRepository class]];
-    _author = (User *)[authorRepository modelWithDictionary:authorDic];
-}
-
--(void) setNumLikes:(NSString *)numLikes {
-    _numLikes = @"0";
+    if(![authorDic isKindOfClass:[NSNull class]]) return;
+    
+    _author = [[User alloc] initWithJson:authorDic];
 }
 
 -(NSString *)pictureUrlwithWidth:(NSString *)width andHeight:(NSString *)height {
