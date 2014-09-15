@@ -24,10 +24,10 @@
 }
 
 -(NSString *)displayHairfies {
-    if(numHairfies) {
-        return  [NSString stringWithFormat:@"%@ hairfies", numHairfies];;
+    if ([self.numHairfies integerValue] < 2) {
+        return [NSString stringWithFormat:@"%@ hairfie", self.numHairfies];
     } else {
-        return  @"0 hairfies";
+        return [NSString stringWithFormat:@"%@ hairfies", self.numHairfies];
     }
 }
 

@@ -13,10 +13,18 @@
 
 @implementation Business
 
-
-
--(NSString *)displayNameAndAddress {
+-(NSString *)displayNameAndAddress
+{
     return [NSString stringWithFormat:@"%@ - %@", self.name, self.address.displayAddress];
+}
+
+-(NSString *)displayNumHairfies
+{
+    if ([self.numHairfies integerValue] > 1) {
+        return [NSString stringWithFormat:@"%@ hairfies", self.numHairfies];
+    } else {
+        return [NSString stringWithFormat:@"%@ hairfie", self.numHairfies];
+    }
 }
 
 -(id)initWithJson:(NSDictionary *)data
@@ -98,19 +106,6 @@
                              failure:^(NSError *error) {
                                  aFailureHandler(error);
                              }];
-}
-
-
-/* Temporary internal method to generate sample businesses */
-+(id)sample
-{
-    Business *business = [[Business alloc] init];
-    business.name = @"Some name";
-    business.address = [[Address alloc] initWithStreet:@"123 foo street" city:@"Paris" zipCode:@"75000" country:@"FR"];
-    business.distance = @534;
-    business.thumbnail = @"http://maps.googleapis.com/maps/api/streetview?size=600x400&location=48.8698174,2.2984027";
-    
-    return business;
 }
 
 @end
