@@ -39,16 +39,24 @@
     [_dataChoice setSeparatorInset:UIEdgeInsetsZero];
     _isSalon = NO;
     _isHairdresser = NO;
+    _hairdresserSubview.hidden = YES;
+    //_whoSubviewConstraint.constant = 0.f;
+    _emailSubview.hidden = YES;
     salonTypes = [[NSArray alloc] initWithObjects:@"I did it", @"Hairdresser in a Salon", nil];
     _tableViewHeight.constant = [salonTypes count] * _dataChoice.rowHeight;
+    [self addDoneButtonToPriceField];
     [self uploadProfileImage:_hairfie];
 }
 
 -(void)viewWillAppear:(BOOL)animated
+
 {
     
-    if (_salonChosen != nil)
-        _salonLabel.text = [_salonChosen objectForKeyedSubscript:@"name"];
+    if (_salonChosen != nil) {
+        [_salonLabelButton setTitle:[_salonChosen objectForKeyedSubscript:@"name"] forState:UIControlStateNormal];
+        _hairdresserSubview.hidden = NO;
+        
+    }
 }
 
 - (BOOL) textView: (UITextView*) textView
@@ -69,6 +77,7 @@ shouldChangeTextInRange: (NSRange) range
 
 -(IBAction)showSalonsChoices:(id)sender
 {
+    [_hairfieDesc resignFirstResponder];
     if (_isSalon == YES) {
         _dataChoice.hidden = YES;
         _isSalon = NO;
@@ -83,6 +92,7 @@ shouldChangeTextInRange: (NSRange) range
 
 -(IBAction)showHairdresserChoices:(id)sender
 {
+    [_hairfieDesc resignFirstResponder];
     if (_isHairdresser == YES) {
         _dataChoice.hidden = YES;
         _isHairdresser = NO;
@@ -137,9 +147,11 @@ shouldChangeTextInRange: (NSRange) range
     {
         if (indexPath.row != 0)
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
         cell.textLabel.text = [salonTypes objectAtIndex:indexPath.row];
         cell.textLabel.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:16];
-        cell.textLabel.textColor = [UIColor colorWithRed:191/255.0f green:194/255.0f blue:199/255.0f alpha:1];
+        cell.textLabel.textColor =
+            [UIColor colorWithRed:191/255.0f green:194/255.0f blue:199/255.0f alpha:1];
     }
     else
     {
@@ -157,7 +169,7 @@ shouldChangeTextInRange: (NSRange) range
     }
     else
     {
-        _salonLabel.text = @"I did it";
+        [_salonLabelButton setTitle:@"I did it" forState:UIControlStateNormal];
         [self showSalonsChoices:self];
     }
 }
@@ -171,6 +183,7 @@ shouldChangeTextInRange: (NSRange) range
 
 -(IBAction)postHairfie:(id)sender
 {
+    NSLog(@"Post Hairfie");
     while (uploadInProgress) {
         NSLog(@"Loop Loop !");
         [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
@@ -179,16 +192,14 @@ shouldChangeTextInRange: (NSRange) range
 
     NSMutableDictionary *hairfieDic = [[NSMutableDictionary alloc] init];
                                        
-    [hairfieDic setObject:uploadedFileName forKey:@"picture"];
+    [hairfieDic setObject:uploadedFileName  forKey:@"picture"];
     [hairfieDic setObject:_hairfieDesc.text forKey:@"description"];
-    
-//                                       initWithObjectsAndKeys:uploadedFileName, @"picture",_hairfieDesc.text, @"description", nil];
 
     if (_salonChosen){
         BusinessRepository *businessRepository = (BusinessRepository *)[[AppDelegate lbAdaptater] repositoryWithClass:[BusinessRepository class]];
         Business *business = (Business *)[businessRepository modelWithDictionary:_salonChosen];
         
-        [hairfieDic setObject:business.businessId forKey:@"businessId"];
+        [hairfieDic setObject:business.id forKey:@"id"];
     }
     if (![_priceTextField.text isEqualToString:@""])
     {
@@ -229,6 +240,28 @@ shouldChangeTextInRange: (NSRange) range
     };
     
     [pictureUploader uploadImage:image toContainer:@"hairfies" success:loadSuccessBlock failure:loadErrorBlock];
+}
+
+-(void) addDoneButtonToPriceField {
+    UIToolbar* keyboardDoneButtonView = [[UIToolbar alloc] init];
+    [keyboardDoneButtonView sizeToFit];
+    UIBarButtonItem* doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Validate Price"
+                                                                   style:UIBarButtonItemStyleBordered
+                                                                  target:self
+                                                                  action:@selector(doneClicked:)];
+    UIBarButtonItem *flex =
+        [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                                                       target:self
+                                                       action:nil];
+
+    [keyboardDoneButtonView setItems:[NSArray arrayWithObjects:flex, doneButton, nil]];
+    _priceTextField.inputAccessoryView = keyboardDoneButtonView;
+}
+
+- (IBAction)doneClicked:(id)sender
+{
+    NSLog(@"Done Clicked.");
+    [_priceTextField endEditing:YES];
 }
 
 @end

@@ -16,7 +16,7 @@
 
 @synthesize hairfie, imageView;
 
--(UIStatusBarStyle)preferredStatusBarStyle{
+-(UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
 }
 
@@ -30,7 +30,7 @@
 
 -(IBAction)goBack:(id)sender
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

@@ -42,7 +42,7 @@
     appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(currentUserChanged:) name:@"currentUser" object:nil];
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(badCredentials:) name:@"badCredentials" object:nil];
     
     [self initCurrentUser];
     
@@ -72,6 +72,10 @@
     [self initCurrentUser];
 }
 
+-(void)badCredentials:(NSNotification*)notification
+{
+    [self logOut];
+}
 
 -(void) initCurrentUser
 {

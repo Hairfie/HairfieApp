@@ -25,21 +25,19 @@
 
 @implementation SalonDetailViewController {
     BOOL isOpen;
-    NSArray *phoneNumbers;
-    
     // Variables de test (vu qu'il y a pas de backend)
     
     NSArray *coiffureArray;
     NSArray *coiffeurArray;
 }
 
-@synthesize imageSliderView =_imageSliderView, pageControl = _pageControl,hairfieView = _hairfieView, hairdresserView = _hairdresserView, priceAndSaleView = _priceAndSaleView, infoBttn = _infoBttn, hairfieBttn = _hairfieBttn, hairdresserBttn = _hairdresserBttn, priceAndSaleBttn = _priceAndSaleBttn, reviewRating = _reviewRating, reviewTableView = _reviewTableView, addReviewBttn = _addReviewBttn, moreReviewBttn = _moreReviewBttn, similarTableView = _similarTableView, dataSalon = _dataSalon, ratingLabel = _ratingLabel, name = _name , womanPrice = _womanPrice, manPrice = _manPrice, salonRating = _salonRating, address = _address, city = _city, salonAvailability = _salonAvailability, nbReviews = _nbReviews, previewMap = _previewMap, isOpenLabel = _isOpenLabel, isOpenLabelDetail = _isOpenLabelDetail, isOpenImage = _isOpenImage, isOpenImageDetail = _isOpenImageDetail, callBttn = _callBttn, telephoneBgView = _telephoneBgView, detailedContainerView = _detailedContainerView;
+@synthesize imageSliderView =_imageSliderView, pageControl = _pageControl,hairfieView = _hairfieView, hairdresserView = _hairdresserView, priceAndSaleView = _priceAndSaleView, infoBttn = _infoBttn, hairfieBttn = _hairfieBttn, hairdresserBttn = _hairdresserBttn, priceAndSaleBttn = _priceAndSaleBttn, reviewRating = _reviewRating, reviewTableView = _reviewTableView, addReviewBttn = _addReviewBttn, moreReviewBttn = _moreReviewBttn, similarTableView = _similarTableView, business = _business, ratingLabel = _ratingLabel, name = _name , womanPrice = _womanPrice, manPrice = _manPrice, salonRating = _salonRating, address = _address, city = _city, salonAvailability = _salonAvailability, nbReviews = _nbReviews, previewMap = _previewMap, isOpenLabel = _isOpenLabel, isOpenLabelDetail = _isOpenLabelDetail, isOpenImage = _isOpenImage, isOpenImageDetail = _isOpenImageDetail, callBttn = _callBttn, telephoneBgView = _telephoneBgView, detailedContainerView = _detailedContainerView;
 
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self initKnownData:_dataSalon];
+    [self initKnownData:_business];
     [self setButtonSelected:_infoBttn andBringViewUpfront:_infoView];
     _infoView.hidden = NO;
     _imageSliderView.canCancelContentTouches = NO;
@@ -268,7 +266,7 @@
     if (tableView == _reviewTableView)
         return 2;
     else if (tableView == _similarTableView)
-        return 3;
+        return self.similarBusinesses.count;
     if (tableView == _hairdresserTableView)
         return 5;
     if(tableView == _pricesTableView)
@@ -314,10 +312,8 @@
             NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"SimilarTableViewCell" owner:self options:nil];
             cell = [nib objectAtIndex:0];
         }
-        // Provisoire data
         
-        cell.name.text = [NSString stringWithFormat:@"Similar salon %ld",indexPath.row + 1];
-        cell.salonPicture.image = [UIImage imageNamed:@"placeholder-image.jpg"];
+        [cell customInit:self.similarBusinesses[indexPath.row]];
         
         return cell;
     }
@@ -355,25 +351,21 @@
     return nil;
 }
 
-- (void) initKnownData:(NSDictionary*)salon
+- (void) initKnownData:(Business*)business
 {
-   
-    NSDictionary *price = [salon objectForKey:@"price"];
-    phoneNumbers = [salon objectForKey:@"phone_numbers"];
-    NSDictionary *reviews = [salon objectForKey:@"reviews"];
-    NSDictionary *timetables =[salon objectForKey:@"timetables"];
-    NSArray *pictures = [salon objectForKey:@"pictures"];
-   
-   [self setupGallery:pictures];
-
-    if (![timetables isEqual:[NSNull null]]) {
+    [self setupCrossSell];
+    
+    [self setupHairfies];
+    
+    [self setupGallery:business.pictures];
+    
+    if ([business.timetable isEqualToDictionary:@{}]) {
         _isOpenImageDetail.hidden = YES;
         _isOpenLabelDetail.hidden = YES;
         _isOpenLabel.text = @"Pas d'informations";
-    }
-    else {
+    } else {
         OpeningTimes * op = [[OpeningTimes alloc] init];
-        isOpen = [op isOpen:timetables];
+        isOpen = [op isOpen:business.timetable];
         if (isOpen) {
             _isOpenLabel.text = @"Ouvert aujourd'hui";
             _isOpenLabel.textColor = [UIColor greenHairfie];
@@ -382,11 +374,12 @@
             [_isOpenImage setTintColor:[UIColor greenHairfie]];
         }
         else {
+            NSLog(@"%@", business);
             _isOpenLabel.text = @"Fermé aujourd'hui";
         }
     }
 
-    if ([phoneNumbers isEqual:[NSNull null]] || [phoneNumbers count] == 0)
+    if ([[business phoneNumbers] isEqual:[NSNull null]] || business.phoneNumbers.count == 0)
     {
         _telephone.text = [NSString stringWithFormat:@"Pas de numéro connu"];
         _telephoneLabelWidth.constant = 133;
@@ -397,12 +390,12 @@
         [self addPhoneNumbersToView];
         
     }
-    _name.text = [salon objectForKey:@"name"];
+    _name.text = business.name;
     
-    if ([[price objectForKey:@"women"] integerValue] != 0 && [[price objectForKey:@"men"]integerValue] != 0)
+    if ([[[business prices] objectForKey:@"women"] integerValue] != 0 && [[[business prices] objectForKey:@"men"]integerValue] != 0)
     {
-        _manPrice.text = [NSString stringWithFormat:@"%@ €",[[price objectForKey:@"men"] stringValue]];
-        _womanPrice.text = [NSString stringWithFormat:@"%@ €",[[price objectForKey:@"women"] stringValue]];
+        _manPrice.text = [NSString stringWithFormat:@"%@ €",[[[business prices] objectForKey:@"men"] stringValue]];
+        _womanPrice.text = [NSString stringWithFormat:@"%@ €",[[[business prices] objectForKey:@"women"] stringValue]];
         _pricesView.hidden = NO;
     }
     else
@@ -415,7 +408,8 @@
     _salonRating.maxRating = 5;
     _salonRating.delegate = self;
     
-    if ([[reviews objectForKey:@"total"] integerValue] == 0)
+
+    if (business.numReviews == 0)
     {
         _salonRating.rating = 0;
         _ratingLabel.text = @"0";
@@ -429,23 +423,49 @@
     }
     else
     {
-        _salonRating.rating = [[reviews objectForKey:@"average"] floatValue];
-        _ratingLabel.text = [[reviews objectForKey:@"average"] stringValue];
-        _nbReviews.text =[NSString stringWithFormat:@"- %@ reviews",[reviews objectForKey:@"total"]];
+        _salonRating.rating = [[business ratingBetween:@0 and: @5] floatValue];
+        _ratingLabel.text = [[business ratingBetween:@0 and:@5] stringValue];
+        _nbReviews.text =[NSString stringWithFormat:@"- %@ reviews", business.numReviews];
     }
     
-    _address.text = [[salon objectForKey:@"address"] valueForKey:@"street"];
-    _zipCode.text = [[salon objectForKey:@"address"] valueForKey:@"zipcode"];
-    _city.text = [[salon objectForKey:@"address"] valueForKey:@"city"];
+    _address.text = business.address.street;
+    _zipCode.text = business.address.zipCode;
+    _city.text = business.address.city;
     
     // MapView Setup
-    _haidresserLat = [[salon objectForKey:@"gps"] valueForKey:@"lat"];
-    _haidresserLng = [[salon objectForKey:@"gps"] valueForKey:@"lng"];
+    _haidresserLat = [NSString stringWithFormat:@"%@", business.gps.latitude];
+    _haidresserLng = [NSString stringWithFormat:@"%@", business.gps.longitude];
 
 }
 
+-(void)setupCrossSell
+{
+    if (!self.business.crossSell) return;
+    
+    [Business listSimilarTo:self.business.id
+                      limit:@3
+                    success:^(NSArray *businesses) {
+                        self.similarBusinesses = businesses;
+                        [self.similarTableView reloadData];
+                    }
+                    failure:^(NSError *error) {
+                        NSLog(@"%@", error.localizedDescription);
+                    }];
+}
 
-
+-(void)setupHairfies
+{
+    [Hairfie listLatestByBusiness:self.business.id
+                            limit:@10
+                             skip:@0
+                          success:^(NSArray *hairfies) {
+                              self.hairfies = hairfies;
+                              [self.hairfieCollection reloadData];
+                          }
+                          failure:^(NSError *error) {
+                              NSLog(@"%@", error.localizedDescription);
+                          }];
+}
 
 - (void)updateMapView {
     
@@ -483,13 +503,13 @@
 }
 
 -(IBAction)callPhone:(id)sender {
-    NSLog(@"callPhone %@", [phoneNumbers objectAtIndex:0]);
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"telprompt://%@", [phoneNumbers objectAtIndex:0]]]];
+    NSLog(@"callPhone %@", [self.business.phoneNumbers objectAtIndex:0]);
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"telprompt://%@", [self.business.phoneNumbers objectAtIndex:0]]]];
 }
 
 -(IBAction)callPhoneWithNumber:(UIButton *)sender {
 
-    NSString *number = [phoneNumbers objectAtIndex:sender.tag];
+    NSString *number = [self.business.phoneNumbers objectAtIndex:sender.tag];
     NSLog(@"callPhone %@", number);
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"telprompt://%@", number]]];
 }
@@ -508,21 +528,21 @@
        
         
         
-        horaires.salon = [_dataSalon objectForKey:@"timetables"];
+        horaires.salon = _business.timetable;
     }
 }
 
--(void)addPhoneNumbersToView {
-    
+-(void)addPhoneNumbersToView
+{
     _telephone.hidden = YES;
     _telephoneBgView.hidden = YES;
     
     #define OffsetBetweenButtons 135
     
-    for(int buttonIndex=0; buttonIndex<[phoneNumbers count]; buttonIndex++){
+    for(int buttonIndex=0; buttonIndex<[self.business.phoneNumbers count]; buttonIndex++){
     
         UIButton *phoneBtn=[UIButton buttonWithType:UIButtonTypeRoundedRect];
-        NSString *phone =[phoneNumbers objectAtIndex:buttonIndex];
+        NSString *phone =[self.business.phoneNumbers objectAtIndex:buttonIndex];
         
         phoneBtn.frame= CGRectMake(35 + OffsetBetweenButtons * buttonIndex, 75, 115, 25);
         phoneBtn.backgroundColor = [UIColor lightBlueHairfie];
@@ -560,20 +580,18 @@
 
 // Collection View Delegate
 
-- (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section
+-(NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section
 {
-    _hairfieCollectionHeight.constant = (6 * 220) / 2;
-    return 6;
+    return self.hairfies.count;
 }
-// 2
-- (NSInteger)numberOfSectionsInCollectionView: (UICollectionView *)collectionView {
+
+-(NSInteger)numberOfSectionsInCollectionView: (UICollectionView *)collectionView
+{
     return 1;
 }
 
-
-// 3
-- (CustomCollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    
+-(CustomCollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{    
     static NSString *CellIdentifier = @"hairfieCell";
     CustomCollectionViewCell *cell = [cv dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
     
@@ -581,10 +599,9 @@
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"CustomCollectionViewCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
-    cell.name.text = @"Kimi Smith";
-    cell.hairfieView.image = [UIImage imageNamed:@"hairfie.jpg"];
-    cell.layer.borderColor = [UIColor whiteHairfie].CGColor;
-    cell.layer.borderWidth = 1.0f;
+    
+    [cell setHairfie:self.hairfies[indexPath.row]];
+    
     return cell;
 }
 

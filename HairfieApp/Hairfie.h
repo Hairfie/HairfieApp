@@ -13,19 +13,25 @@
 
 @interface Hairfie : LBModel
 
-@property (nonatomic) NSDictionary *picture;
-@property (nonatomic) NSString *userId;
-@property (nonatomic) NSString *description;
-@property (nonatomic) NSString *businessId;
-@property (nonatomic) NSDictionary *price;
-@property (nonatomic) NSString *hairfieId;
-@property (nonatomic) User *user;
-@property (nonatomic) Business *business;
+@property (strong, nonatomic) NSString *id;
+@property (strong, nonatomic) NSDictionary *picture;
+@property (strong, nonatomic) NSString *description;
+@property (strong, nonatomic) NSDictionary *price;
+@property (strong, nonatomic) NSString *numLikes;
+@property (strong, nonatomic) NSString *numComments;
+@property (strong, nonatomic) User *user;
+@property (strong, nonatomic) Business *business;
 
 
 -(NSString *)pictureUrl;
 -(NSString *)hairfieCellUrl;
 -(NSString *)hairfieDetailUrl;
 -(NSString *)displayPrice;
+
++(void)listLatestByBusiness:(NSString *)businessId
+                      limit:(NSNumber *)limit
+                       skip:(NSNumber *)skip
+                    success:(void(^)(NSArray *hairfies))aSuccessHandler
+                    failure:(void(^)(NSError *error))aFailureHandler;
 
 @end

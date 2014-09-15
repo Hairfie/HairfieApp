@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6205" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="dEN-gt-xJT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A329r" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="dEN-gt-xJT">
     <dependencies>
         <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6198"/>
@@ -14,6 +14,7 @@
             <string>SourceSansPro-Bold</string>
         </mutableArray>
         <mutableArray key="SourceSansPro-Light.ttf">
+            <string>SourceSansPro-Light</string>
             <string>SourceSansPro-Light</string>
             <string>SourceSansPro-Light</string>
             <string>SourceSansPro-Light</string>
@@ -712,6 +713,9 @@ Inscivez-vous maintenant</string>
                                         <state key="normal" image="picto-take-picture.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <segue destination="C0A-PA-Dfl" kind="push" identifier="cameraOverlay" id="dg2-Ph-4Hs"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.15686274509803921" green="0.19215686274509802" blue="0.22352941176470587" alpha="1" colorSpace="calibratedRGB"/>
@@ -826,13 +830,34 @@ Inscivez-vous maintenant</string>
                         <outlet property="searchField" destination="ePq-Fx-C9u" id="9tX-HK-uFj"/>
                         <outlet property="searchView" destination="UlN-Ro-o4h" id="Gfv-cA-ACV"/>
                         <outlet property="takePictureButton" destination="aH7-em-gOi" id="eB9-KY-5K3"/>
-                        <segue destination="QW8-eh-zsD" kind="push" identifier="cameraFilters" id="IQn-cj-Sbx"/>
                         <segue destination="5vw-Wx-iMq" kind="push" identifier="searchFromFeed" id="4Cm-qL-flu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tyk-UX-pm7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1254" y="-1744"/>
+        </scene>
+        <!--Camera Overlay View Controller-->
+        <scene sceneID="Nkk-fp-ZzY">
+            <objects>
+                <viewController id="C0A-PA-Dfl" customClass="CameraOverlayViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2SE-lg-eJs"/>
+                        <viewControllerLayoutGuide type="bottom" id="SHl-eq-JF1"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="iev-fr-inl">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.1764705882" green="0.22352941179999999" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="7d6-Uh-w2k"/>
+                    <connections>
+                        <segue destination="QW8-eh-zsD" kind="push" identifier="cameraFilters" id="Uce-Bn-1pO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fGv-4K-iyM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="234" y="-3062"/>
         </scene>
         <!--Apply Filters View Controller-->
         <scene sceneID="DFO-ad-oPT">
@@ -877,7 +902,7 @@ Inscivez-vous maintenant</string>
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.35686274509803922" green="0.41176470588235292" blue="0.46666666666666667" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.1764705882" green="0.22352941179999999" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.1960784314" green="0.26274509800000001" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
@@ -893,7 +918,7 @@ Inscivez-vous maintenant</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ndA-pC-BXu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="741" y="-3062"/>
+            <point key="canvasLocation" x="703" y="-3062"/>
         </scene>
         <!--Hairfie Post Details View Controller-->
         <scene sceneID="EHO-4k-Ooh">
@@ -960,16 +985,6 @@ Inscivez-vous maintenant</string>
                                             <constraint firstAttribute="height" constant="39" id="R1H-HL-mFs"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Where ?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kQl-Vg-Bbo">
-                                        <rect key="frame" x="31" y="165" width="230" height="39"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="39" id="AQP-Jc-HjR"/>
-                                            <constraint firstAttribute="width" constant="230" id="XPv-Th-Qgq"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="17"/>
-                                        <color key="textColor" red="0.35686274509999999" green="0.41176470590000003" blue="0.46666666670000001" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="arrow-dropdown.png" translatesAutoresizingMaskIntoConstraints="NO" id="Yyb-Bc-PPR">
                                         <rect key="frame" x="275" y="181" width="20" height="11"/>
                                         <constraints>
@@ -986,82 +1001,115 @@ Inscivez-vous maintenant</string>
                                             <action selector="showSalonsChoices:" destination="60g-nd-hW0" eventType="touchUpInside" id="bBc-mc-Jjn"/>
                                         </connections>
                                     </button>
-                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" image="hairdresser-where-hairfie-post.png" translatesAutoresizingMaskIntoConstraints="NO" id="VDS-7P-Sez">
-                                        <rect key="frame" x="10" y="225" width="300" height="39"/>
+                                    <view contentMode="scaleToFill" verticalCompressionResistancePriority="250" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xSZ-Hu-sLy">
+                                        <rect key="frame" x="0.0" y="213" width="320" height="55"/>
+                                        <subviews>
+                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" image="hairdresser-where-hairfie-post.png" translatesAutoresizingMaskIntoConstraints="NO" id="l1R-V1-aKa">
+                                                <rect key="frame" x="10" y="12" width="300" height="39"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="300" id="eBJ-gl-pzU"/>
+                                                    <constraint firstAttribute="height" constant="39" id="iZs-ye-LoW"/>
+                                                </constraints>
+                                            </imageView>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="arrow-dropdown.png" translatesAutoresizingMaskIntoConstraints="NO" id="0zk-lj-FS9">
+                                                <rect key="frame" x="275" y="27" width="20" height="11"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="20" id="BbT-rJ-qAL"/>
+                                                    <constraint firstAttribute="height" constant="11" id="yZc-bF-1Lg"/>
+                                                </constraints>
+                                            </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XXJ-UR-geU">
+                                                <rect key="frame" x="30" y="12" width="254" height="39"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="230" id="G4L-29-sjY"/>
+                                                    <constraint firstAttribute="height" constant="39" id="eTG-fa-pWf"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="18"/>
+                                                <state key="normal" title="Who ?">
+                                                    <color key="titleColor" red="0.35686274509999999" green="0.41176470590000003" blue="0.46666666670000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                            </button>
+                                        </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="300" id="cnd-mm-AWT"/>
-                                            <constraint firstAttribute="height" constant="39" id="gZ4-og-vaO"/>
+                                            <constraint firstAttribute="height" priority="750" id="XJg-Rw-EnW"/>
                                         </constraints>
-                                    </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Who ?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mqS-3V-2Nq">
-                                        <rect key="frame" x="31" y="225" width="148" height="39"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xvm-LG-q6u">
+                                        <rect key="frame" x="0.0" y="272" width="320" height="55"/>
+                                        <subviews>
+                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" image="hairdresser-price-hairfie-post.png" translatesAutoresizingMaskIntoConstraints="NO" id="dJj-zm-Orv">
+                                                <rect key="frame" x="10" y="13" width="300" height="39"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="300" id="4tx-S3-EQC"/>
+                                                    <constraint firstAttribute="height" constant="39" id="Zef-wf-eMF"/>
+                                                </constraints>
+                                            </imageView>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="How Much ?" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9jn-WQ-rGO">
+                                                <rect key="frame" x="72" y="13" width="237" height="39"/>
+                                                <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="17"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="done"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="60g-nd-hW0" id="zJn-nK-G0f"/>
+                                                </connections>
+                                            </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4aW-yv-yzw">
+                                                <rect key="frame" x="27" y="13" width="18" height="37"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="37" id="gUB-fF-Tub"/>
+                                                    <constraint firstAttribute="width" constant="18" id="gej-AR-Ix4"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="18"/>
+                                                <state key="normal" title="€">
+                                                    <color key="titleColor" red="0.35686274509999999" green="0.41176470590000003" blue="0.46666666670000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                            </button>
+                                        </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="148" id="WEG-EP-Mek"/>
-                                            <constraint firstAttribute="height" constant="39" id="pY3-V9-zEI"/>
+                                            <constraint firstAttribute="height" constant="55" id="ffN-lP-hAv"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="17"/>
-                                        <color key="textColor" red="0.35686274509999999" green="0.41176470590000003" blue="0.46666666670000001" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="arrow-dropdown.png" translatesAutoresizingMaskIntoConstraints="NO" id="QTj-aj-24V">
-                                        <rect key="frame" x="275" y="240" width="20" height="11"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ihB-lj-Iee">
+                                        <rect key="frame" x="0.0" y="331" width="320" height="55"/>
+                                        <subviews>
+                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" image="send-email-client-button.png" translatesAutoresizingMaskIntoConstraints="NO" id="jXt-6m-Fer">
+                                                <rect key="frame" x="10" y="8" width="300" height="39"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="300" id="WiF-nA-VUV"/>
+                                                    <constraint firstAttribute="height" constant="39" id="ocQ-hA-nOk"/>
+                                                </constraints>
+                                            </imageView>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email du client" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Pjf-U8-rg7">
+                                                <rect key="frame" x="58" y="8" width="203" height="39"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2o9-JL-3ON">
+                                        <rect key="frame" x="31" y="166" width="230" height="39"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="11" id="MlH-kj-mjs"/>
-                                            <constraint firstAttribute="width" constant="20" id="W0q-QU-rEc"/>
+                                            <constraint firstAttribute="height" constant="39" id="EvZ-hJ-c7N"/>
+                                            <constraint firstAttribute="width" constant="230" id="xqL-CG-qHH"/>
                                         </constraints>
-                                    </imageView>
-                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" image="hairdresser-price-hairfie-post.png" translatesAutoresizingMaskIntoConstraints="NO" id="dJj-zm-Orv">
-                                        <rect key="frame" x="10" y="284" width="300" height="39"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="300" id="4tx-S3-EQC"/>
-                                            <constraint firstAttribute="height" constant="39" id="Zef-wf-eMF"/>
-                                        </constraints>
-                                    </imageView>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="How Much ?" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="obk-hf-bm5">
-                                        <rect key="frame" x="72" y="284" width="237" height="39"/>
-                                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="17"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="done"/>
-                                        <connections>
-                                            <outlet property="delegate" destination="60g-nd-hW0" id="xU4-Ai-RjW"/>
-                                        </connections>
-                                    </textField>
-                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" image="send-email-client-button.png" translatesAutoresizingMaskIntoConstraints="NO" id="dml-Z3-tjI">
-                                        <rect key="frame" x="10" y="337" width="300" height="39"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="39" id="Y7k-9G-8yF"/>
-                                            <constraint firstAttribute="width" constant="300" id="fNO-nW-o2u"/>
-                                        </constraints>
-                                    </imageView>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email du client" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bkw-ZB-kaJ">
-                                        <rect key="frame" x="58" y="337" width="203" height="39"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r2n-O8-Mik" userLabel="Who Bttn">
-                                        <rect key="frame" x="261" y="225" width="48" height="39"/>
-                                        <state key="normal">
+                                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="18"/>
+                                        <state key="normal" title="Where ?">
+                                            <color key="titleColor" red="0.35686274509999999" green="0.41176470590000003" blue="0.46666666670000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
-                                    </button>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="AxN-r1-GHU">
-                                        <rect key="frame" x="10" y="213" width="300" height="150"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="150" id="Zyc-NL-YHa"/>
-                                        </constraints>
                                         <connections>
-                                            <outlet property="dataSource" destination="60g-nd-hW0" id="Rg1-FV-TVV"/>
-                                            <outlet property="delegate" destination="60g-nd-hW0" id="MQG-af-IIa"/>
+                                            <action selector="showSalonsChoices:" destination="60g-nd-hW0" eventType="touchUpInside" id="H0G-2l-oYY"/>
                                         </connections>
-                                    </tableView>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="mqS-3V-2Nq" firstAttribute="top" secondItem="Vjl-H2-Nzu" secondAttribute="bottom" constant="85" id="E8A-2A-Wey"/>
-                                    <constraint firstItem="kQl-Vg-Bbo" firstAttribute="top" secondItem="xfh-mY-dbB" secondAttribute="top" constant="165" id="EQp-OV-qIN"/>
-                                    <constraint firstItem="AxN-r1-GHU" firstAttribute="top" secondItem="xfh-mY-dbB" secondAttribute="top" constant="213" id="kvS-l1-oz2"/>
+                                    <constraint firstItem="2o9-JL-3ON" firstAttribute="top" secondItem="xfh-mY-dbB" secondAttribute="top" constant="165" id="8DI-3S-AVb"/>
+                                    <constraint firstItem="xSZ-Hu-sLy" firstAttribute="top" secondItem="Vjl-H2-Nzu" secondAttribute="bottom" constant="85" id="nIp-hk-SMc"/>
+                                    <constraint firstItem="Xvm-LG-q6u" firstAttribute="top" secondItem="ihB-lj-Iee" secondAttribute="bottom" constant="4" id="pDC-ta-798"/>
                                 </constraints>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BLb-LA-FH2">
@@ -1077,7 +1125,7 @@ Inscivez-vous maintenant</string>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="postHairfie:" destination="60g-nd-hW0" eventType="touchUpInside" id="Ht6-ka-obl"/>
+                                    <action selector="postHairfie:" destination="60g-nd-hW0" eventType="touchUpInside" id="LmW-Y0-78B"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1088,14 +1136,15 @@ Inscivez-vous maintenant</string>
                     </view>
                     <navigationItem key="navigationItem" id="sGl-zN-LMf"/>
                     <connections>
-                        <outlet property="dataChoice" destination="AxN-r1-GHU" id="Gee-Wt-c05"/>
-                        <outlet property="emailTextField" destination="Bkw-ZB-kaJ" id="Mkx-PA-S09"/>
+                        <outlet property="emailSubview" destination="ihB-lj-Iee" id="GF1-u9-Lrg"/>
+                        <outlet property="hairdresserSubview" destination="xSZ-Hu-sLy" id="NMc-NR-H2v"/>
                         <outlet property="hairfieDesc" destination="gFo-ft-JjF" id="12p-0m-f8C"/>
                         <outlet property="hairfieImageView" destination="GIY-2G-FaB" id="zZA-KP-CH3"/>
-                        <outlet property="priceTextField" destination="obk-hf-bm5" id="XRS-oF-vAX"/>
-                        <outlet property="salonLabel" destination="kQl-Vg-Bbo" id="QQg-AX-QDI"/>
-                        <outlet property="tableViewHeight" destination="Zyc-NL-YHa" id="Xyc-IU-q6c"/>
-                        <outlet property="tableViewYPos" destination="kvS-l1-oz2" id="EAZ-R9-BQC"/>
+                        <outlet property="priceLabelButton" destination="4aW-yv-yzw" id="NkC-m5-eWV"/>
+                        <outlet property="priceSubview" destination="Xvm-LG-q6u" id="nUl-p1-2cB"/>
+                        <outlet property="priceTextField" destination="9jn-WQ-rGO" id="ugm-w6-LWA"/>
+                        <outlet property="salonLabelButton" destination="2o9-JL-3ON" id="xcr-Y9-xP4"/>
+                        <outlet property="whoSubviewConstraint" destination="XJg-Rw-EnW" id="2c6-HE-qZz"/>
                         <segue destination="8ER-eF-RXx" kind="push" identifier="choseSalonType" id="KDo-Hs-2DW"/>
                     </connections>
                 </viewController>
@@ -1180,18 +1229,6 @@ Inscivez-vous maintenant</string>
                                     <constraint firstAttribute="height" constant="27" id="s1z-9k-eZf"/>
                                 </constraints>
                             </imageView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="b0O-kw-LnI">
-                                <rect key="frame" x="0.0" y="225" width="320" height="345"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="320" id="8bx-ab-9ro"/>
-                                    <constraint firstAttribute="height" constant="345" id="Uia-pi-eNq"/>
-                                </constraints>
-                                <connections>
-                                    <outlet property="dataSource" destination="8ER-eF-RXx" id="iIX-4Q-C7d"/>
-                                    <outlet property="delegate" destination="8ER-eF-RXx" id="mFl-pe-heH"/>
-                                </connections>
-                            </tableView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Fwq-a8-tlo" userLabel="Name Search">
                                 <rect key="frame" x="59" y="123" width="251" height="37"/>
                                 <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="16"/>
@@ -1217,6 +1254,18 @@ Inscivez-vous maintenant</string>
                                     <action selector="searchAroundMe:" destination="8ER-eF-RXx" eventType="touchUpInside" id="diV-6G-vdj"/>
                                 </connections>
                             </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="b0O-kw-LnI">
+                                <rect key="frame" x="0.0" y="223" width="320" height="345"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="320" id="8bx-ab-9ro"/>
+                                    <constraint firstAttribute="height" constant="345" id="Uia-pi-eNq"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="dataSource" destination="8ER-eF-RXx" id="iIX-4Q-C7d"/>
+                                    <outlet property="delegate" destination="8ER-eF-RXx" id="mFl-pe-heH"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -1624,6 +1673,9 @@ Inscivez-vous maintenant</string>
                                         <state key="normal" image="picto-take-picture.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <segue destination="C0A-PA-Dfl" kind="push" identifier="CameraOverlay" id="K9z-px-huR"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.15686274510000001" green="0.19215686269999999" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -1716,10 +1768,7 @@ Inscivez-vous maintenant</string>
                     </view>
                     <navigationItem key="navigationItem" id="HS4-gi-6R9"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4">
-                        <size key="portraitSize" width="320" height="568"/>
-                        <size key="landscapeSize" width="568" height="320"/>
-                    </simulatedScreenMetrics>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="hairdresserTableView" destination="tHR-dR-4MZ" id="fF7-Up-LEG"/>
                         <outlet property="headerView" destination="zB0-FQ-0pr" id="EUs-It-oYn"/>
@@ -2978,7 +3027,7 @@ connaissance et accepte les CGU de Hairfie</string>
                                                         </connections>
                                                     </textField>
                                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6tt-qA-okr">
-                                                        <rect key="frame" x="130" y="0.0" width="150" height="49.5"/>
+                                                        <rect key="frame" x="130" y="0.0" width="150" height="50"/>
                                                         <state key="normal">
                                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
@@ -3138,15 +3187,20 @@ connaissance et accepte les CGU de Hairfie</string>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4">
-            <size key="portraitSize" width="320" height="568"/>
-            <size key="landscapeSize" width="568" height="320"/>
-        </simulatedScreenMetrics>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+<<<<<<< HEAD
         <segue reference="HOe-ge-VCi"/>
         <segue reference="uEN-by-6gW"/>
         <segue reference="DYR-eo-mJz"/>
         <segue reference="sgS-Io-6JC"/>
+=======
+        <segue reference="K9z-px-huR"/>
+        <segue reference="uEN-by-6gW"/>
+        <segue reference="DYR-eo-mJz"/>
+        <segue reference="sgS-Io-6JC"/>
+        <segue reference="H0a-7y-EaD"/>
+>>>>>>> 90f6c34b3c7828b8eb6f1c919661b68e251a5e51
     </inferredMetricsTieBreakers>
 </document>

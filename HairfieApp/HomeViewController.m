@@ -24,6 +24,7 @@
     NSArray *hairfies;
     NSInteger hairfieRow;
     UIAlertView *chooseCameraType;
+    UIRefreshControl *refreshControl;
 }
 @end
 
@@ -47,13 +48,15 @@
     [_searchView initView];
     [_searchView.searchAroundMeImage setTintColor:[UIColor lightBlueHairfie]];
     _searchView.searchByLocation.text = @"Around Me";
-    [_takePictureButton addTarget:self
-                       action:@selector(chooseCameraType)
-             forControlEvents:UIControlEventTouchUpInside];
-    //self.view.translatesAutoresizingMaskIntoConstraints = NO;
-    //[self.view.translatesAutoresizingMaskIntoConstraints]
+
+    refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(getHairfies)
+             forControlEvents:UIControlEventValueChanged];
+    [_hairfieCollection addSubview:refreshControl];
+    
     [self getHairfies];
     // Do any additional setup after loading the view.
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -137,13 +140,9 @@
      cell.hairfieView.image = [UIImage imageNamed:@"hairfie.jpg"];
     }
     else {
-        [cell.hairfieView sd_setImageWithURL:[NSURL URLWithString:hairfie.hairfieCellUrl]
-                            placeholderImage:[UIColor imageWithColor:[UIColor colorWithRed:234/255.0f green:236/255.0f blue:238/255.0f alpha:1]]];
-        cell.hairfieView.contentMode = UIViewContentModeScaleAspectFill;
-        [cell initWithUser:hairfie.user];
+        [cell setHairfie:hairfie];
     }
-    cell.layer.borderColor = [UIColor colorWithRed:234/255.0f green:236/255.0f blue:238/255.0f alpha:1].CGColor;
-    cell.layer.borderWidth = 1.0f;
+
     return cell;
 }
 
@@ -154,178 +153,6 @@
     [self performSegueWithIdentifier:@"hairfieDetail" sender:self];
     
 }
-
-
--(void) initOverlayView
-{
-    
-    UIView *overlayView = [[UIView alloc] init];
-    
-    overlayView.frame =  _imagePicker.cameraOverlayView.frame;
-    
-    UIView *navigationView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 60)];
-    navigationView.backgroundColor = [UIColor blackHairfie];
-    
-    
-    UIImage *goBackImg = [UIImage imageNamed:@"arrow-nav.png"];
-    UIButton *goBackButton = [UIButton
-                              buttonWithType:UIButtonTypeCustom];
-    [goBackButton setImage:goBackImg forState:UIControlStateNormal];
-    [goBackButton addTarget:self action:@selector(cancelTakePicture) forControlEvents:UIControlEventTouchUpInside];
-    [goBackButton setFrame:CGRectMake(10, 32, 20, 20)];
-    
-    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(92, 30, 136, 23)];
-    titleLabel.text = @"Post Hairfie";
-    titleLabel.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:18];
-    titleLabel.textAlignment = NSTextAlignmentCenter;
-    titleLabel.textColor = [UIColor whiteColor];
-    [navigationView addSubview:titleLabel];
-    [navigationView addSubview:goBackButton];
-    [overlayView addSubview:navigationView];
-    
-    
-    UIImage *takePictureImg = [UIImage imageNamed:@"take-picture-button.png"];
-    
-    UIButton *takePictureButton = [UIButton
-                                   buttonWithType:UIButtonTypeCustom];
-    [takePictureButton setImage:takePictureImg forState:UIControlStateNormal];
-    [takePictureButton addTarget:self action:@selector(snapPicture) forControlEvents:UIControlEventTouchUpInside];
-    [takePictureButton setFrame:CGRectMake(122, 387, 77, 77)];
-    
-    takePictureButton.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin;
-    
-    
-    UIImage *goToLibraryImg = [UIImage imageNamed:@"leosquare.jpg"];
-    
-    UIButton *goToLibrary = [UIButton
-                                   buttonWithType:UIButtonTypeCustom];
-    [goToLibrary setImage:goToLibraryImg forState:UIControlStateNormal];
-    goToLibrary.layer.cornerRadius = 5;
-    goToLibrary.layer.masksToBounds = YES;
-    goToLibrary.layer.borderWidth = 1;
-    goToLibrary.layer.borderColor = [UIColor whiteColor].CGColor;
-    [goToLibrary addTarget:self action:@selector(switchCameraSourceType) forControlEvents:UIControlEventTouchUpInside];
-    [goToLibrary setFrame:CGRectMake(20, 420, 44, 44)];
-    
-    goToLibrary.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin;
-    
-    UIImage *switchCameraImg = [UIImage imageNamed:@"switch-camera-button.png"];
-    
-    UIButton *switchCameraButton = [UIButton
-                                    buttonWithType:UIButtonTypeCustom];
-    [switchCameraButton setImage:switchCameraImg forState:UIControlStateNormal];
-    [switchCameraButton addTarget:self action:@selector(switchCamera) forControlEvents:UIControlEventTouchUpInside];
-    [switchCameraButton setFrame:CGRectMake(268, 75, 32, 32)];
-    
-    [overlayView addSubview:switchCameraButton];
-    [overlayView addSubview:takePictureButton];
-    [overlayView addSubview:goToLibrary];
-    
-    _imagePicker.cameraOverlayView = overlayView;
-}
-
-
-- (void)switchCamera
-{
-    if (_imagePicker.cameraDevice == UIImagePickerControllerCameraDeviceRear)
-    {
-        _imagePicker.cameraDevice = UIImagePickerControllerCameraDeviceFront;
-    }
-    else
-    {
-        _imagePicker.cameraDevice = UIImagePickerControllerCameraDeviceRear;
-    }
-}
-
--(void) switchCameraSourceType
-{
-    [_imagePicker dismissViewControllerAnimated:NO completion:nil];
-    _imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    _imagePicker.allowsEditing = YES;
-    [self presentViewController:_imagePicker animated:YES completion:nil];
-}
-
--(void)snapPicture
-{
-    [_imagePicker takePicture];
-}
-
--(void) cancelTakePicture
-{
-    [_imagePicker dismissViewControllerAnimated:YES completion:nil];
-    
-}
-
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
-{
-    //UIImage *image = [info valueForKey:UIImagePickerControllerOriginalImage];
-    [self SetImageTakenForSegue:info];
-    [picker dismissViewControllerAnimated:YES completion:nil];
-
-    [self performSegueWithIdentifier:@"cameraFilters" sender:self];
-}
-
-
--(void)SetImageTakenForSegue:(NSDictionary*) info
-{
-   
-    if([info valueForKey:UIImagePickerControllerEditedImage]) {
-        imageTaken = [info valueForKey:UIImagePickerControllerEditedImage];
-    } else {
-        imageTaken = [info valueForKey:UIImagePickerControllerOriginalImage];
-    }
-  
-}
-
-
--(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
-{
-    [_imagePicker dismissViewControllerAnimated:NO completion:nil];
-    if ([UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera]) {
-        _imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-        _imagePicker.cameraDevice = UIImagePickerControllerCameraDeviceRear;
-        _imagePicker.showsCameraControls = NO;
-        _imagePicker.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
-        [self presentViewController:_imagePicker animated:YES completion:nil];
-    }
-}
-
-
--(void)chooseCameraType
-{
-    chooseCameraType = [[UIAlertView alloc] initWithTitle:@"Choose camera type" message:@"Take picture or pick one from the saved photos" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Camera", @"Library",nil];
-    chooseCameraType.delegate = self;
-    [chooseCameraType show];
-    
-}
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    
-    _imagePicker = [[UIImagePickerController alloc]init];
-    [_imagePicker setDelegate:self];
-    if (buttonIndex == 2) {
-        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeSavedPhotosAlbum]) {
-            _imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-            _imagePicker.allowsEditing = YES;
-            [self presentViewController:_imagePicker animated:YES completion:nil];
-        }
-    } if (buttonIndex == 1) {
-        if ([UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera]) {
-            _imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-            _imagePicker.cameraDevice = UIImagePickerControllerCameraDeviceRear;
-            _imagePicker.showsCameraControls = NO;
-            _imagePicker.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
-            _imagePicker.allowsEditing = YES;
-            [self initOverlayView];
-            
-            [self presentViewController:_imagePicker animated:YES completion:nil];
-        }
-    }
-}
-
-
-
 
 
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -363,14 +190,24 @@
 
 -(void)getHairfies
 {
-        void (^loadErrorBlock)(NSError *) = ^(NSError *error){
-            NSLog(@"Error on load %@", error.description);
-        };
-       void (^loadSuccessBlock)(NSArray *) = ^(NSArray *models){
-           hairfies = [[models reverseObjectEnumerator] allObjects];
-           [_hairfieCollection reloadData];
-        };
+    void (^loadErrorBlock)(NSError *) = ^(NSError *error){
+        NSLog(@"Error on load %@", error.description);
+        [refreshControl endRefreshing];
+    };
+    void (^loadSuccessBlock)(NSArray *) = ^(NSArray *models){
+        hairfies = [[models reverseObjectEnumerator] allObjects];
+        [self customReloadData];
+    };
     [hairfieReq getHairfies:loadSuccessBlock failure:loadErrorBlock];
+}
+
+- (void)customReloadData
+{
+    [_hairfieCollection reloadData];
+    
+    if (refreshControl) {
+        [refreshControl endRefreshing];
+    }
 }
 
 

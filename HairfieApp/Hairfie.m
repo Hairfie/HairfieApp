@@ -7,19 +7,23 @@
 //
 
 #import "Hairfie.h"
+#import "HairfieRepository.h"
 #import "UserRepository.h"
 #import "BusinessRepository.h"
 #import "AppDelegate.h"
 
 @implementation Hairfie
 
-@synthesize description, hairfieId, businessId, price, picture, user = _user, business = _business;
+@synthesize id, description, price, picture, user = _user, business = _business, numLikes = _numLikes;
 
-
-- (void) setUser:(NSDictionary *) userDic {
-    
+- (void)setUser:(NSDictionary *)userDic
+{
     UserRepository *userRepository = (UserRepository *)[[AppDelegate lbAdaptater] repositoryWithClass:[UserRepository class]];
     _user = (User *)[userRepository modelWithDictionary:userDic];
+}
+
+-(void) setNumLikes:(NSString *)numLikes {
+    _numLikes = @"0";
 }
 
 -(NSString *)pictureUrlwithWidth:(NSString *)width andHeight:(NSString *)height {
@@ -34,21 +38,20 @@
     if([businessDic isKindOfClass:[NSNull class]]) {
         
     } else {
-        BusinessRepository *businessRepository = (BusinessRepository *)[[AppDelegate lbAdaptater] repositoryWithClass:[BusinessRepository class]];
-        _business = (Business *)[businessRepository modelWithDictionary:businessDic];
+        _business = [[Business alloc] initWithJson:businessDic];
     }
-   }
+}
 
 -(NSString *)pictureUrl {
     return [self pictureUrlwithWidth:nil andHeight:nil];
 }
 
 -(NSString *)hairfieCellUrl {
-    return [self pictureUrlwithWidth:@"150" andHeight:@"210"];
+    return [self pictureUrlwithWidth:@"300" andHeight:@"420"];
 }
 
 -(NSString *)hairfieDetailUrl {
-    return [self pictureUrlwithWidth:@"320" andHeight:@"355"];
+    return [self pictureUrlwithWidth:@"640" andHeight:@"710"];
 }
 
 
@@ -58,6 +61,42 @@
     if([[price objectForKey:@"currency"] isEqual:@"EUR"]) return [NSString stringWithFormat:@"%@ €", [price objectForKey:@"amount"]];
 
     return @"";
+}
+
++(void)listLatestByBusiness:(NSString *)businessId
+                      limit:(NSNumber *)limit
+                       skip:(NSNumber *)skip
+                    success:(void(^)(NSArray *hairfies))aSuccessHandler
+                    failure:(void(^)(NSError *error))aFailureHandler
+{
+    NSDictionary *parameters = @{
+        @"filter": @{
+            @"where": @{@"businessId": businessId},
+            @"limit": limit,
+            @"skip": skip
+        }
+    };
+    
+    [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/hairfies" verb:@"GET"]
+                                        forMethod:@"hairfies.find"];
+    
+    LBModelRepository *repository = [self repository];
+    
+    [repository invokeStaticMethod:@"find"
+                        parameters:parameters
+                           success:^(NSArray *results) {
+                               NSMutableArray *hairfies = [[NSMutableArray alloc] init];
+                                for (NSDictionary *result in results) {
+                                    [hairfies addObject:[repository modelWithDictionary:result]];
+                                }
+                               aSuccessHandler([[NSArray alloc] initWithArray:hairfies]);
+                            }
+                            failure:aFailureHandler];
+}
+
++(LBModelRepository *)repository
+{
+    return [[AppDelegate lbAdaptater] repositoryWithClass:[HairfieRepository class]];
 }
 
 @end

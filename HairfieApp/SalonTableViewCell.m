@@ -10,6 +10,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import <LoopBack/LoopBack.h>
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "Business.h"
 
 @implementation SalonTableViewCell
 {
@@ -54,16 +55,11 @@ nbReviews = _nbReviews;
     _salonPicture.image = [UIImage imageNamed:@"placeholder-image.jpg"];
 }
 
-- (void) customInit:(LBModel *)model
+- (void) customInit:(Business *)business
 {
-    
-    
-    _name.text = [model objectForKeyedSubscript:@"name"];
-    
+    _name.text = business.name;
     _salonPicture.contentMode = UIViewContentModeScaleAspectFill;
-    
-      _location.text = [NSString stringWithFormat:@"%.1f km", [[model objectForKeyedSubscript:@"distance"]floatValue] / 1000];
-     
+    _location.text = [NSString stringWithFormat:@"%.1f km", [business.distance floatValue] / 1000];
 }
 
 - (void)rateView:(RatingView *)rateView ratingDidChange:(float)rating {

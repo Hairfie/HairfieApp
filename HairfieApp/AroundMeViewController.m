@@ -29,12 +29,13 @@
 
 @implementation AroundMeViewController
 {
-    NSArray *salons;
+    NSArray *businesses;
     CLLocation *myLocation;
     NSInteger rowSelected;
     UITapGestureRecognizer *tap;
     SDWebImageManager *SDmanager;
     NSString *gpsString;
+    UIRefreshControl *refreshControl;
 }
 @synthesize manager = _manager, geocoder = _geocoder, mapView = _mapView, hairdresserTableView = _hairdresserTableView, delegate = _delegate, myLocation = _myLocation;
 
@@ -47,13 +48,9 @@
                                              selector:@selector(updatedLocation:)
                                                  name:@"newLocationNotif"
                                                object:nil];
-
-   
-    
-   // _searchInProgress.text = _searchInProgressFromSegue;
-   // _searchDesc.text = _searchInProgressFromSegue;
     
     _isSearching = YES;
+    _isRefreshing = NO;
      _hairdresserTableView.hidden = YES;
     [_searchView initView];
     
@@ -77,7 +74,11 @@
     _hairdresserTableView.tableHeaderView = _headerView;
     [_hairdresserTableView setSeparatorInset:UIEdgeInsetsZero];
       SDmanager = [SDWebImageManager sharedManager];
-    // Do any additional setup after loading the view.
+    
+    refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(updateBusinesses)
+             forControlEvents:UIControlEventValueChanged];
+    [_hairdresserTableView addSubview:refreshControl];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -109,9 +110,15 @@
     else
     {
         _searchDesc.text = _searchView.searchRequest;
-        [self initMapWithSalons:_searchView.locationSearch];
+        [self initMapWithBusinesses:_searchView.locationSearch];
         [_hairdresserTableView setContentOffset:CGPointMake(0, 136)];
     }
+}
+
+-(void)updateBusinesses {
+    _isSearching = YES;
+    _isRefreshing = YES;
+    [self getBusinesses:gpsString];
 }
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField
@@ -134,7 +141,7 @@
     if (_gpsStringFromSegue != nil)
     {
         _searchDesc.text = _searchInProgressFromSegue;
-        [self initMapWithSalons:_locationFromSegue];
+        [self initMapWithBusinesses:_locationFromSegue];
     }
     else
     {
@@ -145,7 +152,7 @@
         
         if (_searchInProgressFromSegue != nil)
             _searchDesc.text = _searchInProgressFromSegue;
-        [self initMapWithSalons:nil];
+        [self initMapWithBusinesses:nil];
     }
 }
 
@@ -162,9 +169,9 @@
 }
 
 // Init a map on user location
-// Get Salons from webservice
+// Get Businesses from webservice
 
--(void) initMapWithSalons:(CLLocation *)customLocation {
+-(void) initMapWithBusinesses:(CLLocation *)customLocation {
 
     MKCoordinateRegion region;
     if (customLocation == nil) {
@@ -180,23 +187,22 @@
     
     if (_gpsStringFromSegue != nil)
     {
-        [self getSalons:_gpsStringFromSegue];
+        [self getBusinesses:_gpsStringFromSegue];
         
     }
     else
     {
-        [self getSalons:gpsString];
+        [self getBusinesses:gpsString];
     }
     //[_mapView setRegion:region animated:NO];
 }
 
 
 
--(void) addSalonsToMap {
+-(void) addBusinessesToMap {
     NSMutableArray *annotations = [[NSMutableArray alloc] init];
-    for ( int i= 0; i<[salons count]; i++) {
-        NSDictionary *salon = [salons objectAtIndex:i];
-        [annotations addObject:[self annotationForSalon:salon]];
+    for (Business *business in businesses) {
+        [annotations addObject:[self annotationForBusiness:business]];
     }
     [_mapView addAnnotations:annotations];
     
@@ -214,27 +220,20 @@
     _mapView.camera.altitude *= 1.4;
 }
 
-// Add a salon to the map
+// Add a Business to the map
 
-- (MyAnnotation *) annotationForSalon: (NSDictionary *) salon {
-    
-    NSDictionary *coords = [salon valueForKey:@"gps"];
-    NSString *titleStr = [salon valueForKey:@"name"];
-    
-    CLLocationCoordinate2D coord;
-    coord.longitude = [[NSString stringWithFormat:@"%@",[coords valueForKey:@"lng"]] floatValue];
-    coord.latitude = [[NSString stringWithFormat:@"%@",[coords valueForKey:@"lat"]] floatValue];
-    
-    MyAnnotation *annotObj =[[MyAnnotation alloc]init];
-    annotObj.title = titleStr;
-    annotObj.coordinate = coord;
+- (MyAnnotation *) annotationForBusiness: (Business *) business
+{
+    MyAnnotation *annotObj =[[MyAnnotation alloc] init];
+    annotObj.title = business.name;
+    annotObj.coordinate = [[business.gps location] coordinate];
     
     return annotObj;
 }
 
 // Get Salons from webservices then add them to the map
 
-- (void)getSalons:(NSString*)address
+- (void)getBusinesses:(NSString*)address
 {
     UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     [spinner setFrame:CGRectMake(150, self.view.frame.size.height/2, spinner.frame.size.width, spinner.frame.size.height)];
@@ -247,39 +246,41 @@
         _hairdresserTableView.userInteractionEnabled = YES;
         [spinner removeFromSuperview];
         [spinner stopAnimating];
+        [refreshControl endRefreshing];
         _isSearching = NO;
+        _isRefreshing = NO;
     };
-    void (^loadSuccessBlock)(NSArray *) = ^(NSArray *models){
-        salons = models;
-        NSLog(@"Salons : %@", salons);
+    void (^loadSuccessBlock)(NSArray *) = ^(NSArray *results){
+        businesses = results;
+        NSLog(@"Loaded %d business(es)", businesses.count);
         _hairdresserTableView.hidden = NO;
-        [self addSalonsToMap];
+        [self addBusinessesToMap];
          [_hairdresserTableView reloadData];
         _hairdresserTableView.userInteractionEnabled = YES;
         [spinner removeFromSuperview];
         [spinner stopAnimating];
+        [refreshControl endRefreshing];
         _isSearching = NO;
+        _isRefreshing = NO;
         if (_gpsStringFromSegue != nil)
             [_hairdresserTableView setContentOffset:CGPointMake(0, 136)];
     };
     
     if (_isSearching == YES)
     {
-        _hairdresserTableView.hidden = YES;
-        [self.view addSubview:spinner];
-        [spinner startAnimating];
-        NSString *repoName = @"businesses";
-        NSString *query;
-       if (_queryNameInProgressFromSegue != nil)
-           query = _queryNameInProgressFromSegue;
-        else
-            query = _searchView.searchByName.text;
+        if(!_isRefreshing) {
+            _hairdresserTableView.hidden = YES;
+            [self.view addSubview:spinner];
+            [spinner startAnimating];
+        }
         
-        _hairdresserTableView.userInteractionEnabled = NO;
-        [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/businesses/nearby" verb:@"GET"] forMethod:@"businesses.nearby"];
-
-        LBModelRepository *businessData = [[AppDelegate lbAdaptater] repositoryWithModelName:repoName];
-        [businessData invokeStaticMethod:@"nearby" parameters:@{@"here": gpsString, @"limit" : @"10", @"query" : query} success:loadSuccessBlock failure:loadErrorBlock];
+        GeoPoint *here = [[GeoPoint alloc] initWithString: gpsString];
+        
+        NSString *query;
+        if (_queryNameInProgressFromSegue != nil) query = _queryNameInProgressFromSegue;
+        else query = _searchView.searchByName.text;
+                
+        [Business listNearby:here query:query limit:@10 success:loadSuccessBlock failure:loadErrorBlock];
     }
 }
 
@@ -300,19 +301,17 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [salons count];
+    return businesses.count;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-        return 110;
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 110;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-   // NSDictionary *salon = [salons objectAtIndex:indexPath.row];
-   // NSDictionary *price = [salon objectForKey:@"price"];
-
-    LBModel *model = (LBModel *)[salons objectAtIndex:indexPath.row];
+    Business *business = businesses[indexPath.row];
 
     static NSString *CellIdentifier = @"similarCell";
     SimilarTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -321,21 +320,9 @@
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"SimilarTableViewCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
-
-    [SDWebImageDownloader.sharedDownloader downloadImageWithURL:[NSURL URLWithString:[model objectForKeyedSubscript:@"thumb"]]
-                                                        options:0
-                                                       progress:^(NSInteger receivedSize, NSInteger expectedSize) { }
-                                                      completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished)
-     {
-         if (image && finished)
-         {
-
-             cell.salonPicture.image = image;
-         }
-     }];
-
-    cell.name.text = [model objectForKeyedSubscript:@"name"];
-    [cell customInit:model];
+    
+    [cell customInit:business];
+    
     return cell;
 }
 
@@ -355,7 +342,7 @@
     {
         SalonDetailViewController *salonDetail = [segue destinationViewController];
 
-        [salonDetail setDataSalon:[salons objectAtIndex:rowSelected]];
+        [salonDetail setBusiness:[businesses objectAtIndex:rowSelected]];
     }
 }
 
