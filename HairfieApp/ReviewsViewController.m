@@ -22,7 +22,7 @@
     [super viewDidLoad];
     [self setupHeaderView];
     [self setupReviewRating];
-    
+    [self getReviews];
     
     
     _addReviewButton.layer.cornerRadius = 5;
@@ -33,7 +33,19 @@
 }
 
 
-
+-(void)getReviews
+{
+    
+    void (^loadErrorBlock)(NSError *) = ^(NSError *error){
+        NSLog(@"Error : %@", error.description);
+    };
+    void (^loadSuccessBlock)(NSArray *) = ^(NSArray *results){
+        NSLog(@"results %@", results);
+        
+    };
+    
+    [BusinessReview listLatestByBusiness:_business.id limit:@10 skip:@0 success:loadSuccessBlock failure:loadErrorBlock];
+}
 
 -(void) viewWillAppear:(BOOL)animated
 {
@@ -241,7 +253,7 @@ shouldChangeTextInRange: (NSRange) range
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return 0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
