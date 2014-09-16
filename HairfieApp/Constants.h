@@ -24,4 +24,6 @@
 #define FB_SCOPE @[@"email"]
 #define NEWRELIC_APP_TOKEN @"AA6b704640532f7dfff195c841b45be17fc7946d63"
 
+#define HAIRFIES_PAGE_SIZE 6
+
 #endif

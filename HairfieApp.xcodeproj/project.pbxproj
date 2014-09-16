@@ -18,6 +18,8 @@
 		15A2180F19BE296A0090E83B /* PictureUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A2180E19BE296A0090E83B /* PictureUploader.m */; };
 		15B829C919B85F6200525802 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15B829C819B85F6200525802 /* FacebookSDK.framework */; };
 		15B8ADE319C09A3E009846AA /* BusinessRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B8ADE219C09A3E009846AA /* BusinessRepository.m */; };
+		15B8D63719C83A3700C889CF /* LoadingCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15B8D63619C83A3700C889CF /* LoadingCollectionViewCell.xib */; };
+		15B8D63A19C83DD200C889CF /* LoadingCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B8D63919C83DD200C889CF /* LoadingCollectionViewCell.m */; };
 		15CE407319B0E78C0088FEA7 /* CredentialStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 15CE407219B0E78C0088FEA7 /* CredentialStore.m */; };
 		15E6AE761992635900A11947 /* OpeningTimes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E6AE751992635900A11947 /* OpeningTimes.swift */; };
 		15ED728C199B9C6400453A74 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15ED728B199B9C6400453A74 /* ImageIO.framework */; };
@@ -252,6 +254,9 @@
 		15B829C819B85F6200525802 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		15B8ADE119C09A3E009846AA /* BusinessRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessRepository.h; sourceTree = "<group>"; };
 		15B8ADE219C09A3E009846AA /* BusinessRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessRepository.m; sourceTree = "<group>"; };
+		15B8D63619C83A3700C889CF /* LoadingCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingCollectionViewCell.xib; sourceTree = "<group>"; };
+		15B8D63819C83DD200C889CF /* LoadingCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingCollectionViewCell.h; sourceTree = "<group>"; };
+		15B8D63919C83DD200C889CF /* LoadingCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingCollectionViewCell.m; sourceTree = "<group>"; };
 		15CE407119B0E78C0088FEA7 /* CredentialStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CredentialStore.h; sourceTree = "<group>"; };
 		15CE407219B0E78C0088FEA7 /* CredentialStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CredentialStore.m; sourceTree = "<group>"; };
 		15E6AE751992635900A11947 /* OpeningTimes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpeningTimes.swift; sourceTree = "<group>"; };
@@ -829,6 +834,9 @@
 				B345BAD7199502A3007BB61A /* CustomCollectionViewCell.xib */,
 				B3F95FDF19B5E5BA00798D57 /* AdvanceSearch.h */,
 				B3F95FE019B5E5BA00798D57 /* AdvanceSearch.m */,
+				15B8D63619C83A3700C889CF /* LoadingCollectionViewCell.xib */,
+				15B8D63819C83DD200C889CF /* LoadingCollectionViewCell.h */,
+				15B8D63919C83DD200C889CF /* LoadingCollectionViewCell.m */,
 			);
 			name = Feed;
 			sourceTree = "<group>";
@@ -1316,6 +1324,7 @@
 				B3BD86AB198BD3DA00BD8591 /* not_selected_star.png in Resources */,
 				B3AD59C1198B9D3500909ADE /* picto-list-promo.png in Resources */,
 				B3F6623B1987D52A0041F298 /* SourceSansPro-Bold.ttf in Resources */,
+				15B8D63719C83A3700C889CF /* LoadingCollectionViewCell.xib in Resources */,
 				B36731ED198FE0B000E11C56 /* not_selected_review.png in Resources */,
 				B3DD7A8119911245007B1621 /* ReviewTableViewCell.xib in Resources */,
 				B3320B2019A4F34100855BBB /* default-picture.jpg in Resources */,
@@ -1488,6 +1497,7 @@
 				B345BAD8199502A3007BB61A /* CustomCollectionViewCell.m in Sources */,
 				B3E4B46319A73C830036BAD8 /* Business.m in Sources */,
 				712667EB19C6E67500298FF0 /* UIRoundImageView.m in Sources */,
+				15B8D63A19C83DD200C889CF /* LoadingCollectionViewCell.m in Sources */,
 				B3BD869F198BCFE500BD8591 /* RatingView.m in Sources */,
 				B3423211198924290058866B /* AFHTTPRequestOperationManager.m in Sources */,
 				B319B5C719C6E77D007F79B0 /* BusinessReviewRepository.m in Sources */,
