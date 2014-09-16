@@ -142,7 +142,6 @@
     CustomCollectionViewCell *cell = [cv dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
     Hairfie *hairfie = (Hairfie *)[hairfies objectAtIndex:indexPath.row];
     
-
     if (cell == nil) {
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"CustomCollectionViewCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];

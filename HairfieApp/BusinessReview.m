@@ -22,19 +22,20 @@
 }
 
 - (void) setBusiness:(NSDictionary *) businessDic {
-    if([businessDic isKindOfClass:[NSNull class]]) {
-        
-    } else {
-        _business = [[Business alloc] initWithJson:businessDic];
+    if([businessDic isKindOfClass:[NSNull class]]) return;
+    else {
+        _business = [[Business alloc] initWithDictionary:businessDic];
     }
 }
+
+
 
 -(id)initWithDictionary:(NSDictionary *)data
 {
     self = [super init];
+
+    self = (BusinessReview *)[[BusinessReview repository] modelWithDictionary:data];
     
-    LBModelRepository *repository = [[AppDelegate lbAdaptater] repositoryWithClass:[BusinessReviewRepository class]];
-    self = (BusinessReview*)[repository modelWithDictionary:data];
     return self;
 }
 
@@ -47,7 +48,7 @@
         NSLog(@"Error : %@", error.description);
     };
     void (^loadSuccessBlock)(NSDictionary *) = ^(NSDictionary *results){
-        NSLog(@"results %@", results);
+        //NSLog(@"results %@", results);
     };
     
     [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/businessreviews" verb:@"POST"] forMethod:@"businessreviews"];
@@ -65,7 +66,8 @@
                                      @"filter": @{
                                              @"where": @{@"businessId": aBusinessId},
                                              @"limit": aLimit,
-                                             @"skip": aNumber
+                                             @"skip": aNumber,
+                                             @"order": @"createdAt DESC"
                                              }
                                      };
         
@@ -85,6 +87,11 @@
                                }
                                failure:aFailureHandler];
 }
+
+//-(NSString *)createdAt {
+//    
+//    return @"coucou";
+//}
 
 +(LBModelRepository *)repository
 {

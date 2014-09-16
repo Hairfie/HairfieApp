@@ -18,8 +18,8 @@
         NSArray *parts = [aString componentsSeparatedByString:@","];
     
         NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
-        self.longitude = [formatter numberFromString:parts[0]];
-        self.latitude = [formatter numberFromString:parts[1]];
+        self.lng = [formatter numberFromString:parts[0]];
+        self.lat = [formatter numberFromString:parts[1]];
     }
     return self;
 }
@@ -41,8 +41,8 @@
 {
     self = [super init];
     if (self) {
-        self.longitude = aLongitude;
-        self.latitude = aLatitude;
+        self.lng = aLongitude;
+        self.lat = aLatitude;
     }
     return self;
 }
@@ -54,12 +54,12 @@
 
 -(CLLocation *)location
 {
-    return [[CLLocation alloc] initWithLatitude:[self.latitude doubleValue] longitude:[self.longitude doubleValue]];
+    return [[CLLocation alloc] initWithLatitude:[self.lat doubleValue] longitude:[self.lng doubleValue]];
 }
 
 -(NSString *)asApiString
 {
-    return [[NSString alloc] initWithFormat:@"%@,%@", self.longitude, self.latitude];
+    return [[NSString alloc] initWithFormat:@"%@,%@", self.lng, self.lat];
 }
 
 @end

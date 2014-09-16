@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Hairfie. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
 #import <LoopBack/LoopBack.h>
 #import "Business.h"
 #import "User.h"
