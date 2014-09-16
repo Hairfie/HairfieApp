@@ -111,7 +111,6 @@
     _isSearching = YES;
     if (![_searchView.searchByName.text isEqualToString:@""] && [_searchView.searchByLocation.text isEqualToString:@"Around Me"])
     {
-        NSLog(@"labas");
         if ([_searchView.searchByName.text isEqualToString:@""])
             _searchDesc.text = @"COIFFEURS À COTÉ DE VOUS";
         else
