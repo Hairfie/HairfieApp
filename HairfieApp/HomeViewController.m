@@ -188,11 +188,15 @@
 }
 
 - (UICollectionViewCell *)loadingCellForIndexPath:(NSIndexPath *)indexPath {
-    UICollectionViewCell *cell = [_hairfieCollection dequeueReusableCellWithReuseIdentifier:LOADING_CELL_IDENTIFIER forIndexPath:indexPath];
+    LoadingCollectionViewCell *cell = [_hairfieCollection dequeueReusableCellWithReuseIdentifier:LOADING_CELL_IDENTIFIER forIndexPath:indexPath];
     
     if (cell == nil) {
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"LoadingCollectionViewCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
+    }
+    
+    if(endOfScroll) {
+        [cell showEndOfScroll];
     }
     
     return cell;
@@ -208,8 +212,7 @@
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    NSArray *indexPaths = [_hairfieCollection indexPathsForVisibleItems];
-
+    //NSArray *indexPaths = [_hairfieCollection indexPathsForVisibleItems];
     //NSLog(@"indexPaths scroll %@", indexPaths);
 }
 
@@ -236,15 +239,15 @@
             }
             //[hairfies addObject:models[i]];
         }
-        NSLog(@"Hairfies from models count : %ld", [hairfies count]);
         [self customReloadData];
     };
     NSLog(@"Get Hairfies for page : %@", page);
 
-    if(!endOfScroll)[Hairfie listLatestPerPage:page
-                                    success:loadSuccessBlock
-                     
-                                       failure:loadErrorBlock];
+    if(!endOfScroll) {
+        [Hairfie listLatestPerPage:page
+                           success:loadSuccessBlock
+                           failure:loadErrorBlock];
+    }
 }
 
 - (void)customReloadData

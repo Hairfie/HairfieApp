@@ -10,4 +10,9 @@
 
 @interface LoadingCollectionViewCell : UICollectionViewCell
 
+@property (nonatomic, strong) IBOutlet UILabel *endOfScroll;
+@property (nonatomic, strong) IBOutlet UIActivityIndicatorView *spinner;
+
+-(void) showEndOfScroll;
+
 @end
