@@ -75,7 +75,6 @@
     [[User repository] invokeStaticMethod:@"isLikedHairfie"
                                parameters:@{@"userId": userId, @"hairfieId": hairfieId}
                                   success:^(id value) {
-                                      NSLog(@"Yes, it is liked");
                                       aSuccessHandler(YES);
                                   }
                                   failure:^(NSError *error) {
@@ -87,7 +86,7 @@
                                       int statusCode = [[[httpDic objectForKey:@"error"] objectForKey:@"statusCode"] integerValue];
                                       
                                       if (statusCode == 404) {
-                                          NSLog(@"404, not liked: %@", error);
+                                          // 404 means the like doesn't exist
                                           return aSuccessHandler(NO);
                                       }
                                       
