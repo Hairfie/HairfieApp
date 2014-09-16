@@ -185,7 +185,6 @@ shouldChangeTextInRange: (NSRange) range
 {
     NSLog(@"Post Hairfie");
     while (uploadInProgress) {
-        NSLog(@"Loop Loop !");
         [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
     }
     

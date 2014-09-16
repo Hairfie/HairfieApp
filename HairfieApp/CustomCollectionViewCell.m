@@ -31,6 +31,7 @@
     self.profilePicture = [[UIRoundImageView alloc] initWithFrame:CGRectMake(10, 170, 30, 30)];
     self.profilePicture.layer.borderWidth = 1.0f;
     self.profilePicture.layer.borderColor = [UIColor whiteColor].CGColor;
+    [self.profilePicture setBackgroundColor:[UIColor lightGreyHairfie]];
     [self.profilePicture sd_setImageWithURL:[NSURL URLWithString:hairfie.author.thumbUrl]
                            placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
 

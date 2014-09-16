@@ -31,28 +31,28 @@
 -(id)initWithDictionary:(NSDictionary *)data
 {
     self = [super init];
-    
+
     // mocked values
     self.prices = nil;
     self.numReviews = @3;
     self.rating = @80;
-    
+
     self = (Business*)[[Business repository] modelWithDictionary:data];
-    
+
     return self;
 }
 
 - (void)setAddress:(NSDictionary *)addressDic
 {
     if([addressDic isKindOfClass:[NSNull class]]) return;
-    
+
     _address = [[Address alloc] initWithJson:addressDic];
 }
 
 - (void)setGps:(NSDictionary *)geoPointDic
 {
     if([geoPointDic isKindOfClass:[NSNull class]]) return;
-    
+
     _gps = [[GeoPoint alloc] initWithJson:geoPointDic];
 }
 
@@ -73,8 +73,8 @@
 //        self.timetable = [data valueForKey:@"timetable"];
 //        self.crossSell = [[data valueForKey:@"crossSell"] isEqualToNumber:@1];
 //        self.numHairfies = [data valueForKey:@"numHairfies"];
-//        
-// 
+//
+//
 //     }
 //    return self;
 //}
@@ -85,7 +85,7 @@
     if ([self.rating isEqual:nil]) {
         return nil;
     }
-    
+
     return [[NSNumber alloc] initWithFloat:[self.rating floatValue] * [theMax floatValue] / 100];
 }
 
@@ -104,7 +104,7 @@
                                  for (NSDictionary *result in results) {
                                      [businesses addObject:[[Business alloc] initWithDictionary:result]];
                                  }
-                                 
+
                                  aSuccessHandler([[NSArray alloc] initWithArray: businesses]);
                              }
                              failure:^(NSError *error) {
@@ -128,14 +128,13 @@
                                  for (NSDictionary *result in results) {
                                      [businesses addObject:[[Business alloc] initWithDictionary:result]];
                                  }
-                                 
+
                                  aSuccessHandler([[NSArray alloc] initWithArray: businesses]);
                              }
                              failure:^(NSError *error) {
                                  aFailureHandler(error);
                              }];
 }
-
 
 /* Temporary internal method to generate sample businesses */
 +(id)sample
@@ -145,7 +144,7 @@
     business.address = [[Address alloc] initWithStreet:@"123 foo street" city:@"Paris" zipCode:@"75000" country:@"FR"];
     business.distance = @534;
     business.thumbnail = @"http://maps.googleapis.com/maps/api/streetview?size=600x400&location=48.8698174,2.2984027";
-    
+
     return business;
 }
 
