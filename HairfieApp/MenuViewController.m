@@ -23,6 +23,8 @@
 @implementation MenuViewController
 {
     AppDelegate *appDelegate;
+    BOOL newBusiness;
+    BOOL didInsert;
 }
 @synthesize menuTableView = _menuTableView;
 @synthesize profileView = _profileView;
@@ -36,7 +38,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    newBusiness = NO;
+    didInsert = NO;
     self.slidingViewController.topViewAnchoredGesture = ECSlidingViewControllerAnchoredGesturePanning | ECSlidingViewControllerAnchoredGestureTapping;
     
     appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
@@ -53,8 +56,8 @@
     
     _profileView.backgroundColor = [UIColor clearColor];
    
-    _menuItems = [[NSArray alloc] init];
-    _menuItems = [NSArray arrayWithObjects: NSLocalizedString(@"Home", nil), NSLocalizedString(@"Favorites", nil),NSLocalizedString(@"Likes", nil), NSLocalizedString(@"Friends", nil),NSLocalizedString(@"Business", nil),NSLocalizedString(@"Settings", nil),NSLocalizedString(@"Logout", nil), nil];
+    _menuItems = [[NSMutableArray alloc] init];
+    _menuItems = [NSMutableArray arrayWithObjects: NSLocalizedString(@"Home", nil), NSLocalizedString(@"Favorites", nil),NSLocalizedString(@"Likes", nil), NSLocalizedString(@"Friends", nil),NSLocalizedString(@"Business", nil),NSLocalizedString(@"Settings", nil),NSLocalizedString(@"Logout", nil), nil];
     
     _menuPictos = [[NSMutableArray alloc] init];
     [_menuPictos addObject:@"home-picto.png"];
@@ -135,11 +138,28 @@
         cell = [nib objectAtIndex:0];
     }
     
-   
-    cell.menuItem.textColor = [UIColor colorWithRed:208 green:210 blue:213 alpha:1];
-    cell.menuItem.font = [UIFont fontWithName:@"SourceSansPro-Light" size:15];
-    cell.menuItem.text = [_menuItems objectAtIndex:indexPath.row];
-    [cell.menuPicto setImage:[UIImage imageNamed:[_menuPictos objectAtIndex:indexPath.row]]];
+   if (indexPath.section == 0)
+   {
+       if (newBusiness == YES)
+       {
+           
+           
+           if (indexPath.row == 5)
+           {
+               cell.menuItem.textColor = [UIColor colorWithRed:208 green:210 blue:213 alpha:1];
+           cell.menuItem.font = [UIFont fontWithName:@"SourceSansPro-Light" size:15];
+               cell.menuItem.text = @"Ajouter une nouvelle activité";
+           [cell.menuPicto setImage:[UIImage imageNamed:@"picto-logout.png"]];
+               cell.backgroundColor = [UIColor whiteColor];
+           }
+       }
+       else {
+           cell.menuItem.textColor = [UIColor colorWithRed:208 green:210 blue:213 alpha:1];
+           cell.menuItem.font = [UIFont fontWithName:@"SourceSansPro-Light" size:15];
+           cell.menuItem.text = [_menuItems objectAtIndex:indexPath.row];
+           [cell.menuPicto setImage:[UIImage imageNamed:[_menuPictos objectAtIndex:indexPath.row]]];
+       }
+   }
     return cell;
 }
 
@@ -147,7 +167,10 @@
   willDisplayCell:(UITableViewCell *)cell
 forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [cell setBackgroundColor:[UIColor clearColor]];
+    if (newBusiness == YES)
+        [cell setBackgroundColor:[UIColor blueHairfie]];
+    else
+        [cell setBackgroundColor:[UIColor clearColor]];
     // cell.imageView.image = [UIImage imageNamed:@"selected-cell.jpg"];
 
 }
@@ -177,17 +200,54 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
     }
     if (row == 4)
     {
-        [self performSegueWithIdentifier:@"BusinessSegue" sender:self];
+        
+        
+        if (didInsert == NO)
+        {
+            newBusiness = YES;
+        [tableView beginUpdates];
+        [_menuItems addObject:@"test activity"];
+        [_menuPictos addObject:@"test"];
+        NSInteger rowindex = indexPath.row + 1;
+        NSArray *paths = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:rowindex inSection:0]];
+        [tableView insertRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationTop];
+        [tableView endUpdates];
+            didInsert = YES;
+            
+        }
+        else{
+             newBusiness = NO;
+            [tableView beginUpdates];
+            [_menuItems removeObjectAtIndex:indexPath.row];
+            NSInteger rowindex = indexPath.row + 1;
+            NSArray *paths = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:rowindex inSection:0]];
+            [tableView deleteRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationTop];
+            [tableView endUpdates];
+            didInsert = NO;
+        }
     }
     if (row == 5)
     {
+        if (newBusiness == YES)
+            [self performSegueWithIdentifier:@"BusinessSegue" sender:self];
+       else
         [self performSegueWithIdentifier:@"SettingSegue" sender:self];
     }
     if (row == 6)
     {
+        if (newBusiness == YES)
+            [self performSegueWithIdentifier:@"SettingSegue" sender:self];
+        else
+        [self logOut];
+    }
+    if (newBusiness == YES)
+    {
+    if (row == 7)
         [self logOut];
     }
 }
+
+
 
 
 -(void)logOut

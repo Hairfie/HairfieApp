@@ -136,7 +136,6 @@
                              }];
 }
 
-<<<<<<< HEAD
 
 /* Temporary internal method to generate sample businesses */
 +(id)sample
@@ -155,7 +154,4 @@
     return [[AppDelegate lbAdaptater] repositoryWithClass:[BusinessRepository class]];
 }
 
-
-=======
->>>>>>> 04c704ca21bdaccc916b678158b6342ce1ceb7dd
 @end
