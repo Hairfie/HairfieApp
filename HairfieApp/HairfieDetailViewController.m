@@ -14,9 +14,9 @@
 #import "CommentViewController.h"
 #import <LoopBack/LoopBack.h>
 #import "Hairfie.h"
+#import "AppDelegate.h"
+
 @interface HairfieDetailViewController ()
-
-
 
 @end
 
@@ -30,15 +30,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     _hairfieCollection.delegate = self;
     _hairfieCollection.dataSource = self;
-    
+
     [_hairfieCollection registerNib:[UINib nibWithNibName:@"CustomCollectionViewCell" bundle:nil]forCellWithReuseIdentifier:@"hairfieRelated"];
     [_hairfieCollection registerNib:[UINib nibWithNibName:@"HairfieDetailCollectionReusableView" bundle:nil]forCellWithReuseIdentifier:@"headerCollection"];
 
-     [_hairfieCollection registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView"];
-    
+    [_hairfieCollection registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -209,20 +208,45 @@
     
     hairfieImageView.contentMode = UIViewContentModeScaleAspectFill;
     hairfieImageView.clipsToBounds = YES;
-    UIImageView *likePicto = [[UIImageView alloc] initWithFrame:CGRectMake(10, 328, 25, 20)];
-    likePicto.image = [UIImage imageNamed:@"picto-hairfie-detail-like.png"];
+
+    UIButton *likeButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 328, 25, 20)];
+    [likeButton setImage:[UIImage imageNamed:@"picto-hairfie-detail-liked.png"] forState:UIControlStateSelected];
+    [likeButton setImage:[UIImage imageNamed:@"picto-hairfie-detail-like.png"] forState:UIControlStateNormal];
+    [likeButton addTarget:self action:@selector(likeButtonHandler:) forControlEvents:UIControlEventTouchUpInside];
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    User *currentUser = delegate.currentUser;
+    if (currentUser != nil) {
+        [User isHairfie:self.currentHairfie.id
+            likedByUser:currentUser.id
+                success:^(BOOL liked) {
+                    if (liked) {
+                        NSLog(@"Liked");
+                    } else {
+                        NSLog(@"Not liked");
+                    }
+                    [likeButton setSelected:liked];
+                }
+                failure:^(NSError *error) {
+                    NSLog(@"Failed to get like status: %@", error.localizedDescription);
+                }];
+    }
+
+
     UILabel *nbLike = [[UILabel alloc] initWithFrame:CGRectMake(43, 328, 35, 21)];
-    nbLike.text = @"200";
+    nbLike.text = [self.currentHairfie displayNumLikes];
     nbLike.textColor = [UIColor whiteColor];
     nbLike.font = [UIFont fontWithName:@"SourceSansPro-SemiBold" size:18];
+    
     UIImageView *commentPicto = [[UIImageView alloc] initWithFrame:CGRectMake(86, 328, 26, 20)];
     commentPicto.image = [UIImage imageNamed:@"picto-hairfie-comment.png"];
+    
     UILabel *nbComment = [[UILabel alloc] initWithFrame:CGRectMake(120, 328, 54, 21)];
-    nbComment.text = @"200";
+    nbComment.text = [self.currentHairfie displayNumComments];
     nbComment.textColor = [UIColor whiteColor];
     nbComment.font = [UIFont fontWithName:@"SourceSansPro-SemiBold" size:18];
+    
     [hairfieView addSubview:hairfieImageView];
-    [hairfieView addSubview:likePicto];
+    [hairfieView addSubview:likeButton];
     [hairfieView addSubview:nbLike];
     [hairfieView addSubview:commentPicto];
     [hairfieView addSubview:nbComment];
@@ -352,6 +376,32 @@
     [collectionHeaderView addSubview:profilePicture];
      */
     return collectionHeaderView;
+}
+
+-(void)likeButtonHandler:(id)sender
+{
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    User *currentUser = delegate.currentUser;
+    
+    if ([sender isSelected]) {
+        [User unlikeHairfie:self.currentHairfie.id
+                   asUser:currentUser.id
+                  success:^() {
+                      [sender setSelected:NO];
+                  }
+                  failure:^(NSError *error) {
+                      NSLog(@"Failed to like hairfie: %@", error.localizedDescription);
+                  }];
+    } else {
+        [User likeHairfie:self.currentHairfie.id
+                   asUser:currentUser.id
+                  success:^() {
+                      [sender setSelected:YES];
+                  }
+                  failure:^(NSError *error) {
+                      NSLog(@"Failed to unlike hairfie: %@", error.localizedDescription);
+                  }];
+    }
 }
 
 -(void) addComment
