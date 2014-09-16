@@ -172,6 +172,11 @@
     [self performSegueWithIdentifier:@"addReview" sender:self];
 }
 
+-(IBAction)addReview:(id)sender
+{
+    _reviewRating.rating = 0;
+    [self performSegueWithIdentifier:@"addReview" sender:self];
+}
 
 -(void) scrollViewDidEndDecelerating:(UIScrollView *)scrollview
 {
@@ -434,8 +439,8 @@
     _city.text = business.address.city;
     
     // MapView Setup
-    _haidresserLat = [NSString stringWithFormat:@"%@", business.gps.latitude];
-    _haidresserLng = [NSString stringWithFormat:@"%@", business.gps.longitude];
+    _haidresserLat = [NSString stringWithFormat:@"%@", business.gps.lat];
+    _haidresserLng = [NSString stringWithFormat:@"%@", business.gps.lng];
 
 }
 
@@ -520,8 +525,10 @@
     if ([segue.identifier isEqualToString:@"addReview"]) {
         ReviewsViewController *review = [segue destinationViewController];
         review.ratingValue = _reviewRating.rating;
-        review.isReviewing = YES;
+        if (_reviewRating.rating != 0)
+            review.isReviewing = YES;
         review.business = _business;
+        NSLog(@"ici je viens la");
     } else if ([segue.identifier isEqualToString:@"showTimetable"]) {
         HorairesViewController *horaires = [segue destinationViewController];
         horaires.salon = _business.timetable;

@@ -11,8 +11,8 @@
 
 @interface GeoPoint : NSObject
 
-@property (strong, nonatomic) NSNumber *longitude;
-@property (strong, nonatomic) NSNumber *latitude;
+@property (strong, nonatomic) NSNumber *lng;
+@property (strong, nonatomic) NSNumber *lat;
 
 -(id)initWithString:(NSString *)aString;
 
@@ -22,6 +22,8 @@
 
 -(id)initWithLongitude:(NSNumber *)aLongitude
               latitude:(NSNumber *)aLatitude;
+
+
 
 -(CLLocation *)location;
 

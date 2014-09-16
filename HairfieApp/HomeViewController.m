@@ -48,7 +48,7 @@
     self.navigationItem.title = [NSString stringWithFormat:NSLocalizedString(@"Home", nil)];
     [_hairfieCollection registerNib:[UINib nibWithNibName:@"CustomCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:CUSTOM_CELL_IDENTIFIER];
     [_hairfieCollection registerNib:[UINib nibWithNibName:@"LoadingCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:LOADING_CELL_IDENTIFIER];
-        
+
     [self.view addGestureRecognizer:self.slidingViewController.panGesture];
     _searchView.hidden = YES;
     [_searchView initView];
@@ -65,7 +65,7 @@
     [self getHairfies:nil];
      dismiss = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
     // Do any additional setup after loading the view.
-    
+
 }
 
 
@@ -99,7 +99,7 @@
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
     //_advancedSearchView.hidden = NO;
-   
+
     _searchView.hidden = NO;
     [self.view addGestureRecognizer:dismiss];
     if ([_searchView.searchByLocation.text isEqualToString:@"Around Me"])
@@ -122,7 +122,7 @@
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
 {
-    
+
     return CGSizeMake(320, 200);
 }
 
@@ -139,7 +139,7 @@
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
     UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"headerView" forIndexPath:indexPath];
-    
+
     return headerView;
 }
 
@@ -156,11 +156,11 @@
 // 3
 - (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row < [hairfies count]) {
-        
+
         if(indexPath.row == ([hairfies count] - HAIRFIES_PAGE_SIZE + 1)){
             [self fetchMoreHairfies];
         }
-        
+
         return [self hairfieCellForIndexPath:indexPath];
     } else {
         return [self loadingCellForIndexPath:indexPath];
@@ -170,35 +170,34 @@
 - (UICollectionViewCell *)hairfieCellForIndexPath:(NSIndexPath *)indexPath{
     CustomCollectionViewCell *cell = [_hairfieCollection dequeueReusableCellWithReuseIdentifier:CUSTOM_CELL_IDENTIFIER forIndexPath:indexPath];
     Hairfie *hairfie = (Hairfie *)[hairfies objectAtIndex:indexPath.row];
-    
-    
+
     if (cell == nil) {
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"CustomCollectionViewCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
-    
+
     if (!hairfies) {
         cell.hairfieView.image = [UIImage imageNamed:@"hairfie.jpg"];
     }
     else {
         [cell setHairfie:hairfie];
     }
-    
+
     return cell;
 }
 
 - (UICollectionViewCell *)loadingCellForIndexPath:(NSIndexPath *)indexPath {
     LoadingCollectionViewCell *cell = [_hairfieCollection dequeueReusableCellWithReuseIdentifier:LOADING_CELL_IDENTIFIER forIndexPath:indexPath];
-    
+
     if (cell == nil) {
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"LoadingCollectionViewCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
-    
+
     if(endOfScroll) {
         [cell showEndOfScroll];
     }
-    
+
     return cell;
 }
 
@@ -208,7 +207,7 @@
     hairfieRow = indexPath.row;
     NSLog(@"select hairfie");
     [self performSegueWithIdentifier:@"hairfieDetail" sender:self];
-    
+
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
@@ -289,15 +288,15 @@
     {
         HairfieDetailViewController *hairfieDetail = [segue destinationViewController];
         hairfieDetail.currentHairfie = (Hairfie*)[hairfies objectAtIndex:hairfieRow];
-        
+
     }
     if ([segue.identifier isEqualToString:@"cameraFilters"])
     {
         ApplyFiltersViewController *filters = [segue destinationViewController];
-        
+
         filters.hairfie = imageTaken;
     }
-    
+
 }
 
 @end

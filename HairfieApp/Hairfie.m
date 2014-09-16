@@ -35,7 +35,7 @@
     if([businessDic isKindOfClass:[NSNull class]]) {
         
     } else {
-        _business = [[Business alloc] initWithJson:businessDic];
+        _business = [[Business alloc] initWithDictionary:businessDic];
     }
 }
 

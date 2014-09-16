@@ -23,10 +23,8 @@
 
 @synthesize manager = _manager, myLocation = _myLocation, credentialStore = _credentialStore;
 
-
-
-
 static LBRESTAdapter * _lbAdaptater = nil;
+
 + (LBRESTAdapter *) lbAdaptater
 {
     if ( !_lbAdaptater) {
@@ -35,17 +33,29 @@ static LBRESTAdapter * _lbAdaptater = nil;
     return _lbAdaptater;
 }
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    [NewRelicAgent startWithApplicationToken:NEWRELIC_APP_TOKEN];
    
   //  _currentUser = [[User alloc] init];
    
     _manager = [[CLLocationManager alloc] init];
     _credentialStore = [[CredentialStore alloc] init];
-    _currentUser = [[User alloc] init];
-    
 
     NSLog(@"LOGIN STATUS : %d", [_credentialStore isLoggedIn]);
     NSLog(@"USER ID : %@", [_credentialStore userId]);
+
+    if (self.credentialStore.isLoggedIn) {
+        [User getById:self.credentialStore.userId
+              success:^(User *user) {
+                  self.currentUser = user;
+              }
+              failure:^(NSError *error) {
+                  NSLog(@"Error retrieving logged in user: %@", error.localizedDescription);
+                  self.currentUser = nil;
+                  [self.credentialStore clearSavedCredentials];
+              }];
+    }
 
     return YES;
 }

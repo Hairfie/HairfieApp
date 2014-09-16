@@ -7,6 +7,8 @@
 //
 
 #import "ReviewTableViewCell.h"
+#import "BusinessReview.h"
+#import "User.h"
 
 @interface ReviewTableViewCell ()
 
@@ -36,7 +38,7 @@
     _ratingView.maxRating = 5;
     _ratingView.delegate = self;
     _statusLabel.text = [NSString stringWithFormat:@"3"];
-    _postDate.text = [NSString stringWithFormat:@"-  %@", @"Juillet 2014"];
+    //_postDate.text = [NSString stringWithFormat:@"-  %@", @"Juillet 2014"];
     
     
 
@@ -46,6 +48,27 @@
     //   _statusLabel.text = [NSString stringWithFormat:@"%.f", rating];
 }
 
+
+-(void)setReview:(BusinessReview*)review
+{
+    
+   // NSLog(@"author review %@", review.author.class);
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc ]init];
+//    
+//    [formatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZZZZ"];
+//    
+//    NSDate *dateToFormat = [formatter dateFromString:review.createdAt];
+//    
+//    NSString *dateString = [formatter stringFromDate:dateToFormat];
+//    
+//    NSLog(@"date %@", dateString);
+    
+    _contentLabel.text = review.comment;
+    _ratingView.rating = [review.rating floatValue];
+    _statusLabel.text = [review.rating stringValue];
+    _nameLabel.text = review.author.displayName;
+}
 
 /*
 #pragma mark - Navigation

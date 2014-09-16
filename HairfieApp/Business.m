@@ -7,41 +7,77 @@
 //
 
 #import "Business.h"
+#import "BusinessRepository.h"
 #import "Address.h"
 #import "GeoPoint.h"
 #import "AppDelegate.h"
 
 @implementation Business
 
-
-
--(NSString *)displayNameAndAddress {
+-(NSString *)displayNameAndAddress
+{
     return [NSString stringWithFormat:@"%@ - %@", self.name, self.address.displayAddress];
 }
 
--(id)initWithJson:(NSDictionary *)data
+-(NSString *)displayNumHairfies
+{
+    if ([self.numHairfies integerValue] > 1) {
+        return [NSString stringWithFormat:@"%@ hairfies", self.numHairfies];
+    } else {
+        return [NSString stringWithFormat:@"%@ hairfie", self.numHairfies];
+    }
+}
+
+-(id)initWithDictionary:(NSDictionary *)data
 {
     self = [super init];
-    if (self) {
-        self.id = [data valueForKey:@"id"];
-        self.name = [data valueForKey:@"name"];
-        self.gps = [[GeoPoint alloc] initWithJson:[data valueForKey:@"gps"]];
-        self.address = [[Address alloc] initWithJson:[data valueForKey:@"address"]];
-        self.distance = [data valueForKey:@"distance"];
-        self.thumbnail = [data valueForKey:@"thumbnail"];
-        self.pictures = [data valueForKey:@"pictures"];
-        self.phoneNumbers = [data valueForKey:@"phoneNumbers"];
-        self.timetable = [data valueForKey:@"timetable"];
-        self.crossSell = [[data valueForKey:@"crossSell"] isEqualToNumber:@1];
-        self.numHairfies = [data valueForKey:@"numHairfies"];
-        
-        // mocked values
-        self.prices = nil;
-        self.numReviews = @3;
-        self.rating = @80;
-     }
+    
+    // mocked values
+    self.prices = nil;
+    self.numReviews = @3;
+    self.rating = @80;
+    
+    self = (Business*)[[Business repository] modelWithDictionary:data];
+    
     return self;
 }
+
+- (void)setAddress:(NSDictionary *)addressDic
+{
+    if([addressDic isKindOfClass:[NSNull class]]) return;
+    
+    _address = [[Address alloc] initWithJson:addressDic];
+}
+
+- (void)setGps:(NSDictionary *)geoPointDic
+{
+    if([geoPointDic isKindOfClass:[NSNull class]]) return;
+    
+    _gps = [[GeoPoint alloc] initWithJson:geoPointDic];
+}
+
+
+
+//-(id)initWithJson:(NSDictionary *)data
+//{
+//    self = [super init];
+//    if (self) {
+//        self.id = [data valueForKey:@"id"];
+//        self.name = [data valueForKey:@"name"];
+//        self.gps = [[GeoPoint alloc] initWithJson:[data valueForKey:@"gps"]];
+//        self.address = [[Address alloc] initWithJson:[data valueForKey:@"address"]];
+//        self.distance = [data valueForKey:@"distance"];
+//        self.thumbnail = [data valueForKey:@"thumbnail"];
+//        self.pictures = [data valueForKey:@"pictures"];
+//        self.phoneNumbers = [data valueForKey:@"phoneNumbers"];
+//        self.timetable = [data valueForKey:@"timetable"];
+//        self.crossSell = [[data valueForKey:@"crossSell"] isEqualToNumber:@1];
+//        self.numHairfies = [data valueForKey:@"numHairfies"];
+//        
+// 
+//     }
+//    return self;
+//}
 
 -(NSNumber *)ratingBetween:(NSNumber *)theMin
                        and:(NSNumber *)theMax
@@ -66,7 +102,7 @@
                              success:^(NSArray *results) {
                                  NSMutableArray *businesses = [[NSMutableArray alloc] init];
                                  for (NSDictionary *result in results) {
-                                     [businesses addObject:[[Business alloc] initWithJson:result]];
+                                     [businesses addObject:[[Business alloc] initWithDictionary:result]];
                                  }
                                  
                                  aSuccessHandler([[NSArray alloc] initWithArray: businesses]);
@@ -90,7 +126,7 @@
                              success:^(NSArray *results) {
                                  NSMutableArray *businesses = [[NSMutableArray alloc] init];
                                  for (NSDictionary *result in results) {
-                                     [businesses addObject:[[Business alloc] initWithJson:result]];
+                                     [businesses addObject:[[Business alloc] initWithDictionary:result]];
                                  }
                                  
                                  aSuccessHandler([[NSArray alloc] initWithArray: businesses]);
@@ -100,6 +136,7 @@
                              }];
 }
 
+<<<<<<< HEAD
 
 /* Temporary internal method to generate sample businesses */
 +(id)sample
@@ -113,4 +150,12 @@
     return business;
 }
 
++(LBModelRepository *)repository
+{
+    return [[AppDelegate lbAdaptater] repositoryWithClass:[BusinessRepository class]];
+}
+
+
+=======
+>>>>>>> 04c704ca21bdaccc916b678158b6342ce1ceb7dd
 @end

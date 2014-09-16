@@ -30,4 +30,8 @@
 -(NSString *)pictureUrl;
 -(NSString *)thumbUrl;
 
++(void)getById:(NSString *)anId
+     success:(void(^)(User *user))aSuccessHandler
+     failure:(void(^)(NSError *error))aFailureHandler;
+
 @end

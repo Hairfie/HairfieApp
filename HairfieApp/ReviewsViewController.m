@@ -15,58 +15,48 @@
 @end
 
 @implementation ReviewsViewController
-
+{
+    NSArray *reviews;
+}
 @synthesize reviewRating = _reviewRating, ratingValue = _ratingValue, dismiss = _dismiss, addReviewButton = _addReviewButton;
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+   
     [self setupHeaderView];
-    [self setupReviewRating];
     [self getReviews];
-    
+    [self setupReviewRating];
     
     _addReviewButton.layer.cornerRadius = 5;
     _addReviewButton.layer.masksToBounds = YES;
     _reviewTableView.backgroundColor = [UIColor whiteColor];
-    _dismiss = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
+   // _dismiss = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
     // Do any additional setup after loading the view.
 }
 
 
 -(void)getReviews
 {
-    
     void (^loadErrorBlock)(NSError *) = ^(NSError *error){
         NSLog(@"Error : %@", error.description);
     };
     void (^loadSuccessBlock)(NSArray *) = ^(NSArray *results){
-        NSLog(@"results %@", results);
-        
+        reviews = results;
+        [_reviewTableView reloadData];
+       if (_isReviewing == YES)
+        [_reviewTextView becomeFirstResponder];
     };
     
-    [BusinessReview listLatestByBusiness:_business.id limit:@10 skip:@0 success:loadSuccessBlock failure:loadErrorBlock];
-}
-
--(void) viewWillAppear:(BOOL)animated
-{
-    [self setupHeaderView];
-    if (_isReviewing == YES)
-    {
-         [_reviewTextView becomeFirstResponder];
-        _reviewTableView.scrollEnabled = NO;
-        _reviewTextView.text = @"";
-        [_reviewTableView reloadData];
-    }
-    _reviewTableView.scrollEnabled = YES;
+    [BusinessReview listLatestByBusiness:_business.id limit:@20 skip:@0 success:loadSuccessBlock failure:loadErrorBlock];
 }
 
 
 - (void)rateView:(RatingView *)rateView ratingDidChange:(float)rating {
     _isReviewing = YES;
     _reviewTableView.scrollEnabled = NO;
-    [_reviewTextView becomeFirstResponder];
     [_reviewTableView reloadData];
-
+     [_reviewTextView becomeFirstResponder];
 }
 
 
@@ -97,27 +87,36 @@
 
 -(IBAction)addReview:(id)sender
 {
-    if (_isReviewing == NO)
+    _isReviewing = YES;
+    _reviewRating.rating = 0;
+    _reviewTableView.scrollEnabled = NO;
+    if ([_reviewTextView.text isEqualToString:@""] || [_reviewTextView.text isEqualToString:@"Ajoutez votre review..."])
     {
-        _isReviewing = YES;
-        _reviewTableView.scrollEnabled = NO;
-
-    }
-    else {
-        [self saveReview];
+        _reviewTextView.text = @"Ajoutez votre review...";
+        // need feedback no text in review = no review
         [_reviewTableView reloadData];
+    }
+    else{
+        [self saveReview];
+        _isReviewing = NO;
+        [self getReviews];
+        
+    }
 }
-}
+
 -(void) saveReview
 {
     
     NSNumber *reviewValue = [NSNumber numberWithFloat:_reviewRating.rating];
     
-    NSDictionary *reviewDic = [[NSDictionary alloc] initWithObjectsAndKeys:reviewValue, @"rating", _reviewTextView.text, @"comment", _business, @"business",nil];
+    NSDictionary *businessDic = [_business toDictionary];
     
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:reviewValue, @"rating", _reviewTextView.text, @"comment", businessDic, @"business",nil];
   
-    BusinessReview *review = [[BusinessReview alloc] initWithDictionary:reviewDic];
+    BusinessReview *review = [[BusinessReview alloc] initWithDictionary:dic];
+  
     [review save];
+   
 }
 
 
@@ -145,7 +144,7 @@
 {
     textView.text = @"";
     [textView becomeFirstResponder];
-    [self.view addGestureRecognizer:_dismiss];
+//    [self.view addGestureRecognizer:_dismiss];
 
 }
 - (BOOL)textViewShouldEndEditing:(UITextView *)textView
@@ -164,42 +163,22 @@ shouldChangeTextInRange: (NSRange) range
         
 
         _reviewTableView.scrollEnabled = YES;
-        if ([_reviewTextView.text isEqualToString:@""])
+        if ([_reviewTextView.text isEqualToString:@""] || [_reviewTextView.text isEqualToString:@"Ajoutez votre review..."])
         {
             _reviewTextView.text = @"Ajoutez votre review...";
             
         }
-        else
+        else{
             [self saveReview];
+            [self getReviews];
+        }
         _reviewRating.rating = 0;
-        [_reviewTableView reloadData];
         [textView resignFirstResponder];
 
         return NO;
     }
    _reviewTableView.scrollEnabled = NO;
     return YES;
-}
-
--(void)textViewDidEndEditing:(UITextView *)textView
-{
-    if ([textView.text isEqualToString:@""])
-    {
-        _isReviewing = YES;
-        textView.text = @"Ajoutez votre review...";
-        _reviewTableView.scrollEnabled = NO;
-    }
-    else
-    {
-        _isReviewing = NO;
-        [_reviewTableView reloadData];
-        _reviewTableView.scrollEnabled = YES;
-    }
-
-    [textView resignFirstResponder];
-    [self.view removeGestureRecognizer:_dismiss];
-
-
 }
 
 
@@ -253,7 +232,7 @@ shouldChangeTextInRange: (NSRange) range
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 0;
+    return [reviews count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -265,13 +244,15 @@ shouldChangeTextInRange: (NSRange) range
 {
     static NSString *CellIdentifier = @"reviewCell";
     ReviewTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-
+    BusinessReview *review = (BusinessReview *)[reviews objectAtIndex:indexPath.row];
+    
     if (cell == nil) {
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ReviewTableViewCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
     cell.backgroundColor = [UIColor whiteColor];
 
+    [cell setReview:review];
     return cell;
 }
 

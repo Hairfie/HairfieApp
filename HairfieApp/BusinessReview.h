@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Hairfie. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
 #import <LoopBack/LoopBack.h>
 #import "Business.h"
 #import "User.h"
@@ -16,6 +17,7 @@
 @property (strong, nonatomic) User *author;
 @property (strong, nonatomic) NSNumber *rating;
 @property (strong, nonatomic) NSString *comment;
+@property (strong, nonatomic) NSString *createdAt;
 
 
 -(id)initWithDictionary:(NSDictionary *)data;

@@ -31,6 +31,8 @@
 
 -(NSString *)displayNameAndAddress;
 
+-(NSString *)displayNumHairfies;
+
 +(void)listNearby:(GeoPoint *)aGeoPoint
             query:(NSString *)aQuery
             limit:(NSNumber *)aLimit
@@ -42,7 +44,8 @@
              success:(void(^)(NSArray *businesses))aSuccessHandler
              failure:(void(^)(NSError *error))aFailureHandler;
 
--(id)initWithJson:(NSDictionary *)data;
+
+-(id)initWithDictionary:(NSDictionary *)data;
 
 -(NSNumber *)ratingBetween:(NSNumber *)aMin
                        and:(NSNumber *)aMax;
