@@ -14,7 +14,7 @@
 @interface User : LBModel
 
 @property (nonatomic) NSString *userToken;
-@property (nonatomic) NSString *userId;
+@property (nonatomic) NSString *id;
 @property (nonatomic) NSString *firstName;
 @property (nonatomic) NSString *lastName;
 @property (nonatomic) NSString *gender;
@@ -33,6 +33,11 @@
 +(void)getById:(NSString *)anId
      success:(void(^)(User *user))aSuccessHandler
      failure:(void(^)(NSError *error))aFailureHandler;
+
++(void)isHairfie:(NSString *)hairfieId
+     likedByUser:(NSString *)userId
+         success:(void(^)(BOOL isLiked))aSuccessHandler
+         failure:(void(^)(NSError *))aFailureHandler;
 
 +(void)likeHairfie:(NSString *)hairfieId
             asUser:(NSString *)userId

@@ -13,7 +13,7 @@
 
 @implementation User
 
-@synthesize userId, userToken, email, firstName, lastName, picture, numHairfies;
+@synthesize id, userToken, email, firstName, lastName, picture, numHairfies;
 
 -(NSString *)name {
     return [NSString stringWithFormat:@"%@ %@", firstName, lastName];
@@ -63,18 +63,50 @@
                         failure:aFailureHandler];
 }
 
++(void)isHairfie:(NSString *)hairfieId
+     likedByUser:(NSString *)userId
+         success:(void(^)(BOOL isLiked))aSuccessHandler
+         failure:(void(^)(NSError *))aFailureHandler
+{
+    [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/users/:userId/liked-hairfies/:hairfieId"
+                                                                                 verb:@"HEAD"]
+                                        forMethod:@"users.isLikedHairfie"];
+    
+    [[User repository] invokeStaticMethod:@"isLikedHairfie"
+                               parameters:@{@"userId": userId, @"hairfieId": hairfieId}
+                                  success:^(id value) {
+                                      NSLog(@"Yes, it is liked");
+                                      aSuccessHandler(YES);
+                                  }
+                                  failure:^(NSError *error) {
+                                      NSString *httpString = [[error userInfo] objectForKey:@"NSLocalizedRecoverySuggestion"];
+                                      NSDictionary *httpDic = [NSJSONSerialization
+                                                               JSONObjectWithData: [httpString dataUsingEncoding:NSUTF8StringEncoding]
+                                                               options: NSJSONReadingMutableContainers
+                                                               error: &error];
+                                      int statusCode = [[[httpDic objectForKey:@"error"] objectForKey:@"statusCode"] integerValue];
+                                      
+                                      if (statusCode == 404) {
+                                          NSLog(@"404, not liked: %@", error);
+                                          return aSuccessHandler(NO);
+                                      }
+                                      
+                                      aFailureHandler(error);
+                                  }];NSLog(@"lkfjslejfsfj");
+}
+
 +(void)likeHairfie:(NSString *)hairfieId
             asUser:(NSString *)userId
            success:(void (^)())aSuccessHandler
            failure:(void (^)(NSError *))aFailureHandler
-{
+{    
     [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/users/:userId/liked-hairfies/:hairfieId"
                                                                                  verb:@"PUT"]
-                                        forMethod:@"user.likeHairfie"];
+                                        forMethod:@"users.likeHairfie"];
 
     [[User repository] invokeStaticMethod:@"likeHairfie"
                                parameters:@{@"userId": userId, @"hairfieId": hairfieId}
-                                  success:^(NSDictionary *result) {
+                                  success:^(id value) {
                                       aSuccessHandler();
                                   }
                                   failure:aFailureHandler];
@@ -87,11 +119,11 @@
 {
     [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/users/:userId/liked-hairfies/:hairfieId"
                                                                                  verb:@"DELETE"]
-                                        forMethod:@"user.unlikeHairfie"];
+                                        forMethod:@"users.unlikeHairfie"];
 
     [[User repository] invokeStaticMethod:@"unlikeHairfie"
                                parameters:@{@"userId": userId, @"hairfieId": hairfieId}
-                                  success:^(NSDictionary *result) {
+                                  success:^(id value) {
                                       aSuccessHandler();
                                   }
                                   failure:aFailureHandler];

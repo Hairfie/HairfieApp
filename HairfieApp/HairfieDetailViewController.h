@@ -21,7 +21,7 @@
 
 //@property (nonatomic) IBOutlet UIView *infoView;
 //@property (nonatomic) IBOutlet UIView *hairfieView;
-@property (weak, nonatomic) IBOutlet UIImageView *likeButton;
+@property (weak, nonatomic) IBOutlet UIButton *likeButton;
 
 
 @property (nonatomic) IBOutlet UICollectionView *hairfieCollection;
