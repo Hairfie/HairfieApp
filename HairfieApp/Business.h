@@ -31,6 +31,8 @@
 
 -(NSString *)displayNameAndAddress;
 
+-(NSString *)displayNumHairfies;
+
 +(void)listNearby:(GeoPoint *)aGeoPoint
             query:(NSString *)aQuery
             limit:(NSNumber *)aLimit

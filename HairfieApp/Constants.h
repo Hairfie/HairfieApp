@@ -9,7 +9,7 @@
 #ifndef HairfieApp_constants_h
 #define HairfieApp_constants_h
 
-#define BASE_URL @"http://api.staging.hairfie.com/" // @"http://localhost:3000/"
+#define BASE_URL @"http://staging.hairfie.com/" // @"http://localhost:3000/"
 
 #define API_URL (BASE_URL @"api/")
 
@@ -22,5 +22,6 @@
 
 #define FB_APP_ID @"726709544031609"
 #define FB_SCOPE @[@"email"]
+#define NEWRELIC_APP_TOKEN @"AA6b704640532f7dfff195c841b45be17fc7946d63"
 
 #endif

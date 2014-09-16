@@ -24,10 +24,10 @@
 }
 
 -(NSString *)displayHairfies {
-    if(numHairfies) {
-        return  [NSString stringWithFormat:@"%@ hairfies", numHairfies];;
+    if ([self.numHairfies integerValue] < 2) {
+        return [NSString stringWithFormat:@"%@ hairfie", self.numHairfies];
     } else {
-        return  @"0 hairfies";
+        return [NSString stringWithFormat:@"%@ hairfies", self.numHairfies];
     }
 }
 
@@ -50,6 +50,17 @@
 -(id)initWithJson:(NSDictionary *)data
 {
     return (User *)[[User repository] modelWithDictionary:data];
+}
+
++(void)getById:(NSString *)anId
+     success:(void (^)(User *user))aSuccessHandler
+     failure:(void (^)(NSError *error))aFailureHandler
+{
+    [[User repository] findById:anId
+                        success:^(LBModel *result) {
+                            aSuccessHandler(result);
+                        }
+                        failure:aFailureHandler];
 }
 
 +(LBModelRepository *)repository

@@ -14,12 +14,19 @@
 
 @implementation Business
 
-
-
--(NSString *)displayNameAndAddress {
+-(NSString *)displayNameAndAddress
+{
     return [NSString stringWithFormat:@"%@ - %@", self.name, self.address.displayAddress];
 }
 
+-(NSString *)displayNumHairfies
+{
+    if ([self.numHairfies integerValue] > 1) {
+        return [NSString stringWithFormat:@"%@ hairfies", self.numHairfies];
+    } else {
+        return [NSString stringWithFormat:@"%@ hairfie", self.numHairfies];
+    }
+}
 
 -(id)initWithDictionary:(NSDictionary *)data
 {
@@ -129,6 +136,7 @@
                              }];
 }
 
+<<<<<<< HEAD
 
 /* Temporary internal method to generate sample businesses */
 +(id)sample
@@ -148,4 +156,6 @@
 }
 
 
+=======
+>>>>>>> 04c704ca21bdaccc916b678158b6342ce1ceb7dd
 @end
