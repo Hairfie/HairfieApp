@@ -34,4 +34,14 @@
      success:(void(^)(User *user))aSuccessHandler
      failure:(void(^)(NSError *error))aFailureHandler;
 
++(void)likeHairfie:(NSString *)hairfieId
+            asUser:(NSString *)userId
+           success:(void (^)())aSuccessHandler
+           failure:(void (^)(NSError *))aFailureHandler;
+
++(void)unlikeHairfie:(NSString *)hairfieId
+            asUser:(NSString *)userId
+           success:(void (^)())aSuccessHandler
+           failure:(void (^)(NSError *))aFailureHandler;
+
 @end

@@ -63,6 +63,40 @@
                         failure:aFailureHandler];
 }
 
++(void)likeHairfie:(NSString *)hairfieId
+            asUser:(NSString *)userId
+           success:(void (^)())aSuccessHandler
+           failure:(void (^)(NSError *))aFailureHandler
+{
+    [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/users/:userId/liked-hairfies/:hairfieId"
+                                                                                 verb:@"PUT"]
+                                        forMethod:@"user.likeHairfie"];
+
+    [[User repository] invokeStaticMethod:@"likeHairfie"
+                               parameters:@{@"userId": userId, @"hairfieId": hairfieId}
+                                  success:^(NSDictionary *result) {
+                                      aSuccessHandler();
+                                  }
+                                  failure:aFailureHandler];
+}
+
++(void)unlikeHairfie:(NSString *)hairfieId
+            asUser:(NSString *)userId
+           success:(void (^)())aSuccessHandler
+           failure:(void (^)(NSError *))aFailureHandler
+{
+    [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/users/:userId/liked-hairfies/:hairfieId"
+                                                                                 verb:@"DELETE"]
+                                        forMethod:@"user.unlikeHairfie"];
+
+    [[User repository] invokeStaticMethod:@"unlikeHairfie"
+                               parameters:@{@"userId": userId, @"hairfieId": hairfieId}
+                                  success:^(NSDictionary *result) {
+                                      aSuccessHandler();
+                                  }
+                                  failure:aFailureHandler];
+}
+
 +(LBModelRepository *)repository
 {
     return [[AppDelegate lbAdaptater] repositoryWithClass:[UserRepository class]];

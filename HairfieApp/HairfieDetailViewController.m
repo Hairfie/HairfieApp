@@ -30,14 +30,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     _hairfieCollection.delegate = self;
     _hairfieCollection.dataSource = self;
-    
+
     [_hairfieCollection registerNib:[UINib nibWithNibName:@"CustomCollectionViewCell" bundle:nil]forCellWithReuseIdentifier:@"hairfieRelated"];
     [_hairfieCollection registerNib:[UINib nibWithNibName:@"HairfieDetailCollectionReusableView" bundle:nil]forCellWithReuseIdentifier:@"headerCollection"];
 
-     [_hairfieCollection registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView"];
+    [_hairfieCollection registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView"];
     
 }
 
@@ -210,7 +210,7 @@
     hairfieImageView.contentMode = UIViewContentModeScaleAspectFill;
     hairfieImageView.clipsToBounds = YES;
     UIImageView *likePicto = [[UIImageView alloc] initWithFrame:CGRectMake(10, 328, 25, 20)];
-    likePicto.image = [UIImage imageNamed:@"picto-hairfie-detail-like.png"];
+    likeSwitch.image = [UIImage imageNamed:@"picto-hairfie-detail-like.png"];
     UILabel *nbLike = [[UILabel alloc] initWithFrame:CGRectMake(43, 328, 35, 21)];
     nbLike.text = @"200";
     nbLike.textColor = [UIColor whiteColor];
@@ -222,7 +222,7 @@
     nbComment.textColor = [UIColor whiteColor];
     nbComment.font = [UIFont fontWithName:@"SourceSansPro-SemiBold" size:18];
     [hairfieView addSubview:hairfieImageView];
-    [hairfieView addSubview:likePicto];
+    [hairfieView addSubview:likeSwitch];
     [hairfieView addSubview:nbLike];
     [hairfieView addSubview:commentPicto];
     [hairfieView addSubview:nbComment];
