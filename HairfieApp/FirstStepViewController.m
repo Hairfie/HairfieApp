@@ -1,25 +1,34 @@
 //
-//  BusinessViewController.m
+//  FirstStepViewController.m
 //  HairfieApp
 //
-//  Created by Leo Martin on 30/07/2014.
+//  Created by Leo Martin on 16/09/2014.
 //  Copyright (c) 2014 Hairfie. All rights reserved.
 //
 
-#import "BusinessViewController.h"
+#import "FirstStepViewController.h"
 
-@interface BusinessViewController ()
+@interface FirstStepViewController ()
 
 @end
 
-@implementation BusinessViewController
+@implementation FirstStepViewController
 
 -(UIStatusBarStyle)preferredStatusBarStyle{
     return UIStatusBarStyleLightContent;
 }
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    _salonBttn.layer.cornerRadius =5;
+    _salonBttn.layer.borderColor = [UIColor lightGreyHairfie].CGColor;
+    _salonBttn.layer.borderWidth = 1;
+    
+    _homeBttn.layer.cornerRadius =5;
+    _homeBttn.layer.borderColor = [UIColor lightGreyHairfie].CGColor;
+    _homeBttn.layer.borderWidth = 1;
     [self.view addGestureRecognizer:self.slidingViewController.panGesture];
     
     // Do any additional setup after loading the view.
