@@ -7,12 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Hairfie.h"
 
-@interface LikeViewController : UIViewController <UINavigationControllerDelegate>
+@interface LikeViewController : UIViewController <UINavigationControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource>
 {
     IBOutlet UIView *myView;
 }
 
+@property (nonatomic, strong) IBOutlet UICollectionView *collectionView;
 
+@property (nonatomic, strong) NSArray *hairfies;
 
 @end

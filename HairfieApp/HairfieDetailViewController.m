@@ -219,11 +219,6 @@
         [User isHairfie:self.currentHairfie.id
             likedByUser:currentUser.id
                 success:^(BOOL liked) {
-                    if (liked) {
-                        NSLog(@"Liked");
-                    } else {
-                        NSLog(@"Not liked");
-                    }
                     [likeButton setSelected:liked];
                 }
                 failure:^(NSError *error) {
