@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "AdvanceSearch.h"
-@interface HomeViewController : UIViewController <UINavigationControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UIScrollViewDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate>
+@interface HomeViewController : UIViewController <UINavigationControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UIScrollViewDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate, UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic) IBOutlet UILabel *AroundMeLabel;
 @property (nonatomic) IBOutlet UICollectionView *hairfieCollection;
