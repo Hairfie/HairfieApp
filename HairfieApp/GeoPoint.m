@@ -18,6 +18,8 @@
         NSArray *parts = [aString componentsSeparatedByString:@","];
     
         NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+        NSLocale *usLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+        [formatter setLocale:usLocale];
         self.lng = [formatter numberFromString:parts[0]];
         self.lat = [formatter numberFromString:parts[1]];
     }
