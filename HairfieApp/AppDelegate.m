@@ -33,7 +33,9 @@ static LBRESTAdapter * _lbAdaptater = nil;
     return _lbAdaptater;
 }
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    [NewRelicAgent startWithApplicationToken:NEWRELIC_APP_TOKEN];
    
   //  _currentUser = [[User alloc] init];
    

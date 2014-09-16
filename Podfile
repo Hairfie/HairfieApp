@@ -5,6 +5,7 @@ target "HairfieApp" do
   pod 'SDWebImage', '~> 3.6'
   pod 'CPPickerView', '~> 1.2.0'
   pod 'SSKeychain'
+  pod 'NewRelicAgent'
 end
 
 target "HairfieAppTests" do
