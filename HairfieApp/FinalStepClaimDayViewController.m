@@ -1,21 +1,23 @@
 //
-//  ThirdStepMapViewController.m
+//  FinalStepClaimDayViewController.m
 //  HairfieApp
 //
 //  Created by Leo Martin on 17/09/2014.
 //  Copyright (c) 2014 Hairfie. All rights reserved.
 //
 
-#import "ThirdStepMapViewController.h"
-#import "BusinessAnnotation.h"
+#import "FinalStepClaimDayViewController.h"
 
-@interface ThirdStepMapViewController ()
+@interface FinalStepClaimDayViewController ()
 
 @end
 
-@implementation ThirdStepMapViewController
 
-#define METERS_PER_MILE 1609.344
+
+@implementation FinalStepClaimDayViewController
+
+
+@synthesize headerString;
 
 -(UIStatusBarStyle)preferredStatusBarStyle{
     return UIStatusBarStyleLightContent;
@@ -23,30 +25,29 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self centerMap];
-    _nextBttn.layer.cornerRadius = 5;
+    
+    NSLog(@"title %@", headerString);
+    _headerTitle.text = headerString;
+
+    
+    _openingTime.layer.cornerRadius =5;
+    _openingTime.layer.borderColor = [UIColor lightGreyHairfie].CGColor;
+    _openingTime.layer.borderWidth = 1;
+
+    
+    _closingTime.layer.cornerRadius =5;
+    _closingTime.layer.borderColor = [UIColor lightGreyHairfie].CGColor;
+    _closingTime.layer.borderWidth = 1;
+
+
+     _doneBttn.layer.cornerRadius = 5;
     // Do any additional setup after loading the view.
 }
 
 -(IBAction)goBack:(id)sender
 {
-    NSLog(@"test");
     [self.navigationController popViewControllerAnimated:YES];
 }
-
-- (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
-{
-    NSLog(@"drag to %f,%f", _businessMapView.centerCoordinate.longitude, _businessMapView.centerCoordinate.latitude);
-}
-
--(void)centerMap
-{
-    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(_businessLocation.coordinate, 0.3*METERS_PER_MILE, 0.3*METERS_PER_MILE);
-    
-    [_businessMapView setRegion:viewRegion animated:YES];
-    _businessMapView.camera.altitude *= 1;
-}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

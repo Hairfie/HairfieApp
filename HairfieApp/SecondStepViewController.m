@@ -33,9 +33,9 @@
     _salonBttn.layer.borderColor = [UIColor lightGreyHairfie].CGColor;
     _salonBttn.layer.borderWidth = 1;
    
-    man = NO;
-    woman = NO;
-    kids = NO;
+    man = YES;
+    woman = YES;
+    kids = YES;
     
     _phoneBttn.layer.cornerRadius =5;
     _phoneBttn.layer.borderColor = [UIColor lightGreyHairfie].CGColor;
@@ -127,10 +127,29 @@
     }
 }
 
+
+-(IBAction)claimBusinessLocation:(id)sender
+{
+    if (![_phoneBttn.titleLabel.text isEqualToString:@"Numéro de téléphone"] && ![_salonBttn.titleLabel.text isEqualToString:@"Nom du salon                                 "]) {
+    
+    [self performSegueWithIdentifier:@"claimBusinessLocation" sender:self];
+    }
+    else
+    {
+      
+         [self performSegueWithIdentifier:@"claimBusinessLocation" sender:self];
+//        UIAlertView *errorAlert = [[UIAlertView alloc]initWithTitle:@"Error" message:@"Please fill in your business' name and phone number" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+//        [errorAlert show];
+    }
+
+}
+    
+        
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"claimPhone"])
     {
+        
         SecondStepSalonPhoneViewController *phone = [segue destinationViewController];
      
         if (![_phoneBttn.titleLabel.text isEqualToString:@"Numéro de téléphone"]) {
@@ -151,7 +170,6 @@
             salon.textFieldFromSegue = _salonBttn.titleLabel.text;
         }
     }
-
 }
 
 

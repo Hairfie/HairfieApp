@@ -1,21 +1,18 @@
 //
-//  ThirdStepMapViewController.m
+//  FinalStepDescriptionViewController.m
 //  HairfieApp
 //
 //  Created by Leo Martin on 17/09/2014.
 //  Copyright (c) 2014 Hairfie. All rights reserved.
 //
 
-#import "ThirdStepMapViewController.h"
-#import "BusinessAnnotation.h"
+#import "FinalStepDescriptionViewController.h"
 
-@interface ThirdStepMapViewController ()
+@interface FinalStepDescriptionViewController ()
 
 @end
 
-@implementation ThirdStepMapViewController
-
-#define METERS_PER_MILE 1609.344
+@implementation FinalStepDescriptionViewController
 
 -(UIStatusBarStyle)preferredStatusBarStyle{
     return UIStatusBarStyleLightContent;
@@ -23,29 +20,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self centerMap];
-    _nextBttn.layer.cornerRadius = 5;
+    
+    _descriptionView.layer.cornerRadius =5;
+    _descriptionView.layer.borderColor = [UIColor lightGreyHairfie].CGColor;
+    _descriptionView.layer.borderWidth = 1;
+    
+     _doneBttn.layer.cornerRadius = 5;
     // Do any additional setup after loading the view.
 }
 
 -(IBAction)goBack:(id)sender
 {
-    NSLog(@"test");
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
-{
-    NSLog(@"drag to %f,%f", _businessMapView.centerCoordinate.longitude, _businessMapView.centerCoordinate.latitude);
-}
-
--(void)centerMap
-{
-    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(_businessLocation.coordinate, 0.3*METERS_PER_MILE, 0.3*METERS_PER_MILE);
-    
-    [_businessMapView setRegion:viewRegion animated:YES];
-    _businessMapView.camera.altitude *= 1;
-}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
