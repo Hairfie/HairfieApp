@@ -71,7 +71,6 @@
 
 -(void) updatedLocation:(NSNotification*)notif {
     _location = (CLLocation*)[[notif userInfo] valueForKey:@"newLocationResult"];
-   // [self reverseGeocodeGps:_location];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -84,39 +83,28 @@
 }
 
 
+
+
 -(void)reverseGeocodeGps:(CLLocation*)myLocation
 {
     CLGeocoder *geocoder = [[CLGeocoder alloc] init];
-    
-   
-    
     [geocoder reverseGeocodeLocation:myLocation
                    completionHandler:^(NSArray *placemarks, NSError *error) {
-                       
                        if (error) {
                            NSLog(@"Geocode failed with error: %@", error);
                            return;
                        }
-                       
                        if (placemarks && placemarks.count > 0)
                        {
                            CLPlacemark *placemark = placemarks[0];
-                           
                            NSDictionary *addressDictionary =
                            placemark.addressDictionary;
-                           
-                           NSLog(@"%@ ", addressDictionary);
                            NSString *address = [addressDictionary
                                                 objectForKey:(NSString *)kABPersonAddressStreetKey];
                            NSString *city = [addressDictionary
                                              objectForKey:(NSString *)kABPersonAddressCityKey];
-                           NSString *state = [addressDictionary
-                                              objectForKey:(NSString *)kABPersonAddressStateKey];
                            NSString *zip = [addressDictionary
                                             objectForKey:(NSString *)kABPersonAddressZIPKey];
-                           
-                           
-                           NSLog(@"%@ %@ %@ %@", address,city, state, zip);
                            _address.text = address;
                            _city.text = city;
                            _postalCode.text = zip;
@@ -125,6 +113,21 @@
                    }];
 }
 
+-(void)geocodeAddress:(NSString *)address
+{
+    
+        CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+        [geocoder geocodeAddressString:address completionHandler:^(NSArray* placemarks, NSError* error){
+            for (CLPlacemark* aPlacemark in placemarks)
+            {
+                // Process the placemark.
+                
+                _location =  aPlacemark.location;
+                
+                NSLog(@"location %f,%f", _location.coordinate.latitude, _location.coordinate.longitude);
+            }
+        }];
+}
 
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -136,7 +139,9 @@
         // Found next responder, so set it.
         [nextResponder becomeFirstResponder];
     } else {
-
+        NSString *address = [NSString stringWithFormat:@"%@ %@ %@", _address.text, _city.text, _postalCode.text];
+        
+        [self geocodeAddress:address];
         [textField resignFirstResponder];
     }
     return YES;
@@ -161,10 +166,9 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"claimBusinessLocation"])
+    if ([segue.identifier isEqualToString:@"claimBusinessMap"])
     {
         ThirdStepMapViewController *businessMap = [segue destinationViewController];
-        
         businessMap.businessLocation = _location;
     }
 }

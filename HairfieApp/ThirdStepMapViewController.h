@@ -9,10 +9,10 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 
-@interface ThirdStepMapViewController : UIViewController <MKMapViewDelegate, UIGestureRecognizerDelegate>
+@interface ThirdStepMapViewController : UIViewController <MKMapViewDelegate, UINavigationControllerDelegate>
 
 @property (nonatomic) IBOutlet MKMapView *businessMapView;
-
+@property (nonatomic) IBOutlet UIButton *nextBttn;
 @property (nonatomic) CLLocation *businessLocation;
 
 @end
