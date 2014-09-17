@@ -44,7 +44,6 @@
              success:(void(^)(NSArray *businesses))aSuccessHandler
              failure:(void(^)(NSError *error))aFailureHandler;
 
-
 -(id)initWithDictionary:(NSDictionary *)data;
 
 -(NSNumber *)ratingBetween:(NSNumber *)aMin

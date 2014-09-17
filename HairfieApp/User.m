@@ -63,6 +63,38 @@
                         failure:aFailureHandler];
 }
 
++(void)listHairfiesLikedByUser:(NSString *)userId
+                         limit:(NSNumber *)limit
+                          skip:(NSNumber *)skip
+                       success:(void(^)(NSArray *hairfies))aSuccessHandler
+                       failure:(void(^)(NSError *error))aFailureHandler
+{
+    NSDictionary *parameters = @{
+                                 @"userId": userId,
+                                 @"filter": @{
+                                         @"limit": limit,
+                                         @"skip": skip,
+                                         @"order": @"createdAt DESC"
+                                         }
+                                 };
+    
+    [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/users/:userId/liked-hairfies"
+                                                                                 verb:@"GET"]
+                                        forMethod:@"users.getLikedHairfies"];
+    
+    [[User repository] invokeStaticMethod:@"getLikedHairfies"
+                               parameters:parameters
+                                  success:^(NSArray *results) {
+                                      NSMutableArray *hairfies = [[NSMutableArray alloc] init];
+                                      for (NSDictionary *result in results) {
+                                          [hairfies addObject:[[Hairfie repository] modelWithDictionary:result]];
+                                      }
+                                      aSuccessHandler([[NSArray alloc] initWithArray: hairfies]);
+                                      
+                                  }
+                                  failure:aFailureHandler];
+}
+
 +(void)isHairfie:(NSString *)hairfieId
      likedByUser:(NSString *)userId
          success:(void(^)(BOOL isLiked))aSuccessHandler
@@ -91,7 +123,7 @@
                                       }
                                       
                                       aFailureHandler(error);
-                                  }];NSLog(@"lkfjslejfsfj");
+                                  }];
 }
 
 +(void)likeHairfie:(NSString *)hairfieId

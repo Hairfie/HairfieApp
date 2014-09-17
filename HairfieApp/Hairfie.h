@@ -46,4 +46,6 @@
                     success:(void(^)(NSArray *hairfies))aSuccessHandler
                     failure:(void(^)(NSError *error))aFailureHandler;
 
++(LBModelRepository *)repository;
+
 @end
