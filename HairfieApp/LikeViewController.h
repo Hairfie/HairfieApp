@@ -16,6 +16,4 @@
 
 @property (nonatomic, strong) IBOutlet UICollectionView *collectionView;
 
-@property (nonatomic, strong) NSArray *hairfies;
-
 @end
