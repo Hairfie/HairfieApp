@@ -14,6 +14,7 @@
     BOOL man;
     BOOL woman;
     BOOL kids;
+    BOOL isOwner;
 }
 
 
@@ -112,12 +113,29 @@
 
 }
 
+-(IBAction)segmentedControlValueChanged:(id)sender
+{
+    if (_jobType.selectedSegmentIndex == 0)
+    {
+        isOwner = YES;
+        NSLog(@"Manager");
+    }
+    else
+    {
+        isOwner = NO;
+        NSLog(@"Employé");
+    }
+}
+
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"claimPhone"])
     {
         SecondStepSalonPhoneViewController *phone = [segue destinationViewController];
      
+        if (![_phoneBttn.titleLabel.text isEqualToString:@"Numéro de téléphone"]) {
+            phone.textFieldFromSegue = _phoneBttn.titleLabel.text;
+        }
         phone.headerTitle = @"Téléphone";
         phone.textFieldPlaceHolder = @"Numéro de téléphone";
     }
@@ -128,6 +146,10 @@
         
         salon.headerTitle = @"Nom du salon";
         salon.textFieldPlaceHolder = @"Nom du salon";
+        if (![_salonBttn.titleLabel.text isEqualToString:@"Nom du salon                                 "]) {
+            NSLog(@"test");
+            salon.textFieldFromSegue = _salonBttn.titleLabel.text;
+        }
     }
 
 }

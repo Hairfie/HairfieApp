@@ -16,6 +16,7 @@
 @property (nonatomic) IBOutlet UITextField *city;
 @property (nonatomic) IBOutlet UITextField *postalCode;
 @property (nonatomic) IBOutlet UIButton *currentAddressBttn;
+@property (nonatomic) IBOutlet UIButton *nextButton;
 
 
 @end

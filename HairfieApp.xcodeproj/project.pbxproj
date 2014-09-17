@@ -113,6 +113,8 @@
 		B36731EC198FE0B000E11C56 /* selected_review.png in Resources */ = {isa = PBXBuildFile; fileRef = B36731E9198FE0B000E11C56 /* selected_review.png */; };
 		B36731ED198FE0B000E11C56 /* not_selected_review.png in Resources */ = {isa = PBXBuildFile; fileRef = B36731EA198FE0B000E11C56 /* not_selected_review.png */; };
 		B367DC2E19C8802200A0452A /* ThirdStepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B367DC2D19C8802200A0452A /* ThirdStepViewController.m */; };
+		B367DC3119C98DC400A0452A /* ThirdStepMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B367DC3019C98DC400A0452A /* ThirdStepMapViewController.m */; };
+		B367DC3419C98EBF00A0452A /* BusinessAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = B367DC3319C98EBF00A0452A /* BusinessAnnotation.m */; };
 		B36AE55419AB71990045FDDA /* location-button-search.png in Resources */ = {isa = PBXBuildFile; fileRef = B36AE55319AB71990045FDDA /* location-button-search.png */; };
 		B36AE55619AB72AC0045FDDA /* location-button-image.png in Resources */ = {isa = PBXBuildFile; fileRef = B36AE55519AB72AC0045FDDA /* location-button-image.png */; };
 		B37F9A4D198F8F5E00881071 /* page-salon-bttn-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = B37F9A4A198F8F5E00881071 /* page-salon-bttn-bg.png */; };
@@ -411,6 +413,10 @@
 		B36731EA198FE0B000E11C56 /* not_selected_review.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = not_selected_review.png; sourceTree = "<group>"; };
 		B367DC2C19C8802200A0452A /* ThirdStepViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThirdStepViewController.h; sourceTree = "<group>"; };
 		B367DC2D19C8802200A0452A /* ThirdStepViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThirdStepViewController.m; sourceTree = "<group>"; };
+		B367DC2F19C98DC300A0452A /* ThirdStepMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThirdStepMapViewController.h; sourceTree = "<group>"; };
+		B367DC3019C98DC400A0452A /* ThirdStepMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThirdStepMapViewController.m; sourceTree = "<group>"; };
+		B367DC3219C98EBF00A0452A /* BusinessAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessAnnotation.h; sourceTree = "<group>"; };
+		B367DC3319C98EBF00A0452A /* BusinessAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessAnnotation.m; sourceTree = "<group>"; };
 		B36AE55319AB71990045FDDA /* location-button-search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "location-button-search.png"; sourceTree = "<group>"; };
 		B36AE55519AB72AC0045FDDA /* location-button-image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "location-button-image.png"; sourceTree = "<group>"; };
 		B37F9A4A198F8F5E00881071 /* page-salon-bttn-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "page-salon-bttn-bg.png"; sourceTree = "<group>"; };
@@ -785,6 +791,10 @@
 				B319B5D019C876AC007F79B0 /* SecondStepSalonPhoneViewController.m */,
 				B367DC2C19C8802200A0452A /* ThirdStepViewController.h */,
 				B367DC2D19C8802200A0452A /* ThirdStepViewController.m */,
+				B367DC2F19C98DC300A0452A /* ThirdStepMapViewController.h */,
+				B367DC3019C98DC400A0452A /* ThirdStepMapViewController.m */,
+				B367DC3219C98EBF00A0452A /* BusinessAnnotation.h */,
+				B367DC3319C98EBF00A0452A /* BusinessAnnotation.m */,
 			);
 			name = CLAIM;
 			sourceTree = "<group>";
@@ -1513,6 +1523,7 @@
 				B308700F198782BC0080E6D2 /* LikeViewController.m in Sources */,
 				B337B6FA19A25116003B0EA5 /* HorairesViewController.m in Sources */,
 				B3E65FBA1986917800AF0C15 /* ECSlidingViewController.m in Sources */,
+				B367DC3119C98DC400A0452A /* ThirdStepMapViewController.m in Sources */,
 				71C0D3FF19C1D7600037CBF4 /* Address.m in Sources */,
 				B3AE0D3819C0510200149C2B /* HairfiePostSalonTypeViewController.m in Sources */,
 				B3C45BD6199A4A1B000E6C8E /* CameraOverlayView.m in Sources */,
@@ -1531,6 +1542,7 @@
 				15B8D63A19C83DD200C889CF /* LoadingCollectionViewCell.m in Sources */,
 				B3BD869F198BCFE500BD8591 /* RatingView.m in Sources */,
 				B3423211198924290058866B /* AFHTTPRequestOperationManager.m in Sources */,
+				B367DC3419C98EBF00A0452A /* BusinessAnnotation.m in Sources */,
 				B319B5C719C6E77D007F79B0 /* BusinessReviewRepository.m in Sources */,
 				15A2180F19BE296A0090E83B /* PictureUploader.m in Sources */,
 				153E1FB019B4A79B00DEC95D /* UserRepository.m in Sources */,

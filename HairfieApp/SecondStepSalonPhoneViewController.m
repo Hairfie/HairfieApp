@@ -15,7 +15,7 @@
 
 @implementation SecondStepSalonPhoneViewController
 
-@synthesize headerTitle, headerLabel,textFieldPlaceHolder;
+@synthesize headerTitle, headerLabel,textFieldPlaceHolder, textField, textFieldFromSegue;
 
 -(UIStatusBarStyle)preferredStatusBarStyle{
     return UIStatusBarStyleLightContent;
@@ -25,32 +25,42 @@
     [super viewDidLoad];
     
     headerLabel.text = headerTitle;
-    _textField.placeholder = textFieldPlaceHolder;
+    textField.placeholder = textFieldPlaceHolder;
     
     UIView *fieldPadding = [[UIView alloc] initWithFrame:CGRectMake(0, 0,20, 46)];
     
+    
+    if (![textFieldFromSegue isEqualToString:@""] || ![textFieldFromSegue isEqualToString:@"Nom du salon                                 "] || ![textFieldFromSegue isEqualToString:@"Numéro de téléphone"])
+    {
+        textField.text = textFieldFromSegue;
+    }
+    
     if ([textFieldPlaceHolder isEqualToString:@"Numéro de téléphone"])
     {
-        _textField.keyboardType = UIKeyboardTypePhonePad;
+        textField.keyboardType = UIKeyboardTypePhonePad;
         [self addDoneButtonToPriceField];
     }
-    _textField.layer.cornerRadius =5;
-    _textField.layer.borderColor = [UIColor lightGreyHairfie].CGColor;
-    _textField.layer.borderWidth = 1;
-    _textField.leftView = fieldPadding;
-    _textField.leftViewMode = UITextFieldViewModeAlways;
-    _textField.returnKeyType = UIReturnKeyDone;
+    textField.layer.cornerRadius =5;
+    textField.layer.borderColor = [UIColor lightGreyHairfie].CGColor;
+    textField.layer.borderWidth = 1;
+    textField.leftView = fieldPadding;
+    textField.leftViewMode = UITextFieldViewModeAlways;
+    textField.returnKeyType = UIReturnKeyDone;
     _doneBttn.layer.cornerRadius = 5;
     
     // Do any additional setup after loading the view.
 }
 
--(BOOL)textFieldShouldReturn:(UITextField *)textField
+-(BOOL)textFieldShouldReturn:(UITextField *)_textField
 {
-    [textField resignFirstResponder];
+    [_textField resignFirstResponder];
     
     SecondStepViewController *claim = [self.navigationController.viewControllers objectAtIndex:[self.navigationController.viewControllers count]-2];
-    claim.salonBttn.titleLabel.text = _textField.text;
+    if ([headerLabel.text isEqualToString:@"Téléphone"])
+        claim.phoneBttn.titleLabel.text = textField.text;
+    else
+        claim.salonBttn.titleLabel.text = textField.text;
+    
     [self.navigationController popViewControllerAnimated:YES];
     return YES;
 }
@@ -73,7 +83,7 @@
     
     [keyboardDoneButtonView setItems:[NSArray arrayWithObjects:fixedSpace,doneButton, nil]];
     
-    _textField.inputAccessoryView = keyboardDoneButtonView;
+    textField.inputAccessoryView = keyboardDoneButtonView;
 }
 
 
@@ -85,9 +95,9 @@
     
     if (phone == YES)
     {
-        [_textField endEditing:YES];
+        [textField endEditing:YES];
         SecondStepViewController *claim = [self.navigationController.viewControllers objectAtIndex:[self.navigationController.viewControllers count]-2];
-        claim.phoneBttn.titleLabel.text = _textField.text;
+        claim.phoneBttn.titleLabel.text = textField.text;
         [self.navigationController popViewControllerAnimated:YES];
     }
     
@@ -102,8 +112,8 @@
     NSError *error = NULL;
     NSDataDetector *detector = [NSDataDetector dataDetectorWithTypes:NSTextCheckingTypePhoneNumber error:&error];
     
-    NSRange inputRange = NSMakeRange(0, [_textField.text length]);
-    NSArray *matches = [detector matchesInString:_textField.text options:0 range:inputRange];
+    NSRange inputRange = NSMakeRange(0, [textField.text length]);
+    NSArray *matches = [detector matchesInString:textField.text options:0 range:inputRange];
     
     // no match at all
     if ([matches count] == 0) {

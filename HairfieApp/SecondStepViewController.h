@@ -17,6 +17,7 @@
 @property (nonatomic) IBOutlet UIImageView * manCutCheckBox;
 @property (nonatomic) IBOutlet UIImageView * kidsCutCheckBox;
 @property (nonatomic) IBOutlet UIImageView * womanCutCheckBox;
+@property (nonatomic) IBOutlet UISegmentedControl *jobType;
 
 -(IBAction)goBack:(id)sender;
 
