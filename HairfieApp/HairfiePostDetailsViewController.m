@@ -33,7 +33,7 @@
                     forKeyPath:@"_placeholderLabel.textColor"];
     _hairfieImageView.image= _hairfie;
     _hairfieDesc.alpha = 0.5;
-    _dataChoice.hidden = TRUE;
+    _dataChoice.hidden = YES;
     _dataChoice.layer.borderWidth = 1;
     _dataChoice.layer.borderColor = [UIColor lightGreyHairfie].CGColor;
     [_dataChoice setSeparatorInset:UIEdgeInsetsZero];
@@ -48,9 +48,7 @@
     [self uploadProfileImage:_hairfie];
 }
 
--(void)viewWillAppear:(BOOL)animated
-
-{
+-(void)viewWillAppear:(BOOL)animated {
     
     if (_salonChosen != nil) {
         [_salonLabelButton setTitle:[_salonChosen objectForKeyedSubscript:@"name"] forState:UIControlStateNormal];
