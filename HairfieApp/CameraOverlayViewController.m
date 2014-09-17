@@ -96,7 +96,7 @@
                                     buttonWithType:UIButtonTypeCustom];
     [switchCameraButton setImage:switchCameraImg forState:UIControlStateNormal];
     [switchCameraButton addTarget:self action:@selector(switchCamera) forControlEvents:UIControlEventTouchUpInside];
-    [switchCameraButton setFrame:CGRectMake(218, 65, 52, 52)];
+    [switchCameraButton setFrame:CGRectMake(248, 65, 52, 52)];
     [switchCameraButton setImageEdgeInsets:UIEdgeInsetsMake(10,10,10,10)];
     
     UIImage *switchHelpImg = [UIImage imageNamed:@"help-hairfie.png"];
