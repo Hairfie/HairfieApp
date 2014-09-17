@@ -37,7 +37,7 @@
 
 @implementation HomeViewController
 
-@synthesize imageTaken, searchView = _searchView;
+@synthesize searchView = _searchView;
 
 -(UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
@@ -289,12 +289,6 @@
         HairfieDetailViewController *hairfieDetail = [segue destinationViewController];
         hairfieDetail.currentHairfie = (Hairfie*)[hairfies objectAtIndex:hairfieRow];
 
-    }
-    if ([segue.identifier isEqualToString:@"cameraFilters"])
-    {
-        ApplyFiltersViewController *filters = [segue destinationViewController];
-
-        filters.hairfie = imageTaken;
     }
 
 }
