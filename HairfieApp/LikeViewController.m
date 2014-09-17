@@ -52,9 +52,8 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"Hello");
     [self performSegueWithIdentifier:@"hairfieDetail" sender:self.hairfies[indexPath.row]];
 }
 
