@@ -8,13 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SecondStepSalonPhoneViewController : UIViewController < UINavigationControllerDelegate, UITextFieldDelegate>
+@interface SecondStepSalonPhoneViewController : UIViewController < UINavigationControllerDelegate, UITextFieldDelegate >
 
 
 @property (nonatomic) IBOutlet UIButton *doneBttn;;
 @property (nonatomic) IBOutlet UILabel *headerLabel;
 @property (nonatomic)  IBOutlet UITextField *textField;
+
 @property (nonatomic) NSString *headerTitle;
 @property (nonatomic) NSString *textFieldPlaceHolder;
+@property (nonatomic) NSString *textFieldFromSegue;
 
 @end

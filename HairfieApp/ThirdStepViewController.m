@@ -7,15 +7,35 @@
 //
 
 #import "ThirdStepViewController.h"
+#import "AppDelegate.h"
+#import <MapKit/MapKit.h>
+#import <AddressBook/AddressBook.h>
+#import "ThirdStepMapViewController.h"
 
 @interface ThirdStepViewController ()
 
 @end
 
 @implementation ThirdStepViewController
+{
+    CLLocation *_location;
+    AppDelegate *delegate;
+}
+
+-(UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleLightContent;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
+    delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(updatedLocation:)
+                                                 name:@"newLocationNotif"
+                                               object:nil];
     
     UIView *addressPadding = [[UIView alloc] initWithFrame:CGRectMake(0, 0,20, 46)];
     UIView *postalPadding = [[UIView alloc] initWithFrame:CGRectMake(0, 0,20, 46)];
@@ -44,9 +64,68 @@
     _currentAddressBttn.layer.borderColor = [UIColor lightGreyHairfie].CGColor;
     _currentAddressBttn.layer.borderWidth = 1;
     
-    
+    _nextButton.layer.cornerRadius = 5;
     // Do any additional setup after loading the view.
 }
+
+
+-(void) updatedLocation:(NSNotification*)notif {
+    _location = (CLLocation*)[[notif userInfo] valueForKey:@"newLocationResult"];
+   // [self reverseGeocodeGps:_location];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [delegate startTrackingLocation:YES];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(updatedLocation:)
+                                                 name:@"newLocationNotif"
+                                               object:nil];
+}
+
+
+-(void)reverseGeocodeGps:(CLLocation*)myLocation
+{
+    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+    
+   
+    
+    [geocoder reverseGeocodeLocation:myLocation
+                   completionHandler:^(NSArray *placemarks, NSError *error) {
+                       
+                       if (error) {
+                           NSLog(@"Geocode failed with error: %@", error);
+                           return;
+                       }
+                       
+                       if (placemarks && placemarks.count > 0)
+                       {
+                           CLPlacemark *placemark = placemarks[0];
+                           
+                           NSDictionary *addressDictionary =
+                           placemark.addressDictionary;
+                           
+                           NSLog(@"%@ ", addressDictionary);
+                           NSString *address = [addressDictionary
+                                                objectForKey:(NSString *)kABPersonAddressStreetKey];
+                           NSString *city = [addressDictionary
+                                             objectForKey:(NSString *)kABPersonAddressCityKey];
+                           NSString *state = [addressDictionary
+                                              objectForKey:(NSString *)kABPersonAddressStateKey];
+                           NSString *zip = [addressDictionary
+                                            objectForKey:(NSString *)kABPersonAddressZIPKey];
+                           
+                           
+                           NSLog(@"%@ %@ %@ %@", address,city, state, zip);
+                           _address.text = address;
+                           _city.text = city;
+                           _postalCode.text = zip;
+                       }
+                       
+                   }];
+}
+
+
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
@@ -58,12 +137,18 @@
         [nextResponder becomeFirstResponder];
     } else {
 
-        NSLog(@"cool");
+        [textField resignFirstResponder];
     }
     return YES;
 }
 
-
+-(IBAction)setAddressByLocation:(id)sender
+{
+    [self reverseGeocodeGps:_location];
+    [_address resignFirstResponder];
+    [_city resignFirstResponder];
+    [_postalCode resignFirstResponder];
+}
 
 -(IBAction)goBack:(id)sender
 {
@@ -72,6 +157,16 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"claimBusinessLocation"])
+    {
+        ThirdStepMapViewController *businessMap = [segue destinationViewController];
+        
+        businessMap.businessLocation = _location;
+    }
 }
 
 /*
