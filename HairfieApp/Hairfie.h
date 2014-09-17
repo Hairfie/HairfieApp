@@ -19,9 +19,10 @@
 @property (strong, nonatomic) NSDictionary *price;
 @property (strong, nonatomic) NSString *numLikes;
 @property (strong, nonatomic) NSString *numComments;
+@property (strong, nonatomic) NSDate *createdAt;
+@property (strong, nonatomic) NSDate *updatedAt;
 @property (strong, nonatomic) User *author;
 @property (strong, nonatomic) Business *business;
-
 
 -(NSString *)pictureUrl;
 -(NSString *)hairfieCellUrl;

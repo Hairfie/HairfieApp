@@ -134,7 +134,7 @@
     }
     cell.backgroundColor = [UIColor clearColor];
     return cell;
-       
+
    }
     else
     {
@@ -176,11 +176,11 @@
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
     UICollectionReusableView *collectionHeaderView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView" forIndexPath:indexPath];
-    
+
     // HEADER
-    
+
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 64)];
-    
+
     UIImage *backButtonImg = [UIImage imageNamed:@"arrow-nav.png"];
     UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [backButton setFrame:CGRectMake(10, 30, 20, 20)];
@@ -191,21 +191,21 @@
     headerTitle.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:18];
     headerTitle.textColor = [UIColor whiteColor];
     headerTitle.text = @"Fiche Hairfie";
-    
+
     [headerView addSubview:backButton];
     [headerView addSubview:headerTitle];
-    
+
     // HAIRFIE
-    
-    
-    
+
+
+
     UIView *hairfieView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 358)];
     hairfieView.backgroundColor = [UIColor lightBlueHairfie];
     UIImageView *hairfieImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 355)];
 
     [hairfieImageView sd_setImageWithURL:[NSURL URLWithString:_currentHairfie.hairfieDetailUrl]
                       placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
-    
+
     hairfieImageView.contentMode = UIViewContentModeScaleAspectFill;
     hairfieImageView.clipsToBounds = YES;
 
@@ -231,93 +231,93 @@
     nbLike.text = [self.currentHairfie displayNumLikes];
     nbLike.textColor = [UIColor whiteColor];
     nbLike.font = [UIFont fontWithName:@"SourceSansPro-SemiBold" size:18];
-    
+
     UIImageView *commentPicto = [[UIImageView alloc] initWithFrame:CGRectMake(86, 328, 26, 20)];
     commentPicto.image = [UIImage imageNamed:@"picto-hairfie-comment.png"];
-    
+
     UILabel *nbComment = [[UILabel alloc] initWithFrame:CGRectMake(120, 328, 54, 21)];
     nbComment.text = [self.currentHairfie displayNumComments];
     nbComment.textColor = [UIColor whiteColor];
     nbComment.font = [UIFont fontWithName:@"SourceSansPro-SemiBold" size:18];
-    
+
     [hairfieView addSubview:hairfieImageView];
     [hairfieView addSubview:likeButton];
     [hairfieView addSubview:nbLike];
     [hairfieView addSubview:commentPicto];
     [hairfieView addSubview:nbComment];
-    
+
     // HAIRFIE DETAIL
-    
+
     UIView *hairfieDetailView = [[UIView alloc] initWithFrame:CGRectMake(0, 359, 320, 100)];
-  
+
     UIImageView *profilePicture = [[UIImageView alloc] initWithFrame:CGRectMake(20, 10, 40, 40)];
     [profilePicture sd_setImageWithURL:[NSURL URLWithString:_currentHairfie.author.thumbUrl] placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
     profilePicture.layer.cornerRadius = profilePicture.frame.size.height / 2;
     profilePicture.clipsToBounds = YES;
     profilePicture.layer.borderWidth = 2.0f;
     profilePicture.layer.borderColor = [[UIColor blackHairfie] colorWithAlphaComponent:0.1].CGColor;
-   
+
     UILabel *usernameLabel = [[UILabel alloc]initWithFrame:CGRectMake(68, 8, 111, 21)];
     usernameLabel.text = _currentHairfie.author.displayName;
     usernameLabel.font = [UIFont fontWithName:@"SourceSansPro-Light" size:18];
     usernameLabel.textColor = [[UIColor blackHairfie] colorWithAlphaComponent:0.4] ;
-    
+
     UILabel *nbHairfies = [[UILabel alloc]initWithFrame:CGRectMake(68, 30, 92, 21)];
     nbHairfies.text = _currentHairfie.author.displayHairfies;
     nbHairfies.font = [UIFont fontWithName:@"SourceSansPro-Light" size:13];
     nbHairfies.textColor = [[UIColor blackHairfie]colorWithAlphaComponent:0.8];
-    
+
     UILabel *descLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, 43, 280, 54)];
     descLabel.numberOfLines = 2;
     descLabel.text = _currentHairfie.description;
     descLabel.font = [UIFont fontWithName:@"SourceSansPro-Light" size:12];
     descLabel.textColor = [[UIColor blackHairfie] colorWithAlphaComponent:0.8];
-    
+
     [hairfieDetailView addSubview:profilePicture];
     [hairfieDetailView addSubview:usernameLabel];
     [hairfieDetailView addSubview:nbHairfies];
     [hairfieDetailView addSubview:descLabel];
-    
+
     // RESTE
-    
+
     detailsTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 457, 320, 154)];
     detailsTableView.dataSource = self;
     detailsTableView.delegate = self;
     detailsTableView.backgroundColor = [UIColor clearColor];
     detailsTableView.scrollEnabled = NO;
-    
-   
+
+
     UILabel *commentsLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 619, 185, 21)];
     commentsLabel.text = @"Commentaires du Hairfie";
     commentsLabel.font = [UIFont fontWithName:@"SourceSansPro-Light" size:18];
     commentsLabel.textColor = [UIColor darkBlueHairfie];
-    
+
     UIView *commentLineBreaker = [[UIView alloc] initWithFrame:CGRectMake(10, 643, 185, 1)];
     commentLineBreaker.backgroundColor = [UIColor lightGreyHairfie];
     UIImage *addCommentImage = [UIImage imageNamed:@"add-comment-textfield.png"];
     UIButton *bigAddCommentButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    
+
     [bigAddCommentButton setImage:addCommentImage forState:UIControlStateNormal];
     [bigAddCommentButton addTarget:self action:@selector(addComment) forControlEvents:UIControlEventTouchUpInside];
-    
+
     [bigAddCommentButton setFrame:CGRectMake(10, 658, 300, 36)];
-   
+
     UILabel *addCommentLabel = [[UILabel alloc] initWithFrame:CGRectMake(58, 665, 138, 21)];
     addCommentLabel.text = @"add a comment...";
     addCommentLabel.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:14];
     addCommentLabel.textColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5];
-    
+
     commentsTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 712, 320, 294)];
     commentsTableView.dataSource = self;
     commentsTableView.delegate = self;
     commentsTableView.scrollEnabled = NO;
-    
+
     UIButton *addCommentButton = [UIButton buttonWithType:UIButtonTypeSystem];
     addCommentButton.layer.cornerRadius = 5;
     addCommentButton.layer.masksToBounds = YES;
     [addCommentButton setFrame:CGRectMake(58, 989, 110, 30)];
     addCommentButton.backgroundColor = [UIColor lightBlueHairfie];
-   
+
     [addCommentButton setTitle:@"Add a comment" forState:UIControlStateNormal];
     [addCommentButton setTitle:@"Add a comment" forState:UIControlStateHighlighted];
     [addCommentButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -325,7 +325,7 @@
     addCommentButton.titleLabel.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:13];
   //  addCommentButton.titleLabel.textColor = [UIColor whiteColor];
      [addCommentButton addTarget:self action:@selector(addComment) forControlEvents:UIControlEventTouchUpInside];
-    
+
     UIButton *moreCommentButton = [UIButton buttonWithType:UIButtonTypeCustom];
     moreCommentButton.layer.cornerRadius = 5;
     moreCommentButton.layer.masksToBounds = YES;
@@ -338,12 +338,12 @@
     moreCommentButton.titleLabel.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:13];
    // moreCommentButton.titleLabel.textColor = [UIColor whiteColor];
     [moreCommentButton addTarget:self action:@selector(addComment) forControlEvents:UIControlEventTouchUpInside];
-    
+
     UILabel *similarHairfieLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 1035, 191, 21)];
     similarHairfieLabel.text = @"Hairfies du même coiffeur";
     similarHairfieLabel.font = [UIFont fontWithName:@"SourceSansPro-Light" size:18];
     similarHairfieLabel.textColor = [UIColor darkBlueHairfie];
-   
+
     UIView *similarLineBreaker = [[UIView alloc] initWithFrame:CGRectMake(10, 1055, 186, 1)];
     similarLineBreaker.backgroundColor = [UIColor lightGreyHairfie];
     // Hairfitter profile pic (added manually because circled view)
@@ -352,7 +352,7 @@
     [collectionHeaderView addSubview:headerView];
     [collectionHeaderView addSubview:hairfieView];
     [collectionHeaderView addSubview:hairfieDetailView];
-    
+
     [collectionHeaderView addSubview:detailsTableView];
     [collectionHeaderView addSubview:commentsLabel];
     [collectionHeaderView addSubview:commentLineBreaker];
@@ -363,11 +363,11 @@
     [collectionHeaderView addSubview:moreCommentButton];
     [collectionHeaderView addSubview:similarHairfieLabel];
     [collectionHeaderView addSubview:similarLineBreaker];
-    
+
     /*
     _name.text = @"COUCIU";
      _hairfieImageView.image = _hairfieImage;
-    
+
     [collectionHeaderView addSubview:profilePicture];
      */
     return collectionHeaderView;
@@ -377,12 +377,14 @@
 {
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     User *currentUser = delegate.currentUser;
-    
+
     if ([sender isSelected]) {
         [User unlikeHairfie:self.currentHairfie.id
                    asUser:currentUser.id
                   success:^() {
                       [sender setSelected:NO];
+
+                      // TODO: decrease number of likes
                   }
                   failure:^(NSError *error) {
                       NSLog(@"Failed to like hairfie: %@", error.localizedDescription);
@@ -392,6 +394,8 @@
                    asUser:currentUser.id
                   success:^() {
                       [sender setSelected:YES];
+
+                      // TODO: increase number of likes
                   }
                   failure:^(NSError *error) {
                       NSLog(@"Failed to unlike hairfie: %@", error.localizedDescription);

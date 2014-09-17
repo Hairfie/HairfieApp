@@ -64,20 +64,29 @@
 }
 
 +(void)listHairfiesLikedByUser:(NSString *)userId
+                         until:(NSDate *)until
                          limit:(NSNumber *)limit
                           skip:(NSNumber *)skip
                        success:(void(^)(NSArray *hairfies))aSuccessHandler
                        failure:(void(^)(NSError *error))aFailureHandler
 {
-    NSDictionary *parameters = @{
-                                 @"userId": userId,
-                                 @"filter": @{
-                                         @"limit": limit,
-                                         @"skip": skip,
-                                         @"order": @"createdAt DESC"
-                                         }
-                                 };
-    
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] initWithDictionary:@{
+        @"userId": userId,
+        @"filter": [[NSMutableDictionary alloc] initWithDictionary:@{
+            @"order": @"createdAt DESC"
+        }],
+        @"limit": limit,
+        @"skip": skip
+    }];
+
+    if (until != nil) {
+        //NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        //[dateFormatter setDateFormat:API_DATE_FORMAT];
+        NSMutableDictionary *where = [[NSMutableDictionary alloc] initWithDictionary:@{@"createdAt": @{@"gte": until}}];
+
+        [[parameters objectForKey:@"filter"] setObject:where forKey:@"where"];
+    }
+
     [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/users/:userId/liked-hairfies"
                                                                                  verb:@"GET"]
                                         forMethod:@"users.getLikedHairfies"];
