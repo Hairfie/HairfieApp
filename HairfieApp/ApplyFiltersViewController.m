@@ -26,6 +26,9 @@
     
     cropped = [self squareCropImage:hairfie ToSideLength:320];
     imageView.image = cropped;
+    NSData *imgData = [[NSData alloc] initWithData:UIImageJPEGRepresentation((cropped), 0.5)];
+    int imageSize   = imgData.length;
+    NSLog(@"size of image in KB: %f ", imageSize/1024.0);
 }
 
 -(IBAction)goBack:(id)sender

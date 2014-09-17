@@ -15,6 +15,7 @@
 		153E1FB419B4AA8200DEC95D /* UserAuthenticator.m in Sources */ = {isa = PBXBuildFile; fileRef = 153E1FB319B4AA8200DEC95D /* UserAuthenticator.m */; };
 		1564959519AF6292008DC070 /* HairfieColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 1564959419AF6292008DC070 /* HairfieColors.m */; };
 		15697B31199BB03800DA83FE /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 15697B30199BB03800DA83FE /* UIImage+Resize.m */; };
+		1576492919C9B8BA00DDC141 /* help-hairfie.png in Resources */ = {isa = PBXBuildFile; fileRef = 1576492819C9B8BA00DDC141 /* help-hairfie.png */; };
 		15A2180F19BE296A0090E83B /* PictureUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A2180E19BE296A0090E83B /* PictureUploader.m */; };
 		15B829C919B85F6200525802 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15B829C819B85F6200525802 /* FacebookSDK.framework */; };
 		15B8ADE319C09A3E009846AA /* BusinessRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B8ADE219C09A3E009846AA /* BusinessRepository.m */; };
@@ -259,6 +260,7 @@
 		1564959419AF6292008DC070 /* HairfieColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HairfieColors.m; sourceTree = "<group>"; };
 		15697B2F199BB01B00DA83FE /* UIImage+Resize.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
 		15697B30199BB03800DA83FE /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
+		1576492819C9B8BA00DDC141 /* help-hairfie.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "help-hairfie.png"; sourceTree = "<group>"; };
 		157D7715198FF309006C1947 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		158431C3198A72FB001621B4 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
 		15A2180D19BE296A0090E83B /* PictureUploader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PictureUploader.h; sourceTree = "<group>"; };
@@ -1175,6 +1177,7 @@
 		B3EDF8991987C43500431B70 /* Ressources */ = {
 			isa = PBXGroup;
 			children = (
+				1576492819C9B8BA00DDC141 /* help-hairfie.png */,
 				B3AE0D4219C060DA00149C2B /* salon-cell-separator.png */,
 				B3AE0D3919C0565000149C2B /* hairfie-post-search-location.png */,
 				B3AE0D3A19C0565000149C2B /* hairfie-post-search-name.png */,
@@ -1449,6 +1452,7 @@
 				B3CCE77E1998BCA400067DB9 /* picto-hairfie-detail-like.png in Resources */,
 				B3E0B15119ACB39200C3EACE /* facebook-connect.png in Resources */,
 				B342315D1988E1DC0058866B /* settings-picto.png in Resources */,
+				1576492919C9B8BA00DDC141 /* help-hairfie.png in Resources */,
 				B37F9A4E198F8F5E00881071 /* picto-list-phone.png in Resources */,
 				B3AE0D3519C04D1A00149C2B /* hairdresser-price-hairfie-post.png in Resources */,
 				B3C45BD1199A4670000E6C8E /* switch-camera-button.png in Resources */,
@@ -1797,8 +1801,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Patrick DALSACE (2G458HV7Z3)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Patrick DALSACE (2G458HV7Z3)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1809,7 +1813,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "68fabf9d-be0e-4ce3-97d9-ea5ab6e7e857";
 				SWIFT_OBJC_BRIDGING_HEADER = "HairfieApp/HairfieApp-Bridging-Header.h";
 			};
 			name = Release;
