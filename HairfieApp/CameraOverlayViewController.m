@@ -10,6 +10,9 @@
 #import "ApplyFiltersViewController.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 
+#define GO_TO_LIBRARY_TAG 99
+#define FACE_SHAPE_TAG 98
+
 
 @interface CameraOverlayViewController ()
 
@@ -27,7 +30,7 @@
     [_imagePicker setDelegate:self];
     if ([UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera]) {
         _imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-        _imagePicker.cameraDevice = UIImagePickerControllerCameraDeviceRear;
+        _imagePicker.cameraDevice = UIImagePickerControllerCameraDeviceFront;
         _imagePicker.showsCameraControls = NO;
         _imagePicker.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
         _imagePicker.allowsEditing = YES;
@@ -93,12 +96,58 @@
                                     buttonWithType:UIButtonTypeCustom];
     [switchCameraButton setImage:switchCameraImg forState:UIControlStateNormal];
     [switchCameraButton addTarget:self action:@selector(switchCamera) forControlEvents:UIControlEventTouchUpInside];
-    [switchCameraButton setFrame:CGRectMake(268, 75, 32, 32)];
+    [switchCameraButton setFrame:CGRectMake(218, 65, 52, 52)];
+    [switchCameraButton setImageEdgeInsets:UIEdgeInsetsMake(10,10,10,10)];
     
+    UIImage *switchHelpImg = [UIImage imageNamed:@"help-hairfie.png"];
+    
+    UIButton *switchHelpButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [switchHelpButton setImage:switchHelpImg forState:UIControlStateNormal];
+    [switchHelpButton addTarget:self action:@selector(switchHelp) forControlEvents:UIControlEventTouchUpInside];
+    [switchHelpButton setFrame:CGRectMake(10, 65, 52, 52)];
+    [switchHelpButton setImageEdgeInsets:UIEdgeInsetsMake(10,10,10,10)];
+    
+
     [overlayView addSubview:switchCameraButton];
+    [overlayView addSubview:switchHelpButton];
     [overlayView addSubview:takePictureButton];
+    [self addFaceShapeToOverlay:overlayView];
+
     _imagePicker.cameraOverlayView = overlayView;
 }
+
+-(void) addFaceShapeToOverlay:(UIView *)cameraOverlayView {
+    UIBezierPath *path = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(10, 0, 280, 350)];
+    CAShapeLayer *maskLayer = [CAShapeLayer layer];
+    maskLayer.path = path.CGPath;
+    [maskLayer setStrokeColor:[[UIColor whiteHairfie] CGColor]];
+    [maskLayer setLineWidth:2.0f];
+    maskLayer.fillColor = [UIColor clearColor].CGColor;
+
+    UIView *faceShape = [[UIView alloc] initWithFrame:CGRectMake(10, 70, 280, 350)];
+    
+    [faceShape.layer addSublayer:maskLayer];
+
+    faceShape.tag = FACE_SHAPE_TAG;
+    
+    [cameraOverlayView insertSubview:faceShape atIndex:0];
+}
+
+-(void) removeFaceShapeFromOverlay {
+    for (UIView *subView in _imagePicker.cameraOverlayView.subviews) {
+        if (subView.tag == FACE_SHAPE_TAG) [subView removeFromSuperview];
+    }
+}
+
+-(void)switchHelp {
+    if([_imagePicker.cameraOverlayView viewWithTag:FACE_SHAPE_TAG] == nil) {
+        NSLog(@"view not present");
+        [self addFaceShapeToOverlay:_imagePicker.cameraOverlayView];
+    } else {
+        [[_imagePicker.cameraOverlayView viewWithTag:FACE_SHAPE_TAG] removeFromSuperview];
+    }
+}
+
 
 -(void) addLastPictureFromLibrary {
     ALAssetsLibrary *assetsLibrary = [[ALAssetsLibrary alloc] init];
@@ -146,9 +195,9 @@
     goToLibrary.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin;
     
     for (UIView *subView in cameraOverlayView.subviews) {
-        if (subView.tag == 99) [subView removeFromSuperview];
+        if (subView.tag == GO_TO_LIBRARY_TAG) [subView removeFromSuperview];
     }
-    goToLibrary.tag = 99;
+    goToLibrary.tag = GO_TO_LIBRARY_TAG;
     [cameraOverlayView addSubview:goToLibrary];
 }
 
