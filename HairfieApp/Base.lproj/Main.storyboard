@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6205" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="dEN-gt-xJT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A329r" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="dEN-gt-xJT">
     <dependencies>
         <deployment defaultVersion="1808" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6198"/>
-        <capability name="Constraints with attributes relative to the layout margin" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="SourceSansPro-Bold.ttf">
@@ -715,7 +715,8 @@ Inscivez-vous maintenant</string>
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oMy-sN-To3">
-                                        <rect key="frame" x="10" y="35" width="21" height="12"/>
+                                        <rect key="frame" x="0.0" y="25" width="41" height="32"/>
+                                        <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                         <state key="normal" image="menu-bttn.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -1501,7 +1502,8 @@ Inscivez-vous maintenant</string>
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wMK-fG-1fx">
-                                        <rect key="frame" x="10" y="30" width="20" height="20"/>
+                                        <rect key="frame" x="0.0" y="20" width="40" height="40"/>
+                                        <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                         <state key="normal" image="arrow-nav.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -1675,7 +1677,8 @@ Inscivez-vous maintenant</string>
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ES7-vA-bDw">
-                                        <rect key="frame" x="10" y="31" width="20" height="20"/>
+                                        <rect key="frame" x="0.0" y="21" width="40" height="40"/>
+                                        <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                         <state key="normal" image="arrow-nav.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -1794,10 +1797,7 @@ Inscivez-vous maintenant</string>
                     </view>
                     <navigationItem key="navigationItem" id="HS4-gi-6R9"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4">
-                        <size key="portraitSize" width="320" height="568"/>
-                        <size key="landscapeSize" width="568" height="320"/>
-                    </simulatedScreenMetrics>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="hairdresserTableView" destination="tHR-dR-4MZ" id="fF7-Up-LEG"/>
                         <outlet property="headerView" destination="zB0-FQ-0pr" id="EUs-It-oYn"/>
@@ -3741,32 +3741,16 @@ connaissance et accepte les CGU de Hairfie</string>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4">
-            <size key="portraitSize" width="320" height="568"/>
-            <size key="landscapeSize" width="568" height="320"/>
-        </simulatedScreenMetrics>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="7yU-V8-5Z9"/>
-        <segue reference="8js-8I-lUc"/>
-        <segue reference="U6U-Af-qnl"/>
-        <segue reference="dg2-Ph-4Hs"/>
-        <segue reference="uEN-by-6gW"/>
-        <segue reference="dg2-Ph-4Hs"/>
-        <segue reference="uEN-by-6gW"/>
-        <segue reference="dg2-Ph-4Hs"/>
-        <segue reference="7yU-V8-5Z9"/>
-        <segue reference="uEN-by-6gW"/>
-        <segue reference="DYR-eo-mJz"/>
-        <segue reference="8js-8I-lUc"/>
-        <segue reference="U6U-Af-qnl"/>
         <segue reference="dKD-Ry-4fL"/>
-        <segue reference="U6U-Af-qnl"/>
         <segue reference="8js-8I-lUc"/>
+        <segue reference="uEN-by-6gW"/>
+        <segue reference="K9z-px-huR"/>
         <segue reference="PA6-UM-heW"/>
         <segue reference="DYR-eo-mJz"/>
-        <segue reference="uEN-by-6gW"/>
-        <segue reference="dg2-Ph-4Hs"/>
+        <segue reference="U6U-Af-qnl"/>
         <segue reference="H0a-7y-EaD"/>
     </inferredMetricsTieBreakers>
 </document>
