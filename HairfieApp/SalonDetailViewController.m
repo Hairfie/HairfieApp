@@ -16,6 +16,7 @@
 #import "ReviewsViewController.h"
 #import "HorairesViewController.h"
 #import "CustomCollectionViewCell.h"
+#import "LoadingCollectionViewCell.h"
 #import "HairdressersTableViewCell.h"
 #import "PricesTableViewCell.h"
 #import <SDWebImage/UIImageView+WebCache.h>
@@ -30,6 +31,10 @@
     
     NSArray *coiffureArray;
     NSArray *coiffeurArray;
+    
+    NSMutableArray *hairfies;
+    BOOL endOfHairfies;
+    BOOL loadingHairfies;
 }
 
 @synthesize imageSliderView =_imageSliderView, pageControl = _pageControl,hairfieView = _hairfieView, hairdresserView = _hairdresserView, priceAndSaleView = _priceAndSaleView, infoBttn = _infoBttn, hairfieBttn = _hairfieBttn, hairdresserBttn = _hairdresserBttn, priceAndSaleBttn = _priceAndSaleBttn, reviewRating = _reviewRating, reviewTableView = _reviewTableView, addReviewBttn = _addReviewBttn, moreReviewBttn = _moreReviewBttn, similarTableView = _similarTableView, business = _business, ratingLabel = _ratingLabel, name = _name , womanPrice = _womanPrice, manPrice = _manPrice, salonRating = _salonRating, address = _address, city = _city, salonAvailability = _salonAvailability, nbReviews = _nbReviews, previewMap = _previewMap, isOpenLabel = _isOpenLabel, isOpenLabelDetail = _isOpenLabelDetail, isOpenImage = _isOpenImage, isOpenImageDetail = _isOpenImageDetail, callBttn = _callBttn, telephoneBgView = _telephoneBgView, detailedContainerView = _detailedContainerView;
@@ -99,6 +104,9 @@
     // Hairfie View
     
     [_hairfieCollection registerNib:[UINib nibWithNibName:@"CustomCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"hairfieCell"];
+    
+    [_hairfieCollection registerNib:[UINib nibWithNibName:@"LoadingCollectionViewCell" bundle:nil]
+         forCellWithReuseIdentifier:@"loadingCell"];
     
     // Do any additional setup after loading the view.
     
@@ -192,27 +200,22 @@
 
 
 -(IBAction)changeTab:(id)sender {
-    if(sender == _infoBttn){
-    [self setButtonSelected:_infoBttn andBringViewUpfront:_infoView];
-      
-         _mainViewHeight.constant = 1030;
-          _infoView.hidden = NO;
-    }
-    else if(sender == _hairfieBttn) {
-        
-    [self setButtonSelected:_hairfieBttn andBringViewUpfront:_hairfieView];
-    _mainViewHeight.constant = 980;
-     _hairfieView.hidden = NO;
-    }
-    else if(sender == _hairdresserBttn) {
-          _mainViewHeight.constant = 600;
+    if(sender == _infoBttn) {
+        [self setButtonSelected:_infoBttn andBringViewUpfront:_infoView];
+        _mainViewHeight.constant = 1030;
+        _infoView.hidden = NO;
+    } else if(sender == _hairfieBttn) {
+        [self setButtonSelected:_hairfieBttn andBringViewUpfront:_hairfieView];
+        _hairfieView.hidden = NO;
+        [self updateHairfiesView];
+    } else if(sender == _hairdresserBttn) {
+        _mainViewHeight.constant = 600;
         [self setButtonSelected:_hairdresserBttn andBringViewUpfront:_hairdresserView];
         _hairdresserView.hidden = NO;
-    }
-    else if(sender == _priceAndSaleBttn) {
-          _mainViewHeight.constant = 600;
+    } else if(sender == _priceAndSaleBttn) {
+        _mainViewHeight.constant = 600;
         [self setButtonSelected:_priceAndSaleBttn andBringViewUpfront:_priceAndSaleView];
-         _priceAndSaleView.hidden = NO;
+        _priceAndSaleView.hidden = NO;
     }
 }
 
@@ -461,16 +464,63 @@
 
 -(void)setupHairfies
 {
+    hairfies = [[NSMutableArray alloc] init];
+    endOfHairfies = NO;
+    loadingHairfies = NO;
+    
+    [self loadNextHairfies];
+}
+
+-(void)loadNextHairfies
+{
+    if (endOfHairfies || loadingHairfies) return;
+
+    NSLog(@"Loading next hairfies");
+
+    NSDate *until = nil;
+    if (hairfies.count > 0) {
+        until = [hairfies[0] createdAt];
+    }
+    
+    loadingHairfies = YES;
+    
     [Hairfie listLatestByBusiness:self.business.id
-                            limit:@10
-                             skip:@0
-                          success:^(NSArray *hairfies) {
-                              self.hairfies = hairfies;
-                              [self.hairfieCollection reloadData];
+                            until:until
+                            limit:[NSNumber numberWithInt:HAIRFIES_PAGE_SIZE]
+                             skip:[NSNumber numberWithLong:hairfies.count]
+                          success:^(NSArray *results) {
+                              NSLog(@"Got hairfies");
+                              
+                              if (results.count < HAIRFIES_PAGE_SIZE) {
+                                  NSLog(@"End of hairfies detected");
+                                  endOfHairfies = YES;
+                              }
+                              
+                              for (Hairfie *result in results) {
+                                  if (![hairfies containsObject:result]) {
+                                      [hairfies addObject:result];
+                                  }
+                              }
+                              
+                              [self updateHairfiesView];
+                              
+                              loadingHairfies = NO;
                           }
                           failure:^(NSError *error) {
                               NSLog(@"%@", error.localizedDescription);
+                              loadingHairfies = NO;
                           }];
+}
+
+-(void)updateHairfiesView
+{
+    NSInteger height = ceil((float)hairfies.count / 2) * 230 + 200;
+    
+    NSLog(@"Height: %@", [NSNumber numberWithLong:height]);
+    
+    _mainViewHeight.constant = height;
+    self.hairfieCollectionHeight.constant = height;
+    [self.hairfieCollection reloadData];
 }
 
 - (void)updateMapView {
@@ -534,7 +584,7 @@
         horaires.salon = _business.timetable;
     } else if ([segue.identifier isEqualToString:@"hairfieDetail"]) {
         HairfieDetailViewController *hairfieDetail = [segue destinationViewController];
-        hairfieDetail.currentHairfie = [self.hairfies objectAtIndex:self.selectedHairfieIndex];
+        hairfieDetail.currentHairfie = sender;
     }
 }
 
@@ -588,7 +638,7 @@
 
 -(NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section
 {
-    return self.hairfies.count;
+    return hairfies.count + 1; // +1 for the loading cell
 }
 
 -(NSInteger)numberOfSectionsInCollectionView: (UICollectionView *)collectionView
@@ -596,25 +646,53 @@
     return 1;
 }
 
--(CustomCollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath
-{    
-    static NSString *CellIdentifier = @"hairfieCell";
-    CustomCollectionViewCell *cell = [cv dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-    if (cell == nil) {
-        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"CustomCollectionViewCell" owner:self options:nil];
-        cell = [nib objectAtIndex:0];
+-(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row < hairfies.count) {
+        return CGSizeMake(145, 210);
+    } else {
+        return CGSizeMake(300, 58);
     }
-    
-    [cell setHairfie:self.hairfies[indexPath.row]];
-    
+}
+
+-(UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{    
+    if (indexPath.row < hairfies.count) {
+        if (indexPath.row >= (hairfies.count - HAIRFIES_PAGE_SIZE +1)) {
+            NSLog(@"Gimme more!");
+            [self loadNextHairfies];
+        }
+        
+        return [self collectionView:cv hairfieCellForItemAtIndexPath:indexPath];
+    } else {
+        return [self collectionView:cv loadingCellForItemAtIndexPath:indexPath];
+    }
+}
+
+-(CustomCollectionViewCell *)collectionView:(UICollectionView *)cv hairfieCellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    CustomCollectionViewCell *cell = [cv dequeueReusableCellWithReuseIdentifier:@"hairfieCell" forIndexPath:indexPath];
+
+    [cell setHairfie:hairfies[indexPath.row]];
+
     return cell;
 }
 
+-(LoadingCollectionViewCell *)collectionView:(UICollectionView *)cv loadingCellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    LoadingCollectionViewCell *cell = [cv dequeueReusableCellWithReuseIdentifier:@"loadingCell" forIndexPath:indexPath];
+
+    if (endOfHairfies) {
+        [cell showEndOfScroll];
+    }
+
+    return cell;
+}
+
+
 -(void) collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    self.selectedHairfieIndex = indexPath.row;
-    [self performSegueWithIdentifier:@"hairfieDetail" sender:self];
+    [self performSegueWithIdentifier:@"hairfieDetail" sender:hairfies[indexPath.row]];
 }
 
 

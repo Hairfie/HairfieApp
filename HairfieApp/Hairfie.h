@@ -45,6 +45,7 @@
                  failure:(void(^)(NSError *error))aFailureHandler;
 
 +(void)listLatestByBusiness:(NSString *)businessId
+                      until:(NSDate *)until
                       limit:(NSNumber *)limit
                        skip:(NSNumber *)skip
                     success:(void(^)(NSArray *hairfies))aSuccessHandler
