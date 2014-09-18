@@ -34,12 +34,12 @@
      success:(void(^)(User *user))aSuccessHandler
      failure:(void(^)(NSError *error))aFailureHandler;
 
-+(void)listHairfiesLikedByUser:(NSString *)userId
-                         until:(NSDate *)until
-                         limit:(NSNumber *)limit
-                          skip:(NSNumber *)skip
-                       success:(void(^)(NSArray *hairfies))aSuccessHandler
-                       failure:(void(^)(NSError *error))aFailureHandler;
++(void)listHairfieLikesByUser:(NSString *)userId
+                        until:(NSDate *)until
+                        limit:(NSNumber *)limit
+                         skip:(NSNumber *)skip
+                      success:(void(^)(NSArray *hairfieLikes))aSuccessHandler
+                      failure:(void(^)(NSError *error))aFailureHandler;
 
 +(void)isHairfie:(NSString *)hairfieId
      likedByUser:(NSString *)userId

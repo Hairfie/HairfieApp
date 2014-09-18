@@ -10,6 +10,7 @@
 #import <LoopBack/LoopBack.h> 
 #import "User.h"
 #import "Business.h"
+#import "HairfieRepository.h"
 
 @interface Hairfie : LBModel
 
@@ -23,6 +24,8 @@
 @property (strong, nonatomic) NSDate *updatedAt;
 @property (strong, nonatomic) User *author;
 @property (strong, nonatomic) Business *business;
+
+-(id)initWithDictionary:(NSDictionary *)data;
 
 -(NSString *)pictureUrl;
 -(NSString *)hairfieCellUrl;
@@ -47,6 +50,6 @@
                     success:(void(^)(NSArray *hairfies))aSuccessHandler
                     failure:(void(^)(NSError *error))aFailureHandler;
 
-+(LBModelRepository *)repository;
++(HairfieRepository *)repository;
 
 @end

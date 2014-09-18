@@ -10,6 +10,7 @@
 #import "CredentialStore.h"
 #import "AppDelegate.h"
 #import "MenuViewController.h"
+#import "HairfieLike.h"
 
 @implementation User
 
@@ -63,12 +64,12 @@
                         failure:aFailureHandler];
 }
 
-+(void)listHairfiesLikedByUser:(NSString *)userId
-                         until:(NSDate *)until
-                         limit:(NSNumber *)limit
-                          skip:(NSNumber *)skip
-                       success:(void(^)(NSArray *hairfies))aSuccessHandler
-                       failure:(void(^)(NSError *error))aFailureHandler
++(void)listHairfieLikesByUser:(NSString *)userId
+                        until:(NSDate *)until
+                        limit:(NSNumber *)limit
+                         skip:(NSNumber *)skip
+                      success:(void(^)(NSArray *hairfieLikes))aSuccessHandler
+                      failure:(void(^)(NSError *error))aFailureHandler
 {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] initWithDictionary:@{
         @"userId": userId,
@@ -89,7 +90,7 @@
                                   success:^(NSArray *results) {
                                       NSMutableArray *hairfies = [[NSMutableArray alloc] init];
                                       for (NSDictionary *result in results) {
-                                          [hairfies addObject:[[Hairfie repository] modelWithDictionary:result]];
+                                          [hairfies addObject:[[HairfieLike alloc] initWithDictionary:result]];
                                       }
                                       aSuccessHandler([[NSArray alloc] initWithArray: hairfies]);
                                       
@@ -162,9 +163,9 @@
                                   failure:aFailureHandler];
 }
 
-+(LBModelRepository *)repository
++(UserRepository *)repository
 {
-    return [[AppDelegate lbAdaptater] repositoryWithClass:[UserRepository class]];
+    return (UserRepository *)[[AppDelegate lbAdaptater] repositoryWithClass:[UserRepository class]];
 }
 
 @end

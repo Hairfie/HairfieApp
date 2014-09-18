@@ -12,12 +12,12 @@
 #import "LoadingCollectionViewCell.h"
 #import "HairfieDetailViewController.h"
 #import "User.h"
+#import "HairfieLike.h"
 
 @interface LikeViewController ()
 {
     User *currentUser;
-    NSMutableArray *
-    hairfies;
+    NSMutableArray *hairfieLikes;
     BOOL loadingNext;
     BOOL endOfScroll;
 }
@@ -47,7 +47,7 @@
     loadingNext = NO;
 
     if (nil != currentUser) {
-        [self refreshHairfies];
+        [self refreshHairfieLikes];
     }
 }
 
@@ -56,18 +56,18 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)refreshHairfies
+-(void)refreshHairfieLikes
 {
     // (re)initialize hairfies list
-    hairfies = [[NSMutableArray alloc] init];
+    hairfieLikes = [[NSMutableArray alloc] init];
     endOfScroll = NO;
 
     // fetch first page of hairfies
-    [self loadNextHairfies];
+    [self loadNextHairfieLikes];
 }
 
 
--(void)loadNextHairfies
+-(void)loadNextHairfieLikes
 {
     if (loadingNext || endOfScroll) {
         return;
@@ -77,8 +77,8 @@
 
     void (^successHandler)(NSArray *) = ^(NSArray *results) {
         for (Hairfie *result in results) {
-            if (![hairfies containsObject:result]) {
-                [hairfies addObject:result];
+            if (![hairfieLikes containsObject:result]) {
+                [hairfieLikes addObject:result];
             }
         }
         
@@ -86,6 +86,7 @@
         
         // did we reach the end of scroll?
         if (results.count < HAIRFIES_PAGE_SIZE) {
+            NSLog(@"Got %@ harfies instead of %@ asked, we reached the end.", [NSNumber numberWithLong:results.count], [NSNumber numberWithInt:HAIRFIES_PAGE_SIZE]);
             endOfScroll = YES;
         }
 
@@ -98,22 +99,22 @@
     };
 
     NSDate *until = nil;
-    if (hairfies.count > 0) {
-        until = [[hairfies objectAtIndex:0] createdAt];
+    if (hairfieLikes.count > 0) {
+        until = [[hairfieLikes objectAtIndex:0] createdAt];
     }
 
-    [User listHairfiesLikedByUser:currentUser.id
-                            until:until
-                            limit:[NSNumber numberWithInt:HAIRFIES_PAGE_SIZE]
-                             skip:[NSNumber numberWithLong:hairfies.count]
-                          success:successHandler
-                          failure:failureHandler];
+    [User listHairfieLikesByUser:currentUser.id
+                           until:until
+                           limit:[NSNumber numberWithInt:HAIRFIES_PAGE_SIZE]
+                            skip:[NSNumber numberWithLong:hairfieLikes.count]
+                         success:successHandler
+                         failure:failureHandler];
 }
 
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self performSegueWithIdentifier:@"hairfieDetail" sender:hairfies[indexPath.row]];
+    [self performSegueWithIdentifier:@"hairfieDetail" sender:hairfieLikes[indexPath.row]];
 }
 
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
@@ -123,12 +124,12 @@
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return hairfies.count + 1; // +1 for the loading cell
+    return hairfieLikes.count + 1; // +1 for the loading cell
 }
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row < hairfies.count) {
+    if (indexPath.row < hairfieLikes.count) {
         return CGSizeMake(145, 210);
     } else {
         return CGSizeMake(300, 58);
@@ -137,10 +138,10 @@
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row < hairfies.count) {
+    if (indexPath.row < hairfieLikes.count) {
         // load more hairfies?
-        if (indexPath.row == hairfies.count - HAIRFIES_PAGE_SIZE + 1) {
-            [self loadNextHairfies];
+        if (indexPath.row == hairfieLikes.count - HAIRFIES_PAGE_SIZE + 1) {
+            [self loadNextHairfieLikes];
         }
         
         return [self hairfieCellAtIndexPath:indexPath];
@@ -154,7 +155,7 @@
     CustomCollectionViewCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:@"hairfieCell"
                                                                                     forIndexPath:indexPath];
 
-    [cell setHairfie:hairfies[indexPath.row]];
+    [cell setHairfie:[hairfieLikes[indexPath.row] hairfie]];
 
     return cell;
 }

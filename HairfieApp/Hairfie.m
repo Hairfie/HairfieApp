@@ -7,7 +7,6 @@
 //
 
 #import "Hairfie.h"
-#import "HairfieRepository.h"
 #import "UserRepository.h"
 #import "BusinessRepository.h"
 #import "AppDelegate.h"
@@ -15,6 +14,11 @@
 @implementation Hairfie
 
 @synthesize id, description, price, picture, author = _author, business = _business, numLikes = _numLikes;
+
+-(id)initWithDictionary:(NSDictionary *)data
+{
+    return (Hairfie*)[[Hairfie repository] modelWithDictionary:data];
+}
 
 - (void)setAuthor:(NSDictionary *)authorDic
 {
@@ -31,12 +35,11 @@
     return url;
 }
 
-- (void) setBusiness:(NSDictionary *) businessDic {
-    if([businessDic isKindOfClass:[NSNull class]]) {
-        
-    } else {
-        _business = [[Business alloc] initWithDictionary:businessDic];
-    }
+- (void) setBusiness:(NSDictionary *) businessDic
+{
+    if([businessDic isKindOfClass:[NSNull class]]) return;
+    
+    _business = [[Business alloc] initWithDictionary:businessDic];
 }
 
 -(NSString *)pictureUrl {
@@ -141,9 +144,9 @@
                             failure:aFailureHandler];
 }
 
-+(LBModelRepository *)repository
++(HairfieRepository *)repository
 {
-    return [[AppDelegate lbAdaptater] repositoryWithClass:[HairfieRepository class]];
+    return (HairfieRepository *)[[AppDelegate lbAdaptater] repositoryWithClass:[HairfieRepository class]];
 }
 
 @end
