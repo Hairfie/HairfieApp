@@ -22,6 +22,8 @@
 
 @implementation HairfieDetailViewController
 {
+    UIView *hairfieDetailView;
+    UILabel *nbLike;
     UITableView *detailsTableView;
     UITableView *commentsTableView;
 }
@@ -227,8 +229,7 @@
     }
 
 
-    UILabel *nbLike = [[UILabel alloc] initWithFrame:CGRectMake(43, 328, 35, 21)];
-    nbLike.text = [self.currentHairfie displayNumLikes];
+    nbLike = [[UILabel alloc] initWithFrame:CGRectMake(43, 328, 35, 21)];
     nbLike.textColor = [UIColor whiteColor];
     nbLike.font = [UIFont fontWithName:@"SourceSansPro-SemiBold" size:18];
 
@@ -248,7 +249,7 @@
 
     // HAIRFIE DETAIL
 
-    UIView *hairfieDetailView = [[UIView alloc] initWithFrame:CGRectMake(0, 359, 320, 100)];
+    hairfieDetailView = [[UIView alloc] initWithFrame:CGRectMake(0, 359, 320, 100)];
 
     UIImageView *profilePicture = [[UIImageView alloc] initWithFrame:CGRectMake(20, 10, 40, 40)];
     [profilePicture sd_setImageWithURL:[NSURL URLWithString:_currentHairfie.author.thumbUrl] placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
@@ -262,6 +263,7 @@
     usernameLabel.font = [UIFont fontWithName:@"SourceSansPro-Light" size:18];
     usernameLabel.textColor = [[UIColor blackHairfie] colorWithAlphaComponent:0.4] ;
 
+    
     UILabel *nbHairfies = [[UILabel alloc]initWithFrame:CGRectMake(68, 30, 92, 21)];
     nbHairfies.text = _currentHairfie.author.displayHairfies;
     nbHairfies.font = [UIFont fontWithName:@"SourceSansPro-Light" size:13];
@@ -364,6 +366,8 @@
     [collectionHeaderView addSubview:similarHairfieLabel];
     [collectionHeaderView addSubview:similarLineBreaker];
 
+    [self reloadData];
+    
     /*
     _name.text = @"COUCIU";
      _hairfieImageView.image = _hairfieImage;
@@ -371,6 +375,11 @@
     [collectionHeaderView addSubview:profilePicture];
      */
     return collectionHeaderView;
+}
+
+-(void)reloadData
+{
+    nbLike.text = [self.currentHairfie displayNumLikes];
 }
 
 -(void)likeButtonHandler:(id)sender
@@ -384,7 +393,8 @@
                   success:^() {
                       [sender setSelected:NO];
 
-                      // TODO: decrease number of likes
+                      self.currentHairfie.numLikes = [NSNumber numberWithInt:([self.currentHairfie.numLikes intValue] - 1)];
+                      [self reloadData];
                   }
                   failure:^(NSError *error) {
                       NSLog(@"Failed to like hairfie: %@", error.localizedDescription);
@@ -395,7 +405,8 @@
                   success:^() {
                       [sender setSelected:YES];
 
-                      // TODO: increase number of likes
+                      self.currentHairfie.numLikes = [NSNumber numberWithInt:([self.currentHairfie.numLikes intValue] + 1)];
+                      [self reloadData];
                   }
                   failure:^(NSError *error) {
                       NSLog(@"Failed to unlike hairfie: %@", error.localizedDescription);
