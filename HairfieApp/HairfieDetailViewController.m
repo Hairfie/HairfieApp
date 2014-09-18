@@ -202,7 +202,7 @@
 
 
     UIView *hairfieView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 323)];
-    hairfieView.backgroundColor = [UIColor whiteColor];
+    hairfieView.backgroundColor = [UIColor lightGreyHairfie];
     CALayer *bottomBorder = [CALayer layer];
     bottomBorder.frame = CGRectMake(0.0, 320, 320, 3.0f);
     bottomBorder.backgroundColor = [UIColor lightBlueHairfie].CGColor;
@@ -213,7 +213,7 @@
     [hairfieImageView sd_setImageWithURL:[NSURL URLWithString:_currentHairfie.hairfieDetailUrl]
                       placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
 
-    hairfieImageView.contentMode = UIViewContentModeScaleAspectFill;
+    hairfieImageView.contentMode = UIViewContentModeScaleAspectFit;
     hairfieImageView.clipsToBounds = YES;
 
     UIButton *likeButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 290, 25, 20)];
