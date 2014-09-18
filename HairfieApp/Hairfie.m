@@ -114,16 +114,24 @@
 
 
 +(void)listLatestByBusiness:(NSString *)businessId
+                      until:(NSDate *)until
                       limit:(NSNumber *)limit
                        skip:(NSNumber *)skip
                     success:(void(^)(NSArray *hairfies))aSuccessHandler
                     failure:(void(^)(NSError *error))aFailureHandler
 {
+    NSMutableDictionary *where = [[NSMutableDictionary alloc] initWithDictionary:@{@"businessId": businessId}];
+    
+    if (nil != until) {
+        [where setObject:@{@"lte": until} forKey:@"createdAt"];
+    }
+    
     NSDictionary *parameters = @{
         @"filter": @{
-            @"where": @{@"businessId": businessId},
+            @"where":where,
             @"limit": limit,
-            @"skip": skip
+            @"skip": skip,
+            @"order": @"createdAt DESC"
         }
     };
     
