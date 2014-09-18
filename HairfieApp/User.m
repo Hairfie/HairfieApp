@@ -72,19 +72,12 @@
 {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] initWithDictionary:@{
         @"userId": userId,
-        @"filter": [[NSMutableDictionary alloc] initWithDictionary:@{
-            @"order": @"createdAt DESC"
-        }],
         @"limit": limit,
         @"skip": skip
     }];
 
-    if (until != nil) {
-        //NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        //[dateFormatter setDateFormat:API_DATE_FORMAT];
-        NSMutableDictionary *where = [[NSMutableDictionary alloc] initWithDictionary:@{@"createdAt": @{@"gte": until}}];
-
-        [[parameters objectForKey:@"filter"] setObject:where forKey:@"where"];
+    if (nil != until) {
+        [parameters setObject:until forKey:@"until"];
     }
 
     [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/users/:userId/liked-hairfies"
