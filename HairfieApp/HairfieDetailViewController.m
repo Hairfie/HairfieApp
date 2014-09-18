@@ -201,17 +201,22 @@
 
 
 
-    UIView *hairfieView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 358)];
-    hairfieView.backgroundColor = [UIColor lightBlueHairfie];
-    UIImageView *hairfieImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 355)];
-
+    UIView *hairfieView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 323)];
+    hairfieView.backgroundColor = [UIColor whiteColor];
+    CALayer *bottomBorder = [CALayer layer];
+    bottomBorder.frame = CGRectMake(0.0, 320, 320, 3.0f);
+    bottomBorder.backgroundColor = [UIColor lightBlueHairfie].CGColor;
+    [hairfieView.layer addSublayer:bottomBorder];
+    
+    UIImageView *hairfieImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 320)];
+    NSLog(_currentHairfie.hairfieDetailUrl);
     [hairfieImageView sd_setImageWithURL:[NSURL URLWithString:_currentHairfie.hairfieDetailUrl]
                       placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
 
     hairfieImageView.contentMode = UIViewContentModeScaleAspectFill;
     hairfieImageView.clipsToBounds = YES;
 
-    UIButton *likeButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 328, 25, 20)];
+    UIButton *likeButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 290, 25, 20)];
     [likeButton setImage:[UIImage imageNamed:@"picto-hairfie-detail-liked.png"] forState:UIControlStateSelected];
     [likeButton setImage:[UIImage imageNamed:@"picto-hairfie-detail-like.png"] forState:UIControlStateNormal];
     [likeButton addTarget:self action:@selector(likeButtonHandler:) forControlEvents:UIControlEventTouchUpInside];
@@ -229,14 +234,14 @@
     }
 
 
-    nbLike = [[UILabel alloc] initWithFrame:CGRectMake(43, 328, 35, 21)];
+    nbLike = [[UILabel alloc] initWithFrame:CGRectMake(43, 290, 35, 21)];
     nbLike.textColor = [UIColor whiteColor];
     nbLike.font = [UIFont fontWithName:@"SourceSansPro-SemiBold" size:18];
 
-    UIImageView *commentPicto = [[UIImageView alloc] initWithFrame:CGRectMake(86, 328, 26, 20)];
+    UIImageView *commentPicto = [[UIImageView alloc] initWithFrame:CGRectMake(86, 290, 26, 20)];
     commentPicto.image = [UIImage imageNamed:@"picto-hairfie-comment.png"];
 
-    UILabel *nbComment = [[UILabel alloc] initWithFrame:CGRectMake(120, 328, 54, 21)];
+    UILabel *nbComment = [[UILabel alloc] initWithFrame:CGRectMake(120, 290, 54, 21)];
     nbComment.text = [self.currentHairfie displayNumComments];
     nbComment.textColor = [UIColor whiteColor];
     nbComment.font = [UIFont fontWithName:@"SourceSansPro-SemiBold" size:18];
@@ -249,7 +254,7 @@
 
     // HAIRFIE DETAIL
 
-    hairfieDetailView = [[UIView alloc] initWithFrame:CGRectMake(0, 359, 320, 100)];
+    hairfieDetailView = [[UIView alloc] initWithFrame:CGRectMake(0, 334, 320, 100)];
 
     UIImageView *profilePicture = [[UIImageView alloc] initWithFrame:CGRectMake(20, 10, 40, 40)];
     [profilePicture sd_setImageWithURL:[NSURL URLWithString:_currentHairfie.author.thumbUrl] placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
@@ -282,19 +287,19 @@
 
     // RESTE
 
-    detailsTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 457, 320, 154)];
+    detailsTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 432, 320, 154)];
     detailsTableView.dataSource = self;
     detailsTableView.delegate = self;
     detailsTableView.backgroundColor = [UIColor clearColor];
     detailsTableView.scrollEnabled = NO;
 
 
-    UILabel *commentsLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 619, 185, 21)];
+    UILabel *commentsLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 596, 185, 21)];
     commentsLabel.text = @"Commentaires du Hairfie";
     commentsLabel.font = [UIFont fontWithName:@"SourceSansPro-Light" size:18];
     commentsLabel.textColor = [UIColor darkBlueHairfie];
 
-    UIView *commentLineBreaker = [[UIView alloc] initWithFrame:CGRectMake(10, 643, 185, 1)];
+    UIView *commentLineBreaker = [[UIView alloc] initWithFrame:CGRectMake(10, 618, 185, 1)];
     commentLineBreaker.backgroundColor = [UIColor lightGreyHairfie];
     UIImage *addCommentImage = [UIImage imageNamed:@"add-comment-textfield.png"];
     UIButton *bigAddCommentButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -302,14 +307,14 @@
     [bigAddCommentButton setImage:addCommentImage forState:UIControlStateNormal];
     [bigAddCommentButton addTarget:self action:@selector(addComment) forControlEvents:UIControlEventTouchUpInside];
 
-    [bigAddCommentButton setFrame:CGRectMake(10, 658, 300, 36)];
+    [bigAddCommentButton setFrame:CGRectMake(10, 633, 300, 36)];
 
-    UILabel *addCommentLabel = [[UILabel alloc] initWithFrame:CGRectMake(58, 665, 138, 21)];
+    UILabel *addCommentLabel = [[UILabel alloc] initWithFrame:CGRectMake(58, 640, 138, 21)];
     addCommentLabel.text = @"add a comment...";
     addCommentLabel.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:14];
     addCommentLabel.textColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5];
 
-    commentsTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 712, 320, 294)];
+    commentsTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 687, 320, 294)];
     commentsTableView.dataSource = self;
     commentsTableView.delegate = self;
     commentsTableView.scrollEnabled = NO;
@@ -317,7 +322,7 @@
     UIButton *addCommentButton = [UIButton buttonWithType:UIButtonTypeSystem];
     addCommentButton.layer.cornerRadius = 5;
     addCommentButton.layer.masksToBounds = YES;
-    [addCommentButton setFrame:CGRectMake(58, 989, 110, 30)];
+    [addCommentButton setFrame:CGRectMake(58, 964, 110, 30)];
     addCommentButton.backgroundColor = [UIColor lightBlueHairfie];
 
     [addCommentButton setTitle:@"Add a comment" forState:UIControlStateNormal];
@@ -331,7 +336,7 @@
     UIButton *moreCommentButton = [UIButton buttonWithType:UIButtonTypeCustom];
     moreCommentButton.layer.cornerRadius = 5;
     moreCommentButton.layer.masksToBounds = YES;
-    [moreCommentButton setFrame:CGRectMake(181, 989, 129, 30)];
+    [moreCommentButton setFrame:CGRectMake(181, 964, 129, 30)];
     moreCommentButton.backgroundColor = [UIColor lightBlueHairfie];
     [moreCommentButton setTitle:@"More comments (20)" forState:UIControlStateNormal];
     [moreCommentButton setTitle:@"More comments (20)" forState:UIControlStateHighlighted];
@@ -341,12 +346,12 @@
    // moreCommentButton.titleLabel.textColor = [UIColor whiteColor];
     [moreCommentButton addTarget:self action:@selector(addComment) forControlEvents:UIControlEventTouchUpInside];
 
-    UILabel *similarHairfieLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 1035, 191, 21)];
+    UILabel *similarHairfieLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 1010, 191, 21)];
     similarHairfieLabel.text = @"Hairfies du même coiffeur";
     similarHairfieLabel.font = [UIFont fontWithName:@"SourceSansPro-Light" size:18];
     similarHairfieLabel.textColor = [UIColor darkBlueHairfie];
 
-    UIView *similarLineBreaker = [[UIView alloc] initWithFrame:CGRectMake(10, 1055, 186, 1)];
+    UIView *similarLineBreaker = [[UIView alloc] initWithFrame:CGRectMake(10, 1030, 186, 1)];
     similarLineBreaker.backgroundColor = [UIColor lightGreyHairfie];
     // Hairfitter profile pic (added manually because circled view)
 

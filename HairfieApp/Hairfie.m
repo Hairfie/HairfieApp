@@ -51,7 +51,7 @@
 }
 
 -(NSString *)hairfieDetailUrl {
-    return [self pictureUrlwithWidth:@"640" andHeight:@"710"];
+    return [self pictureUrlwithWidth:@"640" andHeight:@"640"];
 }
 
 
