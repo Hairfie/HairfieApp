@@ -20,6 +20,8 @@
 #import "HairdressersTableViewCell.h"
 #import "PricesTableViewCell.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "AppDelegate.h"
+#import "NotLoggedAlert.h"
 
 @interface SalonDetailViewController ()
 
@@ -35,6 +37,7 @@
     NSMutableArray *hairfies;
     BOOL endOfHairfies;
     BOOL loadingHairfies;
+    AppDelegate *delegate;
 }
 
 @synthesize imageSliderView =_imageSliderView, pageControl = _pageControl,hairfieView = _hairfieView, hairdresserView = _hairdresserView, priceAndSaleView = _priceAndSaleView, infoBttn = _infoBttn, hairfieBttn = _hairfieBttn, hairdresserBttn = _hairdresserBttn, priceAndSaleBttn = _priceAndSaleBttn, reviewRating = _reviewRating, reviewTableView = _reviewTableView, addReviewBttn = _addReviewBttn, moreReviewBttn = _moreReviewBttn, similarTableView = _similarTableView, business = _business, ratingLabel = _ratingLabel, name = _name , womanPrice = _womanPrice, manPrice = _manPrice, salonRating = _salonRating, address = _address, city = _city, salonAvailability = _salonAvailability, nbReviews = _nbReviews, previewMap = _previewMap, isOpenLabel = _isOpenLabel, isOpenLabelDetail = _isOpenLabelDetail, isOpenImage = _isOpenImage, isOpenImageDetail = _isOpenImageDetail, callBttn = _callBttn, telephoneBgView = _telephoneBgView, detailedContainerView = _detailedContainerView;
@@ -45,6 +48,10 @@
     [super viewDidLoad];
     [self initKnownData:_business];
     [self setButtonSelected:_infoBttn andBringViewUpfront:_infoView];
+    
+    delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+
+    
     _infoView.hidden = NO;
     _imageSliderView.canCancelContentTouches = NO;
     _hairfieCollection.scrollEnabled = NO;
@@ -177,13 +184,24 @@
 }
 
 - (void)rateView:(RatingView *)rateView ratingDidChange:(float)rating {
-    [self performSegueWithIdentifier:@"addReview" sender:self];
+    if(delegate.currentUser) {
+        [self performSegueWithIdentifier:@"addReview" sender:self];
+
+    } else {
+        [self showNotLoggedAlertWithDelegate:nil andTitle:nil andMessage:nil];
+        _reviewRating.rating = 0;
+    }
 }
 
 -(IBAction)addReview:(id)sender
 {
     _reviewRating.rating = 0;
-    [self performSegueWithIdentifier:@"addReview" sender:self];
+    if(delegate.currentUser) {
+        [self performSegueWithIdentifier:@"addReview" sender:self];
+        
+    } else {
+        [self showNotLoggedAlertWithDelegate:nil andTitle:nil andMessage:nil];
+    }
 }
 
 -(void) scrollViewDidEndDecelerating:(UIScrollView *)scrollview

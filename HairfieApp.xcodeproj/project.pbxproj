@@ -18,6 +18,7 @@
 		1576492919C9B8BA00DDC141 /* help-hairfie.png in Resources */ = {isa = PBXBuildFile; fileRef = 1576492819C9B8BA00DDC141 /* help-hairfie.png */; };
 		15A2180F19BE296A0090E83B /* PictureUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A2180E19BE296A0090E83B /* PictureUploader.m */; };
 		15A50D9A19CC39AF0043BFB4 /* login-user.png in Resources */ = {isa = PBXBuildFile; fileRef = 15A50D9919CC39AF0043BFB4 /* login-user.png */; };
+		15A50D9D19CC6FAC0043BFB4 /* NotLoggedAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A50D9C19CC6FAB0043BFB4 /* NotLoggedAlert.m */; };
 		15B829C919B85F6200525802 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15B829C819B85F6200525802 /* FacebookSDK.framework */; };
 		15B8ADE319C09A3E009846AA /* BusinessRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B8ADE219C09A3E009846AA /* BusinessRepository.m */; };
 		15B8D63719C83A3700C889CF /* LoadingCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15B8D63619C83A3700C889CF /* LoadingCollectionViewCell.xib */; };
@@ -271,6 +272,8 @@
 		15A2180D19BE296A0090E83B /* PictureUploader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PictureUploader.h; sourceTree = "<group>"; };
 		15A2180E19BE296A0090E83B /* PictureUploader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PictureUploader.m; sourceTree = "<group>"; };
 		15A50D9919CC39AF0043BFB4 /* login-user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-user.png"; sourceTree = "<group>"; };
+		15A50D9B19CC6FAB0043BFB4 /* NotLoggedAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotLoggedAlert.h; sourceTree = "<group>"; };
+		15A50D9C19CC6FAB0043BFB4 /* NotLoggedAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotLoggedAlert.m; sourceTree = "<group>"; };
 		15B829C819B85F6200525802 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		15B8ADE119C09A3E009846AA /* BusinessRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessRepository.h; sourceTree = "<group>"; };
 		15B8ADE219C09A3E009846AA /* BusinessRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessRepository.m; sourceTree = "<group>"; };
@@ -751,6 +754,8 @@
 				15CE407219B0E78C0088FEA7 /* CredentialStore.m */,
 				153E1FB219B4AA8200DEC95D /* UserAuthenticator.h */,
 				153E1FB319B4AA8200DEC95D /* UserAuthenticator.m */,
+				15A50D9B19CC6FAB0043BFB4 /* NotLoggedAlert.h */,
+				15A50D9C19CC6FAB0043BFB4 /* NotLoggedAlert.m */,
 			);
 			name = Authentication;
 			sourceTree = "<group>";
@@ -1619,6 +1624,7 @@
 				B3615B3219AF1CC800F1141D /* TPKeyboardAvoidingScrollView.m in Sources */,
 				B367DC3A19C9C42600A0452A /* FinalStepViewController.m in Sources */,
 				151151941982B7A8001157A2 /* AppDelegate.m in Sources */,
+				15A50D9D19CC6FAC0043BFB4 /* NotLoggedAlert.m in Sources */,
 				B3AD59B7198B9A3700909ADE /* SalonTableViewCell.m in Sources */,
 				B342316F1988F8D70058866B /* AroundMeViewController.m in Sources */,
 				B3E65FB91986917800AF0C15 /* ECSlidingSegue.m in Sources */,

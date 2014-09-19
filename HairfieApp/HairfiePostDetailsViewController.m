@@ -12,6 +12,7 @@
 #import "HairfieRepository.h"
 #import "BusinessRepository.h"
 #import "Business.h"
+#import "NotLoggedAlert.h"
 
 #import <LoopBack/LoopBack.h>
 
@@ -181,45 +182,50 @@ shouldChangeTextInRange: (NSRange) range
 
 -(IBAction)postHairfie:(id)sender
 {
-    NSLog(@"Post Hairfie");
-    while (uploadInProgress) {
-        NSLog(@"---------- Upload in progress ----------");
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
-    }
-    
-
-    NSMutableDictionary *hairfieDic = [[NSMutableDictionary alloc] init];
-                                       
-    [hairfieDic setObject:uploadedFileName  forKey:@"picture"];
-    [hairfieDic setObject:_hairfieDesc.text forKey:@"description"];
-
-    if (_salonChosen){
-        BusinessRepository *businessRepository = (BusinessRepository *)[[AppDelegate lbAdaptater] repositoryWithClass:[BusinessRepository class]];
-        Business *business = (Business *)[businessRepository modelWithDictionary:_salonChosen];
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    if(delegate.currentUser) {
+        NSLog(@"Post Hairfie");
+        while (uploadInProgress) {
+            NSLog(@"---------- Upload in progress ----------");
+            [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
+        }
         
-        [hairfieDic setObject:business.id forKey:@"id"];
-    }
-    if (![_priceTextField.text isEqualToString:@""])
-    {
-        NSDictionary *price = [[NSDictionary alloc] initWithObjectsAndKeys:@"EUR", @"currency", _priceTextField.text, @"amount", nil];
-        [hairfieDic setObject:price forKey:@"price"];
-    }
-    
-    
-    HairfieRepository *hairfieRepository = (HairfieRepository *)[[AppDelegate lbAdaptater] repositoryWithClass:[HairfieRepository class]];
-    
-    Hairfie *hairfieToPost = (Hairfie *)[hairfieRepository modelWithDictionary:hairfieDic];
-    
-    
-    void (^loadErrorBlock)(NSError *) = ^(NSError *error){
-        NSLog(@"Error : %@", error.description);
-    };
-    void (^loadSuccessBlock)(Hairfie *) = ^(Hairfie *hairfiePosted){
+
+        NSMutableDictionary *hairfieDic = [[NSMutableDictionary alloc] init];
+                                           
+        [hairfieDic setObject:uploadedFileName  forKey:@"picture"];
+        [hairfieDic setObject:_hairfieDesc.text forKey:@"description"];
+
+        if (_salonChosen){
+            BusinessRepository *businessRepository = (BusinessRepository *)[[AppDelegate lbAdaptater] repositoryWithClass:[BusinessRepository class]];
+            Business *business = (Business *)[businessRepository modelWithDictionary:_salonChosen];
+            
+            [hairfieDic setObject:business.id forKey:@"id"];
+        }
+        if (![_priceTextField.text isEqualToString:@""])
+        {
+            NSDictionary *price = [[NSDictionary alloc] initWithObjectsAndKeys:@"EUR", @"currency", _priceTextField.text, @"amount", nil];
+            [hairfieDic setObject:price forKey:@"price"];
+        }
         
-        NSLog(@"Hairfie Posté");
-        [self.navigationController popToRootViewControllerAnimated:YES];
-    };
-    [hairfieToPost saveWithSuccess:loadSuccessBlock failure:loadErrorBlock];
+        
+        HairfieRepository *hairfieRepository = (HairfieRepository *)[[AppDelegate lbAdaptater] repositoryWithClass:[HairfieRepository class]];
+        
+        Hairfie *hairfieToPost = (Hairfie *)[hairfieRepository modelWithDictionary:hairfieDic];
+        
+        
+        void (^loadErrorBlock)(NSError *) = ^(NSError *error){
+            NSLog(@"Error : %@", error.description);
+        };
+        void (^loadSuccessBlock)(Hairfie *) = ^(Hairfie *hairfiePosted){
+            
+            NSLog(@"Hairfie Posté");
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        };
+        [hairfieToPost saveWithSuccess:loadSuccessBlock failure:loadErrorBlock];
+    } else {
+        [self showNotLoggedAlertWithDelegate:nil andTitle:nil andMessage:nil];
+    }
 }
 
 -(void) uploadProfileImage:(UIImage *)image

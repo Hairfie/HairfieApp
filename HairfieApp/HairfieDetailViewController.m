@@ -15,6 +15,7 @@
 #import <LoopBack/LoopBack.h>
 #import "Hairfie.h"
 #import "AppDelegate.h"
+#import "NotLoggedAlert.h"
 
 @interface HairfieDetailViewController ()
 
@@ -398,30 +399,34 @@
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     User *currentUser = delegate.currentUser;
 
-    if ([likeButton isSelected]) {
-        [User unlikeHairfie:self.currentHairfie.id
-                   asUser:currentUser.id
-                  success:^() {
-                      [likeButton setSelected:NO];
-
-                      self.currentHairfie.numLikes = [NSNumber numberWithInt:([self.currentHairfie.numLikes intValue] - 1)];
-                      [self reloadData];
-                  }
-                  failure:^(NSError *error) {
-                      NSLog(@"Failed to like hairfie: %@", error.localizedDescription);
-                  }];
+    if(delegate.currentUser) {
+        if ([likeButton isSelected]) {
+            [User unlikeHairfie:self.currentHairfie.id
+                         asUser:currentUser.id
+                        success:^() {
+                            [likeButton setSelected:NO];
+                            
+                            self.currentHairfie.numLikes = [NSNumber numberWithInt:([self.currentHairfie.numLikes intValue] - 1)];
+                            [self reloadData];
+                        }
+                        failure:^(NSError *error) {
+                            NSLog(@"Failed to like hairfie: %@", error.localizedDescription);
+                        }];
+        } else {
+            [User likeHairfie:self.currentHairfie.id
+                       asUser:currentUser.id
+                      success:^() {
+                          [likeButton setSelected:YES];
+                          
+                          self.currentHairfie.numLikes = [NSNumber numberWithInt:([self.currentHairfie.numLikes intValue] + 1)];
+                          [self reloadData];
+                      }
+                      failure:^(NSError *error) {
+                          NSLog(@"Failed to unlike hairfie: %@", error.localizedDescription);
+                      }];
+        }
     } else {
-        [User likeHairfie:self.currentHairfie.id
-                   asUser:currentUser.id
-                  success:^() {
-                      [likeButton setSelected:YES];
-
-                      self.currentHairfie.numLikes = [NSNumber numberWithInt:([self.currentHairfie.numLikes intValue] + 1)];
-                      [self reloadData];
-                  }
-                  failure:^(NSError *error) {
-                      NSLog(@"Failed to unlike hairfie: %@", error.localizedDescription);
-                  }];
+        [self showNotLoggedAlertWithDelegate:nil andTitle:nil andMessage:nil];
     }
 }
 
