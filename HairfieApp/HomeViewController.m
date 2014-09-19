@@ -67,8 +67,7 @@
     endOfScroll = NO;
     [self getHairfies:nil];
      dismiss = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
-    
-    if(delegate.currentUser) {
+    if([delegate.credentialStore isLoggedIn]) {
         [self.view addGestureRecognizer:self.slidingViewController.panGesture];
     } else {
         NSLog(@"not logged");
@@ -298,14 +297,9 @@
 {
     if ([segue.identifier isEqualToString:@"camera"])
     {
-        if(delegate.currentUser) {
-            UIImagePickerController *pickerController = [segue destinationViewController];
-            pickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
-            pickerController.delegate = self;
-        } else {
-            UIAlertView *errorAlert = [[UIAlertView alloc]initWithTitle:@"Error" message:@"There was an error retrieving your location" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-            [errorAlert show];
-        }
+        UIImagePickerController *pickerController = [segue destinationViewController];
+        pickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+        pickerController.delegate = self;
     
     }
     if ([segue.identifier isEqualToString:@"searchFromFeed"])

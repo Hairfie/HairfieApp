@@ -183,7 +183,7 @@ shouldChangeTextInRange: (NSRange) range
 -(IBAction)postHairfie:(id)sender
 {
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    if(delegate.currentUser) {
+    if([delegate.credentialStore isLoggedIn]) {
         NSLog(@"Post Hairfie");
         while (uploadInProgress) {
             NSLog(@"---------- Upload in progress ----------");

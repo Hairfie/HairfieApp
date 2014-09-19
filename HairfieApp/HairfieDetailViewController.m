@@ -414,7 +414,7 @@
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     User *currentUser = delegate.currentUser;
 
-    if(delegate.currentUser) {
+    if([delegate.credentialStore isLoggedIn]) {
         if ([likeButton isSelected]) {
             [User unlikeHairfie:self.currentHairfie.id
                          asUser:currentUser.id

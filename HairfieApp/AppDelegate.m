@@ -36,9 +36,7 @@ static LBRESTAdapter * _lbAdaptater = nil;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [NewRelicAgent startWithApplicationToken:NEWRELIC_APP_TOKEN];
-   
-  //  _currentUser = [[User alloc] init];
-   
+    
     _manager = [[CLLocationManager alloc] init];
     _credentialStore = [[CredentialStore alloc] init];
 

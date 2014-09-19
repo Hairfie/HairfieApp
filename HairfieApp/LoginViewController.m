@@ -17,6 +17,7 @@
 #import <Accounts/Accounts.h>
 #import "UITextField+ELFixSecureTextFieldFont.h"
 #import <FacebookSDK/FacebookSDK.h>
+#import "HomeViewController.h"
 
 @interface LoginViewController ()
 @end
