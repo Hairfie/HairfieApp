@@ -7,6 +7,7 @@
 //
 
 #import "HairfieDetailViewController.h"
+#import "SalonDetailViewController.h"
 #import "HairfieDetailTableViewCell.h"
 #import "CommentTableViewCell.h"
 #import "CustomCollectionViewCell.h"
@@ -90,6 +91,16 @@
     if (tableView == commentsTableView)
         return 130;
     return 43;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (tableView == detailsTableView) {
+        NSString *infoName = displayedInfoNames[indexPath.row];
+        if ([infoName isEqualToString:@"business"]) {
+            [self performSegueWithIdentifier:@"businessDetail" sender:self.currentHairfie.business];
+        }
+    }
 }
 
 
@@ -199,7 +210,6 @@
     [hairfieView.layer addSublayer:bottomBorder];
     
     UIImageView *hairfieImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 320)];
-    NSLog(_currentHairfie.hairfieDetailUrl);
     [hairfieImageView sd_setImageWithURL:[NSURL URLWithString:_currentHairfie.hairfieDetailUrl]
                       placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
 
@@ -457,10 +467,12 @@
 
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"addComment"])
-    {
+    if ([segue.identifier isEqualToString:@"addComment"]) {
         CommentViewController *comment = [segue destinationViewController];
         comment.isCommenting = YES;
+    } else if ([segue.identifier isEqualToString:@"businessDetail"]) {
+        SalonDetailViewController *controller = [segue destinationViewController];
+        controller.business = sender;
     }
 }
 
