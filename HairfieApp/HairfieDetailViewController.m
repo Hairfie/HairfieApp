@@ -26,6 +26,7 @@
     UILabel *nbLike;
     UITableView *detailsTableView;
     UITableView *commentsTableView;
+    UIButton *likeButton;
 }
 
 @synthesize myScrollView = _myScrollView, hairfieImageView = _hairfieImageView;
@@ -216,10 +217,16 @@
     hairfieImageView.contentMode = UIViewContentModeScaleAspectFit;
     hairfieImageView.clipsToBounds = YES;
 
-    UIButton *likeButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 290, 25, 20)];
+    likeButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 290, 25, 20)];
     [likeButton setImage:[UIImage imageNamed:@"picto-hairfie-detail-liked.png"] forState:UIControlStateSelected];
     [likeButton setImage:[UIImage imageNamed:@"picto-hairfie-detail-like.png"] forState:UIControlStateNormal];
     [likeButton addTarget:self action:@selector(likeButtonHandler:) forControlEvents:UIControlEventTouchUpInside];
+    
+    hairfieImageView.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleTap:)];
+    tapGesture.numberOfTapsRequired = 2;
+    [hairfieImageView addGestureRecognizer:tapGesture];
+
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     User *currentUser = delegate.currentUser;
     if (currentUser != nil) {
@@ -392,11 +399,11 @@
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     User *currentUser = delegate.currentUser;
 
-    if ([sender isSelected]) {
+    if ([likeButton isSelected]) {
         [User unlikeHairfie:self.currentHairfie.id
                    asUser:currentUser.id
                   success:^() {
-                      [sender setSelected:NO];
+                      [likeButton setSelected:NO];
 
                       self.currentHairfie.numLikes = [NSNumber numberWithInt:([self.currentHairfie.numLikes intValue] - 1)];
                       [self reloadData];
@@ -408,7 +415,7 @@
         [User likeHairfie:self.currentHairfie.id
                    asUser:currentUser.id
                   success:^() {
-                      [sender setSelected:YES];
+                      [likeButton setSelected:YES];
 
                       self.currentHairfie.numLikes = [NSNumber numberWithInt:([self.currentHairfie.numLikes intValue] + 1)];
                       [self reloadData];
@@ -416,6 +423,12 @@
                   failure:^(NSError *error) {
                       NSLog(@"Failed to unlike hairfie: %@", error.localizedDescription);
                   }];
+    }
+}
+
+- (void)doubleTap:(UITapGestureRecognizer *)sender {
+    if (sender.state == UIGestureRecognizerStateRecognized) {
+        [self likeButtonHandler:nil];
     }
 }
 

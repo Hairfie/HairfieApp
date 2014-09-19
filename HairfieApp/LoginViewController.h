@@ -24,5 +24,6 @@
 -(IBAction)closeKeyboard:(id)sender;
 -(IBAction)openEmailField:(id)sender;
 -(IBAction)openPasswordField:(id)sender;
+-(IBAction)skip:(id)sender;
 
 @end
