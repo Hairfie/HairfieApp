@@ -30,6 +30,8 @@
 		718A98B019C1EF46003CD34B /* GeoPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 718A98AF19C1EF46003CD34B /* GeoPoint.m */; };
 		718B6B7819C831E200F2F8EF /* picto-hairfie-liked.png in Resources */ = {isa = PBXBuildFile; fileRef = 718B6B7719C831E200F2F8EF /* picto-hairfie-liked.png */; };
 		718B6B7A19C8339000F2F8EF /* picto-hairfie-detail-liked.png in Resources */ = {isa = PBXBuildFile; fileRef = 718B6B7919C8339000F2F8EF /* picto-hairfie-detail-liked.png */; };
+		71A0AC3D19CC2CEA00BC1ABB /* Timetable.m in Sources */ = {isa = PBXBuildFile; fileRef = 71A0AC3C19CC2CEA00BC1ABB /* Timetable.m */; };
+		71A0AC4019CC2DA000BC1ABB /* TimeWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 71A0AC3F19CC2DA000BC1ABB /* TimeWindow.m */; };
 		71C0D3FF19C1D7600037CBF4 /* Address.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C0D3FE19C1D7600037CBF4 /* Address.m */; };
 		71C0D40219C1D9190037CBF4 /* BusinessReview.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C0D40119C1D9190037CBF4 /* BusinessReview.m */; };
 		71C0D40B19C1DC040037CBF4 /* Picture.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C0D40A19C1DC040037CBF4 /* Picture.m */; };
@@ -289,6 +291,10 @@
 		718A98AF19C1EF46003CD34B /* GeoPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeoPoint.m; sourceTree = "<group>"; };
 		718B6B7719C831E200F2F8EF /* picto-hairfie-liked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "picto-hairfie-liked.png"; sourceTree = "<group>"; };
 		718B6B7919C8339000F2F8EF /* picto-hairfie-detail-liked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "picto-hairfie-detail-liked.png"; sourceTree = "<group>"; };
+		71A0AC3B19CC2CEA00BC1ABB /* Timetable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Timetable.h; sourceTree = "<group>"; };
+		71A0AC3C19CC2CEA00BC1ABB /* Timetable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Timetable.m; sourceTree = "<group>"; };
+		71A0AC3E19CC2DA000BC1ABB /* TimeWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeWindow.h; sourceTree = "<group>"; };
+		71A0AC3F19CC2DA000BC1ABB /* TimeWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeWindow.m; sourceTree = "<group>"; };
 		71C0D3FB19C1D65A0037CBF4 /* Address.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Address.h; sourceTree = "<group>"; };
 		71C0D3FE19C1D7600037CBF4 /* Address.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Address.m; sourceTree = "<group>"; };
 		71C0D40019C1D9190037CBF4 /* BusinessReview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessReview.h; sourceTree = "<group>"; };
@@ -1159,6 +1165,10 @@
 				71C0D40A19C1DC040037CBF4 /* Picture.m */,
 				718A98AE19C1EF46003CD34B /* GeoPoint.h */,
 				718A98AF19C1EF46003CD34B /* GeoPoint.m */,
+				71A0AC3B19CC2CEA00BC1ABB /* Timetable.h */,
+				71A0AC3C19CC2CEA00BC1ABB /* Timetable.m */,
+				71A0AC3E19CC2DA000BC1ABB /* TimeWindow.h */,
+				71A0AC3F19CC2DA000BC1ABB /* TimeWindow.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1614,6 +1624,7 @@
 				B367DC3719C9BFCA00A0452A /* FinalStepTimetableViewController.m in Sources */,
 				B308700C198782AF0080E6D2 /* FavoriteViewController.m in Sources */,
 				B330409519BDB21200BA6211 /* HairfieRepository.m in Sources */,
+				71A0AC3D19CC2CEA00BC1ABB /* Timetable.m in Sources */,
 				B3E65FB81986917800AF0C15 /* ECSlidingInteractiveTransition.m in Sources */,
 				B33E4C4919A4AA4C0024F5F7 /* CommentViewController.m in Sources */,
 				B3E0B15A19ACC14800C3EACE /* SignUpViewController.m in Sources */,
@@ -1653,6 +1664,7 @@
 				B34231671988ECF50058866B /* FriendViewController.m in Sources */,
 				B345BAEA19951A7E007BB61A /* OLEContainerScrollViewContentView.m in Sources */,
 				B337B6FD19A252B7003B0EA5 /* ReviewsViewController.m in Sources */,
+				71A0AC4019CC2DA000BC1ABB /* TimeWindow.m in Sources */,
 				B330408B19BDA64600BA6211 /* UITextField+ELFixSecureTextFieldFont.m in Sources */,
 				B3423213198924290058866B /* AFNetworkReachabilityManager.m in Sources */,
 				71C0D40B19C1DC040037CBF4 /* Picture.m in Sources */,
