@@ -514,6 +514,8 @@
 
 -(void)updateHairfiesView
 {
+    if (_hairfieView.hidden) return;
+    
     NSInteger height = ceil((float)hairfies.count / 2) * 230 + 200;
     
     NSLog(@"Height: %@", [NSNumber numberWithLong:height]);

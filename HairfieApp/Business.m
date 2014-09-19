@@ -38,7 +38,14 @@
     self.rating = @80;
 
     self = (Business*)[[Business repository] modelWithDictionary:data];
-
+    
+    // seems there is a parser issue with boolean values...
+    if ([[data objectForKey:@"crossSell"] isEqualToNumber:@1]) {
+        self.crossSell = YES;
+    } else {
+        self.crossSell = NO;
+    }
+    
     return self;
 }
 
@@ -55,29 +62,6 @@
 
     _gps = [[GeoPoint alloc] initWithJson:geoPointDic];
 }
-
-
-
-//-(id)initWithJson:(NSDictionary *)data
-//{
-//    self = [super init];
-//    if (self) {
-//        self.id = [data valueForKey:@"id"];
-//        self.name = [data valueForKey:@"name"];
-//        self.gps = [[GeoPoint alloc] initWithJson:[data valueForKey:@"gps"]];
-//        self.address = [[Address alloc] initWithJson:[data valueForKey:@"address"]];
-//        self.distance = [data valueForKey:@"distance"];
-//        self.thumbnail = [data valueForKey:@"thumbnail"];
-//        self.pictures = [data valueForKey:@"pictures"];
-//        self.phoneNumbers = [data valueForKey:@"phoneNumbers"];
-//        self.timetable = [data valueForKey:@"timetable"];
-//        self.crossSell = [[data valueForKey:@"crossSell"] isEqualToNumber:@1];
-//        self.numHairfies = [data valueForKey:@"numHairfies"];
-//
-//
-//     }
-//    return self;
-//}
 
 -(NSNumber *)ratingBetween:(NSNumber *)theMin
                        and:(NSNumber *)theMax
