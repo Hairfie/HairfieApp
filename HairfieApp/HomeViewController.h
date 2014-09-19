@@ -19,7 +19,12 @@
 @property (nonatomic) IBOutlet UIView *overlayView;
 @property (nonatomic) IBOutlet UITextField *searchField;
 @property (nonatomic) IBOutlet UIView *advancedSearchView;
+@property (nonatomic) IBOutlet UIView *topBarView;
 @property (nonatomic) IBOutlet AdvanceSearch *searchView;
 @property (nonatomic) IBOutlet UIButton *takePictureButton;
+
+@property (nonatomic) IBOutlet UIButton *menuButton;
+
+-(void) userNotLogged;
 
 @end

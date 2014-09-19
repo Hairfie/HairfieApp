@@ -17,6 +17,7 @@
 		15697B31199BB03800DA83FE /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 15697B30199BB03800DA83FE /* UIImage+Resize.m */; };
 		1576492919C9B8BA00DDC141 /* help-hairfie.png in Resources */ = {isa = PBXBuildFile; fileRef = 1576492819C9B8BA00DDC141 /* help-hairfie.png */; };
 		15A2180F19BE296A0090E83B /* PictureUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A2180E19BE296A0090E83B /* PictureUploader.m */; };
+		15A50D9A19CC39AF0043BFB4 /* login-user.png in Resources */ = {isa = PBXBuildFile; fileRef = 15A50D9919CC39AF0043BFB4 /* login-user.png */; };
 		15B829C919B85F6200525802 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15B829C819B85F6200525802 /* FacebookSDK.framework */; };
 		15B8ADE319C09A3E009846AA /* BusinessRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B8ADE219C09A3E009846AA /* BusinessRepository.m */; };
 		15B8D63719C83A3700C889CF /* LoadingCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15B8D63619C83A3700C889CF /* LoadingCollectionViewCell.xib */; };
@@ -267,6 +268,7 @@
 		158431C3198A72FB001621B4 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
 		15A2180D19BE296A0090E83B /* PictureUploader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PictureUploader.h; sourceTree = "<group>"; };
 		15A2180E19BE296A0090E83B /* PictureUploader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PictureUploader.m; sourceTree = "<group>"; };
+		15A50D9919CC39AF0043BFB4 /* login-user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-user.png"; sourceTree = "<group>"; };
 		15B829C819B85F6200525802 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		15B8ADE119C09A3E009846AA /* BusinessRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessRepository.h; sourceTree = "<group>"; };
 		15B8ADE219C09A3E009846AA /* BusinessRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessRepository.m; sourceTree = "<group>"; };
@@ -655,8 +657,6 @@
 				1511518E1982B7A8001157A2 /* Supporting Files */,
 				15E6AE751992635900A11947 /* OpeningTimes.swift */,
 				B303B953199B9403008F6BAA /* Images.xcassets */,
-				712667E919C6E67500298FF0 /* UIRoundImageView.h */,
-				712667EA19C6E67500298FF0 /* UIRoundImageView.m */,
 			);
 			path = HairfieApp;
 			sourceTree = "<group>";
@@ -665,6 +665,7 @@
 			isa = PBXGroup;
 			children = (
 				B3FB10B419B09DA600CADCFD /* man-picto.png */,
+				15A50D9919CC39AF0043BFB4 /* login-user.png */,
 				B3FB10B519B09DA600CADCFD /* woman-picto.png */,
 				15697B2E199BAFD000DA83FE /* UIImage Subclasses */,
 				B3F6622A1987D52A0041F298 /* Source_Sans_Pro */,
@@ -720,6 +721,8 @@
 		15697B2E199BAFD000DA83FE /* UIImage Subclasses */ = {
 			isa = PBXGroup;
 			children = (
+				712667E919C6E67500298FF0 /* UIRoundImageView.h */,
+				712667EA19C6E67500298FF0 /* UIRoundImageView.m */,
 				15697B2F199BB01B00DA83FE /* UIImage+Resize.h */,
 				15697B30199BB03800DA83FE /* UIImage+Resize.m */,
 			);
@@ -1480,6 +1483,7 @@
 				B3E65FD31986A32D00AF0C15 /* navigation-bg.jpg in Resources */,
 				B3F6624E1987E87E0041F298 /* MenuTableViewCell.xib in Resources */,
 				B3F5522419BF33F50033230E /* arrow-dropdown.png in Resources */,
+				15A50D9A19CC39AF0043BFB4 /* login-user.png in Resources */,
 				B33E4C4619A49E2E0024F5F7 /* add-comment-textfield.png in Resources */,
 				B3F5521C19BF2DAD0033230E /* hairfie-post-contour.png in Resources */,
 				B3E0B15319ACB53F00C3EACE /* login-separator.png in Resources */,

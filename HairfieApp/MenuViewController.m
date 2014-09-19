@@ -46,6 +46,7 @@
    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(currentUserChanged:) name:@"currentUser" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(badCredentials:) name:@"badCredentials" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(backToLogin:) name:@"backToLogin" object:nil];
     
     [self initCurrentUser];
     
@@ -78,6 +79,10 @@
 -(void)badCredentials:(NSNotification*)notification
 {
     [self logOut];
+}
+
+-(void) backToLogin:(NSNotification*)notification {
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 -(void) initCurrentUser

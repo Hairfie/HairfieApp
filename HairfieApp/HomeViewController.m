@@ -15,6 +15,7 @@
 #import "HairfieDetailViewController.h"
 #import "ApplyFiltersViewController.h"
 #import "UserRepository.h"
+#import "LoginViewController.h"
 
 #define CUSTOM_CELL_IDENTIFIER @"hairfieCell"
 #define LOADING_CELL_IDENTIFIER @"LoadingItemCell"
@@ -22,6 +23,7 @@
 
 @interface HomeViewController ()
 {
+    AppDelegate *delegate;
     AdvanceSearch *searchView;
     NSMutableArray *hairfies;
     NSInteger hairfieRow;
@@ -37,7 +39,7 @@
 
 @implementation HomeViewController
 
-@synthesize searchView = _searchView;
+@synthesize searchView = _searchView, menuButton = _menuButton, topBarView = _topBarView;
 
 -(UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
@@ -45,11 +47,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+
     self.navigationItem.title = [NSString stringWithFormat:NSLocalizedString(@"Home", nil)];
     [_hairfieCollection registerNib:[UINib nibWithNibName:@"CustomCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:CUSTOM_CELL_IDENTIFIER];
     [_hairfieCollection registerNib:[UINib nibWithNibName:@"LoadingCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:LOADING_CELL_IDENTIFIER];
 
-    [self.view addGestureRecognizer:self.slidingViewController.panGesture];
     _searchView.hidden = YES;
     [_searchView initView];
     [_searchView.searchAroundMeImage setTintColor:[UIColor lightBlueHairfie]];
@@ -64,6 +67,14 @@
     endOfScroll = NO;
     [self getHairfies:nil];
      dismiss = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
+    
+    if(delegate.currentUser) {
+        [self.view addGestureRecognizer:self.slidingViewController.panGesture];
+    } else {
+        NSLog(@"not logged");
+        [self prepareUserNotLogged];
+    }
+    
     // Do any additional setup after loading the view.
 
 }
@@ -264,6 +275,22 @@
     [self getHairfies:currentPage];
 }
 
+-(void) prepareUserNotLogged {
+    [_menuButton setHidden:YES];
+    
+    UIImage *loginButtonImg = [UIImage imageNamed:@"login-user.png"];
+    UIButton *loginButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [loginButton setFrame:CGRectMake(0, 20, 40, 40)];
+    [loginButton setImageEdgeInsets:UIEdgeInsetsMake(10,13,10,13)];
+    [loginButton setImage:loginButtonImg forState:UIControlStateNormal];
+    [loginButton addTarget:self action:@selector(backToLogin) forControlEvents:UIControlEventTouchUpInside];
+    [_topBarView addSubview:loginButton];
+}
+
+-(void)backToLogin {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"backToLogin" object:self];
+}
+
 
 #pragma mark - Navigation
 
@@ -271,9 +298,15 @@
 {
     if ([segue.identifier isEqualToString:@"camera"])
     {
-        UIImagePickerController *pickerController = [segue destinationViewController];
-        pickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
-        pickerController.delegate = self;
+        if(delegate.currentUser) {
+            UIImagePickerController *pickerController = [segue destinationViewController];
+            pickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+            pickerController.delegate = self;
+        } else {
+            UIAlertView *errorAlert = [[UIAlertView alloc]initWithTitle:@"Error" message:@"There was an error retrieving your location" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+            [errorAlert show];
+        }
+    
     }
     if ([segue.identifier isEqualToString:@"searchFromFeed"])
     {

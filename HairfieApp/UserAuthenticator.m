@@ -61,4 +61,10 @@
     
 }
 
+-(void) skipLogin {
+    delegate.currentUser = nil;
+    [delegate.credentialStore clearSavedCredentials];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"skipLogin" object:self];
+}
+
 @end

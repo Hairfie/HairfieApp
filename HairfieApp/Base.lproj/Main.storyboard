@@ -333,7 +333,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XE5-7g-IGO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1630" y="-26"/>
+            <point key="canvasLocation" x="-1970" y="-32"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="1RP-AT-RXP">
@@ -523,11 +523,12 @@
                         <outlet property="noPasswordButton" destination="zCD-fq-GEc" id="5S8-wa-gs2"/>
                         <outlet property="passwordField" destination="WbU-U2-e0D" id="NXA-z8-8E5"/>
                         <segue destination="m6Z-pY-ich" kind="push" identifier="loginSuccess" id="H0a-7y-EaD"/>
+                        <segue destination="m6Z-pY-ich" kind="push" identifier="skipLogin" id="19Y-PD-QFg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UBT-PJ-Rh2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1176" y="-32"/>
+            <point key="canvasLocation" x="-1503" y="-32"/>
         </scene>
         <!--Forgotten Password View Controller-->
         <scene sceneID="3Mt-9G-xbV">
@@ -600,7 +601,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="izH-oc-pb7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-822" y="-478"/>
+            <point key="canvasLocation" x="-521" y="-1162"/>
         </scene>
         <!--Sliding View Controller-->
         <scene sceneID="CtK-M5-Pj8">
@@ -863,10 +864,13 @@
                     <size key="freeformSize" width="320" height="568"/>
                     <connections>
                         <outlet property="hairfieCollection" destination="cI1-7M-VAJ" id="9ks-2M-oDw"/>
+                        <outlet property="menuButton" destination="oMy-sN-To3" id="4Lh-kd-nI6"/>
                         <outlet property="searchField" destination="ePq-Fx-C9u" id="9tX-HK-uFj"/>
                         <outlet property="searchView" destination="UlN-Ro-o4h" id="Gfv-cA-ACV"/>
                         <outlet property="takePictureButton" destination="aH7-em-gOi" id="eB9-KY-5K3"/>
+                        <outlet property="topBarView" destination="N5w-u2-R23" id="LGK-6x-IIn"/>
                         <segue destination="5vw-Wx-iMq" kind="push" identifier="searchFromFeed" id="4Cm-qL-flu"/>
+                        <segue destination="GUZ-sY-RBq" kind="push" identifier="backToLogin" id="TR0-Pa-JWL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tyk-UX-pm7" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3712,7 +3716,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y37-BW-Jd5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-822" y="590"/>
+            <point key="canvasLocation" x="-1480" y="786"/>
         </scene>
     </scenes>
     <resources>
@@ -3767,13 +3771,14 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="uEN-by-6gW"/>
         <segue reference="8js-8I-lUc"/>
-        <segue reference="dKD-Ry-4fL"/>
-        <segue reference="U6U-Af-qnl"/>
-        <segue reference="K9z-px-huR"/>
-        <segue reference="PSz-m0-val"/>
+        <segue reference="dg2-Ph-4Hs"/>
+        <segue reference="uEN-by-6gW"/>
+        <segue reference="TR0-Pa-JWL"/>
+        <segue reference="7yU-V8-5Z9"/>
+        <segue reference="19Y-PD-QFg"/>
         <segue reference="DYR-eo-mJz"/>
-        <segue reference="H0a-7y-EaD"/>
+        <segue reference="U6U-Af-qnl"/>
+        <segue reference="dKD-Ry-4fL"/>
     </inferredMetricsTieBreakers>
 </document>

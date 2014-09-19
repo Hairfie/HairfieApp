@@ -12,5 +12,6 @@
 @interface UserAuthenticator : NSObject
 
 - (void) getCurrentUser;
+- (void) skipLogin;
 
 @end
