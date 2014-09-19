@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A329r" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="dEN-gt-xJT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A361p" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="dEN-gt-xJT">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -2189,6 +2189,21 @@
                                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="wW3-x4-wkc" userLabel="Similar Table View">
                                                                 <rect key="frame" x="0.0" y="29" width="320" height="332"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                <prototypes>
+                                                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="2tL-0L-iF3">
+                                                                        <autoresizingMask key="autoresizingMask"/>
+                                                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2tL-0L-iF3" id="Xcs-Hl-Azi">
+                                                                            <autoresizingMask key="autoresizingMask"/>
+                                                                        </tableViewCellContentView>
+                                                                        <connections>
+                                                                            <segue destination="pDa-if-Gwb" kind="push" identifier="similarBusiness" id="ud6-Cv-qQN"/>
+                                                                        </connections>
+                                                                    </tableViewCell>
+                                                                </prototypes>
+                                                                <connections>
+                                                                    <outlet property="dataSource" destination="pDa-if-Gwb" id="BRu-l0-ueH"/>
+                                                                    <outlet property="delegate" destination="pDa-if-Gwb" id="QlN-ET-oZS"/>
+                                                                </connections>
                                                             </tableView>
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -3780,5 +3795,14 @@
         <segue reference="DYR-eo-mJz"/>
         <segue reference="U6U-Af-qnl"/>
         <segue reference="dKD-Ry-4fL"/>
+        <segue reference="uEN-by-6gW"/>
+        <segue reference="K9z-px-huR"/>
+        <segue reference="XXf-5V-koX"/>
+        <segue reference="PSz-m0-val"/>
+        <segue reference="DYR-eo-mJz"/>
+        <segue reference="8js-8I-lUc"/>
+        <segue reference="U6U-Af-qnl"/>
+        <segue reference="dKD-Ry-4fL"/>
+        <segue reference="H0a-7y-EaD"/>
     </inferredMetricsTieBreakers>
 </document>

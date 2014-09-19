@@ -27,6 +27,8 @@
     UITableView *detailsTableView;
     UITableView *commentsTableView;
     UIButton *likeButton;
+    
+    NSArray *displayedInfoNames;
 }
 
 @synthesize myScrollView = _myScrollView, hairfieImageView = _hairfieImageView;
@@ -52,8 +54,6 @@
     return UIStatusBarStyleLightContent;
 }
 
-
-
 -(void)addGradientToView:(UIView*)view
 {
     CAGradientLayer *gradient = [CAGradientLayer layer];
@@ -65,12 +65,10 @@
     [view.layer insertSublayer:gradient atIndex:0];
 }
 
-
 -(IBAction)goBack:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
-
 
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -80,8 +78,10 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (tableView == detailsTableView)
-        return 3;
+    if (tableView == detailsTableView) {
+        return displayedInfoNames.count;
+    }
+
     return 2;
 }
 
@@ -95,9 +95,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
-   if (tableView == detailsTableView)
-   {
+    if (tableView == detailsTableView) {
         static NSString *CellIdentifier = @"infoCell";
         HairfieDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 
@@ -106,41 +104,31 @@
             cell = [nib objectAtIndex:0];
         }
 
+        detailsTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 
-     detailsTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        UIView *separatorView = [[UIView alloc] initWithFrame:CGRectMake(0, 43, 1024, 1)];
+        separatorView.layer.borderColor = [UIColor colorWithRed:236/255.0f green:237/255.0f  blue:237/255.0f  alpha:1].CGColor;
+        separatorView.layer.borderWidth = 1.0;
+        [cell.contentView addSubview:separatorView];
 
-     UIView *separatorView = [[UIView alloc] initWithFrame:CGRectMake(0, 43, 1024, 1)];
-    separatorView.layer.borderColor = [UIColor colorWithRed:236/255.0f green:237/255.0f  blue:237/255.0f  alpha:1].CGColor;
-     separatorView.layer.borderWidth = 1.0;
-     [cell.contentView addSubview:separatorView];
+        NSString *infoName = displayedInfoNames[indexPath.row];
 
-    if (indexPath.row == 0)
-    {
-        cell.pictoView.image = [UIImage imageNamed:@"picto-hairfie-detail-hairdresser.png"];
-        cell.contentLabel.text = _currentHairfie.business.displayNameAndAddress;
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        if ([infoName isEqualToString:@"business"]) {
+            cell.pictoView.image = [UIImage imageNamed:@"picto-hairfie-detail-hairdresser.png"];
+            cell.contentLabel.text = _currentHairfie.business.displayNameAndAddress;
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        } else if ([infoName isEqualToString:@"price"]) {
+            cell.pictoView.image = [UIImage imageNamed:@"picto-hairfie-detail-price.png"];
+            cell.contentLabel.text = self.currentHairfie.displayPrice;
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        } else if ([infoName isEqualToString:@"hairdresser"]) {
+            // TODO: complete me
+            //cell.pictoView.image = [UIImage imageNamed:@"picto-hairfie-detail-employee.png"];
+            //cell.contentLabel.text = @"Kimi Smith";
+        }
 
-    }
-    if (indexPath.row == 1)
-    {
-        cell.pictoView.image = [UIImage imageNamed:@"picto-hairfie-detail-employee.png"];
-        cell.contentLabel.text = @"Kimi Smith";
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    }
-    if (indexPath.row == 2)
-    {
-        cell.pictoView.image = [UIImage imageNamed:@"picto-hairfie-detail-price.png"];
-        if(![_currentHairfie.price isEqual:[NSNull null]])
-            cell.contentLabel.text = _currentHairfie.displayPrice;
-        else
-            cell.contentLabel.text = @"No price available";
-    }
-    cell.backgroundColor = [UIColor clearColor];
-    return cell;
-
-   }
-    else
-    {
+        return cell;
+    } else {
         static NSString *CellIdentifier = @"commentCell";
         CommentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 
@@ -150,6 +138,7 @@
         }
         return cell;
     }
+    
     return nil;
 }
 
@@ -392,6 +381,16 @@
 -(void)reloadData
 {
     nbLike.text = [self.currentHairfie displayNumLikes];
+
+    // calculate infos to be displayed
+    NSMutableArray *tempDisplayedInfoNames = [[NSMutableArray alloc] init];
+    if (self.currentHairfie.business) {
+        [tempDisplayedInfoNames addObject:@"business"];
+    }
+    if (![self.currentHairfie.price isEqual:[NSNull null]]) {
+        [tempDisplayedInfoNames addObject:@"price"];
+    }
+    displayedInfoNames = [[NSArray alloc] initWithArray:tempDisplayedInfoNames];
 }
 
 -(void)likeButtonHandler:(id)sender
