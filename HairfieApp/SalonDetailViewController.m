@@ -68,7 +68,7 @@
     
     _similarTableView.delegate = self;
     _similarTableView.dataSource = self;
-    _similarTableView.userInteractionEnabled = NO;
+    _similarTableView.userInteractionEnabled = YES;
     _similarTableView.scrollEnabled = NO;
     _similarTableView.backgroundColor = [UIColor clearColor];
     
@@ -380,9 +380,8 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"Table view did select");
     if (tableView == _similarTableView) {
-        [self performSegueWithIdentifier:@"similarBusinesss" sender:self.similarBusinesses[indexPath.row]];
+        [self performSegueWithIdentifier:@"similarBusiness" sender:self.similarBusinesses[indexPath.row]];
     }
 }
 
