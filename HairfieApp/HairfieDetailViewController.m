@@ -29,7 +29,7 @@
     UITableView *detailsTableView;
     UITableView *commentsTableView;
     UIButton *likeButton;
-    
+    UIImageView *likeView;
     NSArray *displayedInfoNames;
 }
 
@@ -216,6 +216,11 @@
 
     hairfieImageView.contentMode = UIViewContentModeScaleAspectFit;
     hairfieImageView.clipsToBounds = YES;
+    
+    likeView = [[UIImageView alloc] initWithFrame:CGRectMake(130, 130, 60, 60)];
+    [likeView setImage:[UIImage imageNamed:@"likes-picto.png"]];
+    [hairfieImageView addSubview:likeView];
+    [likeView setHidden:YES];
 
     likeButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 290, 25, 20)];
     [likeButton setImage:[UIImage imageNamed:@"picto-hairfie-detail-liked.png"] forState:UIControlStateSelected];
@@ -427,7 +432,7 @@
                        asUser:currentUser.id
                       success:^() {
                           [likeButton setSelected:YES];
-                          
+                          [self doLikeAnimation];
                           self.currentHairfie.numLikes = [NSNumber numberWithInt:([self.currentHairfie.numLikes intValue] + 1)];
                           [self reloadData];
                       }
@@ -438,6 +443,15 @@
     } else {
         [self showNotLoggedAlertWithDelegate:nil andTitle:nil andMessage:nil];
     }
+}
+
+-(void) doLikeAnimation {
+    [likeView setHidden:NO];
+    [likeView setFrame:CGRectMake(130, 130, 60, 60)];
+    [UIView beginAnimations:@"anim" context:nil];
+    [UIView setAnimationDuration:0.5];
+    [likeView setFrame:CGRectMake(160, 160, 0, 0)];
+    [UIView commitAnimations];
 }
 
 - (void)doubleTap:(UITapGestureRecognizer *)sender {

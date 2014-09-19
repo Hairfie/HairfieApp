@@ -11,8 +11,8 @@
 @implementation UIViewController(Transitions)
 
 -(void) showNotLoggedAlertWithDelegate:(id)delegate andTitle:(NSString *)title andMessage:(NSString *)message {
-    NSString *messageToDisplay = (message == nil) ? @"Connected users only" : message;
-    NSString *titleToDisplay = (title == nil) ? @"You need to login or to sign up to do this action" : title;
+    NSString *messageToDisplay = (message == nil) ? @"You need to login or to sign up to do this action" : message;
+    NSString *titleToDisplay = (title == nil) ? @"Connected users only" : title;
 
     id _delegate = ( delegate == nil) ? self : delegate;
     UIAlertView *alert = [[UIAlertView alloc]
