@@ -360,6 +360,14 @@
     return nil;
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"Table view did select");
+    if (tableView == _similarTableView) {
+        [self performSegueWithIdentifier:@"similarBusinesss" sender:self.similarBusinesses[indexPath.row]];
+    }
+}
+
 - (void) initKnownData:(Business*)business
 {
     [self setupCrossSell];
@@ -587,6 +595,9 @@
     } else if ([segue.identifier isEqualToString:@"hairfieDetail"]) {
         HairfieDetailViewController *hairfieDetail = [segue destinationViewController];
         hairfieDetail.currentHairfie = sender;
+    } else if ([segue.identifier isEqualToString:@"similarBusiness"]) {
+        SalonDetailViewController *controller = [segue destinationViewController];
+        controller.business = sender;
     }
 }
 
