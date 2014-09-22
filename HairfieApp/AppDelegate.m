@@ -54,6 +54,11 @@ static LBRESTAdapter * _lbAdaptater = nil;
                   [self.credentialStore clearSavedCredentials];
               }];
     }
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(saveUserLanguage:)
+                                                 name:@"currentUser"
+                                               object:nil];
 
     return YES;
 }
@@ -66,6 +71,16 @@ static LBRESTAdapter * _lbAdaptater = nil;
     BOOL wasHandled = [FBAppCall handleOpenURL:url sourceApplication:sourceApplication];
     
     return wasHandled;
+}
+
+-(void)saveUserLanguage:(NSNotification *)notification
+{
+    NSString *language = [[NSLocale preferredLanguages] objectAtIndex:0];
+    if (![self.currentUser.language isEqual:language]) {
+        self.currentUser.language = language;
+        [self.currentUser saveWithSuccess:^() { NSLog(@"Current user language saved"); }
+                                  failure:^(NSError *error) { NSLog(@"Failed to save language: %@", error.localizedDescription); }];
+    }
 }
 
 

@@ -13,15 +13,16 @@
 
 @interface User : LBModel
 
-@property (nonatomic) NSString *userToken;
-@property (nonatomic) NSString *id;
-@property (nonatomic) NSString *firstName;
-@property (nonatomic) NSString *lastName;
-@property (nonatomic) NSString *gender;
-@property (nonatomic) NSDictionary *picture;
-@property (nonatomic) NSString *email;
-@property (nonatomic) NSString *numHairfies;
-@property (nonatomic) NSString *phoneNumber;
+@property (strong, nonatomic) NSString *userToken;
+@property (strong, nonatomic) NSString *id;
+@property (strong, nonatomic) NSString *firstName;
+@property (strong, nonatomic) NSString *lastName;
+@property (strong, nonatomic) NSString *gender;
+@property (strong, nonatomic) NSDictionary *picture;
+@property (strong, nonatomic) NSString *email;
+@property (strong, nonatomic) NSString *numHairfies;
+@property (strong, nonatomic) NSString *phoneNumber;
+@property (strong, nonatomic) NSString *language;
 
 -(id)initWithJson:(NSDictionary *)data;
 -(NSString *)name;
@@ -30,6 +31,9 @@
 -(NSString *)pictureUrlwithWidth:(NSString *)width andHeight:(NSString *)height;
 -(NSString *)pictureUrl;
 -(NSString *)thumbUrl;
+
+-(void)saveWithSuccess:(void(^)())aSuccessHandler
+               failure:(void(^)(NSError *error))aFailureHandler;
 
 +(void)getById:(NSString *)anId
      success:(void(^)(User *user))aSuccessHandler
@@ -56,5 +60,7 @@
             asUser:(NSString *)userId
            success:(void (^)())aSuccessHandler
            failure:(void (^)(NSError *))aFailureHandler;
+
+
 
 @end
