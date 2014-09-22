@@ -34,6 +34,8 @@
 		718B6B7A19C8339000F2F8EF /* picto-hairfie-detail-liked.png in Resources */ = {isa = PBXBuildFile; fileRef = 718B6B7919C8339000F2F8EF /* picto-hairfie-detail-liked.png */; };
 		71A0AC3D19CC2CEA00BC1ABB /* Timetable.m in Sources */ = {isa = PBXBuildFile; fileRef = 71A0AC3C19CC2CEA00BC1ABB /* Timetable.m */; };
 		71A0AC4019CC2DA000BC1ABB /* TimeWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 71A0AC3F19CC2DA000BC1ABB /* TimeWindow.m */; };
+		71AAB62719D003CB0000552D /* Price.m in Sources */ = {isa = PBXBuildFile; fileRef = 71AAB62619D003CB0000552D /* Price.m */; };
+		71AAB62A19D005170000552D /* Money.m in Sources */ = {isa = PBXBuildFile; fileRef = 71AAB62919D005170000552D /* Money.m */; };
 		71C0D3FF19C1D7600037CBF4 /* Address.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C0D3FE19C1D7600037CBF4 /* Address.m */; };
 		71C0D40219C1D9190037CBF4 /* BusinessReview.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C0D40119C1D9190037CBF4 /* BusinessReview.m */; };
 		71C0D40B19C1DC040037CBF4 /* Picture.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C0D40A19C1DC040037CBF4 /* Picture.m */; };
@@ -301,6 +303,10 @@
 		71A0AC3C19CC2CEA00BC1ABB /* Timetable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Timetable.m; sourceTree = "<group>"; };
 		71A0AC3E19CC2DA000BC1ABB /* TimeWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeWindow.h; sourceTree = "<group>"; };
 		71A0AC3F19CC2DA000BC1ABB /* TimeWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeWindow.m; sourceTree = "<group>"; };
+		71AAB62519D003CB0000552D /* Price.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Price.h; sourceTree = "<group>"; };
+		71AAB62619D003CB0000552D /* Price.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Price.m; sourceTree = "<group>"; };
+		71AAB62819D005170000552D /* Money.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Money.h; sourceTree = "<group>"; };
+		71AAB62919D005170000552D /* Money.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Money.m; sourceTree = "<group>"; };
 		71C0D3FB19C1D65A0037CBF4 /* Address.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Address.h; sourceTree = "<group>"; };
 		71C0D3FE19C1D7600037CBF4 /* Address.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Address.m; sourceTree = "<group>"; };
 		71C0D40019C1D9190037CBF4 /* BusinessReview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessReview.h; sourceTree = "<group>"; };
@@ -1182,6 +1188,10 @@
 				71A0AC3C19CC2CEA00BC1ABB /* Timetable.m */,
 				71A0AC3E19CC2DA000BC1ABB /* TimeWindow.h */,
 				71A0AC3F19CC2DA000BC1ABB /* TimeWindow.m */,
+				71AAB62519D003CB0000552D /* Price.h */,
+				71AAB62619D003CB0000552D /* Price.m */,
+				71AAB62819D005170000552D /* Money.h */,
+				71AAB62919D005170000552D /* Money.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1618,6 +1628,7 @@
 				B3423211198924290058866B /* AFHTTPRequestOperationManager.m in Sources */,
 				B367DC3419C98EBF00A0452A /* BusinessAnnotation.m in Sources */,
 				B319B5C719C6E77D007F79B0 /* BusinessReviewRepository.m in Sources */,
+				71AAB62719D003CB0000552D /* Price.m in Sources */,
 				15A2180F19BE296A0090E83B /* PictureUploader.m in Sources */,
 				153E1FB019B4A79B00DEC95D /* UserRepository.m in Sources */,
 				1564959519AF6292008DC070 /* HairfieColors.m in Sources */,
@@ -1656,6 +1667,7 @@
 				B337B6F619A22B11003B0EA5 /* HairfieDetailCollectionReusableView.m in Sources */,
 				B3423215198924290058866B /* AFURLConnectionOperation.m in Sources */,
 				B319B5D119C876AC007F79B0 /* SecondStepSalonPhoneViewController.m in Sources */,
+				71AAB62A19D005170000552D /* Money.m in Sources */,
 				B319B5CB19C85E2E007F79B0 /* FirstStepViewController.m in Sources */,
 				B3423216198924290058866B /* AFURLRequestSerialization.m in Sources */,
 				B33E4C4319A48FE70024F5F7 /* HoraireTableViewCell.m in Sources */,

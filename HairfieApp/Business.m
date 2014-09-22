@@ -11,6 +11,7 @@
 #import "Address.h"
 #import "GeoPoint.h"
 #import "AppDelegate.h"
+#import "Price.h"
 
 @implementation Business
 
@@ -32,8 +33,6 @@
 {
     self = [super init];
 
-    // mocked values
-    self.prices = nil;
     self.numReviews = @3;
     self.rating = @80;
 
@@ -61,6 +60,21 @@
     if([geoPointDic isKindOfClass:[NSNull class]]) return;
 
     _gps = [[GeoPoint alloc] initWithJson:geoPointDic];
+}
+
+-(void)setPrices:(NSArray *)prices
+{
+    if ([prices isEqual:[NSNull null]]) {
+        _prices = @[];
+    } else {
+        NSMutableArray *temp = [[NSMutableArray alloc] init];
+        for (NSDictionary *price in prices) {
+            [temp addObject:[[Price alloc] initWithDictionary:price]];
+        }
+        _prices = [[NSArray alloc] initWithArray:temp];
+    }
+    
+    NSLog(@"Prices loaded: %@", _prices);
 }
 
 -(NSNumber *)ratingBetween:(NSNumber *)theMin

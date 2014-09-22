@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Price.h"
 
 @interface PricesTableViewCell : UITableViewCell
 
 @property (nonatomic) IBOutlet UILabel *itemName;
 @property (nonatomic) IBOutlet UILabel *price;
+
+-(void)updateWithPrice:(Price *)aPrice;
 
 @end
