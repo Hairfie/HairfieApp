@@ -11,6 +11,7 @@
 		151151941982B7A8001157A2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 151151931982B7A8001157A2 /* AppDelegate.m */; };
 		151151A81982B7A8001157A2 /* HairfieAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 151151A71982B7A8001157A2 /* HairfieAppTests.m */; };
 		1515448219C301ED00FBC07D /* CameraOverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1515448119C301ED00FBC07D /* CameraOverlayViewController.m */; };
+		153B370C19D04F14006C82EC /* CameraOverlay.xib in Resources */ = {isa = PBXBuildFile; fileRef = 153B370E19D04F14006C82EC /* CameraOverlay.xib */; };
 		153E1FB019B4A79B00DEC95D /* UserRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 153E1FAF19B4A79B00DEC95D /* UserRepository.m */; };
 		153E1FB419B4AA8200DEC95D /* UserAuthenticator.m in Sources */ = {isa = PBXBuildFile; fileRef = 153E1FB319B4AA8200DEC95D /* UserAuthenticator.m */; };
 		1540150119D030030094DB5E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1540150319D030030094DB5E /* InfoPlist.strings */; };
@@ -105,7 +106,6 @@
 		B345BAE919951A7E007BB61A /* OLEContainerScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = B345BAE219951A7E007BB61A /* OLEContainerScrollView.m */; };
 		B345BAEA19951A7E007BB61A /* OLEContainerScrollViewContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = B345BAE519951A7E007BB61A /* OLEContainerScrollViewContentView.m */; };
 		B345BAEB19951A7E007BB61A /* OLESwizzling.m in Sources */ = {isa = PBXBuildFile; fileRef = B345BAE719951A7E007BB61A /* OLESwizzling.m */; };
-		B346FE5419AF2DF300D55D73 /* CameraOverlay.xib in Resources */ = {isa = PBXBuildFile; fileRef = B346FE5319AF2DF300D55D73 /* CameraOverlay.xib */; };
 		B35A829F19A5FF02003B1321 /* placeholder-image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B35A829E19A5FF02003B1321 /* placeholder-image.jpg */; };
 		B35A82A319A629DF003B1321 /* HairdressersTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B35A82A119A629DF003B1321 /* HairdressersTableViewCell.m */; };
 		B35A82A419A629DF003B1321 /* HairdressersTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B35A82A219A629DF003B1321 /* HairdressersTableViewCell.xib */; };
@@ -264,6 +264,9 @@
 		151151A71982B7A8001157A2 /* HairfieAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HairfieAppTests.m; sourceTree = "<group>"; };
 		1515448019C301ED00FBC07D /* CameraOverlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraOverlayViewController.h; sourceTree = "<group>"; };
 		1515448119C301ED00FBC07D /* CameraOverlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraOverlayViewController.m; sourceTree = "<group>"; };
+		153B370D19D04F14006C82EC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CameraOverlay.xib; sourceTree = "<group>"; };
+		153B371019D04F1A006C82EC /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/CameraOverlay.strings; sourceTree = "<group>"; };
+		153B371219D04F8C006C82EC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		153E1FAE19B4A79B00DEC95D /* UserRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserRepository.h; sourceTree = "<group>"; };
 		153E1FAF19B4A79B00DEC95D /* UserRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserRepository.m; sourceTree = "<group>"; };
 		153E1FB219B4AA8200DEC95D /* UserAuthenticator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAuthenticator.h; sourceTree = "<group>"; };
@@ -423,7 +426,6 @@
 		B345BAE519951A7E007BB61A /* OLEContainerScrollViewContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLEContainerScrollViewContentView.m; sourceTree = "<group>"; };
 		B345BAE619951A7E007BB61A /* OLESwizzling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLESwizzling.h; sourceTree = "<group>"; };
 		B345BAE719951A7E007BB61A /* OLESwizzling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLESwizzling.m; sourceTree = "<group>"; };
-		B346FE5319AF2DF300D55D73 /* CameraOverlay.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CameraOverlay.xib; sourceTree = "<group>"; };
 		B35A829E19A5FF02003B1321 /* placeholder-image.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "placeholder-image.jpg"; sourceTree = "<group>"; };
 		B35A82A019A629DF003B1321 /* HairdressersTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HairdressersTableViewCell.h; sourceTree = "<group>"; };
 		B35A82A119A629DF003B1321 /* HairdressersTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HairdressersTableViewCell.m; sourceTree = "<group>"; };
@@ -1160,7 +1162,7 @@
 			children = (
 				B3C45BD4199A4A1B000E6C8E /* CameraOverlayView.h */,
 				B3C45BD5199A4A1B000E6C8E /* CameraOverlayView.m */,
-				B346FE5319AF2DF300D55D73 /* CameraOverlay.xib */,
+				153B370E19D04F14006C82EC /* CameraOverlay.xib */,
 			);
 			name = "Camera Overlay View";
 			sourceTree = "<group>";
@@ -1565,7 +1567,7 @@
 				B3F5521C19BF2DAD0033230E /* hairfie-post-contour.png in Resources */,
 				B3E0B15319ACB53F00C3EACE /* login-separator.png in Resources */,
 				B345BA981994D4C2007BB61A /* button-add-favorite.png in Resources */,
-				B346FE5419AF2DF300D55D73 /* CameraOverlay.xib in Resources */,
+				153B370C19D04F14006C82EC /* CameraOverlay.xib in Resources */,
 				B3AE0D4319C060DA00149C2B /* salon-cell-separator.png in Resources */,
 				B3E0B14F19ACAA5400C3EACE /* login-form.png in Resources */,
 			);
@@ -1771,6 +1773,15 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		153B370E19D04F14006C82EC /* CameraOverlay.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				153B370D19D04F14006C82EC /* en */,
+				153B371019D04F1A006C82EC /* fr */,
+			);
+			name = CameraOverlay.xib;
+			sourceTree = "<group>";
+		};
 		1540150319D030030094DB5E /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1794,6 +1805,7 @@
 			children = (
 				B3EDF88B198794C900431B70 /* Base */,
 				158431C3198A72FB001621B4 /* fr */,
+				153B371219D04F8C006C82EC /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
