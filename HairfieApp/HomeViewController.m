@@ -49,14 +49,14 @@
     [super viewDidLoad];
     delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
 
-    self.navigationItem.title = [NSString stringWithFormat:NSLocalizedString(@"Home", nil)];
+    self.navigationItem.title = [NSString stringWithFormat:NSLocalizedStringFromTable(@"Home", @"Feed", nil)];
     [_hairfieCollection registerNib:[UINib nibWithNibName:@"CustomCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:CUSTOM_CELL_IDENTIFIER];
     [_hairfieCollection registerNib:[UINib nibWithNibName:@"LoadingCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:LOADING_CELL_IDENTIFIER];
 
     _searchView.hidden = YES;
     [_searchView initView];
     [_searchView.searchAroundMeImage setTintColor:[UIColor lightBlueHairfie]];
-    _searchView.searchByLocation.text = @"Around Me";
+    _searchView.searchByLocation.text = NSLocalizedStringFromTable(@"Around Me", @"Feed", nil);
 
     refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget:self action:@selector(getHairfies:)
@@ -112,7 +112,7 @@
 
     _searchView.hidden = NO;
     [self.view addGestureRecognizer:dismiss];
-    if ([_searchView.searchByLocation.text isEqualToString:@"Around Me"])
+    if ([_searchView.searchByLocation.text isEqualToString:NSLocalizedStringFromTable(@"Around Me", @"Feed", nil)])
         [_searchView.searchAroundMeImage setTintColor:[UIColor lightBlueHairfie]];
     [_searchView.searchByName performSelector:@selector(becomeFirstResponder) withObject:nil afterDelay:0.0];
 

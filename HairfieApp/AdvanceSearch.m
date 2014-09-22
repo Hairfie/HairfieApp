@@ -34,7 +34,7 @@
 -(IBAction)searchAroundMe:(id)sender
 {
     [_searchByLocation resignFirstResponder];
-    _searchByLocation.text = @"Around Me";
+    _searchByLocation.text = NSLocalizedStringFromTable(@"Around Me", @"Feed", nil);
    
     _searchAroundMeImage.tintColor = [UIColor lightBlueHairfie];
     
@@ -54,7 +54,7 @@
 {
     _searchRequest = [self styleSearchQuery];
     if ([_searchByLocation.text isEqualToString:@""])
-        _searchByLocation.text = @"Around Me";
+        _searchByLocation.text = NSLocalizedStringFromTable(@"Around Me", @"Feed", nil);
     [self geocodeAddress:_searchByLocation.text];
     [self cancelSearch:self];
 }
@@ -84,13 +84,13 @@
 
 - (NSString*) styleSearchQuery {
     NSString *searchQuery;
-    if([_searchByLocation.text isEqualToString:@"Around Me"] || [_searchByLocation.text isEqualToString:@""] ) {
-        searchQuery = [NSString stringWithFormat:@"\"%@\" à côté de vous", _searchByName.text];
+    if([_searchByLocation.text isEqualToString:NSLocalizedStringFromTable(@"Around Me", @"Feed", nil)] || [_searchByLocation.text isEqualToString:@""] ) {
+        searchQuery = [NSString stringWithFormat:NSLocalizedStringFromTable(@"\"%@\" near you", @"Feed", nil), _searchByName.text];
     } else {
         if ([_searchByName.text isEqualToString:@""])
-           searchQuery = [NSString stringWithFormat:@"Coiffeurs à côté de \"%@\"", _searchByLocation.text];
+           searchQuery = [NSString stringWithFormat:NSLocalizedStringFromTable(@"Hairdresser around you \"%@\"", @"Feed", nil), _searchByLocation.text];
         else
-        searchQuery = [NSString stringWithFormat:@"\"%@\" à côté de \"%@\"", _searchByName.text, _searchByLocation.text];
+        searchQuery = [NSString stringWithFormat:NSLocalizedStringFromTable(@"\"%@\" near \"%@\"", @"Feed", nil), _searchByName.text, _searchByLocation.text];
     }
     
     return searchQuery;

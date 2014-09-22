@@ -68,7 +68,7 @@
     [goBackButton setFrame:CGRectMake(10, 32, 20, 20)];
     
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(92, 30, 136, 23)];
-    titleLabel.text = @"Post Hairfie";
+    titleLabel.text = NSLocalizedStringFromTable(@"Post Hairfie", @"Post_Hairfie", nil);
     titleLabel.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:18];
     titleLabel.textAlignment = NSTextAlignmentCenter;
     titleLabel.textColor = [UIColor whiteColor];
