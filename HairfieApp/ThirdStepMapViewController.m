@@ -25,6 +25,7 @@
     [super viewDidLoad];
     [self centerMap];
     _nextBttn.layer.cornerRadius = 5;
+    _nextBttn.layer.masksToBounds = YES;
     // Do any additional setup after loading the view.
 }
 
