@@ -317,8 +317,6 @@
 		15E3D2D119D07A000065A07E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Hairfie_Detail.strings; sourceTree = "<group>"; };
 		15E3D2D219D07A010065A07E /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Hairfie_Detail.strings; sourceTree = "<group>"; };
 		15E3D2D419D07AB10065A07E /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Main.strings; sourceTree = "<group>"; };
-		15E3D2D619D07BD80065A07E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Claim.strings; sourceTree = "<group>"; };
-		15E3D2D719D07BD80065A07E /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Claim.strings; sourceTree = "<group>"; };
 		15E3D2D819D07BE30065A07E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		15E3D2D919D07BE90065A07E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Login_Sign_Up.strings; sourceTree = "<group>"; };
 		15E3D2DA19D07BE90065A07E /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Login_Sign_Up.strings; sourceTree = "<group>"; };
@@ -328,6 +326,10 @@
 		15E3D2DE19D07BF10065A07E /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Post_Hairfie.strings; sourceTree = "<group>"; };
 		15E3D2DF19D07BF40065A07E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Salon_Detail.strings; sourceTree = "<group>"; };
 		15E3D2E019D07BF50065A07E /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Salon_Detail.strings; sourceTree = "<group>"; };
+		15E3D2E219D07D540065A07E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		15E3D2E419D07D5C0065A07E /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
+		15E3D2E619D080280065A07E /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Claim.strings; sourceTree = "<group>"; };
+		15E3D2E719D080300065A07E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Claim.strings; sourceTree = "<group>"; };
 		15E6AE751992635900A11947 /* OpeningTimes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpeningTimes.swift; sourceTree = "<group>"; };
 		15ED728B199B9C6400453A74 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		2D7E837BAA644663900B5CBF /* Pods-HairfieApp.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HairfieApp.xcconfig"; path = "Pods/Pods-HairfieApp.xcconfig"; sourceTree = "<group>"; };
@@ -1868,8 +1870,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				15E3D2B319D075CC0065A07E /* Base */,
-				15E3D2D619D07BD80065A07E /* en */,
-				15E3D2D719D07BD80065A07E /* fr */,
+				15E3D2E619D080280065A07E /* fr */,
+				15E3D2E719D080300065A07E /* en */,
 			);
 			name = Claim.strings;
 			sourceTree = "<group>";
@@ -1964,6 +1966,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				B3EDF88B198794C900431B70 /* Base */,
+				15E3D2E219D07D540065A07E /* en */,
+				15E3D2E419D07D5C0065A07E /* fr */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

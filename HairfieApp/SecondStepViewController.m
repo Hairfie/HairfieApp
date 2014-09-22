@@ -130,7 +130,7 @@
 
 -(IBAction)claimBusinessLocation:(id)sender
 {
-    if (![_phoneBttn.titleLabel.text isEqualToString:@"Numéro de téléphone"] && ![_salonBttn.titleLabel.text isEqualToString:@"Nom du salon                                 "]) {
+    if (![_phoneBttn.titleLabel.text isEqualToString:NSLocalizedStringFromTable(@"Phone Number", @"Claim", nil)] && ![_salonBttn.titleLabel.text isEqualToString:NSLocalizedStringFromTable(@"Salon's Name                                 ", @"Claim", nil)]) {
     
     [self performSegueWithIdentifier:@"claimBusinessLocation" sender:self];
     }
@@ -152,20 +152,20 @@
         
         SecondStepSalonPhoneViewController *phone = [segue destinationViewController];
      
-        if (![_phoneBttn.titleLabel.text isEqualToString:@"Numéro de téléphone"]) {
+        if (![_phoneBttn.titleLabel.text isEqualToString:NSLocalizedStringFromTable(@"Phone Number", @"Claim", nil)]) {
             phone.textFieldFromSegue = _phoneBttn.titleLabel.text;
         }
-        phone.headerTitle = @"Téléphone";
-        phone.textFieldPlaceHolder = @"Numéro de téléphone";
+        phone.headerTitle = NSLocalizedStringFromTable(@"Phone", @"Claim", nil);
+        phone.textFieldPlaceHolder = NSLocalizedStringFromTable(@"Phone Number", @"Claim", nil);
     }
     
     if ([segue.identifier isEqualToString:@"claimSalon"])
     {
         SecondStepSalonPhoneViewController *salon = [segue destinationViewController];
         
-        salon.headerTitle = @"Nom du salon";
-        salon.textFieldPlaceHolder = @"Nom du salon";
-        if (![_salonBttn.titleLabel.text isEqualToString:@"Nom du salon                                 "]) {
+        salon.headerTitle = NSLocalizedStringFromTable(@"Salon's Name", @"Claim", nil);
+        salon.textFieldPlaceHolder = NSLocalizedStringFromTable(@"Salon's Name", @"Claim", nil);
+        if (![_salonBttn.titleLabel.text isEqualToString:NSLocalizedStringFromTable(@"Salon's Name                                 ", @"Claim", nil)]) {
             NSLog(@"test");
             salon.textFieldFromSegue = _salonBttn.titleLabel.text;
         }
