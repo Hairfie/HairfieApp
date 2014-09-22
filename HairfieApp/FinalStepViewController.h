@@ -12,5 +12,20 @@
 
 @property (nonatomic) IBOutlet UIButton *phoneBttn;
 
+@property (nonatomic) IBOutlet UIButton* validateBttn;
+
+@property (nonatomic) IBOutlet UIView *pageControlView;
+
+
+@property (nonatomic) IBOutlet UIButton* infoBttn;
+@property (nonatomic) IBOutlet UIButton* hairfieBttn;
+@property (nonatomic) IBOutlet UIButton* hairdresserBttn;
+@property (nonatomic) IBOutlet UIButton* priceAndSaleBttn;
+
+@property (nonatomic) IBOutlet UIView* containerView;
+@property (nonatomic) IBOutlet UIView* infoView;
+@property (nonatomic) IBOutlet UIView* hairfieView;
+@property (nonatomic) IBOutlet UIView* hairdresserView;
+@property (nonatomic) IBOutlet UIView* priceAndSaleView;
 
 @end
