@@ -18,6 +18,10 @@
     return UIStatusBarStyleLightContent;
 }
 
+-(IBAction)goBack:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -29,8 +33,7 @@
     _homeBttn.layer.cornerRadius =5;
     _homeBttn.layer.borderColor = [UIColor lightGreyHairfie].CGColor;
     _homeBttn.layer.borderWidth = 1;
-    [self.view addGestureRecognizer:self.slidingViewController.panGesture];
-    
+  
     // Do any additional setup after loading the view.
 }
 

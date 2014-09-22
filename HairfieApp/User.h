@@ -21,6 +21,7 @@
 @property (nonatomic) NSDictionary *picture;
 @property (nonatomic) NSString *email;
 @property (nonatomic) NSString *numHairfies;
+@property (nonatomic) NSString *phoneNumber;
 
 -(id)initWithJson:(NSDictionary *)data;
 -(NSString *)name;
