@@ -32,12 +32,12 @@
     UIView *fieldPadding = [[UIView alloc] initWithFrame:CGRectMake(0, 0,20, 46)];
     
     
-    if (![textFieldFromSegue isEqualToString:@""] || ![textFieldFromSegue isEqualToString:@"Nom du salon                                 "] || ![textFieldFromSegue isEqualToString:@"Numéro de téléphone"])
+    if (![textFieldFromSegue isEqualToString:@""] || ![textFieldFromSegue isEqualToString:NSLocalizedStringFromTable(@"Salon's name                                 ", @"Claim", nil)] || ![textFieldFromSegue isEqualToString:NSLocalizedStringFromTable(@"Phone Number", @"Claim", nil)])
     {
         textField.text = textFieldFromSegue;
     }
     
-    if ([textFieldPlaceHolder isEqualToString:@"Numéro de téléphone"])
+    if ([textFieldPlaceHolder isEqualToString:NSLocalizedStringFromTable(@"Phone Number", @"Claim", nil)])
     {
         textField.keyboardType = UIKeyboardTypePhonePad;
         [self addDoneButtonToPriceField];
@@ -58,7 +58,7 @@
     [_textField resignFirstResponder];
     
     SecondStepViewController *claim = [self.navigationController.viewControllers objectAtIndex:[self.navigationController.viewControllers count]-2];
-    if ([headerLabel.text isEqualToString:@"Téléphone"])
+    if ([headerLabel.text isEqualToString:NSLocalizedStringFromTable(@"Phone Number", @"Claim", nil)])
         claim.phoneBttn.titleLabel.text = textField.text;
     else
         claim.salonBttn.titleLabel.text = textField.text;
@@ -78,7 +78,7 @@
     //keyboardDoneButtonView.backgroundColor = [UIColor redHairfie];
     [keyboardDoneButtonView sizeToFit];
     
-    UIBarButtonItem* doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Validate phone"
+    UIBarButtonItem* doneButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedStringFromTable(@"Validate phone", @"Claim", nil)
                                                                    style:UIBarButtonItemStyleBordered
                                                                   target:self
                                                                   action:@selector(doneClicked:)];
@@ -98,7 +98,7 @@
     [textField resignFirstResponder];
     
     SecondStepViewController *claim = [self.navigationController.viewControllers objectAtIndex:[self.navigationController.viewControllers count]-2];
-    if ([headerLabel.text isEqualToString:@"Téléphone"])
+    if ([headerLabel.text isEqualToString:NSLocalizedStringFromTable(@"Phone Number", @"Claim", nil)])
         claim.phoneBttn.titleLabel.text = textField.text;
     else
         claim.salonBttn.titleLabel.text = textField.text;
