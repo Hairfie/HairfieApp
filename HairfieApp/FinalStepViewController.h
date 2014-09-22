@@ -17,6 +17,8 @@
 @property (nonatomic) IBOutlet UIView *pageControlView;
 
 
+// TAB VIEW
+
 @property (nonatomic) IBOutlet UIButton* infoBttn;
 @property (nonatomic) IBOutlet UIButton* hairfieBttn;
 @property (nonatomic) IBOutlet UIButton* hairdresserBttn;
@@ -27,5 +29,9 @@
 @property (nonatomic) IBOutlet UIView* hairfieView;
 @property (nonatomic) IBOutlet UIView* hairdresserView;
 @property (nonatomic) IBOutlet UIView* priceAndSaleView;
+
+// HAIRFIE TAB
+
+@property (nonatomic) IBOutlet UIButton* addHairfiesBttn;
 
 @end

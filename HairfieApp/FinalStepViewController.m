@@ -24,6 +24,8 @@
     
     _validateBttn.layer.cornerRadius = 5;
     _validateBttn.layer.masksToBounds = YES;
+    _addHairfiesBttn.layer.cornerRadius = 5;
+    _addHairfiesBttn.layer.masksToBounds = YES;
     UIView *borderBttn =[[UIView alloc] initWithFrame:CGRectMake(105, 35, 110, 110)];
     borderBttn.backgroundColor = [UIColor whiteColor];
     borderBttn.alpha = 0.2;
