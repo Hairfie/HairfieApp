@@ -13,6 +13,7 @@
 		1515448219C301ED00FBC07D /* CameraOverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1515448119C301ED00FBC07D /* CameraOverlayViewController.m */; };
 		153E1FB019B4A79B00DEC95D /* UserRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 153E1FAF19B4A79B00DEC95D /* UserRepository.m */; };
 		153E1FB419B4AA8200DEC95D /* UserAuthenticator.m in Sources */ = {isa = PBXBuildFile; fileRef = 153E1FB319B4AA8200DEC95D /* UserAuthenticator.m */; };
+		1540150119D030030094DB5E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1540150319D030030094DB5E /* InfoPlist.strings */; };
 		1564959519AF6292008DC070 /* HairfieColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 1564959419AF6292008DC070 /* HairfieColors.m */; };
 		15697B31199BB03800DA83FE /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 15697B30199BB03800DA83FE /* UIImage+Resize.m */; };
 		1576492919C9B8BA00DDC141 /* help-hairfie.png in Resources */ = {isa = PBXBuildFile; fileRef = 1576492819C9B8BA00DDC141 /* help-hairfie.png */; };
@@ -262,6 +263,8 @@
 		153E1FAF19B4A79B00DEC95D /* UserRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserRepository.m; sourceTree = "<group>"; };
 		153E1FB219B4AA8200DEC95D /* UserAuthenticator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAuthenticator.h; sourceTree = "<group>"; };
 		153E1FB319B4AA8200DEC95D /* UserAuthenticator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAuthenticator.m; sourceTree = "<group>"; };
+		1540150419D030070094DB5E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1540150519D030080094DB5E /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1564959319AF6292008DC070 /* HairfieColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HairfieColors.h; sourceTree = "<group>"; };
 		1564959419AF6292008DC070 /* HairfieColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HairfieColors.m; sourceTree = "<group>"; };
 		15697B2F199BB01B00DA83FE /* UIImage+Resize.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
@@ -689,6 +692,7 @@
 				B330B5C619865B2E0059AE56 /* HairfiePrefixHeader.pch */,
 				1564959319AF6292008DC070 /* HairfieColors.h */,
 				1564959419AF6292008DC070 /* HairfieColors.m */,
+				1540150319D030030094DB5E /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1410,6 +1414,7 @@
 				B39BA17819AF46CD00A48BD5 /* picto-logout.png in Resources */,
 				B3FB10B619B09DA600CADCFD /* man-picto.png in Resources */,
 				B3AD59C2198B9D3500909ADE /* picto-list-man.png in Resources */,
+				1540150119D030030094DB5E /* InfoPlist.strings in Resources */,
 				B3F662381987D52A0041F298 /* OFL.txt in Resources */,
 				B37F9A54198F910B00881071 /* picto-sales.png in Resources */,
 				B3CCE77A1998BB1B00067DB9 /* picto-hairfie-comment.png in Resources */,
@@ -1704,6 +1709,15 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		1540150319D030030094DB5E /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1540150419D030070094DB5E /* en */,
+				1540150519D030080094DB5E /* fr */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		B3EDF87619878F6C00431B70 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
