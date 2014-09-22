@@ -7,6 +7,7 @@
 //
 
 #import "FinalStepClaimDayViewController.h"
+#import "TimeTableView.h"
 
 @interface FinalStepClaimDayViewController ()
 
@@ -17,6 +18,7 @@
 @implementation FinalStepClaimDayViewController
 {
     NSArray *weekDays;
+    NSArray *halfHour;
 }
 
 @synthesize headerString;
@@ -31,7 +33,12 @@
     _doneBttn.layer.cornerRadius = 5;
     
      [_openingTimePicker selectRow:10 inComponent:0 animated:YES];
+    [_openingTimePicker selectRow:0 inComponent:1 animated:YES];
+    
      [_closingTimePicker selectRow:18 inComponent:0 animated:YES];
+    [_closingTimePicker selectRow:0 inComponent:1 animated:YES];
+    [_openingTimePicker reloadAllComponents];
+    [_closingTimePicker reloadAllComponents];
     _openingTimeView.layer.cornerRadius = 5;
     _openingTimeView.layer.masksToBounds = YES;
     _openingTimeView.layer.borderColor = [UIColor lightGreyHairfie].CGColor;
@@ -41,6 +48,7 @@
     _closingTimeView.layer.borderColor = [UIColor lightGreyHairfie].CGColor;
     _closingTimeView.layer.borderWidth = 1;
     weekDays = [[NSArray alloc] initWithObjects:@"Monday",@"Tuesday",@"Wednesday",@"Thursday",@"Friday",@"Saturday",@"Sunday", nil];
+     halfHour = [[NSArray alloc] initWithObjects:@"00",@"30", nil];
     
     
     
@@ -77,13 +85,12 @@ numberOfRowsInComponent:(NSInteger)component
 {
      UILabel* tView = (UILabel*)view;
     
-    if (!tView)
-    {
+
     tView = [[UILabel alloc] init];
     [tView setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:17]];
     [tView setTextAlignment:NSTextAlignmentCenter];
-    }
-    NSArray *demiHeure = [[NSArray alloc] initWithObjects:@"00",@"30", nil];
+    
+   
     
     if (pickerView == _dayPickerView)
     {
@@ -96,16 +103,58 @@ numberOfRowsInComponent:(NSInteger)component
         if (component == 0)
              tView.text=[NSString stringWithFormat:@"%ld", row];
         else
-            tView.text = [demiHeure objectAtIndex:row];
+            tView.text = [halfHour objectAtIndex:row];
     }
    
     return tView;
+}
+
+
+-(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row
+      inComponent:(NSInteger)component
+{
+   
+    if (pickerView == _dayPickerView)
+        _dayPicked = [weekDays objectAtIndex:row];
+    if (pickerView == _openingTimePicker)
+    {
+
+        NSString *minutes = [halfHour objectAtIndex:[pickerView selectedRowInComponent:1]];
+        _openingTime = [NSString stringWithFormat:@"%ldh%@", [pickerView selectedRowInComponent:0], minutes];
+        NSLog(@"Opening Time %@", _openingTime);
+    }
+    if (pickerView == _closingTimePicker)
+    {
+        
+        NSString *minutes = [halfHour objectAtIndex:[pickerView selectedRowInComponent:1]];
+        _closingTime = [NSString stringWithFormat:@"%ldh%@", [pickerView selectedRowInComponent:0], minutes];
+        NSLog(@"Closing Time %@", _closingTime);
+    }
+    
 }
 
 -(IBAction)goBack:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+
+-(IBAction)addTimeTable:(id)sender
+{
+    NSArray *subviewArray = [[NSBundle mainBundle] loadNibNamed:@"TimeTableView" owner:self options:nil];
+    
+    TimeTableView *timeTable = [subviewArray objectAtIndex:0];
+    
+   
+    NSLog(@"ici");
+    [timeTable settimeTableStringOpen:_openingTime andClose:_closingTime];
+    [timeTable setDayForTimetable:_dayPicked];
+    
+    [self.view addSubview:timeTable];
+    [self.view bringSubviewToFront:timeTable];
+    
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

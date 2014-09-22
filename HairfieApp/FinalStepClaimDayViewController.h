@@ -20,8 +20,9 @@
 @property (nonatomic) IBOutlet UIView* closingTimeView;
 @property (nonatomic) IBOutlet UIView* openingTimeView;
 
-
-
+@property (nonatomic) NSString *dayPicked;
+@property (nonatomic) NSString *openingTime;
+@property (nonatomic) NSString *closingTime;
 
 @property (nonatomic) IBOutlet UIButton *doneBttn;
 
