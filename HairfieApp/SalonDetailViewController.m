@@ -30,8 +30,6 @@
 @implementation SalonDetailViewController {
     BOOL isOpen;
     // Variables de test (vu qu'il y a pas de backend)
-    
-    NSArray *coiffureArray;
     NSArray *coiffeurArray;
     
     NSMutableArray *hairfies;
@@ -91,12 +89,7 @@
     coiffeurArray = [[NSArray alloc] initWithObjects:@"Charlyne M.", @"Johanna G.", @"Lisa T.", @"Audrey M.", @"Ghislain J.", nil];
     _hairdresserTableViewHeight.constant = [coiffeurArray count] * 60;
     _hairdresserTableView.scrollEnabled = NO;
-    
-    coiffureArray = [[NSArray alloc] init];
-    coiffureArray = [[NSArray alloc] initWithObjects:@"COUPE HOMME BASIQUE", @"COUPE HOMME BASIQUE", @"LISSAGE BRESILIEN", @"COLORATION", @"BRUSHING", nil];
-    _pricesTableViewHeight.constant = [coiffureArray count] * 41;
-    
-    
+
     // Init Rating View
     
     _reviewRating.notSelectedImage = [UIImage imageNamed:@"not_selected_review.png"];
@@ -290,15 +283,17 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (tableView == _reviewTableView)
+    if (tableView == _reviewTableView) {
         return 2;
-    else if (tableView == _similarTableView)
+    } else if (tableView == _similarTableView) {
         return self.similarBusinesses.count;
-    if (tableView == _hairdresserTableView)
+    } else if (tableView == _hairdresserTableView) {
         return 5;
-    if(tableView == _pricesTableView)
-        return 5;
-    return 2;
+    } else if(tableView == _pricesTableView) {
+        return self.business.prices.count;
+    } else {
+        return 2;
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -311,44 +306,39 @@
         return 60;
     else if (tableView == _pricesTableView)
         return 41;
-    return 90;
+    else
+        return 90;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
  
-    if (tableView == _reviewTableView)
-    {
+    if (tableView == _reviewTableView) {
         static NSString *CellIdentifier = @"reviewCell";
         ReviewTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
+
         if (cell == nil) {
             NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ReviewTableViewCell" owner:self options:nil];
             cell = [nib objectAtIndex:0];
         }
-        
-        return cell;
 
-    }
-    else if (tableView == _similarTableView)
-    {
+        return cell;
+    } else if (tableView == _similarTableView) {
         static NSString *CellIdentifier = @"similarCell";
         SimilarTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        
+
         if (cell == nil) {
             NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"SimilarTableViewCell" owner:self options:nil];
             cell = [nib objectAtIndex:0];
         }
-        
+
         [cell customInit:self.similarBusinesses[indexPath.row]];
-        
+
         return cell;
-    }
-    else if (tableView == _hairdresserTableView)
-    {
+    } else if (tableView == _hairdresserTableView) {
         static NSString *CellIdentifier = @"hairdresserCell";
         HairdressersTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        
+
         if (cell == nil) {
             NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"HairdressersTableViewCell" owner:self options:nil];
             cell = [nib objectAtIndex:0];
@@ -357,24 +347,22 @@
         cell.name.text = [coiffeurArray objectAtIndex:indexPath.row];
         cell.nbHairfie.text = @"335 Hairfies";
         cell.nbHairfie.textColor = [UIColor colorWithRed:224/255.0f green:106/255.0f blue:71/255.0f alpha:1];
+
         return cell;
-    }
-    
-    else if (tableView == _pricesTableView)
-    {
+    } else if (tableView == _pricesTableView) {
         static NSString *CellIdentifier = @"priceCell";
         PricesTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        
+
         if (cell == nil) {
             NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"PricesTableViewCell" owner:self options:nil];
             cell = [nib objectAtIndex:0];
         }
-        cell.itemName.text = [coiffureArray objectAtIndex:indexPath.row];
-        cell.price.text = @"$ 100";
+
+        [cell updateWithPrice:self.business.prices[indexPath.row]];
+
         return cell;
     }
 
-    
     return nil;
 }
 
@@ -392,6 +380,8 @@
     [self setupHairfies];
     
     [self setupGallery:business.pictures];
+    
+    [self setupPrices];
     
     if ([business.timetable isEqualToDictionary:@{}]) {
         _isOpenImageDetail.hidden = YES;
@@ -426,14 +416,7 @@
     }
     _name.text = business.name;
     
-    if ([[[business prices] objectForKey:@"women"] integerValue] != 0 && [[[business prices] objectForKey:@"men"]integerValue] != 0)
-    {
-        _manPrice.text = [NSString stringWithFormat:@"%@ €",[[[business prices] objectForKey:@"men"] stringValue]];
-        _womanPrice.text = [NSString stringWithFormat:@"%@ €",[[[business prices] objectForKey:@"women"] stringValue]];
-        _pricesView.hidden = NO;
-    }
-    else
-        _pricesView.hidden = YES;
+    _pricesView.hidden = YES;
     
     _salonRating.notSelectedImage = [UIImage imageNamed:@"not_selected_star.png"];
     _salonRating.halfSelectedImage = [UIImage imageNamed:@"half_selected_star.png"];
@@ -470,6 +453,11 @@
     _haidresserLat = [NSString stringWithFormat:@"%@", business.gps.lat];
     _haidresserLng = [NSString stringWithFormat:@"%@", business.gps.lng];
 
+}
+
+-(void)setupPrices
+{
+    _pricesTableViewHeight.constant = self.business.prices.count * 41;
 }
 
 -(void)setupCrossSell

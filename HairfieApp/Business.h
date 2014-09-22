@@ -23,7 +23,7 @@
 @property (strong, nonatomic) NSArray *pictures;
 @property (strong, nonatomic) NSString *thumbnail;
 @property (strong, nonatomic) NSNumber *distance; // TODO: calculate it from frontend
-@property (strong, nonatomic) NSDictionary *prices;
+@property (strong, nonatomic) NSArray *prices;
 @property (strong, nonatomic) NSNumber *numHairfies;
 @property (strong, nonatomic) NSNumber *numReviews;
 @property (strong, nonatomic) NSNumber *rating;
