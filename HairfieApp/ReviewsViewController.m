@@ -196,7 +196,7 @@ shouldChangeTextInRange: (NSRange) range
     _reviewTextView = [[UITextView alloc] initWithFrame:CGRectMake(20, 10, 280, 176)];
     _reviewTextView.delegate = self;
     _reviewTextView.backgroundColor = [UIColor clearColor];
-    _reviewTextView.text = NSLocalizedStringFromTable(@"Ajoutez votre review...", @"Salon_Detail", nil);
+    _reviewTextView.text = NSLocalizedStringFromTable(@"Add a review", @"Salon_Detail", nil);
     _reviewTextView.textColor = [[UIColor blackHairfie] colorWithAlphaComponent:0.6];
     _reviewTextView.returnKeyType = UIReturnKeyDone;
 
