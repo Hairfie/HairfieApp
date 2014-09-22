@@ -27,9 +27,9 @@
     delegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
    
     if ([delegate.currentUser.gender isEqualToString:@"male"])
-        _civilityField.text = @"Homme";
+        _civilityField.text = NSLocalizedStringFromTable(@"Man", @"Claim", nil);
     else
-        _civilityField.text = @"Femme";
+        _civilityField.text = NSLocalizedStringFromTable(@"Women", @"Claim", nil);
     
     _firstNameField.text = delegate.currentUser.firstName;
     _lastNameField.text = delegate.currentUser.lastName;
