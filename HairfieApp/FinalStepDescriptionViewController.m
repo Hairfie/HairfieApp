@@ -21,11 +21,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
     _descriptionView.layer.cornerRadius =5;
     _descriptionView.layer.borderColor = [UIColor lightGreyHairfie].CGColor;
     _descriptionView.layer.borderWidth = 1;
+    _doneBttn.layer.cornerRadius = 5;
+ 
+    [_descriptionView becomeFirstResponder];
     
-     _doneBttn.layer.cornerRadius = 5;
     // Do any additional setup after loading the view.
 }
 
@@ -34,6 +37,12 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+-(IBAction)validateDescription:(id)sender
+{
+    // TO DO enregistrer la description modifiée
+    
+    [self goBack:self];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

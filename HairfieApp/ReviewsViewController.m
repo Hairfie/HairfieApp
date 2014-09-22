@@ -89,7 +89,8 @@
 {
     _isReviewing = YES;
     _reviewRating.rating = 0;
-    _reviewTableView.scrollEnabled = NO;
+    if (_isReviewing == NO)
+    {
     if ([_reviewTextView.text isEqualToString:@""] || [_reviewTextView.text isEqualToString:@"Ajoutez votre review..."])
     {
         _reviewTextView.text = @"Ajoutez votre review...";
@@ -101,6 +102,7 @@
         _isReviewing = NO;
         [self getReviews];
         
+    }
     }
 }
 

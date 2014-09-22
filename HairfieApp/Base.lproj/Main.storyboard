@@ -140,11 +140,8 @@
             <string>SourceSansPro-Light</string>
             <string>SourceSansPro-Light</string>
             <string>SourceSansPro-Light</string>
-            <string>SourceSansPro-Light</string>
-            <string>SourceSansPro-Light</string>
         </mutableArray>
         <mutableArray key="SourceSansPro-Regular.ttf">
-            <string>SourceSansPro-Regular</string>
             <string>SourceSansPro-Regular</string>
             <string>SourceSansPro-Regular</string>
             <string>SourceSansPro-Regular</string>
@@ -3399,6 +3396,9 @@
                                         <state key="normal" image="arrow-nav.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="goBack:" destination="LzR-Rb-iSe" eventType="touchUpInside" id="HZz-cS-mWM"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Ajouter un salon" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FSz-3q-55e">
                                         <rect key="frame" x="86" y="27" width="149" height="23"/>
@@ -3481,6 +3481,9 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="doneClicked:" destination="NUe-A9-Lt8" eventType="touchUpInside" id="YvB-9X-mzN"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.15686274510000001" green="0.19215686269999999" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -3505,7 +3508,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oez-Yj-9jQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2680" y="578"/>
+            <point key="canvasLocation" x="2236" y="2019"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="EFW-V8-a2I">
@@ -3952,70 +3955,6 @@
             </objects>
             <point key="canvasLocation" x="-1480" y="786"/>
         </scene>
-        <!--Second Step Salon Phone View Controller-->
-        <scene sceneID="M5A-yc-UiD">
-            <objects>
-                <viewController id="Sfe-vK-JfR" customClass="SecondStepSalonPhoneViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="ceo-Wj-fFa"/>
-                        <viewControllerLayoutGuide type="bottom" id="G1Y-fA-grV"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="okP-JO-gdO">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gY3-de-NeC" userLabel="Top Bar View">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WvS-IM-W9T" userLabel="Go Back">
-                                        <rect key="frame" x="10" y="30" width="20" height="20"/>
-                                        <state key="normal" image="arrow-nav.png">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="goBack:" destination="Sfe-vK-JfR" eventType="touchUpInside" id="eKz-3N-r6a"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Ajouter un salon" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wyx-El-dj4">
-                                        <rect key="frame" x="86" y="27" width="149" height="23"/>
-                                        <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="18"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yss-HX-bSM">
-                                        <rect key="frame" x="259" y="25" width="53" height="30"/>
-                                        <color key="backgroundColor" red="0.98039215690000003" green="0.47450980390000003" blue="0.51764705879999995" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="14"/>
-                                        <state key="normal" title="Valider">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" red="0.15686274510000001" green="0.19215686269999999" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
-                            </view>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Nom du salon" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="PVE-mQ-95p">
-                                <rect key="frame" x="10" y="88" width="300" height="46"/>
-                                <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="15"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="Sfe-vK-JfR" id="Vas-SH-x8f"/>
-                                </connections>
-                            </textField>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="08l-0s-2xl"/>
-                    <connections>
-                        <outlet property="doneBttn" destination="Yss-HX-bSM" id="RXn-Zl-ZfX"/>
-                        <outlet property="headerLabel" destination="wyx-El-dj4" id="vmY-GJ-yLf"/>
-                        <outlet property="textField" destination="PVE-mQ-95p" id="uTk-zv-TeE"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ghw-Lt-dbr" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2786" y="2030"/>
-        </scene>
         <!--Final Step View Controller-->
         <scene sceneID="AAl-a0-JjW">
             <objects>
@@ -4353,7 +4292,7 @@
                         <outlet property="priceAndSaleBttn" destination="cjT-7e-Ww7" id="Hnx-Hs-qPF"/>
                         <outlet property="priceAndSaleView" destination="rfH-9l-Y24" id="1j9-8G-o3I"/>
                         <outlet property="validateBttn" destination="TQG-mS-hkE" id="sQ7-S9-xNa"/>
-                        <segue destination="Sfe-vK-JfR" kind="push" identifier="claimPhone" id="NIV-Qd-Zhh"/>
+                        <segue destination="NUe-A9-Lt8" kind="push" identifier="claimPhone" id="VGS-VM-Pwy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kgs-18-rHr" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -4398,6 +4337,9 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="validateHairdresser:" destination="vfu-7w-ucu" eventType="touchUpInside" id="OwX-ex-2sy"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.15686274510000001" green="0.19215686269999999" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -4484,7 +4426,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tA7-LV-CmJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4142" y="667"/>
+            <point key="canvasLocation" x="3854" y="1274"/>
         </scene>
         <!--Final Step Timetable View Controller-->
         <scene sceneID="gvh-vg-M0b">
@@ -4524,6 +4466,9 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="validateTimetable:" destination="QDs-5V-jNB" eventType="touchUpInside" id="QY8-hA-Cqj"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.15686274510000001" green="0.19215686269999999" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -4785,6 +4730,9 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="validateDescription:" destination="J9A-9n-U3u" eventType="touchUpInside" id="K0e-P6-LUg"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.15686274510000001" green="0.19215686269999999" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -4792,7 +4740,7 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="fadsfadsfdsaf fasdfsfsd sadfadsfsd fafasdfasfsd asf sfasadf" translatesAutoresizingMaskIntoConstraints="NO" id="YXw-Wv-R14">
                                 <rect key="frame" x="10" y="72" width="300" height="150"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <inset key="scrollIndicatorInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <inset key="scrollIndicatorInsets" minX="15" minY="10" maxX="15" maxY="0.0"/>
                                 <color key="textColor" red="0.1960784314" green="0.26274509800000001" blue="0.3411764706" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -4808,7 +4756,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="swM-PN-xQA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3916" y="2030"/>
+            <point key="canvasLocation" x="3928" y="2039"/>
         </scene>
         <!--Final Step Address View Controller-->
         <scene sceneID="VIa-oN-OH3">
@@ -4848,6 +4796,9 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="validateAddress:" destination="zTm-H4-2yr" eventType="touchUpInside" id="bvp-ht-R8G"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.15686274510000001" green="0.19215686269999999" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -4856,16 +4807,25 @@
                                 <rect key="frame" x="10" y="85" width="300" height="46"/>
                                 <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                <connections>
+                                    <outlet property="delegate" destination="zTm-H4-2yr" id="4lQ-e4-iVt"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Ville" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="QW3-mC-bUN">
                                 <rect key="frame" x="10" y="149" width="300" height="46"/>
                                 <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                <connections>
+                                    <outlet property="delegate" destination="zTm-H4-2yr" id="JvP-3H-i1t"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Pays" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ReD-14-jgc">
                                 <rect key="frame" x="10" y="213" width="300" height="46"/>
                                 <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="done"/>
+                                <connections>
+                                    <outlet property="delegate" destination="zTm-H4-2yr" id="TbZ-ri-y8u"/>
+                                </connections>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -4880,7 +4840,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rVx-U9-mRa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3171" y="2077"/>
+            <point key="canvasLocation" x="3179" y="2039"/>
         </scene>
         <!--Claim Add Prices Sales View Controller-->
         <scene sceneID="6En-TP-VEe">
@@ -4920,6 +4880,9 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="validatePricesSales:" destination="iwq-rU-PkG" eventType="touchUpInside" id="nyM-os-TLZ"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.15686274510000001" green="0.19215686269999999" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -4952,7 +4915,7 @@
                                         <color key="textColor" red="0.73160475130000002" green="0.73160475130000002" blue="0.73160475130000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oJz-WK-WBH">
+                                    <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oJz-WK-WBH">
                                         <rect key="frame" x="140" y="0.0" width="148" height="46"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -4972,7 +4935,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8gy-pz-0wr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4142" y="1218"/>
+            <point key="canvasLocation" x="4218" y="1274"/>
         </scene>
     </scenes>
     <resources>
@@ -5030,15 +4993,15 @@
         </simulatedScreenMetrics>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="TR0-Pa-JWL"/>
-        <segue reference="uEN-by-6gW"/>
-        <segue reference="H0a-7y-EaD"/>
-        <segue reference="K9z-px-huR"/>
-        <segue reference="8js-8I-lUc"/>
-        <segue reference="U6U-Af-qnl"/>
-        <segue reference="dKD-Ry-4fL"/>
-        <segue reference="PSz-m0-val"/>
         <segue reference="LOg-O4-mCP"/>
+        <segue reference="PSz-m0-val"/>
         <segue reference="DYR-eo-mJz"/>
+        <segue reference="dKD-Ry-4fL"/>
+        <segue reference="8js-8I-lUc"/>
+        <segue reference="uEN-by-6gW"/>
+        <segue reference="TR0-Pa-JWL"/>
+        <segue reference="K9z-px-huR"/>
+        <segue reference="H0a-7y-EaD"/>
+        <segue reference="VGS-VM-Pwy"/>
     </inferredMetricsTieBreakers>
 </document>

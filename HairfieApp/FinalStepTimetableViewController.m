@@ -59,7 +59,6 @@
 
 -(IBAction)modifyDayTimeTable:(UIButton *)button{
     
-    
     if ([button tag]==  0){
         dayPicked = @"Monday";
     }
@@ -89,6 +88,12 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+-(IBAction)validateTimetable:(id)sender
+{
+    // TO DO enregistrer les horaires modifiés
+    
+    [self goBack:self];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -101,10 +106,7 @@
     {
         
         FinalStepClaimDayViewController *claimDay = [segue destinationViewController];
-        NSLog(@"ICI");
-        
-        
-            claimDay.headerString = dayPicked;
+        claimDay.headerString = dayPicked;
     }
         
 }

@@ -27,6 +27,8 @@
     headerLabel.text = headerTitle;
     textField.placeholder = textFieldPlaceHolder;
     
+   
+    
     UIView *fieldPadding = [[UIView alloc] initWithFrame:CGRectMake(0, 0,20, 46)];
     
     
@@ -47,7 +49,7 @@
     textField.leftViewMode = UITextFieldViewModeAlways;
     textField.returnKeyType = UIReturnKeyDone;
     _doneBttn.layer.cornerRadius = 5;
-    
+    [textField becomeFirstResponder];
     // Do any additional setup after loading the view.
 }
 
@@ -64,6 +66,9 @@
     [self.navigationController popViewControllerAnimated:YES];
     return YES;
 }
+
+
+
 
 -(void) addDoneButtonToPriceField {
 
@@ -90,17 +95,15 @@
 - (IBAction)doneClicked:(id)sender
 {
     
-    BOOL phone = [self checkPhone];
+    [textField resignFirstResponder];
     
-    
-    if (phone == YES)
-    {
-        [textField endEditing:YES];
-        SecondStepViewController *claim = [self.navigationController.viewControllers objectAtIndex:[self.navigationController.viewControllers count]-2];
+    SecondStepViewController *claim = [self.navigationController.viewControllers objectAtIndex:[self.navigationController.viewControllers count]-2];
+    if ([headerLabel.text isEqualToString:@"Téléphone"])
         claim.phoneBttn.titleLabel.text = textField.text;
-        [self.navigationController popViewControllerAnimated:YES];
-    }
+    else
+        claim.salonBttn.titleLabel.text = textField.text;
     
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)textFieldDidEndEditing:(UITextField *)textField

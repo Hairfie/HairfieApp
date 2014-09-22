@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FinalStepAddressViewController : UIViewController <UINavigationControllerDelegate>
+@interface FinalStepAddressViewController : UIViewController <UINavigationControllerDelegate, UITextFieldDelegate>
 
 
 @property (nonatomic) IBOutlet UITextField *address;

@@ -40,6 +40,13 @@
     // Do any additional setup after loading the view.
 }
 
+-(IBAction)validateHairdresser:(id)sender
+{
+    // TO DO enregistrer les coiffeurs ajoutés
+    
+    [self goBack:self];
+}
+
 -(UIStatusBarStyle)preferredStatusBarStyle{
     return UIStatusBarStyleLightContent;
 }
