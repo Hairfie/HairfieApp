@@ -54,7 +54,6 @@
 
 - (void)rateView:(RatingView *)rateView ratingDidChange:(float)rating {
     _isReviewing = YES;
-    _reviewTableView.scrollEnabled = NO;
     [_reviewTableView reloadData];
      [_reviewTextView becomeFirstResponder];
 }
@@ -79,7 +78,6 @@
 {
     [_reviewTextView resignFirstResponder];
     _isReviewing = NO;
-    _reviewTableView.scrollEnabled = YES;
     _reviewRating.rating = 0;
 
     [_reviewTableView reloadData];
@@ -88,27 +86,31 @@
 -(IBAction)addReview:(id)sender
 {
     _isReviewing = YES;
-    _reviewRating.rating = 0;
-    if (_isReviewing == NO)
-    {
     if ([_reviewTextView.text isEqualToString:@""] || [_reviewTextView.text isEqualToString:@"Ajoutez votre review..."])
     {
         _reviewTextView.text = @"Ajoutez votre review...";
         // need feedback no text in review = no review
         [_reviewTableView reloadData];
+        [_reviewTextView becomeFirstResponder];
     }
-    else{
-        [self saveReview];
-        _isReviewing = NO;
-        [self getReviews];
+    else
+    {
+        if (_isReviewing == YES)
+        {
+            [self saveReview];
+            [self getReviews];
+        }
+        else
+            NSLog(@"test");
         
-    }
     }
 }
 
 -(void) saveReview
 {
     
+
+    [_reviewTextView resignFirstResponder];
     NSNumber *reviewValue = [NSNumber numberWithFloat:_reviewRating.rating];
     
     NSDictionary *businessDic = [_business toDictionary];
@@ -118,6 +120,9 @@
     BusinessReview *review = [[BusinessReview alloc] initWithDictionary:dic];
   
     [review save];
+    _isReviewing = NO;
+    _reviewRating.rating = 0;
+    _reviewTextView.text = @"";
    
 }
 
@@ -163,23 +168,19 @@ shouldChangeTextInRange: (NSRange) range
 
         _isReviewing = NO;
         
-
-        _reviewTableView.scrollEnabled = YES;
         if ([_reviewTextView.text isEqualToString:@""] || [_reviewTextView.text isEqualToString:@"Ajoutez votre review..."])
         {
             _reviewTextView.text = @"Ajoutez votre review...";
-            
+            [_reviewTextView resignFirstResponder];
+            [_reviewTableView reloadData];
         }
         else{
             [self saveReview];
             [self getReviews];
         }
-        _reviewRating.rating = 0;
-        [textView resignFirstResponder];
 
         return NO;
     }
-   _reviewTableView.scrollEnabled = NO;
     return YES;
 }
 
