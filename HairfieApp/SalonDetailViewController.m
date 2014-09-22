@@ -424,6 +424,8 @@
     _salonRating.maxRating = 5;
     _salonRating.delegate = self;
     
+    
+    NSLog(@"Business reviews %@, general rating %f", business.numReviews, business.rating);
 
     if (business.numReviews == 0)
     {

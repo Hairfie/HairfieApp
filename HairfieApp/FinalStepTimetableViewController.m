@@ -57,31 +57,7 @@
     // Do any additional setup after loading the view.
 }
 
--(IBAction)modifyDayTimeTable:(UIButton *)button{
-    
-    if ([button tag]==  0){
-        dayPicked = @"Monday";
-    }
-    if ([button tag]==  1){
-        dayPicked = @"Tuesday";
-    }
-    if ([button tag]==  2){
-        dayPicked = @"Wednesday";
-    }
-    if ([button tag]==  3){
-        dayPicked = @"Thursday";
-    }
-    if ([button tag]==  4){
-        dayPicked = @"Friday";
-    }
-    if ([button tag]==  5){
-        dayPicked = @"Saturday";
-    }
-    if ([button tag]==  6){
-        dayPicked = @"Sunday";
-    }
-    [self performSegueWithIdentifier:@"claimWeekDay" sender:self];
-}
+
 
 -(IBAction)goBack:(id)sender
 {
@@ -100,16 +76,6 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([segue.identifier isEqualToString:@"claimWeekDay"])
-    {
-        
-        FinalStepClaimDayViewController *claimDay = [segue destinationViewController];
-        claimDay.headerString = dayPicked;
-    }
-        
-}
 
 /*
 #pragma mark - Navigation
