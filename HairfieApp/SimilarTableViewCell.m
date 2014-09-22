@@ -29,7 +29,7 @@
     _ratingView.maxRating = 5;
     _ratingView.delegate = self;
 
-    _statusLabel.text = [NSString stringWithFormat:@"- donnez votre avis !"];
+    _statusLabel.text = [NSString stringWithFormat:NSLocalizedStringFromTable(@"- rate this hairdresser !", @"Salon_Detail", nil)];
 
     _salonPicture.image = [UIImage imageNamed:@"placeholder-image.jpg"];
     // Initialization code

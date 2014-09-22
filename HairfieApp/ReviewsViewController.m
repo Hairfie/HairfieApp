@@ -168,9 +168,9 @@ shouldChangeTextInRange: (NSRange) range
 
         _isReviewing = NO;
         
-        if ([_reviewTextView.text isEqualToString:@""] || [_reviewTextView.text isEqualToString:@"Ajoutez votre review..."])
+        if ([_reviewTextView.text isEqualToString:@""] || [_reviewTextView.text isEqualToString:NSLocalizedStringFromTable(@"Ajoutez votre review...", @"Salon_Detail", nil)])
         {
-            _reviewTextView.text = @"Ajoutez votre review...";
+            _reviewTextView.text = NSLocalizedStringFromTable(@"Ajoutez votre review...", @"Salon_Detail", nil);
             [_reviewTextView resignFirstResponder];
             [_reviewTableView reloadData];
         }
@@ -196,7 +196,7 @@ shouldChangeTextInRange: (NSRange) range
     _reviewTextView = [[UITextView alloc] initWithFrame:CGRectMake(20, 10, 280, 176)];
     _reviewTextView.delegate = self;
     _reviewTextView.backgroundColor = [UIColor clearColor];
-    _reviewTextView.text = @"Ajoutez votre review...";
+    _reviewTextView.text = NSLocalizedStringFromTable(@"Ajoutez votre review...", @"Salon_Detail", nil);
     _reviewTextView.textColor = [[UIColor blackHairfie] colorWithAlphaComponent:0.6];
     _reviewTextView.returnKeyType = UIReturnKeyDone;
 

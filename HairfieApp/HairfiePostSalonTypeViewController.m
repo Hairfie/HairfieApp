@@ -39,7 +39,7 @@
     
     delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     _searchAroundMeImage.image = [_searchAroundMeImage.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-    _searchByLocation.text = @"Around Me";
+    _searchByLocation.text = NSLocalizedStringFromTable(@"Around Me", @"Post_Hairfie", nil);
     _searchBttn.layer.cornerRadius = 5;
     _searchBttn.layer.masksToBounds = YES;
     _tableView.layer.borderWidth = 1;
@@ -56,7 +56,7 @@
 -(IBAction)searchAroundMe:(id)sender
 {
     [_searchByLocation resignFirstResponder];
-    _searchByLocation.text = @"Around Me";
+    _searchByLocation.text = NSLocalizedStringFromTable(@"Around Me", @"Post_Hairfie", nil);
     _searchAroundMeImage.tintColor = [UIColor lightBlueHairfie];
     
 }
@@ -143,7 +143,7 @@
 
 -(void)willSearch:(NSNotification*)notification
 {
-    if ([_searchByLocation.text isEqualToString:@""] || [_searchByLocation.text isEqualToString:@"Around Me"])
+    if ([_searchByLocation.text isEqualToString:@""] || [_searchByLocation.text isEqualToString:NSLocalizedStringFromTable(@"Around Me", @"Post_Hairfie", nil)])
         [self initGpsString:_myLocation];
     else
         [self initGpsString:locationSearch];
@@ -174,7 +174,7 @@
 {
     if ([_searchByLocation.text isEqualToString:@""])
     {
-        _searchByLocation.text = @"Around Me";
+        _searchByLocation.text = NSLocalizedStringFromTable(@"Around Me", @"Post_Hairfie", nil);
         _searchAroundMeImage.tintColor = [UIColor lightBlueHairfie];
     }
     [self geocodeAddress:_searchByLocation.text];
@@ -184,7 +184,7 @@
 
 -(void)geocodeAddress:(NSString *)address
 {
-    if ([address isEqualToString:@"Around Me"] || [address isEqualToString:@""]) {
+    if ([address isEqualToString:NSLocalizedStringFromTable(@"Around Me", @"Post_Hairfie", nil)] || [address isEqualToString:@""]) {
         
         gpsString = [NSString stringWithFormat:@"%f,%f", _myLocation.coordinate.longitude, _myLocation.coordinate.latitude];
         NSLog(@"ucicucicuccu %@", gpsString);

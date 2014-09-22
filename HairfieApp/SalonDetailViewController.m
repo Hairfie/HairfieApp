@@ -345,7 +345,7 @@
         }
 
         cell.name.text = [coiffeurArray objectAtIndex:indexPath.row];
-        cell.nbHairfie.text = @"335 Hairfies";
+        cell.nbHairfie.text = NSLocalizedStringFromTable(@"335 Hairfies", @"Salon_Detail", nil);
         cell.nbHairfie.textColor = [UIColor colorWithRed:224/255.0f green:106/255.0f blue:71/255.0f alpha:1];
 
         return cell;
@@ -386,26 +386,25 @@
     if ([business.timetable isEqualToDictionary:@{}]) {
         _isOpenImageDetail.hidden = YES;
         _isOpenLabelDetail.hidden = YES;
-        _isOpenLabel.text = @"Pas d'informations";
+        _isOpenLabel.text = NSLocalizedStringFromTable(@"No information", @"Salon_Detail", nil);
     } else {
         OpeningTimes * op = [[OpeningTimes alloc] init];
         isOpen = [op isOpen:business.timetable];
         if (isOpen) {
-            _isOpenLabel.text = @"Ouvert aujourd'hui";
-            _isOpenLabel.textColor = [UIColor greenHairfie];
+            _isOpenLabel.text = NSLocalizedStringFromTable(@"Open today", @"Salon_Detail", nil);            _isOpenLabel.textColor = [UIColor greenHairfie];
             
             _isOpenImage.image = [_isOpenImage.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
             [_isOpenImage setTintColor:[UIColor greenHairfie]];
         }
         else {
             NSLog(@"%@", business);
-            _isOpenLabel.text = @"Fermé aujourd'hui";
+            _isOpenLabel.text = NSLocalizedStringFromTable(@"Closed today", @"Salon_Detail", nil);
         }
     }
 
     if ([[business phoneNumbers] isEqual:[NSNull null]] || business.phoneNumbers.count == 0)
     {
-        _telephone.text = [NSString stringWithFormat:@"Pas de numéro connu"];
+        _telephone.text = [NSString stringWithFormat:NSLocalizedStringFromTable(@"No phone number", @"Salon_Detail", nil)];
         _telephoneLabelWidth.constant = 133;
         _isPhoneAvailable.hidden = YES;
     }
@@ -432,7 +431,7 @@
     {
         _salonRating.rating = 0;
         _ratingLabel.text = @"0";
-        _nbReviews.text = @"- 0 review";
+        _nbReviews.text = NSLocalizedStringFromTable(@"- 0 review", @"Salon_Detail", nil);
         _reviewTableView.hidden = YES;
         _addReviewButtonYpos.constant = 338;
         _addReviewButtonXpos.constant = 200;
@@ -444,7 +443,7 @@
     {
         _salonRating.rating = [[business ratingBetween:@0 and: @5] floatValue];
         _ratingLabel.text = [[business ratingBetween:@0 and:@5] stringValue];
-        _nbReviews.text =[NSString stringWithFormat:@"- %@ reviews", business.numReviews];
+        _nbReviews.text =[NSString stringWithFormat:NSLocalizedStringFromTable(@"- %@ reviews", @"Salon_Detail", nil), business.numReviews];
     }
     
     _address.text = business.address.street;
@@ -595,7 +594,6 @@
         if (_reviewRating.rating != 0)
             review.isReviewing = YES;
         review.business = _business;
-        NSLog(@"ici je viens la");
     } else if ([segue.identifier isEqualToString:@"showTimetable"]) {
         HorairesViewController *horaires = [segue destinationViewController];
         horaires.salon = _business.timetable;

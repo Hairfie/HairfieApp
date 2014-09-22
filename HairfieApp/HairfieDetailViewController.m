@@ -194,7 +194,7 @@
     UILabel *headerTitle = [[UILabel alloc] initWithFrame:CGRectMake(92, 27, 136, 23)];
     headerTitle.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:18];
     headerTitle.textColor = [UIColor whiteColor];
-    headerTitle.text = @"Fiche Hairfie";
+    headerTitle.text = NSLocalizedStringFromTable(@"Fiche Hairfie", @"Hairfie_Detail", nil);
 
     [headerView addSubview:backButton];
     [headerView addSubview:headerTitle];
@@ -307,7 +307,7 @@
 
 
     UILabel *commentsLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 596, 185, 21)];
-    commentsLabel.text = @"Commentaires du Hairfie";
+    commentsLabel.text = NSLocalizedStringFromTable(@"Comments", @"Hairfie_Detail", nil);
     commentsLabel.font = [UIFont fontWithName:@"SourceSansPro-Light" size:18];
     commentsLabel.textColor = [UIColor darkBlueHairfie];
 
@@ -322,7 +322,7 @@
     [bigAddCommentButton setFrame:CGRectMake(10, 633, 300, 36)];
 
     UILabel *addCommentLabel = [[UILabel alloc] initWithFrame:CGRectMake(58, 640, 138, 21)];
-    addCommentLabel.text = @"add a comment...";
+    addCommentLabel.text = NSLocalizedStringFromTable(@"add a comment...", @"Hairfie_Detail", nil);
     addCommentLabel.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:14];
     addCommentLabel.textColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5];
 
@@ -337,8 +337,8 @@
     [addCommentButton setFrame:CGRectMake(58, 964, 110, 30)];
     addCommentButton.backgroundColor = [UIColor lightBlueHairfie];
 
-    [addCommentButton setTitle:@"Add a comment" forState:UIControlStateNormal];
-    [addCommentButton setTitle:@"Add a comment" forState:UIControlStateHighlighted];
+    [addCommentButton setTitle:NSLocalizedStringFromTable(@"Add a comment", @"Hairfie_Detail", nil) forState:UIControlStateNormal];
+    [addCommentButton setTitle:NSLocalizedStringFromTable(@"Add a comment", @"Hairfie_Detail", nil) forState:UIControlStateHighlighted];
     [addCommentButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [addCommentButton setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
     addCommentButton.titleLabel.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:13];
@@ -350,8 +350,8 @@
     moreCommentButton.layer.masksToBounds = YES;
     [moreCommentButton setFrame:CGRectMake(181, 964, 129, 30)];
     moreCommentButton.backgroundColor = [UIColor lightBlueHairfie];
-    [moreCommentButton setTitle:@"More comments (20)" forState:UIControlStateNormal];
-    [moreCommentButton setTitle:@"More comments (20)" forState:UIControlStateHighlighted];
+    [moreCommentButton setTitle:NSLocalizedStringFromTable(@"More comments (20)", @"Hairfie_Detail", nil) forState:UIControlStateNormal];
+    [moreCommentButton setTitle:NSLocalizedStringFromTable(@"More comments (20)", @"Hairfie_Detail", nil) forState:UIControlStateHighlighted];
     [moreCommentButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [moreCommentButton setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
     moreCommentButton.titleLabel.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:13];
@@ -359,7 +359,7 @@
     [moreCommentButton addTarget:self action:@selector(addComment) forControlEvents:UIControlEventTouchUpInside];
 
     UILabel *similarHairfieLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 1010, 191, 21)];
-    similarHairfieLabel.text = @"Hairfies du même coiffeur";
+    similarHairfieLabel.text = NSLocalizedStringFromTable(@"Hairfies du même coiffeur", @"Hairfie_Detail", nil);
     similarHairfieLabel.font = [UIFont fontWithName:@"SourceSansPro-Light" size:18];
     similarHairfieLabel.textColor = [UIColor darkBlueHairfie];
 
@@ -476,7 +476,7 @@
         cell = [nib objectAtIndex:0];
     }
 
-    cell.name.text = @"Kimi Smith";
+    cell.name.text = NSLocalizedStringFromTable(@"Kimi Smith", @"Hairfie_Detail", nil);
     cell.hairfieView.image = [UIImage imageNamed:@"hairfie.jpg"];
     cell.layer.borderColor = [UIColor colorWithRed:234/255.0f green:236/255.0f blue:238/255.0f alpha:1].CGColor;
     cell.layer.borderWidth = 1.0f;

@@ -58,7 +58,7 @@
     if (_searchInProgressFromSegue == nil)
     {
         [_searchView.searchAroundMeImage setTintColor:[UIColor lightBlueHairfie]];
-        _searchView.searchByLocation.text = @"Around Me";
+        _searchView.searchByLocation.text = NSLocalizedStringFromTable(@"Around Me", @"Around_Me", nil);
     }
     else
     {
@@ -109,12 +109,12 @@
     [_mapView removeAnnotations:_mapView.annotations];
     _searchInProgress.text = _searchView.searchRequest;
     _isSearching = YES;
-    if (![_searchView.searchByName.text isEqualToString:@""] && [_searchView.searchByLocation.text isEqualToString:@"Around Me"])
+    if (![_searchView.searchByName.text isEqualToString:@""] && [_searchView.searchByLocation.text isEqualToString:NSLocalizedStringFromTable(@"Around Me", @"Around_Me", nil)])
     {
         if ([_searchView.searchByName.text isEqualToString:@""])
-            _searchDesc.text = @"COIFFEURS À COTÉ DE VOUS";
+            _searchDesc.text = NSLocalizedStringFromTable(@"HAIRDRESSER AROUND YOU", @"Around_Me", nil);
         else
-            _searchDesc.text = [NSString stringWithFormat:@"%@ À COTÉ DE VOUS", [_searchView.searchByName.text uppercaseString]];
+            _searchDesc.text = [NSString stringWithFormat:NSLocalizedStringFromTable(@"%@ AROUND YOU", @"Around_Me", nil), [_searchView.searchByName.text uppercaseString]];
     }
     else
     {
@@ -134,7 +134,7 @@
 {
     [textField resignFirstResponder];
     _searchView.hidden = NO;
-    if ([_searchView.searchByLocation.text isEqualToString:@"Around Me"])
+    if ([_searchView.searchByLocation.text isEqualToString:NSLocalizedStringFromTable(@"Around Me", @"Around_Me", nil)])
         [_searchView.searchAroundMeImage setTintColor:[UIColor lightBlueHairfie]];
     [_searchView.searchByName performSelector:@selector(becomeFirstResponder) withObject:nil afterDelay:0.0];
     [self.view addGestureRecognizer:dismiss];
