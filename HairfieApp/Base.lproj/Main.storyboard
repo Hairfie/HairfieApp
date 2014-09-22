@@ -140,6 +140,8 @@
             <string>SourceSansPro-Light</string>
             <string>SourceSansPro-Light</string>
             <string>SourceSansPro-Light</string>
+            <string>SourceSansPro-Light</string>
+            <string>SourceSansPro-Light</string>
         </mutableArray>
         <mutableArray key="SourceSansPro-Regular.ttf">
             <string>SourceSansPro-Regular</string>
@@ -2176,8 +2178,7 @@
                                                             </imageView>
                                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="271" translatesAutoresizingMaskIntoConstraints="NO" id="03K-im-d9Q" userLabel="Description">
                                                                 <rect key="frame" x="33" y="170" width="271" height="35"/>
-                                                                <string key="text">Nous sommes un salon spécialisé dans
-                                                                    le blabla, et c’est super chouette.</string>
+                                                                <string key="text">Nous sommes un salon spécialisé dans                                                                    le blabla, et c’est super chouette.</string>
                                                                 <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="13"/>
                                                                 <color key="textColor" red="0.51764705879999995" green="0.5450980392" blue="0.58431372550000005" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -3033,7 +3034,7 @@
                                     <segue destination="jCi-BR-inK" kind="push" id="RQr-OL-LQD"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ou" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SWR-vO-mKo">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="or" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SWR-vO-mKo">
                                 <rect key="frame" x="150" y="318" width="20" height="21"/>
                                 <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="16"/>
                                 <color key="textColor" red="0.1960784314" green="0.26274509800000001" blue="0.3411764706" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
@@ -3746,8 +3747,7 @@
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="232" translatesAutoresizingMaskIntoConstraints="NO" id="82W-jK-smS">
                                                 <rect key="frame" x="44" y="425" width="232" height="38"/>
-                                                <string key="text">En cliquant sur “Je m’inscris”, je reconnais avoir pris
-                                                    connaissance et accepte les CGU de Hairfie</string>
+                                                <string key="text">En cliquant sur “Je m’inscris”, je reconnais avoir pris                                                    connaissance et accepte les CGU de Hairfie</string>
                                                 <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="11"/>
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
@@ -3891,8 +3891,8 @@
                                     <action selector="createAccount:" destination="xPO-Am-yIh" eventType="touchUpInside" id="UQT-DS-DhR"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Tu-6x-BjS">
-                                <rect key="frame" x="0.0" y="352" width="320" height="216"/>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Tu-6x-BjS">
+                                <rect key="frame" x="0.0" y="353" width="320" height="216"/>
                                 <subviews>
                                     <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2AC-Ib-Vv7">
                                         <rect key="frame" x="0.0" y="37" width="320" height="162"/>
@@ -4599,6 +4599,18 @@
                                     <action selector="modifyDayTimeTable:" destination="QDs-5V-jNB" eventType="touchUpInside" id="xve-jG-sH0"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OpX-mO-uuN">
+                                <rect key="frame" x="0.0" y="522" width="320" height="46"/>
+                                <color key="backgroundColor" red="0.87450980389999999" green="0.38431372549999998" blue="0.33333333329999998" alpha="1" colorSpace="deviceRGB"/>
+                                <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="16"/>
+                                <state key="normal" title="Add a time table">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="m3V-Fr-d7F" kind="push" id="CxG-EZ-M5S"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -4612,7 +4624,6 @@
                         <outlet property="thursdayButton" destination="OSc-Qz-g2R" id="bC3-bx-OmX"/>
                         <outlet property="tuesdayButton" destination="REm-Km-KGD" id="eeF-VL-yBl"/>
                         <outlet property="wednesdayButton" destination="jsG-Xe-LLg" id="YEL-Zg-U7V"/>
-                        <segue destination="m3V-Fr-d7F" kind="push" identifier="claimWeekDay" id="3Fu-uY-D6G"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W8f-2x-6Al" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -4643,7 +4654,7 @@
                                             <action selector="goBack:" destination="m3V-Fr-d7F" eventType="touchUpInside" id="pt4-jg-GkS"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Modify day" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mjS-4o-c28">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add a time table" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mjS-4o-c28">
                                         <rect key="frame" x="86" y="27" width="149" height="23"/>
                                         <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="18"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -4661,36 +4672,74 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.15686274510000001" green="0.19215686269999999" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2w6-zb-CoS">
-                                <rect key="frame" x="10" y="126" width="300" height="46"/>
-                                <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="15"/>
-                                <state key="normal" title="fermeture">
-                                    <color key="titleColor" red="0.1960784314" green="0.26274509800000001" blue="0.3411764706" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MbJ-o6-pWc">
-                                <rect key="frame" x="10" y="72" width="300" height="46"/>
-                                <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="15"/>
-                                <state key="normal" title="ouverture">
-                                    <color key="titleColor" red="0.1960784314" green="0.26274509800000001" blue="0.3411764706" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gaQ-UV-ISR" userLabel="Opening">
+                                <rect key="frame" x="10" y="256" width="130" height="292"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Set the opening time" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="100" translatesAutoresizingMaskIntoConstraints="NO" id="eBw-x1-7gC">
+                                        <rect key="frame" x="15" y="10" width="100" height="52"/>
+                                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="18"/>
+                                        <color key="textColor" red="0.44294084820000001" green="0.44294084820000001" blue="0.44294084820000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4RR-iN-lll">
+                                        <rect key="frame" x="0.0" y="58" width="130" height="216"/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="m3V-Fr-d7F" id="YAI-qu-YhR"/>
+                                            <outlet property="delegate" destination="m3V-Fr-d7F" id="yjG-zb-8cU"/>
+                                        </connections>
+                                    </pickerView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cde-ia-zX2" userLabel="Closing">
+                                <rect key="frame" x="180" y="256" width="130" height="292"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Set the closing time" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="100" translatesAutoresizingMaskIntoConstraints="NO" id="iZw-cZ-hf8">
+                                        <rect key="frame" x="15" y="10" width="100" height="46"/>
+                                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="18"/>
+                                        <color key="textColor" red="0.44294084820000001" green="0.44294084820000001" blue="0.44294084820000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tHW-70-57C">
+                                        <rect key="frame" x="0.0" y="58" width="130" height="216"/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="m3V-Fr-d7F" id="mus-xH-Vda"/>
+                                            <outlet property="delegate" destination="m3V-Fr-d7F" id="rBQ-Cz-UIa"/>
+                                        </connections>
+                                    </pickerView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
+                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cMs-b1-UGX">
+                                <rect key="frame" x="104" y="72" width="200" height="162"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="m3V-Fr-d7F" id="bty-tC-VPn"/>
+                                    <outlet property="delegate" destination="m3V-Fr-d7F" id="ZJr-9g-xGC"/>
+                                </connections>
+                            </pickerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Pick a day :" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e6i-Ul-czP">
+                                <rect key="frame" x="16" y="142" width="80" height="22"/>
+                                <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="17"/>
+                                <color key="textColor" red="0.44294084820000001" green="0.44294084820000001" blue="0.44294084820000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="QCq-aC-uVa"/>
                     <connections>
-                        <outlet property="closingTime" destination="2w6-zb-CoS" id="Hjf-l8-gib"/>
+                        <outlet property="closingTimePicker" destination="tHW-70-57C" id="s38-Fr-5Oy"/>
+                        <outlet property="closingTimeView" destination="cde-ia-zX2" id="psc-ex-xp2"/>
+                        <outlet property="dayPickerView" destination="cMs-b1-UGX" id="4cq-mk-hSb"/>
                         <outlet property="doneBttn" destination="d1o-FL-ebs" id="XdH-iG-1O5"/>
                         <outlet property="headerTitle" destination="mjS-4o-c28" id="Stb-2m-HJP"/>
-                        <outlet property="openingTime" destination="MbJ-o6-pWc" id="O5x-fh-fW2"/>
+                        <outlet property="openingTimePicker" destination="4RR-iN-lll" id="y2e-nd-VVS"/>
+                        <outlet property="openingTimeView" destination="gaQ-UV-ISR" id="PLB-wM-S4w"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UXv-nz-9cn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3554" y="2712"/>
+            <point key="canvasLocation" x="3554" y="2714"/>
         </scene>
         <!--Final Step Description View Controller-->
         <scene sceneID="rEV-4d-Ne8">
@@ -4999,7 +5048,7 @@
         <segue reference="dKD-Ry-4fL"/>
         <segue reference="VGS-VM-Pwy"/>
         <segue reference="TR0-Pa-JWL"/>
-        <segue reference="H0a-7y-EaD"/>
+        <segue reference="HOe-ge-VCi"/>
         <segue reference="LOg-O4-mCP"/>
         <segue reference="PSz-m0-val"/>
         <segue reference="DYR-eo-mJz"/>

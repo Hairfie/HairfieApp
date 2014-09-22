@@ -8,13 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FinalStepClaimDayViewController : UIViewController <UINavigationControllerDelegate>
+@interface FinalStepClaimDayViewController : UIViewController <UINavigationControllerDelegate, UIPickerViewDataSource, UIPickerViewDelegate>
 
 @property (nonatomic) NSString *headerString;
 @property (nonatomic) IBOutlet UILabel *headerTitle;
 
-@property (nonatomic) IBOutlet UIButton *openingTime;
-@property (nonatomic) IBOutlet UIButton *closingTime;
+@property (nonatomic) IBOutlet UIPickerView *closingTimePicker;
+@property (nonatomic) IBOutlet UIPickerView *openingTimePicker;
+@property (nonatomic) IBOutlet UIPickerView *dayPickerView;
+
+@property (nonatomic) IBOutlet UIView* closingTimeView;
+@property (nonatomic) IBOutlet UIView* openingTimeView;
+
+
+
 
 @property (nonatomic) IBOutlet UIButton *doneBttn;
 

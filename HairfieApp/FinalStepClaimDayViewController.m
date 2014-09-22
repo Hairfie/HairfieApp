@@ -15,7 +15,9 @@
 
 
 @implementation FinalStepClaimDayViewController
-
+{
+    NSArray *weekDays;
+}
 
 @synthesize headerString;
 
@@ -26,22 +28,78 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSLog(@"title %@", headerString);
-    _headerTitle.text = headerString;
-
+    _doneBttn.layer.cornerRadius = 5;
     
-    _openingTime.layer.cornerRadius =5;
-    _openingTime.layer.borderColor = [UIColor lightGreyHairfie].CGColor;
-    _openingTime.layer.borderWidth = 1;
-
+     [_openingTimePicker selectRow:10 inComponent:0 animated:YES];
+     [_closingTimePicker selectRow:18 inComponent:0 animated:YES];
+    _openingTimeView.layer.cornerRadius = 5;
+    _openingTimeView.layer.masksToBounds = YES;
+    _openingTimeView.layer.borderColor = [UIColor lightGreyHairfie].CGColor;
+    _openingTimeView.layer.borderWidth = 1;
+    _closingTimeView.layer.cornerRadius = 5;
+    _closingTimeView.layer.masksToBounds = YES;
+    _closingTimeView.layer.borderColor = [UIColor lightGreyHairfie].CGColor;
+    _closingTimeView.layer.borderWidth = 1;
+    weekDays = [[NSArray alloc] initWithObjects:@"Monday",@"Tuesday",@"Wednesday",@"Thursday",@"Friday",@"Saturday",@"Sunday", nil];
     
-    _closingTime.layer.cornerRadius =5;
-    _closingTime.layer.borderColor = [UIColor lightGreyHairfie].CGColor;
-    _closingTime.layer.borderWidth = 1;
-
-
-     _doneBttn.layer.cornerRadius = 5;
+    
+    
     // Do any additional setup after loading the view.
+}
+
+
+- (NSInteger)numberOfComponentsInPickerView:
+(UIPickerView *)pickerView
+{
+    if (pickerView == _dayPickerView)
+        return 1;
+    else
+        return 2;
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView
+numberOfRowsInComponent:(NSInteger)component
+{
+    if (pickerView == _dayPickerView)
+        return weekDays.count;
+    else if (pickerView == _openingTimePicker || pickerView == _closingTimePicker)
+    {
+        if (component == 0)
+            return 24;
+        else
+            return 2;
+    }
+    return 0;
+}
+
+
+- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
+{
+     UILabel* tView = (UILabel*)view;
+    
+    if (!tView)
+    {
+    tView = [[UILabel alloc] init];
+    [tView setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:17]];
+    [tView setTextAlignment:NSTextAlignmentCenter];
+    }
+    NSArray *demiHeure = [[NSArray alloc] initWithObjects:@"00",@"30", nil];
+    
+    if (pickerView == _dayPickerView)
+    {
+        // Fill the label text here
+    tView.text=[weekDays objectAtIndex:row];
+   
+    }
+    if (pickerView == _openingTimePicker || pickerView == _closingTimePicker)
+    {
+        if (component == 0)
+             tView.text=[NSString stringWithFormat:@"%ld", row];
+        else
+            tView.text = [demiHeure objectAtIndex:row];
+    }
+   
+    return tView;
 }
 
 -(IBAction)goBack:(id)sender
