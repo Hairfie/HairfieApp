@@ -381,6 +381,8 @@
     
     [self setupGallery:business.pictures];
     
+    [self setupPrices];
+    
     if ([business.timetable isEqualToDictionary:@{}]) {
         _isOpenImageDetail.hidden = YES;
         _isOpenLabelDetail.hidden = YES;
@@ -453,6 +455,11 @@
 
 }
 
+-(void)setupPrices
+{
+    _pricesTableViewHeight.constant = self.business.prices.count * 41;
+}
+
 -(void)setupCrossSell
 {
     if (!self.business.crossSell) return;
@@ -516,11 +523,6 @@
                               NSLog(@"%@", error.localizedDescription);
                               loadingHairfies = NO;
                           }];
-}
-
--(void)updatePricesView
-{
-    _pricesTableViewHeight.constant = self.business.prices.count * 41;
 }
 
 -(void)updateHairfiesView
