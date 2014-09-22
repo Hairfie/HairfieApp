@@ -29,6 +29,28 @@
     // Do any additional setup after loading the view.
 }
 
+-(IBAction)validatePricesSales:(id)sender
+{
+    // TO DO enregistrer les prix/promos ajoutés
+    
+    [self goBack:self];
+}
+
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    NSInteger nextTag = textField.tag + 1;
+    // Try to find next responder
+    UIResponder* nextResponder = [textField.superview viewWithTag:nextTag];
+    if (nextResponder) {
+        // Found next responder, so set it.
+        [nextResponder becomeFirstResponder];
+    } else {
+        [self validatePricesSales:self];
+        [textField resignFirstResponder];
+    }
+    return YES;
+}
 
 -(UIStatusBarStyle)preferredStatusBarStyle{
     return UIStatusBarStyleLightContent;

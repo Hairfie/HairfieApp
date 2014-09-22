@@ -47,6 +47,8 @@
 
      _doneBttn.layer.cornerRadius = 5;
     
+    
+    [_address becomeFirstResponder];
     // Do any additional setup after loading the view.
 }
 
@@ -56,10 +58,34 @@
 }
 
 
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    NSInteger nextTag = textField.tag + 1;
+    // Try to find next responder
+    UIResponder* nextResponder = [textField.superview viewWithTag:nextTag];
+    if (nextResponder) {
+        // Found next responder, so set it.
+        [nextResponder becomeFirstResponder];
+    } else {
+        [self validateAddress:self];
+        [textField resignFirstResponder];
+    }
+    return YES;
+}
+
+
+-(IBAction)validateAddress:(id)sender
+{
+    // TO DO enregistrer l'adresse modifiée
+    
+    [self goBack:self];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 /*
 #pragma mark - Navigation
