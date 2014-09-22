@@ -53,6 +53,50 @@
     return (User *)[[User repository] modelWithDictionary:data];
 }
 
+-(void)saveWithSuccess:(void(^)())aSuccessHandler
+               failure:(void(^)(NSError *error))aFailureHandler
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    if (nil != self.id) {
+        [parameters setObject:self.id forKey:@"id"];
+    }
+    [parameters setObject:self.firstName forKey:@"firstName"];
+    [parameters setObject:self.lastName forKey:@"lastName"];
+    [parameters setObject:self.gender forKey:@"gender"];
+    if (self.language != nil) {
+        [parameters setObject:self.language forKey:@"language"];
+    }
+    if (self.phoneNumber != nil) {
+        [parameters setObject:self.phoneNumber forKey:@"phoneNumber"];
+    }
+    
+    void (^onSuccess)(NSDictionary *) = ^(NSDictionary *result) {
+        [self initWithJson:result];
+        aSuccessHandler();
+    };
+    
+    if (nil == self.id) {
+        [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/users"
+                                                                                     verb:@"POST"]
+                                            forMethod:@"users.create"];
+
+        [[self repository] invokeStaticMethod:@"create"
+                                   parameters:parameters
+                                      success:onSuccess
+                                      failure:aFailureHandler];
+    } else {
+        [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/users/:id"
+                                                                                     verb:@"PUT"]
+                                            forMethod:@"users.update"];
+        
+      
+        [[self repository] invokeStaticMethod:@"update"
+                                   parameters:parameters
+                                      success:onSuccess
+                                      failure:aFailureHandler];
+    }
+}
+
 +(void)getById:(NSString *)anId
      success:(void (^)(User *user))aSuccessHandler
      failure:(void (^)(NSError *error))aFailureHandler
