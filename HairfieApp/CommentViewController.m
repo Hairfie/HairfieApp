@@ -58,7 +58,7 @@
     _commentTextView = [[UITextView alloc] initWithFrame:CGRectMake(20, 10, 280, 176)];
     _commentTextView.delegate = self;
     _commentTextView.backgroundColor = [UIColor clearColor];
-    _commentTextView.text = @"Ajoutez votre commentaire...";
+    _commentTextView.text = NSLocalizedStringFromTable(@"Ajoutez votre commentaire...", @"Hairfie_Detail", nil);
     _commentTextView.textColor = [[UIColor blackHairfie] colorWithAlphaComponent:0.6];
     _commentTextView.returnKeyType = UIReturnKeyDone;
 
@@ -122,7 +122,7 @@ shouldChangeTextInRange: (NSRange) range
         _isCommenting = NO;
 
         _commentTableView.scrollEnabled = YES;
-        _commentTextView.text = @"Ajoutez votre commentaire...";
+        _commentTextView.text = NSLocalizedStringFromTable(@"Ajoutez votre commentaire...", @"Hairfie_Detail", nil);
         [_commentTableView reloadData];
         [textView resignFirstResponder];
 
@@ -137,7 +137,7 @@ shouldChangeTextInRange: (NSRange) range
     if ([textView.text isEqualToString:@""])
     {
         _isCommenting = YES;
-        textView.text = @"Ajoutez votre commentaire...";
+        textView.text = NSLocalizedStringFromTable(@"Ajoutez votre commentaire...", @"Hairfie_Detail", nil);
         _commentTableView.scrollEnabled = NO;
     }
     else

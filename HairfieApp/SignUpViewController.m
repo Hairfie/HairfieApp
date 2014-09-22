@@ -39,7 +39,7 @@
     _infoView.layer.borderColor = [UIColor colorWithRed:206/255.0f green:208/255.0f blue:210/255.0f alpha:1].CGColor;
     _isNewsletterChecked = NO;
     _dismiss = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
-    title = [NSArray arrayWithObjects:@"Femme", @"Homme", nil];
+    title = [NSArray arrayWithObjects:NSLocalizedStringFromTable(@"Woman", @"Login_Sign_Up", nil), NSLocalizedStringFromTable(@"Man", @"Login_Sign_Up", nil), nil];
     UIButton *addPictureBttn = [[UIButton alloc] initWithFrame:CGRectMake(127, 10, 66, 66)];
     addPictureBttn.layer.cornerRadius = addPictureBttn.frame.size.height / 2;
     addPictureBttn.clipsToBounds = YES;
@@ -53,10 +53,10 @@
     UILabel *addPictureLabel = [[UILabel alloc] initWithFrame:CGRectMake(135, 17, 50, 50)];
     addPictureLabel.font = [UIFont fontWithName:@"SourceSansPro-Light" size:14];
     addPictureLabel.textColor = [UIColor colorWithRed:148/255.0f green:154/255.0f blue:162/255.0f alpha:1];
-    addPictureLabel.text = @"Add Photo";
+    addPictureLabel.text = NSLocalizedStringFromTable(@"Add Photo", @"Login_Sign_Up", nil);
     addPictureLabel.textAlignment = NSTextAlignmentCenter;
     addPictureLabel.numberOfLines = 2;
-     _userTitleLabel.text = @"Femme";
+     _userTitleLabel.text = NSLocalizedStringFromTable(@"Woman", @"Login_Sign_Up", nil);
     _titleView.hidden = YES;
     
     userAuthenticator = [[UserAuthenticator alloc] init];
@@ -140,7 +140,7 @@ numberOfRowsInComponent:(NSInteger)component
         else
             newsletter = @false;
         NSString *gender;
-        if([_userTitleLabel.text isEqualToString:@"Homme"])
+        if([_userTitleLabel.text isEqualToString:NSLocalizedStringFromTable(@"Man", @"Login_Sign_Up", nil)])
                 gender = @"male";
         else
             gender = @"female";
@@ -163,7 +163,7 @@ numberOfRowsInComponent:(NSInteger)component
     }
     else
     {
-        UIAlertView *badLogin = [[UIAlertView alloc] initWithTitle:@"Sign up Failed" message:@"The email/password in not valid" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        UIAlertView *badLogin = [[UIAlertView alloc] initWithTitle:NSLocalizedStringFromTable(@"Sign up Failed", @"Login_Sign_Up", nil) message:NSLocalizedStringFromTable(@"The email/password in not valid", @"Login_Sign_Up", nil) delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
         
         [badLogin show];
     }
@@ -257,7 +257,7 @@ numberOfRowsInComponent:(NSInteger)component
 -(void)chooseCameraType
 {
    
-    chooseCameraType = [[UIAlertView alloc] initWithTitle:@"Choose camera type" message:@"Take picture or pick one from the saved photos" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Camera", @"Library",nil];
+    chooseCameraType = [[UIAlertView alloc] initWithTitle:NSLocalizedStringFromTable(@"Choose camera type", @"Login_Sign_Up", nil) message:NSLocalizedStringFromTable(@"Take picture or pick one from the saved photos", @"Login_Sign_Up", nil) delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:NSLocalizedStringFromTable(@"Camera", @"Login_Sign_Up", nil), NSLocalizedStringFromTable(@"Library", @"Login_Sign_Up", nil),nil];
     chooseCameraType.delegate = self;
     [chooseCameraType show];
     
@@ -311,7 +311,7 @@ numberOfRowsInComponent:(NSInteger)component
     [goBackButton setFrame:CGRectMake(10, 22, 20, 20)];
     
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(67, 20, 186, 23)];
-    titleLabel.text = @"Take a profile picture";
+    titleLabel.text = NSLocalizedStringFromTable(@"Take a profile picture", @"Login_Sign_Up", nil);
     titleLabel.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:18];
     titleLabel.textAlignment = NSTextAlignmentCenter;
     titleLabel.textColor = [UIColor whiteColor];

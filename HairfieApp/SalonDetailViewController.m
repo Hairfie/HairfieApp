@@ -398,7 +398,7 @@
         }
         else {
             NSLog(@"%@", business);
-            _isOpenLabel.text = NSLocalizedStringFromTable(@"Closed today", @"Salon_Detail", nil)
+            _isOpenLabel.text = NSLocalizedStringFromTable(@"Closed today", @"Salon_Detail", nil);
         }
     }
 

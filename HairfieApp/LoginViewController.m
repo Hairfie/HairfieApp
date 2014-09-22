@@ -115,7 +115,7 @@
     void (^loadErrorBlock)(NSError *) = ^(NSError *error) {
         NSLog(@"Error on load %zd", error.code);
         if (error.code == -1011) {
-            UIAlertView *badLogin = [[UIAlertView alloc] initWithTitle:@"Login Failed" message:@"The password in incorrect" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+            UIAlertView *badLogin = [[UIAlertView alloc] initWithTitle:NSLocalizedStringFromTable(@"Login Failed", @"Login_Sign_Up", nil) message:NSLocalizedStringFromTable(@"The password in incorrect", @"Login_Sign_Up", nil) delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
             [badLogin show];
         }
     };
@@ -137,7 +137,7 @@
         LBModelRepository *loginData = [[AppDelegate lbAdaptater] repositoryWithModelName:repoName];
         [loginData invokeStaticMethod:@"login" parameters:@{@"email": _emailField.text, @"password" : _passwordField.text} success:loadSuccessBlock failure:loadErrorBlock];
     } else {
-        UIAlertView *badLogin = [[UIAlertView alloc] initWithTitle:@"Login Failed" message:@"The email/password in incorrect" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        UIAlertView *badLogin = [[UIAlertView alloc] initWithTitle:NSLocalizedStringFromTable(@"Login Failed", @"Login_Sign_Up", nil) message:NSLocalizedStringFromTable(@"The email/password in incorrect", @"Login_Sign_Up", nil) delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
         [badLogin show];
     }
 }
@@ -195,22 +195,22 @@
         NSString *alertTitle;
 
         if ([FBErrorUtility shouldNotifyUserForError:error] == YES){
-            alertTitle = @"Something went wrong";
+            alertTitle = NSLocalizedStringFromTable(@"Something went wrong", @"Login_Sign_Up", nil);
             alertText = [FBErrorUtility userMessageForError:error];
             [self showMessage:alertText withTitle:alertTitle];
         } else {
             if ([FBErrorUtility errorCategoryForError:error] == FBErrorCategoryUserCancelled) {
                 NSLog(@"User cancelled login");
             } else if ([FBErrorUtility errorCategoryForError:error] == FBErrorCategoryAuthenticationReopenSession){
-                alertTitle = @"Session Error";
-                alertText = @"Your current session is no longer valid. Please log in again.";
+                alertTitle = NSLocalizedStringFromTable(@"Session Error", @"Login_Sign_Up", nil);
+                alertText = NSLocalizedStringFromTable(@"Your current session is no longer valid. Please log in again.", @"Login_Sign_Up", nil);
                 [self showMessage:alertText withTitle:alertTitle];
             } else {
                 NSDictionary *errorInformation = [[[error.userInfo objectForKey:@"com.facebook.sdk:ParsedJSONResponseKey"] objectForKey:@"body"] objectForKey:@"error"];
                 
                 // Show the user an error message
-                alertTitle = @"Something went wrong";
-                alertText = [NSString stringWithFormat:@"Please retry. \n\n If the problem persists contact us and mention this error code: %@", [errorInformation objectForKey:@"message"]];
+                alertTitle = NSLocalizedStringFromTable(@"Something went wrong", @"Login_Sign_Up", nil);
+                alertText = [NSString stringWithFormat:NSLocalizedStringFromTable(@"Please retry. \n\n If the problem persists contact us and mention this error code: %@", @"Login_Sign_Up", nil), [errorInformation objectForKey:@"message"]];
                 [self showMessage:alertText withTitle:alertTitle];
             }
         }

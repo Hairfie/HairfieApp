@@ -58,7 +58,7 @@
     _profileView.backgroundColor = [UIColor clearColor];
    
     _menuItems = [[NSMutableArray alloc] init];
-    _menuItems = [NSMutableArray arrayWithObjects: NSLocalizedString(@"Home", nil), NSLocalizedString(@"Favorites", nil),NSLocalizedString(@"Likes", nil), NSLocalizedString(@"Friends", nil),NSLocalizedString(@"Business", nil),NSLocalizedString(@"Settings", nil),NSLocalizedString(@"Logout", nil), nil];
+    _menuItems = [NSMutableArray arrayWithObjects: NSLocalizedStringFromTable(@"Home", @"Menu", nil), NSLocalizedStringFromTable(@"Favorites", @"Menu", nil),NSLocalizedStringFromTable(@"Likes", @"Menu", nil), NSLocalizedStringFromTable(@"Friends", @"Menu", nil),NSLocalizedStringFromTable(@"Business", @"Menu", nil),NSLocalizedStringFromTable(@"Settings", @"Menu", nil),NSLocalizedStringFromTable(@"Logout", @"Menu", nil), nil];
     
     _menuPictos = [[NSMutableArray alloc] init];
     [_menuPictos addObject:@"home-picto.png"];
@@ -153,7 +153,7 @@
            {
                cell.menuItem.textColor = [UIColor colorWithRed:208 green:210 blue:213 alpha:1];
            cell.menuItem.font = [UIFont fontWithName:@"SourceSansPro-Light" size:15];
-               cell.menuItem.text = @"Ajouter une nouvelle activité";
+               cell.menuItem.text = NSLocalizedStringFromTable(@"Add a new business", @"Menu", nil);
            [cell.menuPicto setImage:[UIImage imageNamed:@"picto-logout.png"]];
                cell.backgroundColor = [UIColor whiteColor];
            }
