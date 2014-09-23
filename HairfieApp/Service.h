@@ -1,5 +1,5 @@
 //
-//  Price.h
+//  Service.h
 //  HairfieApp
 //
 //  Created by Antoine Hérault on 22/09/2014.
@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "Money.h"
 
-@interface Price : NSObject
+@interface Service : NSObject
 
 @property (strong, nonatomic) NSString *label;
 @property (strong, nonatomic) Money *price;

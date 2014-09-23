@@ -209,7 +209,7 @@ numberOfRowsInComponent:(NSInteger)component
 
 -(IBAction)goBack:(id)sender
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 -(IBAction)checkBox:(id)sender

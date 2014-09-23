@@ -74,6 +74,7 @@
         [self prepareUserNotLogged];
     }
     
+    
     // Do any additional setup after loading the view.
 
 }
@@ -93,6 +94,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willSearch:) name:@"searchQuery" object:nil];
     [self getHairfies:nil];
 }
+
+
 -(void)viewWillDisappear:(BOOL)animated
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"searchQuery" object:nil];

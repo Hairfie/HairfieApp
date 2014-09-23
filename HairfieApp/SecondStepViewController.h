@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BusinessClaim.h"
 
 @interface SecondStepViewController : UIViewController <UINavigationControllerDelegate>
 
@@ -18,7 +19,7 @@
 @property (nonatomic) IBOutlet UIImageView * kidsCutCheckBox;
 @property (nonatomic) IBOutlet UIImageView * womanCutCheckBox;
 @property (nonatomic) IBOutlet UISegmentedControl *jobType;
-
+@property (nonatomic) BusinessClaim *claim;
 -(IBAction)goBack:(id)sender;
 
 @end

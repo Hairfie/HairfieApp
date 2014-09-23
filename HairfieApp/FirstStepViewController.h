@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BusinessClaim.h"
 
 @interface FirstStepViewController : UIViewController <UINavigationControllerDelegate>
 
 @property (nonatomic) IBOutlet UIButton * salonBttn;
 @property (nonatomic) IBOutlet UIButton * homeBttn;
+@property (nonatomic) BusinessClaim *claim;
 
 
 @end

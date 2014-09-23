@@ -7,13 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Price.h"
+#import "Service.h"
 
 @interface PricesTableViewCell : UITableViewCell
 
 @property (nonatomic) IBOutlet UILabel *itemName;
 @property (nonatomic) IBOutlet UILabel *price;
 
--(void)updateWithPrice:(Price *)aPrice;
+-(void)updateWithPrice:(Service *)aPrice;
 
 @end

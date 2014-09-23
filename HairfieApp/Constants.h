@@ -25,4 +25,7 @@
 
 #define HAIRFIES_PAGE_SIZE 6
 
+#define KIND_ATHOME @"home"
+#define KIND_INSALON @"salon"
+
 #endif

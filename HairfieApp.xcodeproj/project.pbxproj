@@ -46,7 +46,6 @@
 		718B6B7A19C8339000F2F8EF /* picto-hairfie-detail-liked.png in Resources */ = {isa = PBXBuildFile; fileRef = 718B6B7919C8339000F2F8EF /* picto-hairfie-detail-liked.png */; };
 		71A0AC3D19CC2CEA00BC1ABB /* Timetable.m in Sources */ = {isa = PBXBuildFile; fileRef = 71A0AC3C19CC2CEA00BC1ABB /* Timetable.m */; };
 		71A0AC4019CC2DA000BC1ABB /* TimeWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 71A0AC3F19CC2DA000BC1ABB /* TimeWindow.m */; };
-		71AAB62719D003CB0000552D /* Price.m in Sources */ = {isa = PBXBuildFile; fileRef = 71AAB62619D003CB0000552D /* Price.m */; };
 		71AAB62A19D005170000552D /* Money.m in Sources */ = {isa = PBXBuildFile; fileRef = 71AAB62919D005170000552D /* Money.m */; };
 		71C0D3FF19C1D7600037CBF4 /* Address.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C0D3FE19C1D7600037CBF4 /* Address.m */; };
 		71C0D40219C1D9190037CBF4 /* BusinessReview.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C0D40119C1D9190037CBF4 /* BusinessReview.m */; };
@@ -74,6 +73,9 @@
 		B337B6F619A22B11003B0EA5 /* HairfieDetailCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B337B6F419A22B11003B0EA5 /* HairfieDetailCollectionReusableView.m */; };
 		B337B6FA19A25116003B0EA5 /* HorairesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B337B6F919A25116003B0EA5 /* HorairesViewController.m */; };
 		B337B6FD19A252B7003B0EA5 /* ReviewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B337B6FC19A252B7003B0EA5 /* ReviewsViewController.m */; };
+		B33D4C5319D176E9009DE6DD /* BusinessClaim.m in Sources */ = {isa = PBXBuildFile; fileRef = B33D4C5219D176E9009DE6DD /* BusinessClaim.m */; };
+		B33D4C5619D1A46D009DE6DD /* Service.m in Sources */ = {isa = PBXBuildFile; fileRef = B33D4C5519D1A46D009DE6DD /* Service.m */; };
+		B33D4C5919D1A655009DE6DD /* BusinessClaimRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = B33D4C5819D1A655009DE6DD /* BusinessClaimRepository.m */; };
 		B33DF76319B4A9A900B4877F /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B33DF76219B4A9A900B4877F /* Social.framework */; };
 		B33DF76519B4AA5900B4877F /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B33DF76419B4AA5900B4877F /* Accounts.framework */; };
 		B33DF76819B4C93900B4877F /* ForgottenPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B33DF76719B4C93900B4877F /* ForgottenPasswordViewController.m */; };
@@ -350,8 +352,6 @@
 		71A0AC3C19CC2CEA00BC1ABB /* Timetable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Timetable.m; sourceTree = "<group>"; };
 		71A0AC3E19CC2DA000BC1ABB /* TimeWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeWindow.h; sourceTree = "<group>"; };
 		71A0AC3F19CC2DA000BC1ABB /* TimeWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeWindow.m; sourceTree = "<group>"; };
-		71AAB62519D003CB0000552D /* Price.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Price.h; sourceTree = "<group>"; };
-		71AAB62619D003CB0000552D /* Price.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Price.m; sourceTree = "<group>"; };
 		71AAB62819D005170000552D /* Money.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Money.h; sourceTree = "<group>"; };
 		71AAB62919D005170000552D /* Money.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Money.m; sourceTree = "<group>"; };
 		71C0D3FB19C1D65A0037CBF4 /* Address.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Address.h; sourceTree = "<group>"; };
@@ -401,6 +401,12 @@
 		B337B6F919A25116003B0EA5 /* HorairesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HorairesViewController.m; sourceTree = "<group>"; };
 		B337B6FB19A252B7003B0EA5 /* ReviewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewsViewController.h; sourceTree = "<group>"; };
 		B337B6FC19A252B7003B0EA5 /* ReviewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewsViewController.m; sourceTree = "<group>"; };
+		B33D4C5119D176E9009DE6DD /* BusinessClaim.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessClaim.h; sourceTree = "<group>"; };
+		B33D4C5219D176E9009DE6DD /* BusinessClaim.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessClaim.m; sourceTree = "<group>"; };
+		B33D4C5419D1A46D009DE6DD /* Service.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Service.h; sourceTree = "<group>"; };
+		B33D4C5519D1A46D009DE6DD /* Service.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Service.m; sourceTree = "<group>"; };
+		B33D4C5719D1A655009DE6DD /* BusinessClaimRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessClaimRepository.h; sourceTree = "<group>"; };
+		B33D4C5819D1A655009DE6DD /* BusinessClaimRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessClaimRepository.m; sourceTree = "<group>"; };
 		B33DF76219B4A9A900B4877F /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		B33DF76419B4AA5900B4877F /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		B33DF76619B4C93900B4877F /* ForgottenPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgottenPasswordViewController.h; sourceTree = "<group>"; };
@@ -722,10 +728,10 @@
 				15E3D2D319D07AB10065A07E /* Main.strings */,
 				151151921982B7A8001157A2 /* AppDelegate.h */,
 				151151931982B7A8001157A2 /* AppDelegate.m */,
+				B3E4B46419A73C890036BAD8 /* Models */,
 				B3087010198782CF0080E6D2 /* Pages */,
 				B342325519892BC80058866B /* Left Side Menu */,
 				B3423219198924330058866B /* External Librairies */,
-				B3E4B46419A73C890036BAD8 /* Models */,
 				1511518E1982B7A8001157A2 /* Supporting Files */,
 				15E6AE751992635900A11947 /* OpeningTimes.swift */,
 				B303B953199B9403008F6BAA /* Images.xcassets */,
@@ -788,6 +794,8 @@
 				15B8ADE219C09A3E009846AA /* BusinessRepository.m */,
 				B319B5C519C6E77D007F79B0 /* BusinessReviewRepository.h */,
 				B319B5C619C6E77D007F79B0 /* BusinessReviewRepository.m */,
+				B33D4C5719D1A655009DE6DD /* BusinessClaimRepository.h */,
+				B33D4C5819D1A655009DE6DD /* BusinessClaimRepository.m */,
 			);
 			name = Repositories;
 			sourceTree = "<group>";
@@ -1299,10 +1307,12 @@
 				71A0AC3C19CC2CEA00BC1ABB /* Timetable.m */,
 				71A0AC3E19CC2DA000BC1ABB /* TimeWindow.h */,
 				71A0AC3F19CC2DA000BC1ABB /* TimeWindow.m */,
-				71AAB62519D003CB0000552D /* Price.h */,
-				71AAB62619D003CB0000552D /* Price.m */,
+				B33D4C5419D1A46D009DE6DD /* Service.h */,
+				B33D4C5519D1A46D009DE6DD /* Service.m */,
 				71AAB62819D005170000552D /* Money.h */,
 				71AAB62919D005170000552D /* Money.m */,
+				B33D4C5119D176E9009DE6DD /* BusinessClaim.h */,
+				B33D4C5219D176E9009DE6DD /* BusinessClaim.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1752,7 +1762,7 @@
 				B3423211198924290058866B /* AFHTTPRequestOperationManager.m in Sources */,
 				B367DC3419C98EBF00A0452A /* BusinessAnnotation.m in Sources */,
 				B319B5C719C6E77D007F79B0 /* BusinessReviewRepository.m in Sources */,
-				71AAB62719D003CB0000552D /* Price.m in Sources */,
+				B33D4C5619D1A46D009DE6DD /* Service.m in Sources */,
 				15A2180F19BE296A0090E83B /* PictureUploader.m in Sources */,
 				153E1FB019B4A79B00DEC95D /* UserRepository.m in Sources */,
 				1564959519AF6292008DC070 /* HairfieColors.m in Sources */,
@@ -1760,6 +1770,7 @@
 				1515448219C301ED00FBC07D /* CameraOverlayViewController.m in Sources */,
 				15CE407319B0E78C0088FEA7 /* CredentialStore.m in Sources */,
 				153E1FB419B4AA8200DEC95D /* UserAuthenticator.m in Sources */,
+				B33D4C5319D176E9009DE6DD /* BusinessClaim.m in Sources */,
 				B3CCE7781998B6CA00067DB9 /* HairfieDetailViewController.m in Sources */,
 				B3615B3219AF1CC800F1141D /* TPKeyboardAvoidingScrollView.m in Sources */,
 				B367DC3A19C9C42600A0452A /* FinalStepViewController.m in Sources */,
@@ -1793,6 +1804,7 @@
 				B319B5D119C876AC007F79B0 /* SecondStepSalonPhoneViewController.m in Sources */,
 				71AAB62A19D005170000552D /* Money.m in Sources */,
 				B319B5CB19C85E2E007F79B0 /* FirstStepViewController.m in Sources */,
+				B33D4C5919D1A655009DE6DD /* BusinessClaimRepository.m in Sources */,
 				B3423216198924290058866B /* AFURLRequestSerialization.m in Sources */,
 				B33E4C4319A48FE70024F5F7 /* HoraireTableViewCell.m in Sources */,
 				B3423218198924290058866B /* AFURLSessionManager.m in Sources */,

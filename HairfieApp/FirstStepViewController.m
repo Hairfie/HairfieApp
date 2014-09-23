@@ -7,6 +7,7 @@
 //
 
 #import "FirstStepViewController.h"
+#import "SecondStepViewController.h"
 
 @interface FirstStepViewController ()
 
@@ -26,6 +27,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    _claim = [[BusinessClaim alloc] init];
+    
     _salonBttn.layer.cornerRadius =5;
     _salonBttn.layer.borderColor = [UIColor lightGreyHairfie].CGColor;
     _salonBttn.layer.borderWidth = 1;
@@ -41,6 +44,42 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+-(IBAction)pickKindSalon:(id)sender
+{
+    if ([sender tag] == 0)
+        _claim.kind = KIND_INSALON;
+    if ([sender tag] == 1)
+        _claim.kind = KIND_ATHOME;
+    
+    
+    NSLog(@"claim kind %@", _claim.kind);
+    
+    void (^loadErrorBlock)(NSError *) = ^(NSError *error){
+        NSLog(@"Error : %@", error.description);
+    };
+    void (^loadSuccessBlock)(NSDictionary *) = ^(NSDictionary *results){
+        NSLog(@"results %@", results);
+        
+       // [self performSegueWithIdentifier:@"claimKindSalon" sender:self];
+    };
+    [_claim saveWithSuccess:loadSuccessBlock failure:loadErrorBlock];
+    
+      [self performSegueWithIdentifier:@"claimKindSalon" sender:self];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"claimKindSalon"])
+    {
+        
+        SecondStepViewController *secondStep = [segue destinationViewController];
+   
+        secondStep.claim = _claim;
+        
+    }
+}
+
 
 /*
 #pragma mark - Navigation

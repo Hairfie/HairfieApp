@@ -1,22 +1,22 @@
 //
-//  Price.m
+//  Service.m
 //  HairfieApp
 //
 //  Created by Antoine Hérault on 22/09/2014.
 //  Copyright (c) 2014 Hairfie. All rights reserved.
 //
 
-#import "Price.h"
+#import "Service.h"
 
-@implementation Price
+@implementation Service
 
 -(id)initWithDictionary:(NSDictionary *)aDictionary
 {
     return [self initWithLabel:[aDictionary objectForKey:@"label"]
-                         price:[[Money alloc] initWithDictionary:[aDictionary objectForKey:@"price"]]];
+                         price:[[Service alloc] initWithDictionary:[aDictionary objectForKey:@"price"]]];
 }
 
--(id)initWithLabel:(NSString *)aLabel price:(Money *)aPrice
+-(id)initWithLabel:(NSString *)aLabel price:(Service *)aPrice
 {
     self = [super init];
     if (self) {

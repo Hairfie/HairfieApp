@@ -23,6 +23,8 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 
 
+#import "LoginViewController.h"
+
 @interface AroundMeViewController ()
 
 @end

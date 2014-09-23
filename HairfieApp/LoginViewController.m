@@ -34,6 +34,7 @@
     _noAccountButton.backgroundColor = [UIColor clearColor];
     _noAccountButton.layer.cornerRadius = 5;
     _noAccountButton.layer.masksToBounds = YES;
+    _noPasswordButton.titleLabel.adjustsFontSizeToFitWidth = YES;
     _delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     _dismiss = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissTextFields)];
     userAuthenticator = [[UserAuthenticator alloc] init];
@@ -151,6 +152,7 @@
      _noPasswordButton.hidden = NO;
 
 }
+
 
 -(IBAction)openEmailField:(id)sender {
     [_emailField becomeFirstResponder];

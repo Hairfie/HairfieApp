@@ -11,7 +11,7 @@
 #import "Address.h"
 #import "GeoPoint.h"
 #import "AppDelegate.h"
-#import "Price.h"
+#import "Service.h"
 
 @implementation Business
 
@@ -69,7 +69,7 @@
     } else {
         NSMutableArray *temp = [[NSMutableArray alloc] init];
         for (NSDictionary *price in prices) {
-            [temp addObject:[[Price alloc] initWithDictionary:price]];
+            [temp addObject:[[Service alloc] initWithDictionary:price]];
         }
         _prices = [[NSArray alloc] initWithArray:temp];
     }
