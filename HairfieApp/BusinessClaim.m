@@ -72,7 +72,7 @@
         [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/businessclaims"
                                                                                      verb:@"POST"]
                                             forMethod:@"businessclaims"];
-        LBModelRepository *repository = [[AppDelegate lbAdaptater] repositoryWithModelName:@"businessClaims"];
+        LBModelRepository *repository = (LBModelRepository *)[[self class] repository];
         
         NSLog(@"parameters :%@", parameters);
         [repository invokeStaticMethod:@""
@@ -96,7 +96,7 @@
 
 +(LBModelRepository *)repository
 {
-    return [[AppDelegate lbAdaptater] repositoryWithModelName:@"businessClaims"];
+    return [[AppDelegate lbAdaptater] repositoryWithClass:[BusinessClaimRepository class]];
 }
 
 @end
