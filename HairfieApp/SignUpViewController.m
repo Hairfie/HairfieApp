@@ -150,14 +150,16 @@ numberOfRowsInComponent:(NSInteger)component
         
         LBModelRepository *loginData = [[AppDelegate lbAdaptater] repositoryWithModelName:repoName];
         
+        NSString *language = [[NSLocale preferredLanguages] objectAtIndex:0];
+        
         while (uploadInProgress) {
             NSLog(@"Loop Loop !");
             [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
         }
         if(uploadedFileName) {
-            [loginData invokeStaticMethod:@"" parameters:@{@"firstName":_firstNameField.text, @"lastName":_lastNameField.text, @"email": _emailField.text, @"password" : _passwordField.text, @"newsletter":newsletter, @"gender":gender, @"picture":uploadedFileName} success:loadSuccessBlock failure:loadErrorBlock];
+            [loginData invokeStaticMethod:@"" parameters:@{@"firstName":_firstNameField.text, @"lastName":_lastNameField.text, @"email": _emailField.text, @"password" : _passwordField.text, @"newsletter":newsletter, @"gender":gender, @"picture":uploadedFileName, @"language": language} success:loadSuccessBlock failure:loadErrorBlock];
         } else {
-            [loginData invokeStaticMethod:@"" parameters:@{@"firstName":_firstNameField.text, @"lastName":_lastNameField.text, @"email": _emailField.text, @"password" : _passwordField.text, @"newsletter":newsletter, @"gender":gender} success:loadSuccessBlock failure:loadErrorBlock];
+            [loginData invokeStaticMethod:@"" parameters:@{@"firstName":_firstNameField.text, @"lastName":_lastNameField.text, @"email": _emailField.text, @"password" : _passwordField.text, @"newsletter":newsletter, @"gender":gender, @"language": language} success:loadSuccessBlock failure:loadErrorBlock];
         }
 
     }
