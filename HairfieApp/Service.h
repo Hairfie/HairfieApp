@@ -12,11 +12,11 @@
 @interface Service : NSObject
 
 @property (strong, nonatomic) NSString *label;
-@property (strong, nonatomic) Service *price;
+@property (strong, nonatomic) Money *price;
 
 -(id)initWithDictionary:(NSDictionary *)aDictionary;
 
 -(id)initWithLabel:(NSString *)aLabel
-             price:(Service *)aPrice;
+             price:(Money *)aPrice;
 
 @end

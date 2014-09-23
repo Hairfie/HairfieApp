@@ -290,7 +290,7 @@
     } else if (tableView == _hairdresserTableView) {
         return 5;
     } else if(tableView == _pricesTableView) {
-        return self.business.prices.count;
+        return self.business.services.count;
     } else {
         return 2;
     }
@@ -358,7 +358,7 @@
             cell = [nib objectAtIndex:0];
         }
 
-        [cell updateWithPrice:self.business.prices[indexPath.row]];
+        [cell updateWithService:self.business.services[indexPath.row]];
 
         return cell;
     }
@@ -458,7 +458,7 @@
 
 -(void)setupPrices
 {
-    _pricesTableViewHeight.constant = self.business.prices.count * 41;
+    _pricesTableViewHeight.constant = self.business.services.count * 41;
 }
 
 -(void)setupCrossSell

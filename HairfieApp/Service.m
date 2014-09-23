@@ -13,10 +13,10 @@
 -(id)initWithDictionary:(NSDictionary *)aDictionary
 {
     return [self initWithLabel:[aDictionary objectForKey:@"label"]
-                         price:[[Service alloc] initWithDictionary:[aDictionary objectForKey:@"price"]]];
+                         price:[[Money alloc] initWithDictionary:[aDictionary objectForKey:@"price"]]];
 }
 
--(id)initWithLabel:(NSString *)aLabel price:(Service *)aPrice
+-(id)initWithLabel:(NSString *)aLabel price:(Money *)aPrice
 {
     self = [super init];
     if (self) {

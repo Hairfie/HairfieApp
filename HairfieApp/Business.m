@@ -62,19 +62,19 @@
     _gps = [[GeoPoint alloc] initWithJson:geoPointDic];
 }
 
--(void)setPrices:(NSArray *)prices
+-(void)setServices:(NSArray *)services
 {
-    if ([prices isEqual:[NSNull null]]) {
-        _prices = @[];
+    if ([services isEqual:[NSNull null]]) {
+        _services = @[];
     } else {
         NSMutableArray *temp = [[NSMutableArray alloc] init];
-        for (NSDictionary *price in prices) {
+        for (NSDictionary *price in services) {
             [temp addObject:[[Service alloc] initWithDictionary:price]];
         }
-        _prices = [[NSArray alloc] initWithArray:temp];
+        _services = [[NSArray alloc] initWithArray:temp];
     }
     
-    NSLog(@"Prices loaded: %@", _prices);
+    NSLog(@"Prices loaded: %@", _services);
 }
 
 -(NSNumber *)ratingBetween:(NSNumber *)theMin

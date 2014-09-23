@@ -20,10 +20,10 @@
     // Configure the view for the selected state
 }
 
--(void)updateWithPrice:(Service *)aPrice
+-(void)updateWithService:(Service *)aService
 {
-    self.itemName.text = aPrice.label;
-    self.price.text = aPrice.price.formatted;
+    self.itemName.text = aService.label;
+    self.price.text = aService.price.formatted;
 }
 
 @end

@@ -14,6 +14,6 @@
 @property (nonatomic) IBOutlet UILabel *itemName;
 @property (nonatomic) IBOutlet UILabel *price;
 
--(void)updateWithPrice:(Service *)aPrice;
+-(void)updateWithService:(Service *)aService;
 
 @end
