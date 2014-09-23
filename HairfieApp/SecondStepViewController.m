@@ -8,6 +8,7 @@
 
 #import "SecondStepViewController.h"
 #import "SecondStepSalonPhoneViewController.h"
+#import "ThirdStepViewController.h"
 
 @interface SecondStepViewController ()
 {
@@ -15,6 +16,7 @@
     BOOL woman;
     BOOL kids;
     BOOL isOwner;
+    NSString *authorRole;
 }
 
 
@@ -29,6 +31,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    NSLog(@"2ND STEP CLAIM %@", _claim);
+    
     _salonBttn.layer.cornerRadius =5;
     _salonBttn.layer.borderColor = [UIColor lightGreyHairfie].CGColor;
     _salonBttn.layer.borderWidth = 1;
@@ -118,11 +123,13 @@
     if (_jobType.selectedSegmentIndex == 0)
     {
         isOwner = YES;
+        authorRole = @"manager";
         NSLog(@"Manager");
     }
     else
     {
         isOwner = NO;
+        authorRole = @"employee";
         NSLog(@"Employé");
     }
 }
@@ -130,17 +137,37 @@
 
 -(IBAction)claimBusinessLocation:(id)sender
 {
-    if (![_phoneBttn.titleLabel.text isEqualToString:NSLocalizedStringFromTable(@"Phone Number", @"Claim", nil)] && ![_salonBttn.titleLabel.text isEqualToString:NSLocalizedStringFromTable(@"Salon's Name                                 ", @"Claim", nil)]) {
+   // if (![_phoneBttn.titleLabel.text isEqualToString:NSLocalizedStringFromTable(@"Phone Number", @"Claim", nil)] && ![_salonBttn.titleLabel.text isEqualToString:NSLocalizedStringFromTable(@"Salon's Name                                 ", @"Claim", nil)]) {
     
-    [self performSegueWithIdentifier:@"claimBusinessLocation" sender:self];
-    }
-    else
-    {
-      
-         [self performSegueWithIdentifier:@"claimBusinessLocation" sender:self];
-//        UIAlertView *errorAlert = [[UIAlertView alloc]initWithTitle:@"Error" message:@"Please fill in your business' name and phone number" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-//        [errorAlert show];
-    }
+        _claim.name = _salonBttn.titleLabel.text;
+        _claim.phoneNumber = [NSMutableArray arrayWithObjects:_phoneBttn.titleLabel.text,nil];
+        _claim.men = man;
+        _claim.women = woman;
+        _claim.children = kids;
+        _claim.authorRole = authorRole;
+        
+        void (^loadErrorBlock)(NSError *) = ^(NSError *error){
+            NSLog(@"Error : %@", error.description);
+        };
+        void (^loadSuccessBlock)(NSDictionary *) = ^(NSDictionary *results){
+            NSLog(@"results %@", results);
+        //    [self performSegueWithIdentifier:@"claimBusinessLocation" sender:self];
+        };
+        
+        [_claim claimWithSuccess:loadSuccessBlock failure:loadErrorBlock];
+    
+    
+    NSLog(@"CLAIM B4 SEGUE %@", _claim);
+        [self performSegueWithIdentifier:@"claimBusinessLocation" sender:self];
+    
+//    }
+//    else
+//    {
+//      
+//         [self performSegueWithIdentifier:@"claimBusinessLocation" sender:self];
+////        UIAlertView *errorAlert = [[UIAlertView alloc]initWithTitle:@"Error" message:@"Please fill in your business' name and phone number" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+////        [errorAlert show];
+//    }
 
 }
     
@@ -169,6 +196,14 @@
             NSLog(@"test");
             salon.textFieldFromSegue = _salonBttn.titleLabel.text;
         }
+        
+        
+    }
+    if ([segue.identifier isEqualToString:@"claimBusinessLocation"])
+    {
+        ThirdStepViewController *thirdStep = [segue destinationViewController];
+        thirdStep.claim = [[BusinessClaim alloc] init];
+        thirdStep.claim = _claim;
     }
 }
 

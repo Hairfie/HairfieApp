@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <LoopBack/LoopBack.h>
+#import "BusinessClaimRepository.h"
 #import "GeoPoint.h"
 #import "Address.h"
 #import "User.h"
@@ -31,5 +32,6 @@
 @property (nonatomic) BOOL women;
 @property (nonatomic) BOOL children;
 
-
+-(void)claimWithSuccess:(void(^)())aSuccessHandler
+               failure:(void(^)(NSError *error))aFailureHandler;
 @end

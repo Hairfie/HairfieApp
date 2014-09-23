@@ -8,12 +8,12 @@
 
 #import "BusinessClaim.h"
 #import "AppDelegate.h"
-#import "BusinessClaimRepository.h"
+
 
 @implementation BusinessClaim
 
 
--(void)saveWithSuccess:(void(^)())aSuccessHandler
+-(void)claimWithSuccess:(void(^)())aSuccessHandler
                failure:(void(^)(NSError *error))aFailureHandler
 {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
@@ -23,19 +23,25 @@
     
     if (self.name != nil)
         [parameters setObject:self.name forKey:@"name"];
+   
     if (self.kind != nil)
         [parameters setObject:self.kind forKey:@"kind"];
+   
     if (self.gps != nil)
         [parameters setObject:self.gps forKey:@"gps"];
+    
     if (self.phoneNumber != nil)
         [parameters setObject:self.phoneNumber forKey:@"phoneNumber"];
+    
     if (self.timetable != nil)
         [parameters setObject:self.timetable forKey:@"timetable"];
+    
     if (self.address != nil)
     {
         [parameters setObject:self.address forKey:@"address"];
 
     }
+    
     if (self.pictures != nil)
         [parameters setObject:self.pictures forKey:@"pictures"];
     if (self.services != nil)
@@ -56,27 +62,26 @@
     else
         [parameters setObject:@false forKey:@"children"];
     
-  
+
     
     void (^onSuccess)(NSDictionary *) = ^(NSDictionary *result) {
-       
         aSuccessHandler();
     };
     
     if (nil == self.id) {
-        NSLog(@"ICI %@", parameters);
-        [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/businessClaims"
+        [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/businessclaims"
                                                                                      verb:@"POST"]
-                                            forMethod:@"businessClaims.create"];
-        
-        [[self repository] invokeStaticMethod:@"create"
+                                            forMethod:@"businessclaims"];
+        LBModelRepository *repository = (LBModelRepository*)[self repository];
+        [repository invokeStaticMethod:@""
                                    parameters:parameters
                                       success:onSuccess
                                       failure:aFailureHandler];
+        
     } else {
-        [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/businessClaims/:id"
+        [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/businessclaims/:id"
                                                                                      verb:@"PUT"]
-                                            forMethod:@"businessClaims.update"];
+                                            forMethod:@"businessclaims.update"];
         
         
         [[self repository] invokeStaticMethod:@"update"

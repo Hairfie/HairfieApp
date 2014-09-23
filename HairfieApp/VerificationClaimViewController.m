@@ -35,6 +35,7 @@
     _lastNameField.text = delegate.currentUser.lastName;
     _emailField.text = delegate.currentUser.email;
     _phoneField.text = delegate.currentUser.phoneNumber;
+    
     [self.view addGestureRecognizer:self.slidingViewController.panGesture];
     // Do any additional setup after loading the view.
 }

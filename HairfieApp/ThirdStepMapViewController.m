@@ -14,6 +14,9 @@
 @end
 
 @implementation ThirdStepMapViewController
+{
+    CLLocation *newLocation;
+}
 
 #define METERS_PER_MILE 1609.344
 
@@ -38,7 +41,28 @@
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
 {
     NSLog(@"drag to %f,%f", _businessMapView.centerCoordinate.longitude, _businessMapView.centerCoordinate.latitude);
+    
+    newLocation = [[CLLocation alloc] initWithLatitude:_businessMapView.centerCoordinate.latitude longitude: _businessMapView.centerCoordinate.longitude];
 }
+
+
+-(IBAction)claimOtherInfos:(id)sender
+{
+     GeoPoint *gps = [[GeoPoint alloc] initWithLocation:newLocation];
+    
+     _claim.gps = gps;
+    void (^loadErrorBlock)(NSError *) = ^(NSError *error){
+        NSLog(@"Error : %@", error.description);
+    };
+    void (^loadSuccessBlock)(NSDictionary *) = ^(NSDictionary *results){
+        NSLog(@"results %@", results);
+        //[self performSegueWithIdentifier:@"claimOtherInfos" sender:self];
+    };
+    
+    [_claim claimWithSuccess:loadSuccessBlock failure:loadErrorBlock];
+    [self performSegueWithIdentifier:@"claimOtherInfos" sender:self];
+}
+
 
 -(void)centerMap
 {

@@ -11,6 +11,9 @@
 #import <MapKit/MapKit.h>
 #import <AddressBook/AddressBook.h>
 #import "ThirdStepMapViewController.h"
+#import "Address.h"
+#import "GeoPoint.h"
+
 
 @interface ThirdStepViewController ()
 
@@ -20,6 +23,7 @@
 {
     CLLocation *_location;
     AppDelegate *delegate;
+    NSString *_country;
 }
 
 -(UIStatusBarStyle)preferredStatusBarStyle{
@@ -29,7 +33,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
+    NSLog(@"3RD STEP CLAIM %@", _claim);
     delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -105,9 +109,13 @@
                                              objectForKey:(NSString *)kABPersonAddressCityKey];
                            NSString *zip = [addressDictionary
                                             objectForKey:(NSString *)kABPersonAddressZIPKey];
+                           NSString *country = [addressDictionary objectForKey:(NSString*)kABPersonAddressCountryKey];
+                           
+                           
                            _address.text = address;
                            _city.text = city;
                            _postalCode.text = zip;
+                           _country = country;
                        }
                        
                    }];
@@ -164,12 +172,38 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(IBAction)claimSalonLocation:(id)sender
+{
+    
+    Address *address = [[Address alloc] initWithStreet:_address.text city:_city.text zipCode:_postalCode.text country:_country];
+    
+    GeoPoint *gps = [[GeoPoint alloc] initWithLocation:_location];
+    
+    
+    _claim.address = address;
+    _claim.gps = gps;
+    
+    void (^loadErrorBlock)(NSError *) = ^(NSError *error){
+        NSLog(@"Error : %@", error.description);
+    };
+    void (^loadSuccessBlock)(NSDictionary *) = ^(NSDictionary *results){
+        NSLog(@"results %@", results);
+         //[self performSegueWithIdentifier:@"claimBusinessMapLocation" sender:self];
+    };
+    
+    [_claim claimWithSuccess:loadSuccessBlock failure:loadErrorBlock];
+    [self performSegueWithIdentifier:@"claimBusinessMapLocation" sender:self];
+}
+
+
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"claimBusinessMap"])
+    if ([segue.identifier isEqualToString:@"claimBusinessMapLocation"])
     {
         ThirdStepMapViewController *businessMap = [segue destinationViewController];
         businessMap.businessLocation = _location;
+        businessMap.claim = [[BusinessClaim alloc] init];
+        businessMap.claim = _claim;
     }
 }
 

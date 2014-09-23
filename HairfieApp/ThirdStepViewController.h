@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BusinessClaim.h"
 
 @interface ThirdStepViewController : UIViewController <UINavigationControllerDelegate>
 
@@ -17,6 +18,7 @@
 @property (nonatomic) IBOutlet UITextField *postalCode;
 @property (nonatomic) IBOutlet UIButton *currentAddressBttn;
 @property (nonatomic) IBOutlet UIButton *nextButton;
+@property (nonatomic) BusinessClaim *claim;
 
 
 @end
