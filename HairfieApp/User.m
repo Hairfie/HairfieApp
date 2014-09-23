@@ -14,14 +14,12 @@
 
 @implementation User
 
-@synthesize id, userToken, email, firstName, lastName, picture, numHairfies;
-
 -(NSString *)name {
-    return [NSString stringWithFormat:@"%@ %@", firstName, lastName];
+    return [NSString stringWithFormat:@"%@ %@", _firstName, _lastName];
 }
 
 -(NSString *)displayName {
-    return [NSString stringWithFormat:@"%@ %@.", firstName, [lastName substringToIndex:1]];
+    return [NSString stringWithFormat:@"%@ %@.", _firstName, [_lastName substringToIndex:1]];
 }
 
 -(NSString *)displayHairfies {
@@ -33,7 +31,7 @@
 }
 
 -(NSString *)pictureUrlwithWidth:(NSString *)width andHeight:(NSString *)height {
-    NSString  *url = [[picture objectForKey:@"publicUrl"] stringByAppendingString:@"?"];
+    NSString  *url = [[_picture objectForKey:@"publicUrl"] stringByAppendingString:@"?"];
     if(width)  url = [NSString stringWithFormat:@"%@&width=%@", url, width];
     if(height) url = [NSString stringWithFormat:@"%@&height=%@", url, height];
 

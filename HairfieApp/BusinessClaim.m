@@ -7,6 +7,7 @@
 //
 
 #import "BusinessClaim.h"
+#import "BusinessClaimRepository.h"
 #import "AppDelegate.h"
 
 
@@ -39,7 +40,6 @@
     if (self.address != nil)
     {
         [parameters setObject:self.address forKey:@"address"];
-
     }
     
     if (self.pictures != nil)
@@ -72,7 +72,9 @@
         [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/businessclaims"
                                                                                      verb:@"POST"]
                                             forMethod:@"businessclaims"];
-        LBModelRepository *repository = (LBModelRepository*)[self repository];
+        LBModelRepository *repository = [[AppDelegate lbAdaptater] repositoryWithModelName:@"businessClaims"];
+        
+        NSLog(@"parameters :%@", parameters);
         [repository invokeStaticMethod:@""
                                    parameters:parameters
                                       success:onSuccess
@@ -92,11 +94,9 @@
 }
 
 
-+(BusinessClaimRepository *)repository
++(LBModelRepository *)repository
 {
-    return (BusinessClaimRepository *)[[AppDelegate lbAdaptater] repositoryWithClass:[BusinessClaimRepository class]];
+    return [[AppDelegate lbAdaptater] repositoryWithModelName:@"businessClaims"];
 }
-
-
 
 @end

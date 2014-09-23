@@ -11,8 +11,8 @@
 @implementation UIViewController(Transitions)
 
 -(void) showNotLoggedAlertWithDelegate:(id)delegate andTitle:(NSString *)title andMessage:(NSString *)message {
-    NSString *messageToDisplay = (message == nil) ? NSLocalizedString(@"You need to login or to sign up to do this action", nil) : message;
-    NSString *titleToDisplay = (title == nil) ? NSLocalizedString(@"Connected users only", nil) : title;
+    NSString *messageToDisplay = (message == nil) ? NSLocalizedStringFromTable(@"You need to login or to sign up to do this action", @"Authentication", nil) : message;
+    NSString *titleToDisplay = (title == nil) ? NSLocalizedStringFromTable(@"Connected users only", @"Authentication", nil) : title;
 
     id _delegate = ( delegate == nil) ? self : delegate;
     UIAlertView *alert = [[UIAlertView alloc]
@@ -20,7 +20,7 @@
                           message: messageToDisplay
                           delegate:_delegate
                           cancelButtonTitle:nil
-                          otherButtonTitles: NSLocalizedString(@"Login / Sign Up", nil),NSLocalizedString(@"Cancel", nil), nil];
+                          otherButtonTitles: NSLocalizedStringFromTable(@"Login / Sign Up", @"Authentication", nil),NSLocalizedStringFromTable(@"Cancel", @"Authentication", nil), nil];
     [alert setTag:0];
     [alert show];
 }

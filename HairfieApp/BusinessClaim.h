@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import <LoopBack/LoopBack.h>
-#import "BusinessClaimRepository.h"
 #import "GeoPoint.h"
 #import "Address.h"
 #import "User.h"

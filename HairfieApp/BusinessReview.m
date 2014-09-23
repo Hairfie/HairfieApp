@@ -88,11 +88,6 @@
                                failure:aFailureHandler];
 }
 
-//-(NSString *)createdAt {
-//    
-//    return @"coucou";
-//}
-
 +(LBModelRepository *)repository
 {
     return [[AppDelegate lbAdaptater] repositoryWithClass:[BusinessReviewRepository class]];
