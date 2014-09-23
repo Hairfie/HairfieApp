@@ -122,8 +122,8 @@ numberOfRowsInComponent:(NSInteger)component
     void (^loadSuccessBlock)(NSDictionary *) = ^(NSDictionary *results){
         
         NSLog(@"results %@", results);
-        NSDictionary *token = [results objectForKey:@"token"];
-        [delegate.credentialStore setAuthTokenAndUserId:[token objectForKey:@"id"] forUser:[token objectForKey:@"userId"]];
+        NSDictionary *token = [results objectForKey:@"accessToken"];
+        [delegate.credentialStore setAuthTokenAndUserId:[token objectForKey:@"id"] forUser:[results objectForKey:@"id"]];
         [AppDelegate lbAdaptater].accessToken = [token objectForKey:@"id"];
         
         [userAuthenticator getCurrentUser];
