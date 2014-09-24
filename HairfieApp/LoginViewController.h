@@ -15,6 +15,7 @@
 
 @property (nonatomic) IBOutlet UIButton *noAccountButton;
 @property (nonatomic) IBOutlet UIButton *noPasswordButton;
+@property (nonatomic) IBOutlet UIButton *loginButton;
 @property (nonatomic) IBOutlet UITextField *emailField;
 @property (nonatomic) IBOutlet UITextField *passwordField;
 @property (nonatomic) AppDelegate *delegate;

@@ -34,6 +34,10 @@
     _noAccountButton.backgroundColor = [UIColor clearColor];
     _noAccountButton.layer.cornerRadius = 5;
     _noAccountButton.layer.masksToBounds = YES;
+    
+    _loginButton.layer.cornerRadius = 5;
+    _loginButton.layer.masksToBounds = YES;
+    
     _noPasswordButton.titleLabel.adjustsFontSizeToFitWidth = YES;
     _delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     _dismiss = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissTextFields)];

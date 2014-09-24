@@ -586,7 +586,7 @@
                                                     <segue destination="xPO-Am-yIh" kind="push" identifier="signUp" id="zJa-KM-Qo5"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="New on Hairfie ? Sign up now" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="135" translatesAutoresizingMaskIntoConstraints="NO" id="LWY-mG-i5I">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="New on Hairfie ?  Sign up now" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="135" translatesAutoresizingMaskIntoConstraints="NO" id="LWY-mG-i5I">
                                                 <rect key="frame" x="92" y="420" width="135" height="44"/>
                                                 <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="16"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -623,6 +623,7 @@
                     <size key="freeformSize" width="320" height="568"/>
                     <connections>
                         <outlet property="emailField" destination="PDP-6X-E2p" id="dln-Jp-XRL"/>
+                        <outlet property="loginButton" destination="Tf7-AQ-ZJj" id="beb-Mu-hny"/>
                         <outlet property="noAccountButton" destination="a4A-y1-G4L" id="YrH-qR-RtX"/>
                         <outlet property="noPasswordButton" destination="zCD-fq-GEc" id="5S8-wa-gs2"/>
                         <outlet property="passwordField" destination="WbU-U2-e0D" id="NXA-z8-8E5"/>
@@ -841,8 +842,8 @@
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="search-bar.png" translatesAutoresizingMaskIntoConstraints="NO" id="9h6-nm-5hw">
                                         <rect key="frame" x="44" y="27" width="223" height="27"/>
                                     </imageView>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Find hairdressers..." minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ePq-Fx-C9u">
-                                        <rect key="frame" x="73" y="26" width="169" height="30"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Hairdressers, Haircuts ..." minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ePq-Fx-C9u">
+                                        <rect key="frame" x="80" y="26" width="169" height="30"/>
                                         <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="search"/>
                                         <connections>
@@ -1849,8 +1850,8 @@
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="search-bar.png" translatesAutoresizingMaskIntoConstraints="NO" id="I8S-C8-Tng">
                                         <rect key="frame" x="44" y="27" width="223" height="27"/>
                                     </imageView>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Search for hairdressers..." minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="81X-Rv-qeI">
-                                        <rect key="frame" x="73" y="26" width="169" height="30"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Hairdressers, Haircuts ..." minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="81X-Rv-qeI">
+                                        <rect key="frame" x="80" y="26" width="169" height="30"/>
                                         <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="search"/>
                                         <connections>
@@ -1895,6 +1896,7 @@
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Spq-xF-T3n" userLabel="Cancel">
                                                 <rect key="frame" x="10" y="30" width="20" height="20"/>
                                                 <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="14"/>
+                                                <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                                 <state key="normal" image="arrow-nav.png">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -5067,12 +5069,12 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="H0a-7y-EaD"/>
         <segue reference="o5i-ex-i4q"/>
+        <segue reference="7yU-V8-5Z9"/>
         <segue reference="uEN-by-6gW"/>
+        <segue reference="DYR-eo-mJz"/>
         <segue reference="K9z-px-huR"/>
         <segue reference="XXf-5V-koX"/>
-        <segue reference="PSz-m0-val"/>
-        <segue reference="DYR-eo-mJz"/>
-        <segue reference="H0a-7y-EaD"/>
     </inferredMetricsTieBreakers>
 </document>
