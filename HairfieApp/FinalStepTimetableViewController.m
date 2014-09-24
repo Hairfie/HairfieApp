@@ -8,6 +8,7 @@
 
 #import "FinalStepTimetableViewController.h"
 #import "FinalStepClaimDayViewController.h"
+#import "FinalStepViewController.h"
 
 @interface FinalStepTimetableViewController ()
 
@@ -25,33 +26,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _mondayButton.layer.cornerRadius = 5;
-    _mondayButton.layer.borderColor = [UIColor lightGreyHairfie].CGColor;
-    _mondayButton.layer.borderWidth = 1;
-
-    _tuesdayButton.layer.cornerRadius = 5;
-    _tuesdayButton.layer.borderColor = [UIColor lightGreyHairfie].CGColor;
-    _tuesdayButton.layer.borderWidth = 1;
+    _timeTable = [[Timetable alloc] initEmpty];
     
-    _wednesdayButton.layer.cornerRadius = 5;
-    _wednesdayButton.layer.borderColor = [UIColor lightGreyHairfie].CGColor;
-    _wednesdayButton.layer.borderWidth = 1;
     
-    _thursdayButton.layer.cornerRadius = 5;
-    _thursdayButton.layer.borderColor = [UIColor lightGreyHairfie].CGColor;
-    _thursdayButton.layer.borderWidth = 1;
     
-    _fridayButton.layer.cornerRadius = 5;
-    _fridayButton.layer.borderColor = [UIColor lightGreyHairfie].CGColor;
-    _fridayButton.layer.borderWidth = 1;
     
-    _saturdayButton.layer.cornerRadius = 5;
-    _saturdayButton.layer.borderColor = [UIColor lightGreyHairfie].CGColor;
-    _saturdayButton.layer.borderWidth = 1;
-    
-    _sundayButton.layer.cornerRadius = 5;
-    _sundayButton.layer.borderColor = [UIColor lightGreyHairfie].CGColor;
-    _sundayButton.layer.borderWidth = 1;
     
     _doneBttn.layer.cornerRadius = 5;
     // Do any additional setup after loading the view.
@@ -67,6 +46,8 @@
 -(IBAction)validateTimetable:(id)sender
 {
     // TO DO enregistrer les horaires modifiés
+     FinalStepViewController *finalStep = [self.navigationController.viewControllers objectAtIndex:[self.navigationController.viewControllers count]-2];
+    
     
     [self goBack:self];
 }

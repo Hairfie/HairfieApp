@@ -7,7 +7,9 @@
 //
 
 #import "FinalStepClaimDayViewController.h"
-#import "TimeTableView.h"
+#import "FinalStepTimetableViewController.h"
+#import "TimeWindow.h"
+#import "Timetable.h"
 
 @interface FinalStepClaimDayViewController ()
 
@@ -19,6 +21,7 @@
 {
     NSArray *weekDays;
     NSArray *halfHour;
+    NSDictionary *timeTable;
 }
 
 @synthesize headerString;
@@ -31,6 +34,8 @@
     [super viewDidLoad];
     
     _doneBttn.layer.cornerRadius = 5;
+    
+     timeTable = [[NSDictionary alloc] init];
     
      [_openingTimePicker selectRow:10 inComponent:0 animated:YES];
     [_openingTimePicker selectRow:0 inComponent:1 animated:YES];
@@ -141,17 +146,53 @@ numberOfRowsInComponent:(NSInteger)component
 
 -(IBAction)addTimeTable:(id)sender
 {
-    NSArray *subviewArray = [[NSBundle mainBundle] loadNibNamed:@"TimeTableView" owner:self options:nil];
+
     
-    TimeTableView *timeTable = [subviewArray objectAtIndex:0];
+
+    FinalStepTimetableViewController *claimTimeTable = [self.navigationController.viewControllers objectAtIndex:[self.navigationController.viewControllers count]-2];
+   
+    TimeWindow *timeWindow = [[TimeWindow alloc] initWithStartTime:_openingTime endTime:_closingTime appointmentMode:nil];
     
    
-    NSLog(@"ici");
-    [timeTable settimeTableStringOpen:_openingTime andClose:_closingTime];
-    [timeTable setDayForTimetable:_dayPicked];
     
-    [self.view addSubview:timeTable];
-    [self.view bringSubviewToFront:timeTable];
+    if ([_dayPicked isEqualToString:@"Monday"])
+    {
+        [claimTimeTable.timeTable.monday addObject:timeWindow];
+    
+    }
+    if ([_dayPicked isEqualToString:@"Tuesday"])
+    {
+        [claimTimeTable.timeTable.tuesday addObject:timeWindow];
+        
+    }
+    if ([_dayPicked isEqualToString:@"Wednesday"])
+    {
+        [claimTimeTable.timeTable.wednesday addObject:timeWindow];
+        
+    }
+    if ([_dayPicked isEqualToString:@"Thursday"])
+    {
+        [claimTimeTable.timeTable.thursday addObject:timeWindow];
+        
+    }
+    if ([_dayPicked isEqualToString:@"Friday"])
+    {
+        [claimTimeTable.timeTable.friday addObject:timeWindow];
+        
+    }
+    if ([_dayPicked isEqualToString:@"Saturday"])
+    {
+        [claimTimeTable.timeTable.saturday addObject:timeWindow];
+        
+    }
+    if ([_dayPicked isEqualToString:@"Sunday"])
+    {
+        [claimTimeTable.timeTable.sunday addObject:timeWindow];
+        
+    }
+    
+    NSLog(@"TimeWindow %@ \n%@", claimTimeTable.timeTable.friday, claimTimeTable.timeTable.sunday);
+
     
 }
 

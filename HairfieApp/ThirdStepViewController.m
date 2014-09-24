@@ -174,11 +174,9 @@
 
 -(IBAction)claimSalonLocation:(id)sender
 {
-    
     Address *address = [[Address alloc] initWithStreet:_address.text city:_city.text zipCode:_postalCode.text country:_country];
     
     GeoPoint *gps = [[GeoPoint alloc] initWithLocation:_location];
-    
     
     _claim.address = address;
     _claim.gps = gps;
@@ -187,12 +185,11 @@
         NSLog(@"Error : %@", error.description);
     };
     void (^loadSuccessBlock)(NSDictionary *) = ^(NSDictionary *results){
-        NSLog(@"results %@", results);
-         //[self performSegueWithIdentifier:@"claimBusinessMapLocation" sender:self];
+        //NSLog(@"results %@", results);
+         [self performSegueWithIdentifier:@"claimBusinessMapLocation" sender:self];
     };
     
     [_claim claimWithSuccess:loadSuccessBlock failure:loadErrorBlock];
-    [self performSegueWithIdentifier:@"claimBusinessMapLocation" sender:self];
 }
 
 

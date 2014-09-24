@@ -7,13 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "Address.h"
 @interface FinalStepAddressViewController : UIViewController <UINavigationControllerDelegate, UITextFieldDelegate>
 
 
-@property (nonatomic) IBOutlet UITextField *address;
+@property (nonatomic) IBOutlet UITextField *street;
 @property (nonatomic) IBOutlet UITextField *city;
 @property (nonatomic) IBOutlet UITextField *country;
 @property (nonatomic) IBOutlet UIButton *doneBttn;
+@property (nonatomic) Address *address;
 
 @end

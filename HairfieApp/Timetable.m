@@ -48,14 +48,28 @@
 {
     self = [super init];
     if (self) {
-        self.monday = aMonday;
-        self.tuesday = aTuesday;
-        self.thursday = aThursday;
-        self.wednesday = aWednesday;
-        self.friday = aFriday;
-        self.saturday = aSaturday;
-        self.sunday = aSunday;
+        self.monday = (NSMutableArray*)aMonday;
+        self.tuesday = (NSMutableArray*)aTuesday;
+        self.thursday = (NSMutableArray*)aThursday;
+        self.wednesday = (NSMutableArray*)aWednesday;
+        self.friday = (NSMutableArray*)aFriday;
+        self.saturday = (NSMutableArray*)aSaturday;
+        self.sunday = (NSMutableArray*)aSunday;
     }
+    return self;
+}
+
+-(id)initEmpty
+{
+    self = [super init];
+    
+        self.monday = [[NSMutableArray alloc] init];
+        self.tuesday = [[NSMutableArray alloc] init];
+        self.thursday = [[NSMutableArray alloc] init];
+        self.wednesday = [[NSMutableArray alloc] init];
+        self.friday = [[NSMutableArray alloc] init];
+        self.saturday = [[NSMutableArray alloc] init];
+        self.sunday = [[NSMutableArray alloc] init];
     return self;
 }
 

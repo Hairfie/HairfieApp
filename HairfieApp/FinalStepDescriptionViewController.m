@@ -7,6 +7,7 @@
 //
 
 #import "FinalStepDescriptionViewController.h"
+#import "FinalStepViewController.h"
 
 @interface FinalStepDescriptionViewController ()
 
@@ -40,7 +41,9 @@
 -(IBAction)validateDescription:(id)sender
 {
     // TO DO enregistrer la description modifiée
+     FinalStepViewController *finalStep = [self.navigationController.viewControllers objectAtIndex:[self.navigationController.viewControllers count]-2];
     
+    finalStep.claim.desc = _descriptionView.text;
     [self goBack:self];
 }
 

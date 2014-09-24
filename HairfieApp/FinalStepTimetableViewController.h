@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Timetable.h"
 
 @interface FinalStepTimetableViewController : UIViewController <UINavigationControllerDelegate>
 
@@ -20,6 +21,7 @@
 @property (nonatomic) IBOutlet UIButton *sundayButton;
 @property (nonatomic) IBOutlet UIButton *doneBttn;
 
+@property (nonatomic) Timetable *timeTable;
 
 
 @end

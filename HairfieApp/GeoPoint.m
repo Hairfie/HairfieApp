@@ -64,4 +64,9 @@
     return [[NSString alloc] initWithFormat:@"%@,%@", self.lng, self.lat];
 }
 
+-(NSDictionary*)toDictionary
+{
+    return [[NSDictionary alloc] initWithObjectsAndKeys:self.lng, @"lng", self.lat, @"lat",nil];
+}
+
 @end

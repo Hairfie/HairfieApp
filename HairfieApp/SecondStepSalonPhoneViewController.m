@@ -8,6 +8,7 @@
 
 #import "SecondStepSalonPhoneViewController.h"
 #import "SecondStepViewController.h"
+#import "FinalStepViewController.h"
 
 @interface SecondStepSalonPhoneViewController ()
 
@@ -26,18 +27,13 @@
     
     headerLabel.text = headerTitle;
     textField.placeholder = textFieldPlaceHolder;
-    
    
-    
     UIView *fieldPadding = [[UIView alloc] initWithFrame:CGRectMake(0, 0,20, 46)];
-    
-    
-    if (![textFieldFromSegue isEqualToString:@""] || ![textFieldFromSegue isEqualToString:NSLocalizedStringFromTable(@"Salon's name                                 ", @"Claim", nil)] || ![textFieldFromSegue isEqualToString:NSLocalizedStringFromTable(@"Phone Number", @"Claim", nil)])
+    if (_isExisting == YES)
     {
         textField.text = textFieldFromSegue;
     }
-    
-    if ([textFieldPlaceHolder isEqualToString:NSLocalizedStringFromTable(@"Phone Number", @"Claim", nil)])
+    if (_isSalon == NO)
     {
         textField.keyboardType = UIKeyboardTypePhonePad;
         [self addDoneButtonToPriceField];
@@ -57,13 +53,7 @@
 {
     [_textField resignFirstResponder];
     
-    SecondStepViewController *claim = [self.navigationController.viewControllers objectAtIndex:[self.navigationController.viewControllers count]-2];
-    if ([headerLabel.text isEqualToString:NSLocalizedStringFromTable(@"Phone Number", @"Claim", nil)])
-        claim.phoneBttn.titleLabel.text = textField.text;
-    else
-        claim.salonBttn.titleLabel.text = textField.text;
-    
-    [self.navigationController popViewControllerAnimated:YES];
+    [self doneClicked:self];
     return YES;
 }
 
@@ -97,12 +87,34 @@
     
     [textField resignFirstResponder];
     
-    SecondStepViewController *claim = [self.navigationController.viewControllers objectAtIndex:[self.navigationController.viewControllers count]-2];
-    if ([headerLabel.text isEqualToString:NSLocalizedStringFromTable(@"Phone Number", @"Claim", nil)])
-        claim.phoneBttn.titleLabel.text = textField.text;
+    if (_isFinalStep == NO){
+        SecondStepViewController *claim = [self.navigationController.viewControllers objectAtIndex:[self.navigationController.viewControllers count]-2];
+        
+        if (_isSalon == NO)
+        {
+            claim.isPhoneSet = YES;
+            claim.phoneTextField.text = textField.text;
+        }
+        else
+        {
+            claim.isSalonSet = YES;
+            claim.salonTextField.text = textField.text;
+        }
+    }
     else
-        claim.salonBttn.titleLabel.text = textField.text;
-    
+    {
+        FinalStepViewController *finalStep = [self.navigationController.viewControllers objectAtIndex:[self.navigationController.viewControllers count]-2];
+        
+        if (_isSalon == NO)
+        {
+            finalStep.claim.phoneNumber = textField.text;
+        }
+        else
+        {
+            NSLog(@"COU");
+            finalStep.claim.name = textField.text;
+        }
+    }
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -140,7 +152,7 @@
 
 -(IBAction)goBack:(id)sender
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    [self doneClicked:self];
 }
 
 - (void)didReceiveMemoryWarning {

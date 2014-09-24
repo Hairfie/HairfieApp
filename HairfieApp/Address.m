@@ -35,7 +35,12 @@
 }
 
 -(NSString *)displayAddress {
-    return [NSString stringWithFormat:@"%@ %@", self.street, self.city];
+    return [NSString stringWithFormat:@"%@ %@ %@", self.street, self.zipCode, self.city];
+}
+
+-(NSDictionary*)toDictionary
+{
+    return [[NSDictionary alloc] initWithObjectsAndKeys:self.country, @"country", self.zipCode, @"zipCode", self.city, @"city", self.street, @"street", nil];
 }
 
 @end

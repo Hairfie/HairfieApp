@@ -18,5 +18,8 @@
 @property (nonatomic) NSString *headerTitle;
 @property (nonatomic) NSString *textFieldPlaceHolder;
 @property (nonatomic) NSString *textFieldFromSegue;
+@property (nonatomic) BOOL isSalon;
+@property (nonatomic) BOOL isExisting;
+@property (nonatomic) BOOL isFinalStep;
 
 @end

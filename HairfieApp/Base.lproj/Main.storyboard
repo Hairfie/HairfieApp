@@ -128,21 +128,9 @@
             <string>SourceSansPro-Light</string>
             <string>SourceSansPro-Light</string>
             <string>SourceSansPro-Light</string>
-            <string>SourceSansPro-Light</string>
-            <string>SourceSansPro-Light</string>
-            <string>SourceSansPro-Light</string>
-            <string>SourceSansPro-Light</string>
-            <string>SourceSansPro-Light</string>
-            <string>SourceSansPro-Light</string>
-            <string>SourceSansPro-Light</string>
-            <string>SourceSansPro-Light</string>
-            <string>SourceSansPro-Light</string>
-            <string>SourceSansPro-Light</string>
-            <string>SourceSansPro-Light</string>
-            <string>SourceSansPro-Light</string>
-            <string>SourceSansPro-Light</string>
         </mutableArray>
         <mutableArray key="SourceSansPro-Regular.ttf">
+            <string>SourceSansPro-Regular</string>
             <string>SourceSansPro-Regular</string>
             <string>SourceSansPro-Regular</string>
             <string>SourceSansPro-Regular</string>
@@ -3162,11 +3150,16 @@
                                                 <color key="textColor" red="0.1960784314" green="0.26274509800000001" blue="0.3411764706" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F6a-vE-PLj">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Salon's name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2XC-CX-Muq">
+                                                <rect key="frame" x="29" y="52" width="301" height="46"/>
+                                                <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="15"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F6a-vE-PLj" userLabel="Button salon">
                                                 <rect key="frame" x="10" y="52" width="300" height="46"/>
                                                 <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="15"/>
                                                 <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                <state key="normal" title="Salon's name">
+                                                <state key="normal">
                                                     <color key="titleColor" red="0.1960784314" green="0.26274509800000001" blue="0.3411764706" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -3174,11 +3167,16 @@
                                                     <action selector="claimDetails:" destination="jCi-BR-inK" eventType="touchUpInside" id="16z-uN-cY8"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BAq-zB-veb">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phone number" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="D4T-Ew-8UW">
+                                                <rect key="frame" x="29" y="106" width="300" height="46"/>
+                                                <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="15"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BAq-zB-veb" userLabel="Button phone">
                                                 <rect key="frame" x="10" y="106" width="300" height="46"/>
                                                 <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="15"/>
                                                 <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                <state key="normal" title="Phone number">
+                                                <state key="normal">
                                                     <color key="titleColor" red="0.1960784314" green="0.26274509800000001" blue="0.3411764706" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -3215,7 +3213,7 @@
                                                 <color key="textColor" red="0.1960784314" green="0.26274509800000001" blue="0.3411764706" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="checkbox-false.png" translatesAutoresizingMaskIntoConstraints="NO" id="Eb7-Dc-38w" userLabel="man checkbox">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="checkbox-true.png" translatesAutoresizingMaskIntoConstraints="NO" id="Eb7-Dc-38w" userLabel="man checkbox">
                                                 <rect key="frame" x="283" y="308" width="23" height="23"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Woman" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y8G-DF-72y">
@@ -3224,7 +3222,7 @@
                                                 <color key="textColor" red="0.1960784314" green="0.26274509800000001" blue="0.3411764706" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="checkbox-false.png" translatesAutoresizingMaskIntoConstraints="NO" id="SFQ-bF-dKe" userLabel="woman checkbox">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="checkbox-true.png" translatesAutoresizingMaskIntoConstraints="NO" id="SFQ-bF-dKe" userLabel="woman checkbox">
                                                 <rect key="frame" x="283" y="353" width="23" height="23"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Kids" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AfU-cv-Zjb">
@@ -3233,7 +3231,7 @@
                                                 <color key="textColor" red="0.1960784314" green="0.26274509800000001" blue="0.3411764706" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="checkbox-false.png" translatesAutoresizingMaskIntoConstraints="NO" id="8k6-55-cgE" userLabel="kids checkbox">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="checkbox-true.png" translatesAutoresizingMaskIntoConstraints="NO" id="8k6-55-cgE" userLabel="kids checkbox">
                                                 <rect key="frame" x="283" y="398" width="23" height="23"/>
                                             </imageView>
                                             <view alpha="0.20000000000000001" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QyO-Y4-n0p" userLabel="separator 1">
@@ -3327,7 +3325,9 @@
                         <outlet property="manCutCheckBox" destination="Eb7-Dc-38w" id="YQT-Fw-ICK"/>
                         <outlet property="nextBttn" destination="MOO-yz-g84" id="Kpm-Td-6Lg"/>
                         <outlet property="phoneBttn" destination="BAq-zB-veb" id="COJ-lo-K69"/>
+                        <outlet property="phoneTextField" destination="D4T-Ew-8UW" id="0nu-xn-Eej"/>
                         <outlet property="salonBttn" destination="F6a-vE-PLj" id="rd0-Ax-OiY"/>
+                        <outlet property="salonTextField" destination="2XC-CX-Muq" id="q5m-KP-BbL"/>
                         <outlet property="womanCutCheckBox" destination="SFQ-bF-dKe" id="uw3-Y7-X9K"/>
                         <outlet property="workType" destination="ujM-Ih-uXJ" id="Ogn-hJ-epS"/>
                         <segue destination="NUe-A9-Lt8" kind="push" identifier="claimSalon" id="U6U-Af-qnl"/>
@@ -3377,6 +3377,9 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="claimSalonLocation:" destination="ovh-Tz-UcP" eventType="touchUpInside" id="F7a-3h-ndn"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.15686274510000001" green="0.19215686269999999" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -3484,26 +3487,49 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="claimOtherInfos:" destination="LzR-Rb-iSe" eventType="touchUpInside" id="dDh-e5-bgC"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.15686274510000001" green="0.19215686269999999" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Ocf-0X-KNe">
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aWj-ez-Flw">
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
-                                <connections>
-                                    <outlet property="delegate" destination="LzR-Rb-iSe" id="WuT-M0-q9Y"/>
-                                </connections>
-                            </mapView>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" image="pin-salon.png" translatesAutoresizingMaskIntoConstraints="NO" id="a4y-3J-eSj">
-                                <rect key="frame" x="149" y="284" width="23" height="32"/>
-                            </imageView>
+                                <subviews>
+                                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Ocf-0X-KNe">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="320" id="0SW-sT-CaA"/>
+                                            <constraint firstAttribute="height" constant="504" id="sb0-ql-WIQ"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="delegate" destination="LzR-Rb-iSe" id="WuT-M0-q9Y"/>
+                                        </connections>
+                                    </mapView>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" image="pin-salon.png" translatesAutoresizingMaskIntoConstraints="NO" id="a4y-3J-eSj">
+                                        <rect key="frame" x="149" y="220" width="23" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="23" id="ImI-fH-40J"/>
+                                            <constraint firstAttribute="height" constant="32" id="Od9-K9-bTP"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="a4y-3J-eSj" firstAttribute="top" secondItem="aWj-ez-Flw" secondAttribute="top" constant="220" id="h1k-YC-HJ3"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="Qw9-Dj-jJE"/>
                     <connections>
                         <outlet property="businessMapView" destination="Ocf-0X-KNe" id="gCT-A0-ypm"/>
+                        <outlet property="containerView" destination="aWj-ez-Flw" id="iWI-6s-jIf"/>
+                        <outlet property="mapHeight" destination="sb0-ql-WIQ" id="gFk-ix-lJl"/>
                         <outlet property="nextBttn" destination="G7M-mG-EET" id="JPt-Li-glB"/>
+                        <outlet property="pinYPos" destination="h1k-YC-HJ3" id="CRe-im-XfZ"/>
                         <segue destination="BHW-4V-7I5" kind="push" identifier="claimOtherInfos" id="WYb-zG-qo5"/>
                     </connections>
                 </viewController>
@@ -4180,7 +4206,7 @@
                                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
                                                         <connections>
-                                                            <segue destination="zTm-H4-2yr" kind="push" identifier="claimAddress" id="XvJ-fj-rd5"/>
+                                                            <action selector="modifyAddress:" destination="BHW-4V-7I5" eventType="touchUpInside" id="jER-Js-oH4"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MKT-50-A2a">
@@ -4208,6 +4234,9 @@
                                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" image="nav-disclosure.png" translatesAutoresizingMaskIntoConstraints="NO" id="oho-uV-XP5">
                                                         <rect key="frame" x="297" y="81" width="8" height="13"/>
                                                     </imageView>
+                                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" image="nav-disclosure.png" translatesAutoresizingMaskIntoConstraints="NO" id="LXz-9P-jlK">
+                                                        <rect key="frame" x="296" y="25" width="8" height="13"/>
+                                                    </imageView>
                                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" image="nav-disclosure.png" translatesAutoresizingMaskIntoConstraints="NO" id="xyD-dQ-tcu">
                                                         <rect key="frame" x="297" y="134" width="8" height="13"/>
                                                     </imageView>
@@ -4221,12 +4250,6 @@
                                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" image="picto-list-resume.png" translatesAutoresizingMaskIntoConstraints="NO" id="lpN-gn-qkl">
                                                         <rect key="frame" x="20" y="233" width="11" height="16"/>
                                                     </imageView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="name salon" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4MZ-EF-ugS">
-                                                        <rect key="frame" x="20" y="0.0" width="300" height="63"/>
-                                                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="18"/>
-                                                        <color key="textColor" red="0.1960784314" green="0.26274509800000001" blue="0.3411764706" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
                                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DhN-eM-sQL">
                                                         <rect key="frame" x="51" y="165" width="238" height="51"/>
                                                         <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="16"/>
@@ -4238,6 +4261,21 @@
                                                             <segue destination="QDs-5V-jNB" kind="push" identifier="claimSchedule" id="0ob-k3-uxh"/>
                                                         </connections>
                                                     </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jJW-MA-WZP">
+                                                        <rect key="frame" x="83" y="0.0" width="237" height="63"/>
+                                                        <state key="normal">
+                                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="modifyName:" destination="BHW-4V-7I5" eventType="touchUpInside" id="VfV-gQ-Oi8"/>
+                                                        </connections>
+                                                    </button>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="name salon" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4MZ-EF-ugS">
+                                                        <rect key="frame" x="20" y="0.0" width="269" height="63"/>
+                                                        <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="18"/>
+                                                        <color key="textColor" red="0.1960784314" green="0.26274509800000001" blue="0.3411764706" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </view>
@@ -4345,6 +4383,7 @@
                     <size key="freeformSize" width="320" height="568"/>
                     <connections>
                         <outlet property="addHairfiesBttn" destination="TeZ-eQ-AZJ" id="bSU-sV-WLj"/>
+                        <outlet property="addressBttn" destination="Api-cY-vQX" id="cKD-3w-NcB"/>
                         <outlet property="containerView" destination="EuT-Lu-oD6" id="ccp-Nq-x37"/>
                         <outlet property="hairdresserBttn" destination="RFm-7d-baz" id="IRN-ve-yUi"/>
                         <outlet property="hairdresserView" destination="CcM-C3-tpq" id="61Y-g1-4HH"/>
@@ -4352,12 +4391,15 @@
                         <outlet property="hairfieView" destination="URA-Dh-nh8" id="uNo-B2-UOz"/>
                         <outlet property="infoBttn" destination="cDG-P4-sll" id="Gfd-IX-oOo"/>
                         <outlet property="infoView" destination="RWQ-a2-S7l" id="cYi-El-BJt"/>
+                        <outlet property="nameLabel" destination="4MZ-EF-ugS" id="n4N-gE-L7a"/>
                         <outlet property="pageControlView" destination="uto-Zl-RXJ" id="Ce7-lJ-i4F"/>
                         <outlet property="phoneBttn" destination="okP-hf-UHU" id="InK-7t-STW"/>
                         <outlet property="priceAndSaleBttn" destination="cjT-7e-Ww7" id="Hnx-Hs-qPF"/>
                         <outlet property="priceAndSaleView" destination="rfH-9l-Y24" id="1j9-8G-o3I"/>
                         <outlet property="validateBttn" destination="TQG-mS-hkE" id="sQ7-S9-xNa"/>
                         <segue destination="NUe-A9-Lt8" kind="push" identifier="claimPhone" id="VGS-VM-Pwy"/>
+                        <segue destination="NUe-A9-Lt8" kind="push" identifier="claimSalon" id="2Zn-eA-CWz"/>
+                        <segue destination="zTm-H4-2yr" kind="push" identifier="claimAddress" id="ckv-Nm-GTR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kgs-18-rHr" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -4538,111 +4580,6 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.15686274510000001" green="0.19215686269999999" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="09h - 18h" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jrm-c8-CPi" userLabel="09h - 18h Monday">
-                                <rect key="frame" x="206" y="84" width="94" height="21"/>
-                                <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="16"/>
-                                <color key="textColor" red="0.1960784314" green="0.26274509800000001" blue="0.3411764706" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kGD-oX-vMq" userLabel="Monday Bttn">
-                                <rect key="frame" x="10" y="72" width="300" height="46"/>
-                                <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="16"/>
-                                <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <state key="normal" title="Monday">
-                                    <color key="titleColor" red="0.1960784314" green="0.26274509800000001" blue="0.3411764706" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="09h - 18h" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dfw-OT-uA0" userLabel="09h - 18h Tuesday">
-                                <rect key="frame" x="206" y="148" width="94" height="21"/>
-                                <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="16"/>
-                                <color key="textColor" red="0.1960784314" green="0.26274509800000001" blue="0.3411764706" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="REm-Km-KGD" userLabel="Tuesday Bttn">
-                                <rect key="frame" x="10" y="136" width="300" height="46"/>
-                                <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="16"/>
-                                <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <state key="normal" title="Tuesday">
-                                    <color key="titleColor" red="0.1960784314" green="0.26274509800000001" blue="0.3411764706" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="09h - 18h" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5YQ-9w-Jip" userLabel="09h - 18h Wed">
-                                <rect key="frame" x="206" y="212" width="94" height="21"/>
-                                <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="16"/>
-                                <color key="textColor" red="0.1960784314" green="0.26274509800000001" blue="0.3411764706" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="09h - 18h" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ySt-RH-WkJ" userLabel="09h - 18h Thu">
-                                <rect key="frame" x="206" y="278" width="94" height="21"/>
-                                <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="16"/>
-                                <color key="textColor" red="0.1960784314" green="0.26274509800000001" blue="0.3411764706" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OSc-Qz-g2R" userLabel="Thursday Bttn">
-                                <rect key="frame" x="10" y="266" width="300" height="46"/>
-                                <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="16"/>
-                                <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <state key="normal" title="Thursday">
-                                    <color key="titleColor" red="0.1960784314" green="0.26274509800000001" blue="0.3411764706" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="09h - 18h" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lDP-P1-85t" userLabel="9h - 18h Fri">
-                                <rect key="frame" x="206" y="342" width="94" height="21"/>
-                                <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="16"/>
-                                <color key="textColor" red="0.1960784314" green="0.26274509800000001" blue="0.3411764706" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aBX-TY-QYj" userLabel="Friday Bttn">
-                                <rect key="frame" x="10" y="330" width="300" height="46"/>
-                                <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="16"/>
-                                <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <state key="normal" title="Friday">
-                                    <color key="titleColor" red="0.1960784314" green="0.26274509800000001" blue="0.3411764706" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="09h - 18h" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qoe-tk-fBv" userLabel="9h - 18h Sat">
-                                <rect key="frame" x="206" y="406" width="94" height="21"/>
-                                <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="16"/>
-                                <color key="textColor" red="0.1960784314" green="0.26274509800000001" blue="0.3411764706" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" tag="5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fUy-Dk-rHJ" userLabel="Saturday Bttn">
-                                <rect key="frame" x="10" y="395" width="300" height="46"/>
-                                <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="16"/>
-                                <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <state key="normal" title="Saturday">
-                                    <color key="titleColor" red="0.1960784314" green="0.26274509800000001" blue="0.3411764706" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="09h - 18h" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k0m-qF-RqE" userLabel="9h - 18h Sun">
-                                <rect key="frame" x="206" y="470" width="94" height="21"/>
-                                <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="16"/>
-                                <color key="textColor" red="0.1960784314" green="0.26274509800000001" blue="0.3411764706" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" tag="6" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MZN-Xi-BfC" userLabel="Sunday Bttn">
-                                <rect key="frame" x="10" y="459" width="300" height="46"/>
-                                <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="16"/>
-                                <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <state key="normal" title="Sunday">
-                                    <color key="titleColor" red="0.1960784314" green="0.26274509800000001" blue="0.3411764706" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jsG-Xe-LLg" userLabel="Wednesday Bttn">
-                                <rect key="frame" x="10" y="200" width="300" height="46"/>
-                                <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="16"/>
-                                <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <state key="normal" title="Wednesday">
-                                    <color key="titleColor" red="0.1960784314" green="0.26274509800000001" blue="0.3411764706" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OpX-mO-uuN">
                                 <rect key="frame" x="0.0" y="522" width="320" height="46"/>
                                 <color key="backgroundColor" red="0.87450980389999999" green="0.38431372549999998" blue="0.33333333329999998" alpha="1" colorSpace="deviceRGB"/>
@@ -4655,19 +4592,16 @@
                                     <segue destination="m3V-Fr-d7F" kind="push" id="CxG-EZ-M5S"/>
                                 </connections>
                             </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Q0G-P4-5JE">
+                                <rect key="frame" x="0.0" y="72" width="320" height="442"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="u7P-p9-fr3"/>
                     <connections>
                         <outlet property="doneBttn" destination="d0s-hr-HEq" id="vLo-Iu-rS8"/>
-                        <outlet property="fridayButton" destination="aBX-TY-QYj" id="i3x-EF-86K"/>
-                        <outlet property="mondayButton" destination="kGD-oX-vMq" id="mAE-i4-pAh"/>
-                        <outlet property="saturdayButton" destination="fUy-Dk-rHJ" id="FL4-fd-a4e"/>
-                        <outlet property="sundayButton" destination="MZN-Xi-BfC" id="BD3-9h-xiZ"/>
-                        <outlet property="thursdayButton" destination="OSc-Qz-g2R" id="bC3-bx-OmX"/>
-                        <outlet property="tuesdayButton" destination="REm-Km-KGD" id="eeF-VL-yBl"/>
-                        <outlet property="wednesdayButton" destination="jsG-Xe-LLg" id="YEL-Zg-U7V"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W8f-2x-6Al" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -4928,10 +4862,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="Q4f-qf-YTJ"/>
                     <connections>
-                        <outlet property="address" destination="Ndi-in-QEn" id="RYR-OQ-x6V"/>
                         <outlet property="city" destination="QW3-mC-bUN" id="vYb-kZ-eRu"/>
                         <outlet property="country" destination="ReD-14-jgc" id="6oy-wg-MhG"/>
                         <outlet property="doneBttn" destination="Kcg-g3-GWu" id="3jf-zH-lef"/>
+                        <outlet property="street" destination="Ndi-in-QEn" id="ofU-OO-J7N"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rVx-U9-mRa" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -5042,6 +4976,7 @@
         <image name="button-add-favorite.png" width="54" height="52"/>
         <image name="cancel-hairfie.png" width="64" height="64"/>
         <image name="checkbox-false.png" width="46" height="46"/>
+        <image name="checkbox-true.png" width="46" height="46"/>
         <image name="facebook-connect.png" width="560" height="95"/>
         <image name="hairdresser-price-hairfie-post.png" width="599" height="79"/>
         <image name="hairdresser-where-hairfie-post.png" width="599" height="78"/>
@@ -5089,12 +5024,12 @@
         </simulatedScreenMetrics>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="7yU-V8-5Z9"/>
         <segue reference="uEN-by-6gW"/>
-        <segue reference="dg2-Ph-4Hs"/>
-        <segue reference="LOg-O4-mCP"/>
+        <segue reference="XXf-5V-koX"/>
+        <segue reference="K9z-px-huR"/>
+        <segue reference="PSz-m0-val"/>
         <segue reference="DYR-eo-mJz"/>
-        <segue reference="o5i-ex-i4q"/>
+        <segue reference="VGS-VM-Pwy"/>
         <segue reference="H0a-7y-EaD"/>
     </inferredMetricsTieBreakers>
 </document>

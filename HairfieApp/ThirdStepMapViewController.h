@@ -17,4 +17,8 @@
 @property (nonatomic) CLLocation *businessLocation;
 @property (nonatomic) BusinessClaim *claim;
 
+@property (nonatomic) IBOutlet UIView *containerView;
+@property (nonatomic) IBOutlet NSLayoutConstraint *pinYPos;
+@property (nonatomic) IBOutlet NSLayoutConstraint *mapHeight;
+
 @end

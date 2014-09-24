@@ -8,6 +8,7 @@
 
 #import "ThirdStepMapViewController.h"
 #import "BusinessAnnotation.h"
+#import "FinalStepViewController.h"
 
 @interface ThirdStepMapViewController ()
 
@@ -29,8 +30,18 @@
     [self centerMap];
     _nextBttn.layer.cornerRadius = 5;
     _nextBttn.layer.masksToBounds = YES;
+    
+    
+    
+   
+    _mapHeight.constant = self.view.frame.size.height - 64;
+    _pinYPos.constant = self.view.center.y - 64;
+    NSLog(@"_containerView height %f for map height %f", _pinYPos.constant, _mapHeight.constant);
+    
     // Do any additional setup after loading the view.
 }
+
+
 
 -(IBAction)goBack:(id)sender
 {
@@ -48,21 +59,31 @@
 
 -(IBAction)claimOtherInfos:(id)sender
 {
-     GeoPoint *gps = [[GeoPoint alloc] initWithLocation:newLocation];
     
-     _claim.gps = gps;
+    GeoPoint *gps = [[GeoPoint alloc] initWithLocation:newLocation];
+    _claim.gps = gps;
+  
     void (^loadErrorBlock)(NSError *) = ^(NSError *error){
         NSLog(@"Error : %@", error.description);
     };
     void (^loadSuccessBlock)(NSDictionary *) = ^(NSDictionary *results){
-        NSLog(@"results %@", results);
-        //[self performSegueWithIdentifier:@"claimOtherInfos" sender:self];
+       // NSLog(@"results %@", results);
+        [self performSegueWithIdentifier:@"claimOtherInfos" sender:self];
     };
     
     [_claim claimWithSuccess:loadSuccessBlock failure:loadErrorBlock];
-    [self performSegueWithIdentifier:@"claimOtherInfos" sender:self];
 }
 
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"claimOtherInfos"])
+    {
+        FinalStepViewController *finalStep = [segue destinationViewController];
+        finalStep.claim = [[BusinessClaim alloc] init];
+        finalStep.claim = _claim;
+    }
+}
 
 -(void)centerMap
 {

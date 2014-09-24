@@ -53,18 +53,17 @@
         _claim.kind = KIND_ATHOME;
     
     
-    NSLog(@"CLAIM %@", _claim);
+  //  NSLog(@"CLAIM %@", _claim);
     
     void (^loadErrorBlock)(NSError *) = ^(NSError *error){
         NSLog(@"Error : %@", error.description);
     };
     void (^loadSuccessBlock)(NSDictionary *) = ^(NSDictionary *results){
-        NSLog(@"results %@", results);
-        //[self performSegueWithIdentifier:@"claimKindSalon" sender:self];
+       // NSLog(@"results %@", results);
+        [self performSegueWithIdentifier:@"claimKindSalon" sender:self];
     };
     
     [_claim claimWithSuccess:loadSuccessBlock failure:loadErrorBlock];
-    [self performSegueWithIdentifier:@"claimKindSalon" sender:self];
 }
 
 

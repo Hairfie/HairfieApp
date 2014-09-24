@@ -10,13 +10,13 @@
 
 @interface Timetable : NSObject
 
-@property (strong, nonatomic) NSArray *monday;
-@property (strong, nonatomic) NSArray *tuesday;
-@property (strong, nonatomic) NSArray *thursday;
-@property (strong, nonatomic) NSArray *wednesday;
-@property (strong, nonatomic) NSArray *friday;
-@property (strong, nonatomic) NSArray *saturday;
-@property (strong, nonatomic) NSArray *sunday;
+@property (strong, nonatomic) NSMutableArray *monday;
+@property (strong, nonatomic) NSMutableArray *tuesday;
+@property (strong, nonatomic) NSMutableArray *thursday;
+@property (strong, nonatomic) NSMutableArray *wednesday;
+@property (strong, nonatomic) NSMutableArray *friday;
+@property (strong, nonatomic) NSMutableArray *saturday;
+@property (strong, nonatomic) NSMutableArray *sunday;
 
 -(id)initWithDictionary:(NSDictionary *)aDictionary;
 
@@ -27,5 +27,7 @@
              friday:(NSArray *)aFriday
            saturday:(NSArray *)aSaturday
              sunday:(NSArray *)aSunday;
+
+-(id)initEmpty;
 
 @end

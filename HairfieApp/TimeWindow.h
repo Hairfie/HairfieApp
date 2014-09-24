@@ -20,4 +20,6 @@
                endTime:(NSString *)anEndTime
        appointmentMode:(NSString *)anAppointmentMode;
 
+-(NSString*)timeWindowFormatted;
+
 @end

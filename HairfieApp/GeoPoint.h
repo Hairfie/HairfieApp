@@ -30,5 +30,6 @@
 -(NSNumber *)distanceTo:(GeoPoint *)point;
 
 -(NSString *)asApiString;
+-(NSDictionary*)toDictionary;
 
 @end

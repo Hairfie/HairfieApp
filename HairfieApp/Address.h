@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <LoopBack/LoopBack.h>
 
 @interface Address : NSObject
 
@@ -23,5 +24,6 @@
              country:(NSString *)aCountry;
 
 -(NSString *)displayAddress;
+-(NSDictionary*)toDictionary;
 
 @end

@@ -8,10 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import <LoopBack/LoopBack.h>
-#import "GeoPoint.h"
-#import "Address.h"
 #import "User.h"
 #import "Timetable.h"
+#import "Address.h"
+#import "GeoPoint.h"
 
 @interface BusinessClaim : LBModel
 
@@ -19,18 +19,20 @@
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) GeoPoint *gps;
 @property (strong, nonatomic) User *author;
-@property (strong, nonatomic) NSMutableArray *phoneNumber;
+@property (strong, nonatomic) NSString *phoneNumber;
 @property (strong, nonatomic) Timetable *timetable;
 @property (strong, nonatomic) Address *address;
 @property (strong, nonatomic) NSMutableArray *pictures;
 @property (strong, nonatomic) NSString *thumbnail;
 @property (strong, nonatomic) NSArray *services;
 @property (strong, nonatomic) NSString *kind;
+@property (strong, nonatomic) NSString *desc;
 @property (strong, nonatomic) NSString *authorRole;
+
 @property (nonatomic) BOOL men;
 @property (nonatomic) BOOL women;
 @property (nonatomic) BOOL children;
 
--(void)claimWithSuccess:(void(^)())aSuccessHandler
+-(void)claimWithSuccess:(void(^)(NSDictionary *results))aSuccessHandler
                failure:(void(^)(NSError *error))aFailureHandler;
 @end

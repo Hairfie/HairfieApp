@@ -14,12 +14,17 @@
 @property (nonatomic) IBOutlet UIButton * nextBttn;
 @property (nonatomic) IBOutlet UIButton * salonBttn;
 @property (nonatomic) IBOutlet UIButton * phoneBttn;
+@property (nonatomic) IBOutlet UITextField *salonTextField;
+@property (nonatomic) IBOutlet UITextField *phoneTextField;
 @property (nonatomic) IBOutlet UISegmentedControl *workType;
 @property (nonatomic) IBOutlet UIImageView * manCutCheckBox;
 @property (nonatomic) IBOutlet UIImageView * kidsCutCheckBox;
 @property (nonatomic) IBOutlet UIImageView * womanCutCheckBox;
 @property (nonatomic) IBOutlet UISegmentedControl *jobType;
 @property (nonatomic) BusinessClaim *claim;
+@property (nonatomic) BOOL isSalonSet;
+@property (nonatomic) BOOL isPhoneSet;
+
 -(IBAction)goBack:(id)sender;
 
 @end

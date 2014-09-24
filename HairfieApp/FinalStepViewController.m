@@ -8,6 +8,8 @@
 
 #import "FinalStepViewController.h"
 #import "SecondStepSalonPhoneViewController.h"
+#import "FinalStepAddressViewController.h"
+#import "Address.h"
 
 @interface FinalStepViewController ()
 
@@ -21,6 +23,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
+    NSLog(@"CLAIM %@", _claim);
+    _phoneBttn.titleLabel.text = _claim.phoneNumber;
+
+    _addressBttn.titleLabel.text = [_claim.address displayAddress];
+    _nameLabel.text = _claim.name;
     
     _validateBttn.layer.cornerRadius = 5;
     _validateBttn.layer.masksToBounds = YES;
@@ -58,9 +67,18 @@
     // Do any additional setup after loading the view.
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    _phoneBttn.titleLabel.text = _claim.phoneNumber;
+    
+    _addressBttn.titleLabel.text = [_claim.address displayAddress];
+    
+    _nameLabel.text = _claim.name;
+}
+
 -(void) chooseCameraType
 {
-    NSLog(@"add picture");
+
 }
 
 
@@ -122,20 +140,52 @@
     [self performSegueWithIdentifier:@"claimPhone" sender:self];
 }
 
+-(IBAction)modifyName:(id)sender
+{
+    [self performSegueWithIdentifier:@"claimSalon" sender:self];
+}
+
+-(IBAction)modifyAddress:(id)sender
+{
+    [self performSegueWithIdentifier:@"claimAddress" sender:self];
+}
+
+
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    
+    if ([segue.identifier isEqualToString:@"claimSalon"])
+    {
+        
+        SecondStepSalonPhoneViewController *salon = [segue destinationViewController];
+        salon.isFinalStep = YES;
+        salon.isExisting = YES;
+        salon.isSalon = YES;
+        salon.headerTitle = @"Salon's name";
+        salon.textFieldPlaceHolder = @"Salon's name";
+        salon.textFieldFromSegue = _claim.name;
+        
+    }
     
     if ([segue.identifier isEqualToString:@"claimPhone"])
     {
         
         SecondStepSalonPhoneViewController *phone = [segue destinationViewController];
+        phone.isFinalStep = YES;
+        phone.isExisting = YES;
+        phone.isSalon = NO;
+        phone.headerTitle = @"Phone Number";
+        phone.textFieldPlaceHolder = @"Phone number";
+        phone.textFieldFromSegue = _claim.phoneNumber;
         
-        if (![_phoneBttn.titleLabel.text isEqualToString:@"Numéro de téléphone"]) {
-            phone.textFieldFromSegue = _phoneBttn.titleLabel.text;
-        }
-        phone.headerTitle = @"Téléphone";
-        phone.textFieldPlaceHolder = @"Numéro de téléphone";
     }
+    if ([segue.identifier isEqualToString:@"claimAddress"])
+    {
+        FinalStepAddressViewController *claimAddress = [segue destinationViewController];
+        claimAddress.address = _claim.address;
+    
+    }
+    
 }
 
 /*

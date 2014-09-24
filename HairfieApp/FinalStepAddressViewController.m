@@ -7,6 +7,7 @@
 //
 
 #import "FinalStepAddressViewController.h"
+#import "FinalStepViewController.h"
 
 @interface FinalStepAddressViewController ()
 
@@ -21,13 +22,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UIView *addressPadding = [[UIView alloc] initWithFrame:CGRectMake(0, 0,20, 46)];
+    
+    _street.text = _address.street;
+    _city.text = _address.city;
+    _country.text = _address.country;
+    
+    UIView *streetPadding = [[UIView alloc] initWithFrame:CGRectMake(0, 0,20, 46)];
 
-    _address.layer.cornerRadius =5;
-    _address.layer.borderColor = [UIColor lightGreyHairfie].CGColor;
-    _address.layer.borderWidth = 1;
-    _address.leftView = addressPadding;
-    _address.leftViewMode = UITextFieldViewModeAlways;
+    _street.layer.cornerRadius =5;
+    _street.layer.borderColor = [UIColor lightGreyHairfie].CGColor;
+    _street.layer.borderWidth = 1;
+    _street.leftView = streetPadding;
+    _street.leftViewMode = UITextFieldViewModeAlways;
     
     UIView *cityPadding = [[UIView alloc] initWithFrame:CGRectMake(0, 0,20, 46)];
     
@@ -48,7 +54,7 @@
      _doneBttn.layer.cornerRadius = 5;
     
     
-    [_address becomeFirstResponder];
+    [_street becomeFirstResponder];
     // Do any additional setup after loading the view.
 }
 
@@ -77,6 +83,12 @@
 -(IBAction)validateAddress:(id)sender
 {
     // TO DO enregistrer l'adresse modifiée
+    
+    FinalStepViewController *finalStep = [self.navigationController.viewControllers objectAtIndex:[self.navigationController.viewControllers count]-2];
+    
+    finalStep.claim.address.street = _street.text;
+    finalStep.claim.address.city = _city.text;
+    finalStep.claim.address.country = _country.text;
     
     [self goBack:self];
 }

@@ -14,7 +14,7 @@
 @implementation BusinessClaim
 
 
--(void)claimWithSuccess:(void(^)())aSuccessHandler
+-(void)claimWithSuccess:(void(^)(NSDictionary *results))aSuccessHandler
                failure:(void(^)(NSError *error))aFailureHandler
 {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
@@ -29,7 +29,7 @@
         [parameters setObject:self.kind forKey:@"kind"];
    
     if (self.gps != nil)
-        [parameters setObject:self.gps forKey:@"gps"];
+        [parameters setObject:[self.gps toDictionary] forKey:@"gps"];
     
     if (self.phoneNumber != nil)
         [parameters setObject:self.phoneNumber forKey:@"phoneNumber"];
@@ -38,9 +38,10 @@
         [parameters setObject:self.timetable forKey:@"timetable"];
     
     if (self.address != nil)
-    {
-        [parameters setObject:self.address forKey:@"address"];
-    }
+        [parameters setObject:[self.address toDictionary]  forKey:@"address"];
+    
+    if (self.desc != nil)
+        [parameters setObject:self.desc forKey:@"description"];
     
     if (self.pictures != nil)
         [parameters setObject:self.pictures forKey:@"pictures"];
@@ -63,11 +64,6 @@
         [parameters setObject:@false forKey:@"children"];
     
 
-    
-    void (^onSuccess)(NSDictionary *) = ^(NSDictionary *result) {
-        aSuccessHandler();
-    };
-    
     if (nil == self.id) {
         [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/businessclaims"
                                                                                      verb:@"POST"]
@@ -77,7 +73,7 @@
         NSLog(@"parameters :%@", parameters);
         [repository invokeStaticMethod:@""
                                    parameters:parameters
-                                      success:onSuccess
+                                      success:aSuccessHandler
                                       failure:aFailureHandler];
         
     } else {
@@ -88,7 +84,7 @@
         
         [[self repository] invokeStaticMethod:@"update"
                                    parameters:parameters
-                                      success:onSuccess
+                                      success:aSuccessHandler
                                       failure:aFailureHandler];
     }
 }
