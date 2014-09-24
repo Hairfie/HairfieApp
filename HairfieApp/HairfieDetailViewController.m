@@ -32,9 +32,8 @@
     NSArray *displayedInfoNames;
 }
 
-@synthesize myScrollView = _myScrollView, hairfieImageView = _hairfieImageView;
-
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
 
     _hairfieCollection.delegate = self;
@@ -44,6 +43,8 @@
     [_hairfieCollection registerNib:[UINib nibWithNibName:@"HairfieDetailCollectionReusableView" bundle:nil]forCellWithReuseIdentifier:@"headerCollection"];
 
     [_hairfieCollection registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView"];
+
+    self.headerTitleLabel.text = NSLocalizedStringFromTable(@"User's Hairfie", @"Hairfie_Detail", nil);
 }
 
 -(void) viewWillAppear:(BOOL)animated {
@@ -170,7 +171,7 @@
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
 {
-    return CGSizeMake(320, 1065);
+    return CGSizeMake(320, 600);
 }
 
 // header view data source
@@ -180,7 +181,7 @@
     UICollectionReusableView *collectionHeaderView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView" forIndexPath:indexPath];
 
     // HEADER
-
+    /*
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 64)];
 
     UIImage *backButtonImg = [UIImage imageNamed:@"arrow-nav.png"];
@@ -196,6 +197,7 @@
 
     [headerView addSubview:backButton];
     [headerView addSubview:headerTitle];
+    */
 
     // HAIRFIE
 
@@ -368,7 +370,7 @@
     // Hairfitter profile pic (added manually because circled view)
      */
 
-    [collectionHeaderView addSubview:headerView];
+    //[collectionHeaderView addSubview:headerView];
     [collectionHeaderView addSubview:hairfieView];
     [collectionHeaderView addSubview:hairfieDetailView];
 
