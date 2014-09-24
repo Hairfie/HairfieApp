@@ -140,6 +140,7 @@
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         } else if ([infoName isEqualToString:@"price"]) {
             cell.pictoView.image = [UIImage imageNamed:@"picto-hairfie-detail-price.png"];
+            cell.userInteractionEnabled = false;
             cell.contentLabel.text = self.currentHairfie.displayPrice;
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         } else if ([infoName isEqualToString:@"hairdresser"]) {
