@@ -744,7 +744,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" indicatorStyle="white" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="cI1-7M-VAJ">
-                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <rect key="frame" x="0.0" y="71" width="320" height="504"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="320" id="mOu-0Q-iLK"/>
@@ -827,7 +827,7 @@
                                 </connections>
                             </collectionView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N5w-u2-R23" userLabel="Header View">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="71"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oMy-sN-To3">
                                         <rect key="frame" x="0.0" y="25" width="41" height="32"/>
@@ -863,7 +863,7 @@
                                 <color key="backgroundColor" red="0.15686274509803921" green="0.19215686274509802" blue="0.22352941176470587" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="320" id="5w4-ia-VsG"/>
-                                    <constraint firstAttribute="height" constant="64" id="dmF-ou-gtT"/>
+                                    <constraint firstAttribute="height" constant="71" id="dmF-ou-gtT"/>
                                 </constraints>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UlN-Ro-o4h" userLabel="Search View" customClass="AdvanceSearch">
@@ -904,7 +904,7 @@
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TBs-i3-Gkf">
-                                        <rect key="frame" x="-8" y="0.0" width="320" height="64"/>
+                                        <rect key="frame" x="-8" y="0.0" width="320" height="71"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Search" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z7D-q0-1Wu">
                                                 <rect key="frame" x="122" y="27" width="76" height="21"/>
@@ -945,6 +945,19 @@
                                     <outlet property="searchByName" destination="K7N-wZ-5Yz" id="65F-35-6FN"/>
                                 </connections>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GvC-kG-3Q1">
+                                <rect key="frame" x="126" y="491" width="68" height="69"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="68" id="kc9-5e-fHS"/>
+                                    <constraint firstAttribute="height" constant="69" id="pnF-kz-A77"/>
+                                </constraints>
+                                <state key="normal" image="take-picture-button.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="C0A-PA-Dfl" kind="push" id="V8d-QS-Qes"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -955,6 +968,8 @@
                             <constraint firstAttribute="bottom" secondItem="cI1-7M-VAJ" secondAttribute="bottom" id="LAS-7Z-lf2"/>
                             <constraint firstItem="cI1-7M-VAJ" firstAttribute="top" secondItem="N5w-u2-R23" secondAttribute="bottom" id="TDZ-Hn-mPY"/>
                             <constraint firstItem="N5w-u2-R23" firstAttribute="top" secondItem="4KN-ho-QEE" secondAttribute="top" id="cuG-yR-PtL"/>
+                            <constraint firstItem="tBR-Dh-Qg0" firstAttribute="top" secondItem="GvC-kG-3Q1" secondAttribute="bottom" constant="8" id="kiH-Gp-fnR"/>
+                            <constraint firstAttribute="centerX" secondItem="GvC-kG-3Q1" secondAttribute="centerX" id="lGJ-9D-3OM"/>
                             <constraint firstItem="cI1-7M-VAJ" firstAttribute="leading" secondItem="N5w-u2-R23" secondAttribute="leading" id="lZG-Hp-x11"/>
                             <constraint firstItem="cI1-7M-VAJ" firstAttribute="trailing" secondItem="N5w-u2-R23" secondAttribute="trailing" id="vQD-La-bEt"/>
                             <constraint firstItem="N5w-u2-R23" firstAttribute="leading" secondItem="4KN-ho-QEE" secondAttribute="leading" id="vZ9-1Z-5N1"/>
@@ -972,7 +987,6 @@
                         <outlet property="menuButton" destination="oMy-sN-To3" id="4Lh-kd-nI6"/>
                         <outlet property="searchField" destination="ePq-Fx-C9u" id="9tX-HK-uFj"/>
                         <outlet property="searchView" destination="UlN-Ro-o4h" id="Gfv-cA-ACV"/>
-                        <outlet property="takePictureButton" destination="aH7-em-gOi" id="eB9-KY-5K3"/>
                         <outlet property="topBarView" destination="N5w-u2-R23" id="LGK-6x-IIn"/>
                         <segue destination="5vw-Wx-iMq" kind="push" identifier="searchFromFeed" id="4Cm-qL-flu"/>
                     </connections>
@@ -1001,7 +1015,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fGv-4K-iyM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="234" y="-3062"/>
+            <point key="canvasLocation" x="228" y="-3044"/>
         </scene>
         <!--Apply Filters View Controller-->
         <scene sceneID="DFO-ad-oPT">
@@ -1835,7 +1849,7 @@
                                 </prototypes>
                             </tableView>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xfm-gp-qXV">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="71"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ES7-vA-bDw">
                                         <rect key="frame" x="0.0" y="21" width="40" height="40"/>
@@ -5062,6 +5076,7 @@
         <image name="search-bar.png" width="459" height="55"/>
         <image name="send-email-client-button.png" width="599" height="79"/>
         <image name="statusLabelView.png" width="38" height="23"/>
+        <image name="take-picture-button.png" width="153" height="153"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
@@ -5073,8 +5088,8 @@
         <segue reference="o5i-ex-i4q"/>
         <segue reference="7yU-V8-5Z9"/>
         <segue reference="uEN-by-6gW"/>
+        <segue reference="dg2-Ph-4Hs"/>
         <segue reference="DYR-eo-mJz"/>
-        <segue reference="K9z-px-huR"/>
         <segue reference="XXf-5V-koX"/>
     </inferredMetricsTieBreakers>
 </document>
