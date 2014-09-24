@@ -12,20 +12,8 @@
 
 @interface HairfieDetailViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UITableViewDelegate, UITableViewDataSource>
 
-
-@property (nonatomic) IBOutlet UIScrollView *myScrollView;
-@property (nonatomic) IBOutlet UIImageView *hairfieImageView;
-//@property (nonatomic) IBOutlet UITableView *infoTableView;
-//@property (nonatomic) IBOutlet UITableView *commentTableView;
-//@property (nonatomic) IBOutlet UITextField *addComment;
-
-//@property (nonatomic) IBOutlet UIView *infoView;
-//@property (nonatomic) IBOutlet UIView *hairfieView;
-@property (weak, nonatomic) IBOutlet UIButton *likeButton;
-
-
+@property (nonatomic) IBOutlet UILabel *headerTitleLabel;
 @property (nonatomic) IBOutlet UICollectionView *hairfieCollection;
-
 
 @property (nonatomic) Hairfie *currentHairfie;
 @property (nonatomic) UIImage *hairfieImage;
