@@ -8,6 +8,7 @@
 
 #import "ApplyFiltersViewController.h"
 #import "HairfiePostDetailsViewController.h"
+#import "UIImage+Filters.h"
 
 @implementation ApplyFiltersViewController
 {
@@ -33,22 +34,10 @@
     //int imageSize   = imgData.length;
     NSLog(@"size of image in KB: %f ", imgData.length/1024.0);
     _filtersView.hidden = NO;
-}
-
--(UIImage *) toSepia:(UIImage *)originalImage {
-    CIContext *context = [CIContext contextWithOptions:nil];
-
-    CIImage *beginImage = [CIImage imageWithCGImage:originalImage.CGImage];
-    CIFilter *filter = [CIFilter filterWithName:@"CISepiaTone"
-                                  keysAndValues: kCIInputImageKey, beginImage,
-                        @"inputIntensity", @0.8, nil];
-
-    CIImage *result = [filter outputImage];
-    CGImageRef outputImage = [context createCGImage:result fromRect:[result extent]];
-    UIImage *newImage = [UIImage imageWithCGImage:outputImage scale:0 orientation:originalImage.imageOrientation];
-    CGImageRelease(outputImage);
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        sepia = [original toSepia:0.8];
+    });
     
-    return [self squareCropImage:newImage ToSideLength:320];
 }
 
 -(IBAction)goBack:(id)sender
@@ -121,9 +110,6 @@
 }
 
 -(IBAction)sepia:(id)sender {
-    if(!sepia) {
-        sepia = [self toSepia:original];
-    }
     imageView.image = sepia;
     imageView.contentMode = UIViewContentModeScaleAspectFill;
     output = sepia;

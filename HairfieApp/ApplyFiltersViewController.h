@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UIImage+Filters.h"
 
 @interface ApplyFiltersViewController : UIViewController <UINavigationControllerDelegate>
 
