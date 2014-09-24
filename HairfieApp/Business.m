@@ -33,18 +33,15 @@
 {
     self = [super init];
 
-    self.numReviews = @3;
-    self.rating = @80;
-
     self = (Business*)[[Business repository] modelWithDictionary:data];
-    
+
     // seems there is a parser issue with boolean values...
     if ([[data objectForKey:@"crossSell"] isEqualToNumber:@1]) {
         self.crossSell = YES;
     } else {
         self.crossSell = NO;
     }
-    
+
     return self;
 }
 
