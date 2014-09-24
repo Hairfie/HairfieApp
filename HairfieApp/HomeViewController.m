@@ -93,6 +93,7 @@
 {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willSearch:) name:@"searchQuery" object:nil];
     [self getHairfies:nil];
+    [ARAnalytics pageView:@"AR - Feed"];
 }
 
 

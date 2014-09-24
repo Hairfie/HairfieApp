@@ -14,4 +14,10 @@
 
 @property (nonatomic) IBOutlet UIImageView *imageView;
 
+@property (nonatomic) IBOutlet UIView *filtersView;
+
+
+-(IBAction)sepia:(id)sender;
+-(IBAction)original:(id)sender;
+
 @end

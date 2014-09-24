@@ -56,6 +56,7 @@
         _hairdresserSubview.hidden = NO;
         
     }
+    [ARAnalytics pageView:@"AR - Post Hairfie step #3 - Post Detail"];
 }
 
 - (BOOL) textView: (UITextView*) textView
@@ -184,6 +185,13 @@ shouldChangeTextInRange: (NSRange) range
 {
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     if([delegate.credentialStore isLoggedIn]) {
+
+        UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        [spinner setFrame:CGRectMake(150, self.view.frame.size.height/2, spinner.frame.size.width, spinner.frame.size.height)];
+        spinner.hidesWhenStopped = YES;
+        
+        [spinner startAnimating];
+        
         NSLog(@"Post Hairfie");
         while (uploadInProgress) {
             NSLog(@"---------- Upload in progress ----------");
@@ -216,10 +224,13 @@ shouldChangeTextInRange: (NSRange) range
         
         void (^loadErrorBlock)(NSError *) = ^(NSError *error){
             NSLog(@"Error : %@", error.description);
+            [spinner stopAnimating];
+
         };
         void (^loadSuccessBlock)(Hairfie *) = ^(Hairfie *hairfiePosted){
             
             NSLog(@"Hairfie Posté");
+            [spinner stopAnimating];
             [self.navigationController popToRootViewControllerAnimated:YES];
         };
         [hairfieToPost saveWithSuccess:loadSuccessBlock failure:loadErrorBlock];

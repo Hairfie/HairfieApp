@@ -97,6 +97,7 @@
 {
     [_delegate startTrackingLocation:YES];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willSearch:) name:@"searchQuery" object:nil];
+    [ARAnalytics pageView:@"AR - Around me"];
 }
 
 -(void)viewWillDisappear:(BOOL)animated

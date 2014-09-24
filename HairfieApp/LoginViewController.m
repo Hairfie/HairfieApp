@@ -63,6 +63,10 @@
     // Do any additional setup after loading the view.
 }
 
+-(void) viewWillAppear:(BOOL)animated {
+    [ARAnalytics pageView:@"AR - LoginView"];
+}
+
 -(void) dismissTextFields
 {
     [_passwordField resignFirstResponder];
@@ -144,6 +148,7 @@
 }
 
 -(IBAction)skip:(id)sender {
+    [ARAnalytics event:@"AR - Skip"];
     [self performSegueWithIdentifier:@"skipLogin" sender:self];
 }
 

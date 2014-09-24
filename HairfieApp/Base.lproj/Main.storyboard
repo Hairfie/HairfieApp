@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6205" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="dEN-gt-xJT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A329r" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="dEN-gt-xJT">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6198"/>
-        <capability name="Constraints with attributes relative to the layout margin" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="SourceSansPro-Bold.ttf">
@@ -1013,7 +1013,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BYw-ul-o7V">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BYw-ul-o7V">
                                 <rect key="frame" x="0.0" y="90" width="320" height="320"/>
                             </imageView>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JC7-rw-pY7">
@@ -1042,11 +1042,56 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.1764705882" green="0.22352941179999999" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xOx-8O-8sU">
+                                <rect key="frame" x="0.0" y="410" width="320" height="90"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="txc-Qj-wYU">
+                                        <rect key="frame" x="15" y="14" width="60" height="60"/>
+                                        <color key="backgroundColor" red="0.98039215690000003" green="0.47450980390000003" blue="0.51764705879999995" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="51" id="Jyb-we-97q"/>
+                                            <constraint firstAttribute="width" constant="60" id="P3r-qh-ra0"/>
+                                        </constraints>
+                                        <state key="normal" title="No Filter">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="original:" destination="QW8-eh-zsD" eventType="touchUpInside" id="nem-K1-yBz"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p28-Lo-Kzd">
+                                        <rect key="frame" x="103" y="14" width="60" height="60"/>
+                                        <color key="backgroundColor" red="0.98039215690000003" green="0.47450980390000003" blue="0.51764705879999995" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="60" id="S1m-D7-KMR"/>
+                                            <constraint firstAttribute="height" constant="51" id="lty-fo-ZdM"/>
+                                        </constraints>
+                                        <state key="normal" title="Sepia">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="sepia:" destination="QW8-eh-zsD" eventType="touchUpInside" id="KhM-nL-Rfa"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="p28-Lo-Kzd" secondAttribute="bottom" constant="16" id="Di7-CP-YqD"/>
+                                    <constraint firstItem="txc-Qj-wYU" firstAttribute="top" secondItem="xOx-8O-8sU" secondAttribute="top" constant="15" id="V6d-6W-mxX"/>
+                                    <constraint firstAttribute="bottom" secondItem="txc-Qj-wYU" secondAttribute="bottom" constant="15" id="r01-dK-zEo"/>
+                                    <constraint firstItem="p28-Lo-Kzd" firstAttribute="top" secondItem="xOx-8O-8sU" secondAttribute="top" constant="15" id="tZ3-Om-Gmv"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.1960784314" green="0.26274509800000001" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="xOx-8O-8sU" firstAttribute="top" secondItem="BYw-ul-o7V" secondAttribute="bottom" id="OcL-tx-1gc"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="tko-RM-suj"/>
                     <connections>
+                        <outlet property="filtersView" destination="xOx-8O-8sU" id="pWA-7f-o5K"/>
                         <outlet property="imageView" destination="BYw-ul-o7V" id="LRT-qH-D9j"/>
                     </connections>
                 </viewController>
@@ -1643,12 +1688,13 @@
                     <size key="freeformSize" width="320" height="568"/>
                     <connections>
                         <outlet property="hairfieCollection" destination="KAR-xV-XBM" id="jKF-L5-rJc"/>
+                        <outlet property="headerTitleLabel" destination="ZWR-sP-OId" id="F9a-H0-2b2"/>
                         <segue destination="pDa-if-Gwb" kind="push" identifier="businessDetail" id="LOg-O4-mCP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hv8-dL-qIH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1682" y="-2276"/>
+            <point key="canvasLocation" x="1662" y="-2264"/>
         </scene>
         <!--Comment View Controller-->
         <scene sceneID="Lfa-xW-VeP">
@@ -1909,10 +1955,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="HS4-gi-6R9"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4">
-                        <size key="portraitSize" width="320" height="568"/>
-                        <size key="landscapeSize" width="568" height="320"/>
-                    </simulatedScreenMetrics>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="hairdresserTableView" destination="tHR-dR-4MZ" id="fF7-Up-LEG"/>
                         <outlet property="headerView" destination="zB0-FQ-0pr" id="EUs-It-oYn"/>
@@ -5018,10 +5061,7 @@
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4">
-            <size key="portraitSize" width="320" height="568"/>
-            <size key="landscapeSize" width="568" height="320"/>
-        </simulatedScreenMetrics>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="uEN-by-6gW"/>
@@ -5030,6 +5070,10 @@
         <segue reference="PSz-m0-val"/>
         <segue reference="DYR-eo-mJz"/>
         <segue reference="VGS-VM-Pwy"/>
+        <segue reference="DYR-eo-mJz"/>
+        <segue reference="K9z-px-huR"/>
+        <segue reference="XXf-5V-koX"/>
+        <segue reference="o5i-ex-i4q"/>
         <segue reference="H0a-7y-EaD"/>
     </inferredMetricsTieBreakers>
 </document>

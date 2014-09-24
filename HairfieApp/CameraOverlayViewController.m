@@ -44,6 +44,10 @@
     
 }
 
+-(void) viewWillAppear:(BOOL)animated {
+    [ARAnalytics pageView:@"AR - Post Hairfie step #1 - Camera Overlay"];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -254,6 +258,11 @@
         imageTaken = [info valueForKey:UIImagePickerControllerEditedImage];
     } else {
         imageTaken = [info valueForKey:UIImagePickerControllerOriginalImage];
+    }
+    
+    if( _imagePicker.sourceType == UIImagePickerControllerSourceTypeCamera
+       && _imagePicker.cameraDevice == UIImagePickerControllerCameraDeviceFront) {
+        imageTaken = [UIImage imageWithCGImage:imageTaken.CGImage scale:imageTaken.scale orientation:UIImageOrientationLeftMirrored];
     }
     
 }

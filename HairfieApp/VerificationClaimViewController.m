@@ -40,7 +40,9 @@
     // Do any additional setup after loading the view.
 }
 
-
+-(void) viewWillAppear:(BOOL)animated {
+    [ARAnalytics pageView:@"AR - Verification Claim"];
+}
 
 
 - (void)didReceiveMemoryWarning {

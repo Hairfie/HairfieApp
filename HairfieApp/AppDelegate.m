@@ -37,6 +37,10 @@ static LBRESTAdapter * _lbAdaptater = nil;
 {
     [NewRelicAgent startWithApplicationToken:NEWRELIC_APP_TOKEN];
     
+    [ARAnalytics setupWithAnalytics:@{
+                                      ARGoogleAnalyticsID : GOOGLE_ANALYTICS_TOKEN
+                                      }];
+    
     _manager = [[CLLocationManager alloc] init];
     _credentialStore = [[CredentialStore alloc] init];
 
