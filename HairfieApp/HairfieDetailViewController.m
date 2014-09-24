@@ -27,7 +27,6 @@
     UIView *hairfieDetailView;
     UILabel *nbLike;
     UITableView *detailsTableView;
-    UITableView *commentsTableView;
     UIButton *likeButton;
     UIImageView *likeView;
     NSArray *displayedInfoNames;
@@ -83,7 +82,7 @@
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (tableView == detailsTableView) {
         return displayedInfoNames.count;
@@ -92,10 +91,8 @@
     return 2;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (tableView == commentsTableView)
-        return 130;
     return 43;
 }
 
@@ -169,24 +166,10 @@
     return nil;
 }
 
-
-// Collection View delegate
-
-
-- (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section {
-    return 4;
-}
-
-- (NSInteger)numberOfSectionsInCollectionView: (UICollectionView *)collectionView {
-    return 1;
-}
-
-
 // header view size
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
 {
-
     return CGSizeMake(320, 1065);
 }
 
@@ -265,6 +248,7 @@
     nbLike.textColor = [UIColor whiteColor];
     nbLike.font = [UIFont fontWithName:@"SourceSansPro-SemiBold" size:18];
 
+    /*
     UIImageView *commentPicto = [[UIImageView alloc] initWithFrame:CGRectMake(86, 290, 26, 20)];
     commentPicto.image = [UIImage imageNamed:@"picto-hairfie-comment.png"];
 
@@ -272,12 +256,13 @@
     nbComment.text = [self.currentHairfie displayNumComments];
     nbComment.textColor = [UIColor whiteColor];
     nbComment.font = [UIFont fontWithName:@"SourceSansPro-SemiBold" size:18];
+     */
 
     [hairfieView addSubview:hairfieImageView];
     [hairfieView addSubview:likeButton];
     [hairfieView addSubview:nbLike];
-    [hairfieView addSubview:commentPicto];
-    [hairfieView addSubview:nbComment];
+    //[hairfieView addSubview:commentPicto];
+    //[hairfieView addSubview:nbComment];
 
     // HAIRFIE DETAIL
 
@@ -320,7 +305,7 @@
     detailsTableView.backgroundColor = [UIColor clearColor];
     detailsTableView.scrollEnabled = NO;
 
-
+    /*
     UILabel *commentsLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 596, 185, 21)];
     commentsLabel.text = NSLocalizedStringFromTable(@"Comments", @"Hairfie_Detail", nil);
     commentsLabel.font = [UIFont fontWithName:@"SourceSansPro-Light" size:18];
@@ -381,22 +366,22 @@
     UIView *similarLineBreaker = [[UIView alloc] initWithFrame:CGRectMake(10, 1030, 186, 1)];
     similarLineBreaker.backgroundColor = [UIColor lightGreyHairfie];
     // Hairfitter profile pic (added manually because circled view)
-
+     */
 
     [collectionHeaderView addSubview:headerView];
     [collectionHeaderView addSubview:hairfieView];
     [collectionHeaderView addSubview:hairfieDetailView];
 
     [collectionHeaderView addSubview:detailsTableView];
-    [collectionHeaderView addSubview:commentsLabel];
-    [collectionHeaderView addSubview:commentLineBreaker];
-    [collectionHeaderView addSubview:bigAddCommentButton];
-    [collectionHeaderView addSubview:addCommentLabel];
-    [collectionHeaderView addSubview:commentsTableView];
-    [collectionHeaderView addSubview:addCommentButton];
-    [collectionHeaderView addSubview:moreCommentButton];
-    [collectionHeaderView addSubview:similarHairfieLabel];
-    [collectionHeaderView addSubview:similarLineBreaker];
+    //[collectionHeaderView addSubview:commentsLabel];
+    //[collectionHeaderView addSubview:commentLineBreaker];
+    //[collectionHeaderView addSubview:bigAddCommentButton];
+    //[collectionHeaderView addSubview:addCommentLabel];
+    //[collectionHeaderView addSubview:commentsTableView];
+    //[collectionHeaderView addSubview:addCommentButton];
+    //[collectionHeaderView addSubview:moreCommentButton];
+    //[collectionHeaderView addSubview:similarHairfieLabel];
+    //[collectionHeaderView addSubview:similarLineBreaker];
 
     [self reloadData];
     
@@ -422,6 +407,8 @@
         [tempDisplayedInfoNames addObject:@"price"];
     }
     displayedInfoNames = [[NSArray alloc] initWithArray:tempDisplayedInfoNames];
+
+    detailsTableView.hidden = (0 == displayedInfoNames.count);
 }
 
 -(void)likeButtonHandler:(id)sender
@@ -460,7 +447,8 @@
     }
 }
 
--(void) doLikeAnimation {
+-(void)doLikeAnimation
+{
     [likeView setHidden:NO];
     [likeView setFrame:CGRectMake(130, 130, 60, 60)];
     [UIView beginAnimations:@"anim" context:nil];
@@ -469,7 +457,8 @@
     [UIView commitAnimations];
 }
 
-- (void)doubleTap:(UITapGestureRecognizer *)sender {
+-(void)doubleTap:(UITapGestureRecognizer *)sender
+{
     if (sender.state == UIGestureRecognizerStateRecognized) {
         [self likeButtonHandler:nil];
     }
@@ -481,9 +470,23 @@
 }
 
 
-- (CustomCollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
 
-      static NSString *CellIdentifier = @"hairfieRelated";
+// Collection View delegate
+
+
+-(NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section
+{
+    return 0;
+}
+
+-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
+    return 1;
+}
+
+-(CustomCollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"hairfieRelated";
     CustomCollectionViewCell *cell = [cv dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
 
     if (cell == nil) {
@@ -499,7 +502,7 @@
 }
 
 
--(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"addComment"]) {
         CommentViewController *comment = [segue destinationViewController];
