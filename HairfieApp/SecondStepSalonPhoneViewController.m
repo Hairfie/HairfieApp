@@ -57,15 +57,12 @@
     return YES;
 }
 
-
-
-
+// => WTF, copie coller immonde ici ??
 -(void) addDoneButtonToPriceField {
 
 
     UIToolbar* keyboardDoneButtonView = [[UIToolbar alloc] init];
     keyboardDoneButtonView.barTintColor = [UIColor redHairfie];
-    //keyboardDoneButtonView.backgroundColor = [UIColor redHairfie];
     [keyboardDoneButtonView sizeToFit];
     
     UIBarButtonItem* doneButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedStringFromTable(@"Validate phone", @"Claim", nil)

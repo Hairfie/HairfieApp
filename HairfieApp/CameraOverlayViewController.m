@@ -115,7 +115,7 @@
     [overlayView addSubview:switchCameraButton];
     [overlayView addSubview:switchHelpButton];
     [overlayView addSubview:takePictureButton];
-    [self addFaceShapeToOverlay:overlayView];
+    //[self addFaceShapeToOverlay:overlayView];
 
     _imagePicker.cameraOverlayView = overlayView;
 }

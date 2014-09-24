@@ -45,7 +45,7 @@
     _emailSubview.hidden = YES;
     salonTypes = [[NSArray alloc] initWithObjects:@"I did it", @"Hairdresser in a Salon", nil];
     _tableViewHeight.constant = [salonTypes count] * _dataChoice.rowHeight;
-    //[self addDoneButtonToPriceField];
+    [self addDoneButtonToPriceField];
     [self uploadProfileImage:_hairfie];
 }
 
@@ -260,16 +260,18 @@ shouldChangeTextInRange: (NSRange) range
 -(void) addDoneButtonToPriceField {
     UIToolbar* keyboardDoneButtonView = [[UIToolbar alloc] init];
     [keyboardDoneButtonView sizeToFit];
+    keyboardDoneButtonView.barTintColor = [UIColor redHairfie];
     UIBarButtonItem* doneButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedStringFromTable(@"OK", @"Post_Hairfie", nil)
                                                                    style:UIBarButtonItemStyleBordered
                                                                   target:self
                                                                   action:@selector(doneClicked:)];
+    doneButton.tintColor = [UIColor whiteColor];
     UIBarButtonItem *flex =
         [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                                                        target:self
                                                        action:nil];
 
-    [keyboardDoneButtonView setItems:[NSArray arrayWithObjects:flex, doneButton, nil]];
+    [keyboardDoneButtonView setItems:[NSArray arrayWithObjects:flex, doneButton, flex, nil]];
     _priceTextField.inputAccessoryView = keyboardDoneButtonView;
 }
 
