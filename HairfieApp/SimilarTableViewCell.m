@@ -8,11 +8,15 @@
 
 #import "SimilarTableViewCell.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "AppDelegate.h"
 
 @implementation SimilarTableViewCell
+{
+    GeoPoint *currentLocation;
+}
 
-- (void)awakeFromNib {
-    
+-(void)awakeFromNib
+{
     _salonPicture.layer.cornerRadius = 5;
     _salonPicture.layer.masksToBounds = YES;
     
@@ -35,7 +39,7 @@
     // Initialization code
 }
 
-- (void) customInit:(Business *)business
+-(void)customInit:(Business *)business
 {
     [SDWebImageDownloader.sharedDownloader downloadImageWithURL:[NSURL URLWithString:business.thumbnail]
                                                         options:0
@@ -47,12 +51,17 @@
                                                       }];
     
     self.name.text = business.name;
-    self.location.text = [NSString stringWithFormat:@"%.1f km", [business.distance floatValue] / 1000];
     self.ratingView.rating = [[business ratingBetween:@0 and:@5] floatValue];
-    
     self.numHairfiesLabel.text = business.displayNumHairfies;
-}
 
+    GeoPoint *currentLocation = [(AppDelegate *)[[UIApplication sharedApplication] delegate] currentLocation];
+    
+    if (currentLocation == nil) {
+        self.location.hidden = YES;
+    } else {
+        self.location.text = [NSString stringWithFormat:@"%.1f km", [[business distanceTo:currentLocation] floatValue] / 1000];
+    }
+}
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

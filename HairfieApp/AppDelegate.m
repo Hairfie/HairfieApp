@@ -111,6 +111,13 @@ static LBRESTAdapter * _lbAdaptater = nil;
 {
 
    _myLocation = [locations lastObject];
+    
+    if (nil == _myLocation) {
+        self.currentLocation = nil;
+    } else {
+        self.currentLocation = [[GeoPoint alloc] initWithLocation:self.myLocation];
+    }
+    
     [[NSNotificationCenter defaultCenter] postNotificationName:@"newLocationNotif"
                                                         object:self
                                                       userInfo:[NSDictionary dictionaryWithObject:_myLocation

@@ -19,6 +19,7 @@
 @property (strong, nonatomic) UIWindow *window;
 @property (nonatomic)     CLLocationManager *manager;
 @property (nonatomic)     CLLocation *myLocation;
+@property (nonatomic) GeoPoint *currentLocation;
 @property (nonatomic) User *currentUser;
 @property (nonatomic) Hairfie *hairfie;
 @property (nonatomic) CredentialStore *credentialStore;

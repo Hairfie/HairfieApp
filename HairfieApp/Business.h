@@ -33,6 +33,8 @@
 
 -(NSString *)displayNumHairfies;
 
+-(NSNumber *)distanceTo:(GeoPoint *)aGeoPoint;
+
 -(id)initWithDictionary:(NSDictionary *)data;
 
 -(NSNumber *)ratingBetween:(NSNumber *)aMin

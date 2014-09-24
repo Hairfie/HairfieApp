@@ -84,6 +84,11 @@
     return [[NSNumber alloc] initWithFloat:[self.rating floatValue] * [theMax floatValue] / 100];
 }
 
+-(NSNumber *)distanceTo:(GeoPoint *)aGeoPoint
+{
+    return [self.gps distanceTo:aGeoPoint];
+}
+
 +(void)listNearby:(GeoPoint *)aGeoPoint
             query:(NSString *)aQuery
             limit:(NSNumber *)aLimit
