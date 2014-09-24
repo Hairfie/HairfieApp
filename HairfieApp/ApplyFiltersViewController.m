@@ -12,6 +12,8 @@
 @implementation ApplyFiltersViewController
 {
     UIImage *cropped;
+    UIImage *output;
+    BOOL frontCamera;
 }
 
 @synthesize hairfie, imageView;
@@ -23,12 +25,22 @@
 
 -(void)viewDidLoad
 {
-    
     cropped = [self squareCropImage:hairfie ToSideLength:320];
     imageView.image = cropped;
     NSData *imgData = [[NSData alloc] initWithData:UIImageJPEGRepresentation((cropped), 0.5)];
     int imageSize   = imgData.length;
     NSLog(@"size of image in KB: %f ", imageSize/1024.0);
+}
+
+-(UIImage *) toSepia:(UIImage *)originalImage {
+    CIImage *beginImage = [CIImage imageWithCGImage:originalImage.CGImage];
+    CIFilter *filter = [CIFilter filterWithName:@"CISepiaTone"
+                                  keysAndValues: kCIInputImageKey, beginImage,
+                        @"inputIntensity", @0.8, nil];
+    CIImage *outputImage = [filter outputImage];
+    UIImage *newImage = [UIImage imageWithCIImage:outputImage];
+    
+    return newImage;
 }
 
 -(IBAction)goBack:(id)sender
@@ -41,8 +53,10 @@
     if ([segue.identifier isEqualToString:@"setupHairfie"])
     {
         HairfiePostDetailsViewController *details = [segue destinationViewController];
-        
         details.hairfie = cropped;
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            UIImageWriteToSavedPhotosAlbum(cropped, nil, nil, nil);
+        });
     }
 }
 

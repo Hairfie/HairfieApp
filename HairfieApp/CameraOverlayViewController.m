@@ -260,6 +260,11 @@
         imageTaken = [info valueForKey:UIImagePickerControllerOriginalImage];
     }
     
+    if( _imagePicker.sourceType == UIImagePickerControllerSourceTypeCamera
+       && _imagePicker.cameraDevice == UIImagePickerControllerCameraDeviceFront) {
+        imageTaken = [UIImage imageWithCGImage:imageTaken.CGImage scale:imageTaken.scale orientation:UIImageOrientationLeftMirrored];
+    }
+    
 }
 
 #pragma mark - Navigation
