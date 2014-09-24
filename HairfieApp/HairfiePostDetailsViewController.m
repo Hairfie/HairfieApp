@@ -16,6 +16,9 @@
 
 #import <LoopBack/LoopBack.h>
 
+#define OVERLAY_TAG 99
+
+
 @implementation HairfiePostDetailsViewController
 {
     NSArray *salonTypes;
@@ -185,12 +188,8 @@ shouldChangeTextInRange: (NSRange) range
 {
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     if([delegate.credentialStore isLoggedIn]) {
-
-        UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-        [spinner setFrame:CGRectMake(150, self.view.frame.size.height/2, spinner.frame.size.width, spinner.frame.size.height)];
-        spinner.hidesWhenStopped = YES;
         
-        [spinner startAnimating];
+        [self addSpinnerAndOverlay];
         
         NSLog(@"Post Hairfie");
         while (uploadInProgress) {
@@ -224,19 +223,45 @@ shouldChangeTextInRange: (NSRange) range
         
         void (^loadErrorBlock)(NSError *) = ^(NSError *error){
             NSLog(@"Error : %@", error.description);
-            [spinner stopAnimating];
+            [self removeSpinnerAndOverlay];
 
         };
         void (^loadSuccessBlock)(Hairfie *) = ^(Hairfie *hairfiePosted){
             
             NSLog(@"Hairfie Posté");
-            [spinner stopAnimating];
+            [self removeSpinnerAndOverlay];
             [self.navigationController popToRootViewControllerAnimated:YES];
         };
         [hairfieToPost saveWithSuccess:loadSuccessBlock failure:loadErrorBlock];
     } else {
         [self showNotLoggedAlertWithDelegate:nil andTitle:nil andMessage:nil];
     }
+}
+
+-(void) addSpinnerAndOverlay {
+    UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    [spinner setFrame:CGRectMake(150, self.view.frame.size.height/2, spinner.frame.size.width, spinner.frame.size.height)];
+    spinner.hidesWhenStopped = YES;
+    [spinner startAnimating];
+    
+    UILabel *text = [[UILabel alloc] initWithFrame:CGRectMake(80, self.view.frame.size.height/2 + 20, 140, 50)];
+    text.text = NSLocalizedStringFromTable(@"Upload in progress", @"Post_Hairfie", nil);
+    text.font = [UIFont fontWithName:@"SourceSansPro-Light" size:16];
+    [text setTextColor:[UIColor whiteColor]];
+    [text setTextAlignment:NSTextAlignmentCenter];
+    
+    UIView *overlay = [[UIView alloc] initWithFrame:_mainView.frame];
+    overlay.backgroundColor = [[UIColor blackHairfie] colorWithAlphaComponent:0.6];
+    
+    [overlay addSubview:spinner];
+    [overlay addSubview:text];
+
+    [overlay setTag:OVERLAY_TAG];
+    [_mainView addSubview:overlay];
+}
+
+-(void) removeSpinnerAndOverlay {
+    [[_mainView viewWithTag:OVERLAY_TAG] removeFromSuperview];
 }
 
 -(void) uploadProfileImage:(UIImage *)image

@@ -10,6 +10,7 @@
 
 @interface HairfiePostDetailsViewController : UIViewController <UINavigationControllerDelegate, UITextViewDelegate, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 
+@property (nonatomic) IBOutlet UIView *mainView;
 @property (nonatomic) IBOutlet UITextField *priceTextField;
 @property (nonatomic) IBOutlet UIButton *priceLabelButton;
 @property (nonatomic) IBOutlet UITextView *hairfieDesc;
