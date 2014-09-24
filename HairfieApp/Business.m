@@ -134,16 +134,15 @@
                              }];
 }
 
-/* Temporary internal method to generate sample businesses */
-+(id)sample
++(void)getById:(NSString *)anId
+   withSuccess:(void (^)(Business *))aSuccessHandler
+       failure:(void (^)(NSError *))aFailureHandler
 {
-    Business *business = [[Business alloc] init];
-    business.name = @"Some name";
-    business.address = [[Address alloc] initWithStreet:@"123 foo street" city:@"Paris" zipCode:@"75000" country:@"FR"];
-    business.distance = @534;
-    business.thumbnail = @"http://maps.googleapis.com/maps/api/streetview?size=600x400&location=48.8698174,2.2984027";
-
-    return business;
+    [[[self class] repository] findById:anId
+                                success:^(LBModel *model) {
+                                    aSuccessHandler((Business *)model);
+                                }
+                                failure:aFailureHandler];
 }
 
 +(LBModelRepository *)repository

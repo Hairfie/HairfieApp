@@ -99,7 +99,16 @@
     if (tableView == detailsTableView) {
         NSString *infoName = displayedInfoNames[indexPath.row];
         if ([infoName isEqualToString:@"business"]) {
-            [self performSegueWithIdentifier:@"businessDetail" sender:self.currentHairfie.business];
+            // the current hairfie's business property contains a
+            // partial business object, so we need to fetch the
+            // complete version prior to show details
+            [Business getById:self.currentHairfie.business.id
+                  withSuccess:^(Business *business) {
+                      [self performSegueWithIdentifier:@"businessDetail" sender:business];
+                  }
+                      failure:^(NSError *error) {
+                          NSLog(@"Failed to retrieve complete business: %@", error.localizedDescription);
+                      }];
         }
     }
 }
