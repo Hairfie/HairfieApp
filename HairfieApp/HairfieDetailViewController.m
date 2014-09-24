@@ -47,6 +47,11 @@
     [_hairfieCollection registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView"];
 }
 
+-(void) viewWillAppear:(BOOL)animated {
+    [ARAnalytics pageView:@"AR - Hairfie Detail"];
+    [ARAnalytics event:@"AR - Hairfie Detail" withProperties:@{@"Hairfie ID": _currentHairfie.id, @"Author": _currentHairfie.author.name}];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

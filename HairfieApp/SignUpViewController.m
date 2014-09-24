@@ -67,6 +67,10 @@
     // Do any additional setup after loading the view.
 }
 
+-(void) viewWillAppear:(BOOL)animated {
+    [ARAnalytics pageView:@"AR - Sign up"];
+}
+
 -(void) setUserTitle
 {
     NSLog(@"control");

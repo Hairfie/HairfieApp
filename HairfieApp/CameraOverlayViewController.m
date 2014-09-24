@@ -44,6 +44,10 @@
     
 }
 
+-(void) viewWillAppear:(BOOL)animated {
+    [ARAnalytics pageView:@"AR - Post Hairfie step #1 - Camera Overlay"];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

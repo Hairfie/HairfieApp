@@ -56,6 +56,7 @@
         _hairdresserSubview.hidden = NO;
         
     }
+    [ARAnalytics pageView:@"AR - Post Hairfie step #3 - Post Detail"];
 }
 
 - (BOOL) textView: (UITextView*) textView

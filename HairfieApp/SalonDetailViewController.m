@@ -169,6 +169,8 @@
 {
     [self updateMapView];
     _reviewRating.rating = 0;
+    [ARAnalytics pageView:@"AR - Business Detail"];
+    [ARAnalytics event:@"AR - Business Detail" withProperties:@{@"Business ID": _business.id, @"Name": _business.name}];
 }
 
 

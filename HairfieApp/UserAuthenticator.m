@@ -51,6 +51,7 @@
         
         delegate.currentUser = user;
         [[NSNotificationCenter defaultCenter] postNotificationName:@"currentUser" object:self];
+        [ARAnalytics identifyUserWithID:user.id andEmailAddress:user.email];
     };
     
     NSString *userId = [delegate.credentialStore userId];
