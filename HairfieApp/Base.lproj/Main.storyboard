@@ -1025,7 +1025,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BYw-ul-o7V">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BYw-ul-o7V">
                                 <rect key="frame" x="0.0" y="90" width="320" height="320"/>
                             </imageView>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JC7-rw-pY7">
@@ -1054,11 +1054,56 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.1764705882" green="0.22352941179999999" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xOx-8O-8sU">
+                                <rect key="frame" x="0.0" y="410" width="320" height="90"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="txc-Qj-wYU">
+                                        <rect key="frame" x="15" y="14" width="60" height="60"/>
+                                        <color key="backgroundColor" red="0.98039215690000003" green="0.47450980390000003" blue="0.51764705879999995" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="51" id="Jyb-we-97q"/>
+                                            <constraint firstAttribute="width" constant="60" id="P3r-qh-ra0"/>
+                                        </constraints>
+                                        <state key="normal" title="No Filter">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="original:" destination="QW8-eh-zsD" eventType="touchUpInside" id="nem-K1-yBz"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p28-Lo-Kzd">
+                                        <rect key="frame" x="103" y="14" width="60" height="60"/>
+                                        <color key="backgroundColor" red="0.98039215690000003" green="0.47450980390000003" blue="0.51764705879999995" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="60" id="S1m-D7-KMR"/>
+                                            <constraint firstAttribute="height" constant="51" id="lty-fo-ZdM"/>
+                                        </constraints>
+                                        <state key="normal" title="Sepia">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="sepia:" destination="QW8-eh-zsD" eventType="touchUpInside" id="KhM-nL-Rfa"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="p28-Lo-Kzd" secondAttribute="bottom" constant="16" id="Di7-CP-YqD"/>
+                                    <constraint firstItem="txc-Qj-wYU" firstAttribute="top" secondItem="xOx-8O-8sU" secondAttribute="top" constant="15" id="V6d-6W-mxX"/>
+                                    <constraint firstAttribute="bottom" secondItem="txc-Qj-wYU" secondAttribute="bottom" constant="15" id="r01-dK-zEo"/>
+                                    <constraint firstItem="p28-Lo-Kzd" firstAttribute="top" secondItem="xOx-8O-8sU" secondAttribute="top" constant="15" id="tZ3-Om-Gmv"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.1960784314" green="0.26274509800000001" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="xOx-8O-8sU" firstAttribute="top" secondItem="BYw-ul-o7V" secondAttribute="bottom" id="OcL-tx-1gc"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="tko-RM-suj"/>
                     <connections>
+                        <outlet property="filtersView" destination="xOx-8O-8sU" id="pWA-7f-o5K"/>
                         <outlet property="imageView" destination="BYw-ul-o7V" id="LRT-qH-D9j"/>
                     </connections>
                 </viewController>
