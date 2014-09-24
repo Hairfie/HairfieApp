@@ -58,15 +58,15 @@
     _profileView.backgroundColor = [UIColor clearColor];
    
     _menuItems = [[NSMutableArray alloc] init];
-    _menuItems = [NSMutableArray arrayWithObjects: NSLocalizedStringFromTable(@"Home", @"Menu", nil), NSLocalizedStringFromTable(@"Favorites", @"Menu", nil),NSLocalizedStringFromTable(@"Likes", @"Menu", nil), NSLocalizedStringFromTable(@"Friends", @"Menu", nil),NSLocalizedStringFromTable(@"Business", @"Menu", nil),NSLocalizedStringFromTable(@"Settings", @"Menu", nil),NSLocalizedStringFromTable(@"Logout", @"Menu", nil), nil];
+    _menuItems = [NSMutableArray arrayWithObjects: NSLocalizedStringFromTable(@"Home", @"Menu", nil), /*NSLocalizedStringFromTable(@"Favorites", @"Menu", nil),*/NSLocalizedStringFromTable(@"Likes", @"Menu", nil), /*NSLocalizedStringFromTable(@"Friends", @"Menu", nil),*/NSLocalizedStringFromTable(@"Business", @"Menu", nil),/*NSLocalizedStringFromTable(@"Settings", @"Menu", nil),*/NSLocalizedStringFromTable(@"Logout", @"Menu", nil), nil];
     
     _menuPictos = [[NSMutableArray alloc] init];
     [_menuPictos addObject:@"home-picto.png"];
-    [_menuPictos addObject:@"favorites-picto.png"];
+    //[_menuPictos addObject:@"favorites-picto.png"];
     [_menuPictos addObject:@"likes-picto.png"];
-    [_menuPictos addObject:@"friends-picto.png"];
+    //[_menuPictos addObject:@"friends-picto.png"];
     [_menuPictos addObject:@"business-picto.png"];
-    [_menuPictos addObject:@"settings-picto.png"];
+    //[_menuPictos addObject:@"settings-picto.png"];
     [_menuPictos addObject:@"picto-logout.png"];
 }
 
@@ -149,7 +149,7 @@
        {
            
            
-           if (indexPath.row == 5)
+           if (indexPath.row == 3)
            {
                cell.menuItem.textColor = [UIColor colorWithRed:208 green:210 blue:213 alpha:1];
            cell.menuItem.font = [UIFont fontWithName:@"SourceSansPro-Light" size:15];
@@ -193,17 +193,9 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
     }
     if (row == 1)
     {
-        [self performSegueWithIdentifier:@"FavoriteSegue" sender:self];
-    }
-    if (row == 2)
-    {
         [self performSegueWithIdentifier:@"LikeSegue" sender:self];
     }
-    if (row == 3)
-    {
-        [self performSegueWithIdentifier:@"FriendSegue" sender:self];
-    }
-    if (row == 4)
+    if (row == 2)
     {
         
         
@@ -231,24 +223,17 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
             didInsert = NO;
         }
     }
-    if (row == 5)
+    if (row == 3)
     {
         if (newBusiness == YES)
             [self performSegueWithIdentifier:@"BusinessSegue" sender:self];
-       else
-        [self performSegueWithIdentifier:@"SettingSegue" sender:self];
-    }
-    if (row == 6)
-    {
-        if (newBusiness == YES)
-            [self performSegueWithIdentifier:@"SettingSegue" sender:self];
         else
-        [self logOut];
+           [self logOut];
     }
     if (newBusiness == YES)
     {
-    if (row == 7)
-        [self logOut];
+        if (row == 4)
+            [self logOut];
     }
 }
 
