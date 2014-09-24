@@ -30,10 +30,9 @@
     imageView.image = original;
     output = original;
     NSData *imgData = [[NSData alloc] initWithData:UIImageJPEGRepresentation((original), 0.5)];
-    int imageSize   = imgData.length;
-    NSLog(@"size of image in KB: %f ", imageSize/1024.0);
-    
-    _filtersView.hidden = YES;
+    //int imageSize   = imgData.length;
+    NSLog(@"size of image in KB: %f ", imgData.length/1024.0);
+    _filtersView.hidden = NO;
 }
 
 -(UIImage *) toSepia:(UIImage *)originalImage {
@@ -49,7 +48,7 @@
     UIImage *newImage = [UIImage imageWithCGImage:outputImage scale:0 orientation:originalImage.imageOrientation];
     CGImageRelease(outputImage);
     
-    return newImage;
+    return [self squareCropImage:newImage ToSideLength:320];
 }
 
 -(IBAction)goBack:(id)sender
@@ -126,6 +125,7 @@
         sepia = [self toSepia:original];
     }
     imageView.image = sepia;
+    imageView.contentMode = UIViewContentModeScaleAspectFill;
     output = sepia;
 }
 
