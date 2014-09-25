@@ -10,6 +10,7 @@
 #import <LoopBack/LoopBack.h>
 #import "Address.h"
 #import "GeoPoint.h"
+#import "Timetable.h"
 
 
 @interface Business : LBModel
@@ -17,8 +18,8 @@
 @property (strong, nonatomic) NSString *id;
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) GeoPoint *gps;
-@property (strong, nonatomic) NSArray *phoneNumbers;
-@property (strong, nonatomic) NSDictionary *timetable; // TODO: add a Timetable model?
+@property (strong, nonatomic) NSString *phoneNumber;
+@property (strong, nonatomic) Timetable *timetable;
 @property (strong, nonatomic) Address *address;
 @property (strong, nonatomic) NSArray *pictures;
 @property (strong, nonatomic) NSString *thumbnail;
