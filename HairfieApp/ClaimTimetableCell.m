@@ -11,6 +11,10 @@
 @implementation ClaimTimetableCell
 
 - (void)awakeFromNib {
+    
+    _containerView.layer.cornerRadius = 5;
+    _containerView.layer.borderColor = [UIColor lightGreyHairfie].CGColor;
+    _containerView.layer.borderWidth = 0.5;
     // Initialization code
 }
 

@@ -41,16 +41,9 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    if ([_timeTable.sunday count] != 0 )
-    {
-    TimeWindow *sundayWindow = [[TimeWindow  alloc]init];
-    sundayWindow = [_timeTable.sunday objectAtIndex:0];
-    
-    NSLog(@"time window sunday %@",[sundayWindow timeWindowFormatted] );
-    
-    NSLog(@"timetable %@", _timeTable.sunday);
+
         [_timeTableView reloadData];
-    }
+    
 }
 
 -(IBAction)goBack:(id)sender
@@ -85,7 +78,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 43;
+    return 61;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -117,7 +110,7 @@
             cell.timewindow.text = [timeWindow timeWindowFormatted];
         }
         else
-            cell.timewindow.text = @"No time window set";
+            cell.timewindow.text = @"Set a time window";
     }
     if (indexPath.row== 1){
         if ([_timeTable.tuesday count] != 0 ){
@@ -125,7 +118,7 @@
             cell.timewindow.text = [timeWindow timeWindowFormatted];
         }
         else
-            cell.timewindow.text = @"No time window set";
+            cell.timewindow.text = @"Set a time window";
     }
     if (indexPath.row== 2){
         if ([_timeTable.wednesday count] != 0 ){
@@ -133,7 +126,7 @@
             cell.timewindow.text = [timeWindow timeWindowFormatted];
         }
         else
-            cell.timewindow.text = @"No time window set";
+            cell.timewindow.text = @"Set a time window";
     }
     if (indexPath.row== 3){
         if ([_timeTable.thursday count] != 0 )
@@ -142,7 +135,7 @@
             cell.timewindow.text = [timeWindow timeWindowFormatted];
         }
         else
-            cell.timewindow.text = @"No time window set";
+            cell.timewindow.text = @"Set a time window";
     }
     if (indexPath.row== 4){
         if ([_timeTable.friday count] != 0 ){
@@ -150,7 +143,7 @@
             cell.timewindow.text = [timeWindow timeWindowFormatted];
         }
         else
-            cell.timewindow.text = @"No time window set";
+            cell.timewindow.text = @"Set a time window";
     }
     if (indexPath.row== 5){
         if ([_timeTable.saturday count] != 0 ){
@@ -166,7 +159,7 @@
             cell.timewindow.text = [timeWindow timeWindowFormatted];
         }
         else
-            cell.timewindow.text = @"No time window set";
+            cell.timewindow.text = @"Set a time window";
     }
     
     
