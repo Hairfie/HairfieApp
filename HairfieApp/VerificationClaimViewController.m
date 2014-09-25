@@ -25,23 +25,23 @@
     [super viewDidLoad];
     
     delegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
-   
-    if ([delegate.currentUser.gender isEqualToString:@"male"])
-        _civilityField.text = NSLocalizedStringFromTable(@"Man", @"Claim", nil);
-    else
-        _civilityField.text = NSLocalizedStringFromTable(@"Women", @"Claim", nil);
-    
-    _firstNameField.text = delegate.currentUser.firstName;
-    _lastNameField.text = delegate.currentUser.lastName;
-    _emailField.text = delegate.currentUser.email;
-    _phoneField.text = delegate.currentUser.phoneNumber;
-    
+//   
+//    if ([delegate.currentUser.gender isEqualToString:@"male"])
+//        _civilityField.text = NSLocalizedStringFromTable(@"Man", @"Claim", nil);
+//    else
+//        _civilityField.text = NSLocalizedStringFromTable(@"Women", @"Claim", nil);
+//    
+//    _firstNameField.text = delegate.currentUser.firstName;
+//    _lastNameField.text = delegate.currentUser.lastName;
+//    _emailField.text = delegate.currentUser.email;
+//    _phoneField.text = delegate.currentUser.phoneNumber;
+//    
     [self.view addGestureRecognizer:self.slidingViewController.panGesture];
     // Do any additional setup after loading the view.
 }
 
 -(void) viewWillAppear:(BOOL)animated {
-    [ARAnalytics pageView:@"AR - Verification Claim"];
+ //   [ARAnalytics pageView:@"AR - Verification Claim"];
 }
 
 

@@ -9,19 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "Timetable.h"
 
-@interface FinalStepTimetableViewController : UIViewController <UINavigationControllerDelegate>
+@interface FinalStepTimetableViewController : UIViewController <UINavigationControllerDelegate, UITableViewDataSource, UITableViewDelegate>
 
 
-@property (nonatomic) IBOutlet UIButton *mondayButton;
-@property (nonatomic) IBOutlet UIButton *tuesdayButton;
-@property (nonatomic) IBOutlet UIButton *wednesdayButton;
-@property (nonatomic) IBOutlet UIButton *thursdayButton;
-@property (nonatomic) IBOutlet UIButton *fridayButton;
-@property (nonatomic) IBOutlet UIButton *saturdayButton;
-@property (nonatomic) IBOutlet UIButton *sundayButton;
 @property (nonatomic) IBOutlet UIButton *doneBttn;
 
 @property (nonatomic) Timetable *timeTable;
+
+@property (nonatomic) IBOutlet UITableView *timeTableView;
 
 
 @end

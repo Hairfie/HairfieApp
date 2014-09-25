@@ -232,6 +232,8 @@
 		B3E65FD51986A9E500AF0C15 /* selected-cell.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B3E65FD41986A9E500AF0C15 /* selected-cell.jpg */; };
 		B3EBE754199BACFD0073B844 /* bg-book-no-info.png in Resources */ = {isa = PBXBuildFile; fileRef = B3EBE752199BACFD0073B844 /* bg-book-no-info.png */; };
 		B3EBE755199BACFD0073B844 /* bg-book.png in Resources */ = {isa = PBXBuildFile; fileRef = B3EBE753199BACFD0073B844 /* bg-book.png */; };
+		B3EDBB5219D461D0005E7032 /* ClaimTimetableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3EDBB5119D461D0005E7032 /* ClaimTimetableCell.xib */; };
+		B3EDBB5819D46254005E7032 /* ClaimTimetableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B3EDBB5719D46254005E7032 /* ClaimTimetableCell.m */; };
 		B3EDF87419878F6C00431B70 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B3EDF87619878F6C00431B70 /* Localizable.strings */; };
 		B3EDF88A198794C900431B70 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3EDF88C198794C900431B70 /* Main.storyboard */; };
 		B3EDF89219879BEF00431B70 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3EDF89119879BEF00431B70 /* QuartzCore.framework */; };
@@ -626,6 +628,9 @@
 		B3E65FD41986A9E500AF0C15 /* selected-cell.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "selected-cell.jpg"; sourceTree = "<group>"; };
 		B3EBE752199BACFD0073B844 /* bg-book-no-info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-book-no-info.png"; sourceTree = "<group>"; };
 		B3EBE753199BACFD0073B844 /* bg-book.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-book.png"; sourceTree = "<group>"; };
+		B3EDBB5119D461D0005E7032 /* ClaimTimetableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClaimTimetableCell.xib; sourceTree = "<group>"; };
+		B3EDBB5619D46254005E7032 /* ClaimTimetableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClaimTimetableCell.h; sourceTree = "<group>"; };
+		B3EDBB5719D46254005E7032 /* ClaimTimetableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClaimTimetableCell.m; sourceTree = "<group>"; };
 		B3EDF87519878F6C00431B70 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B3EDF885198792E800431B70 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B3EDF887198793B900431B70 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1124,6 +1129,9 @@
 				B367DC4819C9E4BC00A0452A /* FinalStepDescriptionViewController.m */,
 				B367DC3E19C9C54300A0452A /* FinalStepClaimDayViewController.h */,
 				B367DC3F19C9C54300A0452A /* FinalStepClaimDayViewController.m */,
+				B3EDBB5119D461D0005E7032 /* ClaimTimetableCell.xib */,
+				B3EDBB5619D46254005E7032 /* ClaimTimetableCell.h */,
+				B3EDBB5719D46254005E7032 /* ClaimTimetableCell.m */,
 			);
 			name = INFO;
 			sourceTree = "<group>";
@@ -1553,6 +1561,7 @@
 				15E3D2C419D075CC0065A07E /* Feed.strings in Resources */,
 				B37F9A54198F910B00881071 /* picto-sales.png in Resources */,
 				B3CCE77A1998BB1B00067DB9 /* picto-hairfie-comment.png in Resources */,
+				B3EDBB5219D461D0005E7032 /* ClaimTimetableCell.xib in Resources */,
 				B3EDF8981987ABB900431B70 /* leosquare.jpg in Resources */,
 				B330B5CB198681B20059AE56 /* menu-icon.png in Resources */,
 				B36731E2198FB17800E11C56 /* picto-man-white.png in Resources */,
@@ -1769,6 +1778,7 @@
 				1515448219C301ED00FBC07D /* CameraOverlayViewController.m in Sources */,
 				15CE407319B0E78C0088FEA7 /* CredentialStore.m in Sources */,
 				153E1FB419B4AA8200DEC95D /* UserAuthenticator.m in Sources */,
+				B3EDBB5819D46254005E7032 /* ClaimTimetableCell.m in Sources */,
 				B33D4C5319D176E9009DE6DD /* BusinessClaim.m in Sources */,
 				B3CCE7781998B6CA00067DB9 /* HairfieDetailViewController.m in Sources */,
 				B3615B3219AF1CC800F1141D /* TPKeyboardAvoidingScrollView.m in Sources */,

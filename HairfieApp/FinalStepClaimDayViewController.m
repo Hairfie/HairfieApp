@@ -36,12 +36,15 @@
     _doneBttn.layer.cornerRadius = 5;
     
      timeTable = [[NSDictionary alloc] init];
+    weekDays = [[NSArray alloc] initWithObjects:@"Monday",@"Tuesday",@"Wednesday",@"Thursday",@"Friday",@"Saturday",@"Sunday", nil];
+    halfHour = [[NSArray alloc] initWithObjects:@"00",@"30", nil];
     
-     [_openingTimePicker selectRow:10 inComponent:0 animated:YES];
-    [_openingTimePicker selectRow:0 inComponent:1 animated:YES];
+    [_dayPickerView selectRow:0 inComponent:0 animated:NO];
+     [_openingTimePicker selectRow:9 inComponent:0 animated:NO];
+    [_openingTimePicker selectRow:0 inComponent:1 animated:NO];
     
-     [_closingTimePicker selectRow:18 inComponent:0 animated:YES];
-    [_closingTimePicker selectRow:0 inComponent:1 animated:YES];
+     [_closingTimePicker selectRow:18 inComponent:0 animated:NO];
+    [_closingTimePicker selectRow:1 inComponent:1 animated:NO];
     [_openingTimePicker reloadAllComponents];
     [_closingTimePicker reloadAllComponents];
     _openingTimeView.layer.cornerRadius = 5;
@@ -52,12 +55,12 @@
     _closingTimeView.layer.masksToBounds = YES;
     _closingTimeView.layer.borderColor = [UIColor lightGreyHairfie].CGColor;
     _closingTimeView.layer.borderWidth = 1;
-    weekDays = [[NSArray alloc] initWithObjects:@"Monday",@"Tuesday",@"Wednesday",@"Thursday",@"Friday",@"Saturday",@"Sunday", nil];
-     halfHour = [[NSArray alloc] initWithObjects:@"00",@"30", nil];
+ 
     
+    _dayPicked = @"Monday";
+    _closingTime = @"18h30";
+    _openingTime = @"9h00";
     
-    
-    // Do any additional setup after loading the view.
 }
 
 
@@ -190,6 +193,8 @@ numberOfRowsInComponent:(NSInteger)component
         [claimTimeTable.timeTable.sunday addObject:timeWindow];
         
     }
+    [_openingTimePicker reloadAllComponents];
+    [_closingTimePicker reloadAllComponents];
     
     NSLog(@"TimeWindow %@ \n%@", claimTimeTable.timeTable.friday, claimTimeTable.timeTable.sunday);
 
