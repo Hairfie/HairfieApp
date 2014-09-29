@@ -18,6 +18,7 @@
 #import "UITextField+ELFixSecureTextFieldFont.h"
 #import <FacebookSDK/FacebookSDK.h>
 #import "HomeViewController.h"
+#import "MRProgress.h"
 
 @interface LoginViewController ()
 @end
@@ -42,7 +43,9 @@
     _delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     _dismiss = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissTextFields)];
     userAuthenticator = [[UserAuthenticator alloc] init];
+
     [_passwordField fixSecureTextFieldFont];
+
     if ([_delegate.credentialStore isLoggedIn])
     {
          [AppDelegate lbAdaptater].accessToken = [_delegate.credentialStore authToken];
@@ -190,9 +193,12 @@
 - (void)sessionStateChanged:(FBSession *)session state:(FBSessionState) state error:(NSError *)error
 {
     if (!error && state == FBSessionStateOpen){
+        [MRProgressOverlayView showOverlayAddedTo:self.view title:NSLocalizedStringFromTable(@"Login in progress", @"Login_Sign_Up", nil) mode:MRProgressOverlayViewModeIndeterminateSmall animated:YES];
+    
         NSLog(@"Session opened");
         FBAccessTokenData *accessTokenData = [session accessTokenData];
         NSString *fbAuthToken = [accessTokenData accessToken];
+        
         [self loginWithFbToken:fbAuthToken];
         return;
     }
@@ -236,9 +242,11 @@
     
     void (^loadErrorBlock)(NSError *) = ^(NSError *error) {
         NSLog(@"Error on load %@", error.description);
+        [MRProgressOverlayView dismissAllOverlaysForView:self.view animated:YES];
     };
     
     void (^loadSuccessBlock)(NSDictionary *) = ^(NSDictionary *results) {
+        [MRProgressOverlayView dismissAllOverlaysForView:self.view animated:YES];
         BOOL performLogin = ![_delegate.credentialStore isLoggedIn];
         [AppDelegate lbAdaptater].accessToken = [results objectForKey:@"id"];
         [_delegate.credentialStore setAuthTokenAndUserId:[results objectForKey:@"id"] forUser:[results objectForKey:@"userId"]];

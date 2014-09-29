@@ -27,7 +27,7 @@
     _author = [[User alloc] initWithJson:authorDic];
 }
 
-- (void) setBusiness:(NSDictionary *) businessDic
+- (void)setBusiness:(NSDictionary *) businessDic
 {
     if([businessDic isKindOfClass:[NSNull class]]) return;
     
@@ -75,7 +75,6 @@
                failure:(void(^)(NSError *error))aFailureHandler
 {
     void (^onSuccess)(NSDictionary *) = ^(NSDictionary *result) {
-        //[self initWithDictionary:result];
         aSuccessHandler();
     };
     
