@@ -84,7 +84,7 @@
 -(NSNumber *)ratingBetween:(NSNumber *)theMin
                        and:(NSNumber *)theMax
 {
-    if ([self.rating isEqual:nil]) {
+    if ([self.rating isEqual:[NSNull null]]) {
         return nil;
     }
 
