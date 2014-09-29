@@ -9,13 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "BusinessClaim.h"
 
-@interface FinalStepViewController : UIViewController <UINavigationControllerDelegate>
+@interface FinalStepViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIAlertViewDelegate>
 
 @property (nonatomic) IBOutlet UIButton *phoneBttn;
 
 @property (nonatomic) IBOutlet UIButton *addressBttn;
 
 @property (nonatomic) IBOutlet UILabel *nameLabel;
+
+@property (nonatomic) IBOutlet UIScrollView *imageSliderView;
+@property (nonatomic) IBOutlet UIPageControl *pageControl;
 
 
 @property (nonatomic) IBOutlet UIButton* validateBttn;

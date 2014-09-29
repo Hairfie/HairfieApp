@@ -183,7 +183,6 @@ shouldChangeTextInRange: (NSRange) range
 
 }
 
-
 -(IBAction)postHairfie:(id)sender
 {
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];

@@ -2721,7 +2721,7 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.15686274510000001" green="0.19215686269999999" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="wuf-TE-yeF" userLabel="Review Table View">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="wuf-TE-yeF" userLabel="Review Table View">
                                 <rect key="frame" x="0.0" y="124" width="320" height="455"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -4348,13 +4348,15 @@
                                                 <subviews>
                                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uto-Zl-RXJ" userLabel="Image Slider">
                                                         <rect key="frame" x="0.0" y="0.0" width="320" height="180"/>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="BHW-4V-7I5" id="8Sg-oC-nhL"/>
+                                                        </connections>
                                                     </scrollView>
-                                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c3g-X5-ZjI" userLabel="Prices">
-                                                        <rect key="frame" x="0.0" y="152" width="120" height="21"/>
-                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                    </view>
                                                     <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="5" translatesAutoresizingMaskIntoConstraints="NO" id="nb4-rX-cdb">
                                                         <rect key="frame" x="224" y="150" width="100" height="37"/>
+                                                        <connections>
+                                                            <action selector="changePage:" destination="BHW-4V-7I5" eventType="touchUpInside" id="b1X-Df-gRQ"/>
+                                                        </connections>
                                                     </pageControl>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.85490196078431369" green="0.85490196078431369" blue="0.85490196078431369" alpha="1" colorSpace="calibratedRGB"/>
@@ -4453,10 +4455,11 @@
                         <outlet property="hairdresserView" destination="CcM-C3-tpq" id="61Y-g1-4HH"/>
                         <outlet property="hairfieBttn" destination="u6u-Pq-Ssq" id="OBf-nD-ESR"/>
                         <outlet property="hairfieView" destination="URA-Dh-nh8" id="uNo-B2-UOz"/>
+                        <outlet property="imageSliderView" destination="uto-Zl-RXJ" id="Ulx-1K-ttf"/>
                         <outlet property="infoBttn" destination="cDG-P4-sll" id="Gfd-IX-oOo"/>
                         <outlet property="infoView" destination="RWQ-a2-S7l" id="cYi-El-BJt"/>
                         <outlet property="nameLabel" destination="4MZ-EF-ugS" id="n4N-gE-L7a"/>
-                        <outlet property="pageControlView" destination="uto-Zl-RXJ" id="Ce7-lJ-i4F"/>
+                        <outlet property="pageControl" destination="nb4-rX-cdb" id="UbK-x2-fYu"/>
                         <outlet property="phoneBttn" destination="okP-hf-UHU" id="InK-7t-STW"/>
                         <outlet property="priceAndSaleBttn" destination="cjT-7e-Ww7" id="Hnx-Hs-qPF"/>
                         <outlet property="priceAndSaleView" destination="rfH-9l-Y24" id="1j9-8G-o3I"/>
@@ -5119,9 +5122,9 @@
     <inferredMetricsTieBreakers>
         <segue reference="VGS-VM-Pwy"/>
         <segue reference="uEN-by-6gW"/>
-        <segue reference="7yU-V8-5Z9"/>
         <segue reference="dg2-Ph-4Hs"/>
         <segue reference="XXf-5V-koX"/>
+        <segue reference="PSz-m0-val"/>
         <segue reference="DYR-eo-mJz"/>
         <segue reference="HOe-ge-VCi"/>
     </inferredMetricsTieBreakers>

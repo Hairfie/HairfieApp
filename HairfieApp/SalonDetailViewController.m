@@ -596,6 +596,8 @@
         if (_reviewRating.rating != 0)
             review.isReviewing = YES;
         review.business = _business;
+        review.addReviewButton.hidden = NO;
+        
     } else if ([segue.identifier isEqualToString:@"showTimetable"]) {
         HorairesViewController *horaires = [segue destinationViewController];
         horaires.salon = _business.timetable;

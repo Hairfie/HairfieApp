@@ -49,6 +49,7 @@
     };
     void (^loadSuccessBlock)(NSDictionary *) = ^(NSDictionary *results){
         //NSLog(@"results %@", results);
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"reviewSaved" object:self];
     };
     
     [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/businessreviews" verb:@"POST"] forMethod:@"businessreviews"];

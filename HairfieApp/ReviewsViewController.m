@@ -28,13 +28,24 @@
     [self getReviews];
     [self setupReviewRating];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(refreshReviews:)
+                                                 name:@"reviewSaved"
+                                               object:nil];
     _addReviewButton.layer.cornerRadius = 5;
     _addReviewButton.layer.masksToBounds = YES;
+  //  _addReviewButton.hidden = YES;
     _reviewTableView.backgroundColor = [UIColor whiteColor];
    // _dismiss = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
     // Do any additional setup after loading the view.
 }
 
+
+-(void)refreshReviews:(NSNotification*) notification
+{
+    NSLog(@"==============RESFRESH NOTIFICATION");
+    [self getReviews];
+}
 
 -(void)getReviews
 {
@@ -43,6 +54,10 @@
     };
     void (^loadSuccessBlock)(NSArray *) = ^(NSArray *results){
         reviews = results;
+        if (reviews.count == 0)
+            _reviewTableView.separatorColor = [UIColor clearColor];
+        else
+            _reviewTableView.separatorColor = [UIColor colorWithRed:224/255.0f green:224/255.0f blue:224/255.0f alpha:1];
         [_reviewTableView reloadData];
        if (_isReviewing == YES)
         [_reviewTextView becomeFirstResponder];
@@ -53,9 +68,20 @@
 
 
 - (void)rateView:(RatingView *)rateView ratingDidChange:(float)rating {
+
+    
+   
+    
+    if ([_reviewTextView.text isEqualToString:NSLocalizedStringFromTable(@"Ajoutez votre review...", @"Salon_Detail", nil)])
+        _reviewTextView.text = @"";
+    if (![_reviewTextView isFirstResponder]) {
+        NSLog(@"test");
+        [_reviewTextView becomeFirstResponder];
+        _addReviewButton.hidden = NO;
+    }
     _isReviewing = YES;
-    [_reviewTableView reloadData];
-     [_reviewTextView becomeFirstResponder];
+     [_reviewTableView reloadData];
+   
 }
 
 
@@ -85,30 +111,26 @@
 
 -(IBAction)addReview:(id)sender
 {
-    _isReviewing = YES;
     if ([_reviewTextView.text isEqualToString:@""] || [_reviewTextView.text isEqualToString:@"Ajoutez votre review..."])
     {
         _reviewTextView.text = @"Ajoutez votre review...";
         // need feedback no text in review = no review
+        _isReviewing = NO;
+        _addReviewButton.hidden = YES;
+        _reviewRating.rating = 0;
         [_reviewTableView reloadData];
         [_reviewTextView becomeFirstResponder];
     }
     else
     {
-        if (_isReviewing == YES)
-        {
-            [self saveReview];
-            [self getReviews];
-        }
-        else
-            NSLog(@"test");
-        
+        [self saveReview];
     }
 }
 
 -(void) saveReview
 {
     
+    NSLog(@"JVIENS SAVE LA REVIEW LA");
 
     [_reviewTextView resignFirstResponder];
     NSNumber *reviewValue = [NSNumber numberWithFloat:_reviewRating.rating];
@@ -120,10 +142,11 @@
     BusinessReview *review = [[BusinessReview alloc] initWithDictionary:dic];
   
     [review save];
+    
     _isReviewing = NO;
+    _addReviewButton.hidden = YES;
     _reviewRating.rating = 0;
     _reviewTextView.text = @"";
-   
 }
 
 
@@ -140,47 +163,55 @@
 }
 
 
-// Text View Delegate
 
--(BOOL)textViewShouldBeginEditing:(UITextView *)textView
-{
-    return YES;
-}
-
--(void)textViewDidBeginEditing:(UITextView *)textView
-{
-    textView.text = @"";
-    [textView becomeFirstResponder];
-//    [self.view addGestureRecognizer:_dismiss];
-
-}
-- (BOOL)textViewShouldEndEditing:(UITextView *)textView
-{
-    [textView resignFirstResponder];
-    return YES;
-}
 
 - (BOOL) textView: (UITextView*) textView
 shouldChangeTextInRange: (NSRange) range
   replacementText: (NSString*) text
 {
     if ([text isEqualToString:@"\n"]) {
-
-        _isReviewing = NO;
         
         if ([_reviewTextView.text isEqualToString:@""] || [_reviewTextView.text isEqualToString:NSLocalizedStringFromTable(@"Ajoutez votre review...", @"Salon_Detail", nil)])
         {
+            NSLog(@"ICI");
+            _reviewRating.rating = 0;
+             _isReviewing = NO;
             _reviewTextView.text = NSLocalizedStringFromTable(@"Ajoutez votre review...", @"Salon_Detail", nil);
+            _addReviewButton.hidden = YES;
             [_reviewTextView resignFirstResponder];
             [_reviewTableView reloadData];
         }
-        else{
+        else
+        {
+            
             [self saveReview];
-            [self getReviews];
+            
         }
 
         return NO;
     }
+    return YES;
+}
+
+-(BOOL)textViewShouldReturn:(UITextView *)textView
+{
+       if ([_reviewTextView.text isEqualToString:@""] || [_reviewTextView.text isEqualToString:NSLocalizedStringFromTable(@"Ajoutez votre review...", @"Salon_Detail", nil)])
+    {
+        NSLog(@"ICI");
+        _reviewRating.rating = 0;
+        _addReviewButton.hidden = YES;
+        _isReviewing = NO;
+        _reviewTextView.text = NSLocalizedStringFromTable(@"Ajoutez votre review...", @"Salon_Detail", nil);
+        [_reviewTextView resignFirstResponder];
+        [_reviewTableView reloadData];
+    }
+    else
+    {
+        
+        [self saveReview];
+        
+    }
+    
     return YES;
 }
 
@@ -196,7 +227,6 @@ shouldChangeTextInRange: (NSRange) range
     _reviewTextView = [[UITextView alloc] initWithFrame:CGRectMake(20, 10, 280, 176)];
     _reviewTextView.delegate = self;
     _reviewTextView.backgroundColor = [UIColor clearColor];
-    _reviewTextView.text = NSLocalizedStringFromTable(@"Add a review", @"Salon_Detail", nil);
     _reviewTextView.textColor = [[UIColor blackHairfie] colorWithAlphaComponent:0.6];
     _reviewTextView.returnKeyType = UIReturnKeyDone;
 
