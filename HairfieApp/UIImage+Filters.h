@@ -11,7 +11,8 @@
 @implementation UIImage (CustomFilters)
 
 
-- (UIImage*)toSepia:(float)sepiaAmount {
+- (UIImage*)toSepia {
+    float sepiaAmount = 0.8;
     UIImage *sourceImage = self;
     
     CIContext *context = [CIContext contextWithOptions:nil];
@@ -128,9 +129,20 @@
     return [self imageFromContext:context withFilter:filter];
 }
 
+- (UIImage *)CIPhotoEffectTransfer {
+    CIImage *inputImage =[[CIImage alloc] initWithImage:self];
+    CIContext *context = [CIContext contextWithOptions:nil];
+    
+    CIFilter *filter = [CIFilter filterWithName:@"CIPhotoEffectTransfer"];
+    
+    [filter setDefaults];
+    [filter setValue:inputImage forKey:kCIInputImageKey];
+    
+    return [self imageFromContext:context withFilter:filter];
+}
 
-- (UIImage *)curveFilter
-{
+
+- (UIImage *)curveFilter {
     
     
     CIImage *inputImage =[[CIImage alloc] initWithImage:self];
@@ -138,7 +150,6 @@
     CIContext *context = [CIContext contextWithOptions:nil];
     
     CIFilter *filter = [CIFilter filterWithName:@"CIToneCurve"];
-    
     
     [filter setDefaults];
     [filter setValue:inputImage forKey:kCIInputImageKey];

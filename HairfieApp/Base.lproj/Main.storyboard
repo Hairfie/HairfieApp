@@ -132,6 +132,7 @@
             <string>SourceSansPro-Light</string>
             <string>SourceSansPro-Light</string>
             <string>SourceSansPro-Light</string>
+            <string>SourceSansPro-Light</string>
         </mutableArray>
         <mutableArray key="SourceSansPro-Regular.ttf">
             <string>SourceSansPro-Regular</string>
@@ -787,7 +788,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Book the best hairdresser around you" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="200" translatesAutoresizingMaskIntoConstraints="NO" id="YLi-t7-pTs">
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Book the best hairdresser around you" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="200" translatesAutoresizingMaskIntoConstraints="NO" id="YLi-t7-pTs">
                                             <rect key="frame" x="60" y="21" width="200" height="42"/>
                                             <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="18"/>
                                             <color key="textColor" red="0.15686274509803921" green="0.19215686274509802" blue="0.22352941176470587" alpha="1" colorSpace="calibratedRGB"/>
@@ -1089,7 +1090,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p28-Lo-Kzd">
-                                        <rect key="frame" x="103" y="14" width="60" height="60"/>
+                                        <rect key="frame" x="90" y="14" width="60" height="60"/>
                                         <color key="backgroundColor" red="0.98039215690000003" green="0.47450980390000003" blue="0.51764705879999995" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="60" id="S1m-D7-KMR"/>
@@ -1101,6 +1102,21 @@
                                         </state>
                                         <connections>
                                             <action selector="sepia:" destination="QW8-eh-zsD" eventType="touchUpInside" id="KhM-nL-Rfa"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Frd-Ai-5ht">
+                                        <rect key="frame" x="173" y="14" width="62" height="60"/>
+                                        <color key="backgroundColor" red="0.98039215690000003" green="0.47450980390000003" blue="0.51764705879999995" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="51" id="7FD-E4-k5P"/>
+                                            <constraint firstAttribute="width" constant="60" id="rXD-zS-r5J"/>
+                                        </constraints>
+                                        <state key="normal" title="New Filter">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="newFilter:" destination="QW8-eh-zsD" eventType="touchUpInside" id="lVJ-Nt-Eem"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -5274,14 +5290,10 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="N9Q-F2-pvG"/>
-        <segue reference="DYR-eo-mJz"/>
-        <segue reference="VGS-VM-Pwy"/>
         <segue reference="XXf-5V-koX"/>
         <segue reference="uEN-by-6gW"/>
         <segue reference="o5i-ex-i4q"/>
         <segue reference="dg2-Ph-4Hs"/>
-        <segue reference="XXf-5V-koX"/>
         <segue reference="PSz-m0-val"/>
         <segue reference="DYR-eo-mJz"/>
         <segue reference="HOe-ge-VCi"/>

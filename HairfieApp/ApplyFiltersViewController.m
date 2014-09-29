@@ -15,6 +15,7 @@
     UIImage *original;
     UIImage *output;
     UIImage *sepia;
+    UIImage *newFilter;
     BOOL frontCamera;
 }
 
@@ -35,9 +36,9 @@
     NSLog(@"size of image in KB: %f ", imgData.length/1024.0);
     _filtersView.hidden = NO;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        sepia = [original toSepia:0.8];
+        sepia = [original toSepia];
+        newFilter = [original curveFilter];
     });
-    
 }
 
 -(IBAction)goBack:(id)sender
@@ -113,6 +114,12 @@
     imageView.image = sepia;
     imageView.contentMode = UIViewContentModeScaleAspectFill;
     output = sepia;
+}
+
+-(IBAction)newFilter:(id)sender {
+    imageView.image = newFilter;
+    imageView.contentMode = UIViewContentModeScaleAspectFill;
+    output = newFilter;
 }
 
 -(IBAction)original:(id)sender {

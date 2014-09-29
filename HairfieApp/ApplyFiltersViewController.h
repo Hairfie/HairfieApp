@@ -19,6 +19,7 @@
 
 
 -(IBAction)sepia:(id)sender;
+-(IBAction)newFilter:(id)sender;
 -(IBAction)original:(id)sender;
 
 @end
