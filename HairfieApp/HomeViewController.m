@@ -59,7 +59,7 @@
     _searchView.searchByLocation.text = NSLocalizedStringFromTable(@"Around Me", @"Feed", nil);
 
     refreshControl = [[UIRefreshControl alloc] init];
-    [refreshControl addTarget:self action:@selector(getHairfies:)
+    [refreshControl addTarget:self action:@selector(getHairfiesFromRefresh:)
              forControlEvents:UIControlEventValueChanged];
     [_hairfieCollection addSubview:refreshControl];
     currentPage = @(0);
@@ -261,6 +261,10 @@
                            success:loadSuccessBlock
                            failure:loadErrorBlock];
     }
+}
+
+-(void)getHairfiesFromRefresh:(UIRefreshControl *)refresh {
+    [self getHairfies:nil];
 }
 
 - (void)customReloadData
