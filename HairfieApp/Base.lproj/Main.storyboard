@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6205" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="dEN-gt-xJT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A361p" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="dEN-gt-xJT">
     <dependencies>
         <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6198"/>
@@ -130,8 +130,13 @@
             <string>SourceSansPro-Light</string>
             <string>SourceSansPro-Light</string>
             <string>SourceSansPro-Light</string>
+            <string>SourceSansPro-Light</string>
+            <string>SourceSansPro-Light</string>
+            <string>SourceSansPro-Light</string>
         </mutableArray>
         <mutableArray key="SourceSansPro-Regular.ttf">
+            <string>SourceSansPro-Regular</string>
+            <string>SourceSansPro-Regular</string>
             <string>SourceSansPro-Regular</string>
             <string>SourceSansPro-Regular</string>
             <string>SourceSansPro-Regular</string>
@@ -1981,10 +1986,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="HS4-gi-6R9"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4">
-                        <size key="portraitSize" width="320" height="568"/>
-                        <size key="landscapeSize" width="568" height="320"/>
-                    </simulatedScreenMetrics>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="hairdresserTableView" destination="tHR-dR-4MZ" id="fF7-Up-LEG"/>
                         <outlet property="headerView" destination="zB0-FQ-0pr" id="EUs-It-oYn"/>
@@ -2029,6 +2031,9 @@
                                         <state key="normal" image="picto-menu-point.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="showMenuActionSheet:" destination="pDa-if-Gwb" eventType="touchDown" id="ZFQ-1Z-rQ2"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Hair Salon" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hdh-5h-kmM">
                                         <rect key="frame" x="92" y="27" width="136" height="23"/>
@@ -2616,6 +2621,7 @@
                         <outlet property="telephoneLabelWidth" destination="8X2-ll-edA" id="baC-99-BsI"/>
                         <outlet property="womanPrice" destination="7L9-mB-SBz" id="DK4-qS-2Us"/>
                         <segue destination="oWk-He-lbw" kind="push" identifier="showTimetable" id="aqA-eY-dNj"/>
+                        <segue destination="d1b-g5-JaB" kind="push" identifier="reportError" id="D36-jL-7ke"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TsP-dW-B6k" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2768,7 +2774,82 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IUZ-36-pVl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2648" y="-1373"/>
+            <point key="canvasLocation" x="2648" y="-1447"/>
+        </scene>
+        <!--Business Error Report View Controller-->
+        <scene sceneID="tWC-SF-dNg">
+            <objects>
+                <viewController id="d1b-g5-JaB" customClass="BusinessErrorReportViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="BYS-gi-n2D"/>
+                        <viewControllerLayoutGuide type="bottom" id="CU6-9W-Msb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="bBo-k4-7Fn">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OtE-fv-3fq" userLabel="Top Bar View">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IJv-he-W0D" userLabel="Go Back">
+                                        <rect key="frame" x="10" y="30" width="20" height="20"/>
+                                        <state key="normal" image="arrow-nav.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="goBack:" destination="d1b-g5-JaB" eventType="touchUpInside" id="0Ow-UY-Oph"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Report an error" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nxb-qp-enb">
+                                        <rect key="frame" x="86" y="27" width="149" height="23"/>
+                                        <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="18"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nyP-ov-ar8">
+                                        <rect key="frame" x="255" y="25" width="60" height="30"/>
+                                        <color key="backgroundColor" red="0.98039215690000003" green="0.47450980390000003" blue="0.51764705879999995" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="14"/>
+                                        <state key="normal" title="Send">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="submitErrorReport:" destination="d1b-g5-JaB" eventType="touchUpInside" id="yEi-CQ-yQL"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.15686274510000001" green="0.19215686269999999" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" text="Error report..." translatesAutoresizingMaskIntoConstraints="NO" id="jLO-Ht-rmD">
+                                <rect key="frame" x="10" y="72" width="300" height="150"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="dBI-Bx-H4Q"/>
+                                </constraints>
+                                <inset key="scrollIndicatorInsets" minX="15" minY="10" maxX="15" maxY="0.0"/>
+                                <color key="textColor" red="0.1960784314" green="0.26274509800000001" blue="0.3411764706" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="jLO-Ht-rmD" secondAttribute="trailing" constant="10" id="7AR-of-yAE"/>
+                            <constraint firstItem="jLO-Ht-rmD" firstAttribute="leading" secondItem="bBo-k4-7Fn" secondAttribute="leadingMargin" constant="10" id="MNO-4I-zVJ"/>
+                            <constraint firstItem="jLO-Ht-rmD" firstAttribute="top" secondItem="OtE-fv-3fq" secondAttribute="bottom" constant="8" symbolic="YES" id="QxD-KZ-ht6"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Ovm-md-e53"/>
+                    <connections>
+                        <outlet property="bodyText" destination="jLO-Ht-rmD" id="bOl-TB-D39"/>
+                        <outlet property="headerSubmitButton" destination="nyP-ov-ar8" id="KeJ-lU-B8u"/>
+                        <outlet property="headerTitleLabel" destination="nxb-qp-enb" id="DsM-Xp-u1Z"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9gz-KA-mWQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2648" y="-818"/>
         </scene>
         <!--Favorites-->
         <scene sceneID="pSr-Pn-kI9">
@@ -5072,6 +5153,73 @@
             </objects>
             <point key="canvasLocation" x="4218" y="1274"/>
         </scene>
+        <!--Second Step Salon Phone View Controller-->
+        <scene sceneID="8iT-vd-acE">
+            <objects>
+                <viewController id="roZ-0w-Z9e" customClass="SecondStepSalonPhoneViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hX8-le-8Me"/>
+                        <viewControllerLayoutGuide type="bottom" id="bNR-e4-xxd"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="W55-IM-Q6i">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="04Z-ez-32j" userLabel="Top Bar View">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wye-KK-Xye" userLabel="Go Back">
+                                        <rect key="frame" x="10" y="30" width="20" height="20"/>
+                                        <state key="normal" image="arrow-nav.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="goBack:" destination="roZ-0w-Z9e" eventType="touchUpInside" id="Hfj-WN-32q"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add a salon" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hQe-xy-afS">
+                                        <rect key="frame" x="86" y="27" width="149" height="23"/>
+                                        <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="18"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tVt-r9-fUf">
+                                        <rect key="frame" x="255" y="25" width="60" height="30"/>
+                                        <color key="backgroundColor" red="0.98039215690000003" green="0.47450980390000003" blue="0.51764705879999995" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="14"/>
+                                        <state key="normal" title="Validate">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="doneClicked:" destination="roZ-0w-Z9e" eventType="touchUpInside" id="HhT-7n-e2t"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.15686274510000001" green="0.19215686269999999" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Salon's name" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="2Ae-6g-MtX">
+                                <rect key="frame" x="10" y="88" width="300" height="46"/>
+                                <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="15"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="roZ-0w-Z9e" id="ENk-bc-Yco"/>
+                                </connections>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="YXh-G7-TLQ"/>
+                    <connections>
+                        <outlet property="doneBttn" destination="tVt-r9-fUf" id="2OG-5W-vrl"/>
+                        <outlet property="headerLabel" destination="hQe-xy-afS" id="Dgm-MB-Lte"/>
+                        <outlet property="textField" destination="2Ae-6g-MtX" id="0lb-qC-rF9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1rd-ZI-Wdg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2236" y="2019"/>
+        </scene>
     </scenes>
     <resources>
         <image name="add-comment-textfield.png" width="600" height="71"/>
@@ -5124,18 +5272,19 @@
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4">
-            <size key="portraitSize" width="320" height="568"/>
-            <size key="landscapeSize" width="568" height="320"/>
-        </simulatedScreenMetrics>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="N9Q-F2-pvG"/>
         <segue reference="DYR-eo-mJz"/>
         <segue reference="VGS-VM-Pwy"/>
+        <segue reference="XXf-5V-koX"/>
         <segue reference="uEN-by-6gW"/>
+        <segue reference="o5i-ex-i4q"/>
         <segue reference="dg2-Ph-4Hs"/>
         <segue reference="XXf-5V-koX"/>
+        <segue reference="PSz-m0-val"/>
+        <segue reference="DYR-eo-mJz"/>
         <segue reference="HOe-ge-VCi"/>
     </inferredMetricsTieBreakers>
 </document>

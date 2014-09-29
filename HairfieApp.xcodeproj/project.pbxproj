@@ -41,6 +41,8 @@
 		15ED728C199B9C6400453A74 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15ED728B199B9C6400453A74 /* ImageIO.framework */; };
 		71026D1B19CAE34200994831 /* HairfieLike.m in Sources */ = {isa = PBXBuildFile; fileRef = 71026D1A19CAE34200994831 /* HairfieLike.m */; };
 		71026D1E19CAF1BE00994831 /* HairfieLikeRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 71026D1D19CAF1BE00994831 /* HairfieLikeRepository.m */; };
+		711FB93B19D9911E0023CAD4 /* BusinessErrorReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 711FB93A19D9911E0023CAD4 /* BusinessErrorReportViewController.m */; };
+		711FB93E19D998730023CAD4 /* BusinessErrorReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 711FB93D19D998730023CAD4 /* BusinessErrorReport.m */; };
 		712667EB19C6E67500298FF0 /* UIRoundImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 712667EA19C6E67500298FF0 /* UIRoundImageView.m */; };
 		718A98B019C1EF46003CD34B /* GeoPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 718A98AF19C1EF46003CD34B /* GeoPoint.m */; };
 		718B6B7819C831E200F2F8EF /* picto-hairfie-liked.png in Resources */ = {isa = PBXBuildFile; fileRef = 718B6B7719C831E200F2F8EF /* picto-hairfie-liked.png */; };
@@ -345,6 +347,10 @@
 		71026D1A19CAE34200994831 /* HairfieLike.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HairfieLike.m; sourceTree = "<group>"; };
 		71026D1C19CAF1BE00994831 /* HairfieLikeRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HairfieLikeRepository.h; sourceTree = "<group>"; };
 		71026D1D19CAF1BE00994831 /* HairfieLikeRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HairfieLikeRepository.m; sourceTree = "<group>"; };
+		711FB93919D9911E0023CAD4 /* BusinessErrorReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessErrorReportViewController.h; sourceTree = "<group>"; };
+		711FB93A19D9911E0023CAD4 /* BusinessErrorReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessErrorReportViewController.m; sourceTree = "<group>"; };
+		711FB93C19D998730023CAD4 /* BusinessErrorReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessErrorReport.h; sourceTree = "<group>"; };
+		711FB93D19D998730023CAD4 /* BusinessErrorReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessErrorReport.m; sourceTree = "<group>"; };
 		712667E919C6E67500298FF0 /* UIRoundImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIRoundImageView.h; sourceTree = "<group>"; };
 		712667EA19C6E67500298FF0 /* UIRoundImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIRoundImageView.m; sourceTree = "<group>"; };
 		718A98AE19C1EF46003CD34B /* GeoPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeoPoint.h; sourceTree = "<group>"; };
@@ -1070,6 +1076,8 @@
 				B337B6FC19A252B7003B0EA5 /* ReviewsViewController.m */,
 				B337B6F819A25116003B0EA5 /* HorairesViewController.h */,
 				B337B6F919A25116003B0EA5 /* HorairesViewController.m */,
+				711FB93919D9911E0023CAD4 /* BusinessErrorReportViewController.h */,
+				711FB93A19D9911E0023CAD4 /* BusinessErrorReportViewController.m */,
 			);
 			name = "Salon Detail";
 			sourceTree = "<group>";
@@ -1296,6 +1304,8 @@
 				B3615B3719AF242800F1141D /* User.m */,
 				B3E4B46119A73C830036BAD8 /* Business.h */,
 				B3E4B46219A73C830036BAD8 /* Business.m */,
+				711FB93C19D998730023CAD4 /* BusinessErrorReport.h */,
+				711FB93D19D998730023CAD4 /* BusinessErrorReport.m */,
 				B330408C19BDAC7000BA6211 /* Hairfie.h */,
 				B330408D19BDAC7000BA6211 /* Hairfie.m */,
 				71026D1919CAE34200994831 /* HairfieLike.h */,
@@ -1790,6 +1800,7 @@
 				B345BAE919951A7E007BB61A /* OLEContainerScrollView.m in Sources */,
 				B367DC3719C9BFCA00A0452A /* FinalStepTimetableViewController.m in Sources */,
 				B308700C198782AF0080E6D2 /* FavoriteViewController.m in Sources */,
+				711FB93E19D998730023CAD4 /* BusinessErrorReport.m in Sources */,
 				B330409519BDB21200BA6211 /* HairfieRepository.m in Sources */,
 				71A0AC3D19CC2CEA00BC1ABB /* Timetable.m in Sources */,
 				B3E65FB81986917800AF0C15 /* ECSlidingInteractiveTransition.m in Sources */,
@@ -1813,6 +1824,7 @@
 				B319B5CB19C85E2E007F79B0 /* FirstStepViewController.m in Sources */,
 				B33D4C5919D1A655009DE6DD /* BusinessClaimRepository.m in Sources */,
 				B3423216198924290058866B /* AFURLRequestSerialization.m in Sources */,
+				711FB93B19D9911E0023CAD4 /* BusinessErrorReportViewController.m in Sources */,
 				B33E4C4319A48FE70024F5F7 /* HoraireTableViewCell.m in Sources */,
 				B3423218198924290058866B /* AFURLSessionManager.m in Sources */,
 				15B8ADE319C09A3E009846AA /* BusinessRepository.m in Sources */,

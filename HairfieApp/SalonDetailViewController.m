@@ -35,6 +35,8 @@
     BOOL endOfHairfies;
     BOOL loadingHairfies;
     AppDelegate *delegate;
+    
+    NSArray *menuActions;
 }
 
 @synthesize imageSliderView =_imageSliderView, pageControl = _pageControl,hairfieView = _hairfieView, hairdresserView = _hairdresserView, priceAndSaleView = _priceAndSaleView, infoBttn = _infoBttn, hairfieBttn = _hairfieBttn, hairdresserBttn = _hairdresserBttn, priceAndSaleBttn = _priceAndSaleBttn, reviewRating = _reviewRating, reviewTableView = _reviewTableView, addReviewBttn = _addReviewBttn, moreReviewBttn = _moreReviewBttn, similarTableView = _similarTableView, business = _business, ratingLabel = _ratingLabel, name = _name , womanPrice = _womanPrice, manPrice = _manPrice, salonRating = _salonRating, address = _address, city = _city, salonAvailability = _salonAvailability, nbReviews = _nbReviews, previewMap = _previewMap, isOpenLabel = _isOpenLabel, isOpenLabelDetail = _isOpenLabelDetail, isOpenImage = _isOpenImage, isOpenImageDetail = _isOpenImageDetail, callBttn = _callBttn, telephoneBgView = _telephoneBgView, detailedContainerView = _detailedContainerView;
@@ -108,7 +110,10 @@
          forCellWithReuseIdentifier:@"loadingCell"];
     
     // Do any additional setup after loading the view.
-    
+
+    menuActions = @[
+        @{@"label": @"Report an error", @"segue": @"reportError"}
+    ];
 }
 
 -(void) setupGallery:(NSArray*) pictures
@@ -600,6 +605,8 @@
     } else if ([segue.identifier isEqualToString:@"similarBusiness"]) {
         SalonDetailViewController *controller = [segue destinationViewController];
         controller.business = sender;
+    } else if ([segue.identifier isEqualToString:@"reportError"]) {
+        [[segue destinationViewController] setBusiness:self.business];
     }
 }
 
@@ -699,6 +706,28 @@
 -(void) collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     [self performSegueWithIdentifier:@"hairfieDetail" sender:hairfies[indexPath.row]];
+}
+
+-(IBAction)showMenuActionSheet:(id)sender
+{
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                             delegate:self
+                                                    cancelButtonTitle:NSLocalizedStringFromTable(@"Cancel", @"Salon_Detail", nil)
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:nil];
+    
+    for (NSDictionary *menuAction in menuActions) {
+        [actionSheet addButtonWithTitle:NSLocalizedStringFromTable([menuAction objectForKey:@"label"], @"Salon_Detail", nil)];
+    }
+    
+    [actionSheet showInView:self.view];
+}
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (0 == buttonIndex) return; // it's the cancel button
+    
+    [self performSegueWithIdentifier:[menuActions[buttonIndex - 1] objectForKey:@"segue"] sender:self];
 }
 
 
