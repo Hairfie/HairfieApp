@@ -18,6 +18,7 @@
 @property (nonatomic, strong) NSMutableArray *menuItems;
 @property (nonatomic, strong) NSMutableArray *menuPictos;
 @property (nonatomic) IBOutlet UILabel *name;
+@property (nonatomic) IBOutlet UILabel *hairfieNb;
 @property (nonatomic) User *currentUser;
 
 - (IBAction)unwindToMenuViewController:(UIStoryboardSegue *)segue;

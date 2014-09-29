@@ -33,6 +33,12 @@
     // Do any additional setup after loading the view.
 }
 
+-(void) viewWillAppear:(BOOL)animated
+{
+    if (_desc != nil)
+        _descriptionView.text = _desc;
+}
+
 -(IBAction)goBack:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];

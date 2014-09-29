@@ -72,11 +72,9 @@
 {
     if ([segue.identifier isEqualToString:@"claimKindSalon"])
     {
-        
         SecondStepViewController *secondStep = [segue destinationViewController];
         secondStep.claim = [[BusinessClaim alloc] init];
         secondStep.claim = _claim;
-        
     }
 }
 

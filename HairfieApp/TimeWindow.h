@@ -20,7 +20,8 @@
                endTime:(NSString *)anEndTime
        appointmentMode:(NSString *)anAppointmentMode;
 
--(NSString*)timeWindowFormatted;
--(NSDictionary*)toDictionary;
+-(NSString *)timeWindowFormatted;
+
+-(NSDictionary *)toDictionary;
 
 @end

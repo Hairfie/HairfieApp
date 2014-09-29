@@ -15,6 +15,13 @@
 
 @implementation Business
 
+-(void)setTimetable:(NSDictionary *)aDictionary
+{
+    if (nil == aDictionary) return;
+    
+    _timetable = [[Timetable alloc] initWithDictionary:aDictionary];
+}
+
 -(NSString *)displayNameAndAddress
 {
     return [NSString stringWithFormat:@"%@ - %@", self.name, self.address.displayAddress];

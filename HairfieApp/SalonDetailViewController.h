@@ -11,7 +11,7 @@
 #import <MapKit/MapKit.h>
 #import "Business.h"
 
-@interface SalonDetailViewController : UIViewController <UIScrollViewDelegate, RatingViewDelegate, UITableViewDataSource, UITableViewDelegate, MKMapViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate>
+@interface SalonDetailViewController : UIViewController <UIScrollViewDelegate, RatingViewDelegate, UITableViewDataSource, UITableViewDelegate, MKMapViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UIActionSheetDelegate>
 
 @property (nonatomic) IBOutlet UIScrollView *imageSliderView;
 @property (nonatomic) IBOutlet UIPageControl *pageControl;

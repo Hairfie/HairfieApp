@@ -7,14 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Timetable.h"
 
 @interface HorairesViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
-
-@property (nonatomic) NSDictionary *salon;
 @property (nonatomic) IBOutlet UITableView *horaireTableView;
-
 @property (nonatomic) IBOutlet NSLayoutConstraint *tableViewHeight;
+
+@property (nonatomic) Timetable *timetable;
 
 -(IBAction)goBack:(id)sender;
 

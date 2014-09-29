@@ -30,7 +30,7 @@
     return self;
 }
 
--(NSString*)timeWindowFormatted
+-(NSString *)timeWindowFormatted
 {
     return [NSString stringWithFormat:@"%@ - %@", self.startTime, self.endTime];
 }

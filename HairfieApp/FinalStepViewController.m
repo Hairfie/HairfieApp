@@ -10,6 +10,7 @@
 #import "SecondStepSalonPhoneViewController.h"
 #import "FinalStepAddressViewController.h"
 #import "FinalStepTimetableViewController.h"
+#import "FinalStepDescriptionViewController.h"
 #import "Address.h"
 #import "PictureUploader.h"
 #import <SDWebImage/UIImageView+WebCache.h>
@@ -30,7 +31,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [self unSelectAll];
+    [self setButtonSelected:_infoBttn andBringViewUpfront:_infoView];
     
     _claim.timetable = [[Timetable alloc] initEmpty];
     _claim.pictures = [[NSMutableArray alloc] init];
@@ -43,6 +45,7 @@
     _validateBttn.layer.masksToBounds = YES;
     _addHairfiesBttn.layer.cornerRadius = 5;
     _addHairfiesBttn.layer.masksToBounds = YES;
+    
     UIView *borderBttn =[[UIView alloc] initWithFrame:CGRectMake(105, 99, 110, 110)];
     borderBttn.backgroundColor = [UIColor whiteColor];
     borderBttn.alpha = 0.2;
@@ -52,8 +55,6 @@
     UIButton *addPictureBttn = [[UIButton alloc] initWithFrame:CGRectMake(110, 104, 100, 100)];
     addPictureBttn.layer.cornerRadius = addPictureBttn.frame.size.height / 2;
     addPictureBttn.clipsToBounds = YES;
-  //  addPictureBttn.layer.borderWidth = 5.0f;
-  //  addPictureBttn.layer.borderColor = [UIColor colorWithRed:255/255.0f green:255/255.0f blue:255/255.0f alpha:0.8].CGColor;
     addPictureBttn.backgroundColor = [UIColor redHairfie];
     [addPictureBttn addTarget:self
                        action:@selector(chooseCameraType)
@@ -70,8 +71,6 @@
     addPictureLabel.numberOfLines = 2;
     [self.view addSubview:addPictureLabel];
     
-
-
     // Do any additional setup after loading the view.
 }
 
@@ -89,7 +88,6 @@
     if (scrollview == _imageSliderView)
     {
         
-        // Update the page when more than 50% of the previous/next page is visible
         CGFloat pageWidth = scrollview.frame.size.width;
         int page = floor((scrollview.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
         _pageControl.currentPage = page;
@@ -146,11 +144,8 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     _phoneBttn.titleLabel.text = _claim.phoneNumber;
-    
     _addressBttn.titleLabel.text = [_claim.address displayAddress];
-    
     _nameLabel.text = _claim.name;
-    
     [self setupGallery:_claim.pictures];
 }
 
@@ -226,6 +221,12 @@
 {
     [self performSegueWithIdentifier:@"claimTimetable" sender:self]; 
 }
+
+-(IBAction)modifyDesc:(id)sender
+{
+    [self performSegueWithIdentifier:@"claimDesc" sender:self];
+}
+
 
 -(void)chooseCameraType
 {
@@ -416,6 +417,11 @@
         FinalStepTimetableViewController *claimTimetable = [segue destinationViewController];
             claimTimetable.timeTable = _claim.timetable;
         
+    }
+    if ([segue.identifier isEqualToString:@"claimDesc"])
+    {
+        FinalStepDescriptionViewController *claimDesc = [segue destinationViewController];
+        claimDesc.desc = _claim.desc;
     }
     
 }
