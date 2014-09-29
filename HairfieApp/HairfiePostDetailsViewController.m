@@ -9,8 +9,6 @@
 #import "HairfiePostDetailsViewController.h"
 #import "PictureUploader.h"
 #import "AppDelegate.h"
-#import "HairfieRepository.h"
-#import "BusinessRepository.h"
 #import "Business.h"
 #import "NotLoggedAlert.h"
 
@@ -205,26 +203,23 @@ shouldChangeTextInRange: (NSRange) range
             return; 
         }
                                            
-        [hairfieDic setObject:uploadedFileName  forKey:@"picture"];
+        [hairfieDic setObject:@{@"picture": uploadedFileName}  forKey:@"picture"];
         [hairfieDic setObject:_hairfieDesc.text forKey:@"description"];
 
-        if (_salonChosen){
-            BusinessRepository *businessRepository = (BusinessRepository *)[[AppDelegate lbAdaptater] repositoryWithClass:[BusinessRepository class]];
-            Business *business = (Business *)[businessRepository modelWithDictionary:_salonChosen];
-            
-            [hairfieDic setObject:business.id forKey:@"id"];
-        }
-        if (![_priceTextField.text isEqualToString:@""])
-        {
+        if (![_priceTextField.text isEqualToString:@""]) {
             NSDictionary *price = [[NSDictionary alloc] initWithObjectsAndKeys:@"EUR", @"currency", _priceTextField.text, @"amount", nil];
             [hairfieDic setObject:price forKey:@"price"];
         }
         
+        Hairfie *hairfieToPost = [[Hairfie alloc] initWithDictionary:hairfieDic];
+
+
+        if (_salonChosen){
+            [hairfieToPost setBusiness:_salonChosen];
+        }
         
-        HairfieRepository *hairfieRepository = (HairfieRepository *)[[AppDelegate lbAdaptater] repositoryWithClass:[HairfieRepository class]];
-        
-        Hairfie *hairfieToPost = (Hairfie *)[hairfieRepository modelWithDictionary:hairfieDic];
-        
+        NSLog(@"UploadedFileName to post : %@", uploadedFileName);
+        NSLog(@"Hairfie to post : %@", hairfieToPost);
         
         void (^loadErrorBlock)(NSError *) = ^(NSError *error){
             NSLog(@"Error : %@", error.description);
@@ -233,7 +228,6 @@ shouldChangeTextInRange: (NSRange) range
 
         };
         void (^loadSuccessBlock)(Hairfie *) = ^(Hairfie *hairfiePosted){
-            
             NSLog(@"Hairfie Posté");
             [self removeSpinnerAndOverlay];
             [self.navigationController popToRootViewControllerAnimated:YES];

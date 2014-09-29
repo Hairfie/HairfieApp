@@ -27,19 +27,19 @@
     _author = [[User alloc] initWithJson:authorDic];
 }
 
+- (void) setBusiness:(NSDictionary *) businessDic
+{
+    if([businessDic isKindOfClass:[NSNull class]]) return;
+    
+    _business = [[Business alloc] initWithDictionary:businessDic];
+}
+
 -(NSString *)pictureUrlwithWidth:(NSString *)width andHeight:(NSString *)height {
     NSString  *url = [[picture objectForKey:@"publicUrl"] stringByAppendingString:@"?"];
     if(width)  url = [NSString stringWithFormat:@"%@&width=%@", url, width];
     if(height) url = [NSString stringWithFormat:@"%@&height=%@", url, height];
     
     return url;
-}
-
-- (void) setBusiness:(NSDictionary *) businessDic
-{
-    if([businessDic isKindOfClass:[NSNull class]]) return;
-    
-    _business = [[Business alloc] initWithDictionary:businessDic];
 }
 
 -(NSString *)pictureUrl {
@@ -69,6 +69,39 @@
 
 -(NSString *)displayNumComments {
     return [NSString stringWithFormat:@"%@", _numComments];
+}
+
+-(void)saveWithSuccess:(void(^)())aSuccessHandler
+               failure:(void(^)(NSError *error))aFailureHandler
+{
+    void (^onSuccess)(NSDictionary *) = ^(NSDictionary *result) {
+        //[self initWithDictionary:result];
+        aSuccessHandler();
+    };
+    
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    
+    [parameters setObject:[self.picture objectForKey:@"picture"] forKey:@"picture"];
+
+    if(self.price != nil) {
+        [parameters setObject:self.price forKey:@"price"];
+    }
+    if(self.description != nil) {
+        [parameters setObject:self.description forKey:@"description"];
+    }
+    if(self.business != nil) {
+        [parameters setObject:self.business.id forKey:@"businessId"];
+    }
+    
+    [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/hairfies"
+                                                                                     verb:@"POST"]
+                                        forMethod:@"hairfies.create"];
+    LBModelRepository *repository = (LBModelRepository *)[[self class] repository];
+    
+    [repository invokeStaticMethod:@"create"
+                                   parameters:parameters
+                                      success:onSuccess
+                                      failure:aFailureHandler];
 }
 
 + (void) listLatest:(NSNumber *)limit
