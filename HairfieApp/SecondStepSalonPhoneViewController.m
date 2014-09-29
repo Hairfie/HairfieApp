@@ -58,6 +58,7 @@
 }
 
 // => WTF, copie coller immonde ici ??
+
 -(void) addDoneButtonToPriceField {
 
 
@@ -77,7 +78,6 @@
     
     textField.inputAccessoryView = keyboardDoneButtonView;
 }
-
 
 - (IBAction)doneClicked:(id)sender
 {
@@ -108,7 +108,6 @@
         }
         else
         {
-            NSLog(@"COU");
             finalStep.claim.name = textField.text;
         }
     }
@@ -144,7 +143,6 @@
         return NO;
     }
 }
-
 
 
 -(IBAction)goBack:(id)sender

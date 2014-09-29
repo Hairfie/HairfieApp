@@ -12,5 +12,6 @@
 
 @property (nonatomic) IBOutlet UITextView *descriptionView;
 @property (nonatomic) IBOutlet UIButton *doneBttn;
+@property (nonatomic) NSString *desc;
 
 @end

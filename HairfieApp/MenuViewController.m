@@ -88,6 +88,7 @@
 -(void) initCurrentUser
 {
     _name.text = appDelegate.currentUser.name;
+    _hairfieNb.text = [NSString stringWithFormat:@"%@ hairfies", appDelegate.currentUser.numHairfies];
     
     
     NSLog(@"current user img url %@", appDelegate.currentUser.thumbUrl);

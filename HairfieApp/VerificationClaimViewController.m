@@ -38,13 +38,15 @@
     _lastNameField.text = delegate.currentUser.lastName;
     _emailField.text = delegate.currentUser.email;
     if (![delegate.currentUser.phoneNumber isEqual: [NSNull null]])
-        _phoneField.text = delegate.currentUser.phoneNumber;    
+        _phoneField.text = delegate.currentUser.phoneNumber;
+    else
+        _phoneField.text = @"No phone number";
     [self.view addGestureRecognizer:self.slidingViewController.panGesture];
     // Do any additional setup after loading the view.
 }
 
 -(void) viewWillAppear:(BOOL)animated {
- //   [ARAnalytics pageView:@"AR - Verification Claim"];
+    [ARAnalytics pageView:@"AR - Verification Claim"];
 }
 
 
