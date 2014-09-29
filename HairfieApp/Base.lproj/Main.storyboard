@@ -2901,11 +2901,12 @@
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="MTL-zK-T9A" id="v70-DL-ls2"/>
+                        <segue destination="wuV-Ro-JC1" kind="push" identifier="hairfieDetail" id="N9Q-F2-pvG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MZh-jF-fzP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1240" y="-354"/>
+            <point key="canvasLocation" x="1254" y="-339"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="TNr-7s-jSn">
@@ -5129,12 +5130,12 @@
         </simulatedScreenMetrics>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="N9Q-F2-pvG"/>
+        <segue reference="DYR-eo-mJz"/>
         <segue reference="VGS-VM-Pwy"/>
         <segue reference="uEN-by-6gW"/>
-        <segue reference="7yU-V8-5Z9"/>
         <segue reference="dg2-Ph-4Hs"/>
         <segue reference="XXf-5V-koX"/>
-        <segue reference="DYR-eo-mJz"/>
         <segue reference="HOe-ge-VCi"/>
     </inferredMetricsTieBreakers>
 </document>
