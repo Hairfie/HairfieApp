@@ -34,19 +34,19 @@
     [super viewDidLoad];
     
     _doneBttn.layer.cornerRadius = 5;
+    timeTable = [[NSDictionary alloc] init];
     
-     timeTable = [[NSDictionary alloc] init];
     weekDays = [[NSArray alloc] initWithObjects:@"Monday",@"Tuesday",@"Wednesday",@"Thursday",@"Friday",@"Saturday",@"Sunday", nil];
     halfHour = [[NSArray alloc] initWithObjects:@"00",@"30", nil];
     
     [_dayPickerView selectRow:0 inComponent:0 animated:NO];
-     [_openingTimePicker selectRow:9 inComponent:0 animated:NO];
+    [_openingTimePicker selectRow:9 inComponent:0 animated:NO];
     [_openingTimePicker selectRow:0 inComponent:1 animated:NO];
-    
-     [_closingTimePicker selectRow:18 inComponent:0 animated:NO];
+    [_closingTimePicker selectRow:18 inComponent:0 animated:NO];
     [_closingTimePicker selectRow:1 inComponent:1 animated:NO];
     [_openingTimePicker reloadAllComponents];
     [_closingTimePicker reloadAllComponents];
+    
     _openingTimeView.layer.cornerRadius = 5;
     _openingTimeView.layer.masksToBounds = YES;
     _openingTimeView.layer.borderColor = [UIColor lightGreyHairfie].CGColor;
@@ -121,24 +121,20 @@ numberOfRowsInComponent:(NSInteger)component
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row
       inComponent:(NSInteger)component
 {
-   
     if (pickerView == _dayPickerView)
         _dayPicked = [weekDays objectAtIndex:row];
     if (pickerView == _openingTimePicker)
     {
-
         NSString *minutes = [halfHour objectAtIndex:[pickerView selectedRowInComponent:1]];
         _openingTime = [NSString stringWithFormat:@"%ldh%@", [pickerView selectedRowInComponent:0], minutes];
         NSLog(@"Opening Time %@", _openingTime);
     }
     if (pickerView == _closingTimePicker)
     {
-        
         NSString *minutes = [halfHour objectAtIndex:[pickerView selectedRowInComponent:1]];
         _closingTime = [NSString stringWithFormat:@"%ldh%@", [pickerView selectedRowInComponent:0], minutes];
         NSLog(@"Closing Time %@", _closingTime);
     }
-    
 }
 
 -(IBAction)goBack:(id)sender
@@ -149,14 +145,9 @@ numberOfRowsInComponent:(NSInteger)component
 
 -(IBAction)addTimeTable:(id)sender
 {
-
-    
-
     FinalStepTimetableViewController *claimTimeTable = [self.navigationController.viewControllers objectAtIndex:[self.navigationController.viewControllers count]-2];
    
     TimeWindow *timeWindow = [[TimeWindow alloc] initWithStartTime:_openingTime endTime:_closingTime appointmentMode:nil];
-    
-   
     
     if ([_dayPicked isEqualToString:@"Monday"])
     {
@@ -195,9 +186,6 @@ numberOfRowsInComponent:(NSInteger)component
     }
     [_openingTimePicker reloadAllComponents];
     [_closingTimePicker reloadAllComponents];
-    
-    NSLog(@"TimeWindow %@ \n%@", claimTimeTable.timeTable.friday, claimTimeTable.timeTable.sunday);
-
     
 }
 

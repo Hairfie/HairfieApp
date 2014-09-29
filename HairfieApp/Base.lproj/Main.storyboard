@@ -4322,7 +4322,7 @@
                                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
                                                         <connections>
-                                                            <segue destination="QDs-5V-jNB" kind="push" identifier="claimSchedule" id="0ob-k3-uxh"/>
+                                                            <action selector="modifyTimetable:" destination="BHW-4V-7I5" eventType="touchUpInside" id="B5c-rX-mwC"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jJW-MA-WZP">
@@ -4464,6 +4464,7 @@
                         <segue destination="NUe-A9-Lt8" kind="push" identifier="claimPhone" id="VGS-VM-Pwy"/>
                         <segue destination="NUe-A9-Lt8" kind="push" identifier="claimSalon" id="2Zn-eA-CWz"/>
                         <segue destination="zTm-H4-2yr" kind="push" identifier="claimAddress" id="ckv-Nm-GTR"/>
+                        <segue destination="QDs-5V-jNB" kind="push" identifier="claimTimetable" id="gaM-xQ-0j1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kgs-18-rHr" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -4515,83 +4516,104 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.15686274510000001" green="0.19215686269999999" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fKS-Kw-TIh">
-                                <rect key="frame" x="16" y="85" width="288" height="46"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HWK-CQ-Ndp" customClass="TPKeyboardAvoidingScrollView">
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="First name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lhh-oz-ep1">
-                                        <rect key="frame" x="8" y="12" width="73" height="22"/>
-                                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="17"/>
-                                        <color key="textColor" red="0.73160475130000002" green="0.73160475130000002" blue="0.73160475130000002" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fKS-Kw-TIh">
+                                        <rect key="frame" x="16" y="21" width="288" height="46"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="First name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lhh-oz-ep1">
+                                                <rect key="frame" x="8" y="12" width="73" height="22"/>
+                                                <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="17"/>
+                                                <color key="textColor" red="0.73160475130000002" green="0.73160475130000002" blue="0.73160475130000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hYe-xd-MSJ">
-                                        <rect key="frame" x="140" y="0.0" width="148" height="46"/>
+                                        <rect key="frame" x="150" y="21" width="148" height="46"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="vfu-7w-ucu" id="ztW-OG-vVR"/>
+                                        </connections>
+                                    </textField>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="34F-Ui-RTU">
+                                        <rect key="frame" x="16" y="84" width="288" height="46"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Last name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="viI-Dm-tlD">
+                                                <rect key="frame" x="8" y="12" width="72" height="22"/>
+                                                <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="17"/>
+                                                <color key="textColor" red="0.73160475130000002" green="0.73160475130000002" blue="0.73160475130000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zV7-Jt-Qcy">
+                                        <rect key="frame" x="150" y="84" width="148" height="46"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="vfu-7w-ucu" id="PA7-p5-YsB"/>
+                                        </connections>
+                                    </textField>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="S6G-AV-MW2">
+                                        <rect key="frame" x="16" y="149" width="288" height="46"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Email" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2xe-Dx-ENo">
+                                                <rect key="frame" x="8" y="12" width="42" height="22"/>
+                                                <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="17"/>
+                                                <color key="textColor" red="0.73160475130000002" green="0.73160475130000002" blue="0.73160475130000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="L0f-oq-c6W">
+                                        <rect key="frame" x="150" y="149" width="148" height="46"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="vfu-7w-ucu" id="o24-zh-Pg9"/>
+                                        </connections>
+                                    </textField>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rZH-dE-FtO">
+                                        <rect key="frame" x="16" y="213" width="288" height="46"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Phone number" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zq2-eC-Wbw">
+                                                <rect key="frame" x="8" y="12" width="103" height="22"/>
+                                                <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="17"/>
+                                                <color key="textColor" red="0.73160475130000002" green="0.73160475130000002" blue="0.73160475130000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xrQ-kJ-BlJ">
+                                        <rect key="frame" x="150" y="213" width="148" height="46"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="phonePad" returnKeyType="done"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="vfu-7w-ucu" id="z1I-9b-yOg"/>
+                                        </connections>
                                     </textField>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="34F-Ui-RTU">
-                                <rect key="frame" x="16" y="149" width="288" height="46"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Last name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="viI-Dm-tlD">
-                                        <rect key="frame" x="8" y="12" width="72" height="22"/>
-                                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="17"/>
-                                        <color key="textColor" red="0.73160475130000002" green="0.73160475130000002" blue="0.73160475130000002" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zV7-Jt-Qcy">
-                                        <rect key="frame" x="140" y="0.0" width="148" height="46"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="S6G-AV-MW2">
-                                <rect key="frame" x="16" y="213" width="288" height="46"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Email" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2xe-Dx-ENo">
-                                        <rect key="frame" x="8" y="12" width="42" height="22"/>
-                                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="17"/>
-                                        <color key="textColor" red="0.73160475130000002" green="0.73160475130000002" blue="0.73160475130000002" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="L0f-oq-c6W">
-                                        <rect key="frame" x="140" y="0.0" width="148" height="46"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rZH-dE-FtO">
-                                <rect key="frame" x="16" y="277" width="288" height="46"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Phone number" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zq2-eC-Wbw">
-                                        <rect key="frame" x="8" y="12" width="103" height="22"/>
-                                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="17"/>
-                                        <color key="textColor" red="0.73160475130000002" green="0.73160475130000002" blue="0.73160475130000002" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xrQ-kJ-BlJ">
-                                        <rect key="frame" x="140" y="0.0" width="148" height="46"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="QFA-Qg-gGW"/>
                     <connections>
                         <outlet property="doneBttn" destination="LuN-7S-OcC" id="eqz-tQ-2JG"/>
+                        <outlet property="emailField" destination="L0f-oq-c6W" id="ItG-3R-zrO"/>
                         <outlet property="emailView" destination="S6G-AV-MW2" id="Prz-WD-MSA"/>
+                        <outlet property="firstNameField" destination="hYe-xd-MSJ" id="82N-dr-HdO"/>
                         <outlet property="firstNameView" destination="fKS-Kw-TIh" id="slv-c8-DPr"/>
+                        <outlet property="lastNameField" destination="zV7-Jt-Qcy" id="vY3-qd-xmH"/>
                         <outlet property="lastNameView" destination="34F-Ui-RTU" id="pVj-gE-rIJ"/>
+                        <outlet property="phoneNumberField" destination="xrQ-kJ-BlJ" id="2ui-Rn-BC3"/>
                         <outlet property="phoneNumberView" destination="rZH-dE-FtO" id="cuv-Cv-5kV"/>
                     </connections>
                 </viewController>
@@ -4743,16 +4765,16 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cde-ia-zX2" userLabel="Closing">
-                                <rect key="frame" x="180" y="256" width="130" height="292"/>
+                                <rect key="frame" x="185" y="256" width="125" height="274"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Set the closing time" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="100" translatesAutoresizingMaskIntoConstraints="NO" id="iZw-cZ-hf8">
-                                        <rect key="frame" x="15" y="10" width="100" height="46"/>
+                                        <rect key="frame" x="10" y="10" width="100" height="46"/>
                                         <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="18"/>
                                         <color key="textColor" red="0.44294084820000001" green="0.44294084820000001" blue="0.44294084820000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tHW-70-57C">
-                                        <rect key="frame" x="0.0" y="58" width="130" height="216"/>
+                                        <rect key="frame" x="-5" y="58" width="130" height="216"/>
                                         <connections>
                                             <outlet property="dataSource" destination="m3V-Fr-d7F" id="mus-xH-Vda"/>
                                             <outlet property="delegate" destination="m3V-Fr-d7F" id="rBQ-Cz-UIa"/>
@@ -5095,12 +5117,12 @@
         </simulatedScreenMetrics>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="HOe-ge-VCi"/>
-        <segue reference="o5i-ex-i4q"/>
-        <segue reference="7yU-V8-5Z9"/>
+        <segue reference="VGS-VM-Pwy"/>
         <segue reference="uEN-by-6gW"/>
+        <segue reference="7yU-V8-5Z9"/>
         <segue reference="dg2-Ph-4Hs"/>
-        <segue reference="DYR-eo-mJz"/>
         <segue reference="XXf-5V-koX"/>
+        <segue reference="DYR-eo-mJz"/>
+        <segue reference="HOe-ge-VCi"/>
     </inferredMetricsTieBreakers>
 </document>

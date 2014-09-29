@@ -21,5 +21,6 @@
        appointmentMode:(NSString *)anAppointmentMode;
 
 -(NSString*)timeWindowFormatted;
+-(NSDictionary*)toDictionary;
 
 @end

@@ -29,5 +29,6 @@
              sunday:(NSArray *)aSunday;
 
 -(id)initEmpty;
+-(NSDictionary*) toDictionary;
 
 @end

@@ -35,7 +35,7 @@
         [parameters setObject:self.phoneNumber forKey:@"phoneNumber"];
     
     if (self.timetable != nil)
-        [parameters setObject:self.timetable forKey:@"timetable"];
+        [parameters setObject:[self.timetable toDictionary] forKey:@"timetable"];
     
     if (self.address != nil)
         [parameters setObject:[self.address toDictionary]  forKey:@"address"];

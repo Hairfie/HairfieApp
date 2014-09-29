@@ -35,4 +35,12 @@
     return [NSString stringWithFormat:@"%@ - %@", self.startTime, self.endTime];
 }
 
+-(NSDictionary*)toDictionary
+{
+    return [[NSDictionary alloc] initWithObjectsAndKeys:self.startTime,@"startTime", self.endTime, @"endTime", nil];
+}
+
+
+
+
 @end

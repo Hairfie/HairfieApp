@@ -73,4 +73,32 @@
     return self;
 }
 
+-(NSDictionary*) toDictionary
+{
+ 
+    NSMutableArray *montmp = [self timetableElementToMutableArray:self.monday];
+    NSMutableArray *tuetmp = [self timetableElementToMutableArray:self.tuesday];
+    NSMutableArray *wedtmp = [self timetableElementToMutableArray:self.wednesday];
+    NSMutableArray *thutmp = [self timetableElementToMutableArray:self.thursday];
+    NSMutableArray *fritmp = [self timetableElementToMutableArray:self.friday];
+    NSMutableArray *sattmp = [self timetableElementToMutableArray:self.saturday];
+    NSMutableArray *suntmp = [self timetableElementToMutableArray:self.sunday];
+    
+    
+    return [[NSDictionary alloc] initWithObjectsAndKeys:montmp, @"MON", tuetmp, @"TUE", wedtmp, @"WED", thutmp, @"THU",fritmp, @"FRI", sattmp, @"SAT", suntmp, @"SUN", nil];
+}
+
+
+-(NSMutableArray*)timetableElementToMutableArray:(NSMutableArray*)day
+{
+    NSMutableArray *tmp = [[NSMutableArray alloc] init];
+    
+    for (TimeWindow *tm in day)
+    {
+        [tmp addObject:[tm toDictionary]];
+    }
+    
+    return tmp;
+}
+
 @end

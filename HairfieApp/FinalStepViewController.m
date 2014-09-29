@@ -9,6 +9,7 @@
 #import "FinalStepViewController.h"
 #import "SecondStepSalonPhoneViewController.h"
 #import "FinalStepAddressViewController.h"
+#import "FinalStepTimetableViewController.h"
 #import "Address.h"
 
 @interface FinalStepViewController ()
@@ -26,6 +27,7 @@
     
     
     NSLog(@"CLAIM %@", _claim);
+    _claim.timetable = [[Timetable alloc] initEmpty];
     _phoneBttn.titleLabel.text = _claim.phoneNumber;
 
     _addressBttn.titleLabel.text = [_claim.address displayAddress];
@@ -150,6 +152,10 @@
     [self performSegueWithIdentifier:@"claimAddress" sender:self];
 }
 
+-(IBAction)modifyTimetable:(id)sender
+{
+    [self performSegueWithIdentifier:@"claimTimetable" sender:self]; 
+}
 
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -184,6 +190,13 @@
         FinalStepAddressViewController *claimAddress = [segue destinationViewController];
         claimAddress.address = _claim.address;
     
+    }
+    
+    if ([segue.identifier isEqualToString:@"claimTimetable"])
+    {
+        FinalStepTimetableViewController *claimTimetable = [segue destinationViewController];
+            claimTimetable.timeTable = _claim.timetable;
+        
     }
     
 }

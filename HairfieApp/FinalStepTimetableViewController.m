@@ -28,8 +28,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    _timeTable = [[Timetable alloc] initEmpty];
+   
+    if (_timeTable == nil)
+        _timeTable = [[Timetable alloc] initEmpty];
     
     weekDays = [[NSArray alloc] initWithObjects:@"Monday",@"Tuesday",@"Wednesday",@"Thursday",@"Friday",@"Saturday",@"Sunday", nil];
     
@@ -41,9 +42,7 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-
-        [_timeTableView reloadData];
-    
+    [_timeTableView reloadData];
 }
 
 -(IBAction)goBack:(id)sender
@@ -59,6 +58,8 @@
     
     [self goBack:self];
 }
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -105,9 +106,18 @@
     
 
     if (indexPath.row== 0){
-        if ([_timeTable.monday count] != 0 ){
+        if ([_timeTable.monday count] == 1 ){
             timeWindow = [_timeTable.monday objectAtIndex:0];
             cell.timewindow.text = [timeWindow timeWindowFormatted];
+        }
+        else if ([_timeTable.monday count] == 2 )
+        {
+            TimeWindow *timeWindow2 = [[TimeWindow  alloc]init];
+
+            timeWindow = [_timeTable.monday objectAtIndex:0];
+            timeWindow2 = [_timeTable.monday objectAtIndex:1];
+            [cell.timewindow sizeToFit];
+            cell.timewindow.text = [NSString stringWithFormat:@"%@ / %@", [timeWindow timeWindowFormatted], [timeWindow2 timeWindowFormatted]];
         }
         else
             cell.timewindow.text = @"Set a time window";
@@ -151,7 +161,7 @@
             cell.timewindow.text = [timeWindow timeWindowFormatted];
         }
         else
-            cell.timewindow.text = @"No time window set";
+            cell.timewindow.text = @"Set a time window";
     }
     if (indexPath.row== 6){
         if ([_timeTable.sunday count] != 0 ){
