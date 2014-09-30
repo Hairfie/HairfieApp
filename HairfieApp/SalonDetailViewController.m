@@ -39,7 +39,7 @@
     NSArray *menuActions;
 }
 
-@synthesize imageSliderView =_imageSliderView, pageControl = _pageControl,hairfieView = _hairfieView, hairdresserView = _hairdresserView, priceAndSaleView = _priceAndSaleView, infoBttn = _infoBttn, hairfieBttn = _hairfieBttn, hairdresserBttn = _hairdresserBttn, priceAndSaleBttn = _priceAndSaleBttn, reviewRating = _reviewRating, reviewTableView = _reviewTableView, addReviewBttn = _addReviewBttn, moreReviewBttn = _moreReviewBttn, similarTableView = _similarTableView, business = _business, ratingLabel = _ratingLabel, name = _name , womanPrice = _womanPrice, manPrice = _manPrice, salonRating = _salonRating, address = _address, city = _city, salonAvailability = _salonAvailability, nbReviews = _nbReviews, previewMap = _previewMap, isOpenLabel = _isOpenLabel, isOpenLabelDetail = _isOpenLabelDetail, isOpenImage = _isOpenImage, isOpenImageDetail = _isOpenImageDetail, callBttn = _callBttn, telephoneBgView = _telephoneBgView, detailedContainerView = _detailedContainerView;
+@synthesize imageSliderView =_imageSliderView, pageControl = _pageControl,hairfieView = _hairfieView, hairdresserView = _hairdresserView, priceAndSaleView = _priceAndSaleView, infoBttn = _infoBttn, hairfieBttn = _hairfieBttn, hairdresserBttn = _hairdresserBttn, priceAndSaleBttn = _priceAndSaleBttn, reviewRating = _reviewRating, reviewTableView = _reviewTableView, addReviewBttn = _addReviewBttn, moreReviewBttn = _moreReviewBttn, similarTableView = _similarTableView, business = _business, name = _name , womanPrice = _womanPrice, manPrice = _manPrice, salonRating = _salonRating, address = _address, city = _city, salonAvailability = _salonAvailability, nbReviews = _nbReviews, previewMap = _previewMap, isOpenLabel = _isOpenLabel, isOpenLabelDetail = _isOpenLabelDetail, isOpenImage = _isOpenImage, isOpenImageDetail = _isOpenImageDetail, callBttn = _callBttn, telephoneBgView = _telephoneBgView, detailedContainerView = _detailedContainerView;
 
 
 
@@ -424,27 +424,19 @@
     _salonRating.editable = NO;
     _salonRating.maxRating = 5;
     _salonRating.delegate = self;
-    
-    
-    NSLog(@"Business reviews %@, general rating %f", business.numReviews, business.rating);
 
-    if (business.numReviews == 0)
-    {
+    if ([business.numReviews isEqualToNumber:@0] || [business.numReviews isEqualToNumber:@1]) {
         _salonRating.rating = 0;
-        _ratingLabel.text = @"0";
-        _nbReviews.text = NSLocalizedStringFromTable(@"- 0 review", @"Salon_Detail", nil);
+        _nbReviews.text = [NSString stringWithFormat:NSLocalizedStringFromTable(@"%@ review", @"Salon_Detail", nil), business.numReviews];
         _reviewTableView.hidden = YES;
         _addReviewButtonYpos.constant = 338;
         _addReviewButtonXpos.constant = 200;
         _moreReviewBttn.hidden = YES;
         _moreReviewBttn.enabled = NO;
         _mainViewHeight.constant = 1030;
-    }
-    else
-    {
+    } else {
         _salonRating.rating = [[business ratingBetween:@0 and: @5] floatValue];
-        _ratingLabel.text = [[business ratingBetween:@0 and:@5] stringValue];
-        _nbReviews.text =[NSString stringWithFormat:NSLocalizedStringFromTable(@"- %@ reviews", @"Salon_Detail", nil), business.numReviews];
+        _nbReviews.text =[NSString stringWithFormat:NSLocalizedStringFromTable(@"%@ reviews", @"Salon_Detail", nil), business.numReviews];
     }
     
     _address.text = business.address.street;

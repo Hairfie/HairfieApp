@@ -13,21 +13,28 @@
 
 @interface BusinessReview : LBModel
 
+@property (strong, nonatomic) NSString *id;
 @property (strong, nonatomic) Business *business;
 @property (strong, nonatomic) User *author;
 @property (strong, nonatomic) NSNumber *rating;
 @property (strong, nonatomic) NSString *comment;
 @property (strong, nonatomic) NSString *createdAt;
 
-
 -(id)initWithDictionary:(NSDictionary *)data;
+
+-(NSNumber *)ratingBetween:(NSNumber *)theMin
+                       and:(NSNumber *)theMax;
+
+-(void)setRating:(NSNumber *)theRating
+         between:(NSNumber *)theMin
+             and:(NSNumber *)theMax;
+
 -(void)save;
+
 +(void)listLatestByBusiness:(NSString *)aBusinessId
                       limit:(NSNumber *)aLimit
                        skip:(NSNumber *)aNumber
                     success:(void(^)(NSArray *reviews))aSuccessHandler
                     failure:(void(^)(NSError *error))aFailureHandler;
-
-
 
 @end

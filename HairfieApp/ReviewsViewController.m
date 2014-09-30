@@ -127,22 +127,18 @@
     }
 }
 
--(void) saveReview
+-(void)saveReview
 {
-    
     NSLog(@"JVIENS SAVE LA REVIEW LA");
 
     [_reviewTextView resignFirstResponder];
-    NSNumber *reviewValue = [NSNumber numberWithFloat:_reviewRating.rating];
-    
-    NSDictionary *businessDic = [_business toDictionary];
-    
-    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:reviewValue, @"rating", _reviewTextView.text, @"comment", businessDic, @"business",nil];
-  
-    BusinessReview *review = [[BusinessReview alloc] initWithDictionary:dic];
-  
+
+    BusinessReview *review = [[BusinessReview alloc] init];
+    review.business = _business;
+    [review setRating:[NSNumber numberWithFloat:_reviewRating.rating] between:@0 and:@5];
+    review.comment = _reviewTextView.text;
     [review save];
-    
+
     _isReviewing = NO;
     _addReviewButton.hidden = YES;
     _reviewRating.rating = 0;

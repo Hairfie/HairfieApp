@@ -35,6 +35,7 @@
                     forKeyPath:@"_placeholderLabel.textColor"];
     _hairfieImageView.image= _hairfie;
     _hairfieDesc.alpha = 0.5;
+    _hairfieDesc.placeholder = NSLocalizedStringFromTable(@"Add a description", @"Post_Hairfie", nil);
     _dataChoice.hidden = YES;
     _dataChoice.layer.borderWidth = 1;
     _dataChoice.layer.borderColor = [UIColor lightGreyHairfie].CGColor;
@@ -108,19 +109,19 @@ shouldChangeTextInRange: (NSRange) range
 
 -(void)textViewDidBeginEditing:(UITextView *)textView
 {
-    if (textView == _hairfieDesc && [_hairfieDesc.text isEqualToString:@"Add a description..."])
+    if (textView == _hairfieDesc)
     {
-        _hairfieDesc.text = @"";
         _hairfieDesc.alpha = 1;
+        _hairfieDesc.placeholder = @"";
     }
 }
 
 -(void)textViewDidEndEditing:(UITextView *)textView
 {
-    if (textView == _hairfieDesc && [_hairfieDesc.text isEqualToString:@""])
+    if (textView == _hairfieDesc)
     {
-        _hairfieDesc.text = @"Add a description ...";
         _hairfieDesc.alpha = 0.5;
+        _hairfieDesc.placeholder = NSLocalizedStringFromTable(@"Add a description", @"Post_Hairfie", nil);
     }
 }
 
@@ -205,6 +206,7 @@ shouldChangeTextInRange: (NSRange) range
                                            
         [hairfieDic setObject:@{@"picture": uploadedFileName}  forKey:@"picture"];
         [hairfieDic setObject:_hairfieDesc.text forKey:@"description"];
+        [hairfieDic setObject:_whoTextField.text forKey:@"authorString"];
 
         if (![_priceTextField.text isEqualToString:@""]) {
             NSDictionary *price = [[NSDictionary alloc] initWithObjectsAndKeys:@"EUR", @"currency", _priceTextField.text, @"amount", nil];

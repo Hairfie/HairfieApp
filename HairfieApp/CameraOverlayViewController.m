@@ -160,19 +160,20 @@
                                      if (nil != group) {
                                          [group setAssetsFilter:[ALAssetsFilter allPhotos]];
                                          
-                                         
-                                         [group enumerateAssetsAtIndexes:[NSIndexSet indexSetWithIndex:group.numberOfAssets - 1]
-                                                                 options:0
-                                                              usingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
-                                                                  if (nil != result) {
-                                                                      ALAssetRepresentation *repr = [result defaultRepresentation];
-                                                                      // this is the most recent saved photo
-                                                                      UIImage *img = [UIImage imageWithCGImage:[repr fullResolutionImage]];
-                                                                      [self addGoToLibraryButton:img toView:_imagePicker.cameraOverlayView];
-                                                                      // we only need the first (most recent) photo -- stop the enumeration
-                                                                      *stop = YES;
-                                                                  }
-                                                              }];
+                                         if(group.numberOfAssets > 0) {
+                                             [group enumerateAssetsAtIndexes:[NSIndexSet indexSetWithIndex:group.numberOfAssets - 1]
+                                                                     options:0
+                                                                  usingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
+                                                                      if (nil != result) {
+                                                                          ALAssetRepresentation *repr = [result defaultRepresentation];
+                                                                          // this is the most recent saved photo
+                                                                          UIImage *img = [UIImage imageWithCGImage:[repr fullResolutionImage]];
+                                                                          [self addGoToLibraryButton:img toView:_imagePicker.cameraOverlayView];
+                                                                          // we only need the first (most recent) photo -- stop the enumeration
+                                                                          *stop = YES;
+                                                                      }
+                                                                  }];
+                                         }
                                      }
                                      
                                      *stop = NO;

@@ -24,11 +24,13 @@
     
     self.headerTitleLabel.text = NSLocalizedStringFromTable(@"Report an error", @"BusinessErrorReport", nil);
 
+    self.headerSubmitButton.layer.cornerRadius = 5;
     [self.headerSubmitButton setTitle:NSLocalizedStringFromTable(@"Submit", @"BusinessErrorReport", nil)
                              forState:UIControlStateNormal];
 
     bodyPlaceholder = NSLocalizedStringFromTable(@"Error report...", @"BusinessErrorReport", nil);
     self.bodyText.text = bodyPlaceholder;
+    self.bodyText.delegate = self;
 }
 
 -(void)didReceiveMemoryWarning
@@ -63,6 +65,13 @@
 -(void)errorReportSubmitted
 {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(void)textViewDidBeginEditing:(UITextView *)textView
+{
+    if ([self.bodyText.text isEqualToString:bodyPlaceholder]) {
+        self.bodyText.text = @"";
+    }
 }
 
 @end

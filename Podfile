@@ -11,6 +11,7 @@ target "HairfieApp" do
   pod 'ARAnalytics/Mixpanel'
   pod 'ARAnalytics/DSL', '~> 2.8.0'
   pod 'MRProgress'
+  pod 'SAMTextView'
 end
 
 target "HairfieAppTests" do
