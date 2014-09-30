@@ -18,6 +18,8 @@
 @property (nonatomic) IBOutlet UIView *filtersView;
 
 
+@property (nonatomic) IBOutlet UIButton *nextBttn;
+
 -(IBAction)sepia:(id)sender;
 -(IBAction)newFilter:(id)sender;
 -(IBAction)original:(id)sender;
