@@ -62,17 +62,6 @@
     return UIStatusBarStyleLightContent;
 }
 
--(void)addGradientToView:(UIView*)view
-{
-    CAGradientLayer *gradient = [CAGradientLayer layer];
-    gradient.frame = view.bounds;
-    gradient.colors = @[(id)[[UIColor clearColor] CGColor],
-                        (id)[[UIColor blackColor] CGColor]];
-    [gradient setStartPoint:CGPointMake(0.0f, 1.0f)];
-    [gradient setEndPoint:CGPointMake(0.0f, 0.6f)];
-    [view.layer insertSublayer:gradient atIndex:0];
-}
-
 -(IBAction)goBack:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
