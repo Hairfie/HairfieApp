@@ -48,8 +48,8 @@
 {
     NSDateFormatter *formatter = [[NSDateFormatter alloc ]init];
     _contentLabel.text = review.comment;
-    _ratingView.rating = [review.rating floatValue];
-    _statusLabel.text = [review.rating stringValue];
+    _ratingView.rating = [[review ratingBetween:@0 and:@5] floatValue];
+    _statusLabel.text = [[review ratingBetween:@0 and:@5] stringValue];
     _nameLabel.text = review.author.displayName;
 
     [profilePicture sd_setImageWithURL:[NSURL URLWithString:review.author.thumbUrl]
