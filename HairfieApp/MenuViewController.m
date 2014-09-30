@@ -136,13 +136,15 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [[data objectAtIndex:section] count];
+    return [_menuItems count];
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [_menuItems count];
+    return 1;
 }
+
+
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 45;
@@ -242,6 +244,12 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
     }
 }
 
+
+
+
+
+
+
 -(void)logOut
 {
     [appDelegate.credentialStore clearSavedCredentials];
@@ -287,5 +295,6 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
     
     // TODO call whatever function you need to visually restore
 }
+
 
 @end
