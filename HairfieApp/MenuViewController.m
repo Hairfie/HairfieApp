@@ -63,19 +63,6 @@
     
     _menuItems = [NSMutableArray arrayWithObjects: NSLocalizedStringFromTable(@"Home", @"Menu", nil), /*NSLocalizedStringFromTable(@"Favorites", @"Menu", nil),*/NSLocalizedStringFromTable(@"Likes", @"Menu", nil), /*NSLocalizedStringFromTable(@"Friends", @"Menu", nil),*/NSLocalizedStringFromTable(@"Business", @"Menu", nil),/*NSLocalizedStringFromTable(@"Settings", @"Menu", nil),*/NSLocalizedStringFromTable(@"Logout", @"Menu", nil), nil];
     
-    data = [[NSMutableArray alloc] init];
-    for (int i = 0 ; i < [_menuItems count] ; i++)
-    {
-        NSMutableArray* section = [[NSMutableArray alloc] init];
-        if ([_menuItems objectAtIndex:i] == NSLocalizedStringFromTable(@"Business", @"Menu", nil))
-        {
-            [section addObject:@"Add Business"];
-        }
-        else
-            [section addObject:@""];
-        [data addObject:section];
-    }
-    
     _menuPictos = [[NSMutableArray alloc] init];
     [_menuPictos addObject:@"home-picto.png"];
     //[_menuPictos addObject:@"favorites-picto.png"];
@@ -160,7 +147,7 @@
         cell = [nib objectAtIndex:0];
     }
     
-
+    
            cell.menuItem.textColor = [UIColor colorWithRed:208 green:210 blue:213 alpha:1];
            cell.menuItem.font = [UIFont fontWithName:@"SourceSansPro-Light" size:15];
            cell.menuItem.text = [_menuItems objectAtIndex:indexPath.row];

@@ -223,6 +223,7 @@
         _infoView.hidden = NO;
     } else if(sender == _hairfieBttn) {
         [self setButtonSelected:_hairfieBttn andBringViewUpfront:_hairfieView];
+        _mainViewHeight.constant = _hairfieCollection.frame.size.height + 300;
         _hairfieView.hidden = NO;
         [self updateHairfiesView];
     } else if(sender == _hairdresserBttn) {

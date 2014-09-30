@@ -31,6 +31,7 @@
     original = [self squareCropImage:hairfie ToSideLength:320];
     imageView.image = original;
     output = original;
+    _nextBttn.layer.cornerRadius = 5;
     NSData *imgData = [[NSData alloc] initWithData:UIImageJPEGRepresentation((original), 0.5)];
     //int imageSize   = imgData.length;
     NSLog(@"size of image in KB: %f ", imgData.length/1024.0);
