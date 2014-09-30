@@ -9,8 +9,6 @@
 #import "HairfiePostDetailsViewController.h"
 #import "PictureUploader.h"
 #import "AppDelegate.h"
-#import "HairfieRepository.h"
-#import "BusinessRepository.h"
 #import "Business.h"
 #import "NotLoggedAlert.h"
 
@@ -49,7 +47,7 @@
     salonTypes = [[NSArray alloc] initWithObjects:@"I did it", @"Hairdresser in a Salon", nil];
     _tableViewHeight.constant = [salonTypes count] * _dataChoice.rowHeight;
     [self addDoneButtonToPriceField];
-    [self uploadProfileImage:_hairfie];
+    [self uploadHairfiePicture:_hairfie];
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -198,35 +196,38 @@ shouldChangeTextInRange: (NSRange) range
         
 
         NSMutableDictionary *hairfieDic = [[NSMutableDictionary alloc] init];
+        
+        if(!uploadedFileName) {
+            [self removeSpinnerAndOverlay];
+            [self showUploadFailedAlertView];
+            return; 
+        }
                                            
-        [hairfieDic setObject:uploadedFileName  forKey:@"picture"];
+        [hairfieDic setObject:@{@"picture": uploadedFileName}  forKey:@"picture"];
         [hairfieDic setObject:_hairfieDesc.text forKey:@"description"];
 
-        if (_salonChosen){
-            BusinessRepository *businessRepository = (BusinessRepository *)[[AppDelegate lbAdaptater] repositoryWithClass:[BusinessRepository class]];
-            Business *business = (Business *)[businessRepository modelWithDictionary:_salonChosen];
-            
-            [hairfieDic setObject:business.id forKey:@"id"];
-        }
-        if (![_priceTextField.text isEqualToString:@""])
-        {
+        if (![_priceTextField.text isEqualToString:@""]) {
             NSDictionary *price = [[NSDictionary alloc] initWithObjectsAndKeys:@"EUR", @"currency", _priceTextField.text, @"amount", nil];
             [hairfieDic setObject:price forKey:@"price"];
         }
         
+        Hairfie *hairfieToPost = [[Hairfie alloc] initWithDictionary:hairfieDic];
+
+
+        if (_salonChosen){
+            [hairfieToPost setBusiness:_salonChosen];
+        }
         
-        HairfieRepository *hairfieRepository = (HairfieRepository *)[[AppDelegate lbAdaptater] repositoryWithClass:[HairfieRepository class]];
-        
-        Hairfie *hairfieToPost = (Hairfie *)[hairfieRepository modelWithDictionary:hairfieDic];
-        
+        NSLog(@"UploadedFileName to post : %@", uploadedFileName);
+        NSLog(@"Hairfie to post : %@", hairfieToPost);
         
         void (^loadErrorBlock)(NSError *) = ^(NSError *error){
             NSLog(@"Error : %@", error.description);
             [self removeSpinnerAndOverlay];
+            [self showUploadFailedAlertView];
 
         };
         void (^loadSuccessBlock)(Hairfie *) = ^(Hairfie *hairfiePosted){
-            
             NSLog(@"Hairfie Posté");
             [self removeSpinnerAndOverlay];
             [self.navigationController popToRootViewControllerAnimated:YES];
@@ -263,7 +264,7 @@ shouldChangeTextInRange: (NSRange) range
     [[_mainView viewWithTag:OVERLAY_TAG] removeFromSuperview];
 }
 
--(void) uploadProfileImage:(UIImage *)image
+-(void) uploadHairfiePicture:(UIImage *)image
 {
     uploadInProgress = YES;
     PictureUploader *pictureUploader = [[PictureUploader alloc] init];
@@ -281,7 +282,7 @@ shouldChangeTextInRange: (NSRange) range
     [pictureUploader uploadImage:image toContainer:@"hairfies" success:loadSuccessBlock failure:loadErrorBlock];
 }
 
--(void) addDoneButtonToPriceField {
+-(void)addDoneButtonToPriceField {
     UIToolbar* keyboardDoneButtonView = [[UIToolbar alloc] init];
     [keyboardDoneButtonView sizeToFit];
     keyboardDoneButtonView.barTintColor = [UIColor redHairfie];
@@ -299,10 +300,18 @@ shouldChangeTextInRange: (NSRange) range
     _priceTextField.inputAccessoryView = keyboardDoneButtonView;
 }
 
-- (IBAction)doneClicked:(id)sender
-{
+- (IBAction)doneClicked:(id)sender {
     NSLog(@"Done Clicked.");
     [_priceTextField endEditing:YES];
+}
+
+-(void)showUploadFailedAlertView {
+    UIAlertView *errorAlert = [[UIAlertView alloc]initWithTitle:@"Error" message:NSLocalizedStringFromTable(@"There was an error uploading your hairfie, Try Again !", @"Post_Hairfie", nil)  delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    [errorAlert show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    [self uploadHairfiePicture:_hairfie];
 }
 
 @end

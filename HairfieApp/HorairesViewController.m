@@ -8,6 +8,7 @@
 
 #import "HorairesViewController.h"
 #import "HoraireTableViewCell.h"
+#import "TimeWindow.h"
 
 @interface HorairesViewController ()
 
@@ -15,20 +16,21 @@
 
 @implementation HorairesViewController
 
-@synthesize salon =_salon;
-
-- (void)viewDidLoad {
+-(void)viewDidLoad
+{
     [super viewDidLoad];
-    _tableViewHeight.constant = _salon.count * 65;
+    _tableViewHeight.constant = 7 * 65;
     // Do any additional setup after loading the view.
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
--(UIStatusBarStyle)preferredStatusBarStyle{
+-(UIStatusBarStyle)preferredStatusBarStyle
+{
     return UIStatusBarStyleLightContent;
 }
 
@@ -46,7 +48,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [_salon count];
+    return 7;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -58,29 +60,57 @@
 {
     static NSString *CellIdentifier = @"horaireCell";
     HoraireTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
+
     if (cell == nil) {
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"HoraireTableViewCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
+
+    NSArray *timeWindows;
+    NSString *dayOfWeek;
     
-    NSString *key = [_salon allKeys][indexPath.row];
-    NSString *day = key;
-    NSMutableArray *timeArray = [[NSMutableArray alloc] init];
-    
-    for(int i = 0;  i < [_salon[key] count]; i++)
-    {
-    [timeArray addObject:[NSString stringWithFormat:@"%@ - %@", [[_salon[key] objectAtIndex:i] valueForKey:@"from"] , [[_salon[key] objectAtIndex:i] valueForKey:@"to"]]];
+    switch (indexPath.row) {
+        case 0:
+            timeWindows = self.timetable.monday;
+            dayOfWeek = NSLocalizedStringFromTable(@"Monday", @"Horaires", nil);
+            break;
+        case 1:
+            timeWindows = self.timetable.tuesday;
+            dayOfWeek = NSLocalizedStringFromTable(@"Tuesday", @"Horaires", nil);
+            break;
+        case 2:
+            timeWindows = self.timetable.wednesday;
+            dayOfWeek = NSLocalizedStringFromTable(@"Wednesday", @"Horaires", nil);
+            break;
+        case 3:
+            timeWindows = self.timetable.thursday;
+            dayOfWeek = NSLocalizedStringFromTable(@"Thursday", @"Horaires", nil);
+            break;
+        case 4:
+            timeWindows = self.timetable.friday;
+            dayOfWeek = NSLocalizedStringFromTable(@"Friday", @"Horaires", nil);
+            break;
+        case 5:
+            timeWindows = self.timetable.saturday;
+            dayOfWeek = NSLocalizedStringFromTable(@"Saturday", @"Horaires", nil);
+            break;
+        case 6:
+            timeWindows = self.timetable.sunday;
+            dayOfWeek = NSLocalizedStringFromTable(@"Sunday", @"Horaires", nil);
+            break;
     }
-    
-    NSString *time = [timeArray componentsJoinedByString:@" / "];
-    cell.day.text = day;
-    cell.time.text = time;
+
+    NSMutableArray *timeArray = [[NSMutableArray alloc] init];
+
+    for (TimeWindow *timeWindow in timeWindows) {
+        [timeArray addObject:timeWindow.timeWindowFormatted];
+    }
+
+    cell.day.text = dayOfWeek;
+    cell.time.text = [timeArray componentsJoinedByString:@" / "];
     
     return cell;
 }
-
-
 
 /*
 #pragma mark - Navigation

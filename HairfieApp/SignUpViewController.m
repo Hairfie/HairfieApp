@@ -11,6 +11,7 @@
 #import "HomeViewController.h"
 #import "UserAuthenticator.h"
 #import "PictureUploader.h"
+#import "MRProgress.h"
 
 @interface SignUpViewController ()
 
@@ -120,11 +121,14 @@ numberOfRowsInComponent:(NSInteger)component
 -(IBAction)createAccount:(id)sender
 {
     [self hideKeyboard];
+    [MRProgressOverlayView showOverlayAddedTo:self.view title:NSLocalizedStringFromTable(@"Sign up in progress", @"Login_Sign_Up", nil) mode:MRProgressOverlayViewModeIndeterminateSmall animated:YES];
+    
     void (^loadErrorBlock)(NSError *) = ^(NSError *error){
         NSLog(@"Error : %@", error.description);
+        [MRProgressOverlayView dismissAllOverlaysForView:self.view animated:YES];
     };
     void (^loadSuccessBlock)(NSDictionary *) = ^(NSDictionary *results){
-        
+        [MRProgressOverlayView dismissAllOverlaysForView:self.view animated:YES];
         NSLog(@"results %@", results);
         NSDictionary *token = [results objectForKey:@"accessToken"];
         [delegate.credentialStore setAuthTokenAndUserId:[token objectForKey:@"id"] forUser:[results objectForKey:@"id"]];

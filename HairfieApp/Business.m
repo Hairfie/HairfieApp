@@ -15,6 +15,13 @@
 
 @implementation Business
 
+-(void)setTimetable:(NSDictionary *)aDictionary
+{
+    if (nil == aDictionary) return;
+    
+    _timetable = [[Timetable alloc] initWithDictionary:aDictionary];
+}
+
 -(NSString *)displayNameAndAddress
 {
     return [NSString stringWithFormat:@"%@ - %@", self.name, self.address.displayAddress];
@@ -77,7 +84,7 @@
 -(NSNumber *)ratingBetween:(NSNumber *)theMin
                        and:(NSNumber *)theMax
 {
-    if ([self.rating isEqual:nil]) {
+    if ([self.rating isEqual:[NSNull null]]) {
         return nil;
     }
 
@@ -140,11 +147,18 @@
    withSuccess:(void (^)(Business *))aSuccessHandler
        failure:(void (^)(NSError *))aFailureHandler
 {
-    [[[self class] repository] findById:anId
-                                success:^(LBModel *model) {
-                                    aSuccessHandler((Business *)model);
-                                }
-                                failure:aFailureHandler];
+    // we can't simply rely on the findById method as we need to initialize
+    // the result model using the initWithDictionary method
+    [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/businesses/:businessId"
+                                                                                 verb:@"GET"]
+                                        forMethod:@"businesses.getById"];
+
+    [[[self class] repository] invokeStaticMethod:@"getById"
+                                       parameters:@{@"businessId": anId}
+                                          success:^(id value) {
+                                              aSuccessHandler([[[self class] alloc] initWithDictionary:value]);
+                                          }
+                                          failure:aFailureHandler];
 }
 
 +(LBModelRepository *)repository

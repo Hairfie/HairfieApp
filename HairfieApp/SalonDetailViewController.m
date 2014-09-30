@@ -10,7 +10,6 @@
 #import "HairfieDetailViewController.h"
 #import "ReviewTableViewCell.h"
 #import "SimilarTableViewCell.h"
-#import "HairfieApp-Swift.h"
 #import <CoreLocation/CoreLocation.h>
 #import "MyAnnotation.h"
 #import "ReviewsViewController.h"
@@ -36,6 +35,8 @@
     BOOL endOfHairfies;
     BOOL loadingHairfies;
     AppDelegate *delegate;
+    
+    NSArray *menuActions;
 }
 
 @synthesize imageSliderView =_imageSliderView, pageControl = _pageControl,hairfieView = _hairfieView, hairdresserView = _hairdresserView, priceAndSaleView = _priceAndSaleView, infoBttn = _infoBttn, hairfieBttn = _hairfieBttn, hairdresserBttn = _hairdresserBttn, priceAndSaleBttn = _priceAndSaleBttn, reviewRating = _reviewRating, reviewTableView = _reviewTableView, addReviewBttn = _addReviewBttn, moreReviewBttn = _moreReviewBttn, similarTableView = _similarTableView, business = _business, ratingLabel = _ratingLabel, name = _name , womanPrice = _womanPrice, manPrice = _manPrice, salonRating = _salonRating, address = _address, city = _city, salonAvailability = _salonAvailability, nbReviews = _nbReviews, previewMap = _previewMap, isOpenLabel = _isOpenLabel, isOpenLabelDetail = _isOpenLabelDetail, isOpenImage = _isOpenImage, isOpenImageDetail = _isOpenImageDetail, callBttn = _callBttn, telephoneBgView = _telephoneBgView, detailedContainerView = _detailedContainerView;
@@ -109,7 +110,10 @@
          forCellWithReuseIdentifier:@"loadingCell"];
     
     // Do any additional setup after loading the view.
-    
+
+    menuActions = @[
+        @{@"label": @"Report an error", @"segue": @"reportError"}
+    ];
 }
 
 -(void) setupGallery:(NSArray*) pictures
@@ -385,33 +389,28 @@
     
     [self setupPrices];
     
-    if ([business.timetable isEqualToDictionary:@{}]) {
+    if (nil == business.timetable) {
         _isOpenImageDetail.hidden = YES;
         _isOpenLabelDetail.hidden = YES;
         _isOpenLabel.text = NSLocalizedStringFromTable(@"No information", @"Salon_Detail", nil);
     } else {
-        OpeningTimes * op = [[OpeningTimes alloc] init];
-        isOpen = [op isOpen:business.timetable];
-        if (isOpen) {
-            _isOpenLabel.text = NSLocalizedStringFromTable(@"Open today", @"Salon_Detail", nil);            _isOpenLabel.textColor = [UIColor greenHairfie];
+        if (business.timetable.isOpenToday) {
+            _isOpenLabel.text = NSLocalizedStringFromTable(@"Open today", @"Salon_Detail", nil);
+            _isOpenLabel.textColor = [UIColor greenHairfie];
             
             _isOpenImage.image = [_isOpenImage.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
             [_isOpenImage setTintColor:[UIColor greenHairfie]];
         }
         else {
-            NSLog(@"%@", business);
             _isOpenLabel.text = NSLocalizedStringFromTable(@"Closed today", @"Salon_Detail", nil);
         }
     }
 
-    if ([[business phoneNumbers] isEqual:[NSNull null]] || business.phoneNumbers.count == 0)
-    {
+    if ([business.phoneNumber isEqual:[NSNull null]]) {
         _telephone.text = [NSString stringWithFormat:NSLocalizedStringFromTable(@"No phone number", @"Salon_Detail", nil)];
         _telephoneLabelWidth.constant = 133;
         _isPhoneAvailable.hidden = YES;
-    }
-    else
-    {
+    } else {
         [self addPhoneNumbersToView];
         
     }
@@ -577,15 +576,14 @@
 }
 
 -(IBAction)callPhone:(id)sender {
-    NSLog(@"callPhone %@", [self.business.phoneNumbers objectAtIndex:0]);
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"telprompt://%@", [self.business.phoneNumbers objectAtIndex:0]]]];
+    NSLog(@"callPhone %@", self.business.phoneNumber);
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"telprompt://%@", self.business.phoneNumber]]];
 }
 
--(IBAction)callPhoneWithNumber:(UIButton *)sender {
-
-    NSString *number = [self.business.phoneNumbers objectAtIndex:sender.tag];
-    NSLog(@"callPhone %@", number);
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"telprompt://%@", number]]];
+-(IBAction)callPhoneWithNumber:(UIButton *)sender
+{
+    NSLog(@"callPhone %@", self.business.phoneNumber);
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"telprompt://%@", self.business.phoneNumber]]];
 }
 
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -600,13 +598,15 @@
         
     } else if ([segue.identifier isEqualToString:@"showTimetable"]) {
         HorairesViewController *horaires = [segue destinationViewController];
-        horaires.salon = _business.timetable;
+        horaires.timetable = _business.timetable;
     } else if ([segue.identifier isEqualToString:@"hairfieDetail"]) {
         HairfieDetailViewController *hairfieDetail = [segue destinationViewController];
         hairfieDetail.currentHairfie = sender;
     } else if ([segue.identifier isEqualToString:@"similarBusiness"]) {
         SalonDetailViewController *controller = [segue destinationViewController];
         controller.business = sender;
+    } else if ([segue.identifier isEqualToString:@"reportError"]) {
+        [[segue destinationViewController] setBusiness:self.business];
     }
 }
 
@@ -614,28 +614,19 @@
 {
     _telephone.hidden = YES;
     _telephoneBgView.hidden = YES;
-    
-    #define OffsetBetweenButtons 135
-    
-    for(int buttonIndex=0; buttonIndex<[self.business.phoneNumbers count]; buttonIndex++){
-    
-        UIButton *phoneBtn=[UIButton buttonWithType:UIButtonTypeRoundedRect];
-        NSString *phone =[self.business.phoneNumbers objectAtIndex:buttonIndex];
-        
-        phoneBtn.frame= CGRectMake(35 + OffsetBetweenButtons * buttonIndex, 75, 115, 25);
-        phoneBtn.backgroundColor = [UIColor lightBlueHairfie];
-        phoneBtn.layer.cornerRadius = 5;
-        phoneBtn.layer.masksToBounds = YES;
-        
-        phoneBtn.tag = buttonIndex;
-        
-        [phoneBtn setTitle:[self formatPhoneNumber:phone] forState:UIControlStateNormal];
-        [phoneBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [phoneBtn.titleLabel setTextAlignment: NSTextAlignmentCenter];
-        
-        [phoneBtn addTarget:self action:@selector(callPhoneWithNumber:) forControlEvents:UIControlEventTouchUpInside];
-        [_detailedContainerView addSubview:phoneBtn];
-    }
+
+    UIButton *phoneBtn=[UIButton buttonWithType:UIButtonTypeRoundedRect];
+
+    phoneBtn.frame= CGRectMake(35, 75, 115, 25);
+    phoneBtn.backgroundColor = [UIColor lightBlueHairfie];
+    phoneBtn.layer.cornerRadius = 5;
+    phoneBtn.layer.masksToBounds = YES;
+
+    [phoneBtn setTitle:[self formatPhoneNumber:self.business.phoneNumber] forState:UIControlStateNormal];
+    [phoneBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [phoneBtn.titleLabel setTextAlignment: NSTextAlignmentCenter];
+    [phoneBtn addTarget:self action:@selector(callPhoneWithNumber:) forControlEvents:UIControlEventTouchUpInside];
+    [_detailedContainerView addSubview:phoneBtn];
 }
 
 
@@ -715,6 +706,28 @@
 -(void) collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     [self performSegueWithIdentifier:@"hairfieDetail" sender:hairfies[indexPath.row]];
+}
+
+-(IBAction)showMenuActionSheet:(id)sender
+{
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                             delegate:self
+                                                    cancelButtonTitle:NSLocalizedStringFromTable(@"Cancel", @"Salon_Detail", nil)
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:nil];
+    
+    for (NSDictionary *menuAction in menuActions) {
+        [actionSheet addButtonWithTitle:NSLocalizedStringFromTable([menuAction objectForKey:@"label"], @"Salon_Detail", nil)];
+    }
+    
+    [actionSheet showInView:self.view];
+}
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (0 == buttonIndex) return; // it's the cancel button
+    
+    [self performSegueWithIdentifier:[menuActions[buttonIndex - 1] objectForKey:@"segue"] sender:self];
 }
 
 

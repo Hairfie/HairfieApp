@@ -12,8 +12,8 @@
 
 @property (strong, nonatomic) NSMutableArray *monday;
 @property (strong, nonatomic) NSMutableArray *tuesday;
-@property (strong, nonatomic) NSMutableArray *thursday;
 @property (strong, nonatomic) NSMutableArray *wednesday;
+@property (strong, nonatomic) NSMutableArray *thursday;
 @property (strong, nonatomic) NSMutableArray *friday;
 @property (strong, nonatomic) NSMutableArray *saturday;
 @property (strong, nonatomic) NSMutableArray *sunday;
@@ -22,13 +22,15 @@
 
 -(id)initWithMonday:(NSArray *)aMonday
             tuesday:(NSArray *)aTuesday
-           thursday:(NSArray *)aThursday
           wednesday:(NSArray *)aWednesday
+           thursday:(NSArray *)aThursday
              friday:(NSArray *)aFriday
            saturday:(NSArray *)aSaturday
              sunday:(NSArray *)aSunday;
 
 -(id)initEmpty;
 -(NSDictionary*) toDictionary;
+
+-(BOOL)isOpenToday;
 
 @end

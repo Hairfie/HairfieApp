@@ -8,7 +8,6 @@
 
 #import "AppDelegate.h"
 #import "MenuViewController.h"
-#import "HairfieApp-Swift.h"
 #import "Constants.h"
 #import "CredentialStore.h"
 #import "HomeViewController.h"

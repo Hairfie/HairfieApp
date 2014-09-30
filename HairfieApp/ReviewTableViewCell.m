@@ -9,6 +9,7 @@
 #import "ReviewTableViewCell.h"
 #import "BusinessReview.h"
 #import "User.h"
+#import "UIRoundImageView.h"
 
 @interface ReviewTableViewCell ()
 
@@ -18,17 +19,14 @@
 
 @synthesize ratingView = _ratingView, nameLabel = _nameLabel, contentLabel = _contentLabel, statusLabel = _statusLabel, postDate = _postDate;
 
-- (void)awakeFromNib {
-    
-    
-    profilePicture = [[UIImageView alloc] initWithFrame:CGRectMake(10, 9, 41, 41)];
-    
-    // mettre viariable photo salon ici
+-(void)awakeFromNib
+{
+    profilePicture = [[UIRoundImageView alloc] initWithFrame:CGRectMake(10, 9, 41, 41)];
     profilePicture.layer.cornerRadius = profilePicture.frame.size.height / 2;
     profilePicture.clipsToBounds = YES;
     profilePicture.layer.borderWidth = 1.0f;
     profilePicture.layer.borderColor = [UIColor whiteColor].CGColor;
-    profilePicture.image = [UIImage imageNamed:@"leosquare.jpg"];
+    [profilePicture setBackgroundColor:[UIColor lightGreyHairfie]];
     [self.viewForBaselineLayout addSubview:profilePicture];
     _ratingView.notSelectedImage = [UIImage imageNamed:@"not_selected_star.png"];
     _ratingView.halfSelectedImage = [UIImage imageNamed:@"half_selected_star.png"];
@@ -39,9 +37,6 @@
     _ratingView.delegate = self;
     _statusLabel.text = [NSString stringWithFormat:@"3"];
     //_postDate.text = [NSString stringWithFormat:@"-  %@", @"Juillet 2014"];
-    
-    
-
 }
 
 - (void)rateView:(RatingView *)rateView ratingDidChange:(float)rating {
@@ -51,23 +46,14 @@
 
 -(void)setReview:(BusinessReview*)review
 {
-    
-   // NSLog(@"author review %@", review.author.class);
-    
     NSDateFormatter *formatter = [[NSDateFormatter alloc ]init];
-//    
-//    [formatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZZZZ"];
-//    
-//    NSDate *dateToFormat = [formatter dateFromString:review.createdAt];
-//    
-//    NSString *dateString = [formatter stringFromDate:dateToFormat];
-//    
-//    NSLog(@"date %@", dateString);
-    
     _contentLabel.text = review.comment;
     _ratingView.rating = [review.rating floatValue];
     _statusLabel.text = [review.rating stringValue];
     _nameLabel.text = review.author.displayName;
+
+    [profilePicture sd_setImageWithURL:[NSURL URLWithString:review.author.thumbUrl]
+                      placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
 }
 
 /*

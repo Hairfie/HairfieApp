@@ -10,6 +10,7 @@ target "HairfieApp" do
   pod 'ARAnalytics/GoogleAnalytics'
   pod 'ARAnalytics/Mixpanel'
   pod 'ARAnalytics/DSL', '~> 2.8.0'
+  pod 'MRProgress'
 end
 
 target "HairfieAppTests" do
