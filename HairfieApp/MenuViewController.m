@@ -25,6 +25,7 @@
     AppDelegate *appDelegate;
     BOOL newBusiness;
     BOOL didInsert;
+    NSMutableArray *data;
 }
 @synthesize menuTableView = _menuTableView;
 @synthesize profileView = _profileView;
@@ -58,7 +59,22 @@
     _profileView.backgroundColor = [UIColor clearColor];
    
     _menuItems = [[NSMutableArray alloc] init];
+    
+    
     _menuItems = [NSMutableArray arrayWithObjects: NSLocalizedStringFromTable(@"Home", @"Menu", nil), /*NSLocalizedStringFromTable(@"Favorites", @"Menu", nil),*/NSLocalizedStringFromTable(@"Likes", @"Menu", nil), /*NSLocalizedStringFromTable(@"Friends", @"Menu", nil),*/NSLocalizedStringFromTable(@"Business", @"Menu", nil),/*NSLocalizedStringFromTable(@"Settings", @"Menu", nil),*/NSLocalizedStringFromTable(@"Logout", @"Menu", nil), nil];
+    
+    data = [[NSMutableArray alloc] init];
+    for (int i = 0 ; i < [_menuItems count] ; i++)
+    {
+        NSMutableArray* section = [[NSMutableArray alloc] init];
+        if ([_menuItems objectAtIndex:i] == NSLocalizedStringFromTable(@"Business", @"Menu", nil))
+        {
+            [section addObject:@"Add Business"];
+        }
+        else
+            [section addObject:@""];
+        [data addObject:section];
+    }
     
     _menuPictos = [[NSMutableArray alloc] init];
     [_menuPictos addObject:@"home-picto.png"];
@@ -90,10 +106,7 @@
     _name.text = appDelegate.currentUser.name;
     _hairfieNb.text = [NSString stringWithFormat:@"%@ hairfies", appDelegate.currentUser.numHairfies];
     
-    
     NSLog(@"current user img url %@", appDelegate.currentUser.thumbUrl);
-    
-    
     
     UIImageView *profilePicture = [[UIImageView alloc] initWithFrame:CGRectMake(30, 50, 50, 50)];
     profilePicture.layer.cornerRadius = profilePicture.frame.size.height / 2;
@@ -120,12 +133,13 @@
   //  [self.slidingViewController.topViewController.view addGestureRecognizer:self.slidingViewController.panGesture];
 
 }
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    return [[data objectAtIndex:section] count];
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return [_menuItems count];
 }
@@ -144,30 +158,22 @@
         cell = [nib objectAtIndex:0];
     }
     
-   if (indexPath.section == 0)
-   {
-       if (newBusiness == YES)
-       {
-           
-           
-           if (indexPath.row == 3)
-           {
-               cell.menuItem.textColor = [UIColor colorWithRed:208 green:210 blue:213 alpha:1];
-           cell.menuItem.font = [UIFont fontWithName:@"SourceSansPro-Light" size:15];
-               cell.menuItem.text = NSLocalizedStringFromTable(@"Add a new business", @"Menu", nil);
-           [cell.menuPicto setImage:[UIImage imageNamed:@"picto-logout.png"]];
-               cell.backgroundColor = [UIColor whiteColor];
-           }
-       }
-       else {
+
            cell.menuItem.textColor = [UIColor colorWithRed:208 green:210 blue:213 alpha:1];
            cell.menuItem.font = [UIFont fontWithName:@"SourceSansPro-Light" size:15];
            cell.menuItem.text = [_menuItems objectAtIndex:indexPath.row];
            [cell.menuPicto setImage:[UIImage imageNamed:[_menuPictos objectAtIndex:indexPath.row]]];
-       }
-   }
+    
     return cell;
 }
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView* header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
+    header.backgroundColor = [UIColor lightGrayColor];
+    return header;
+}
+
 
 - (void)tableView:(UITableView *)tableView
   willDisplayCell:(UITableViewCell *)cell
@@ -198,8 +204,6 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
     }
     if (row == 2)
     {
-        
-        
         if (didInsert == NO)
         {
             newBusiness = YES;
@@ -237,9 +241,6 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
             [self logOut];
     }
 }
-
-
-
 
 -(void)logOut
 {
