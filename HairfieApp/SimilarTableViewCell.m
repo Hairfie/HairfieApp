@@ -32,9 +32,6 @@
     _ratingView.editable = NO;
     _ratingView.maxRating = 5;
     _ratingView.delegate = self;
-
-    _statusLabel.text = [NSString stringWithFormat:NSLocalizedStringFromTable(@"- rate this hairdresser !", @"Salon_Detail", nil)];
-
     _salonPicture.image = [UIImage imageNamed:@"placeholder-image.jpg"];
     // Initialization code
 }
@@ -51,8 +48,16 @@
                                                       }];
     
     self.name.text = business.name;
-    self.ratingView.rating = [[business ratingBetween:@0 and:@5] floatValue];
     self.numHairfiesLabel.text = business.displayNumHairfies;
+    
+    self.ratingView.rating = [[business ratingBetween:@0 and:@5] floatValue];
+    if ([business.numReviews isEqualToNumber:@0]) {
+        self.statusLabel.text = NSLocalizedStringFromTable(@"rate this hairdresser", @"BusinessTableCell", nil);
+    } else if ([business.numReviews isEqualToNumber:@1]) {
+        self.statusLabel.text = NSLocalizedStringFromTable(@"1 review", @"BusinessTableCell", nil);
+    } else {
+        self.statusLabel.text = [NSString stringWithFormat:NSLocalizedStringFromTable(@"%@ reviews", @"BusinessTableCell", nil), business.numReviews];
+    }
 
     GeoPoint *currentLocation = [(AppDelegate *)[[UIApplication sharedApplication] delegate] currentLocation];
     

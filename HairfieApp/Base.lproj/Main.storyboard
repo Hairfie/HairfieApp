@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="dEN-gt-xJT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A361p" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="dEN-gt-xJT">
     <dependencies>
+        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -135,7 +136,6 @@
             <string>SourceSansPro-Light</string>
         </mutableArray>
         <mutableArray key="SourceSansPro-Regular.ttf">
-            <string>SourceSansPro-Regular</string>
             <string>SourceSansPro-Regular</string>
             <string>SourceSansPro-Regular</string>
             <string>SourceSansPro-Regular</string>
@@ -2421,17 +2421,8 @@
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="statusLabelView.png" translatesAutoresizingMaskIntoConstraints="NO" id="cJF-VY-qkj">
-                                                        <rect key="frame" x="113" y="137" width="19" height="12"/>
-                                                    </imageView>
-                                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kAD-Di-30H" userLabel="Rating">
-                                                        <rect key="frame" x="113" y="136" width="19" height="12"/>
-                                                        <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="11"/>
-                                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
                                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="- 35 reviews" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NJ0-DF-4Gn" userLabel="Rating Number">
-                                                        <rect key="frame" x="136" y="136" width="83" height="12"/>
+                                                        <rect key="frame" x="111" y="136" width="83" height="12"/>
                                                         <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="11"/>
                                                         <color key="textColor" red="0.72549019609999998" green="0.72549019609999998" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -2626,7 +2617,6 @@
                         <outlet property="pricesTableView" destination="gAx-Ib-aqZ" id="6AS-x7-vwY"/>
                         <outlet property="pricesTableViewHeight" destination="k64-72-RvG" id="K1G-1e-Yus"/>
                         <outlet property="pricesView" destination="Q9x-d1-6Qd" id="Vnw-v6-07u"/>
-                        <outlet property="ratingLabel" destination="kAD-Di-30H" id="vcp-LY-Lfg"/>
                         <outlet property="reviewRating" destination="tg1-Ua-4sM" id="co7-Jk-taq"/>
                         <outlet property="reviewTableView" destination="cCd-OE-JmK" id="avp-oe-rgc"/>
                         <outlet property="salonRating" destination="bfN-jq-J5c" id="5uY-T6-5NV"/>
@@ -5281,7 +5271,6 @@
         <image name="search-advance-field-name.png" width="600" height="54"/>
         <image name="search-bar.png" width="459" height="55"/>
         <image name="send-email-client-button.png" width="599" height="79"/>
-        <image name="statusLabelView.png" width="38" height="23"/>
         <image name="take-picture-button.png" width="153" height="153"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
@@ -5290,12 +5279,12 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="uEN-by-6gW"/>
-        <segue reference="dg2-Ph-4Hs"/>
-        <segue reference="N9Q-F2-pvG"/>
-        <segue reference="LOg-O4-mCP"/>
-        <segue reference="DYR-eo-mJz"/>
-        <segue reference="o5i-ex-i4q"/>
         <segue reference="HOe-ge-VCi"/>
+        <segue reference="dg2-Ph-4Hs"/>
+        <segue reference="uEN-by-6gW"/>
+        <segue reference="o5i-ex-i4q"/>
+        <segue reference="DYR-eo-mJz"/>
+        <segue reference="PSz-m0-val"/>
+        <segue reference="LOg-O4-mCP"/>
     </inferredMetricsTieBreakers>
 </document>
