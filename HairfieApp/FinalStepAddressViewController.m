@@ -29,9 +29,15 @@
     
     UIView *streetPadding = [[UIView alloc] initWithFrame:CGRectMake(0, 0,20, 46)];
 
+    
+    _street.leftView = streetPadding;
+    _street.leftViewMode = UITextFieldViewModeAlways;
+
     _street.layer.cornerRadius =5;
     _street.layer.borderColor = [UIColor lightGreyHairfie].CGColor;
     _street.layer.borderWidth = 1;
+    
+    
     _street.leftView = streetPadding;
     _street.leftViewMode = UITextFieldViewModeAlways;
     

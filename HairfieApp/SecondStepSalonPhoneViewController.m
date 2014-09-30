@@ -114,9 +114,7 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
--(void)textFieldDidEndEditing:(UITextField *)textField
-{
-}
+
 
 -(BOOL) checkPhone
 {

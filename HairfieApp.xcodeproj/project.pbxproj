@@ -146,6 +146,9 @@
 		B367DC4019C9C54300A0452A /* FinalStepClaimDayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B367DC3F19C9C54300A0452A /* FinalStepClaimDayViewController.m */; };
 		B367DC4319C9E40800A0452A /* FinalStepAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B367DC4219C9E40800A0452A /* FinalStepAddressViewController.m */; };
 		B367DC4919C9E4BC00A0452A /* FinalStepDescriptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B367DC4819C9E4BC00A0452A /* FinalStepDescriptionViewController.m */; };
+		B36AC50119DAB3A900B8AC13 /* testViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B36AC50019DAB3A900B8AC13 /* testViewController.m */; };
+		B36AC50519DAB47E00B8AC13 /* STCollapseTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B36AC50419DAB47E00B8AC13 /* STCollapseTableView.m */; };
+		B36AC50719DAD22400B8AC13 /* addBusiness-picto.png in Resources */ = {isa = PBXBuildFile; fileRef = B36AC50619DAD22400B8AC13 /* addBusiness-picto.png */; };
 		B36AE55419AB71990045FDDA /* location-button-search.png in Resources */ = {isa = PBXBuildFile; fileRef = B36AE55319AB71990045FDDA /* location-button-search.png */; };
 		B36AE55619AB72AC0045FDDA /* location-button-image.png in Resources */ = {isa = PBXBuildFile; fileRef = B36AE55519AB72AC0045FDDA /* location-button-image.png */; };
 		B378D48F19D02CDE004745E9 /* ClaimAddHairdresserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B378D48E19D02CDE004745E9 /* ClaimAddHairdresserViewController.m */; };
@@ -521,6 +524,11 @@
 		B367DC4219C9E40800A0452A /* FinalStepAddressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FinalStepAddressViewController.m; sourceTree = "<group>"; };
 		B367DC4719C9E4BC00A0452A /* FinalStepDescriptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinalStepDescriptionViewController.h; sourceTree = "<group>"; };
 		B367DC4819C9E4BC00A0452A /* FinalStepDescriptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FinalStepDescriptionViewController.m; sourceTree = "<group>"; };
+		B36AC4FF19DAB3A900B8AC13 /* testViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testViewController.h; sourceTree = "<group>"; };
+		B36AC50019DAB3A900B8AC13 /* testViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = testViewController.m; sourceTree = "<group>"; };
+		B36AC50319DAB47E00B8AC13 /* STCollapseTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STCollapseTableView.h; sourceTree = "<group>"; };
+		B36AC50419DAB47E00B8AC13 /* STCollapseTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STCollapseTableView.m; sourceTree = "<group>"; };
+		B36AC50619DAD22400B8AC13 /* addBusiness-picto.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "addBusiness-picto.png"; sourceTree = "<group>"; };
 		B36AE55319AB71990045FDDA /* location-button-search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "location-button-search.png"; sourceTree = "<group>"; };
 		B36AE55519AB72AC0045FDDA /* location-button-image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "location-button-image.png"; sourceTree = "<group>"; };
 		B378D48D19D02CDE004745E9 /* ClaimAddHairdresserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClaimAddHairdresserViewController.h; sourceTree = "<group>"; };
@@ -994,11 +1002,14 @@
 		B342325519892BC80058866B /* Left Side Menu */ = {
 			isa = PBXGroup;
 			children = (
+				B36AC50219DAB47E00B8AC13 /* STCollapseTableView */,
 				B330B5BA198656450059AE56 /* MenuViewController.h */,
 				B330B5BB198656450059AE56 /* MenuViewController.m */,
 				B3F6624A1987E87E0041F298 /* MenuTableViewCell.h */,
 				B3F6624B1987E87E0041F298 /* MenuTableViewCell.m */,
 				B3F6624C1987E87E0041F298 /* MenuTableViewCell.xib */,
+				B36AC4FF19DAB3A900B8AC13 /* testViewController.h */,
+				B36AC50019DAB3A900B8AC13 /* testViewController.m */,
 			);
 			name = "Left Side Menu";
 			sourceTree = "<group>";
@@ -1121,6 +1132,15 @@
 				B367DC3919C9C42600A0452A /* FinalStepViewController.m */,
 			);
 			name = "Final Step";
+			sourceTree = "<group>";
+		};
+		B36AC50219DAB47E00B8AC13 /* STCollapseTableView */ = {
+			isa = PBXGroup;
+			children = (
+				B36AC50319DAB47E00B8AC13 /* STCollapseTableView.h */,
+				B36AC50419DAB47E00B8AC13 /* STCollapseTableView.m */,
+			);
+			path = STCollapseTableView;
 			sourceTree = "<group>";
 		};
 		B378D48919D02C9B004745E9 /* INFO */ = {
@@ -1433,6 +1453,7 @@
 		B3F662471987E4670041F298 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
+				B36AC50619DAD22400B8AC13 /* addBusiness-picto.png */,
 				B39BA17719AF46CD00A48BD5 /* picto-logout.png */,
 				B34231571988E1DC0058866B /* settings-picto.png */,
 				B34231581988E1DC0058866B /* business-picto.png */,
@@ -1664,6 +1685,7 @@
 				15A50D9A19CC39AF0043BFB4 /* login-user.png in Resources */,
 				B33E4C4619A49E2E0024F5F7 /* add-comment-textfield.png in Resources */,
 				B3F5521C19BF2DAD0033230E /* hairfie-post-contour.png in Resources */,
+				B36AC50719DAD22400B8AC13 /* addBusiness-picto.png in Resources */,
 				B3E0B15319ACB53F00C3EACE /* login-separator.png in Resources */,
 				15E3D2CA19D075CC0065A07E /* Salon_Detail.strings in Resources */,
 				B345BA981994D4C2007BB61A /* button-add-favorite.png in Resources */,
@@ -1845,6 +1867,7 @@
 				B3E65FBB1986917800AF0C15 /* UIViewController+ECSlidingViewController.m in Sources */,
 				B34231671988ECF50058866B /* FriendViewController.m in Sources */,
 				B345BAEA19951A7E007BB61A /* OLEContainerScrollViewContentView.m in Sources */,
+				B36AC50119DAB3A900B8AC13 /* testViewController.m in Sources */,
 				B337B6FD19A252B7003B0EA5 /* ReviewsViewController.m in Sources */,
 				71A0AC4019CC2DA000BC1ABB /* TimeWindow.m in Sources */,
 				B378D48F19D02CDE004745E9 /* ClaimAddHairdresserViewController.m in Sources */,
@@ -1854,6 +1877,7 @@
 				B378D49219D02EA4004745E9 /* ClaimAddPricesSalesViewController.m in Sources */,
 				B3615B3819AF242800F1141D /* User.m in Sources */,
 				15697B31199BB03800DA83FE /* UIImage+Resize.m in Sources */,
+				B36AC50519DAB47E00B8AC13 /* STCollapseTableView.m in Sources */,
 				B308701719878C030080E6D2 /* SettingsViewController.m in Sources */,
 				B3A1281A198A85D8004D90BD /* CustomPinView.m in Sources */,
 			);

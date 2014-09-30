@@ -44,7 +44,8 @@
 
     [_hairfieCollection registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView"];
 
-    self.headerTitleLabel.text = NSLocalizedStringFromTable(@"User's Hairfie", @"Hairfie_Detail", nil);
+    
+    self.headerTitleLabel.text = [NSString stringWithFormat:@"%@'s Hairfie", _currentHairfie.author.firstName];
 }
 
 -(void) viewWillAppear:(BOOL)animated {

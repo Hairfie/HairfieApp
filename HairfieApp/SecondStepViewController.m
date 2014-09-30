@@ -139,8 +139,8 @@
 
 -(IBAction)claimBusinessLocation:(id)sender
 {
-   // if (![_phoneBttn.titleLabel.text isEqualToString:NSLocalizedStringFromTable(@"Phone Number", @"Claim", nil)] && ![_salonBttn.titleLabel.text isEqualToString:NSLocalizedStringFromTable(@"Salon's Name                                 ", @"Claim", nil)]) {
-    
+    if (![_salonTextField.text isEqualToString:@""] && ![_phoneTextField.text isEqualToString:@""]) {
+
         _claim.name = _salonTextField.text;
         _claim.phoneNumber = _phoneTextField.text;
         _claim.men = man;
@@ -158,14 +158,12 @@
         
         [_claim claimWithSuccess:loadSuccessBlock failure:loadErrorBlock];
     
-//    }
-//    else
-//    {
-//      
-//         [self performSegueWithIdentifier:@"claimBusinessLocation" sender:self];
-////        UIAlertView *errorAlert = [[UIAlertView alloc]initWithTitle:@"Error" message:@"Please fill in your business' name and phone number" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-////        [errorAlert show];
-//    }
+    }
+    else
+    {
+        UIAlertView *errorAlert = [[UIAlertView alloc]initWithTitle:@"Error" message:@"Please fill in your business' name and phone number" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [errorAlert show];
+    }
 
 }
     
