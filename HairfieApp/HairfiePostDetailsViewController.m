@@ -111,7 +111,6 @@ shouldChangeTextInRange: (NSRange) range
 {
     if (textView == _hairfieDesc)
     {
-        _hairfieDesc.alpha = 1;
         _hairfieDesc.placeholder = @"";
     }
 }
@@ -120,7 +119,6 @@ shouldChangeTextInRange: (NSRange) range
 {
     if (textView == _hairfieDesc)
     {
-        _hairfieDesc.alpha = 0.5;
         _hairfieDesc.placeholder = NSLocalizedStringFromTable(@"Add a description", @"Post_Hairfie", nil);
     }
 }
@@ -179,7 +177,12 @@ shouldChangeTextInRange: (NSRange) range
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
     [textField resignFirstResponder];
+}
 
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
 }
 
 -(IBAction)postHairfie:(id)sender
@@ -314,6 +317,10 @@ shouldChangeTextInRange: (NSRange) range
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     [self uploadHairfiePicture:_hairfie];
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    
 }
 
 @end

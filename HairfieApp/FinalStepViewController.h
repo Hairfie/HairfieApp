@@ -15,6 +15,10 @@
 
 @property (nonatomic) IBOutlet UIButton *addressBttn;
 
+@property (nonatomic) IBOutlet UILabel *addressLabel;
+
+@property (nonatomic) IBOutlet UILabel *phoneLabel;
+
 @property (nonatomic) IBOutlet UILabel *nameLabel;
 
 @property (nonatomic) IBOutlet UIScrollView *imageSliderView;

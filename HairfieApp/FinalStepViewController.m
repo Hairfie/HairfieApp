@@ -31,16 +31,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self unSelectAll];
     [self setButtonSelected:_infoBttn andBringViewUpfront:_infoView];
     
     _claim.timetable = [[Timetable alloc] initEmpty];
     _claim.pictures = [[NSMutableArray alloc] init];
-    _phoneBttn.titleLabel.text = _claim.phoneNumber;
+    _phoneLabel.text = _claim.phoneNumber;
 
-    _addressBttn.titleLabel.text = [_claim.address displayAddress];
+    _addressLabel.text = [_claim.address displayAddress];
     _nameLabel.text = _claim.name;
     
+   
     _validateBttn.layer.cornerRadius = 5;
     _validateBttn.layer.masksToBounds = YES;
     _addHairfiesBttn.layer.cornerRadius = 5;
@@ -143,8 +143,8 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    _phoneBttn.titleLabel.text = _claim.phoneNumber;
-    _addressBttn.titleLabel.text = [_claim.address displayAddress];
+    _phoneLabel.text = _claim.phoneNumber;
+    _addressLabel.text = [_claim.address displayAddress];
     _nameLabel.text = _claim.name;
     [self setupGallery:_claim.pictures];
 }
@@ -152,24 +152,21 @@
 -(IBAction)changeTab:(id)sender {
     if(sender == _infoBttn) {
         [self setButtonSelected:_infoBttn andBringViewUpfront:_infoView];
-        _infoView.hidden = NO;
     } else if(sender == _hairfieBttn) {
         [self setButtonSelected:_hairfieBttn andBringViewUpfront:_hairfieView];
-        _hairfieView.hidden = NO;
     } else if(sender == _hairdresserBttn) {
         [self setButtonSelected:_hairdresserBttn andBringViewUpfront:_hairdresserView];
-        _hairdresserView.hidden = NO;
     } else if(sender == _priceAndSaleBttn) {
         [self setButtonSelected:_priceAndSaleBttn andBringViewUpfront:_priceAndSaleView];
-        _priceAndSaleView.hidden = NO;
     }
 }
 
 
 -(void)setButtonSelected:(UIButton*) button andBringViewUpfront:(UIView*) view {
     
-    [_containerView bringSubviewToFront:view];
     [self unSelectAll];
+    view.hidden = NO;
+    [_containerView bringSubviewToFront:view];
     [button setBackgroundColor:[UIColor colorWithRed:50/255.0f green:67/255.0f blue:87/255.0f alpha:1]];
 }
 

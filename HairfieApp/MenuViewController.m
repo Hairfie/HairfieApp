@@ -246,10 +246,6 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 
 
 
-
-
-
-
 -(void)logOut
 {
     [appDelegate.credentialStore clearSavedCredentials];
@@ -295,6 +291,8 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
     
     // TODO call whatever function you need to visually restore
 }
+
+
 
 
 @end
