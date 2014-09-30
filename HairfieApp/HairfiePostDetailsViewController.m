@@ -111,7 +111,6 @@ shouldChangeTextInRange: (NSRange) range
 {
     if (textView == _hairfieDesc)
     {
-        _hairfieDesc.alpha = 1;
         _hairfieDesc.placeholder = @"";
     }
 }
@@ -120,7 +119,6 @@ shouldChangeTextInRange: (NSRange) range
 {
     if (textView == _hairfieDesc)
     {
-        _hairfieDesc.alpha = 0.5;
         _hairfieDesc.placeholder = NSLocalizedStringFromTable(@"Add a description", @"Post_Hairfie", nil);
     }
 }
