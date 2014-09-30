@@ -54,7 +54,7 @@
     
     if (_salonChosen != nil) {
         [_salonLabelButton setTitle:[_salonChosen objectForKeyedSubscript:@"name"] forState:UIControlStateNormal];
-        _hairdresserSubview.hidden = NO;
+        //_hairdresserSubview.hidden = NO;
         
     }
     [ARAnalytics pageView:@"AR - Post Hairfie step #3 - Post Detail"];
