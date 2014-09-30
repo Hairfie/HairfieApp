@@ -81,7 +81,7 @@
     NSLog(@"Prices loaded: %@", _services);
 }
 
--(NSNumber *)ratingBetween:(NSNumber *)theMin
+-(NSNumber *)ratingBetween:(NSNumber *)theMin // TODO: scale from the min
                        and:(NSNumber *)theMax
 {
     if ([self.rating isEqual:[NSNull null]]) {

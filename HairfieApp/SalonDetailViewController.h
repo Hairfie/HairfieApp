@@ -46,7 +46,7 @@
 
 @property (weak, nonatomic) IBOutlet RatingView *salonRating;
 @property (weak, nonatomic) IBOutlet RatingView *reviewRating;
-@property (weak, nonatomic) IBOutlet UILabel *ratingLabel;
+
 
 @property (nonatomic) IBOutlet UILabel *salonAvailability;
 

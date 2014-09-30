@@ -12,8 +12,6 @@
 
 @implementation BusinessReview
 
-
-
 - (void)setAuthor:(NSDictionary *)authorDic
 {
     if([authorDic isKindOfClass:[NSNull class]]) return;
@@ -21,14 +19,16 @@
     _author = [[User alloc] initWithJson:authorDic];
 }
 
-- (void) setBusiness:(NSDictionary *) businessDic {
-    if([businessDic isKindOfClass:[NSNull class]]) return;
-    else {
-        _business = [[Business alloc] initWithDictionary:businessDic];
+- (void) setBusiness:(NSDictionary *)aDictionary
+{
+    if ([aDictionary isEqual:[NSNull null]]) {
+        _business = nil;
+    } else if ([aDictionary isKindOfClass:[Business class]]) {
+        _business = aDictionary;
+    } else {
+        _business = [[[self class] alloc] initWithDictionary:aDictionary];
     }
 }
-
-
 
 -(id)initWithDictionary:(NSDictionary *)data
 {
@@ -39,8 +39,26 @@
     return self;
 }
 
+-(NSNumber *)ratingBetween:(NSNumber *)theMin // TODO: scale from the min
+                       and:(NSNumber *)theMax
+{
+    if ([self.rating isEqual:[NSNull null]]) {
+        return nil;
+    }
+    
+    return [[NSNumber alloc] initWithFloat:[self.rating floatValue] * [theMax floatValue] / 100];
+}
 
+-(void)setRating:(NSNumber *)theRating
+         between:(NSNumber *)theMin // TODO: scale from the min
+             and:(NSNumber *)theMax
+{
+    if ([theRating isEqual:[NSNull null]]) {
+        self.rating = nil;
+    }
 
+    self.rating = [[NSNumber alloc] initWithFloat:[theRating floatValue] * (100 / [theMax floatValue])];
+}
 
 -(void)save
 {
@@ -48,13 +66,19 @@
         NSLog(@"Error : %@", error.description);
     };
     void (^loadSuccessBlock)(NSDictionary *) = ^(NSDictionary *results){
-        //NSLog(@"results %@", results);
         [[NSNotificationCenter defaultCenter] postNotificationName:@"reviewSaved" object:self];
     };
     
-    [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/businessreviews" verb:@"POST"] forMethod:@"businessreviews"];
-    LBModelRepository *repository = (LBModelRepository*)[self repository];
-    [repository invokeStaticMethod:@"" parameters:@{@"comment":_comment, @"rating":_rating, @"businessId": _business.id} success:loadSuccessBlock failure:loadErrorBlock];
+    NSDictionary *parameters = @{
+        @"businessId": self.business.id,
+        @"rating": self.rating,
+        @"comment": self.comment
+    };
+    
+    [[[self class] repository] invokeStaticMethod:@""
+                                       parameters:parameters
+                                          success:loadSuccessBlock
+                                          failure:loadErrorBlock];
 }
 
 +(void)listLatestByBusiness:(NSString *)aBusinessId
