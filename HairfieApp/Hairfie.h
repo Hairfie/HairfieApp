@@ -17,6 +17,7 @@
 @property (strong, nonatomic) NSString *id;
 @property (strong, nonatomic) NSDictionary *picture;
 @property (strong, nonatomic) NSString *description;
+@property (strong, nonatomic) NSString *authorString;
 @property (strong, nonatomic) NSDictionary *price;
 @property (strong, nonatomic) NSNumber *numLikes;
 @property (strong, nonatomic) NSString *numComments;

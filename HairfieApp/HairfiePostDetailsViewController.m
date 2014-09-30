@@ -54,7 +54,7 @@
     
     if (_salonChosen != nil) {
         [_salonLabelButton setTitle:[_salonChosen objectForKeyedSubscript:@"name"] forState:UIControlStateNormal];
-        //_hairdresserSubview.hidden = NO;
+        _hairdresserSubview.hidden = NO;
         
     }
     [ARAnalytics pageView:@"AR - Post Hairfie step #3 - Post Detail"];
@@ -205,6 +205,7 @@ shouldChangeTextInRange: (NSRange) range
                                            
         [hairfieDic setObject:@{@"picture": uploadedFileName}  forKey:@"picture"];
         [hairfieDic setObject:_hairfieDesc.text forKey:@"description"];
+        [hairfieDic setObject:_whoTextField.text forKey:@"authorString"];
 
         if (![_priceTextField.text isEqualToString:@""]) {
             NSDictionary *price = [[NSDictionary alloc] initWithObjectsAndKeys:@"EUR", @"currency", _priceTextField.text, @"amount", nil];

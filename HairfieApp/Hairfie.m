@@ -88,6 +88,9 @@
     if(self.description != nil) {
         [parameters setObject:self.description forKey:@"description"];
     }
+    if(self.authorString != nil) {
+        [parameters setObject:self.authorString forKey:@"authorString"];
+    }
     if(self.business != nil) {
         [parameters setObject:self.business.id forKey:@"businessId"];
     }

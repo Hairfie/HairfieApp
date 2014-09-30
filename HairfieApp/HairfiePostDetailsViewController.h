@@ -16,6 +16,7 @@
 @property (nonatomic) IBOutlet UITextView *hairfieDesc;
 @property (nonatomic) IBOutlet UIImageView *hairfieImageView;
 @property (nonatomic) IBOutlet UITextField *emailTextField;
+@property (nonatomic) IBOutlet UITextField *whoTextField;
 @property (nonatomic) IBOutlet UITableView *dataChoice;
 @property (nonatomic) IBOutlet UILabel *salonLabel;
 @property (nonatomic) IBOutlet UIButton *salonLabelButton;
