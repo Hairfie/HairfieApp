@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="dEN-gt-xJT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A329r" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="dEN-gt-xJT">
     <dependencies>
         <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
@@ -13,7 +13,6 @@
             <string>SourceSansPro-Bold</string>
         </mutableArray>
         <mutableArray key="SourceSansPro-Light.ttf">
-            <string>SourceSansPro-Light</string>
             <string>SourceSansPro-Light</string>
             <string>SourceSansPro-Light</string>
             <string>SourceSansPro-Light</string>
@@ -1183,7 +1182,7 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xfh-mY-dbB" customClass="TPKeyboardAvoidingScrollView">
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vjl-H2-Nzu">
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vjl-H2-Nzu">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="140"/>
                                         <subviews>
                                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" image="hairfie-post-contour.png" translatesAutoresizingMaskIntoConstraints="NO" id="GX5-OH-2BU">
@@ -1246,7 +1245,7 @@
                                             </textField>
                                         </subviews>
                                     </view>
-                                    <view contentMode="scaleToFill" verticalCompressionResistancePriority="250" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xSZ-Hu-sLy">
+                                    <view contentMode="scaleToFill" verticalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xSZ-Hu-sLy">
                                         <rect key="frame" x="0.0" y="213" width="320" height="55"/>
                                         <subviews>
                                             <imageView hidden="YES" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" image="hairdresser-where-hairfie-post.png" translatesAutoresizingMaskIntoConstraints="NO" id="l1R-V1-aKa">
@@ -1357,7 +1356,6 @@
                                 <constraints>
                                     <constraint firstItem="2o9-JL-3ON" firstAttribute="top" secondItem="xfh-mY-dbB" secondAttribute="top" constant="165" id="8DI-3S-AVb"/>
                                     <constraint firstItem="HkZ-R9-OZp" firstAttribute="width" secondItem="85z-mr-SaL" secondAttribute="width" id="G6z-i5-Lgx"/>
-                                    <constraint firstItem="xSZ-Hu-sLy" firstAttribute="top" secondItem="Vjl-H2-Nzu" secondAttribute="bottom" constant="85" id="nIp-hk-SMc"/>
                                     <constraint firstItem="HkZ-R9-OZp" firstAttribute="top" secondItem="85z-mr-SaL" secondAttribute="bottom" constant="-1" id="viD-cx-3fR"/>
                                 </constraints>
                             </scrollView>
@@ -5306,19 +5304,12 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="HOe-ge-VCi"/>
-        <segue reference="dg2-Ph-4Hs"/>
-        <segue reference="o5i-ex-i4q"/>
-        <segue reference="uEN-by-6gW"/>
-        <segue reference="LOg-O4-mCP"/>
-        <segue reference="PSz-m0-val"/>
-        <segue reference="DYR-eo-mJz"/>
-        <segue reference="LOg-O4-mCP"/>
         <segue reference="N9Q-F2-pvG"/>
-        <segue reference="uEN-by-6gW"/>
-        <segue reference="dg2-Ph-4Hs"/>
-        <segue reference="VGS-VM-Pwy"/>
+        <segue reference="LOg-O4-mCP"/>
         <segue reference="DYR-eo-mJz"/>
+        <segue reference="dg2-Ph-4Hs"/>
+        <segue reference="uEN-by-6gW"/>
+        <segue reference="VGS-VM-Pwy"/>
         <segue reference="HOe-ge-VCi"/>
     </inferredMetricsTieBreakers>
 </document>
