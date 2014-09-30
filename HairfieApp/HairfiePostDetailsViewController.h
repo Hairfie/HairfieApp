@@ -7,13 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SAMTextView.h"
 
 @interface HairfiePostDetailsViewController : UIViewController <UINavigationControllerDelegate, UITextViewDelegate, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, UIAlertViewDelegate>
 
 @property (nonatomic) IBOutlet UIView *mainView;
 @property (nonatomic) IBOutlet UITextField *priceTextField;
 @property (nonatomic) IBOutlet UIButton *priceLabelButton;
-@property (nonatomic) IBOutlet UITextView *hairfieDesc;
+@property (nonatomic) IBOutlet SAMTextView *hairfieDesc;
 @property (nonatomic) IBOutlet UIImageView *hairfieImageView;
 @property (nonatomic) IBOutlet UITextField *emailTextField;
 @property (nonatomic) IBOutlet UITextField *whoTextField;
