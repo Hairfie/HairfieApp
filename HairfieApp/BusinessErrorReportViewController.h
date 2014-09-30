@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Business.h"
 
-@interface BusinessErrorReportViewController : UIViewController
+@interface BusinessErrorReportViewController : UIViewController <UITextViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *headerTitleLabel;
 @property (weak, nonatomic) IBOutlet UIButton *headerSubmitButton;
