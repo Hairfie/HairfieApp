@@ -714,7 +714,7 @@
     if(indexPath.row == 0) {
         [self performSegueWithIdentifier:@"postHairfie" sender:nil];
     } else {
-        [self performSegueWithIdentifier:@"hairfieDetail" sender:hairfies[indexPath.row]];
+        [self performSegueWithIdentifier:@"hairfieDetail" sender:hairfies[indexPath.row - 1]];
     }
 }
 
