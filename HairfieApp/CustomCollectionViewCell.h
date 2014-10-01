@@ -20,5 +20,6 @@
 @property (nonatomic) UIImageView *profilePicture;
 
 -(void)setHairfie:(Hairfie *)hairfie;
+-(void)setAsNewHairfieButton;
 
 @end

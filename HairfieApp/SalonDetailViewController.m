@@ -644,7 +644,7 @@
 
 -(NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section
 {
-    return hairfies.count + 1; // +1 for the loading cell
+    return hairfies.count + 2; // +1 for the loading cell +1 for the button
 }
 
 -(NSInteger)numberOfSectionsInCollectionView: (UICollectionView *)collectionView
@@ -654,7 +654,7 @@
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row < hairfies.count) {
+    if (indexPath.row < (hairfies.count + 1)) {
         return CGSizeMake(145, 210);
     } else {
         return CGSizeMake(300, 58);
@@ -662,8 +662,12 @@
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath
-{    
-    if (indexPath.row < hairfies.count) {
+{
+    NSLog(@"indexpath : %@", indexPath);
+    NSLog(@"%ld", (hairfies.count + 1));
+    if(indexPath.row == 0) {
+        return [self collectionView:cv newHairfieCellForItemAtIndexPath:indexPath];
+    } else if (indexPath.row < (hairfies.count + 1)) {
         if (indexPath.row >= (hairfies.count - HAIRFIES_PAGE_SIZE +1)) {
             NSLog(@"Gimme more!");
             [self loadNextHairfies];
@@ -675,11 +679,20 @@
     }
 }
 
+-(CustomCollectionViewCell *)collectionView:(UICollectionView *)cv newHairfieCellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    CustomCollectionViewCell *cell = [cv dequeueReusableCellWithReuseIdentifier:@"hairfieCell" forIndexPath:indexPath];
+    
+    [cell setAsNewHairfieButton];
+    
+    return cell;
+}
+
 -(CustomCollectionViewCell *)collectionView:(UICollectionView *)cv hairfieCellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     CustomCollectionViewCell *cell = [cv dequeueReusableCellWithReuseIdentifier:@"hairfieCell" forIndexPath:indexPath];
 
-    [cell setHairfie:hairfies[indexPath.row]];
+    [cell setHairfie:hairfies[indexPath.row - 1]];
 
     return cell;
 }
@@ -698,7 +711,11 @@
 
 -(void) collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self performSegueWithIdentifier:@"hairfieDetail" sender:hairfies[indexPath.row]];
+    if(indexPath.row == 0) {
+        [self performSegueWithIdentifier:@"postHairfie" sender:nil];
+    } else {
+        [self performSegueWithIdentifier:@"hairfieDetail" sender:hairfies[indexPath.row]];
+    }
 }
 
 -(IBAction)showMenuActionSheet:(id)sender
