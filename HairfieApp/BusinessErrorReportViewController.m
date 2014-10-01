@@ -14,9 +14,6 @@
 @end
 
 @implementation BusinessErrorReportViewController
-{
-    NSString *bodyPlaceholder;
-}
 
 -(void)viewDidLoad
 {
@@ -28,9 +25,7 @@
     [self.headerSubmitButton setTitle:NSLocalizedStringFromTable(@"Submit", @"BusinessErrorReport", nil)
                              forState:UIControlStateNormal];
 
-    bodyPlaceholder = NSLocalizedStringFromTable(@"Error report...", @"BusinessErrorReport", nil);
-    self.bodyText.text = bodyPlaceholder;
-    self.bodyText.delegate = self;
+    self.bodyText.placeholder = NSLocalizedStringFromTable(@"Error report...", @"BusinessErrorReport", nil);
 }
 
 -(void)didReceiveMemoryWarning
@@ -47,13 +42,11 @@
 -(IBAction)submitErrorReport:(id)sender
 {
     NSString *body = self.bodyText.text;
-    
-    if ([body isEqualToString:bodyPlaceholder]) {
-        body = nil;
-    } else if ([body isEqualToString:@""]) {
+
+    if ([body isEqualToString:@""]) {
         body = nil;
     }
-    
+
     BusinessErrorReport *report = [[BusinessErrorReport alloc] initWithBusiness:self.business body:body];
     
     [report saveWithSuccess:^() { [self errorReportSubmitted]; }
@@ -65,13 +58,6 @@
 -(void)errorReportSubmitted
 {
     [self.navigationController popViewControllerAnimated:YES];
-}
-
--(void)textViewDidBeginEditing:(UITextView *)textView
-{
-    if ([self.bodyText.text isEqualToString:bodyPlaceholder]) {
-        self.bodyText.text = @"";
-    }
 }
 
 @end
