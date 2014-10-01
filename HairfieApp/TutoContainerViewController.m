@@ -17,7 +17,8 @@
 @end
 
 @implementation TutoContainerViewController {
-    NSArray *pageTitles;
+    NSArray *pagesLabel;
+    NSArray *imagesName;
     UserAuthenticator *userAuthenticator;
     AppDelegate *delegate;
 }
@@ -25,7 +26,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    pageTitles = @[@"Page 1", @"Page 2", @"Page 3"];
+    pagesLabel = @[NSLocalizedStringFromTable(@"Find Haircuts & Hairstyles and take inspiration from people like you", @"tuto", nil), NSLocalizedStringFromTable(@"Find and book the Hairdresser you need. Anywhere. Anytime. ", @"tuto", nil), NSLocalizedStringFromTable(@"Keep & Share inspiring Hairfies", @"tuto", nil)];
+    imagesName = @[@"tuto-page-1.png", @"tuto-page-2.png", @"tuto-page-3.png"];
+
     delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
 
 
@@ -38,7 +41,7 @@
     [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
     
     // Change the size of page view controller
-    self.pageViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 175);
+    self.pageViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 120);
     
     [self.view setBackgroundColor:[UIColor pinkHairfie]];
     
@@ -75,7 +78,7 @@
     }
     
     index++;
-    if (index == [pageTitles count]) {
+    if (index == [pagesLabel count]) {
         return nil;
     }
     return [self viewControllerAtIndex:index];
@@ -83,12 +86,13 @@
 
 - (TutoContentViewController *)viewControllerAtIndex:(NSUInteger)index
 {
-    if (([pageTitles count] == 0) || (index >= [pageTitles count])) {
+    if (([pagesLabel count] == 0) || (index >= [pagesLabel count])) {
         return nil;
     }
     
     TutoContentViewController *tutoContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"TutoContentViewController"];
-    tutoContentViewController.titleText = pageTitles[index];
+    tutoContentViewController.titleText = pagesLabel[index];
+    tutoContentViewController.imageName = imagesName[index];
     tutoContentViewController.pageIndex = index;
     
     return tutoContentViewController;
@@ -96,7 +100,7 @@
 
 - (NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController
 {
-    return [pageTitles count];
+    return [pagesLabel count];
 }
 
 - (NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController

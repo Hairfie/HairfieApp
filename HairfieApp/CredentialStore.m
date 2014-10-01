@@ -69,12 +69,12 @@
 }
 
 - (BOOL)hasSeenTutorial {
-    if([self secureValueForKey:TUTORIAL_KEY]) {
-        return YES;
-    } else {
-        return NO;
-    }
-    //return NO;
+//    if([self secureValueForKey:TUTORIAL_KEY]) {
+//        return YES;
+//    } else {
+//        return NO;
+//    }
+    return NO;
 }
 
 - (void)setDoFbConnect {

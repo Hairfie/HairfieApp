@@ -18,6 +18,7 @@
     [super viewDidLoad];
 
     self.titleLabel.text = self.titleText;
+    self.imageView.image = [UIImage imageNamed:self.imageName];
 }
 
 - (void)didReceiveMemoryWarning {

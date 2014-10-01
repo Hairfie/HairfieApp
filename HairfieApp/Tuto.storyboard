@@ -7,6 +7,9 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <mutableArray key="SourceSansPro-Light.ttf">
+            <string>SourceSansPro-Light</string>
+        </mutableArray>
         <mutableArray key="SourceSansPro-Regular.ttf">
             <string>SourceSansPro-Regular</string>
         </mutableArray>
@@ -250,42 +253,68 @@
                                     <rect key="frame" x="83" y="684" width="32" height="30"/>
                                 </variation>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kcv-F8-mlj">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Uew-YV-9xH">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="320" id="G8d-C5-sXW"/>
+                                    <constraint firstAttribute="height" constant="330" id="hdq-ac-MQE"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="G8d-C5-sXW"/>
+                                        <exclude reference="hdq-ac-MQE"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="0.0" y="20" width="320" height="330"/>
+                                    <mask key="constraints">
+                                        <include reference="G8d-C5-sXW"/>
+                                        <include reference="hdq-ac-MQE"/>
+                                    </mask>
+                                </variation>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="znw-Fu-9A7">
                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="17"/>
+                                <color key="textColor" red="0.1764705882" green="0.22352941179999999" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="16" y="290" width="288" height="78"/>
+                                </variation>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.87058823529999996" green="0.25882352939999997" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerX" secondItem="kcv-F8-mlj" secondAttribute="leading" constant="7" id="DLp-On-szB"/>
-                            <constraint firstItem="kcv-F8-mlj" firstAttribute="top" secondItem="6c9-iv-P5I" secondAttribute="bottom" constant="100" id="csE-7E-Hhz"/>
+                            <constraint firstItem="znw-Fu-9A7" firstAttribute="top" secondItem="Uew-YV-9xH" secondAttribute="bottom" constant="-60" id="RWS-s9-wcL"/>
+                            <constraint firstItem="znw-Fu-9A7" firstAttribute="top" secondItem="Uew-YV-9xH" secondAttribute="bottom" constant="22" id="W2P-kJ-BqZ"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="0or-sM-QIl"/>
-                                <exclude reference="kcv-F8-mlj"/>
+                                <exclude reference="Uew-YV-9xH"/>
+                                <exclude reference="znw-Fu-9A7"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="DLp-On-szB"/>
-                                <exclude reference="csE-7E-Hhz"/>
+                                <exclude reference="RWS-s9-wcL"/>
+                                <exclude reference="W2P-kJ-BqZ"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular">
                             <mask key="subviews">
                                 <include reference="0or-sM-QIl"/>
-                                <include reference="kcv-F8-mlj"/>
+                                <include reference="Uew-YV-9xH"/>
+                                <include reference="znw-Fu-9A7"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="DLp-On-szB"/>
-                                <include reference="csE-7E-Hhz"/>
+                                <include reference="RWS-s9-wcL"/>
+                                <exclude reference="W2P-kJ-BqZ"/>
                             </mask>
                         </variation>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
-                        <outlet property="titleLabel" destination="kcv-F8-mlj" id="JAh-Kr-oqz"/>
+                        <outlet property="imageView" destination="Uew-YV-9xH" id="hpO-Li-lk1"/>
+                        <outlet property="titleLabel" destination="znw-Fu-9A7" id="zzc-Gl-Mde"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7H5-Ei-eXE" userLabel="First Responder" sceneMemberID="firstResponder"/>

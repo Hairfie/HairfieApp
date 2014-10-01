@@ -12,7 +12,11 @@
 
 @property NSUInteger pageIndex;
 @property NSString *titleText;
+@property NSString *imageName;
+
 
 @property (nonatomic) IBOutlet UILabel *titleLabel;
+@property (nonatomic) IBOutlet UIImageView *imageView;
+
 
 @end
