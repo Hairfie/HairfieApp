@@ -39,53 +39,56 @@
     NSString *gpsString;
     UIRefreshControl *refreshControl;
     UIGestureRecognizer *dismiss;
+    NSString *aroundMe;
 }
 @synthesize manager = _manager, geocoder = _geocoder, mapView = _mapView, hairdresserTableView = _hairdresserTableView, delegate = _delegate, myLocation = _myLocation;
 
 
-- (void)viewDidLoad {
+-(void)viewDidLoad
+{
     [super viewDidLoad];
-    _delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-   
+
+    aroundMe = NSLocalizedStringFromTable(@"Around Me", @"Around_Me", nil);
+
+    self.delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(updatedLocation:)
                                                  name:@"newLocationNotif"
                                                object:nil];
-     dismiss = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
-    _isSearching = YES;
-    _isRefreshing = NO;
-     _hairdresserTableView.hidden = YES;
-    [_searchView initView];
+
+    dismiss = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
+    self.isSearching = YES;
+    self.isRefreshing = NO;
+    self.hairdresserTableView.hidden = YES;
+    [self.searchView initView];
     
-    if (_searchInProgressFromSegue == nil)
-    {
-        [_searchView.searchAroundMeImage setTintColor:[UIColor lightBlueHairfie]];
-        _searchView.searchByLocation.text = NSLocalizedStringFromTable(@"Around Me", @"Around_Me", nil);
-    }
-    else
-    {
-        _searchView.searchByLocation.text = _queryLocationInProgressFromSegue;
-        _searchView.searchByName.text = _queryNameInProgressFromSegue;
+    if (self.searchInProgressFromSegue == nil) {
+        [self.searchView.searchAroundMeImage setTintColor:[UIColor lightBlueHairfie]];
+        self.searchView.searchByLocation.text = aroundMe;
+    } else {
+        self.searchView.searchByLocation.text = self.queryLocationInProgressFromSegue;
+        self.searchView.searchByName.text = self.queryNameInProgressFromSegue;
     }
     
-    _searchView.hidden = YES;
-    _hairdresserTableView.delegate = self;
-    _hairdresserTableView.dataSource = self;
-    _hairdresserTableView.backgroundColor = [UIColor clearColor];
-    _mapView.delegate = self;
-    _mapView.showsUserLocation = YES;
-    _hairdresserTableView.tableHeaderView = _headerView;
-    [_hairdresserTableView setSeparatorInset:UIEdgeInsetsZero];
-      SDmanager = [SDWebImageManager sharedManager];
-    
+    self.searchView.hidden = YES;
+    self.hairdresserTableView.delegate = self;
+    self.hairdresserTableView.dataSource = self;
+    self.hairdresserTableView.backgroundColor = [UIColor clearColor];
+    self.mapView.delegate = self;
+    self.mapView.showsUserLocation = YES;
+    self.hairdresserTableView.tableHeaderView = _headerView;
+    [self.hairdresserTableView setSeparatorInset:UIEdgeInsetsZero];
+    SDmanager = [SDWebImageManager sharedManager];
+
     refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget:self action:@selector(updateBusinesses)
              forControlEvents:UIControlEventValueChanged];
-    [_hairdresserTableView addSubview:refreshControl];
+    [self.hairdresserTableView addSubview:refreshControl];
 }
 
 
--(void) hideKeyboard
+-(void)hideKeyboard
 {
     [_searchView.searchByLocation resignFirstResponder];
     [_searchView.searchByName resignFirstResponder];
@@ -108,28 +111,36 @@
 
 -(void)willSearch:(NSNotification*)notification
 {
-    
-    [_mapView removeAnnotations:_mapView.annotations];
-    _searchInProgress.text = _searchView.searchRequest;
-    _isSearching = YES;
-    if (![_searchView.searchByName.text isEqualToString:@""] && [_searchView.searchByLocation.text isEqualToString:NSLocalizedStringFromTable(@"Around Me", @"Around_Me", nil)])
-    {
-        if ([_searchView.searchByName.text isEqualToString:@""])
-            _searchDesc.text = NSLocalizedStringFromTable(@"HAIRDRESSER AROUND YOU", @"Around_Me", nil);
-        else
-            _searchDesc.text = [NSString stringWithFormat:NSLocalizedStringFromTable(@"%@ AROUND YOU", @"Around_Me", nil), [_searchView.searchByName.text uppercaseString]];
-    }
-    else
-    {
-        _searchDesc.text = _searchView.searchRequest;
-        [self initMapWithBusinesses:_searchView.locationSearch];
+    [self.mapView removeAnnotations:self.mapView.annotations];
+    self.searchInProgress.text = self.searchView.searchRequest;
+    self.isSearching = YES;
+
+    NSString *searchQuery = self.searchView.searchByName.text;
+    NSString *searchLocation = self.searchView.searchByLocation.text;
+
+    if ([searchQuery isEqualToString:@""] && [searchLocation isEqualToString:aroundMe]) {
+        // around me
+        self.searchDesc.text = NSLocalizedStringFromTable(@"HAIRDRESSER AROUND YOU", @"Around_Me", nil);
+    } else if (![searchQuery isEqualToString:@""] && [searchLocation isEqualToString:aroundMe]) {
+        // search query around me
+        self.searchDesc.text = [NSString stringWithFormat:NSLocalizedStringFromTable(@"%@ AROUND YOU", @"Around_Me", nil), [searchQuery uppercaseString]];
+    } else if ([searchQuery isEqualToString:@""] && ![searchLocation isEqualToString:aroundMe]) {
+        // around specified location
+        self.searchDesc.text = [NSString stringWithFormat:NSLocalizedStringFromTable(@"HAIRDRESSER NEAR %@", @"Around_Me", nil), [searchLocation uppercaseString]];
+    } else {
+        // search query around specified location
+        self.searchDesc.text = [NSString stringWithFormat:NSLocalizedStringFromTable(@"%@ NEAR %@", @"Around_Me", nil), [searchQuery uppercaseString], [searchLocation uppercaseString]];
+        [self initMapWithBusinesses:self.searchView.locationSearch];
         [_hairdresserTableView setContentOffset:CGPointMake(0, 136)];
     }
+    
+    [self updateBusinesses];
 }
 
--(void)updateBusinesses {
-    _isSearching = YES;
-    _isRefreshing = YES;
+-(void)updateBusinesses
+{
+    self.isSearching = YES;
+    self.isRefreshing = YES;
     [self getBusinesses:gpsString];
 }
 
@@ -137,54 +148,46 @@
 {
     [textField resignFirstResponder];
     _searchView.hidden = NO;
-    if ([_searchView.searchByLocation.text isEqualToString:NSLocalizedStringFromTable(@"Around Me", @"Around_Me", nil)])
-        [_searchView.searchAroundMeImage setTintColor:[UIColor lightBlueHairfie]];
+    if ([self.searchView.searchByLocation.text isEqualToString:aroundMe]) {
+        [self.searchView.searchAroundMeImage setTintColor:[UIColor lightBlueHairfie]];
+    }
     [_searchView.searchByName performSelector:@selector(becomeFirstResponder) withObject:nil afterDelay:0.0];
     [self.view addGestureRecognizer:dismiss];
 }
 
 
--(UIStatusBarStyle)preferredStatusBarStyle{
+-(UIStatusBarStyle)preferredStatusBarStyle
+{
     return UIStatusBarStyleLightContent;
 }
 
--(void) updatedLocation:(NSNotification*)notif {
-    
-    if (_gpsStringFromSegue != nil)
-    {
+-(void)updatedLocation:(NSNotification*)notif
+{
+    if (_gpsStringFromSegue != nil) {
         _searchDesc.text = _searchInProgressFromSegue;
         [self initMapWithBusinesses:_locationFromSegue];
-    }
-    else
-    {
+    } else {
         _myLocation = (CLLocation*)[[notif userInfo] valueForKey:@"newLocationResult"];
+
         if (_queryNameInProgressFromSegue != nil) {
             _searchView.searchByName.text = _queryNameInProgressFromSegue;
         }
         
-        if (_searchInProgressFromSegue != nil)
+        if (_searchInProgressFromSegue != nil) {
             _searchDesc.text = _searchInProgressFromSegue;
+        }
+
         [self initMapWithBusinesses:nil];
     }
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-
 
 -(IBAction)goBack:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-// Init a map on user location
-// Get Businesses from webservice
-
--(void) initMapWithBusinesses:(CLLocation *)customLocation {
-
+-(void) initMapWithBusinesses:(CLLocation *)customLocation
+{
     MKCoordinateRegion region;
     if (customLocation == nil) {
         region = MKCoordinateRegionMakeWithDistance (_myLocation.coordinate, 1000, 1000);
@@ -193,20 +196,14 @@
         
     } else {
         region = MKCoordinateRegionMakeWithDistance (customLocation.coordinate, 1000, 1000);
-        
         gpsString = [NSString stringWithFormat:@"%f,%f", customLocation.coordinate.longitude, customLocation.coordinate.latitude];
     }
-    
-    if (_gpsStringFromSegue != nil)
-    {
+
+    if (_gpsStringFromSegue != nil) {
         [self getBusinesses:_gpsStringFromSegue];
-        
-    }
-    else
-    {
+    } else {
         [self getBusinesses:gpsString];
     }
-    //[_mapView setRegion:region animated:NO];
 }
 
 
@@ -217,7 +214,7 @@
         [annotations addObject:[self annotationForBusiness:business]];
     }
     [_mapView addAnnotations:annotations];
-    
+
     MKMapRect zoomRect = MKMapRectNull;
     for (id <MKAnnotation> annotation in _mapView.annotations) {
         MKMapPoint annotationPoint = MKMapPointForCoordinate(annotation.coordinate);
@@ -251,7 +248,6 @@
     [spinner setFrame:CGRectMake(150, self.view.frame.size.height/2, spinner.frame.size.width, spinner.frame.size.height)];
     spinner.hidesWhenStopped = YES;
 
-
     //Error Block
     void (^loadErrorBlock)(NSError *) = ^(NSError *error){
         NSLog(@"Error on load %@", error.description);
@@ -264,7 +260,6 @@
     };
     void (^loadSuccessBlock)(NSArray *) = ^(NSArray *results){
         businesses = results;
-        NSLog(@"Loaded %d business(es)", businesses.count);
         _hairdresserTableView.hidden = NO;
         [self addBusinessesToMap];
          [_hairdresserTableView reloadData];
@@ -274,37 +269,31 @@
         [refreshControl endRefreshing];
         _isSearching = NO;
         _isRefreshing = NO;
-        if (_gpsStringFromSegue != nil)
+
+        if (_gpsStringFromSegue != nil) {
             [_hairdresserTableView setContentOffset:CGPointMake(0, 136)];
+        }
     };
-    
-    if (_isSearching == YES)
-    {
+
+    if (_isSearching == YES) {
         if(!_isRefreshing) {
             _hairdresserTableView.hidden = YES;
             [self.view addSubview:spinner];
             [spinner startAnimating];
         }
-        
+
         GeoPoint *here = [[GeoPoint alloc] initWithString: gpsString];
-        
+
         NSString *query;
-        if (_queryNameInProgressFromSegue != nil) query = _queryNameInProgressFromSegue;
-        else query = _searchView.searchByName.text;
-                
+        if (_queryNameInProgressFromSegue != nil) {
+            query = _queryNameInProgressFromSegue;
+        } else {
+            query = _searchView.searchByName.text;
+        }
+
         [Business listNearby:here query:query limit:@10 success:loadSuccessBlock failure:loadErrorBlock];
     }
 }
-
-// TableView Delegate Functions
-
-/*
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-
-    return _headerView;
-}
-*/
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -338,9 +327,6 @@
     return cell;
 }
 
-
-
-
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     rowSelected = indexPath.row;
@@ -350,81 +336,30 @@
 
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"salonDetail"])
-    {
+    if ([segue.identifier isEqualToString:@"salonDetail"]) {
         SalonDetailViewController *salonDetail = [segue destinationViewController];
-
         [salonDetail setBusiness:[businesses objectAtIndex:rowSelected]];
     }
 }
 
+-(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id)annotation {
 
-// MKAnnotation delegate methods
+    static NSString *myIdentifier = @"MyAnnotation";
 
-// Set up the MKAnnotation View
-
-- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id)annotation {
-
-    static NSString *myIdentifier =@"MyAnnotation";
-
-    if([annotation isKindOfClass:[MyAnnotation class]])
-    {
+    if ([annotation isKindOfClass:[MyAnnotation class]]) {
         MKAnnotationView *annotationView=[mapView dequeueReusableAnnotationViewWithIdentifier:myIdentifier];
-        if(!annotationView)
-        {
+        if (!annotationView) {
             annotationView=[[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:myIdentifier];
             annotationView.image = [UIImage imageNamed:@"pin-salon.png"];
             [annotationView setFrame:CGRectMake(0, 0, 17, 24)];
             annotationView.contentMode = UIViewContentModeScaleAspectFit;
-            //annotationView.centerOffset = CGPointMake(0, -annotationView.image.size.height / 2);
             annotationView.canShowCallout = YES;
         }
+
         return annotationView;
     }
+
     return nil;
 }
-
-
-
-// Method for showing custom view on annotation
-
-/*
-- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)annotationView {
-
-    CustomPinView *calloutView = [[CustomPinView alloc] initWithFrame:CGRectMake(0.0, 0.0, 70, 30.0)];
-
-    calloutView.myTitle.text = annotationView.annotation.title;
-
-
-    calloutView.center = CGPointMake(CGRectGetWidth(annotationView.bounds) / 2.0, 0.0);
-    [annotationView addSubview:calloutView];
-
-
-}
-
-// Methods for when the user deselect the annotation
-
-- (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view {
-    for (UIView *subview in view.subviews) {
-        if (![subview isKindOfClass:[CustomPinView class]]) {
-            continue;
-        }
-
-        [subview removeFromSuperview];
-    }
-}
-*/
-
-
-/*
-
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
