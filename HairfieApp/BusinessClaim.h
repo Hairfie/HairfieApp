@@ -23,6 +23,7 @@
 @property (strong, nonatomic) Timetable *timetable;
 @property (strong, nonatomic) Address *address;
 @property (strong, nonatomic) NSMutableArray *pictures;
+@property (strong, nonatomic) NSArray *hairdressers;
 @property (strong, nonatomic) NSString *thumbnail;
 @property (strong, nonatomic) NSArray *services;
 @property (strong, nonatomic) NSString *kind;

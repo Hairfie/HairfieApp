@@ -49,4 +49,9 @@
 
 @property (nonatomic) IBOutlet UIButton* addHairfiesBttn;
 
+// HAIRDRESSER TAB
+
+@property (nonatomic) IBOutlet UITableView* hairdresserTableView;
+@property BOOL isEditingHairdresser;
+
 @end

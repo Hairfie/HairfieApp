@@ -10,10 +10,13 @@
 #import "SecondStepSalonPhoneViewController.h"
 #import "FinalStepAddressViewController.h"
 #import "FinalStepTimetableViewController.h"
+#import "HairdresserTableViewCell.h"
 #import "FinalStepDescriptionViewController.h"
 #import "Address.h"
+#import "Hairdresser.h"
 #import "PictureUploader.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "ClaimAddHairdresserViewController.h"
 
 @interface FinalStepViewController ()
 
@@ -23,6 +26,7 @@
 {
     UIAlertView *chooseCameraType;
     UIImagePickerController *imagePicker;
+    Hairdresser *hairdresserForEditing;
 }
 
 -(UIStatusBarStyle)preferredStatusBarStyle{
@@ -45,6 +49,8 @@
     _validateBttn.layer.masksToBounds = YES;
     _addHairfiesBttn.layer.cornerRadius = 5;
     _addHairfiesBttn.layer.masksToBounds = YES;
+    
+ 
     
     UIView *borderBttn =[[UIView alloc] initWithFrame:CGRectMake(105, 99, 110, 110)];
     borderBttn.backgroundColor = [UIColor whiteColor];
@@ -73,6 +79,7 @@
     
     // Do any additional setup after loading the view.
 }
+
 
 
 
@@ -146,6 +153,10 @@
     _phoneLabel.text = _claim.phoneNumber;
     _addressLabel.text = [_claim.address displayAddress];
     _nameLabel.text = _claim.name;
+    if ([_claim.hairdressers count] == 0)
+        _hairdresserTableView.hidden = YES;
+    else
+         _hairdresserTableView.hidden = NO;
     [self setupGallery:_claim.pictures];
 }
 
@@ -224,7 +235,16 @@
     [self performSegueWithIdentifier:@"claimDesc" sender:self];
 }
 
+-(IBAction)modifyHairdresser:(id)sender
+{
+    _isEditingHairdresser = NO;
+    [self performSegueWithIdentifier:@"claimHairdresser" sender:self];
+}
 
+-(IBAction)modifyService:(id)sender
+{
+    [self performSegueWithIdentifier:@"claimService" sender:self];
+}
 -(void)chooseCameraType
 {
     
@@ -420,8 +440,52 @@
         FinalStepDescriptionViewController *claimDesc = [segue destinationViewController];
         claimDesc.desc = _claim.desc;
     }
+    if ([segue.identifier isEqualToString:@"claimHairdresser"])
+    {
+        ClaimAddHairdresserViewController *claimHairdresser = [segue destinationViewController];
+        
+        claimHairdresser.hairdressersClaimed = _claim.hairdressers;
+        if (_isEditingHairdresser == YES)
+            claimHairdresser.hairdresserFromSegue = hairdresserForEditing;
+        _isEditingHairdresser = NO;
+    }
     
 }
+
+
+
+// HAIRDRESSER TAB TABLE VIEW
+
+
+- (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"hairdresserCell";
+    HairdresserTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    if (cell == nil) {
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"HairdresserTableViewCell" owner:self options:nil];
+        cell = [nib objectAtIndex:0];
+    }
+    
+    Hairdresser *hairdresser = [_claim.hairdressers objectAtIndex:indexPath.row];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.fullName.text = [hairdresser displayFullName];
+    
+    return cell;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [_claim.hairdressers count];
+}
+
+-(void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    hairdresserForEditing = [_claim.hairdressers objectAtIndex:indexPath.row];
+    _isEditingHairdresser = YES;
+    [self performSegueWithIdentifier:@"claimHairdresser" sender:self];
+}
+
 
 /*
 #pragma mark - Navigation

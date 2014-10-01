@@ -17,6 +17,7 @@
 
 
 -(NSDictionary*)toDictionary;
+-(NSString*)displayFullName;
 -(id)initWithDictionary:(NSDictionary *)aDictionary;
 -(id)initWithFirstName:(NSString*)aFirstName
               lastName:(NSString*)aLastName

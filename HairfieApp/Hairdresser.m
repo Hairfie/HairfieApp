@@ -35,6 +35,11 @@
 }
 
 
+-(NSString*)displayFullName
+{
+    return [NSString stringWithFormat:@"%@ %@",self.firstName, self.lastName];
+}
+
 
 -(NSDictionary*)toDictionary
 {
