@@ -185,19 +185,15 @@
         cell = [nib objectAtIndex:0];
     }
     
-    
     cell.backgroundColor = [UIColor lightGrayColor];
     if (indexPath.section == 0)
     {
         cell.menuItem.text = [_menuItems objectAtIndex:indexPath.row];
         [cell.menuPicto setImage:[UIImage imageNamed:[_menuPictos objectAtIndex:indexPath.row]]];
-         cell.selectionIndicator.hidden = YES;
-       // if (indexPath.row == 0)
-         //    cell.selectionIndicator.hidden = NO;
+        
     }
     if (indexPath.section == 1)
     {
-         cell.selectionIndicator.hidden = YES;
         cell.menuItem.text = @"Add a business";
         [cell.menuPicto setImage:[UIImage imageNamed:@"addBusiness-picto.png"]];
     }
@@ -205,14 +201,14 @@
     {
         [cell.menuPicto setImage:[UIImage imageNamed:@"picto-logout.png"]];
         cell.menuItem.text = @"Log Out";
-         cell.selectionIndicator.hidden = YES;
+        
     }
+     cell.selectionIndicator.hidden = YES;
     cell.menuItem.textColor = [UIColor colorWithRed:208 green:210 blue:213 alpha:1];
     cell.menuItem.font = [UIFont fontWithName:@"SourceSansPro-Light" size:15];
     cell.separatorInset = UIEdgeInsetsMake(0, 10000, 0, 0);
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
    
-
     return cell;
 }
 
