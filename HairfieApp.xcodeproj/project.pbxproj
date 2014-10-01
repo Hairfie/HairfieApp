@@ -25,6 +25,9 @@
 		15A91EB219DADD97000539C9 /* hairdresser-who-string-hairfie-post.png in Resources */ = {isa = PBXBuildFile; fileRef = 15A91EB119DADD97000539C9 /* hairdresser-who-string-hairfie-post.png */; };
 		15B4972519DBEFBB00917B83 /* add-a-hairfie.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 15B4972319DBEFBB00917B83 /* add-a-hairfie.jpg */; };
 		15B4972619DBEFBB00917B83 /* add-a-hairfie-profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 15B4972419DBEFBB00917B83 /* add-a-hairfie-profile.png */; };
+		15B4972919DBFC6800917B83 /* Tuto.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15B4972819DBFC6800917B83 /* Tuto.storyboard */; };
+		15B4972C19DBFFC600917B83 /* TutoContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B4972B19DBFFC600917B83 /* TutoContentViewController.m */; };
+		15B4972F19DC021B00917B83 /* TutoContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B4972E19DC021B00917B83 /* TutoContainerViewController.m */; };
 		15B829C919B85F6200525802 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15B829C819B85F6200525802 /* FacebookSDK.framework */; };
 		15B8ADE319C09A3E009846AA /* BusinessRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B8ADE219C09A3E009846AA /* BusinessRepository.m */; };
 		15B8D63719C83A3700C889CF /* LoadingCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15B8D63619C83A3700C889CF /* LoadingCollectionViewCell.xib */; };
@@ -311,6 +314,11 @@
 		15A91EB119DADD97000539C9 /* hairdresser-who-string-hairfie-post.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hairdresser-who-string-hairfie-post.png"; sourceTree = "<group>"; };
 		15B4972319DBEFBB00917B83 /* add-a-hairfie.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "add-a-hairfie.jpg"; sourceTree = "<group>"; };
 		15B4972419DBEFBB00917B83 /* add-a-hairfie-profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add-a-hairfie-profile.png"; sourceTree = "<group>"; };
+		15B4972819DBFC6800917B83 /* Tuto.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Tuto.storyboard; sourceTree = "<group>"; };
+		15B4972A19DBFFC600917B83 /* TutoContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutoContentViewController.h; sourceTree = "<group>"; };
+		15B4972B19DBFFC600917B83 /* TutoContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutoContentViewController.m; sourceTree = "<group>"; };
+		15B4972D19DC021B00917B83 /* TutoContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutoContainerViewController.h; sourceTree = "<group>"; };
+		15B4972E19DC021B00917B83 /* TutoContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutoContainerViewController.m; sourceTree = "<group>"; };
 		15B829C819B85F6200525802 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		15B8ADE119C09A3E009846AA /* BusinessRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessRepository.h; sourceTree = "<group>"; };
 		15B8ADE219C09A3E009846AA /* BusinessRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessRepository.m; sourceTree = "<group>"; };
@@ -845,6 +853,18 @@
 			name = Picture;
 			sourceTree = "<group>";
 		};
+		15B4972719DBFC4500917B83 /* Tuto */ = {
+			isa = PBXGroup;
+			children = (
+				15B4972819DBFC6800917B83 /* Tuto.storyboard */,
+				15B4972A19DBFFC600917B83 /* TutoContentViewController.h */,
+				15B4972B19DBFFC600917B83 /* TutoContentViewController.m */,
+				15B4972D19DC021B00917B83 /* TutoContainerViewController.h */,
+				15B4972E19DC021B00917B83 /* TutoContainerViewController.m */,
+			);
+			name = Tuto;
+			sourceTree = "<group>";
+		};
 		15CE407019B0E7670088FEA7 /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
@@ -891,6 +911,7 @@
 		B3087010198782CF0080E6D2 /* Pages */ = {
 			isa = PBXGroup;
 			children = (
+				15B4972719DBFC4500917B83 /* Tuto */,
 				B319B5C819C85E1C007F79B0 /* CLAIM */,
 				B35D112219BEFB3C00486050 /* Post Hairfie */,
 				B36731D8198F93A500E11C56 /* Salon Detail */,
@@ -1654,6 +1675,7 @@
 				718B6B7819C831E200F2F8EF /* picto-hairfie-liked.png in Resources */,
 				B3901D0419AB68FE00A8C52D /* search-bar.png in Resources */,
 				B3DD7A7C199110FF007B1621 /* test-contour.png in Resources */,
+				15B4972919DBFC6800917B83 /* Tuto.storyboard in Resources */,
 				B33E4C4419A48FE70024F5F7 /* HoraireTableViewCell.xib in Resources */,
 				B3A1281C198A8609004D90BD /* CustomPinView.xib in Resources */,
 				15C89EAD19D3567600E91171 /* take-hairfie.png in Resources */,
@@ -1796,6 +1818,7 @@
 				B3CCE78A1998CDAC00067DB9 /* HairfieDetailTableViewCell.m in Sources */,
 				71026D1E19CAF1BE00994831 /* HairfieLikeRepository.m in Sources */,
 				B35A82A819A62F40003B1321 /* PricesTableViewCell.m in Sources */,
+				15B4972F19DC021B00917B83 /* TutoContainerViewController.m in Sources */,
 				B345BAE819951A7E007BB61A /* OLEContainerScrollView+Swizzling.m in Sources */,
 				718A98B019C1EF46003CD34B /* GeoPoint.m in Sources */,
 				B345BAEB19951A7E007BB61A /* OLESwizzling.m in Sources */,
@@ -1867,6 +1890,7 @@
 				B362754A19D00F3F00CAA414 /* VerificationClaimViewController.m in Sources */,
 				B3423217198924290058866B /* AFURLResponseSerialization.m in Sources */,
 				B367DC4019C9C54300A0452A /* FinalStepClaimDayViewController.m in Sources */,
+				15B4972C19DBFFC600917B83 /* TutoContentViewController.m in Sources */,
 				B35A82A319A629DF003B1321 /* HairdressersTableViewCell.m in Sources */,
 				B3CCE78F1998F4F600067DB9 /* CommentTableViewCell.m in Sources */,
 				B3DD7A8019911245007B1621 /* ReviewTableViewCell.m in Sources */,

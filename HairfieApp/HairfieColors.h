@@ -20,6 +20,7 @@
 +(UIColor *)greenHairfie;
 +(UIColor *)whiteHairfie;
 +(UIColor *)lightGreyHairfie;
++(UIColor *)pinkHairfie;
 
 + (UIImage *)imageWithColor:(UIColor *)color;
 

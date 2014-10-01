@@ -29,6 +29,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    UIViewController *otherVC = [[UIStoryboard storyboardWithName:@"Tuto" bundle:nil] instantiateInitialViewController];
+    [self.navigationController pushViewController:otherVC animated:NO];
 
      _noAccountButton.layer.borderColor = [UIColor whiteColor].CGColor;
     _noAccountButton.layer.borderWidth = 0.5;
