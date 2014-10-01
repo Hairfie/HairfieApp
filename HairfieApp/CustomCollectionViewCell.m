@@ -44,4 +44,18 @@
     [self addSubview:self.profilePicture];
 }
 
+-(void)setAsNewHairfieButton {
+    self.name.text = NSLocalizedStringFromTable(@"Add a Hairfie", @"Salon_Detail", nil);
+    self.nbLikes.hidden = YES;
+    self.likes.hidden = YES;
+    self.profilePicture = [[UIRoundImageView alloc] initWithFrame:CGRectMake(10, 170, 30, 30)];
+    self.profilePicture.layer.borderWidth = 1.0f;
+    self.profilePicture.layer.borderColor = [UIColor whiteColor].CGColor;
+    [self.profilePicture setBackgroundColor:[UIColor lightGreyHairfie]];
+    [self.profilePicture setImage:[UIImage imageNamed:@"add-a-hairfie-profile.png"]];
+    [self.hairfieView setImage:[UIImage imageNamed:@"add-a-hairfie.jpg"]];
+
+    [self addSubview:self.profilePicture];
+}
+
 @end

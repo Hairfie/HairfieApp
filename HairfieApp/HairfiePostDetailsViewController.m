@@ -177,7 +177,12 @@ shouldChangeTextInRange: (NSRange) range
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
     [textField resignFirstResponder];
+}
 
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
 }
 
 -(IBAction)postHairfie:(id)sender
@@ -312,6 +317,10 @@ shouldChangeTextInRange: (NSRange) range
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     [self uploadHairfiePicture:_hairfie];
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    
 }
 
 @end

@@ -267,10 +267,11 @@
     profilePicture.layer.borderWidth = 2.0f;
     profilePicture.layer.borderColor = [[UIColor blackHairfie] colorWithAlphaComponent:0.1].CGColor;
 
-    UILabel *usernameLabel = [[UILabel alloc]initWithFrame:CGRectMake(68, 8, 111, 21)];
+    UILabel *usernameLabel = [[UILabel alloc]initWithFrame:CGRectMake(68, 8, 232, 21)];
     usernameLabel.text = _currentHairfie.author.displayName;
     usernameLabel.font = [UIFont fontWithName:@"SourceSansPro-Light" size:18];
-    usernameLabel.textColor = [[UIColor blackHairfie] colorWithAlphaComponent:0.4] ;
+    usernameLabel.textColor = [[UIColor blackHairfie] colorWithAlphaComponent:0.4];
+    usernameLabel.adjustsFontSizeToFitWidth = YES;
 
     
     UILabel *nbHairfies = [[UILabel alloc]initWithFrame:CGRectMake(68, 30, 92, 21)];
