@@ -9,11 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
 #import "User.h"
+#import "STCollapseTableView.h"
 
 @interface MenuViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 
-@property (nonatomic) IBOutlet UITableView *menuTableView;
+@property (nonatomic) IBOutlet STCollapseTableView *menuTableView;
 @property (nonatomic) IBOutlet UIView *profileView;
 @property (nonatomic, strong) NSMutableArray *menuItems;
 @property (nonatomic, strong) NSMutableArray *menuPictos;

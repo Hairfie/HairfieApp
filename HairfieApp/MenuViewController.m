@@ -26,6 +26,7 @@
     BOOL newBusiness;
     BOOL didInsert;
     NSMutableArray *data;
+    NSMutableArray *headers;
 }
 @synthesize menuTableView = _menuTableView;
 @synthesize profileView = _profileView;
@@ -50,6 +51,21 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(backToLogin:) name:@"backToLogin" object:nil];
     
     [self initCurrentUser];
+    [self setupMenu];
+    [_menuTableView reloadData];
+    [_menuTableView setExclusiveSections:!_menuTableView.exclusiveSections];
+    [_menuTableView openSection:0 animated:NO];
+    [_menuTableView openSection:1 animated:NO];
+    [_menuTableView openSection:2 animated:NO];
+    
+    NSIndexPath *path = [NSIndexPath indexPathForRow:0 inSection:0];
+
+   
+    
+   //  (void)selectRowAtIndexPath:(NSIndexPath *)indexPath animated:(BOOL)animated scrollPosition:(UITableViewScrollPosition)scrollPosition
+    [_menuTableView selectRowAtIndexPath:path animated:NO scrollPosition:UITableViewScrollPositionNone];
+    [self tableView:_menuTableView didSelectRowAtIndexPath:path];
+    //[_menuTableView reloadData];
     
     _menuTableView.backgroundColor = [UIColor clearColor];
     _menuTableView.opaque = NO;
@@ -58,19 +74,6 @@
     
     _profileView.backgroundColor = [UIColor clearColor];
    
-    _menuItems = [[NSMutableArray alloc] init];
-    
-    
-    _menuItems = [NSMutableArray arrayWithObjects: NSLocalizedStringFromTable(@"Home", @"Menu", nil), /*NSLocalizedStringFromTable(@"Favorites", @"Menu", nil),*/NSLocalizedStringFromTable(@"Likes", @"Menu", nil), /*NSLocalizedStringFromTable(@"Friends", @"Menu", nil),*/NSLocalizedStringFromTable(@"Business", @"Menu", nil),/*NSLocalizedStringFromTable(@"Settings", @"Menu", nil),*/NSLocalizedStringFromTable(@"Logout", @"Menu", nil), nil];
-    
-    _menuPictos = [[NSMutableArray alloc] init];
-    [_menuPictos addObject:@"home-picto.png"];
-    //[_menuPictos addObject:@"favorites-picto.png"];
-    [_menuPictos addObject:@"likes-picto.png"];
-    //[_menuPictos addObject:@"friends-picto.png"];
-    [_menuPictos addObject:@"business-picto.png"];
-    //[_menuPictos addObject:@"settings-picto.png"];
-    [_menuPictos addObject:@"picto-logout.png"];
 }
 
 
@@ -121,23 +124,58 @@
 
 }
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+
+- (void)setupMenu
 {
-    return [_menuItems count];
+    
+    _menuTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    _menuItems = [[NSMutableArray alloc] init];
+    
+    
+    _menuItems = [NSMutableArray arrayWithObjects: NSLocalizedStringFromTable(@"Home", @"Menu", nil), NSLocalizedStringFromTable(@"Likes", @"Menu", nil), nil];
+    _menuPictos = [[NSMutableArray alloc] init];
+    [_menuPictos addObject:@"home-picto.png"];
+    [_menuPictos addObject:@"likes-picto.png"];
+    
+    data = [[NSMutableArray alloc] init];
+    for (int i = 0 ; i < 3 ; i++)
+    {
+        NSMutableArray* section = [[NSMutableArray alloc] init];
+        
+        if (i == 0)
+            for (int j = 0 ; j < 2 ; j++)
+            {
+                [section addObject:[NSString stringWithFormat:@"%@", [_menuItems objectAtIndex:j]]];
+            }
+        else
+            [section addObject:[NSString stringWithFormat:@"Add a business"]];
+        
+        [data addObject:section];
+    }
+    
+    
+    headers = [[NSMutableArray alloc] init];
+    
+    UIView* header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+    [header setBackgroundColor:[UIColor lightGrayColor]];
+    UILabel *mylabel = [[UILabel alloc] initWithFrame:CGRectMake(52, 0, 237, 40)];
+    mylabel.text = @"Business";
+    UIImageView *pictoBusiness = [[UIImageView alloc] initWithFrame:CGRectMake(12, 12, 20, 20)];
+    pictoBusiness.image = [UIImage imageNamed:@"business-picto.png"];
+    mylabel.font = [UIFont fontWithName:@"SourceSansPro-Light" size:15];
+    mylabel.textColor = [UIColor whiteColor];
+    [header addSubview:pictoBusiness];
+    [header addSubview:mylabel];
+    [headers addObject:header];
 }
 
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return 3;
 }
 
 
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 45;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"MenuCell";
     MenuTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -148,87 +186,90 @@
     }
     
     
-           cell.menuItem.textColor = [UIColor colorWithRed:208 green:210 blue:213 alpha:1];
-           cell.menuItem.font = [UIFont fontWithName:@"SourceSansPro-Light" size:15];
-           cell.menuItem.text = [_menuItems objectAtIndex:indexPath.row];
-           [cell.menuPicto setImage:[UIImage imageNamed:[_menuPictos objectAtIndex:indexPath.row]]];
-    
+    cell.backgroundColor = [UIColor lightGrayColor];
+    if (indexPath.section == 0)
+    {
+        cell.menuItem.text = [_menuItems objectAtIndex:indexPath.row];
+        [cell.menuPicto setImage:[UIImage imageNamed:[_menuPictos objectAtIndex:indexPath.row]]];
+         cell.selectionIndicator.hidden = YES;
+       // if (indexPath.row == 0)
+         //    cell.selectionIndicator.hidden = NO;
+    }
+    if (indexPath.section == 1)
+    {
+         cell.selectionIndicator.hidden = YES;
+        cell.menuItem.text = @"Add a business";
+        [cell.menuPicto setImage:[UIImage imageNamed:@"addBusiness-picto.png"]];
+    }
+    if (indexPath.section == 2)
+    {
+        [cell.menuPicto setImage:[UIImage imageNamed:@"picto-logout.png"]];
+        cell.menuItem.text = @"Log Out";
+         cell.selectionIndicator.hidden = YES;
+    }
+    cell.menuItem.textColor = [UIColor colorWithRed:208 green:210 blue:213 alpha:1];
+    cell.menuItem.font = [UIFont fontWithName:@"SourceSansPro-Light" size:15];
+    cell.separatorInset = UIEdgeInsetsMake(0, 10000, 0, 0);
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+   
+
     return cell;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    if (section == 0)
+        return 2;
+    else
+        return 1;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if (section == 1)
+        return 44;
+    return 0;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    UIView* header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
-    header.backgroundColor = [UIColor lightGrayColor];
-    return header;
-}
-
-
-- (void)tableView:(UITableView *)tableView
-  willDisplayCell:(UITableViewCell *)cell
-forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (newBusiness == YES)
-        [cell setBackgroundColor:[UIColor blueHairfie]];
+    
+    if (section == 1)
+        return [headers objectAtIndex:0];
     else
-        [cell setBackgroundColor:[UIColor clearColor]];
-    // cell.imageView.image = [UIImage imageNamed:@"selected-cell.jpg"];
-
+        
+        return [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 0)];
 }
 
-
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+-(void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSInteger row = indexPath.row;
-    [self.slidingViewController.topViewController.view addGestureRecognizer:self.slidingViewController.panGesture];
+    MenuTableViewCell *cell = (MenuTableViewCell*)[tableView cellForRowAtIndexPath:indexPath];
 
-    if (row == 0)
+     cell.selectionIndicator.hidden = NO;
+    if (indexPath.section == 0)
     {
-        [self performSegueWithIdentifier:@"HomeSegue" sender:self];
-    }
-    if (row == 1)
-    {
-        [self performSegueWithIdentifier:@"LikeSegue" sender:self];
-    }
-    if (row == 2)
-    {
-        if (didInsert == NO)
+        if (indexPath.row == 0)
         {
-            newBusiness = YES;
-        [tableView beginUpdates];
-        [_menuItems addObject:@"test activity"];
-        [_menuPictos addObject:@"test"];
-        NSInteger rowindex = indexPath.row + 1;
-        NSArray *paths = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:rowindex inSection:0]];
-        [tableView insertRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationTop];
-        [tableView endUpdates];
-            didInsert = YES;
-            
+            [self performSegueWithIdentifier:@"HomeSegue" sender:self];
         }
-        else{
-             newBusiness = NO;
-            [tableView beginUpdates];
-            [_menuItems removeObjectAtIndex:indexPath.row];
-            NSInteger rowindex = indexPath.row + 1;
-            NSArray *paths = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:rowindex inSection:0]];
-            [tableView deleteRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationTop];
-            [tableView endUpdates];
-            didInsert = NO;
+        if (indexPath.row == 1)
+        {
+            [self performSegueWithIdentifier:@"LikeSegue" sender:self];
         }
     }
-    if (row == 3)
+    if (indexPath.section == 1)
     {
-        if (newBusiness == YES)
-            [self performSegueWithIdentifier:@"BusinessSegue" sender:self];
-        else
-           [self logOut];
+        [self performSegueWithIdentifier:@"BusinessSegue" sender:self];
     }
-    if (newBusiness == YES)
-    {
-        if (row == 4)
-            [self logOut];
-    }
+ 
+    if (indexPath.section == 2)
+        [self logOut];
+}
+
+-(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+     MenuTableViewCell *cell = (MenuTableViewCell*)[tableView cellForRowAtIndexPath:indexPath];
+   cell.selectionIndicator.hidden = YES;
 }
 
 
@@ -256,6 +297,11 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
     
 }
 
+
+
+
+
+
 #pragma mark state preservation / restoration
 - (void)encodeRestorableStateWithCoder:(NSCoder *)coder {
     NSLog(@"%s", __PRETTY_FUNCTION__);
@@ -278,6 +324,9 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
     
     // TODO call whatever function you need to visually restore
 }
+
+
+
 
 
 

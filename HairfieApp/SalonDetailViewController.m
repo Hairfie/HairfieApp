@@ -536,18 +536,12 @@
     
     NSInteger height =  hairfieCount / 2 * 250 + 88 + _callBttn.frame.size.height;
     if ([hairfies count] %2 == 0)
-    {
         height += 80;
-    }
     if ([hairfies count] == 1)
         height = 360;
    
-    
     _mainViewHeight.constant = height + 238 ;
     self.hairfieCollectionHeight.constant = height;
-    
-    NSLog(@"Collection view heigt %d, main view height %f", (long)height,_mainViewHeight.constant);
-    
     [self.hairfieCollection reloadData];
 }
 
