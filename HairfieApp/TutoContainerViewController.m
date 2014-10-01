@@ -7,6 +7,10 @@
 //
 
 #import "TutoContainerViewController.h"
+#import "UserAuthenticator.h"
+#import "AppDelegate.h"
+#import "CredentialStore.h"
+
 
 @interface TutoContainerViewController ()
 
@@ -14,12 +18,16 @@
 
 @implementation TutoContainerViewController {
     NSArray *pageTitles;
+    UserAuthenticator *userAuthenticator;
+    AppDelegate *delegate;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     pageTitles = @[@"Page 1", @"Page 2", @"Page 3"];
+    delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+
 
     // Create page view controller
     self.pageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageViewController"];
@@ -37,6 +45,8 @@
     [self addChildViewController:_pageViewController];
     [self.view addSubview:_pageViewController.view];
     [self.pageViewController didMoveToParentViewController:self];
+
+    userAuthenticator = [[UserAuthenticator alloc] init];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -94,14 +104,17 @@
     return 0;
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"Feed@Main"]) {
+        [userAuthenticator skipLogin];
+    } else if([segue.identifier isEqualToString:@"Login@Main#FB"]) {
+        [delegate.credentialStore setDoFbConnect];
+    }
 }
-*/
 
 @end

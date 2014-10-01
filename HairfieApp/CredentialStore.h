@@ -16,5 +16,9 @@
 - (NSString *)userId;
 - (void)setAuthToken:(NSString *)authToken;
 - (void)setAuthTokenAndUserId:(NSString *)authToken forUser:(NSString *)userId;
+- (void)setTutorialSeen;
+- (BOOL)hasSeenTutorial;
+- (void)setDoFbConnect;
+- (BOOL)doFbConnect;
 
 @end

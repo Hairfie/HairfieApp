@@ -12,6 +12,10 @@
 #define SERVICE_NAME @"Hairfie"
 #define AUTH_TOKEN_KEY @"auth_token"
 #define USER_ID_KEY @"user_id"
+#define TUTORIAL_KEY @"tutorial"
+#define TUTORIAL_DO_FB_KEY @"tutorial_do_fb"
+
+
 
 
 @implementation CredentialStore
@@ -58,6 +62,31 @@
 
 - (NSString *)secureValueForKey:(NSString *)key {
     return [SSKeychain passwordForService:SERVICE_NAME account:key];
+}
+
+- (void)setTutorialSeen {
+    [self setSecureValue:@"YES" forKey:TUTORIAL_KEY];
+}
+
+- (BOOL)hasSeenTutorial {
+    if([self secureValueForKey:TUTORIAL_KEY]) {
+        return YES;
+    } else {
+        return NO;
+    }
+    //return NO;
+}
+
+- (void)setDoFbConnect {
+    [self setSecureValue:@"YES" forKey:TUTORIAL_DO_FB_KEY];
+}
+
+- (BOOL)doFbConnect {
+    if([self secureValueForKey:TUTORIAL_DO_FB_KEY]) {
+        return YES;
+    } else {
+        return NO;
+    }
 }
 
 @end

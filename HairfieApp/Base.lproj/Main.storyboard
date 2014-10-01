@@ -425,10 +425,10 @@
             </objects>
             <point key="canvasLocation" x="-1970" y="-32"/>
         </scene>
-        <!--Login View Controller-->
+        <!--Login-->
         <scene sceneID="1RP-AT-RXP">
             <objects>
-                <viewController storyboardIdentifier="Login" useStoryboardIdentifierAsRestorationIdentifier="YES" id="GUZ-sY-RBq" customClass="LoginViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Login" title="Login" useStoryboardIdentifierAsRestorationIdentifier="YES" id="GUZ-sY-RBq" customClass="LoginViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="O8c-xg-j4D"/>
                         <viewControllerLayoutGuide type="bottom" id="xdl-Qo-Dln"/>
@@ -747,7 +747,7 @@
         <!--Home-->
         <scene sceneID="gQL-lH-bN1">
             <objects>
-                <viewController useStoryboardIdentifierAsRestorationIdentifier="YES" id="eci-2w-4CQ" customClass="HomeViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Feed" useStoryboardIdentifierAsRestorationIdentifier="YES" id="eci-2w-4CQ" customClass="HomeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="EPK-4y-ALl"/>
                         <viewControllerLayoutGuide type="bottom" id="tBR-Dh-Qg0"/>
@@ -3942,10 +3942,10 @@
             </objects>
             <point key="canvasLocation" x="872" y="-339"/>
         </scene>
-        <!--Sign Up View Controller-->
+        <!--Signup-->
         <scene sceneID="GYD-QR-oxZ">
             <objects>
-                <viewController id="xPO-Am-yIh" customClass="SignUpViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Signup" title="Signup" id="xPO-Am-yIh" customClass="SignUpViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="quN-aZ-NVq"/>
                         <viewControllerLayoutGuide type="bottom" id="hLb-as-kRX"/>
@@ -5304,12 +5304,12 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="LOg-O4-mCP"/>
-        <segue reference="PSz-m0-val"/>
-        <segue reference="DYR-eo-mJz"/>
-        <segue reference="2ml-IS-A8f"/>
-        <segue reference="HOe-ge-VCi"/>
+        <segue reference="H0a-7y-EaD"/>
         <segue reference="o5i-ex-i4q"/>
+        <segue reference="7yU-V8-5Z9"/>
         <segue reference="uEN-by-6gW"/>
+        <segue reference="dg2-Ph-4Hs"/>
+        <segue reference="DYR-eo-mJz"/>
+        <segue reference="LOg-O4-mCP"/>
     </inferredMetricsTieBreakers>
 </document>

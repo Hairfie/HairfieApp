@@ -21,6 +21,7 @@
 @property (nonatomic) AppDelegate *delegate;
 @property (nonatomic) UITapGestureRecognizer *dismiss;
 
+
 -(IBAction)doLogin:(id)sender;
 -(IBAction)closeKeyboard:(id)sender;
 -(IBAction)openEmailField:(id)sender;

@@ -29,9 +29,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    UIViewController *otherVC = [[UIStoryboard storyboardWithName:@"Tuto" bundle:nil] instantiateInitialViewController];
-    [self.navigationController pushViewController:otherVC animated:NO];
 
      _noAccountButton.layer.borderColor = [UIColor whiteColor].CGColor;
     _noAccountButton.layer.borderWidth = 0.5;
@@ -59,6 +56,16 @@
         //_delegate.currentUser = auth.getCurrentUser;
         
         [self performSegueWithIdentifier:@"loginSuccess" sender:self];
+    } else {
+        if(_delegate.credentialStore.hasSeenTutorial == NO) {
+            UIViewController *otherVC = [[UIStoryboard storyboardWithName:@"Tuto" bundle:nil] instantiateInitialViewController];
+            [_delegate.credentialStore setTutorialSeen];
+            [self.navigationController pushViewController:otherVC animated:NO];
+        } else {
+            if([_delegate.credentialStore doFbConnect]) {
+                [self fbConnect];
+            }
+        }
     }
 
     [self.view addGestureRecognizer:_dismiss];
@@ -77,19 +84,17 @@
     [ARAnalytics pageView:@"AR - LoginView"];
 }
 
--(void) dismissTextFields
-{
+-(void) dismissTextFields {
     [_passwordField resignFirstResponder];
     [_emailField resignFirstResponder];
     _noPasswordButton.hidden = NO;
 }
 
--(UIStatusBarStyle)preferredStatusBarStyle{
+-(UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
 }
 
--(void)textFieldDidBeginEditing:(UITextField *)textField
-{
+-(void)textFieldDidBeginEditing:(UITextField *)textField {
         if (textField == _passwordField)
         {
          
@@ -158,7 +163,6 @@
 }
 
 -(IBAction)skip:(id)sender {
-    [ARAnalytics event:@"AR - Skip"];
     [self performSegueWithIdentifier:@"skipLogin" sender:self];
 }
 
@@ -178,8 +182,11 @@
 }
 
 
-- (IBAction)getFacebookUserInfo:(id)sender
-{
+- (IBAction)getFacebookUserInfo:(id)sender {
+    [self fbConnect];
+}
+
+- (void)fbConnect {
     if (FBSession.activeSession.state == FBSessionStateOpen
         || FBSession.activeSession.state == FBSessionStateOpenTokenExtended) {
         [self sessionStateChanged:FBSession.activeSession state:FBSession.activeSession.state error:nil];
