@@ -534,19 +534,19 @@
     }
    
     
-    NSInteger height =  hairfieCount / 2 * 230 + 88 + _callBttn.frame.size.height;
-    
+    NSInteger height =  hairfieCount / 2 * 250 + 88 + _callBttn.frame.size.height;
+    if ([hairfies count] %2 == 0)
+    {
+        height += 80;
+    }
     if ([hairfies count] == 1)
         height = 360;
-    if ([hairfies count] %2 != 0)
-    {
-        height += 20;
-    }
+   
     
     _mainViewHeight.constant = height + 238 ;
     self.hairfieCollectionHeight.constant = height;
     
-        NSLog(@"Collection view heigt %f, main view height %f", _hairfieCollectionHeight.constant,_mainViewHeight.constant);
+    NSLog(@"Collection view heigt %d, main view height %f", (long)height,_mainViewHeight.constant);
     
     [self.hairfieCollection reloadData];
 }
@@ -681,8 +681,6 @@
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"indexpath : %@", indexPath);
-    NSLog(@"%ld", (hairfies.count + 1));
     if(indexPath.row == 0) {
         return [self collectionView:cv newHairfieCellForItemAtIndexPath:indexPath];
     } else if (indexPath.row < (hairfies.count + 1)) {
