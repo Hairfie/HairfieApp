@@ -223,7 +223,6 @@
         _infoView.hidden = NO;
     } else if(sender == _hairfieBttn) {
         [self setButtonSelected:_hairfieBttn andBringViewUpfront:_hairfieView];
-        _mainViewHeight.constant = _hairfieCollection.frame.size.height + 300;
         _hairfieView.hidden = NO;
         [self updateHairfiesView];
     } else if(sender == _hairdresserBttn) {
@@ -522,14 +521,33 @@
 
 -(void)updateHairfiesView
 {
+    
+    NSLog(@"hairfies %@", hairfies);
+    
     if (_hairfieView.hidden) return;
     
-    NSInteger height = ceil((float)hairfies.count / 2) * 230 + 200;
     
-    NSLog(@"Height: %@", [NSNumber numberWithLong:height]);
+    NSInteger hairfieCount = [hairfies count];
     
-    _mainViewHeight.constant = height;
+    if (hairfieCount % 2 != 0) {
+        hairfieCount += 1;
+    }
+   
+    
+    NSInteger height =  hairfieCount / 2 * 230 + 88 + _callBttn.frame.size.height;
+    
+    if ([hairfies count] == 1)
+        height = 360;
+    if ([hairfies count] %2 != 0)
+    {
+        height += 20;
+    }
+    
+    _mainViewHeight.constant = height + 238 ;
     self.hairfieCollectionHeight.constant = height;
+    
+        NSLog(@"Collection view heigt %f, main view height %f", _hairfieCollectionHeight.constant,_mainViewHeight.constant);
+    
     [self.hairfieCollection reloadData];
 }
 
@@ -665,7 +683,7 @@
 {    
     if (indexPath.row < hairfies.count) {
         if (indexPath.row >= (hairfies.count - HAIRFIES_PAGE_SIZE +1)) {
-            NSLog(@"Gimme more!");
+           // NSLog(@"Gimme more!");
             [self loadNextHairfies];
         }
         

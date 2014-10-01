@@ -2154,11 +2154,11 @@
                                                         <color key="backgroundColor" red="0.85490196080000003" green="0.85490196080000003" blue="0.87058823529999996" alpha="1" colorSpace="calibratedRGB"/>
                                                     </view>
                                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Jy6-8W-MKS">
-                                                        <rect key="frame" x="0.0" y="45" width="320" height="640"/>
+                                                        <rect key="frame" x="0.0" y="45" width="320" height="955"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="640" id="0TQ-RY-90M"/>
-                                                            <constraint firstAttribute="width" constant="320" id="WAf-7S-GP5"/>
+                                                            <constraint firstAttribute="width" constant="320" id="d4u-sa-jaT"/>
+                                                            <constraint firstAttribute="height" constant="955" id="yf3-fd-pp6"/>
                                                         </constraints>
                                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="OPg-Qd-Sk4">
                                                             <size key="itemSize" width="145" height="210"/>
@@ -2619,7 +2619,7 @@
                         <outlet property="hairdresserView" destination="5ZR-VD-wlu" id="BM4-qY-TaZ"/>
                         <outlet property="hairfieBttn" destination="Vj0-7V-Aao" id="h8C-5L-tLk"/>
                         <outlet property="hairfieCollection" destination="Jy6-8W-MKS" id="v1z-jF-cDg"/>
-                        <outlet property="hairfieCollectionHeight" destination="0TQ-RY-90M" id="y3s-mQ-q4Y"/>
+                        <outlet property="hairfieCollectionHeight" destination="yf3-fd-pp6" id="K5J-Mc-EeT"/>
                         <outlet property="hairfieView" destination="g2N-rX-8kI" id="8GK-8z-dVy"/>
                         <outlet property="imageSliderView" destination="xU8-Oy-bEu" id="UM6-vG-hqW"/>
                         <outlet property="infoBttn" destination="9fU-aU-imO" id="LEU-Z4-Xs2"/>
@@ -5330,11 +5330,11 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="LOg-O4-mCP"/>
-        <segue reference="N9Q-F2-pvG"/>
-        <segue reference="uEN-by-6gW"/>
         <segue reference="dg2-Ph-4Hs"/>
+        <segue reference="uEN-by-6gW"/>
         <segue reference="VGS-VM-Pwy"/>
+        <segue reference="LOg-O4-mCP"/>
+        <segue reference="PSz-m0-val"/>
         <segue reference="DYR-eo-mJz"/>
         <segue reference="HOe-ge-VCi"/>
     </inferredMetricsTieBreakers>
