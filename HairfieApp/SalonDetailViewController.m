@@ -642,7 +642,7 @@
         horaires.timetable = _business.timetable;
     } else if ([segue.identifier isEqualToString:@"hairfieDetail"]) {
         HairfieDetailViewController *hairfieDetail = [segue destinationViewController];
-        hairfieDetail.currentHairfie = sender;
+        hairfieDetail.hairfie = sender;
     } else if ([segue.identifier isEqualToString:@"similarBusiness"]) {
         SalonDetailViewController *controller = [segue destinationViewController];
         controller.business = sender;

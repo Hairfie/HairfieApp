@@ -16,7 +16,7 @@
 {
     if([authorDic isKindOfClass:[NSNull class]]) return;
     
-    _author = [[User alloc] initWithJson:authorDic];
+    _author = [[User alloc] initWithDictionary:authorDic];
 }
 
 - (void) setBusiness:(NSDictionary *)aDictionary

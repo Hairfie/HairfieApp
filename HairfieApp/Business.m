@@ -23,6 +23,17 @@
     _timetable = [[Timetable alloc] initWithDictionary:aDictionary];
 }
 
+-(void)setThumbnail:(NSDictionary *)aThumbnail
+{
+    if ([aThumbnail isKindOfClass:[Picture class]]) {
+        _thumbnail = aThumbnail;
+    } else if ([aThumbnail isEqual:[NSNull null]]) {
+        _thumbnail = nil;
+    } else {
+        _thumbnail = [[Picture alloc] initWithDictionary:aThumbnail];
+    }
+}
+
 -(NSString *)displayNameAndAddress
 {
     return [NSString stringWithFormat:@"%@ - %@", self.name, self.address.displayAddress];
@@ -89,6 +100,11 @@
     }
     
     NSLog(@"Prices loaded: %@", _services);
+}
+
+-(NSString *)thumbUrl
+{
+    return [self.thumbnail urlWithWidth:@100 height:@100];
 }
 
 -(NSNumber *)ratingBetween:(NSNumber *)theMin // TODO: scale from the min

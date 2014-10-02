@@ -10,10 +10,21 @@
 
 @interface Picture : NSObject
 
+@property (strong, nonatomic) NSString *name;
+@property (strong, nonatomic) NSString *container;
 @property (strong, nonatomic) NSString *url;
 
 -(id)initWithDictionary:(NSDictionary *)aDictionary;
 
 -(id)initWithUrl:(NSString *)anUrl;
+
+-(id)initWithName:(NSString *)aName
+        container:(NSString *)aContainer
+              url:(NSString *)anUrl;
+
+-(NSString *)toApiValue;
+
+-(NSString *)urlWithWidth:(NSNumber *)aWidth
+                   height:(NSNumber *)anHeight;
 
 @end

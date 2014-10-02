@@ -13,7 +13,7 @@
 
 @implementation Hairfie
 
-@synthesize id, description, price, picture, author = _author, business = _business, numLikes = _numLikes;
+@synthesize description;
 
 -(id)initWithDictionary:(NSDictionary *)data
 {
@@ -24,7 +24,7 @@
 {
     if([authorDic isKindOfClass:[NSNull class]]) return;
     
-    _author = [[User alloc] initWithJson:authorDic];
+    _author = [[User alloc] initWithDictionary:authorDic];
 }
 
 - (void)setBusiness:(NSDictionary *) businessDic
@@ -34,31 +34,43 @@
     _business = [[Business alloc] initWithDictionary:businessDic];
 }
 
--(NSString *)pictureUrlwithWidth:(NSString *)width andHeight:(NSString *)height {
-    NSString  *url = [[picture objectForKey:@"publicUrl"] stringByAppendingString:@"?"];
-    if(width)  url = [NSString stringWithFormat:@"%@&width=%@", url, width];
-    if(height) url = [NSString stringWithFormat:@"%@&height=%@", url, height];
-    
-    return url;
+-(void)setPicture:(NSDictionary *)aPicture
+{
+    if ([aPicture isKindOfClass:[Picture class]]) {
+        _picture = aPicture;
+    } else if ([aPicture isEqual:[NSNull null]]) {
+        _picture = nil;
+    } else {
+        _picture = [[Picture alloc] initWithDictionary:aPicture];
+    }
 }
 
--(NSString *)pictureUrl {
+-(NSString *)pictureUrlwithWidth:(NSNumber *)width andHeight:(NSNumber *)height
+{
+    return [self.picture urlWithWidth:width height:height];
+}
+
+-(NSString *)pictureUrl
+{
     return [self pictureUrlwithWidth:nil andHeight:nil];
 }
 
--(NSString *)hairfieCellUrl {
-    return [self pictureUrlwithWidth:@"300" andHeight:@"420"];
+-(NSString *)hairfieCellUrl
+{
+    return [self pictureUrlwithWidth:@300 andHeight:@420];
 }
 
--(NSString *)hairfieDetailUrl {
-    return [self pictureUrlwithWidth:@"640" andHeight:@"640"];
+-(NSString *)hairfieDetailUrl
+{
+    return [self pictureUrlwithWidth:@640 andHeight:@640];
 }
 
 
--(NSString *)displayPrice {
-    if([price isEqual:[NSNull null]]) return @"";
+-(NSString *)displayPrice
+{
+    if([self.price isEqual:[NSNull null]]) return @"";
     
-    if([[price objectForKey:@"currency"] isEqual:@"EUR"]) return [NSString stringWithFormat:@"%@ €", [price objectForKey:@"amount"]];
+    if([[self.price objectForKey:@"currency"] isEqual:@"EUR"]) return [NSString stringWithFormat:@"%@ €", [self.price objectForKey:@"amount"]];
 
     return @"";
 }
@@ -80,7 +92,7 @@
     
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     
-    [parameters setObject:[self.picture objectForKey:@"picture"] forKey:@"picture"];
+    [parameters setObject:[self.picture toApiValue] forKey:@"picture"];
 
     if(self.price != nil) {
         [parameters setObject:self.price forKey:@"price"];

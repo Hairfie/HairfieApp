@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <LoopBack/LoopBack.h>
 #import "UserRepository.h"
+#import "Picture.h"
 
 
 @interface User : LBModel
@@ -18,17 +19,17 @@
 @property (strong, nonatomic) NSString *firstName;
 @property (strong, nonatomic) NSString *lastName;
 @property (strong, nonatomic) NSString *gender;
-@property (strong, nonatomic) NSDictionary *picture;
+@property (strong, nonatomic) Picture  *picture;
 @property (strong, nonatomic) NSString *email;
 @property (strong, nonatomic) NSString *numHairfies;
 @property (strong, nonatomic) NSString *phoneNumber;
 @property (strong, nonatomic) NSString *language;
 
--(id)initWithJson:(NSDictionary *)data;
+-(id)initWithDictionary:(NSDictionary *)data;
 -(NSString *)name;
 -(NSString *)displayName;
 -(NSString *)displayHairfies;
--(NSString *)pictureUrlwithWidth:(NSString *)width andHeight:(NSString *)height;
+-(NSString *)pictureUrlwithWidth:(NSNumber *)width andHeight:(NSNumber *)height;
 -(NSString *)pictureUrl;
 -(NSString *)thumbUrl;
 

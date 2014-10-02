@@ -15,7 +15,7 @@
 @property (nonatomic) IBOutlet UILabel *headerTitleLabel;
 @property (nonatomic) IBOutlet UICollectionView *hairfieCollection;
 
-@property (nonatomic) Hairfie *currentHairfie;
+@property (nonatomic) Hairfie *hairfie;
 @property (nonatomic) UIImage *hairfieImage;
 
 

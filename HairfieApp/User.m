@@ -14,15 +14,29 @@
 
 @implementation User
 
--(NSString *)name {
+-(void)setPicture:(NSDictionary *)aPicture
+{
+    if ([aPicture isKindOfClass:[Picture class]]) {
+        _picture = aPicture;
+    } else if ([aPicture isEqual:[NSNull null]]) {
+        _picture = nil;
+    } else {
+        _picture = [[Picture alloc] initWithDictionary:aPicture];
+    }
+}
+
+-(NSString *)name
+{
     return [NSString stringWithFormat:@"%@ %@", _firstName, _lastName];
 }
 
--(NSString *)displayName {
+-(NSString *)displayName
+{
     return [NSString stringWithFormat:@"%@ %@.", _firstName, [_lastName substringToIndex:1]];
 }
 
--(NSString *)displayHairfies {
+-(NSString *)displayHairfies
+{
     if ([self.numHairfies integerValue] < 2) {
         return [NSString stringWithFormat:@"%@ hairfie", self.numHairfies];
     } else {
@@ -30,25 +44,24 @@
     }
 }
 
--(NSString *)pictureUrlwithWidth:(NSString *)width andHeight:(NSString *)height {
-    NSString  *url = [[_picture objectForKey:@"publicUrl"] stringByAppendingString:@"?"];
-    if(width)  url = [NSString stringWithFormat:@"%@&width=%@", url, width];
-    if(height) url = [NSString stringWithFormat:@"%@&height=%@", url, height];
-
-    return url;
+-(NSString *)pictureUrlwithWidth:(NSNumber *)width andHeight:(NSNumber *)height
+{
+    return [self.picture urlWithWidth:width height:height];
 }
 
--(NSString *)pictureUrl {
+-(NSString *)pictureUrl
+{
     return [self pictureUrlwithWidth:nil andHeight:nil];
 }
 
--(NSString *)thumbUrl {
-    return [self pictureUrlwithWidth:@"100" andHeight:@"100"];
+-(NSString *)thumbUrl
+{
+    return [self pictureUrlwithWidth:@100 andHeight:@100];
 }
 
--(id)initWithJson:(NSDictionary *)data
+-(id)initWithDictionary:(NSDictionary *)aDictionary
 {
-    return (User *)[[User repository] modelWithDictionary:data];
+    return (User *)[[User repository] modelWithDictionary:aDictionary];
 }
 
 -(void)saveWithSuccess:(void(^)())aSuccessHandler
@@ -69,7 +82,7 @@
     }
     
     void (^onSuccess)(NSDictionary *) = ^(NSDictionary *result) {
-        [self initWithJson:result];
+        [self initWithDictionary:result];
         aSuccessHandler();
     };
     
