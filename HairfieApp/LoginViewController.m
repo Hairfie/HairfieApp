@@ -57,14 +57,13 @@
         
         [self performSegueWithIdentifier:@"loginSuccess" sender:self];
     } else {
-        if(_delegate.credentialStore.hasSeenTutorial == NO) {
+        if([_delegate.credentialStore doFbConnect]) {
+            [self fbConnect];
+        } else if(_delegate.credentialStore.hasSeenTutorial == NO) {
             UIViewController *otherVC = [[UIStoryboard storyboardWithName:@"Tuto" bundle:nil] instantiateInitialViewController];
-            [_delegate.credentialStore setTutorialSeen];
+            // Add this line to show tutorial only once.
+            //[_delegate.credentialStore setTutorialSeen];
             [self.navigationController pushViewController:otherVC animated:NO];
-        } else {
-            if([_delegate.credentialStore doFbConnect]) {
-                [self fbConnect];
-            }
         }
     }
 

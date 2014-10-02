@@ -8,9 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import "TutoContentViewController.h"
+#import "UIButton+Style.h"
+
 
 @interface TutoContainerViewController : UIViewController  <UIPageViewControllerDataSource>
 
 @property (strong, nonatomic) UIPageViewController *pageViewController;
+
+@property (nonatomic) IBOutlet UIButton *fbLogin;
+@property (nonatomic) IBOutlet UIButton *login;
+@property (nonatomic) IBOutlet UIButton *signUp;
+
 
 @end

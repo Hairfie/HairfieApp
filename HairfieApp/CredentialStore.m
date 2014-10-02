@@ -12,8 +12,8 @@
 #define SERVICE_NAME @"Hairfie"
 #define AUTH_TOKEN_KEY @"auth_token"
 #define USER_ID_KEY @"user_id"
-#define TUTORIAL_KEY @"tutorial"
-#define TUTORIAL_DO_FB_KEY @"tutorial_do_fb"
+#define TUTORIAL_KEY @"tuto"
+#define TUTORIAL_DO_FB_KEY @"tuto_do_fb"
 
 
 
@@ -69,12 +69,12 @@
 }
 
 - (BOOL)hasSeenTutorial {
-//    if([self secureValueForKey:TUTORIAL_KEY]) {
-//        return YES;
-//    } else {
-//        return NO;
-//    }
-    return NO;
+    if([self secureValueForKey:TUTORIAL_KEY]) {
+        return YES;
+    } else {
+        return NO;
+    }
+    //return NO;
 }
 
 - (void)setDoFbConnect {

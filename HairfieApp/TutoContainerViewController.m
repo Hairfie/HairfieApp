@@ -44,12 +44,18 @@
     self.pageViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 120);
     
     [self.view setBackgroundColor:[UIColor pinkHairfie]];
+
     
     [self addChildViewController:_pageViewController];
     [self.view addSubview:_pageViewController.view];
     [self.pageViewController didMoveToParentViewController:self];
 
     userAuthenticator = [[UserAuthenticator alloc] init];
+    
+    [_fbLogin tutoStyle];
+    [_login tutoStyle];
+    [_signUp tutoStyle];
+    
 }
 
 - (void)didReceiveMemoryWarning {

@@ -17,8 +17,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.titleLabel.text = self.titleText;
-    self.imageView.image = [UIImage imageNamed:self.imageName];
+    _titleLabel.text = self.titleText;
+    _imageView.image = [UIImage imageNamed:self.imageName];
+    _titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    _titleLabel.numberOfLines = 0;
+    [_titleLabel sizeToFit];
 }
 
 - (void)didReceiveMemoryWarning {

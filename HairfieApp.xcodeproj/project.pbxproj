@@ -19,6 +19,7 @@
 		1550721819DC55B9008F2EAD /* tuto-page-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 1550721519DC55B9008F2EAD /* tuto-page-2.png */; };
 		1550721919DC55B9008F2EAD /* tuto-page-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 1550721619DC55B9008F2EAD /* tuto-page-1.png */; };
 		1554FAA919D3408E00A0426B /* UIImage+Filters.m in Sources */ = {isa = PBXBuildFile; fileRef = 1554FAA819D3408E00A0426B /* UIImage+Filters.m */; };
+		155C170319DD43810060A0C9 /* UIButton+Style.m in Sources */ = {isa = PBXBuildFile; fileRef = 155C170219DD43810060A0C9 /* UIButton+Style.m */; };
 		1564959519AF6292008DC070 /* HairfieColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 1564959419AF6292008DC070 /* HairfieColors.m */; };
 		15697B31199BB03800DA83FE /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 15697B30199BB03800DA83FE /* UIImage+Resize.m */; };
 		1576492919C9B8BA00DDC141 /* help-hairfie.png in Resources */ = {isa = PBXBuildFile; fileRef = 1576492819C9B8BA00DDC141 /* help-hairfie.png */; };
@@ -307,6 +308,8 @@
 		1550721619DC55B9008F2EAD /* tuto-page-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tuto-page-1.png"; sourceTree = "<group>"; };
 		1554FAA719D3408E00A0426B /* UIImage+Filters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Filters.h"; sourceTree = "<group>"; };
 		1554FAA819D3408E00A0426B /* UIImage+Filters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Filters.m"; sourceTree = "<group>"; };
+		155C170119DD43810060A0C9 /* UIButton+Style.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Style.h"; sourceTree = "<group>"; };
+		155C170219DD43810060A0C9 /* UIButton+Style.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Style.m"; sourceTree = "<group>"; };
 		1564959319AF6292008DC070 /* HairfieColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HairfieColors.h; sourceTree = "<group>"; };
 		1564959419AF6292008DC070 /* HairfieColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HairfieColors.m; sourceTree = "<group>"; };
 		15697B2F199BB01B00DA83FE /* UIImage+Resize.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
@@ -781,6 +784,7 @@
 		1511518E1982B7A8001157A2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				155C170019DD435D0060A0C9 /* UIButton Subclasses */,
 				15E3D2AF19D075B40065A07E /* Localization */,
 				B3FB10B419B09DA600CADCFD /* man-picto.png */,
 				15C89EAC19D3567600E91171 /* take-hairfie.png */,
@@ -840,6 +844,15 @@
 				B33D4C5819D1A655009DE6DD /* BusinessClaimRepository.m */,
 			);
 			name = Repositories;
+			sourceTree = "<group>";
+		};
+		155C170019DD435D0060A0C9 /* UIButton Subclasses */ = {
+			isa = PBXGroup;
+			children = (
+				155C170119DD43810060A0C9 /* UIButton+Style.h */,
+				155C170219DD43810060A0C9 /* UIButton+Style.m */,
+			);
+			name = "UIButton Subclasses";
 			sourceTree = "<group>";
 		};
 		15697B2E199BAFD000DA83FE /* UIImage Subclasses */ = {
@@ -1872,6 +1885,7 @@
 				151151911982B7A8001157A2 /* main.m in Sources */,
 				15B4973219DC2EB000917B83 /* AOLinkedStoryboardSegue.m in Sources */,
 				B330B5BC198656450059AE56 /* MenuViewController.m in Sources */,
+				155C170319DD43810060A0C9 /* UIButton+Style.m in Sources */,
 				B345BAE919951A7E007BB61A /* OLEContainerScrollView.m in Sources */,
 				B367DC3719C9BFCA00A0452A /* FinalStepTimetableViewController.m in Sources */,
 				B308700C198782AF0080E6D2 /* FavoriteViewController.m in Sources */,

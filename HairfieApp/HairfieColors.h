@@ -21,6 +21,7 @@
 +(UIColor *)whiteHairfie;
 +(UIColor *)lightGreyHairfie;
 +(UIColor *)pinkHairfie;
++(UIColor *)pinkBtnHairfie;
 
 + (UIImage *)imageWithColor:(UIColor *)color;
 
