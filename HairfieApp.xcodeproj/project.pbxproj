@@ -15,7 +15,11 @@
 		153E1FB019B4A79B00DEC95D /* UserRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 153E1FAF19B4A79B00DEC95D /* UserRepository.m */; };
 		153E1FB419B4AA8200DEC95D /* UserAuthenticator.m in Sources */ = {isa = PBXBuildFile; fileRef = 153E1FB319B4AA8200DEC95D /* UserAuthenticator.m */; };
 		1540150119D030030094DB5E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1540150319D030030094DB5E /* InfoPlist.strings */; };
+		1550721719DC55B9008F2EAD /* tuto-page-3.png in Resources */ = {isa = PBXBuildFile; fileRef = 1550721419DC55B9008F2EAD /* tuto-page-3.png */; };
+		1550721819DC55B9008F2EAD /* tuto-page-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 1550721519DC55B9008F2EAD /* tuto-page-2.png */; };
+		1550721919DC55B9008F2EAD /* tuto-page-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 1550721619DC55B9008F2EAD /* tuto-page-1.png */; };
 		1554FAA919D3408E00A0426B /* UIImage+Filters.m in Sources */ = {isa = PBXBuildFile; fileRef = 1554FAA819D3408E00A0426B /* UIImage+Filters.m */; };
+		155C170319DD43810060A0C9 /* UIButton+Style.m in Sources */ = {isa = PBXBuildFile; fileRef = 155C170219DD43810060A0C9 /* UIButton+Style.m */; };
 		1564959519AF6292008DC070 /* HairfieColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 1564959419AF6292008DC070 /* HairfieColors.m */; };
 		15697B31199BB03800DA83FE /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 15697B30199BB03800DA83FE /* UIImage+Resize.m */; };
 		1576492919C9B8BA00DDC141 /* help-hairfie.png in Resources */ = {isa = PBXBuildFile; fileRef = 1576492819C9B8BA00DDC141 /* help-hairfie.png */; };
@@ -25,6 +29,10 @@
 		15A91EB219DADD97000539C9 /* hairdresser-who-string-hairfie-post.png in Resources */ = {isa = PBXBuildFile; fileRef = 15A91EB119DADD97000539C9 /* hairdresser-who-string-hairfie-post.png */; };
 		15B4972519DBEFBB00917B83 /* add-a-hairfie.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 15B4972319DBEFBB00917B83 /* add-a-hairfie.jpg */; };
 		15B4972619DBEFBB00917B83 /* add-a-hairfie-profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 15B4972419DBEFBB00917B83 /* add-a-hairfie-profile.png */; };
+		15B4972919DBFC6800917B83 /* Tuto.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15B4972819DBFC6800917B83 /* Tuto.storyboard */; };
+		15B4972C19DBFFC600917B83 /* TutoContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B4972B19DBFFC600917B83 /* TutoContentViewController.m */; };
+		15B4972F19DC021B00917B83 /* TutoContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B4972E19DC021B00917B83 /* TutoContainerViewController.m */; };
+		15B4973219DC2EB000917B83 /* AOLinkedStoryboardSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B4973119DC2EB000917B83 /* AOLinkedStoryboardSegue.m */; };
 		15B829C919B85F6200525802 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15B829C819B85F6200525802 /* FacebookSDK.framework */; };
 		15B8ADE319C09A3E009846AA /* BusinessRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B8ADE219C09A3E009846AA /* BusinessRepository.m */; };
 		15B8D63719C83A3700C889CF /* LoadingCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15B8D63619C83A3700C889CF /* LoadingCollectionViewCell.xib */; };
@@ -295,8 +303,13 @@
 		153E1FB319B4AA8200DEC95D /* UserAuthenticator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAuthenticator.m; sourceTree = "<group>"; };
 		1540150419D030070094DB5E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1540150519D030080094DB5E /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1550721419DC55B9008F2EAD /* tuto-page-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tuto-page-3.png"; sourceTree = "<group>"; };
+		1550721519DC55B9008F2EAD /* tuto-page-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tuto-page-2.png"; sourceTree = "<group>"; };
+		1550721619DC55B9008F2EAD /* tuto-page-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tuto-page-1.png"; sourceTree = "<group>"; };
 		1554FAA719D3408E00A0426B /* UIImage+Filters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Filters.h"; sourceTree = "<group>"; };
 		1554FAA819D3408E00A0426B /* UIImage+Filters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Filters.m"; sourceTree = "<group>"; };
+		155C170119DD43810060A0C9 /* UIButton+Style.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Style.h"; sourceTree = "<group>"; };
+		155C170219DD43810060A0C9 /* UIButton+Style.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Style.m"; sourceTree = "<group>"; };
 		1564959319AF6292008DC070 /* HairfieColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HairfieColors.h; sourceTree = "<group>"; };
 		1564959419AF6292008DC070 /* HairfieColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HairfieColors.m; sourceTree = "<group>"; };
 		15697B2F199BB01B00DA83FE /* UIImage+Resize.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
@@ -311,6 +324,13 @@
 		15A91EB119DADD97000539C9 /* hairdresser-who-string-hairfie-post.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hairdresser-who-string-hairfie-post.png"; sourceTree = "<group>"; };
 		15B4972319DBEFBB00917B83 /* add-a-hairfie.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "add-a-hairfie.jpg"; sourceTree = "<group>"; };
 		15B4972419DBEFBB00917B83 /* add-a-hairfie-profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add-a-hairfie-profile.png"; sourceTree = "<group>"; };
+		15B4972819DBFC6800917B83 /* Tuto.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Tuto.storyboard; sourceTree = "<group>"; };
+		15B4972A19DBFFC600917B83 /* TutoContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutoContentViewController.h; sourceTree = "<group>"; };
+		15B4972B19DBFFC600917B83 /* TutoContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutoContentViewController.m; sourceTree = "<group>"; };
+		15B4972D19DC021B00917B83 /* TutoContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutoContainerViewController.h; sourceTree = "<group>"; };
+		15B4972E19DC021B00917B83 /* TutoContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutoContainerViewController.m; sourceTree = "<group>"; };
+		15B4973019DC2EB000917B83 /* AOLinkedStoryboardSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AOLinkedStoryboardSegue.h; sourceTree = "<group>"; };
+		15B4973119DC2EB000917B83 /* AOLinkedStoryboardSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AOLinkedStoryboardSegue.m; sourceTree = "<group>"; };
 		15B829C819B85F6200525802 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		15B8ADE119C09A3E009846AA /* BusinessRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessRepository.h; sourceTree = "<group>"; };
 		15B8ADE219C09A3E009846AA /* BusinessRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessRepository.m; sourceTree = "<group>"; };
@@ -764,6 +784,7 @@
 		1511518E1982B7A8001157A2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				155C170019DD435D0060A0C9 /* UIButton Subclasses */,
 				15E3D2AF19D075B40065A07E /* Localization */,
 				B3FB10B419B09DA600CADCFD /* man-picto.png */,
 				15C89EAC19D3567600E91171 /* take-hairfie.png */,
@@ -783,6 +804,8 @@
 				1564959319AF6292008DC070 /* HairfieColors.h */,
 				1564959419AF6292008DC070 /* HairfieColors.m */,
 				1540150319D030030094DB5E /* InfoPlist.strings */,
+				15B4973019DC2EB000917B83 /* AOLinkedStoryboardSegue.h */,
+				15B4973119DC2EB000917B83 /* AOLinkedStoryboardSegue.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -823,6 +846,15 @@
 			name = Repositories;
 			sourceTree = "<group>";
 		};
+		155C170019DD435D0060A0C9 /* UIButton Subclasses */ = {
+			isa = PBXGroup;
+			children = (
+				155C170119DD43810060A0C9 /* UIButton+Style.h */,
+				155C170219DD43810060A0C9 /* UIButton+Style.m */,
+			);
+			name = "UIButton Subclasses";
+			sourceTree = "<group>";
+		};
 		15697B2E199BAFD000DA83FE /* UIImage Subclasses */ = {
 			isa = PBXGroup;
 			children = (
@@ -843,6 +875,18 @@
 				15A2180E19BE296A0090E83B /* PictureUploader.m */,
 			);
 			name = Picture;
+			sourceTree = "<group>";
+		};
+		15B4972719DBFC4500917B83 /* Tuto */ = {
+			isa = PBXGroup;
+			children = (
+				15B4972819DBFC6800917B83 /* Tuto.storyboard */,
+				15B4972A19DBFFC600917B83 /* TutoContentViewController.h */,
+				15B4972B19DBFFC600917B83 /* TutoContentViewController.m */,
+				15B4972D19DC021B00917B83 /* TutoContainerViewController.h */,
+				15B4972E19DC021B00917B83 /* TutoContainerViewController.m */,
+			);
+			name = Tuto;
 			sourceTree = "<group>";
 		};
 		15CE407019B0E7670088FEA7 /* Authentication */ = {
@@ -891,6 +935,7 @@
 		B3087010198782CF0080E6D2 /* Pages */ = {
 			isa = PBXGroup;
 			children = (
+				15B4972719DBFC4500917B83 /* Tuto */,
 				B319B5C819C85E1C007F79B0 /* CLAIM */,
 				B35D112219BEFB3C00486050 /* Post Hairfie */,
 				B36731D8198F93A500E11C56 /* Salon Detail */,
@@ -1384,6 +1429,9 @@
 			children = (
 				15A91EB119DADD97000539C9 /* hairdresser-who-string-hairfie-post.png */,
 				1576492819C9B8BA00DDC141 /* help-hairfie.png */,
+				1550721419DC55B9008F2EAD /* tuto-page-3.png */,
+				1550721519DC55B9008F2EAD /* tuto-page-2.png */,
+				1550721619DC55B9008F2EAD /* tuto-page-1.png */,
 				15B4972319DBEFBB00917B83 /* add-a-hairfie.jpg */,
 				15B4972419DBEFBB00917B83 /* add-a-hairfie-profile.png */,
 				B3AE0D4219C060DA00149C2B /* salon-cell-separator.png */,
@@ -1619,6 +1667,7 @@
 				B3320B2019A4F34100855BBB /* default-picture.jpg in Resources */,
 				B36731EC198FE0B000E11C56 /* selected_review.png in Resources */,
 				B3AE0D3B19C0565000149C2B /* hairfie-post-search-location.png in Resources */,
+				1550721719DC55B9008F2EAD /* tuto-page-3.png in Resources */,
 				B345BADD19951707007BB61A /* picto-hairfie-like.png in Resources */,
 				B3901D0019AB63E200A8C52D /* pin-salon.png in Resources */,
 				B3AE0D3C19C0565000149C2B /* hairfie-post-search-name.png in Resources */,
@@ -1654,6 +1703,7 @@
 				718B6B7819C831E200F2F8EF /* picto-hairfie-liked.png in Resources */,
 				B3901D0419AB68FE00A8C52D /* search-bar.png in Resources */,
 				B3DD7A7C199110FF007B1621 /* test-contour.png in Resources */,
+				15B4972919DBFC6800917B83 /* Tuto.storyboard in Resources */,
 				B33E4C4419A48FE70024F5F7 /* HoraireTableViewCell.xib in Resources */,
 				B3A1281C198A8609004D90BD /* CustomPinView.xib in Resources */,
 				15C89EAD19D3567600E91171 /* take-hairfie.png in Resources */,
@@ -1662,11 +1712,13 @@
 				B37F9A57198F910B00881071 /* picto-info.png in Resources */,
 				B37F9A4D198F8F5E00881071 /* page-salon-bttn-bg.png in Resources */,
 				B3EDF89E1987C57200431B70 /* menu-bttn.png in Resources */,
+				1550721819DC55B9008F2EAD /* tuto-page-2.png in Resources */,
 				B3E4B5981992530100CBBDC8 /* nav-disclosure.png in Resources */,
 				15A91EB219DADD97000539C9 /* hairdresser-who-string-hairfie-post.png in Resources */,
 				B33E4C4C19A4CA0B0024F5F7 /* picto-aroundme-domicile.png in Resources */,
 				B3F662431987D52A0041F298 /* SourceSansPro-Semibold.ttf in Resources */,
 				B3EDF88A198794C900431B70 /* Main.storyboard in Resources */,
+				1550721919DC55B9008F2EAD /* tuto-page-1.png in Resources */,
 				B345BAD31994FD06007BB61A /* around-me-bttn.png in Resources */,
 				B3CCE77E1998BCA400067DB9 /* picto-hairfie-detail-like.png in Resources */,
 				B3E0B15119ACB39200C3EACE /* facebook-connect.png in Resources */,
@@ -1796,6 +1848,7 @@
 				B3CCE78A1998CDAC00067DB9 /* HairfieDetailTableViewCell.m in Sources */,
 				71026D1E19CAF1BE00994831 /* HairfieLikeRepository.m in Sources */,
 				B35A82A819A62F40003B1321 /* PricesTableViewCell.m in Sources */,
+				15B4972F19DC021B00917B83 /* TutoContainerViewController.m in Sources */,
 				B345BAE819951A7E007BB61A /* OLEContainerScrollView+Swizzling.m in Sources */,
 				718A98B019C1EF46003CD34B /* GeoPoint.m in Sources */,
 				B345BAEB19951A7E007BB61A /* OLESwizzling.m in Sources */,
@@ -1830,7 +1883,9 @@
 				B342316F1988F8D70058866B /* AroundMeViewController.m in Sources */,
 				B3E65FB91986917800AF0C15 /* ECSlidingSegue.m in Sources */,
 				151151911982B7A8001157A2 /* main.m in Sources */,
+				15B4973219DC2EB000917B83 /* AOLinkedStoryboardSegue.m in Sources */,
 				B330B5BC198656450059AE56 /* MenuViewController.m in Sources */,
+				155C170319DD43810060A0C9 /* UIButton+Style.m in Sources */,
 				B345BAE919951A7E007BB61A /* OLEContainerScrollView.m in Sources */,
 				B367DC3719C9BFCA00A0452A /* FinalStepTimetableViewController.m in Sources */,
 				B308700C198782AF0080E6D2 /* FavoriteViewController.m in Sources */,
@@ -1867,6 +1922,7 @@
 				B362754A19D00F3F00CAA414 /* VerificationClaimViewController.m in Sources */,
 				B3423217198924290058866B /* AFURLResponseSerialization.m in Sources */,
 				B367DC4019C9C54300A0452A /* FinalStepClaimDayViewController.m in Sources */,
+				15B4972C19DBFFC600917B83 /* TutoContentViewController.m in Sources */,
 				B35A82A319A629DF003B1321 /* HairdressersTableViewCell.m in Sources */,
 				B3CCE78F1998F4F600067DB9 /* CommentTableViewCell.m in Sources */,
 				B3DD7A8019911245007B1621 /* ReviewTableViewCell.m in Sources */,

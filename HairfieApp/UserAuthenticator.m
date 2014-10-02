@@ -65,6 +65,7 @@
 -(void) skipLogin {
     delegate.currentUser = nil;
     [delegate.credentialStore clearSavedCredentials];
+    [ARAnalytics event:@"AR - Skip"];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"skipLogin" object:self];
 }
 
