@@ -440,6 +440,9 @@
         _mainViewHeight.constant = 1030;
         _addReviewButtonYpos.constant = 338;
         _addReviewButtonXpos.constant = 200;
+    } else {
+        [_moreReviewBttn setTitle:[NSString stringWithFormat:NSLocalizedStringFromTable(@"more reviews (%@)", @"Salon_Detail", nil), business.numReviews]
+                         forState:UIControlStateNormal];
     }
 
     if ([business.numReviews isEqualToNumber:@0] || [business.numReviews isEqualToNumber:@1]) {
