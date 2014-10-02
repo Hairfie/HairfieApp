@@ -12,6 +12,8 @@
 
 @property (strong, nonatomic) NSString *url;
 
+-(id)initWithDictionary:(NSDictionary *)aDictionary;
+
 -(id)initWithUrl:(NSString *)anUrl;
 
 @end

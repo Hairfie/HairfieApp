@@ -10,6 +10,11 @@
 
 @implementation Picture
 
+-(id)initWithDictionary:(NSDictionary *)aDictionary
+{
+    return [self initWithUrl:[aDictionary objectForKey:@"publicUrl"]];
+}
+
 -(id)initWithUrl:(NSString *)anUrl
 {
     self = [super init];

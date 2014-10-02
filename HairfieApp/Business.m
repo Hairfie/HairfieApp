@@ -12,6 +12,7 @@
 #import "GeoPoint.h"
 #import "AppDelegate.h"
 #import "Service.h"
+#import "Picture.h"
 
 @implementation Business
 
@@ -50,6 +51,15 @@
     }
 
     return self;
+}
+
+-(void)setPictures:(NSArray *)pictures
+{
+    NSMutableArray *temp = [[NSMutableArray alloc] init];
+    for (NSDictionary *picture in pictures) {
+        [temp addObject:[[Picture alloc] initWithDictionary:picture]];
+    }
+    _pictures = [[NSArray alloc] initWithArray:temp];
 }
 
 - (void)setAddress:(NSDictionary *)addressDic

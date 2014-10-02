@@ -145,7 +145,7 @@
         frame.size = _imageSliderView.frame.size;
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:frame];
         
-        [SDWebImageDownloader.sharedDownloader downloadImageWithURL:[NSURL URLWithString:[pictures objectAtIndex:i]]
+        [SDWebImageDownloader.sharedDownloader downloadImageWithURL:[NSURL URLWithString:[pictures[i] url]]
                                                             options:0
                                                            progress:^(NSInteger receivedSize, NSInteger expectedSize) { }
                                                           completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished)
