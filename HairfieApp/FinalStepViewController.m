@@ -13,6 +13,7 @@
 #import "FinalStepDescriptionViewController.h"
 #import "Address.h"
 #import "PictureUploader.h"
+#import "Picture.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 
 @interface FinalStepViewController ()
@@ -324,9 +325,9 @@
        
         NSLog(@"Error : %@", error.description);
     };
-    void (^loadSuccessBlock)(NSString *) = ^(NSString *fileName){
-        [_claim.pictures addObject:fileName];
-        NSLog(@"finame %@ uploaded", fileName);
+    void (^loadSuccessBlock)(Picture *) = ^(Picture *picture) {
+        [_claim.pictures addObject:picture];
+        NSLog(@"picture %@ uploaded", picture);
         NSLog(@"pictures %@", _claim.pictures);
     };
     

@@ -45,6 +45,17 @@
     }
 }
 
+-(void)setPrice:(NSDictionary *)aPrice
+{
+    if ([aPrice isKindOfClass:[Money class]]) {
+        _price = aPrice;
+    } else if ([aPrice isEqual:[NSNull null]]) {
+        _price = aPrice;
+    } else {
+        _price = [[Money alloc] initWithDictionary:aPrice];
+    }
+}
+
 -(NSString *)pictureUrlwithWidth:(NSNumber *)width andHeight:(NSNumber *)height
 {
     return [self.picture urlWithWidth:width height:height];
@@ -70,9 +81,7 @@
 {
     if([self.price isEqual:[NSNull null]]) return @"";
     
-    if([[self.price objectForKey:@"currency"] isEqual:@"EUR"]) return [NSString stringWithFormat:@"%@ €", [self.price objectForKey:@"amount"]];
-
-    return @"";
+    return self.price.formatted;
 }
 
 -(NSString *)displayNumLikes {
@@ -95,13 +104,13 @@
     [parameters setObject:[self.picture toApiValue] forKey:@"picture"];
 
     if(self.price != nil) {
-        [parameters setObject:self.price forKey:@"price"];
+        [parameters setObject:self.price.toDictionary forKey:@"price"];
     }
     if(self.description != nil) {
         [parameters setObject:self.description forKey:@"description"];
     }
-    if(self.authorString != nil) {
-        [parameters setObject:self.authorString forKey:@"authorString"];
+    if(self.hairdresserName != nil) {
+        [parameters setObject:self.hairdresserName forKey:@"hairdresserName"];
     }
     if(self.business != nil) {
         [parameters setObject:self.business.id forKey:@"businessId"];
@@ -139,9 +148,10 @@
         [repository invokeStaticMethod:@"find"
                             parameters:parameters
                                success:^(NSArray *results) {
+                                   NSLog(@"results: %@", results);
                                    NSMutableArray *hairfies = [[NSMutableArray alloc] init];
                                    for (NSDictionary *result in results) {
-                                       [hairfies addObject:[repository modelWithDictionary:result]];
+                                       [hairfies addObject:[[[self class] alloc] initWithDictionary:result]];
                                    }
                                    aSuccessHandler([[NSArray alloc] initWithArray:hairfies]);
                                }

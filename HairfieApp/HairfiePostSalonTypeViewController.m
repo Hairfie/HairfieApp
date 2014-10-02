@@ -17,7 +17,7 @@
 
 @implementation HairfiePostSalonTypeViewController
 {
-    NSArray *salons;
+    NSArray *businesses;
     NSString *gpsString;
     CLLocation *_myLocation;
     CLLocation *locationSearch;
@@ -95,30 +95,30 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [salons count];
+    return [businesses count];
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     return 110;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     static NSString *CellIdentifier = @"salonPostCell";
     PostSalonTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    LBModel *model = (LBModel *)[salons objectAtIndex:indexPath.row];
+    Business *business = businesses[indexPath.row];
 
     if (cell == nil) {
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"PostSalonTableViewCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
     
-    cell.name.text = [model objectForKeyedSubscript:@"name"];
-    [cell.salonPicture sd_setImageWithURL:[NSURL URLWithString:[model objectForKeyedSubscript:@"thumbnail"]]
+    cell.name.text = business.name;
+    [cell.salonPicture sd_setImageWithURL:business.thumbUrl
                        placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
-    cell.address.text = [[model objectForKeyedSubscript:@"address"] valueForKey:@"street"];
-    cell.city.text = [NSString stringWithFormat:@"%@ %@",[[model objectForKeyedSubscript:@"address"] valueForKey:@"city"], [[model objectForKeyedSubscript:@"address"] valueForKey:@"zipcode"]];
+    cell.address.text = business.address.street;
+    cell.city.text = [NSString stringWithFormat:@"%@ %@", business.address.city, business.address.zipCode];
    
     return cell;
 }
@@ -127,9 +127,9 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     HairfiePostDetailsViewController *details = [self.navigationController.viewControllers objectAtIndex:[self.navigationController.viewControllers count]-2];
-    details.salonChosen = [salons objectAtIndex:indexPath.row];
+    details.salonChosen = businesses[indexPath.row];
    
-    NSLog(@"salon %@", [details.salonChosen objectForKey:@"id"]);
+    NSLog(@"salon %@", details.salonChosen.id);
     
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -166,7 +166,7 @@
     else
         gpsString = [NSString stringWithFormat:@"%f,%f", _myLocation.coordinate.longitude, _myLocation.coordinate.latitude];
     
-    [self getSalons:gpsString];
+    [self getBusinesses:gpsString];
 }
 
 
@@ -211,7 +211,7 @@
 
 
 
-- (void)getSalons:(NSString*)address
+- (void)getBusinesses:(NSString*)address
 {
     UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     [spinner setFrame:CGRectMake(150, self.view.frame.size.height/2, spinner.frame.size.width, spinner.frame.size.height)];
@@ -225,11 +225,11 @@
         [spinner stopAnimating];
     };
     void (^loadSuccessBlock)(NSArray *) = ^(NSArray *models){
-        salons = models;
-        NSLog(@"Salons : %ld", [salons count]);
+        businesses = models;
+        NSLog(@"Businesses : %ld", [businesses count]);
         _tableView.hidden = NO;
         
-        _tableViewHeight.constant = [salons count] * 110;
+        _tableViewHeight.constant = [businesses count] * 110;
         if (_tableViewHeight.constant > 345)
             _tableViewHeight.constant = 345;
         [_tableView reloadData];

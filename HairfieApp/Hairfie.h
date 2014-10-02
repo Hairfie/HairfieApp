@@ -12,14 +12,15 @@
 #import "Business.h"
 #import "HairfieRepository.h"
 #import "Picture.h"
+#import "Money.h"
 
 @interface Hairfie : LBModel
 
 @property (strong, nonatomic) NSString *id;
 @property (strong, nonatomic) Picture *picture;
 @property (strong, nonatomic) NSString *description;
-@property (strong, nonatomic) NSString *authorString;
-@property (strong, nonatomic) NSDictionary *price;
+@property (strong, nonatomic) NSString *hairdresserName;
+@property (strong, nonatomic) Money *price;
 @property (strong, nonatomic) NSNumber *numLikes;
 @property (strong, nonatomic) NSString *numComments;
 @property (strong, nonatomic) NSDate *createdAt;
