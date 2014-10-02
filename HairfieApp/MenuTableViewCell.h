@@ -12,5 +12,6 @@
 
 @property (nonatomic)    IBOutlet UIImageView *menuPicto;
 @property (nonatomic)    IBOutlet UILabel *menuItem;
+@property (nonatomic)    IBOutlet UIView *selectionIndicator;
 
 @end
