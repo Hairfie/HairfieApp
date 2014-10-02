@@ -13,6 +13,7 @@
 #import "AppDelegate.h"
 #import <LoopBack/LoopBack.h>
 #import <MapKit/MapKit.h>
+#import "GeoPoint.h"
 
 
 @implementation HairfiePostSalonTypeViewController
@@ -239,19 +240,16 @@
         [spinner stopAnimating];
     };
     
-        _tableView.hidden = YES;
-        [self.view addSubview:spinner];
-        [spinner startAnimating];
-        NSString *repoName = @"businesses";
-        NSString *query;
-    
-        query = _searchByName.text;
-        
-        _tableView.userInteractionEnabled = NO;
-        [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/businesses/nearby" verb:@"GET"] forMethod:@"businesses.nearby"];
-        
-        LBModelRepository *businessData = [[AppDelegate lbAdaptater] repositoryWithModelName:repoName];
-        [businessData invokeStaticMethod:@"nearby" parameters:@{@"here": gpsString, @"limit" : @"10", @"query" : query} success:loadSuccessBlock failure:loadErrorBlock];
+    self.tableView.hidden = YES;
+    self.tableView.userInteractionEnabled = NO;
+    [self.view addSubview:spinner];
+    [spinner startAnimating];
+
+    [Business listNearby:[[GeoPoint alloc] initWithString:gpsString]
+                   query:self.searchByName.text
+                   limit:@10
+                 success:loadSuccessBlock
+                 failure:loadErrorBlock];
 }
 
 

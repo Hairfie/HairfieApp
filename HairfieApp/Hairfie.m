@@ -20,18 +20,26 @@
     return (Hairfie*)[[Hairfie repository] modelWithDictionary:data];
 }
 
-- (void)setAuthor:(NSDictionary *)authorDic
+- (void)setAuthor:(NSDictionary *)anAuthor
 {
-    if([authorDic isKindOfClass:[NSNull class]]) return;
-    
-    _author = [[User alloc] initWithDictionary:authorDic];
+    if ([anAuthor isKindOfClass:[User class]]) {
+        _author = anAuthor;
+    } else if ([anAuthor isEqual:[NSNull null]]) {
+        _author = nil;
+    } else {
+        _author = [[User alloc] initWithDictionary:anAuthor];
+    }
 }
 
-- (void)setBusiness:(NSDictionary *) businessDic
+-(void)setBusiness:(NSDictionary *)aBusiness
 {
-    if([businessDic isKindOfClass:[NSNull class]]) return;
-    
-    _business = [[Business alloc] initWithDictionary:businessDic];
+    if ([aBusiness isKindOfClass:[Business class]]) {
+        _business = aBusiness;
+    } else if ([aBusiness isEqual:[NSNull null]]) {
+        _business = nil;
+    } else {
+        _business = [[Business alloc] initWithDictionary:aBusiness];
+    }
 }
 
 -(void)setPicture:(NSDictionary *)aPicture
