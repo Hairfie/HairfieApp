@@ -19,6 +19,7 @@
 - (void)setTutorialSeen;
 - (BOOL)hasSeenTutorial;
 - (void)setDoFbConnect;
+- (void)clearDoFbConnect;
 - (BOOL)doFbConnect;
 
 @end

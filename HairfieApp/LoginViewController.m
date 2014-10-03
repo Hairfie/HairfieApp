@@ -58,6 +58,7 @@
         [self performSegueWithIdentifier:@"loginSuccess" sender:self];
     } else {
         if([_delegate.credentialStore doFbConnect]) {
+            [_delegate.credentialStore clearDoFbConnect];
             [self fbConnect];
         } else if(_delegate.credentialStore.hasSeenTutorial == NO) {
             UIViewController *otherVC = [[UIStoryboard storyboardWithName:@"Tuto" bundle:nil] instantiateInitialViewController];

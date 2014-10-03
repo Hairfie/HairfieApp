@@ -81,6 +81,10 @@
     [self setSecureValue:@"YES" forKey:TUTORIAL_DO_FB_KEY];
 }
 
+- (void)clearDoFbConnect {
+    [self setSecureValue:@"NO" forKey:TUTORIAL_DO_FB_KEY];
+}
+
 - (BOOL)doFbConnect {
     if([self secureValueForKey:TUTORIAL_DO_FB_KEY]) {
         return YES;
