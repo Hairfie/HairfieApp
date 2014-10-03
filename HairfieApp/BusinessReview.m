@@ -30,6 +30,17 @@
     }
 }
 
+-(void)setCreatedAt:(NSDate *)aDate
+{
+    if ([aDate isKindOfClass:[NSString class]]) {
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:API_DATE_FORMAT];
+        _createdAt = [dateFormatter dateFromString:aDate];
+    } else {
+        _createdAt = aDate;
+    }
+}
+
 -(id)initWithDictionary:(NSDictionary *)data
 {
     self = [super init];
