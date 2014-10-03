@@ -41,26 +41,8 @@
 
     [_passwordField fixSecureTextFieldFont];
 
-    if ([_delegate.credentialStore isLoggedIn])
-    {
-         [AppDelegate lbAdaptater].accessToken = [_delegate.credentialStore authToken];
-        
-        [userAuthenticator getCurrentUser];
-        
-        
-        //_delegate.currentUser = auth.getCurrentUser;
-        
-        [self performSegueWithIdentifier:@"loginSuccess" sender:self];
-    } else {
-        if([_delegate.credentialStore doFbConnect]) {
-            [_delegate.credentialStore clearDoFbConnect];
-            [self fbConnect];
-        } else if(_delegate.credentialStore.hasSeenTutorial != YES) {
-            UIViewController *otherVC = [[UIStoryboard storyboardWithName:@"Tuto" bundle:nil] instantiateInitialViewController];
-            // Add this line to show tutorial only once.
-            [_delegate.credentialStore setTutorialSeen];
-            [self.navigationController pushViewController:otherVC animated:NO];
-        }
+    if(_doFbConnect) {
+        [self fbConnect];
     }
 
     [self.view addGestureRecognizer:_dismiss];
@@ -141,7 +123,7 @@
         
         [userAuthenticator getCurrentUser];
         [self dismissTextFields];
-        [self performSegueWithIdentifier:@"loginSuccess" sender:self];
+        [self performSegueWithIdentifier:@"@Main" sender:self];
     };
 
     if ([self isValidEmail: _emailField.text]) {
@@ -256,7 +238,7 @@
         [AppDelegate lbAdaptater].accessToken = [results objectForKey:@"id"];
         [_delegate.credentialStore setAuthTokenAndUserId:[results objectForKey:@"id"] forUser:[results objectForKey:@"userId"]];
         [userAuthenticator getCurrentUser];
-        if(performLogin)    [self performSegueWithIdentifier:@"loginSuccess" sender:self];
+        if(performLogin)    [self performSegueWithIdentifier:@"@Main" sender:self];
     };
 
     NSString *repoName = @"auth/facebook/token";
@@ -273,6 +255,10 @@
     [alert show];
 }
 
+-(IBAction)goBack:(id)sender
+{
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
 
 -(BOOL) isValidEmail:(NSString *)checkString
 {
@@ -293,12 +279,8 @@
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"skipLogin"])
-    {
+    if ([segue.identifier isEqualToString:@"skipLogin"]) {
         [userAuthenticator skipLogin];
-    } else if ([segue.identifier isEqualToString:@"Container@Tuto"])
-    {
-
     }
 }
 

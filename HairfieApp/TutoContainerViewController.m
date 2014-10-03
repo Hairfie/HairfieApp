@@ -10,6 +10,7 @@
 #import "UserAuthenticator.h"
 #import "AppDelegate.h"
 #import "CredentialStore.h"
+#import "LoginViewController.h"
 
 
 @interface TutoContainerViewController ()
@@ -114,16 +115,21 @@
     return 0;
 }
 
+- (IBAction)getFacebookUserInfo:(id)sender {
+    //[self fbConnect];
+}
+
 
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"Feed@Main"]) {
+    if ([segue.identifier isEqualToString:@"@Main#skip"]) {
         [userAuthenticator skipLogin];
-    } else if([segue.identifier isEqualToString:@"Login@Main#FB"]) {
-        [delegate.credentialStore setDoFbConnect];
+    } else if ([segue.identifier isEqualToString:@"fbLogin"]) {
+        LoginViewController *viewCtrl = [segue destinationViewController];
+        viewCtrl.doFbConnect = YES;
     }
 }
 

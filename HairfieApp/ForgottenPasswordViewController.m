@@ -91,7 +91,7 @@
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-     [self.navigationController popViewControllerAnimated:YES];
+     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 /*

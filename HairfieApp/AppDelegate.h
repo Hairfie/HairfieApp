@@ -26,6 +26,7 @@
 + ( LBRESTAdapter *) lbAdaptater;
 @property (nonatomic) KeychainItemWrapper *keychainItem;
 
+-(void)showLoginStoryboard;
 -(void)startTrackingLocation:(BOOL)forceLocation;
 
 @end

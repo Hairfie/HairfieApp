@@ -19,5 +19,7 @@
 @property (nonatomic) IBOutlet UIButton *login;
 @property (nonatomic) IBOutlet UIButton *signUp;
 
+- (IBAction)getFacebookUserInfo:(id)sender;
+
 
 @end

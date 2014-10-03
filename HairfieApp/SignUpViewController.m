@@ -137,7 +137,7 @@ numberOfRowsInComponent:(NSInteger)component
         
         [userAuthenticator getCurrentUser];
         
-        [self performSegueWithIdentifier:@"createAccount" sender:self];
+        [self performSegueWithIdentifier:@"@Main" sender:self];
     };
     
     if ([self isValidEmail: _emailField.text])

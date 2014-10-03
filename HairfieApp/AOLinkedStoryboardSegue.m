@@ -47,7 +47,7 @@
     UIViewController *source = (UIViewController *)self.sourceViewController;
     NSLog(@"Destination class : %@", [self.destinationViewController class]);
     if ([self.destinationViewController isKindOfClass:[UINavigationController class]]) {
-        [source.navigationController presentViewController:self.destinationViewController animated:NO completion:nil];
+        [source.navigationController presentViewController:self.destinationViewController animated:YES completion:nil];
     } else {
         [source.navigationController pushViewController:self.destinationViewController
                                                animated:YES];

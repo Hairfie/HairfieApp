@@ -58,6 +58,10 @@ static LBRESTAdapter * _lbAdaptater = nil;
               }];
     } else {
         [self.credentialStore clearTutorialSeen];
+//        UIViewController *otherVC = [[UIStoryboard storyboardWithName:@"Tuto" bundle:nil] instantiateInitialViewController];
+//        [self.window setRootViewController:otherVC];
+        [self showLoginStoryboard];
+        
     }
     
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -76,6 +80,17 @@ static LBRESTAdapter * _lbAdaptater = nil;
     BOOL wasHandled = [FBAppCall handleOpenURL:url sourceApplication:sourceApplication];
     
     return wasHandled;
+}
+
+- (void)showLoginStoryboard {
+    [self.window.rootViewController.view removeFromSuperview];
+    [self.window.rootViewController.navigationController popViewControllerAnimated:NO];
+
+    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Tuto" bundle:nil];
+    UINavigationController *theInitialViewController = [storyBoard instantiateInitialViewController];
+    NSLog(@"root : %@", [self.window.rootViewController class]);
+
+    [self.window setRootViewController:theInitialViewController];
 }
 
 -(void)saveUserLanguage:(NSNotification *)notification
