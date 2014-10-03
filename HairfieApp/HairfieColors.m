@@ -65,6 +65,13 @@
     return [UIColor colorWithRed:254/255.0f green:124/255.0f blue:127/255.0f alpha:1];
 }
 
+// Nouvelle charte
+
+
++(UIColor *)lightGrey {
+    return [UIColor colorWithRed:240/255.0f green:240/255.0f blue:241/255.0f alpha:1];
+}
+
 + (UIImage *)imageWithColor:(UIColor *)color
 {
     CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);

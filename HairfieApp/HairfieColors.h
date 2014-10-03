@@ -23,6 +23,10 @@
 +(UIColor *)pinkHairfie;
 +(UIColor *)pinkBtnHairfie;
 
+// nouvelle charte
+
++(UIColor *)lightGrey;
+
 + (UIImage *)imageWithColor:(UIColor *)color;
 
 

@@ -11,5 +11,8 @@
 @interface UIButton (Style)
 
 -(void)tutoStyle;
+-(void)roundStyle;
+-(void)noAccountStyle;
+
 
 @end

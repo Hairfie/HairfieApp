@@ -68,6 +68,10 @@
     [self setSecureValue:@"YES" forKey:TUTORIAL_KEY];
 }
 
+- (void)clearTutorialSeen {
+    [self setSecureValue:nil forKey:TUTORIAL_KEY];
+}
+
 - (BOOL)hasSeenTutorial {
     if([self secureValueForKey:TUTORIAL_KEY]) {
         return YES;

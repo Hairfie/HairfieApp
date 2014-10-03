@@ -19,6 +19,7 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import "HomeViewController.h"
 #import "MRProgress.h"
+#import "UIButton+Style.h"
 
 @interface LoginViewController ()
 @end
@@ -29,15 +30,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-     _noAccountButton.layer.borderColor = [UIColor whiteColor].CGColor;
-    _noAccountButton.layer.borderWidth = 0.5;
-    _noAccountButton.backgroundColor = [UIColor clearColor];
-    _noAccountButton.layer.cornerRadius = 5;
-    _noAccountButton.layer.masksToBounds = YES;
     
-    _loginButton.layer.cornerRadius = 5;
-    _loginButton.layer.masksToBounds = YES;
+    [_noAccountButton noAccountStyle];
+    [_loginButton roundStyle];
     
     _noPasswordButton.titleLabel.adjustsFontSizeToFitWidth = YES;
     _delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
@@ -60,10 +55,10 @@
         if([_delegate.credentialStore doFbConnect]) {
             [_delegate.credentialStore clearDoFbConnect];
             [self fbConnect];
-        } else if(_delegate.credentialStore.hasSeenTutorial == NO) {
+        } else if(_delegate.credentialStore.hasSeenTutorial != YES) {
             UIViewController *otherVC = [[UIStoryboard storyboardWithName:@"Tuto" bundle:nil] instantiateInitialViewController];
             // Add this line to show tutorial only once.
-            //[_delegate.credentialStore setTutorialSeen];
+            [_delegate.credentialStore setTutorialSeen];
             [self.navigationController pushViewController:otherVC animated:NO];
         }
     }
@@ -301,6 +296,9 @@
     if ([segue.identifier isEqualToString:@"skipLogin"])
     {
         [userAuthenticator skipLogin];
+    } else if ([segue.identifier isEqualToString:@"Container@Tuto"])
+    {
+
     }
 }
 

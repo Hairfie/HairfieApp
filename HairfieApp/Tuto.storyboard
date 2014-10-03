@@ -18,7 +18,7 @@
         <!--Tuto Container View Controller-->
         <scene sceneID="irP-VT-Giw">
             <objects>
-                <viewController id="UhD-xL-mKa" customClass="TutoContainerViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Container" id="UhD-xL-mKa" customClass="TutoContainerViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="nkz-3I-qcc"/>
                         <viewControllerLayoutGuide type="bottom" id="GgU-Bi-RhW"/>
@@ -37,7 +37,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="cg1-Sk-FPr" kind="custom" identifier="Login@Main" customClass="AOLinkedStoryboardSegue" id="ag4-f7-ed2"/>
+                                    <segue destination="cg1-Sk-FPr" kind="custom" identifier="NavLogin@Main" customClass="AOLinkedStoryboardSegue" id="ag4-f7-ed2"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yyr-i4-eWk">
@@ -212,6 +212,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="D94-cf-nhS"/>
+        <segue reference="ag4-f7-ed2"/>
     </inferredMetricsTieBreakers>
 </document>

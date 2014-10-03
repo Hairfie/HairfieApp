@@ -56,6 +56,8 @@ static LBRESTAdapter * _lbAdaptater = nil;
                   self.currentUser = nil;
                   [self.credentialStore clearSavedCredentials];
               }];
+    } else {
+        [self.credentialStore clearTutorialSeen];
     }
     
     [[NSNotificationCenter defaultCenter] addObserver:self

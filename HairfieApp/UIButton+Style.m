@@ -22,4 +22,16 @@
 
 }
 
+-(void)roundStyle {
+    self.layer.cornerRadius = 5.0;
+    self.layer.masksToBounds = YES;
+}
+
+-(void)noAccountStyle {
+    [self roundStyle];
+    self.layer.borderWidth = 0.5;
+    self.backgroundColor = [UIColor whiteColor];
+    self.layer.borderColor = [[UIColor blackColor] CGColor];
+}
+
 @end
