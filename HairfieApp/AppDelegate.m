@@ -50,6 +50,8 @@ static LBRESTAdapter * _lbAdaptater = nil;
         [User getById:self.credentialStore.userId
               success:^(User *user) {
                   self.currentUser = user;
+                  [[NSNotificationCenter defaultCenter] postNotificationName:@"currentUser" object:nil];
+
               }
               failure:^(NSError *error) {
                   NSLog(@"Error retrieving logged in user: %@", error.localizedDescription);

@@ -25,8 +25,8 @@
     return self;
 }
 
-- (void) getCurrentUser {
-    
+- (void)getCurrentUser
+{
     UserRepository *userRepository = (UserRepository *)[[AppDelegate lbAdaptater] repositoryWithClass:[UserRepository class]];
     __block User *user;
     
