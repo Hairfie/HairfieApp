@@ -532,7 +532,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.15686274509803921" green="0.19215686274509802" blue="0.22352941176470587" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="320" id="5w4-ia-VsG"/>
                                     <constraint firstAttribute="height" constant="71" id="dmF-ou-gtT"/>
@@ -606,7 +606,7 @@
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.15686274510000001" green="0.19215686269999999" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.1764705882" green="0.22352941179999999" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" red="0.1960784314" green="0.26274509800000001" blue="0.3411764706" alpha="1" colorSpace="deviceRGB"/>
@@ -1564,7 +1564,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.15686274510000001" green="0.19215686269999999" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sWx-gi-x3o" customClass="AdvanceSearch">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="142"/>
@@ -1601,7 +1601,7 @@
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.15686274510000001" green="0.19215686269999999" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" image="search-advance-field-location.png" translatesAutoresizingMaskIntoConstraints="NO" id="Br4-SO-oFd">
                                         <rect key="frame" x="10" y="108" width="300" height="27"/>
@@ -1682,41 +1682,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ebK-Fy-Pfs" userLabel="Top Bar View">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Lw-Ud-rlB">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="1236"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZZ2-6W-cBv" userLabel="Go Back">
-                                        <rect key="frame" x="0.0" y="20" width="60" height="40"/>
-                                        <inset key="contentEdgeInsets" minX="10" minY="10" maxX="30" maxY="10"/>
-                                        <state key="normal" image="arrow-nav.png">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="goBack:" destination="pDa-if-Gwb" eventType="touchUpInside" id="60I-m6-zAo"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hQX-0k-sCV" userLabel="Menu">
-                                        <rect key="frame" x="273" y="22" width="35" height="35"/>
-                                        <state key="normal" image="picto-menu-point.png">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="showMenuActionSheet:" destination="pDa-if-Gwb" eventType="touchDown" id="ZFQ-1Z-rQ2"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Hair Salon" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hdh-5h-kmM">
-                                        <rect key="frame" x="92" y="27" width="136" height="23"/>
-                                        <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="18"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" red="0.15686274510000001" green="0.19215686269999999" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
-                            </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Lw-Ud-rlB">
-                                <rect key="frame" x="0.0" y="64" width="320" height="1300"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="guP-Fw-zqY" userLabel="VIEW CONTAINER">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="guP-Fw-zqY" userLabel="VIEW CONTAINER">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="1230"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fjc-1f-saH" userLabel="PRICES SALES VIEW">
@@ -1757,8 +1726,8 @@
                                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5ZR-VD-wlu" userLabel="HAIRDRESSER VIEW">
                                                 <rect key="frame" x="0.0" y="238" width="320" height="615"/>
                                                 <subviews>
-                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="FpJ-1K-79p">
-                                                        <rect key="frame" x="0.0" y="0.0" width="320" height="615"/>
+                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="FpJ-1K-79p">
+                                                        <rect key="frame" x="-15" y="-351.5" width="320" height="615"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="615" id="hRH-in-5yv"/>
@@ -2200,6 +2169,37 @@
                                     <constraint firstAttribute="bottom" secondItem="guP-Fw-zqY" secondAttribute="bottom" id="tDi-Hf-XWS"/>
                                 </constraints>
                             </scrollView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ebK-Fy-Pfs" userLabel="Top Bar View">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZZ2-6W-cBv" userLabel="Go Back">
+                                        <rect key="frame" x="0.0" y="20" width="60" height="40"/>
+                                        <inset key="contentEdgeInsets" minX="10" minY="10" maxX="30" maxY="10"/>
+                                        <state key="normal" image="arrow-nav.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="goBack:" destination="pDa-if-Gwb" eventType="touchUpInside" id="60I-m6-zAo"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hQX-0k-sCV" userLabel="Menu">
+                                        <rect key="frame" x="273" y="22" width="35" height="35"/>
+                                        <state key="normal" image="picto-menu-point.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="showMenuActionSheet:" destination="pDa-if-Gwb" eventType="touchDown" id="ZFQ-1Z-rQ2"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Hair Salon" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hdh-5h-kmM">
+                                        <rect key="frame" x="92" y="27" width="136" height="23"/>
+                                        <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="18"/>
+                                        <color key="textColor" red="0.41176470590000003" green="0.4431372549" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0TP-lk-MOz" userLabel="Call Salon">
                                 <rect key="frame" x="0.0" y="528" width="320" height="40"/>
                                 <color key="backgroundColor" red="0.90588235289999997" green="0.29803921570000003" blue="0.23529411759999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -2228,9 +2228,9 @@
                         <constraints>
                             <constraint firstItem="5Lw-Ud-rlB" firstAttribute="leading" secondItem="AEr-xc-owd" secondAttribute="leading" id="3dp-jK-Hur"/>
                             <constraint firstItem="EAd-rH-izx" firstAttribute="top" secondItem="5Lw-Ud-rlB" secondAttribute="bottom" id="Ovn-wT-Wwa"/>
+                            <constraint firstItem="5Lw-Ud-rlB" firstAttribute="top" secondItem="lRQ-3r-1Pt" secondAttribute="bottom" constant="-20" id="YDX-NV-9hw"/>
                             <constraint firstItem="EAd-rH-izx" firstAttribute="top" secondItem="B5X-uI-8rT" secondAttribute="bottom" constant="12" id="dHX-Fm-pMh"/>
                             <constraint firstAttribute="trailing" secondItem="5Lw-Ud-rlB" secondAttribute="trailing" id="hpP-4c-plj"/>
-                            <constraint firstItem="5Lw-Ud-rlB" firstAttribute="top" secondItem="ebK-Fy-Pfs" secondAttribute="bottom" id="jfF-R3-qLU"/>
                             <constraint firstItem="EAd-rH-izx" firstAttribute="top" secondItem="0TP-lk-MOz" secondAttribute="bottom" id="udf-Pq-QWR"/>
                         </constraints>
                     </view>
@@ -4663,7 +4663,7 @@
         <image name="hairfie-post-search-name.png" width="599" height="74"/>
         <image name="location-button-image.png" width="24" height="32"/>
         <image name="location-button-search.png" width="76" height="54"/>
-        <image name="menu-bttn.png" width="43" height="24"/>
+        <image name="menu-bttn.png" width="30" height="26"/>
         <image name="menu-icon.png" width="43" height="24"/>
         <image name="nav-disclosure.png" width="15" height="25"/>
         <image name="navigation-bg.jpg" width="640" height="1136"/>
@@ -4686,7 +4686,7 @@
         <image name="pin-salon.png" width="46" height="64"/>
         <image name="search-advance-field-location.png" width="600" height="54"/>
         <image name="search-advance-field-name.png" width="600" height="54"/>
-        <image name="search-bar.png" width="459" height="55"/>
+        <image name="search-bar.png" width="491" height="54"/>
         <image name="send-email-client-button.png" width="599" height="79"/>
         <image name="take-picture-button.png" width="153" height="153"/>
     </resources>
@@ -4697,10 +4697,10 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="uEN-by-6gW"/>
-        <segue reference="VGS-VM-Pwy"/>
-        <segue reference="7yU-V8-5Z9"/>
-        <segue reference="dg2-Ph-4Hs"/>
-        <segue reference="DYR-eo-mJz"/>
         <segue reference="XXf-5V-koX"/>
+        <segue reference="PSz-m0-val"/>
+        <segue reference="2ml-IS-A8f"/>
+        <segue reference="DYR-eo-mJz"/>
+        <segue reference="VGS-VM-Pwy"/>
     </inferredMetricsTieBreakers>
 </document>
