@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
 #import "User.h"
+#import "Business.h"
 #import "STCollapseTableView.h"
 
 @interface MenuViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>

@@ -207,15 +207,15 @@
 }
 
 
--(void)getManagedBusinessesByUsersuccess:(void (^)(NSArray* results))aSuccessHandler
+-(void)getManagedBusinessesByUserSuccess:(void (^)(NSArray* results))aSuccessHandler
                           failure:(void (^)(NSError *))aFailureHandler
 {
-    [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/users/:userId/managed-businesses" verb:@"LIST"] forMethod:@"users.managed-businesses"];
+    [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/users/:userId/managed-businesses" verb:@"GET"] forMethod:@"users.managed-businesses"];
     
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
-    [parameters setObject:self.id forKey:@"userID"];
+    [parameters setObject:self.id forKey:@"userId"];
     
-    [[User repository] invokeStaticMethod:@"managedBusinesses" parameters:parameters success:aSuccessHandler failure:aFailureHandler];
+    [[User repository] invokeStaticMethod:@"managed-businesses" parameters:parameters success:aSuccessHandler failure:aFailureHandler];
 }
 
 

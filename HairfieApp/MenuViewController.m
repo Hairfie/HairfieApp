@@ -27,6 +27,7 @@
     BOOL didInsert;
     NSMutableArray *data;
     NSMutableArray *headers;
+    NSArray *managedBusinesses;
 }
 @synthesize menuTableView = _menuTableView;
 @synthesize profileView = _profileView;
@@ -51,6 +52,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(backToLogin:) name:@"backToLogin" object:nil];
     
     [self initCurrentUser];
+    [self initManagedBusinesses];
     [self setupMenu];
     [_menuTableView reloadData];
     [_menuTableView setExclusiveSections:!_menuTableView.exclusiveSections];
@@ -80,6 +82,9 @@
 -(void)currentUserChanged:(NSNotification*)notification
 {
     [self initCurrentUser];
+    [self initManagedBusinesses];
+    if ([managedBusinesses count] > 0)
+        [self setupMenu];
 }
 
 -(void)badCredentials:(NSNotification*)notification
@@ -111,7 +116,21 @@
     [_profileView addSubview:profilePicture];
 }
 
+-(void)initManagedBusinesses
+{
+    
+    NSLog(@"*********** LOOKING FOR MANAGED BUSINESSES ************");
+    void (^loadErrorBlock)(NSError *) = ^(NSError *error){
+        NSLog(@"Error : %@", error.description);
+    };
+    void (^loadSuccessBlock)(NSArray *) = ^(NSArray *results){
+        NSLog(@"Results %@", results);
+        managedBusinesses = results;
+    };
 
+    
+    [appDelegate.currentUser getManagedBusinessesByUserSuccess:loadSuccessBlock failure:loadErrorBlock];
+}
 
 -(UIStatusBarStyle)preferredStatusBarStyle{
     return UIStatusBarStyleLightContent;
@@ -147,8 +166,18 @@
             {
                 [section addObject:[NSString stringWithFormat:@"%@", [_menuItems objectAtIndex:j]]];
             }
-        else
+        if (i == 1)
+        {
+            for(int j = 0; j < [managedBusinesses count]; j++)
+            {
+                NSDictionary *busDic = [[NSDictionary alloc] init];
+                busDic = [managedBusinesses objectAtIndex:j];
+                Business *managedBusiness = [[Business alloc] initWithDictionary:busDic];
+                [section addObject:managedBusiness.name];
+            }
             [section addObject:[NSString stringWithFormat:@"Add a business"]];
+        }
+        
         
         [data addObject:section];
     }
@@ -194,7 +223,15 @@
     }
     if (indexPath.section == 1)
     {
-        cell.menuItem.text = @"Add a business";
+        if (indexPath.row < [managedBusinesses count])
+        {
+            NSDictionary *busDic = [[NSDictionary alloc] init];
+            busDic = [managedBusinesses objectAtIndex:indexPath.row];
+            Business *managedBusiness = [[Business alloc] initWithDictionary:busDic];
+            cell.menuItem.text = managedBusiness.name;
+        }
+        else
+            cell.menuItem.text = @"Add a business";
         [cell.menuPicto setImage:[UIImage imageNamed:@"addBusiness-picto.png"]];
     }
     if (indexPath.section == 2)
