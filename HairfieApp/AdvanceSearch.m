@@ -19,18 +19,35 @@
 -(void)initView
 {
     _searchAroundMeImage.image = [_searchAroundMeImage.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    _searchAroundMeImage.tintColor = [UIColor lightBlueHairfie];
+
     _searchBttn.layer.cornerRadius = 5;
     _searchBttn.layer.masksToBounds = YES;
-    
+
     aroundMe = NSLocalizedStringFromTable(@"Around Me", @"Feed", nil);
+
+    [self refreshView];
 }
 
--(IBAction)searchAroundMe:(id)sender
+-(void)setBusinessSearch:(BusinessSearch *)businessSearch
 {
-    [_searchByLocation resignFirstResponder];
-    _searchByLocation.text = aroundMe;
+    _businessSearch = businessSearch;
+    [self refreshView];
+}
 
-    _searchAroundMeImage.tintColor = [UIColor lightBlueHairfie];
+-(void)refreshView
+{
+    if (nil == self.businessSearch) {
+        self.searchByName.text = @"";
+    } else {
+        self.searchByName.text = self.businessSearch.query;
+        self.searchByLocation.text = self.businessSearch.where;
+    }
+
+    if ([self.searchByLocation
+         .text isEqualToString:@""]) {
+        self.searchByLocation.text = aroundMe;
+    }
 }
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField
@@ -41,18 +58,27 @@
     }
 }
 
+-(IBAction)searchAroundMe:(id)sender
+{
+    [_searchByLocation resignFirstResponder];
+    self.searchByLocation.text = aroundMe;
+    self.searchAroundMeImage.tintColor = [UIColor lightBlueHairfie];
+}
+
 -(IBAction)doSearch:(id)sender
 {
-    _searchRequest = [self styleSearchQuery];
-
-    if ([_searchByLocation.text isEqualToString:@""]) {
-        _searchByLocation.text = aroundMe;
+    if ([self.searchByLocation.text isEqualToString:@""]) {
+        self.searchByLocation.text = aroundMe;
     }
 
-    [self geocodeAddress:_searchByLocation.text];
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"searchQuery" object:self];
-    
+    self.businessSearch.query = self.searchByName.text;
+
+    if ([self.searchByLocation.text isEqualToString:aroundMe]) {
+        self.businessSearch.where = @"";
+    } else {
+        self.businessSearch.where = self.searchByLocation.text;
+    }
+
     [self cancelSearch:self];
 }
 
@@ -71,58 +97,12 @@
     if (nextResponder) {
         // Found next responder, so set it.
         [nextResponder becomeFirstResponder];
-        _searchAroundMe.enabled = YES;
+        self.searchAroundMe.enabled = YES;
     } else {
         [self doSearch:self];
         [textField resignFirstResponder];
     }
     return YES;
-}
-
--(NSString *)styleSearchQuery
-{
-    NSString *searchQuery;
-    
-    if([_searchByLocation.text isEqualToString:aroundMe] || [_searchByLocation.text isEqualToString:@""]) {
-        if ([self.searchByName.text isEqualToString:@""]) {
-            
-        } else {
-            
-        }
-        
-        searchQuery = [NSString stringWithFormat:NSLocalizedStringFromTable(@"\"%@\" near you", @"Feed", nil), _searchByName.text];
-    } else {
-        if ([_searchByName.text isEqualToString:@""])
-           searchQuery = [NSString stringWithFormat:NSLocalizedStringFromTable(@"Hairdresser around you \"%@\"", @"Feed", nil), _searchByLocation.text];
-        else
-        searchQuery = [NSString stringWithFormat:NSLocalizedStringFromTable(@"\"%@\" near \"%@\"", @"Feed", nil), _searchByName.text, _searchByLocation.text];
-    }
-    
-    return searchQuery;
-}
-
--(void)geocodeAddress:(NSString *)address
-{
-    if ([address isEqualToString:@"Around Me"]) {
-        _gpsString = nil;
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"searchQuery" object:self];
-    } else {
-        CLGeocoder *geocoder = [[CLGeocoder alloc] init];
-        [geocoder geocodeAddressString:address completionHandler:^(NSArray* placemarks, NSError* error){
-            for (CLPlacemark* aPlacemark in placemarks)
-            {
-                // Process the placemark.
-                NSString *latDest = [NSString stringWithFormat:@"%.4f",aPlacemark.location.coordinate.latitude];
-                NSString *lngDest = [NSString stringWithFormat:@"%.4f",aPlacemark.location.coordinate.longitude];
-                
-                _gpsString = [NSString stringWithFormat:@"%@,%@", lngDest, latDest];
-                _locationSearch =  aPlacemark.location;
-              
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"searchQuery" object:self];
-
-            }
-        }];
-    }
 }
 
 @end

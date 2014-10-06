@@ -15,6 +15,7 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "UIImage+Resize.h"
 #import "AdvanceSearch.h"
+#import "BusinessSearch.h"
 
 @interface AroundMeViewController : UIViewController <MKMapViewDelegate, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate,UIGestureRecognizerDelegate,SDWebImageManagerDelegate, UITextViewDelegate, UITextFieldDelegate>
 {
@@ -35,14 +36,6 @@
 @property (nonatomic, strong) IBOutlet UILabel *searchDesc;
 @property (nonatomic) IBOutlet AdvanceSearch *searchView;
 
-// Data from Segue
-
-@property (nonatomic,strong) NSString *searchInProgressFromSegue;
-@property (nonatomic,strong) NSString *queryNameInProgressFromSegue;
-@property (nonatomic,strong) NSString *queryLocationInProgressFromSegue;
-@property (nonatomic,strong) NSString *gpsStringFromSegue;
-@property (nonatomic, strong) CLLocation *locationFromSegue;
-
 // Search Active
 
 @property (nonatomic) IBOutlet UITextField *searchField;
@@ -55,10 +48,7 @@
 
 @property (nonatomic) IBOutlet UILabel *searchInProgress;
 
-@property (nonatomic)  CLLocationManager *manager;
-@property (nonatomic)  CLGeocoder *geocoder;
-@property (nonatomic)  CLLocation *myLocation;
-
+@property (strong, nonatomic) BusinessSearch *businessSearch;
 
 -(IBAction)goBack:(id)sender;
 

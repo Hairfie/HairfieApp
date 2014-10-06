@@ -341,9 +341,8 @@
             NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"SimilarTableViewCell" owner:self options:nil];
             cell = [nib objectAtIndex:0];
         }
-
-        [cell customInit:self.similarBusinesses[indexPath.row]];
-
+        cell.business = self.similarBusinesses[indexPath.row];
+        cell.locationForDistance = self.business.gps;
         return cell;
     } else if (tableView == _hairdresserTableView) {
         static NSString *CellIdentifier = @"hairdresserCell";

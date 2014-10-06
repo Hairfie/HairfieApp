@@ -48,12 +48,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    
+    [delegate startTrackingLocation:YES];
 
     self.navigationItem.title = [NSString stringWithFormat:NSLocalizedStringFromTable(@"Home", @"Feed", nil)];
     [_hairfieCollection registerNib:[UINib nibWithNibName:@"CustomCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:CUSTOM_CELL_IDENTIFIER];
     [_hairfieCollection registerNib:[UINib nibWithNibName:@"LoadingCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:LOADING_CELL_IDENTIFIER];
 
     _searchView.hidden = YES;
+    _searchView.businessSearch = [[BusinessSearch alloc] init];
     [_searchView initView];
     [_searchView.searchAroundMeImage setTintColor:[UIColor pinkBtnHairfie]];
     _searchView.searchByLocation.text = NSLocalizedStringFromTable(@"Around Me", @"Feed", nil);
@@ -91,7 +94,11 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willSearch:) name:@"searchQuery" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(willSearch:)
+                                                 name:self.searchView.businessSearch.changedEventName
+                                               object:self.searchView.businessSearch];
+
     [self getHairfies:nil];
     [ARAnalytics pageView:@"AR - Feed"];
 }
@@ -99,7 +106,10 @@
 
 -(void)viewWillDisappear:(BOOL)animated
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"searchQuery" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:self.searchView.businessSearch.changedEventName
+                                                  object:self.searchView.businessSearch];
+
     [self.view removeGestureRecognizer:dismiss];
 }
 
@@ -315,12 +325,8 @@
     }
     if ([segue.identifier isEqualToString:@"searchFromFeed"])
     {
-        AroundMeViewController *aroundMe = [segue destinationViewController];
-        aroundMe.searchInProgressFromSegue = _searchView.searchRequest;
-        aroundMe.queryNameInProgressFromSegue = _searchView.searchByName.text;
-        aroundMe.queryLocationInProgressFromSegue = _searchView.searchByLocation.text;
-        aroundMe.gpsStringFromSegue = _searchView.gpsString;
-        aroundMe.locationFromSegue = _searchView.locationSearch;
+        AroundMeViewController *controller = [segue destinationViewController];
+        controller.businessSearch = self.searchView.businessSearch;
     }
     if ([segue.identifier isEqualToString:@"hairfieDetail"])
     {
@@ -328,7 +334,6 @@
         hairfieDetail.hairfie = (Hairfie*)[hairfies objectAtIndex:hairfieRow];
 
     }
-
 }
 
 @end

@@ -128,10 +128,14 @@
           success:(void(^)(NSArray *business))aSuccessHandler
           failure:(void(^)(NSError *error))aFailureHandler
 {
+    if (nil == aQuery) {
+        aQuery = @"";
+    }
+
     [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/businesses/nearby" verb:@"GET"] forMethod:@"businesses.nearby"];
     LBModelRepository *businessData = [[AppDelegate lbAdaptater] repositoryWithModelName:@"businesses"];
     [businessData invokeStaticMethod:@"nearby"
-                          parameters:@{@"here": [aGeoPoint asApiString], @"limit" : aLimit, @"query" : aQuery}
+                          parameters:@{@"here": aGeoPoint.asApiString, @"limit" : aLimit, @"query" : aQuery}
                              success:^(NSArray *results) {
                                  NSMutableArray *businesses = [[NSMutableArray alloc] init];
                                  for (NSDictionary *result in results) {

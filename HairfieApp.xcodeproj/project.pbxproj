@@ -66,6 +66,8 @@
 		71C0D3FF19C1D7600037CBF4 /* Address.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C0D3FE19C1D7600037CBF4 /* Address.m */; };
 		71C0D40219C1D9190037CBF4 /* BusinessReview.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C0D40119C1D9190037CBF4 /* BusinessReview.m */; };
 		71C0D40B19C1DC040037CBF4 /* Picture.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C0D40A19C1DC040037CBF4 /* Picture.m */; };
+		71DA85F219E28982001193D4 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71DA85F119E28982001193D4 /* Crashlytics.framework */; };
+		71DA85F519E2CBA9001193D4 /* BusinessSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 71DA85F419E2CBA9001193D4 /* BusinessSearch.m */; };
 		7D10889D4045404FAF307C78 /* libPods-HairfieApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 33C90A5A8A0E44DCA71D5A3A /* libPods-HairfieApp.a */; };
 		B303B954199B9403008F6BAA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B303B953199B9403008F6BAA /* Images.xcassets */; };
 		B308700C198782AF0080E6D2 /* FavoriteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B308700B198782AF0080E6D2 /* FavoriteViewController.m */; };
@@ -405,6 +407,9 @@
 		71C0D40119C1D9190037CBF4 /* BusinessReview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessReview.m; sourceTree = "<group>"; };
 		71C0D40919C1DC040037CBF4 /* Picture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Picture.h; sourceTree = "<group>"; };
 		71C0D40A19C1DC040037CBF4 /* Picture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Picture.m; sourceTree = "<group>"; };
+		71DA85F119E28982001193D4 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		71DA85F319E2CBA9001193D4 /* BusinessSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessSearch.h; sourceTree = "<group>"; };
+		71DA85F419E2CBA9001193D4 /* BusinessSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessSearch.m; sourceTree = "<group>"; };
 		8C8B91109EA849F389B9B603 /* Pods-HairfieAppTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HairfieAppTests.xcconfig"; path = "Pods/Pods-HairfieAppTests.xcconfig"; sourceTree = "<group>"; };
 		B303B953199B9403008F6BAA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		B308700A198782AF0080E6D2 /* FavoriteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoriteViewController.h; sourceTree = "<group>"; };
@@ -723,6 +728,7 @@
 				15ED728C199B9C6400453A74 /* ImageIO.framework in Frameworks */,
 				B3E4B46019A73C010036BAD8 /* LoopBack.framework in Frameworks */,
 				B342317719891AA40058866B /* MapKit.framework in Frameworks */,
+				71DA85F219E28982001193D4 /* Crashlytics.framework in Frameworks */,
 				B3423175198907A80058866B /* CoreLocation.framework in Frameworks */,
 				B3EDF89219879BEF00431B70 /* QuartzCore.framework in Frameworks */,
 				15B829C919B85F6200525802 /* FacebookSDK.framework in Frameworks */,
@@ -747,6 +753,7 @@
 		151151821982B7A8001157A2 = {
 			isa = PBXGroup;
 			children = (
+				71DA85F119E28982001193D4 /* Crashlytics.framework */,
 				B3E4B45F19A73C010036BAD8 /* LoopBack.framework */,
 				B3423174198907A80058866B /* CoreLocation.framework */,
 				B3EDF89119879BEF00431B70 /* QuartzCore.framework */,
@@ -1432,6 +1439,8 @@
 				71AAB62919D005170000552D /* Money.m */,
 				B33D4C5119D176E9009DE6DD /* BusinessClaim.h */,
 				B33D4C5219D176E9009DE6DD /* BusinessClaim.m */,
+				71DA85F319E2CBA9001193D4 /* BusinessSearch.h */,
+				71DA85F419E2CBA9001193D4 /* BusinessSearch.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1570,6 +1579,7 @@
 				151151881982B7A8001157A2 /* Frameworks */,
 				151151891982B7A8001157A2 /* Resources */,
 				49016DB8DD454A6A99DFD61A /* Copy Pods Resources */,
+				71DA85F019E28944001193D4 /* Run Script */,
 			);
 			buildRules = (
 			);
@@ -1867,6 +1877,20 @@
 			shellScript = "\"${SRCROOT}/Pods/Pods-HairfieApp-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		71DA85F019E28944001193D4 /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Crashlytics.framework/run dbe02c1fae1a4ced539089c3010f899dfcfc6b18 b44a1a5e1c2817b7e9e7a71a4645a5b6a1b96c50a17759faeae1598b159e4d43";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1943,6 +1967,7 @@
 				B3423212198924290058866B /* AFHTTPSessionManager.m in Sources */,
 				B330B5C5198658970059AE56 /* HomeViewController.m in Sources */,
 				71C0D40219C1D9190037CBF4 /* BusinessReview.m in Sources */,
+				71DA85F519E2CBA9001193D4 /* BusinessSearch.m in Sources */,
 				B3F6624D1987E87E0041F298 /* MenuTableViewCell.m in Sources */,
 				B337B6F619A22B11003B0EA5 /* HairfieDetailCollectionReusableView.m in Sources */,
 				1554FAA919D3408E00A0426B /* UIImage+Filters.m in Sources */,
