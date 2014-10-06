@@ -140,7 +140,7 @@
 -(IBAction)claimBusinessLocation:(id)sender
 {
     if (![_salonTextField.text isEqualToString:@""] && ![_phoneTextField.text isEqualToString:@""]) {
-
+        NSLog(@"CLAIM CLAIM CLAIM");
         _claim.name = _salonTextField.text;
         _claim.phoneNumber = _phoneTextField.text;
         _claim.men = man;
@@ -152,7 +152,7 @@
             NSLog(@"Error : %@", error.description);
         };
         void (^loadSuccessBlock)(NSDictionary *) = ^(NSDictionary *results){
-            //NSLog(@"results %@", results);
+            //_claim.id = [results objectForKey:@"id"];
            [self performSegueWithIdentifier:@"claimBusinessLocation" sender:self];
         };
         

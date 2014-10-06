@@ -68,6 +68,7 @@
     };
     void (^loadSuccessBlock)(NSDictionary *) = ^(NSDictionary *results){
        // NSLog(@"results %@", results);
+        _claim.id = [results objectForKey:@"id"];
         [self performSegueWithIdentifier:@"claimOtherInfos" sender:self];
     };
     

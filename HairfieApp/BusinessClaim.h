@@ -36,4 +36,7 @@
 
 -(void)claimWithSuccess:(void(^)(NSDictionary *results))aSuccessHandler
                failure:(void(^)(NSError *error))aFailureHandler;
+-(void)submitClaimWithSuccess:(void(^)(NSDictionary *results))aSuccessHandler
+                      failure:(void(^)(NSError *error))aFailureHandler;
+
 @end

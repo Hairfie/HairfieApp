@@ -128,17 +128,13 @@
             frame.origin.y = 0;
             frame.size = _imageSliderView.frame.size;
             UIImageView *imageView = [[UIImageView alloc] initWithFrame:frame];
-          
-            
-            
-            
             [imageView sd_setImageWithURL:[NSURL URLWithString:[pictures objectAtIndex:i]]
-                                placeholderImage:[UIColor imageWithColor:[UIColor colorWithRed:234/255.0f
-                                                                                         green:236/255.0f
-                                                                                          blue:238/255.0f
-                                                                                         alpha:1]]];
+                                placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
             
             imageView.contentMode = UIViewContentModeScaleToFill;
+            
+            NSLog(@"test : %@", imageView.image);
+
             [_imageSliderView addSubview:imageView];
         }
         
@@ -482,6 +478,21 @@
     _isEditingHairdresser = YES;
     [self performSegueWithIdentifier:@"claimHairdresser" sender:self];
 }
+
+-(IBAction)claimThisBusiness:(id)sender
+{
+    void (^loadErrorBlock)(NSError *) = ^(NSError *error){
+        
+        NSLog(@"Error : %@", error.description);
+    };
+    void (^loadSuccessBlock)(NSDictionary *) = ^(NSDictionary *results) {
+       
+        NSLog(@"Results %@", results);
+    };
+    
+    [_claim submitClaimWithSuccess:loadSuccessBlock failure:loadErrorBlock];
+}
+
 
 
 /*

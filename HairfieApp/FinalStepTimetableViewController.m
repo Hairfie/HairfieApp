@@ -20,6 +20,7 @@
 {
     NSString *dayPicked;
     NSArray *weekDays;
+    
 }
 -(UIStatusBarStyle)preferredStatusBarStyle{
     return UIStatusBarStyleLightContent;
@@ -84,6 +85,8 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    dayPicked = [weekDays objectAtIndex:indexPath.row];
+    [self performSegueWithIdentifier:@"addTimeWindow" sender:self];
 }
 
 
@@ -234,6 +237,14 @@
     return cell;
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"addTimeWindow"])
+    {
+        FinalStepClaimDayViewController *claimDay = [segue destinationViewController];
+        claimDay.dayPicked = dayPicked;
+    }
+}
 
 
 /*

@@ -27,7 +27,8 @@
     [super viewDidLoad];
     
     delegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
-
+    NSLog(@"current user %@", [delegate.currentUser toDictionary]);
+    
     title = [NSArray arrayWithObjects:NSLocalizedStringFromTable(@"Woman", @"Login_Sign_Up", nil), NSLocalizedStringFromTable(@"Man", @"Login_Sign_Up", nil), nil];
     
     _titleView.hidden = YES;

@@ -187,6 +187,8 @@
                                   }];
 }
 
+
+
 +(void)likeHairfie:(NSString *)hairfieId
             asUser:(NSString *)userId
            success:(void (^)())aSuccessHandler
@@ -203,6 +205,19 @@
                                   }
                                   failure:aFailureHandler];
 }
+
+
+-(void)getManagedBusinessesByUsersuccess:(void (^)(NSArray* results))aSuccessHandler
+                          failure:(void (^)(NSError *))aFailureHandler
+{
+    [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/users/:userId/managed-businesses" verb:@"LIST"] forMethod:@"users.managed-businesses"];
+    
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:self.id forKey:@"userID"];
+    
+    [[User repository] invokeStaticMethod:@"managedBusinesses" parameters:parameters success:aSuccessHandler failure:aFailureHandler];
+}
+
 
 +(void)unlikeHairfie:(NSString *)hairfieId
             asUser:(NSString *)userId
