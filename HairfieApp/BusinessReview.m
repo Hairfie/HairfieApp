@@ -16,7 +16,7 @@
 {
     if([authorDic isKindOfClass:[NSNull class]]) return;
     
-    _author = [[User alloc] initWithJson:authorDic];
+    _author = [[User alloc] initWithDictionary:authorDic];
 }
 
 - (void) setBusiness:(NSDictionary *)aDictionary
@@ -27,6 +27,17 @@
         _business = aDictionary;
     } else {
         _business = [[[self class] alloc] initWithDictionary:aDictionary];
+    }
+}
+
+-(void)setCreatedAt:(NSDate *)aDate
+{
+    if ([aDate isKindOfClass:[NSString class]]) {
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:API_DATE_FORMAT];
+        _createdAt = [dateFormatter dateFromString:aDate];
+    } else {
+        _createdAt = aDate;
     }
 }
 

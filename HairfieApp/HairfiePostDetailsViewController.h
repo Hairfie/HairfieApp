@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "SAMTextView.h"
+#import "Business.h"
 
 @interface HairfiePostDetailsViewController : UIViewController <UINavigationControllerDelegate, UITextViewDelegate, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, UIAlertViewDelegate>
 
@@ -36,6 +37,6 @@
 @property (nonatomic) IBOutlet NSLayoutConstraint *tableViewHeight;
 @property (nonatomic) IBOutlet NSLayoutConstraint *tableViewYPos;
 
-@property (nonatomic) NSDictionary *salonChosen;
+@property (nonatomic) Business *salonChosen;
 
 @end

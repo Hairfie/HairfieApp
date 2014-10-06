@@ -27,6 +27,14 @@
     return self;
 }
 
+-(NSDictionary *)toDictionary
+{
+    return @{
+        @"amount"  : self.amount,
+        @"currency": self.currency
+    };
+}
+
 -(NSString *)formatted
 {
     if ([self.currency isEqualToString:@"EUR"]) {

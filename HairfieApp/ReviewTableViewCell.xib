@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="14A361p" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="14A379b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
+        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -8,7 +9,6 @@
             <string>SourceSansPro-It</string>
         </mutableArray>
         <mutableArray key="SourceSansPro-Regular.ttf">
-            <string>SourceSansPro-Regular</string>
             <string>SourceSansPro-Regular</string>
             <string>SourceSansPro-Regular</string>
         </mutableArray>
@@ -41,17 +41,8 @@ amet :) </string>
                         <rect key="frame" x="62" y="40" width="91" height="29"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="statusLabelView.png" translatesAutoresizingMaskIntoConstraints="NO" id="7wc-UN-iRe">
-                        <rect key="frame" x="160" y="49" width="19" height="12"/>
-                    </imageView>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JhK-D0-1Or">
-                        <rect key="frame" x="160" y="49" width="19" height="12"/>
-                        <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="11"/>
-                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="-  Juillet 2014" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iQQ-fs-L7o">
-                        <rect key="frame" x="184" y="44" width="95" height="22"/>
+                        <rect key="frame" x="156" y="43" width="95" height="22"/>
                         <fontDescription key="fontDescription" name="SourceSansPro-It" family="Source Sans Pro" pointSize="12"/>
                         <color key="textColor" red="0.6588235294117647" green="0.66666666666666663" blue="0.67843137254901964" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -68,12 +59,8 @@ amet :) </string>
                 <outlet property="nameLabel" destination="kn3-uG-q6x" id="fJF-Bn-jNk"/>
                 <outlet property="postDate" destination="iQQ-fs-L7o" id="5dd-Ku-j2U"/>
                 <outlet property="ratingView" destination="jt4-BJ-KnO" id="zvQ-tb-ifA"/>
-                <outlet property="statusLabel" destination="JhK-D0-1Or" id="KFl-o7-Uas"/>
             </connections>
             <point key="canvasLocation" x="123" y="57.5"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="statusLabelView.png" width="38" height="23"/>
-    </resources>
 </document>

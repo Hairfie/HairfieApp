@@ -176,7 +176,7 @@
 {
     if ([segue.identifier isEqualToString:@"hairfieDetail"]) {
         HairfieDetailViewController *controller = [segue destinationViewController];
-        controller.currentHairfie = [sender hairfie];
+        controller.hairfie = [sender hairfie];
     }
 }
 

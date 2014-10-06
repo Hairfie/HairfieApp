@@ -11,6 +11,7 @@
 #import "Address.h"
 #import "GeoPoint.h"
 #import "Timetable.h"
+#import "Picture.h"
 
 
 @interface Business : LBModel
@@ -22,13 +23,15 @@
 @property (strong, nonatomic) Timetable *timetable;
 @property (strong, nonatomic) Address *address;
 @property (strong, nonatomic) NSArray *pictures;
-@property (strong, nonatomic) NSString *thumbnail;
+@property (strong, nonatomic) Picture *thumbnail;
 @property (strong, nonatomic) NSNumber *distance; // TODO: calculate it from frontend
 @property (strong, nonatomic) NSArray *services;
 @property (strong, nonatomic) NSNumber *numHairfies;
 @property (strong, nonatomic) NSNumber *numReviews;
 @property (strong, nonatomic) NSNumber *rating;
 @property (nonatomic) BOOL crossSell;
+
+-(NSString *)thumbUrl;
 
 -(NSString *)displayNameAndAddress;
 

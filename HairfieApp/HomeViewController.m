@@ -322,7 +322,7 @@
     if ([segue.identifier isEqualToString:@"hairfieDetail"])
     {
         HairfieDetailViewController *hairfieDetail = [segue destinationViewController];
-        hairfieDetail.currentHairfie = (Hairfie*)[hairfies objectAtIndex:hairfieRow];
+        hairfieDetail.hairfie = (Hairfie*)[hairfies objectAtIndex:hairfieRow];
 
     }
 

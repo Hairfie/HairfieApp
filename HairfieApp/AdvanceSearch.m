@@ -50,7 +50,7 @@
 
     [self geocodeAddress:_searchByLocation.text];
     
-    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"searchQuery" object:self];
     
     [self cancelSearch:self];
 }

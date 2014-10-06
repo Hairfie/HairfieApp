@@ -27,7 +27,6 @@
 @end
 
 @implementation SalonDetailViewController {
-    BOOL isOpen;
     // Variables de test (vu qu'il y a pas de backend)
     NSArray *coiffeurArray;
     
@@ -35,8 +34,11 @@
     BOOL endOfHairfies;
     BOOL loadingHairfies;
     AppDelegate *delegate;
-    
+
     NSArray *menuActions;
+
+    NSArray *latestReviews;
+    BOOL loadingLastestReviews;
 }
 
 @synthesize imageSliderView =_imageSliderView, pageControl = _pageControl,hairfieView = _hairfieView, hairdresserView = _hairdresserView, priceAndSaleView = _priceAndSaleView, infoBttn = _infoBttn, hairfieBttn = _hairfieBttn, hairdresserBttn = _hairdresserBttn, priceAndSaleBttn = _priceAndSaleBttn, reviewRating = _reviewRating, reviewTableView = _reviewTableView, addReviewBttn = _addReviewBttn, moreReviewBttn = _moreReviewBttn, similarTableView = _similarTableView, business = _business, name = _name , womanPrice = _womanPrice, manPrice = _manPrice, salonRating = _salonRating, address = _address, city = _city, salonAvailability = _salonAvailability, nbReviews = _nbReviews, previewMap = _previewMap, isOpenLabel = _isOpenLabel, isOpenLabelDetail = _isOpenLabelDetail, isOpenImage = _isOpenImage, isOpenImageDetail = _isOpenImageDetail, callBttn = _callBttn, telephoneBgView = _telephoneBgView, detailedContainerView = _detailedContainerView;
@@ -143,7 +145,7 @@
         frame.size = _imageSliderView.frame.size;
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:frame];
         
-        [SDWebImageDownloader.sharedDownloader downloadImageWithURL:[NSURL URLWithString:[pictures objectAtIndex:i]]
+        [SDWebImageDownloader.sharedDownloader downloadImageWithURL:[NSURL URLWithString:[pictures[i] url]]
                                                             options:0
                                                            progress:^(NSInteger receivedSize, NSInteger expectedSize) { }
                                                           completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished)
@@ -290,7 +292,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (tableView == _reviewTableView) {
-        return 2;
+        return latestReviews.count;
     } else if (tableView == _similarTableView) {
         return self.similarBusinesses.count;
     } else if (tableView == _hairdresserTableView) {
@@ -322,11 +324,13 @@
     if (tableView == _reviewTableView) {
         static NSString *CellIdentifier = @"reviewCell";
         ReviewTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-
+        
         if (cell == nil) {
             NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ReviewTableViewCell" owner:self options:nil];
             cell = [nib objectAtIndex:0];
         }
+        
+        cell.review = latestReviews[indexPath.row];
 
         return cell;
     } else if (tableView == _similarTableView) {
@@ -388,6 +392,8 @@
     [self setupGallery:business.pictures];
     
     [self setupPrices];
+
+    [self setupLastReviews];
     
     if (nil == business.timetable) {
         _isOpenImageDetail.hidden = YES;
@@ -424,18 +430,24 @@
     _salonRating.editable = NO;
     _salonRating.maxRating = 5;
     _salonRating.delegate = self;
+    _salonRating.rating = [[business ratingBetween:@0 and: @5] floatValue];
 
-    if ([business.numReviews isEqualToNumber:@0] || [business.numReviews isEqualToNumber:@1]) {
-        _salonRating.rating = 0;
-        _nbReviews.text = [NSString stringWithFormat:NSLocalizedStringFromTable(@"%@ review", @"Salon_Detail", nil), business.numReviews];
+    if ([business.numReviews isEqualToNumber:@0]) {
+        // hide reviews list
         _reviewTableView.hidden = YES;
-        _addReviewButtonYpos.constant = 338;
-        _addReviewButtonXpos.constant = 200;
         _moreReviewBttn.hidden = YES;
         _moreReviewBttn.enabled = NO;
         _mainViewHeight.constant = 1030;
+        _addReviewButtonYpos.constant = 338;
+        _addReviewButtonXpos.constant = 200;
     } else {
-        _salonRating.rating = [[business ratingBetween:@0 and: @5] floatValue];
+        [_moreReviewBttn setTitle:[NSString stringWithFormat:NSLocalizedStringFromTable(@"more reviews (%@)", @"Salon_Detail", nil), business.numReviews]
+                         forState:UIControlStateNormal];
+    }
+
+    if ([business.numReviews isEqualToNumber:@0] || [business.numReviews isEqualToNumber:@1]) {
+        _nbReviews.text = [NSString stringWithFormat:NSLocalizedStringFromTable(@"%@ review", @"Salon_Detail", nil), business.numReviews];
+    } else {
         _nbReviews.text =[NSString stringWithFormat:NSLocalizedStringFromTable(@"%@ reviews", @"Salon_Detail", nil), business.numReviews];
     }
     
@@ -459,7 +471,7 @@
     if (!self.business.crossSell) return;
     
     [Business listSimilarTo:self.business.id
-                      limit:@3
+                      limit:@2
                     success:^(NSArray *businesses) {
                         self.similarBusinesses = businesses;
                         [self.similarTableView reloadData];
@@ -467,6 +479,33 @@
                     failure:^(NSError *error) {
                         NSLog(@"%@", error.localizedDescription);
                     }];
+}
+
+-(void)setupLastReviews
+{
+    if ([self.business.numReviews isEqualToNumber:@0]) {
+        loadingLastestReviews = NO;
+        return;
+    }
+    
+    if (loadingLastestReviews) {
+        return;
+    }
+    
+    loadingLastestReviews = YES;
+    
+    [BusinessReview listLatestByBusiness:self.business.id
+                                   limit:@2
+                                    skip:@0
+                                 success:^(NSArray *reviews) {
+                                     latestReviews = reviews;
+                                     loadingLastestReviews = NO;
+                                     [self.reviewTableView reloadData];
+                                 }
+                                 failure:^(NSError *error) {
+                                     NSLog(@"Failed to load last reviews: %@", error.localizedDescription);
+                                     loadingLastestReviews = NO;
+                                 }];
 }
 
 -(void)setupHairfies
@@ -606,7 +645,7 @@
         horaires.timetable = _business.timetable;
     } else if ([segue.identifier isEqualToString:@"hairfieDetail"]) {
         HairfieDetailViewController *hairfieDetail = [segue destinationViewController];
-        hairfieDetail.currentHairfie = sender;
+        hairfieDetail.hairfie = sender;
     } else if ([segue.identifier isEqualToString:@"similarBusiness"]) {
         SalonDetailViewController *controller = [segue destinationViewController];
         controller.business = sender;

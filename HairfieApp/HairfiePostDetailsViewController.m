@@ -8,8 +8,10 @@
 
 #import "HairfiePostDetailsViewController.h"
 #import "PictureUploader.h"
+#import "Picture.h"
 #import "AppDelegate.h"
 #import "Business.h"
+#import "Money.h"
 #import "NotLoggedAlert.h"
 
 #import <LoopBack/LoopBack.h>
@@ -20,10 +22,12 @@
 @implementation HairfiePostDetailsViewController
 {
     NSArray *salonTypes;
-    NSString *uploadedFileName;
+    Picture *uploadedPicture;
     BOOL uploadInProgress;
 }
--(UIStatusBarStyle)preferredStatusBarStyle{
+
+-(UIStatusBarStyle)preferredStatusBarStyle
+{
     return UIStatusBarStyleLightContent;
 }
 
@@ -197,33 +201,30 @@ shouldChangeTextInRange: (NSRange) range
             NSLog(@"---------- Upload in progress ----------");
             [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
         }
-        
 
-        NSMutableDictionary *hairfieDic = [[NSMutableDictionary alloc] init];
-        
-        if(!uploadedFileName) {
+        if(!uploadedPicture) {
             [self removeSpinnerAndOverlay];
             [self showUploadFailedAlertView];
             return; 
         }
-                                           
-        [hairfieDic setObject:@{@"picture": uploadedFileName}  forKey:@"picture"];
-        [hairfieDic setObject:_hairfieDesc.text forKey:@"description"];
-        [hairfieDic setObject:_whoTextField.text forKey:@"authorString"];
 
-        if (![_priceTextField.text isEqualToString:@""]) {
-            NSDictionary *price = [[NSDictionary alloc] initWithObjectsAndKeys:@"EUR", @"currency", _priceTextField.text, @"amount", nil];
-            [hairfieDic setObject:price forKey:@"price"];
+        Hairfie *hairfieToPost = [[Hairfie alloc] init];
+        hairfieToPost.description = self.hairfieDesc.text;
+        hairfieToPost.hairdresserName = self.whoTextField.text;
+        hairfieToPost.picture = uploadedPicture;
+
+        if (![self.priceTextField.text isEqualToString:@""]) {
+            Money *price = [[Money alloc] initWithAmount:[NSNumber numberWithDouble:[self.priceTextField.text doubleValue]]
+                                                currency:@"EUR"];
+            
+            hairfieToPost.price = price;
+        }
+
+        if (self.salonChosen) {
+            hairfieToPost.business = self.salonChosen;
         }
         
-        Hairfie *hairfieToPost = [[Hairfie alloc] initWithDictionary:hairfieDic];
-
-
-        if (_salonChosen){
-            [hairfieToPost setBusiness:_salonChosen];
-        }
-        
-        NSLog(@"UploadedFileName to post : %@", uploadedFileName);
+        NSLog(@"UploadedPicture to post : %@", uploadedPicture);
         NSLog(@"Hairfie to post : %@", hairfieToPost);
         
         void (^loadErrorBlock)(NSError *) = ^(NSError *error){
@@ -278,9 +279,9 @@ shouldChangeTextInRange: (NSRange) range
         uploadInProgress = NO;
         NSLog(@"Error : %@", error.description);
     };
-    void (^loadSuccessBlock)(NSString *) = ^(NSString *fileName){
+    void (^loadSuccessBlock)(Picture *) = ^(Picture *picture){
         NSLog(@"Uploaded !");
-        uploadedFileName = fileName;
+        uploadedPicture = picture;
         uploadInProgress = NO;
     };
     

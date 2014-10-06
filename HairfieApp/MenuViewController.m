@@ -88,7 +88,7 @@
 }
 
 -(void) backToLogin:(NSNotification*)notification {
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    [appDelegate showLoginStoryboard];
 }
 
 -(void) initCurrentUser
@@ -275,12 +275,12 @@
     [appDelegate.credentialStore clearSavedCredentials];
     void (^loadErrorBlock)(NSError *) = ^(NSError *error){
         NSLog(@"Error on load %@", error.description);
-         [self.navigationController popToRootViewControllerAnimated:NO];
+        [appDelegate showLoginStoryboard];
     };
     void (^loadSuccessBlock)(NSDictionary *) = ^(NSDictionary *results){
         NSLog(@"results %@", results);
         [FBSession.activeSession closeAndClearTokenInformation];
-        [self.navigationController popToRootViewControllerAnimated:NO];
+        [appDelegate showLoginStoryboard];
     };
     
     NSString *repoName = @"users";

@@ -38,7 +38,7 @@
 
 -(void)customInit:(Business *)business
 {
-    [SDWebImageDownloader.sharedDownloader downloadImageWithURL:[NSURL URLWithString:business.thumbnail]
+    [SDWebImageDownloader.sharedDownloader downloadImageWithURL:[NSURL URLWithString:business.thumbUrl]
                                                         options:0
                                                        progress:^(NSInteger receivedSize, NSInteger expectedSize) { }
                                                       completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {

@@ -18,6 +18,8 @@
 -(id)initWithAmount:(NSNumber *)anAmount
            currency:(NSString *)aCurrency;
 
+-(NSDictionary *)toDictionary;
+
 -(NSString *)formatted;
 
 @end

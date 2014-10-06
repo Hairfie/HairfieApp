@@ -50,12 +50,20 @@ static LBRESTAdapter * _lbAdaptater = nil;
         [User getById:self.credentialStore.userId
               success:^(User *user) {
                   self.currentUser = user;
+                  [[NSNotificationCenter defaultCenter] postNotificationName:@"currentUser" object:nil];
+
               }
               failure:^(NSError *error) {
                   NSLog(@"Error retrieving logged in user: %@", error.localizedDescription);
                   self.currentUser = nil;
                   [self.credentialStore clearSavedCredentials];
               }];
+    } else {
+        [self.credentialStore clearTutorialSeen];
+//        UIViewController *otherVC = [[UIStoryboard storyboardWithName:@"Tuto" bundle:nil] instantiateInitialViewController];
+//        [self.window setRootViewController:otherVC];
+        [self showLoginStoryboard];
+        
     }
     
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -74,6 +82,17 @@ static LBRESTAdapter * _lbAdaptater = nil;
     BOOL wasHandled = [FBAppCall handleOpenURL:url sourceApplication:sourceApplication];
     
     return wasHandled;
+}
+
+- (void)showLoginStoryboard {
+    [self.window.rootViewController.view removeFromSuperview];
+    [self.window.rootViewController.navigationController popViewControllerAnimated:NO];
+
+    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Tuto" bundle:nil];
+    UINavigationController *theInitialViewController = [storyBoard instantiateInitialViewController];
+    NSLog(@"root : %@", [self.window.rootViewController class]);
+
+    [self.window setRootViewController:theInitialViewController];
 }
 
 -(void)saveUserLanguage:(NSNotification *)notification

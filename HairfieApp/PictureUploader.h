@@ -8,11 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import <LoopBack/LoopBack.h>
+#import "Picture.h"
 
 @interface PictureUploader : NSObject
 
-typedef void(^uploadSucessBlock)(NSString *);
+typedef void(^uploadSucessBlock)(Picture *);
 
+// TODO: move me to Picture.h?
 -(void) uploadImage:(UIImage *) image
                toContainer:(NSString *) containerName
                    success:(uploadSucessBlock) success

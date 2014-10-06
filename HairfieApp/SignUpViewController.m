@@ -11,6 +11,7 @@
 #import "HomeViewController.h"
 #import "UserAuthenticator.h"
 #import "PictureUploader.h"
+#import "Picture.h"
 #import "MRProgress.h"
 
 @interface SignUpViewController ()
@@ -24,7 +25,7 @@
     NSArray *title;
     AppDelegate *delegate;
     NSDictionary *userData;
-    NSString *uploadedFileName;
+    Picture *uploadedPicture;
     BOOL uploadInProgress;
     UserAuthenticator *userAuthenticator;
 }
@@ -136,7 +137,7 @@ numberOfRowsInComponent:(NSInteger)component
         
         [userAuthenticator getCurrentUser];
         
-        [self performSegueWithIdentifier:@"createAccount" sender:self];
+        [self performSegueWithIdentifier:@"@Main" sender:self];
     };
     
     if ([self isValidEmail: _emailField.text])
@@ -164,8 +165,8 @@ numberOfRowsInComponent:(NSInteger)component
             NSLog(@"Loop Loop !");
             [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
         }
-        if(uploadedFileName) {
-            [loginData invokeStaticMethod:@"" parameters:@{@"firstName":_firstNameField.text, @"lastName":_lastNameField.text, @"email": _emailField.text, @"password" : _passwordField.text, @"newsletter":newsletter, @"gender":gender, @"picture":uploadedFileName, @"language": language} success:loadSuccessBlock failure:loadErrorBlock];
+        if(uploadedPicture) {
+            [loginData invokeStaticMethod:@"" parameters:@{@"firstName":_firstNameField.text, @"lastName":_lastNameField.text, @"email": _emailField.text, @"password" : _passwordField.text, @"newsletter":newsletter, @"gender":gender, @"picture":uploadedPicture.toApiValue, @"language": language} success:loadSuccessBlock failure:loadErrorBlock];
         } else {
             [loginData invokeStaticMethod:@"" parameters:@{@"firstName":_firstNameField.text, @"lastName":_lastNameField.text, @"email": _emailField.text, @"password" : _passwordField.text, @"newsletter":newsletter, @"gender":gender, @"language": language} success:loadSuccessBlock failure:loadErrorBlock];
         }
@@ -188,8 +189,8 @@ numberOfRowsInComponent:(NSInteger)component
         uploadInProgress = NO;
         NSLog(@"Error : %@", error.description);
     };
-    void (^loadSuccessBlock)(NSString *) = ^(NSString *fileName){
-        uploadedFileName = fileName;
+    void (^loadSuccessBlock)(Picture *) = ^(Picture *picture){
+        uploadedPicture = picture;
         uploadInProgress = NO;
     };
     

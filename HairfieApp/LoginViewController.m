@@ -19,6 +19,7 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import "HomeViewController.h"
 #import "MRProgress.h"
+#import "UIButton+Style.h"
 
 @interface LoginViewController ()
 @end
@@ -29,15 +30,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-     _noAccountButton.layer.borderColor = [UIColor whiteColor].CGColor;
-    _noAccountButton.layer.borderWidth = 0.5;
-    _noAccountButton.backgroundColor = [UIColor clearColor];
-    _noAccountButton.layer.cornerRadius = 5;
-    _noAccountButton.layer.masksToBounds = YES;
     
-    _loginButton.layer.cornerRadius = 5;
-    _loginButton.layer.masksToBounds = YES;
+    [_noAccountButton noAccountStyle];
+    [_loginButton roundStyle];
     
     _noPasswordButton.titleLabel.adjustsFontSizeToFitWidth = YES;
     _delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
@@ -46,16 +41,8 @@
 
     [_passwordField fixSecureTextFieldFont];
 
-    if ([_delegate.credentialStore isLoggedIn])
-    {
-         [AppDelegate lbAdaptater].accessToken = [_delegate.credentialStore authToken];
-        
-        [userAuthenticator getCurrentUser];
-        
-        
-        //_delegate.currentUser = auth.getCurrentUser;
-        
-        [self performSegueWithIdentifier:@"loginSuccess" sender:self];
+    if(_doFbConnect) {
+        [self fbConnect];
     }
 
     [self.view addGestureRecognizer:_dismiss];
@@ -74,19 +61,17 @@
     [ARAnalytics pageView:@"AR - LoginView"];
 }
 
--(void) dismissTextFields
-{
+-(void) dismissTextFields {
     [_passwordField resignFirstResponder];
     [_emailField resignFirstResponder];
     _noPasswordButton.hidden = NO;
 }
 
--(UIStatusBarStyle)preferredStatusBarStyle{
+-(UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
 }
 
--(void)textFieldDidBeginEditing:(UITextField *)textField
-{
+-(void)textFieldDidBeginEditing:(UITextField *)textField {
         if (textField == _passwordField)
         {
          
@@ -138,7 +123,7 @@
         
         [userAuthenticator getCurrentUser];
         [self dismissTextFields];
-        [self performSegueWithIdentifier:@"loginSuccess" sender:self];
+        [self performSegueWithIdentifier:@"@Main" sender:self];
     };
 
     if ([self isValidEmail: _emailField.text]) {
@@ -155,7 +140,6 @@
 }
 
 -(IBAction)skip:(id)sender {
-    [ARAnalytics event:@"AR - Skip"];
     [self performSegueWithIdentifier:@"skipLogin" sender:self];
 }
 
@@ -175,8 +159,11 @@
 }
 
 
-- (IBAction)getFacebookUserInfo:(id)sender
-{
+- (IBAction)getFacebookUserInfo:(id)sender {
+    [self fbConnect];
+}
+
+- (void)fbConnect {
     if (FBSession.activeSession.state == FBSessionStateOpen
         || FBSession.activeSession.state == FBSessionStateOpenTokenExtended) {
         [self sessionStateChanged:FBSession.activeSession state:FBSession.activeSession.state error:nil];
@@ -251,7 +238,7 @@
         [AppDelegate lbAdaptater].accessToken = [results objectForKey:@"id"];
         [_delegate.credentialStore setAuthTokenAndUserId:[results objectForKey:@"id"] forUser:[results objectForKey:@"userId"]];
         [userAuthenticator getCurrentUser];
-        if(performLogin)    [self performSegueWithIdentifier:@"loginSuccess" sender:self];
+        if(performLogin)    [self performSegueWithIdentifier:@"@Main" sender:self];
     };
 
     NSString *repoName = @"auth/facebook/token";
@@ -268,6 +255,10 @@
     [alert show];
 }
 
+-(IBAction)goBack:(id)sender
+{
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
 
 -(BOOL) isValidEmail:(NSString *)checkString
 {
@@ -288,8 +279,7 @@
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"skipLogin"])
-    {
+    if ([segue.identifier isEqualToString:@"skipLogin"]) {
         [userAuthenticator skipLogin];
     }
 }

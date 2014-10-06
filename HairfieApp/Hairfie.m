@@ -13,54 +13,83 @@
 
 @implementation Hairfie
 
-@synthesize id, description, price, picture, author = _author, business = _business, numLikes = _numLikes;
+@synthesize description;
 
 -(id)initWithDictionary:(NSDictionary *)data
 {
     return (Hairfie*)[[Hairfie repository] modelWithDictionary:data];
 }
 
-- (void)setAuthor:(NSDictionary *)authorDic
+- (void)setAuthor:(NSDictionary *)anAuthor
 {
-    if([authorDic isKindOfClass:[NSNull class]]) return;
-    
-    _author = [[User alloc] initWithJson:authorDic];
+    if ([anAuthor isKindOfClass:[User class]]) {
+        _author = anAuthor;
+    } else if ([anAuthor isEqual:[NSNull null]]) {
+        _author = nil;
+    } else {
+        _author = [[User alloc] initWithDictionary:anAuthor];
+    }
 }
 
-- (void)setBusiness:(NSDictionary *) businessDic
+-(void)setBusiness:(NSDictionary *)aBusiness
 {
-    if([businessDic isKindOfClass:[NSNull class]]) return;
-    
-    _business = [[Business alloc] initWithDictionary:businessDic];
+    if ([aBusiness isKindOfClass:[Business class]]) {
+        _business = aBusiness;
+    } else if ([aBusiness isEqual:[NSNull null]]) {
+        _business = nil;
+    } else {
+        _business = [[Business alloc] initWithDictionary:aBusiness];
+    }
 }
 
--(NSString *)pictureUrlwithWidth:(NSString *)width andHeight:(NSString *)height {
-    NSString  *url = [[picture objectForKey:@"publicUrl"] stringByAppendingString:@"?"];
-    if(width)  url = [NSString stringWithFormat:@"%@&width=%@", url, width];
-    if(height) url = [NSString stringWithFormat:@"%@&height=%@", url, height];
-    
-    return url;
+-(void)setPicture:(NSDictionary *)aPicture
+{
+    if ([aPicture isKindOfClass:[Picture class]]) {
+        _picture = aPicture;
+    } else if ([aPicture isEqual:[NSNull null]]) {
+        _picture = nil;
+    } else {
+        _picture = [[Picture alloc] initWithDictionary:aPicture];
+    }
 }
 
--(NSString *)pictureUrl {
+-(void)setPrice:(NSDictionary *)aPrice
+{
+    if ([aPrice isKindOfClass:[Money class]]) {
+        _price = aPrice;
+    } else if ([aPrice isEqual:[NSNull null]]) {
+        _price = aPrice;
+    } else {
+        _price = [[Money alloc] initWithDictionary:aPrice];
+    }
+}
+
+-(NSString *)pictureUrlwithWidth:(NSNumber *)width andHeight:(NSNumber *)height
+{
+    return [self.picture urlWithWidth:width height:height];
+}
+
+-(NSString *)pictureUrl
+{
     return [self pictureUrlwithWidth:nil andHeight:nil];
 }
 
--(NSString *)hairfieCellUrl {
-    return [self pictureUrlwithWidth:@"300" andHeight:@"420"];
+-(NSString *)hairfieCellUrl
+{
+    return [self pictureUrlwithWidth:@300 andHeight:@420];
 }
 
--(NSString *)hairfieDetailUrl {
-    return [self pictureUrlwithWidth:@"640" andHeight:@"640"];
+-(NSString *)hairfieDetailUrl
+{
+    return [self pictureUrlwithWidth:@640 andHeight:@640];
 }
 
 
--(NSString *)displayPrice {
-    if([price isEqual:[NSNull null]]) return @"";
+-(NSString *)displayPrice
+{
+    if([self.price isEqual:[NSNull null]]) return @"";
     
-    if([[price objectForKey:@"currency"] isEqual:@"EUR"]) return [NSString stringWithFormat:@"%@ €", [price objectForKey:@"amount"]];
-
-    return @"";
+    return self.price.formatted;
 }
 
 -(NSString *)displayNumLikes {
@@ -80,16 +109,16 @@
     
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     
-    [parameters setObject:[self.picture objectForKey:@"picture"] forKey:@"picture"];
+    [parameters setObject:[self.picture toApiValue] forKey:@"picture"];
 
     if(self.price != nil) {
-        [parameters setObject:self.price forKey:@"price"];
+        [parameters setObject:self.price.toDictionary forKey:@"price"];
     }
     if(self.description != nil) {
         [parameters setObject:self.description forKey:@"description"];
     }
-    if(self.authorString != nil) {
-        [parameters setObject:self.authorString forKey:@"authorString"];
+    if(self.hairdresserName != nil) {
+        [parameters setObject:self.hairdresserName forKey:@"hairdresserName"];
     }
     if(self.business != nil) {
         [parameters setObject:self.business.id forKey:@"businessId"];
@@ -127,9 +156,10 @@
         [repository invokeStaticMethod:@"find"
                             parameters:parameters
                                success:^(NSArray *results) {
+                                   NSLog(@"results: %@", results);
                                    NSMutableArray *hairfies = [[NSMutableArray alloc] init];
                                    for (NSDictionary *result in results) {
-                                       [hairfies addObject:[repository modelWithDictionary:result]];
+                                       [hairfies addObject:[[[self class] alloc] initWithDictionary:result]];
                                    }
                                    aSuccessHandler([[NSArray alloc] initWithArray:hairfies]);
                                }

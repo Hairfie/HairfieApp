@@ -18,7 +18,7 @@
                    success:(uploadSucessBlock) success
                     failure:(SLFailureBlock) failure {
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSString *imgName = @"pictureToUpload.JPG";
+    NSString *imgName = @"pictureToUpload.jpg";
     NSString *imgPath = NSTemporaryDirectory();
     
     NSString *fullPath = [imgPath stringByAppendingPathComponent:imgName];
@@ -38,9 +38,10 @@
         failure(error);
     };
     void (^loadSuccessBlock)(NSDictionary *) = ^(NSDictionary *results){
-        NSLog(@"Upload file results %@", [[[[results objectForKey:@"result"] objectForKey:@"files"] objectForKey:@"uploadfiles"] objectAtIndex:0] );
-        NSString *uploadedFileName = [[[[[results objectForKey:@"result"] objectForKey:@"files"] objectForKey:@"uploadfiles"] objectAtIndex:0]    objectForKey:@"name"];
-        success(uploadedFileName);
+        NSLog(@"File upload results: %@", results);
+        NSDictionary *uploadedFile = [[[results objectForKey:@"result"] objectForKey:@"files"] objectForKey:@"uploadfiles"];
+        
+        success([[Picture alloc] initWithDictionary:uploadedFile]);
     };
     
     [file invokeMethod:@"upload"

@@ -12,6 +12,7 @@
 #import "GeoPoint.h"
 #import "AppDelegate.h"
 #import "Service.h"
+#import "Picture.h"
 
 @implementation Business
 
@@ -20,6 +21,17 @@
     if (nil == aDictionary) return;
     
     _timetable = [[Timetable alloc] initWithDictionary:aDictionary];
+}
+
+-(void)setThumbnail:(NSDictionary *)aThumbnail
+{
+    if ([aThumbnail isKindOfClass:[Picture class]]) {
+        _thumbnail = aThumbnail;
+    } else if ([aThumbnail isEqual:[NSNull null]]) {
+        _thumbnail = nil;
+    } else {
+        _thumbnail = [[Picture alloc] initWithDictionary:aThumbnail];
+    }
 }
 
 -(NSString *)displayNameAndAddress
@@ -52,6 +64,15 @@
     return self;
 }
 
+-(void)setPictures:(NSArray *)pictures
+{
+    NSMutableArray *temp = [[NSMutableArray alloc] init];
+    for (NSDictionary *picture in pictures) {
+        [temp addObject:[[Picture alloc] initWithDictionary:picture]];
+    }
+    _pictures = [[NSArray alloc] initWithArray:temp];
+}
+
 - (void)setAddress:(NSDictionary *)addressDic
 {
     if([addressDic isKindOfClass:[NSNull class]]) return;
@@ -79,6 +100,11 @@
     }
     
     NSLog(@"Prices loaded: %@", _services);
+}
+
+-(NSString *)thumbUrl
+{
+    return [self.thumbnail urlWithWidth:@100 height:@100];
 }
 
 -(NSNumber *)ratingBetween:(NSNumber *)theMin // TODO: scale from the min

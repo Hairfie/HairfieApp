@@ -25,8 +25,8 @@
     return self;
 }
 
-- (void) getCurrentUser {
-    
+- (void)getCurrentUser
+{
     UserRepository *userRepository = (UserRepository *)[[AppDelegate lbAdaptater] repositoryWithClass:[UserRepository class]];
     __block User *user;
     
@@ -65,6 +65,7 @@
 -(void) skipLogin {
     delegate.currentUser = nil;
     [delegate.credentialStore clearSavedCredentials];
+    [ARAnalytics event:@"AR - Skip"];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"skipLogin" object:self];
 }
 

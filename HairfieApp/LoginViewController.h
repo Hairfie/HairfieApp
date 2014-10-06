@@ -20,12 +20,14 @@
 @property (nonatomic) IBOutlet UITextField *passwordField;
 @property (nonatomic) AppDelegate *delegate;
 @property (nonatomic) UITapGestureRecognizer *dismiss;
+@property (nonatomic) BOOL doFbConnect;
+
 
 -(IBAction)doLogin:(id)sender;
 -(IBAction)closeKeyboard:(id)sender;
 -(IBAction)openEmailField:(id)sender;
 -(IBAction)openPasswordField:(id)sender;
 -(IBAction)skip:(id)sender;
-
+-(IBAction)goBack:(id)sender;
 
 @end
