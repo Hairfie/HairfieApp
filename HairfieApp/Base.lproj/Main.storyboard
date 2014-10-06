@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A329r" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="m6Z-pY-ich">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="m6Z-pY-ich">
     <dependencies>
         <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
@@ -13,7 +13,6 @@
             <string>SourceSansPro-Bold</string>
         </mutableArray>
         <mutableArray key="SourceSansPro-Light.ttf">
-            <string>SourceSansPro-Light</string>
             <string>SourceSansPro-Light</string>
             <string>SourceSansPro-Light</string>
             <string>SourceSansPro-Light</string>
@@ -3694,6 +3693,9 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="claimThisBusiness:" destination="BHW-4V-7I5" eventType="touchUpInside" id="71N-gb-7IF"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8w2-yY-XkF">
                                         <rect key="frame" x="8" y="19" width="40" height="40"/>
@@ -4285,7 +4287,7 @@
                                             <action selector="goBack:" destination="m3V-Fr-d7F" eventType="touchUpInside" id="pt4-jg-GkS"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add a time table" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mjS-4o-c28">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add a time window" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mjS-4o-c28">
                                         <rect key="frame" x="86" y="27" width="149" height="23"/>
                                         <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="18"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -4307,7 +4309,7 @@
                                 <color key="backgroundColor" red="0.15686274510000001" green="0.19215686269999999" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gaQ-UV-ISR" userLabel="Opening">
-                                <rect key="frame" x="10" y="256" width="130" height="292"/>
+                                <rect key="frame" x="16" y="84" width="130" height="292"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Set the opening time" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="100" translatesAutoresizingMaskIntoConstraints="NO" id="eBw-x1-7gC">
                                         <rect key="frame" x="15" y="10" width="100" height="52"/>
@@ -4326,7 +4328,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cde-ia-zX2" userLabel="Closing">
-                                <rect key="frame" x="185" y="256" width="125" height="274"/>
+                                <rect key="frame" x="179" y="84" width="125" height="274"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Set the closing time" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="100" translatesAutoresizingMaskIntoConstraints="NO" id="iZw-cZ-hf8">
                                         <rect key="frame" x="10" y="10" width="100" height="46"/>
@@ -4344,19 +4346,6 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
-                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cMs-b1-UGX">
-                                <rect key="frame" x="104" y="72" width="200" height="162"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="m3V-Fr-d7F" id="bty-tC-VPn"/>
-                                    <outlet property="delegate" destination="m3V-Fr-d7F" id="ZJr-9g-xGC"/>
-                                </connections>
-                            </pickerView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Pick a day :" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e6i-Ul-czP">
-                                <rect key="frame" x="16" y="142" width="80" height="22"/>
-                                <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="17"/>
-                                <color key="textColor" red="0.44294084820000001" green="0.44294084820000001" blue="0.44294084820000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -4364,7 +4353,6 @@
                     <connections>
                         <outlet property="closingTimePicker" destination="tHW-70-57C" id="s38-Fr-5Oy"/>
                         <outlet property="closingTimeView" destination="cde-ia-zX2" id="psc-ex-xp2"/>
-                        <outlet property="dayPickerView" destination="cMs-b1-UGX" id="4cq-mk-hSb"/>
                         <outlet property="doneBttn" destination="d1o-FL-ebs" id="XdH-iG-1O5"/>
                         <outlet property="headerTitle" destination="mjS-4o-c28" id="Stb-2m-HJP"/>
                         <outlet property="openingTimePicker" destination="4RR-iN-lll" id="y2e-nd-VVS"/>
@@ -4728,17 +4716,11 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="2ml-IS-A8f"/>
-        <segue reference="XXf-5V-koX"/>
-        <segue reference="uEN-by-6gW"/>
         <segue reference="VGS-VM-Pwy"/>
-        <segue reference="PSz-m0-val"/>
-        <segue reference="DYR-eo-mJz"/>
+        <segue reference="uEN-by-6gW"/>
+        <segue reference="2ml-IS-A8f"/>
         <segue reference="LOg-O4-mCP"/>
         <segue reference="PSz-m0-val"/>
         <segue reference="DYR-eo-mJz"/>
-        <segue reference="2ml-IS-A8f"/>
-        <segue reference="VGS-VM-Pwy"/>
-        <segue reference="uEN-by-6gW"/>
     </inferredMetricsTieBreakers>
 </document>
