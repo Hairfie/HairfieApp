@@ -12,6 +12,7 @@ target "HairfieApp" do
   pod 'ARAnalytics/DSL', '~> 2.8.0'
   pod 'MRProgress'
   pod 'SAMTextView'
+  pod 'CrashlyticsFramework'
 end
 
 target "HairfieAppTests" do

@@ -30,7 +30,8 @@
     [_searchByLocation resignFirstResponder];
     _searchByLocation.text = aroundMe;
 
-    _searchAroundMeImage.tintColor = [UIColor lightBlueHairfie];}
+    _searchAroundMeImage.tintColor = [UIColor lightBlueHairfie];
+}
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {

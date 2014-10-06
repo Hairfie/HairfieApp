@@ -41,8 +41,12 @@
     NSArray *viewControllers = @[startingViewController];
     [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
     
+    
+    CGRect frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height * 0.7f);
+    self.heightConstraint.constant = self.view.frame.size.height * 0.7f - 35;
+    
     // Change the size of page view controller
-    self.pageViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 120);
+    self.pageViewController.view.frame = frame;
     
     [self.view setBackgroundColor:[UIColor pinkHairfie]];
 
