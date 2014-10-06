@@ -52,6 +52,7 @@ static LBRESTAdapter * _lbAdaptater = nil;
         [User getById:self.credentialStore.userId
               success:^(User *user) {
                   self.currentUser = user;
+                  _lbAdaptater.accessToken = self.credentialStore.authToken;
                   [[NSNotificationCenter defaultCenter] postNotificationName:@"currentUser" object:nil];
 
               }
@@ -62,8 +63,6 @@ static LBRESTAdapter * _lbAdaptater = nil;
               }];
     } else {
         [self.credentialStore clearTutorialSeen];
-//        UIViewController *otherVC = [[UIStoryboard storyboardWithName:@"Tuto" bundle:nil] instantiateInitialViewController];
-//        [self.window setRootViewController:otherVC];
         [self showLoginStoryboard];
         
     }
