@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A329r" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="m6Z-pY-ich">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A379b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="m6Z-pY-ich">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -2441,7 +2441,8 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IJv-he-W0D" userLabel="Go Back">
-                                        <rect key="frame" x="10" y="30" width="20" height="20"/>
+                                        <rect key="frame" x="10" y="17" width="40" height="40"/>
+                                        <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                         <state key="normal" image="arrow-nav.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -4722,6 +4723,11 @@
         <segue reference="7yU-V8-5Z9"/>
         <segue reference="uEN-by-6gW"/>
         <segue reference="LOg-O4-mCP"/>
+        <segue reference="VGS-VM-Pwy"/>
+        <segue reference="uEN-by-6gW"/>
+        <segue reference="XXf-5V-koX"/>
+        <segue reference="K9z-px-huR"/>
+        <segue reference="PSz-m0-val"/>
         <segue reference="DYR-eo-mJz"/>
     </inferredMetricsTieBreakers>
 </document>
