@@ -543,7 +543,7 @@
                             <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UlN-Ro-o4h" userLabel="Search View" customClass="AdvanceSearch">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="142"/>
                                 <subviews>
-                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" image="search-advance-field-location.png" translatesAutoresizingMaskIntoConstraints="NO" id="MiA-gO-4hI">
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" image="search-advance-field-location2.png" translatesAutoresizingMaskIntoConstraints="NO" id="MiA-gO-4hI">
                                         <rect key="frame" x="10" y="108" width="300" height="27"/>
                                     </imageView>
                                     <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Ex : Paris, Marseille..." minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Hj0-p3-jlf" userLabel="Location Search">
@@ -554,7 +554,7 @@
                                             <outlet property="delegate" destination="UlN-Ro-o4h" id="ytW-gK-9NI"/>
                                         </connections>
                                     </textField>
-                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" image="search-advance-field-name.png" translatesAutoresizingMaskIntoConstraints="NO" id="2GW-lb-kWa">
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" image="search-advance-field-name2.png" translatesAutoresizingMaskIntoConstraints="NO" id="2GW-lb-kWa">
                                         <rect key="frame" x="10" y="73" width="300" height="27"/>
                                     </imageView>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Ex : Lissage brésilien, coloration, rouge..." minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="K7N-wZ-5Yz" userLabel="Name Search">
@@ -583,12 +583,12 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Search" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z7D-q0-1Wu">
                                                 <rect key="frame" x="122" y="27" width="76" height="21"/>
                                                 <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="16"/>
-                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                <color key="textColor" red="0.41176470590000003" green="0.4431372549" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w6c-VS-3Yp" userLabel="Search">
                                                 <rect key="frame" x="220" y="27" width="90" height="27"/>
-                                                <color key="backgroundColor" red="0.87450980389999999" green="0.38431372549999998" blue="0.33333333329999998" alpha="1" colorSpace="deviceRGB"/>
+                                                <color key="backgroundColor" red="0.98039215690000003" green="0.25882352939999997" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="14"/>
                                                 <state key="normal" title="Search">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -600,7 +600,7 @@
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kp7-EM-TcZ" userLabel="Cancel">
                                                 <rect key="frame" x="20" y="31" width="20" height="20"/>
                                                 <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="14"/>
-                                                <state key="normal" image="arrow-nav.png">
+                                                <state key="normal" image="cancel.png">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
@@ -608,10 +608,10 @@
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.1764705882" green="0.22352941179999999" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" red="0.1960784314" green="0.26274509800000001" blue="0.3411764706" alpha="1" colorSpace="deviceRGB"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <outlet property="searchAroundMeImage" destination="Ahn-y6-l2z" id="EjL-Al-0LW"/>
                                     <outlet property="searchBttn" destination="w6c-VS-3Yp" id="ShA-rr-heF"/>
@@ -1574,41 +1574,7 @@
                             <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sWx-gi-x3o" customClass="AdvanceSearch">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="142"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pps-Xj-Ftr">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="63"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Search" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vem-FH-v4h">
-                                                <rect key="frame" x="122" y="27" width="76" height="21"/>
-                                                <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="16"/>
-                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Spq-xF-T3n" userLabel="Cancel">
-                                                <rect key="frame" x="10" y="30" width="20" height="20"/>
-                                                <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="14"/>
-                                                <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
-                                                <state key="normal" image="arrow-nav.png">
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="cancelSearch:" destination="sWx-gi-x3o" eventType="touchUpInside" id="Mz4-kT-pVk"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wCc-8K-jnR" userLabel="Search">
-                                                <rect key="frame" x="222" y="27" width="90" height="27"/>
-                                                <color key="backgroundColor" red="0.87450980389999999" green="0.38431372549999998" blue="0.33333333329999998" alpha="1" colorSpace="deviceRGB"/>
-                                                <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="14"/>
-                                                <state key="normal" title="Search">
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="doSearch:" destination="sWx-gi-x3o" eventType="touchUpInside" id="Z3k-4H-Qjy"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    </view>
-                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" image="search-advance-field-location.png" translatesAutoresizingMaskIntoConstraints="NO" id="Br4-SO-oFd">
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" image="search-advance-field-location2.png" translatesAutoresizingMaskIntoConstraints="NO" id="Br4-SO-oFd">
                                         <rect key="frame" x="10" y="108" width="300" height="27"/>
                                     </imageView>
                                     <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Ex : Paris, Marseille..." minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="78j-ql-0jW" userLabel="Location Search">
@@ -1619,7 +1585,7 @@
                                             <outlet property="delegate" destination="sWx-gi-x3o" id="cgX-lm-ST8"/>
                                         </connections>
                                     </textField>
-                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" image="search-advance-field-name.png" translatesAutoresizingMaskIntoConstraints="NO" id="yR1-95-CnQ">
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" image="search-advance-field-name2.png" translatesAutoresizingMaskIntoConstraints="NO" id="yR1-95-CnQ">
                                         <rect key="frame" x="10" y="73" width="300" height="27"/>
                                     </imageView>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Ex : Lissage brésilien, coloration, rouge..." minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="hHb-73-Yqu" userLabel="Name Search">
@@ -1642,8 +1608,42 @@
                                             <action selector="searchAroundMe:" destination="sWx-gi-x3o" eventType="touchUpInside" id="xXu-XR-lFK"/>
                                         </connections>
                                     </button>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pps-Xj-Ftr">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="63"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Search" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vem-FH-v4h">
+                                                <rect key="frame" x="122" y="27" width="76" height="21"/>
+                                                <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="16"/>
+                                                <color key="textColor" red="0.41176470590000003" green="0.4431372549" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wCc-8K-jnR" userLabel="Search">
+                                                <rect key="frame" x="222" y="27" width="90" height="27"/>
+                                                <color key="backgroundColor" red="0.98039215690000003" green="0.25882352939999997" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="14"/>
+                                                <state key="normal" title="Search">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="doSearch:" destination="sWx-gi-x3o" eventType="touchUpInside" id="Z3k-4H-Qjy"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Spq-xF-T3n" userLabel="Cancel">
+                                                <rect key="frame" x="10" y="30" width="20" height="20"/>
+                                                <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="14"/>
+                                                <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                                <state key="normal" image="cancel.png">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="cancelSearch:" destination="sWx-gi-x3o" eventType="touchUpInside" id="Mz4-kT-pVk"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </view>
                                 </subviews>
-                                <color key="backgroundColor" red="0.1960784314" green="0.26274509800000001" blue="0.3411764706" alpha="1" colorSpace="deviceRGB"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <outlet property="searchAroundMeImage" destination="9rO-o8-XJA" id="sxS-xT-m1x"/>
                                     <outlet property="searchBttn" destination="wCc-8K-jnR" id="H7w-Y0-kRO"/>
@@ -4706,8 +4706,8 @@
         <image name="picto-users2.png" width="80" height="55"/>
         <image name="picto-woman-white.png" width="21" height="25"/>
         <image name="pin-salon.png" width="46" height="64"/>
-        <image name="search-advance-field-location.png" width="600" height="54"/>
-        <image name="search-advance-field-name.png" width="600" height="54"/>
+        <image name="search-advance-field-location2.png" width="602" height="56"/>
+        <image name="search-advance-field-name2.png" width="602" height="56"/>
         <image name="search-bar.png" width="491" height="54"/>
         <image name="send-email-client-button.png" width="599" height="79"/>
         <image name="take-picture-button.png" width="153" height="153"/>
@@ -4718,11 +4718,11 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="2ml-IS-A8f"/>
-        <segue reference="LOg-O4-mCP"/>
-        <segue reference="PSz-m0-val"/>
-        <segue reference="DYR-eo-mJz"/>
-        <segue reference="uEN-by-6gW"/>
+        <segue reference="dg2-Ph-4Hs"/>
         <segue reference="VGS-VM-Pwy"/>
+        <segue reference="7yU-V8-5Z9"/>
+        <segue reference="uEN-by-6gW"/>
+        <segue reference="LOg-O4-mCP"/>
+        <segue reference="DYR-eo-mJz"/>
     </inferredMetricsTieBreakers>
 </document>
