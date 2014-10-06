@@ -33,10 +33,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    NSLog(@"day picked %@", _dayPicked);
     _doneBttn.layer.cornerRadius = 5;
     timeTable = [[NSDictionary alloc] init];
     
-    weekDays = [[NSArray alloc] initWithObjects:@"Monday",@"Tuesday",@"Wednesday",@"Thursday",@"Friday",@"Saturday",@"Sunday", nil];
+    weekDays = [[NSArray alloc] initWithObjects:NSLocalizedStringFromTable(@"Monday", @"Claim", nil),NSLocalizedStringFromTable(@"Tuesday", @"Claim", nil),NSLocalizedStringFromTable(@"Wednesday", @"Claim", nil),NSLocalizedStringFromTable(@"Tuesday", @"Claim", nil),NSLocalizedStringFromTable(@"Friday", @"Claim", nil), NSLocalizedStringFromTable(@"Saturday", @"Claim", nil),NSLocalizedStringFromTable(@"Sunday", @"Claim", nil),nil];
     halfHour = [[NSArray alloc] initWithObjects:@"00",@"30", nil];
     
     [_dayPickerView selectRow:0 inComponent:0 animated:NO];
@@ -57,7 +58,6 @@
     _closingTimeView.layer.borderWidth = 1;
  
     
-    _dayPicked = @"Monday";
     _closingTime = @"18h30";
     _openingTime = @"9h00";
     
@@ -67,53 +67,35 @@
 - (NSInteger)numberOfComponentsInPickerView:
 (UIPickerView *)pickerView
 {
-    if (pickerView == _dayPickerView)
-        return 1;
-    else
-        return 2;
+    return 2;
 }
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView
 numberOfRowsInComponent:(NSInteger)component
 {
-    if (pickerView == _dayPickerView)
-        return weekDays.count;
-    else if (pickerView == _openingTimePicker || pickerView == _closingTimePicker)
-    {
-        if (component == 0)
-            return 24;
-        else
-            return 2;
-    }
-    return 0;
+    if (component == 0)
+        return 24;
+    else
+        return 2;
 }
 
 
 - (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
 {
-     UILabel* tView = (UILabel*)view;
+    UILabel* tView = (UILabel*)view;
     
-
+    
     tView = [[UILabel alloc] init];
     [tView setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:17]];
     [tView setTextAlignment:NSTextAlignmentCenter];
     
-   
     
-    if (pickerView == _dayPickerView)
-    {
-        // Fill the label text here
-    tView.text=[weekDays objectAtIndex:row];
-   
-    }
-    if (pickerView == _openingTimePicker || pickerView == _closingTimePicker)
-    {
-        if (component == 0)
-             tView.text=[NSString stringWithFormat:@"%ld", row];
-        else
-            tView.text = [halfHour objectAtIndex:row];
-    }
-   
+    if (component == 0)
+        tView.text=[NSString stringWithFormat:@"%ld", row];
+    else
+        tView.text = [halfHour objectAtIndex:row];
+    
+    
     return tView;
 }
 
@@ -121,8 +103,7 @@ numberOfRowsInComponent:(NSInteger)component
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row
       inComponent:(NSInteger)component
 {
-    if (pickerView == _dayPickerView)
-        _dayPicked = [weekDays objectAtIndex:row];
+   
     if (pickerView == _openingTimePicker)
     {
         NSString *minutes = [halfHour objectAtIndex:[pickerView selectedRowInComponent:1]];
@@ -146,7 +127,7 @@ numberOfRowsInComponent:(NSInteger)component
 -(IBAction)addTimeTable:(id)sender
 {
     FinalStepTimetableViewController *claimTimeTable = [self.navigationController.viewControllers objectAtIndex:[self.navigationController.viewControllers count]-2];
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Warning" message:@"You can't add more than 2 timewindows per day?" delegate:self cancelButtonTitle:@"Ok"otherButtonTitles:nil, nil];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedStringFromTable(@"Warning", @"Claim", nil) message:NSLocalizedStringFromTable(@"Warning TimeWindow", @"Claim", nil) delegate:self cancelButtonTitle:@"Ok"otherButtonTitles:nil, nil];
    
     TimeWindow *timeWindow = [[TimeWindow alloc] initWithStartTime:_openingTime endTime:_closingTime appointmentMode:nil];
     

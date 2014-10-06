@@ -49,6 +49,7 @@
     [super viewDidLoad];
     delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     
+    
     [delegate startTrackingLocation:YES];
 
     self.navigationItem.title = [NSString stringWithFormat:NSLocalizedStringFromTable(@"Home", @"Feed", nil)];
