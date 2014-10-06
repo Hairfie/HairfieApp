@@ -20,12 +20,15 @@
 +(UIColor *)greenHairfie;
 +(UIColor *)whiteHairfie;
 +(UIColor *)lightGreyHairfie;
-+(UIColor *)pinkHairfie;
-+(UIColor *)pinkBtnHairfie;
 
 // nouvelle charte
 
++(UIColor *)pinkHairfie;
++(UIColor *)pinkBtnHairfie;
 +(UIColor *)lightGrey;
++(UIColor *)darkGrey;
++(UIColor *)titleGrey;
+
 
 + (UIImage *)imageWithColor:(UIColor *)color;
 

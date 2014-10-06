@@ -170,7 +170,7 @@
     hairfieView.backgroundColor = [UIColor lightGreyHairfie];
     CALayer *bottomBorder = [CALayer layer];
     bottomBorder.frame = CGRectMake(0.0, 320, 320, 3.0f);
-    bottomBorder.backgroundColor = [UIColor lightBlueHairfie].CGColor;
+    bottomBorder.backgroundColor = [UIColor pinkHairfie].CGColor;
     [hairfieView.layer addSublayer:bottomBorder];
     
     UIImageView *hairfieImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 320)];

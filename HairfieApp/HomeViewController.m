@@ -42,7 +42,7 @@
 @synthesize searchView = _searchView, menuButton = _menuButton, topBarView = _topBarView;
 
 -(UIStatusBarStyle)preferredStatusBarStyle {
-    return UIStatusBarStyleLightContent;
+    return UIStatusBarStyleDefault;
 }
 
 - (void)viewDidLoad {
@@ -55,7 +55,7 @@
 
     _searchView.hidden = YES;
     [_searchView initView];
-    [_searchView.searchAroundMeImage setTintColor:[UIColor lightBlueHairfie]];
+    [_searchView.searchAroundMeImage setTintColor:[UIColor pinkBtnHairfie]];
     _searchView.searchByLocation.text = NSLocalizedStringFromTable(@"Around Me", @"Feed", nil);
 
     refreshControl = [[UIRefreshControl alloc] init];
@@ -286,11 +286,14 @@
     [_menuButton setHidden:YES];
     
     UIImage *loginButtonImg = [UIImage imageNamed:@"login-user.png"];
+    loginButtonImg = [loginButtonImg imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+
     UIButton *loginButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [loginButton setFrame:CGRectMake(0, 20, 40, 40)];
-    [loginButton setImageEdgeInsets:UIEdgeInsetsMake(10,13,10,13)];
+    [loginButton setImageEdgeInsets:UIEdgeInsetsMake(10,12,8,12)];
     [loginButton setImage:loginButtonImg forState:UIControlStateNormal];
     [loginButton addTarget:self action:@selector(backToLogin) forControlEvents:UIControlEventTouchUpInside];
+    loginButton.imageView.tintColor = [UIColor pinkBtnHairfie];
     [_topBarView addSubview:loginButton];
 }
 

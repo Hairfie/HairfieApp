@@ -56,6 +56,9 @@
     return [UIColor colorWithRed:214/255.0f green:217/255.0f blue:221/255.0f alpha:1];
 }
 
+
+// Nouvelle charte
+
 +(UIColor *)pinkHairfie {
     // Hexa :
     return [UIColor colorWithRed:254/255.0f green:91/255.0f blue:95/255.0f alpha:1];
@@ -65,11 +68,17 @@
     return [UIColor colorWithRed:254/255.0f green:124/255.0f blue:127/255.0f alpha:1];
 }
 
-// Nouvelle charte
-
 
 +(UIColor *)lightGrey {
     return [UIColor colorWithRed:240/255.0f green:240/255.0f blue:241/255.0f alpha:1];
+}
+
++(UIColor *)darkGrey {
+    return [UIColor colorWithRed:131/255.0f green:138/255.0f blue:151/255.0f alpha:1];
+}
+
++(UIColor *)titleGrey {
+    return [UIColor colorWithRed:105/255.0f green:113/255.0f blue:123/255.0f alpha:1];
 }
 
 + (UIImage *)imageWithColor:(UIColor *)color
