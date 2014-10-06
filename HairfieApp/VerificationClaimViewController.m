@@ -122,8 +122,9 @@
 
 -(IBAction)validateVerification:(id)sender
 {
+    [self performSegueWithIdentifier:@"infoVerified" sender:self];
     [self.view endEditing:YES];
-    void (^loadErrorBlock)(NSError *) = ^(NSError *error){
+   /* void (^loadErrorBlock)(NSError *) = ^(NSError *error){
         NSLog(@"Error : %@", error.description);
     };
     void (^loadSuccessBlock)(NSArray *) = ^(NSArray *results){
@@ -132,6 +133,7 @@
     };
     
     [delegate.currentUser saveWithSuccess:loadSuccessBlock failure:loadErrorBlock];
+    */
 }
 
 - (void)didReceiveMemoryWarning {

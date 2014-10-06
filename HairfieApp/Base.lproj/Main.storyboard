@@ -448,7 +448,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Book the best hairdresser around you" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="200" translatesAutoresizingMaskIntoConstraints="NO" id="YLi-t7-pTs">
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Book the best hairdresser around you" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="200" translatesAutoresizingMaskIntoConstraints="NO" id="YLi-t7-pTs">
                                             <rect key="frame" x="60" y="21" width="200" height="42"/>
                                             <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="18"/>
                                             <color key="textColor" red="0.15686274509803921" green="0.19215686274509802" blue="0.22352941176470587" alpha="1" colorSpace="calibratedRGB"/>
@@ -2115,7 +2115,7 @@
                                                         </state>
                                                     </button>
                                                     <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="5" translatesAutoresizingMaskIntoConstraints="NO" id="wUc-zk-Z94">
-                                                        <rect key="frame" x="224" y="150" width="100" height="37"/>
+                                                        <rect key="frame" x="180" y="150" width="132" height="37"/>
                                                         <connections>
                                                             <action selector="changePage:" destination="pDa-if-Gwb" eventType="touchUpInside" id="bZT-47-IDv"/>
                                                         </connections>
@@ -3190,8 +3190,6 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Vbd-xa-w9G" firstAttribute="top" secondItem="rco-As-m7I" secondAttribute="bottom" id="Jnl-ec-8Us"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Vbd-xa-w9G" secondAttribute="trailing" constant="-16" id="Uy7-6M-gaA"/>
-                            <constraint firstItem="Vbd-xa-w9G" firstAttribute="leading" secondItem="UXd-Ah-WSu" secondAttribute="leadingMargin" constant="-16" id="hzZ-pa-NdL"/>
                             <constraint firstItem="EaO-0T-i3v" firstAttribute="top" secondItem="0V3-Ob-BRy" secondAttribute="bottom" id="rcT-qY-Fet"/>
                             <constraint firstItem="EaO-0T-i3v" firstAttribute="top" secondItem="Vbd-xa-w9G" secondAttribute="bottom" id="xV2-Hz-sA6"/>
                         </constraints>
@@ -4726,11 +4724,11 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="dg2-Ph-4Hs"/>
-        <segue reference="VGS-VM-Pwy"/>
-        <segue reference="uEN-by-6gW"/>
-        <segue reference="7yU-V8-5Z9"/>
+        <segue reference="2ml-IS-A8f"/>
         <segue reference="XXf-5V-koX"/>
+        <segue reference="uEN-by-6gW"/>
+        <segue reference="VGS-VM-Pwy"/>
+        <segue reference="PSz-m0-val"/>
         <segue reference="DYR-eo-mJz"/>
     </inferredMetricsTieBreakers>
 </document>

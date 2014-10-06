@@ -52,21 +52,17 @@
     if ([sender tag] == 1)
         _claim.kind = KIND_ATHOME;
     
-    
-  //  NSLog(@"CLAIM %@", _claim);
+    NSLog(@"claim %@", _claim);
     
     void (^loadErrorBlock)(NSError *) = ^(NSError *error){
         NSLog(@"Error : %@", error.description);
     };
     void (^loadSuccessBlock)(NSDictionary *) = ^(NSDictionary *results){
-       // NSLog(@"results %@", results);
         [self performSegueWithIdentifier:@"claimKindSalon" sender:self];
     };
     
     [_claim claimWithSuccess:loadSuccessBlock failure:loadErrorBlock];
 }
-
-
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
