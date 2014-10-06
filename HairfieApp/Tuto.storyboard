@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A329r" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Cfc-gn-Xzs">
     <dependencies>
+        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -73,7 +74,7 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="myv-jB-Wfc">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="myv-jB-Wfc">
                                 <rect key="frame" x="170" y="490" width="120" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="120" id="L2F-Kb-wbI"/>
@@ -86,7 +87,7 @@
                                     <segue destination="Bt3-3W-QQM" kind="custom" identifier="Login@Tuto" customClass="AOLinkedStoryboardSegue" id="mbp-pX-Mpk"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yyr-i4-eWk">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yyr-i4-eWk">
                                 <rect key="frame" x="30" y="490" width="120" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="FqI-7v-9n1"/>
@@ -114,7 +115,7 @@
                                     <segue destination="cg1-Sk-FPr" kind="custom" identifier="@Main#skip" customClass="AOLinkedStoryboardSegue" id="D94-cf-nhS"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nMO-hx-ySB">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nMO-hx-ySB">
                                 <rect key="frame" x="30" y="442" width="260" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="c6h-jp-uNx"/>
@@ -128,30 +129,55 @@
                                     <segue destination="Bt3-3W-QQM" kind="show" identifier="fbLogin" id="9LD-7P-Dhc"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b9x-Dl-UbK">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="362"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="342" id="uUd-SE-zYi"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.99607843139999996" green="0.25098039220000001" blue="0.24313725489999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="Yyr-i4-eWk" firstAttribute="leading" secondItem="zh8-wV-vN5" secondAttribute="leadingMargin" constant="14" id="4YD-Zl-8Sc"/>
                             <constraint firstAttribute="trailingMargin" secondItem="myv-jB-Wfc" secondAttribute="trailing" constant="14" id="87f-6k-sfv"/>
-                            <constraint firstItem="Yyr-i4-eWk" firstAttribute="top" secondItem="nMO-hx-ySB" secondAttribute="bottom" constant="4" id="8eo-oe-PeN"/>
-                            <constraint firstItem="43u-m3-dxB" firstAttribute="top" secondItem="Yyr-i4-eWk" secondAttribute="bottom" constant="4" id="B4r-4D-Oil"/>
+                            <constraint firstItem="Yyr-i4-eWk" firstAttribute="top" relation="greaterThanOrEqual" secondItem="nMO-hx-ySB" secondAttribute="bottom" constant="4" id="8eo-oe-PeN"/>
+                            <constraint firstItem="43u-m3-dxB" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Yyr-i4-eWk" secondAttribute="bottom" constant="4" id="B4r-4D-Oil"/>
+                            <constraint firstItem="b9x-Dl-UbK" firstAttribute="leading" secondItem="zh8-wV-vN5" secondAttribute="leadingMargin" constant="-16" id="BpL-wd-HuC"/>
                             <constraint firstAttribute="trailingMargin" secondItem="nMO-hx-ySB" secondAttribute="trailing" constant="14" id="Br8-IY-z1k"/>
                             <constraint firstAttribute="trailingMargin" secondItem="43u-m3-dxB" secondAttribute="trailing" constant="76" id="CLY-ve-Odt"/>
+                            <constraint firstItem="Yyr-i4-eWk" firstAttribute="top" relation="greaterThanOrEqual" secondItem="b9x-Dl-UbK" secondAttribute="bottom" constant="80" id="CPH-SX-5UD"/>
                             <constraint firstItem="myv-jB-Wfc" firstAttribute="leading" secondItem="zh8-wV-vN5" secondAttribute="leadingMargin" constant="154" id="EAn-Wr-5fw"/>
                             <constraint firstItem="nMO-hx-ySB" firstAttribute="leading" secondItem="zh8-wV-vN5" secondAttribute="leadingMargin" constant="14" id="FGM-gf-Y2C"/>
                             <constraint firstItem="Yyr-i4-eWk" firstAttribute="top" secondItem="nMO-hx-ySB" secondAttribute="bottom" constant="8" id="IHk-9z-oCl"/>
+                            <constraint firstItem="nMO-hx-ySB" firstAttribute="top" relation="lessThanOrEqual" secondItem="b9x-Dl-UbK" secondAttribute="bottom" constant="80" id="OgS-Mg-OkI"/>
+                            <constraint firstItem="myv-jB-Wfc" firstAttribute="top" relation="lessThanOrEqual" secondItem="b9x-Dl-UbK" secondAttribute="bottom" constant="60" id="Pqu-5X-Uu9"/>
+                            <constraint firstItem="Yyr-i4-eWk" firstAttribute="centerY" secondItem="myv-jB-Wfc" secondAttribute="centerY" id="Pwe-57-QtM"/>
                             <constraint firstItem="GgU-Bi-RhW" firstAttribute="top" secondItem="nMO-hx-ySB" secondAttribute="bottom" constant="277" id="PxR-HH-2qd"/>
                             <constraint firstItem="GgU-Bi-RhW" firstAttribute="top" secondItem="43u-m3-dxB" secondAttribute="bottom" id="Qw6-VK-lM4"/>
+                            <constraint firstItem="b9x-Dl-UbK" firstAttribute="top" secondItem="nkz-3I-qcc" secondAttribute="bottom" id="TJ1-dx-XFw"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Yyr-i4-eWk" secondAttribute="trailing" constant="154" id="ae3-kW-GCe"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="b9x-Dl-UbK" secondAttribute="trailing" constant="-16" id="ciG-4j-OsZ"/>
+                            <constraint firstItem="b9x-Dl-UbK" firstAttribute="top" secondItem="nkz-3I-qcc" secondAttribute="bottom" id="d23-cV-E8a"/>
                             <constraint firstItem="GgU-Bi-RhW" firstAttribute="top" secondItem="Yyr-i4-eWk" secondAttribute="bottom" constant="239" id="loR-dC-bTL"/>
-                            <constraint firstItem="43u-m3-dxB" firstAttribute="top" secondItem="myv-jB-Wfc" secondAttribute="bottom" constant="4" id="npz-gM-tvk"/>
+                            <constraint firstItem="b9x-Dl-UbK" firstAttribute="leading" secondItem="zh8-wV-vN5" secondAttribute="leadingMargin" constant="-16" id="m0n-yc-1Rl"/>
+                            <constraint firstItem="b9x-Dl-UbK" firstAttribute="top" secondItem="zh8-wV-vN5" secondAttribute="topMargin" id="nCC-lZ-CP2"/>
+                            <constraint firstItem="Yyr-i4-eWk" firstAttribute="top" relation="lessThanOrEqual" secondItem="b9x-Dl-UbK" secondAttribute="bottom" constant="100" id="nFg-S1-nkX"/>
+                            <constraint firstItem="43u-m3-dxB" firstAttribute="top" relation="greaterThanOrEqual" secondItem="myv-jB-Wfc" secondAttribute="bottom" constant="4" id="npz-gM-tvk"/>
                             <constraint firstItem="GgU-Bi-RhW" firstAttribute="top" secondItem="myv-jB-Wfc" secondAttribute="bottom" constant="239" id="o8d-9m-ZPU"/>
                             <constraint firstItem="GgU-Bi-RhW" firstAttribute="top" secondItem="43u-m3-dxB" secondAttribute="bottom" constant="201" id="vl5-Pb-HGg"/>
+                            <constraint firstItem="nMO-hx-ySB" firstAttribute="top" relation="greaterThanOrEqual" secondItem="b9x-Dl-UbK" secondAttribute="bottom" constant="30" id="wK5-vl-49s"/>
                             <constraint firstItem="43u-m3-dxB" firstAttribute="leading" secondItem="zh8-wV-vN5" secondAttribute="leadingMargin" constant="76" id="wl1-bz-PwC"/>
+                            <constraint firstItem="b9x-Dl-UbK" firstAttribute="top" secondItem="nkz-3I-qcc" secondAttribute="bottom" constant="-20" id="zE3-Sm-1qK"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="TJ1-dx-XFw"/>
+                                <exclude reference="d23-cV-E8a"/>
+                                <exclude reference="m0n-yc-1Rl"/>
+                                <exclude reference="nCC-lZ-CP2"/>
                                 <exclude reference="IHk-9z-oCl"/>
+                                <exclude reference="Pqu-5X-Uu9"/>
                                 <exclude reference="PxR-HH-2qd"/>
                                 <exclude reference="loR-dC-bTL"/>
                                 <exclude reference="o8d-9m-ZPU"/>
@@ -163,7 +189,9 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="bgView" destination="b9x-Dl-UbK" id="pC5-mp-uDW"/>
                         <outlet property="fbLogin" destination="nMO-hx-ySB" id="mZx-lV-e2i"/>
+                        <outlet property="heightConstraint" destination="uUd-SE-zYi" id="d83-pH-q9r"/>
                         <outlet property="login" destination="myv-jB-Wfc" id="dKU-No-Biq"/>
                         <outlet property="signUp" destination="Yyr-i4-eWk" id="4Oy-YW-euT"/>
                     </connections>
@@ -850,7 +878,7 @@
         <image name="login-separator.png" width="533" height="1"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="DUF-Tz-akN"/>
-        <segue reference="9LD-7P-Dhc"/>
+        <segue reference="D94-cf-nhS"/>
+        <segue reference="mbp-pX-Mpk"/>
     </inferredMetricsTieBreakers>
 </document>

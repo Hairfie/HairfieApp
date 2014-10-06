@@ -18,6 +18,10 @@
 @property (nonatomic) IBOutlet UIButton *fbLogin;
 @property (nonatomic) IBOutlet UIButton *login;
 @property (nonatomic) IBOutlet UIButton *signUp;
+@property (nonatomic) IBOutlet UIView   *bgView;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *heightConstraint;
+
 
 - (IBAction)getFacebookUserInfo:(id)sender;
 
