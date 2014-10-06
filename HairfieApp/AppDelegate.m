@@ -130,7 +130,6 @@ static LBRESTAdapter * _lbAdaptater = nil;
 {
 
    _myLocation = [locations lastObject];
-    
     if (nil == _myLocation) {
         self.currentLocation = nil;
     } else {

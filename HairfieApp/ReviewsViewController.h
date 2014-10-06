@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <SAMTextView/SAMTextView.h>
 #import "RatingView.h"
 #import "Business.h"
 
@@ -25,7 +26,7 @@
 @property (nonatomic)  UIView *bgView;
 @property (nonatomic)  UIView *whiteBg;
 @property (strong, nonatomic) IBOutlet RatingView *reviewRating;
-@property (nonatomic,strong)  UITextView *reviewTextView;
+@property (nonatomic,strong)  SAMTextView *reviewTextView;
 
 -(IBAction)addReview:(id)sender;
 

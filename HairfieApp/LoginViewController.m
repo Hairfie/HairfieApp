@@ -114,6 +114,7 @@
             [badLogin show];
         }
     };
+    
     void (^loadSuccessBlock)(NSDictionary *) = ^(NSDictionary *results) {
         [_delegate.credentialStore setAuthTokenAndUserId:[results objectForKey:@"id"] forUser:[results objectForKey:@"userId"]];
         [AppDelegate lbAdaptater].accessToken = [results objectForKey:@"id"];

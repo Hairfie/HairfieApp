@@ -18,16 +18,16 @@
                failure:(void(^)(NSError *error))aFailureHandler
 {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
-    if (nil != self.id) {
-        [parameters setObject:self.id forKey:@"id"];
+    if (self.id!= nil) {
+        [parameters setObject:self.id forKey:@"businessClaimId"];
     }
     
     if (self.name != nil)
         [parameters setObject:self.name forKey:@"name"];
-   
+    
     if (self.kind != nil)
         [parameters setObject:self.kind forKey:@"kind"];
-   
+    
     if (self.gps != nil)
         [parameters setObject:[self.gps toDictionary] forKey:@"gps"];
     
@@ -45,6 +45,7 @@
     
     if (self.pictures != nil)
         [parameters setObject:self.pictures forKey:@"pictures"];
+    
     if (self.services != nil)
         [parameters setObject:self.services forKey:@"services"];
    
@@ -69,25 +70,45 @@
                                                                                      verb:@"POST"]
                                             forMethod:@"businessclaims"];
         LBModelRepository *repository = (LBModelRepository *)[[self class] repository];
-        
-        NSLog(@"parameters :%@", parameters);
         [repository invokeStaticMethod:@""
                                    parameters:parameters
                                       success:aSuccessHandler
                                       failure:aFailureHandler];
         
     } else {
-        [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/businessclaims/:id"
+        [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/businessClaims/:businessClaimId"
                                                                                      verb:@"PUT"]
-                                            forMethod:@"businessclaims.update"];
+                                            forMethod:@"businessClaims.update"];
         
-        
-        [[self repository] invokeStaticMethod:@"update"
+         LBModelRepository *repository = (LBModelRepository *)[[self class] repository];
+        [repository invokeStaticMethod:@"update"
                                    parameters:parameters
                                       success:aSuccessHandler
                                       failure:aFailureHandler];
     }
 }
+
+
+-(void)submitClaimWithSuccess:(void(^)(NSDictionary *results))aSuccessHandler
+                      failure:(void(^)(NSError *error))aFailureHandler
+{
+ 
+    
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    NSLog(@"%@", self.id);
+    [parameters setObject:self.id forKey:@"businessClaimId"];
+    [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/businessClaims/:businessClaimId/submit"
+                                                                                 verb:@"POST"]
+                                        forMethod:@"businessClaims.submit"];
+    
+    LBModelRepository *repository = (LBModelRepository *)[[self class] repository];
+    [repository invokeStaticMethod:@"submit"
+                        parameters:parameters
+                           success:aSuccessHandler
+                           failure:aFailureHandler];
+    
+}
+
 
 
 +(LBModelRepository *)repository

@@ -21,7 +21,8 @@
 @synthesize reviewRating = _reviewRating, ratingValue = _ratingValue, dismiss = _dismiss, addReviewButton = _addReviewButton;
 
 
-- (void)viewDidLoad {
+-(void)viewDidLoad
+{
     [super viewDidLoad];
    
     [self setupHeaderView];
@@ -32,12 +33,12 @@
                                              selector:@selector(refreshReviews:)
                                                  name:@"reviewSaved"
                                                object:nil];
-    _addReviewButton.layer.cornerRadius = 5;
-    _addReviewButton.layer.masksToBounds = YES;
-  //  _addReviewButton.hidden = YES;
-    _reviewTableView.backgroundColor = [UIColor whiteColor];
-   // _dismiss = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
-    // Do any additional setup after loading the view.
+
+    self.addReviewButton.layer.cornerRadius = 5;
+    self.addReviewButton.layer.masksToBounds = YES;
+    self.addReviewButton.hidden = YES;
+
+    self.reviewTableView.backgroundColor = [UIColor whiteColor];
 }
 
 
@@ -67,11 +68,8 @@
 }
 
 
-- (void)rateView:(RatingView *)rateView ratingDidChange:(float)rating {
-
-    
-   
-    
+- (void)rateView:(RatingView *)rateView ratingDidChange:(float)rating
+{
     if ([_reviewTextView.text isEqualToString:NSLocalizedStringFromTable(@"Ajoutez votre review...", @"Salon_Detail", nil)])
         _reviewTextView.text = @"";
     if (![_reviewTextView isFirstResponder]) {
@@ -161,18 +159,12 @@
 
 
 
-- (BOOL) textView: (UITextView*) textView
-shouldChangeTextInRange: (NSRange) range
-  replacementText: (NSString*) text
+-(BOOL)textView:(UITextView*)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString*)text
 {
     if ([text isEqualToString:@"\n"]) {
-        
-        if ([_reviewTextView.text isEqualToString:@""] || [_reviewTextView.text isEqualToString:NSLocalizedStringFromTable(@"Ajoutez votre review...", @"Salon_Detail", nil)])
-        {
-            NSLog(@"ICI");
-            _reviewRating.rating = 0;
-             _isReviewing = NO;
-            _reviewTextView.text = NSLocalizedStringFromTable(@"Ajoutez votre review...", @"Salon_Detail", nil);
+        if ([self.reviewTextView.text isEqualToString:@""]) {
+            self.reviewRating.rating = 0;
+            self.isReviewing = NO;
             _addReviewButton.hidden = YES;
             [_reviewTextView resignFirstResponder];
             [_reviewTableView reloadData];
@@ -191,15 +183,12 @@ shouldChangeTextInRange: (NSRange) range
 
 -(BOOL)textViewShouldReturn:(UITextView *)textView
 {
-       if ([_reviewTextView.text isEqualToString:@""] || [_reviewTextView.text isEqualToString:NSLocalizedStringFromTable(@"Ajoutez votre review...", @"Salon_Detail", nil)])
-    {
-        NSLog(@"ICI");
-        _reviewRating.rating = 0;
-        _addReviewButton.hidden = YES;
-        _isReviewing = NO;
-        _reviewTextView.text = NSLocalizedStringFromTable(@"Ajoutez votre review...", @"Salon_Detail", nil);
-        [_reviewTextView resignFirstResponder];
-        [_reviewTableView reloadData];
+    if ([_reviewTextView.text isEqualToString:@""]) {
+        self.reviewRating.rating = 0;
+        self.addReviewButton.hidden = YES;
+        self.isReviewing = NO;
+        [self.reviewTextView resignFirstResponder];
+        [self.reviewTableView reloadData];
     }
     else
     {
@@ -220,11 +209,13 @@ shouldChangeTextInRange: (NSRange) range
 
     UIView *frontView = [[UIView alloc] initWithFrame:CGRectMake(10, 10, 300, 196)];
 
-    _reviewTextView = [[UITextView alloc] initWithFrame:CGRectMake(20, 10, 280, 176)];
-    _reviewTextView.delegate = self;
-    _reviewTextView.backgroundColor = [UIColor clearColor];
-    _reviewTextView.textColor = [[UIColor blackHairfie] colorWithAlphaComponent:0.6];
-    _reviewTextView.returnKeyType = UIReturnKeyDone;
+    self.reviewTextView = [[SAMTextView alloc] initWithFrame:CGRectMake(20, 10, 280, 176)];
+    self.reviewTextView.delegate = self;
+    self.reviewTextView.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:14];
+    self.reviewTextView.backgroundColor = [UIColor clearColor];
+    self.reviewTextView.textColor = [[UIColor blackHairfie] colorWithAlphaComponent:0.6];
+    self.reviewTextView.returnKeyType = UIReturnKeyDone;
+    self.reviewTextView.placeholder = NSLocalizedStringFromTable(@"Enter a comment...", @"Salon_Detail", nil);
 
 
     frontView.backgroundColor = [UIColor colorWithRed:50/255.0f green:67/255.0f blue:87/255.0f alpha:0.1];
@@ -233,7 +224,7 @@ shouldChangeTextInRange: (NSRange) range
 
     [_bgView addSubview:frontView];
 
-    [frontView addSubview:_reviewTextView];
+    [frontView addSubview:self.reviewTextView];
 
 }
 
@@ -284,16 +275,5 @@ shouldChangeTextInRange: (NSRange) range
     [cell setReview:review];
     return cell;
 }
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

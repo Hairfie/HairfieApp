@@ -116,6 +116,7 @@
     menuActions = @[
         @{@"label": @"Report an error", @"segue": @"reportError"}
     ];
+
 }
 
 -(void) setupGallery:(NSArray*) pictures
@@ -177,6 +178,10 @@
     _reviewRating.rating = 0;
     [ARAnalytics pageView:@"AR - Business Detail"];
     [ARAnalytics event:@"AR - Business Detail" withProperties:@{@"Business ID": _business.id, @"Name": _business.name}];
+    
+    [self setNormalStateColor:_hairfieBttn];
+    [self setNormalStateColor:_hairdresserBttn];
+    [self setNormalStateColor:_priceAndSaleBttn];
 }
 
 
@@ -239,14 +244,30 @@
 }
 
 -(void)setButtonSelected:(UIButton*) button andBringViewUpfront:(UIView*) view {
-    [_containerView bringSubviewToFront:view];
     [self unSelectAll];
-    [button setBackgroundColor:[UIColor colorWithRed:50/255.0f green:67/255.0f blue:87/255.0f alpha:1]];
+    [button.imageView setTintColor:[UIColor salonDetailTab]];
+    [button setImage:button.imageView.image forState:UIControlStateNormal];
+    button.imageView.image = [button.imageView.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    [_containerView bringSubviewToFront:view];
+    
+    UIView *bottomBorder = [[UIView alloc] initWithFrame:CGRectMake(0, button.frame.size.height, button.frame.size.width, 3)];
+    bottomBorder.backgroundColor = [UIColor salonDetailTab];
+    bottomBorder.tag = 1;
+    [button addSubview:bottomBorder];
+
+    //[button setBackgroundColor:[UIColor colorWithRed:50/255.0f green:67/255.0f blue:87/255.0f alpha:1]];
 }
 
 -(void) setNormalStateColor:(UIButton*) button
 {
-    [button setBackgroundColor:[UIColor colorWithRed:50/255.0f green:67/255.0f blue:87/255.0f alpha:0.9]];
+    [button.imageView setTintColor:[UIColor greyHairfie]];
+    [button setImage:button.imageView.image forState:UIControlStateNormal];
+    button.imageView.image = [button.imageView.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    
+    for (UIView *subView in button.subviews) {
+        if (subView.tag == 1) [subView removeFromSuperview];
+    }
+    //[button setBackgroundColor:[UIColor colorWithRed:50/255.0f green:67/255.0f blue:87/255.0f alpha:0.9]];
 }
 
 -(void) unSelectAll
@@ -341,9 +362,8 @@
             NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"SimilarTableViewCell" owner:self options:nil];
             cell = [nib objectAtIndex:0];
         }
-
-        [cell customInit:self.similarBusinesses[indexPath.row]];
-
+        cell.business = self.similarBusinesses[indexPath.row];
+        cell.locationForDistance = self.business.gps;
         return cell;
     } else if (tableView == _hairdresserTableView) {
         static NSString *CellIdentifier = @"hairdresserCell";

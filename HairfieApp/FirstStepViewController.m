@@ -58,6 +58,8 @@
         NSLog(@"Error : %@", error.description);
     };
     void (^loadSuccessBlock)(NSDictionary *) = ^(NSDictionary *results){
+        NSLog(@"REZ :%@", results);
+        _claim.id = [results objectForKey:@"id"];
         [self performSegueWithIdentifier:@"claimKindSalon" sender:self];
     };
     
