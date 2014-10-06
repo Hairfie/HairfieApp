@@ -471,7 +471,7 @@
     if (!self.business.crossSell) return;
     
     [Business listSimilarTo:self.business.id
-                      limit:@2
+                      limit:@3
                     success:^(NSArray *businesses) {
                         self.similarBusinesses = businesses;
                         [self.similarTableView reloadData];
