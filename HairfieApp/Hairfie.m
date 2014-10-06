@@ -156,7 +156,6 @@
         [repository invokeStaticMethod:@"find"
                             parameters:parameters
                                success:^(NSArray *results) {
-                                   NSLog(@"results: %@", results);
                                    NSMutableArray *hairfies = [[NSMutableArray alloc] init];
                                    for (NSDictionary *result in results) {
                                        [hairfies addObject:[[[self class] alloc] initWithDictionary:result]];

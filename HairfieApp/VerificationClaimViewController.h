@@ -12,11 +12,16 @@
 
 @interface VerificationClaimViewController : UIViewController <UINavigationControllerDelegate, UITextFieldDelegate>
 
-@property (nonatomic) IBOutlet UITextField *civilityField;
+@property (nonatomic) IBOutlet UILabel *civilityLabel;
 @property (nonatomic) IBOutlet UITextField *firstNameField;
 @property (nonatomic) IBOutlet UITextField *lastNameField;
 @property (nonatomic) IBOutlet UITextField *emailField;
 @property (nonatomic) IBOutlet UITextField *phoneField;
 
+@property (nonatomic) IBOutlet UIView *titleView;
+@property (nonatomic) IBOutlet UIButton *titleButton;
+@property (nonatomic) IBOutlet UIPickerView *userTitle;
+
+-(IBAction)validateVerification:(id)sender;
 
 @end

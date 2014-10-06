@@ -82,6 +82,7 @@
     }
     
     void (^onSuccess)(NSDictionary *) = ^(NSDictionary *result) {
+        NSLog(@"Results : %@",result);
         [self initWithDictionary:result];
         aSuccessHandler();
     };
@@ -96,12 +97,14 @@
                                       success:onSuccess
                                       failure:aFailureHandler];
     } else {
+        NSLog(@"PUT USER");
         [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/users/:id"
                                                                                      verb:@"PUT"]
                                             forMethod:@"users.update"];
         
       
-        [[self repository] invokeStaticMethod:@"update"
+         LBModelRepository *repository = (LBModelRepository *)[[self class] repository];
+        [repository invokeStaticMethod:@"update"
                                    parameters:parameters
                                       success:onSuccess
                                       failure:aFailureHandler];
