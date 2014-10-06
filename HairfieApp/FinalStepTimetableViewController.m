@@ -113,7 +113,7 @@
         else if ([_timeTable.monday count] == 2 )
         {
             TimeWindow *timeWindow2 = [[TimeWindow  alloc]init];
-
+            
             timeWindow = [_timeTable.monday objectAtIndex:0];
             timeWindow2 = [_timeTable.monday objectAtIndex:1];
             [cell.timewindow sizeToFit];
@@ -127,6 +127,16 @@
             timeWindow = [_timeTable.tuesday objectAtIndex:0];
             cell.timewindow.text = [timeWindow timeWindowFormatted];
         }
+        else if ([_timeTable.monday count] == 2 )
+        {
+            TimeWindow *timeWindow2 = [[TimeWindow  alloc]init];
+            
+            timeWindow = [_timeTable.tuesday objectAtIndex:0];
+            timeWindow2 = [_timeTable.tuesday objectAtIndex:1];
+            [cell.timewindow sizeToFit];
+            cell.timewindow.text = [NSString stringWithFormat:@"%@ / %@", [timeWindow timeWindowFormatted], [timeWindow2 timeWindowFormatted]];
+        }
+
         else
             cell.timewindow.text = @"Set a time window";
     }
@@ -135,6 +145,16 @@
             timeWindow = [_timeTable.wednesday objectAtIndex:0];
             cell.timewindow.text = [timeWindow timeWindowFormatted];
         }
+        else if ([_timeTable.monday count] == 2 )
+        {
+            TimeWindow *timeWindow2 = [[TimeWindow  alloc]init];
+            
+            timeWindow = [_timeTable.wednesday objectAtIndex:0];
+            timeWindow2 = [_timeTable.wednesday objectAtIndex:1];
+            [cell.timewindow sizeToFit];
+            cell.timewindow.text = [NSString stringWithFormat:@"%@ / %@", [timeWindow timeWindowFormatted], [timeWindow2 timeWindowFormatted]];
+        }
+
         else
             cell.timewindow.text = @"Set a time window";
     }
@@ -144,6 +164,16 @@
             timeWindow = [_timeTable.thursday objectAtIndex:0];
             cell.timewindow.text = [timeWindow timeWindowFormatted];
         }
+        else if ([_timeTable.monday count] == 2 )
+        {
+            TimeWindow *timeWindow2 = [[TimeWindow  alloc]init];
+            
+            timeWindow = [_timeTable.thursday objectAtIndex:0];
+            timeWindow2 = [_timeTable.thursday objectAtIndex:1];
+            [cell.timewindow sizeToFit];
+            cell.timewindow.text = [NSString stringWithFormat:@"%@ / %@", [timeWindow timeWindowFormatted], [timeWindow2 timeWindowFormatted]];
+        }
+
         else
             cell.timewindow.text = @"Set a time window";
     }
@@ -152,6 +182,16 @@
             timeWindow = [_timeTable.friday objectAtIndex:0];
             cell.timewindow.text = [timeWindow timeWindowFormatted];
         }
+        else if ([_timeTable.monday count] == 2 )
+        {
+            TimeWindow *timeWindow2 = [[TimeWindow  alloc]init];
+            
+            timeWindow = [_timeTable.monday objectAtIndex:0];
+            timeWindow2 = [_timeTable.monday objectAtIndex:1];
+            [cell.timewindow sizeToFit];
+            cell.timewindow.text = [NSString stringWithFormat:@"%@ / %@", [timeWindow timeWindowFormatted], [timeWindow2 timeWindowFormatted]];
+        }
+
         else
             cell.timewindow.text = @"Set a time window";
     }
@@ -160,6 +200,15 @@
             timeWindow = [_timeTable.saturday objectAtIndex:0];
             cell.timewindow.text = [timeWindow timeWindowFormatted];
         }
+        else if ([_timeTable.monday count] == 2 )
+        {
+            TimeWindow *timeWindow2 = [[TimeWindow  alloc]init];
+            
+            timeWindow = [_timeTable.saturday objectAtIndex:0];
+            timeWindow2 = [_timeTable.saturday objectAtIndex:1];
+            [cell.timewindow sizeToFit];
+            cell.timewindow.text = [NSString stringWithFormat:@"%@ / %@", [timeWindow timeWindowFormatted], [timeWindow2 timeWindowFormatted]];
+        }
         else
             cell.timewindow.text = @"Set a time window";
     }
@@ -167,6 +216,15 @@
         if ([_timeTable.sunday count] != 0 ){
             timeWindow = [_timeTable.sunday objectAtIndex:0];
             cell.timewindow.text = [timeWindow timeWindowFormatted];
+        }
+        else if ([_timeTable.monday count] == 2 )
+        {
+            TimeWindow *timeWindow2 = [[TimeWindow  alloc]init];
+            
+            timeWindow = [_timeTable.sunday objectAtIndex:0];
+            timeWindow2 = [_timeTable.sunday objectAtIndex:1];
+            [cell.timewindow sizeToFit];
+            cell.timewindow.text = [NSString stringWithFormat:@"%@ / %@", [timeWindow timeWindowFormatted], [timeWindow2 timeWindowFormatted]];
         }
         else
             cell.timewindow.text = @"Set a time window";

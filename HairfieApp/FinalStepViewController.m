@@ -19,6 +19,7 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "ClaimAddHairdresserViewController.h"
 
+
 @interface FinalStepViewController ()
 
 @end
@@ -36,6 +37,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setupGallery:nil];
     [self setButtonSelected:_infoBttn andBringViewUpfront:_infoView];
     
     _claim.timetable = [[Timetable alloc] initEmpty];
@@ -50,33 +52,6 @@
     _validateBttn.layer.masksToBounds = YES;
     _addHairfiesBttn.layer.cornerRadius = 5;
     _addHairfiesBttn.layer.masksToBounds = YES;
-    
- 
-    
-    UIView *borderBttn =[[UIView alloc] initWithFrame:CGRectMake(105, 99, 110, 110)];
-    borderBttn.backgroundColor = [UIColor whiteColor];
-    borderBttn.alpha = 0.2;
-    borderBttn.layer.cornerRadius = borderBttn.frame.size.height / 2;
-    borderBttn.clipsToBounds = YES;
-    
-    UIButton *addPictureBttn = [[UIButton alloc] initWithFrame:CGRectMake(110, 104, 100, 100)];
-    addPictureBttn.layer.cornerRadius = addPictureBttn.frame.size.height / 2;
-    addPictureBttn.clipsToBounds = YES;
-    addPictureBttn.backgroundColor = [UIColor redHairfie];
-    [addPictureBttn addTarget:self
-                       action:@selector(chooseCameraType)
-             forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:borderBttn];
-    [self.view addSubview:addPictureBttn];
-    
-    
-    UILabel *addPictureLabel = [[UILabel alloc] initWithFrame:CGRectMake(135, 124, 50, 50)];
-    addPictureLabel.font = [UIFont fontWithName:@"SourceSansPro-Light" size:15];
-    addPictureLabel.textColor = [UIColor whiteColor];
-    addPictureLabel.text = @"Add Pictures";
-    addPictureLabel.textAlignment = NSTextAlignmentCenter;
-    addPictureLabel.numberOfLines = 2;
-    [self.view addSubview:addPictureLabel];
     
     // Do any additional setup after loading the view.
 }
@@ -104,12 +79,9 @@
 
 -(void) setupGallery:(NSArray*) pictures
 {
-    if ([pictures count] == 1)
-        _pageControl.hidden = YES;
-    if ([pictures count] == 0)
+    
+    if (pictures == nil)
     {
-        _pageControl.numberOfPages = 1;
-        _pageControl.hidden = YES;
         CGRect frame;
         frame.origin.x = 0;
         frame.origin.y = 0;
@@ -118,27 +90,53 @@
         imageView.image = [UIImage imageNamed:@"default-picture.jpg"];
         imageView.contentMode = UIViewContentModeScaleToFill;
         [_imageSliderView addSubview:imageView];
-    }
-    else {
+        UIView *borderBttn =[[UIView alloc] initWithFrame:CGRectMake(105, 35, 110, 110)];
+        borderBttn.backgroundColor = [UIColor whiteColor];
+        borderBttn.alpha = 0.2;
+        borderBttn.layer.cornerRadius = borderBttn.frame.size.height / 2;
+        borderBttn.clipsToBounds = YES;
         
-        _pageControl.numberOfPages = [pictures count];
+        UIButton *addPictureBttn = [[UIButton alloc] initWithFrame:CGRectMake(110, 40, 100, 100)];
+        addPictureBttn.layer.cornerRadius = addPictureBttn.frame.size.height / 2;
+        addPictureBttn.clipsToBounds = YES;
+        addPictureBttn.backgroundColor = [UIColor redHairfie];
+        [addPictureBttn addTarget:self
+                           action:@selector(chooseCameraType)
+                 forControlEvents:UIControlEventTouchUpInside];
+        
+        [_imageSliderView addSubview:borderBttn];
+        [_imageSliderView addSubview:addPictureBttn];
+    
+        UILabel *addPictureLabel = [[UILabel alloc] initWithFrame:CGRectMake(135, 60, 50, 50)];
+        addPictureLabel.font = [UIFont fontWithName:@"SourceSansPro-Light" size:15];
+        addPictureLabel.textColor = [UIColor whiteColor];
+        addPictureLabel.text = @"Add Pictures";
+        addPictureLabel.textAlignment = NSTextAlignmentCenter;
+        addPictureLabel.numberOfLines = 2;
+       
+        [_imageSliderView addSubview:addPictureLabel];
+    }
+    if ([pictures count] >= 1)
+    {
+        NSLog(@"what up %@", pictures);
+        _pageControl.hidden = NO;
+        _pageControl.numberOfPages = [pictures count] + 1;
+      
         for (int i = 0; i < [pictures count]; i++) {
             CGRect frame;
-            frame.origin.x = _imageSliderView.frame.size.width * i;
+            frame.origin.x = 320 + _imageSliderView.frame.size.width * i;
             frame.origin.y = 0;
             frame.size = _imageSliderView.frame.size;
             UIImageView *imageView = [[UIImageView alloc] initWithFrame:frame];
+          
             
-            [SDWebImageDownloader.sharedDownloader downloadImageWithURL:[NSURL URLWithString:[pictures objectAtIndex:i]]
-                                                                options:0
-                                                               progress:^(NSInteger receivedSize, NSInteger expectedSize) { }
-                                                              completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished)
-             {
-                 if (image && finished)
-                 {
-                     imageView.image = image;
-                 }
-             }];
+            
+            
+            [imageView sd_setImageWithURL:[NSURL URLWithString:[pictures objectAtIndex:i]]
+                                placeholderImage:[UIColor imageWithColor:[UIColor colorWithRed:234/255.0f
+                                                                                         green:236/255.0f
+                                                                                          blue:238/255.0f
+                                                                                         alpha:1]]];
             
             imageView.contentMode = UIViewContentModeScaleToFill;
             [_imageSliderView addSubview:imageView];
@@ -146,7 +144,8 @@
         
     }
     _imageSliderView.pagingEnabled = YES;
-    _imageSliderView.contentSize = CGSizeMake(_imageSliderView.frame.size.width * [pictures count], _imageSliderView.frame.size.height);
+    _imageSliderView.contentSize = CGSizeMake(320 + _imageSliderView.frame.size.width *
+                                              [pictures count], _imageSliderView.frame.size.height);
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -158,7 +157,6 @@
         _hairdresserTableView.hidden = YES;
     else
          _hairdresserTableView.hidden = NO;
-    [self setupGallery:_claim.pictures];
 }
 
 -(IBAction)changeTab:(id)sender {
@@ -277,7 +275,6 @@
             
             imagePicker.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
             [self initOverlayView];
-            
             [self presentViewController:imagePicker animated:YES completion:nil];
         }
     }
@@ -346,9 +343,10 @@
         NSLog(@"Error : %@", error.description);
     };
     void (^loadSuccessBlock)(Picture *) = ^(Picture *picture) {
-        [_claim.pictures addObject:picture];
-        NSLog(@"picture %@ uploaded", picture);
-        NSLog(@"pictures %@", _claim.pictures);
+        [_claim.pictures addObject:picture.url];
+        [self setupGallery:_claim.pictures];
+        [imagePicker dismissViewControllerAnimated:YES completion:nil];
+
     };
     
     [pictureUploader uploadImage:image toContainer:@"business-pictures" success:loadSuccessBlock failure:loadErrorBlock];
@@ -389,8 +387,6 @@
     
     
     [self uploadSalonImage:image];
-    
-    [picker dismissViewControllerAnimated:YES completion:nil];
     
 }
 
