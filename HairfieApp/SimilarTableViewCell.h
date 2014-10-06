@@ -10,6 +10,7 @@
 #import "RatingView.h"
 #import <LoopBack/LoopBack.h>
 #import "Business.h"
+#import "GeoPoint.h"
 
 @interface SimilarTableViewCell : UITableViewCell <RatingViewDelegate>
 
@@ -18,9 +19,12 @@
 @property (weak, nonatomic) IBOutlet UILabel *statusLabel;
 @property (nonatomic) IBOutlet UILabel *name;
 @property (nonatomic) IBOutlet UILabel *location;
+@property (nonatomic) IBOutlet UIImageView *locationPinImage;
 @property (nonatomic) IBOutlet UIImageView *salonPicture;
 @property (nonatomic) IBOutlet UIButton *bookButton;
 @property (weak, nonatomic) IBOutlet UILabel *numHairfiesLabel;
+@property (weak, nonatomic) Business *business;
+@property (weak, nonatomic) GeoPoint *locationForDistance;
 
 -(void)customInit:(Business* )business;
 

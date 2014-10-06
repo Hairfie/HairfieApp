@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
+#import "BusinessSearch.h"
 
 @interface AdvanceSearch : UIView <UITextFieldDelegate>
 
@@ -16,14 +17,10 @@
 @property (nonatomic) IBOutlet UIButton *searchAroundMe;
 @property (nonatomic) IBOutlet UIButton *searchBttn;
 @property (nonatomic) IBOutlet UIImageView *searchAroundMeImage;
-@property (nonatomic) NSString *searchRequest;
-@property (nonatomic) NSString *gpsString;
-@property (nonatomic) CLLocation *locationSearch;
-
+@property (strong, nonatomic) BusinessSearch *businessSearch;
 
 -(IBAction)searchAroundMe:(id)sender;
 -(IBAction)cancelSearch:(id)sender;
-
 
 -(void)initView;
 

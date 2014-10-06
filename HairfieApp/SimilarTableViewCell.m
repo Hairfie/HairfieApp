@@ -11,9 +11,6 @@
 #import "AppDelegate.h"
 
 @implementation SimilarTableViewCell
-{
-    GeoPoint *currentLocation;
-}
 
 -(void)awakeFromNib
 {
@@ -36,9 +33,21 @@
     // Initialization code
 }
 
--(void)customInit:(Business *)business
+-(void)setBusiness:(Business *)business
 {
-    [SDWebImageDownloader.sharedDownloader downloadImageWithURL:[NSURL URLWithString:business.thumbUrl]
+    _business = business;
+    [self refresh];
+}
+
+-(void)setLocationForDistance:(GeoPoint *)locationForDistance
+{
+    _locationForDistance = locationForDistance;
+    [self refresh];
+}
+
+-(void)refresh
+{
+    [SDWebImageDownloader.sharedDownloader downloadImageWithURL:[NSURL URLWithString:self.business.thumbUrl]
                                                         options:0
                                                        progress:^(NSInteger receivedSize, NSInteger expectedSize) { }
                                                       completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
@@ -47,24 +56,25 @@
                                                           }
                                                       }];
     
-    self.name.text = business.name;
-    self.numHairfiesLabel.text = business.displayNumHairfies;
+    self.name.text = self.business.name;
+    self.numHairfiesLabel.text = self.business.displayNumHairfies;
     
-    self.ratingView.rating = [[business ratingBetween:@0 and:@5] floatValue];
-    if ([business.numReviews isEqualToNumber:@0]) {
+    self.ratingView.rating = [[self.business ratingBetween:@0 and:@5] floatValue];
+    if ([self.business.numReviews isEqualToNumber:@0]) {
         self.statusLabel.text = NSLocalizedStringFromTable(@"rate this hairdresser", @"BusinessTableCell", nil);
-    } else if ([business.numReviews isEqualToNumber:@1]) {
+    } else if ([self.business.numReviews isEqualToNumber:@1]) {
         self.statusLabel.text = NSLocalizedStringFromTable(@"1 review", @"BusinessTableCell", nil);
     } else {
-        self.statusLabel.text = [NSString stringWithFormat:NSLocalizedStringFromTable(@"%@ reviews", @"BusinessTableCell", nil), business.numReviews];
+        self.statusLabel.text = [NSString stringWithFormat:NSLocalizedStringFromTable(@"%@ reviews", @"BusinessTableCell", nil), self.business.numReviews];
     }
-
-    GeoPoint *currentLocation = [(AppDelegate *)[[UIApplication sharedApplication] delegate] currentLocation];
     
-    if (currentLocation == nil) {
+    if (nil == self.locationForDistance) {
         self.location.hidden = YES;
+        self.locationPinImage.hidden = YES;
     } else {
-        self.location.text = [NSString stringWithFormat:@"%.1f km", [[business distanceTo:currentLocation] floatValue] / 1000];
+        self.location.text = [NSString stringWithFormat:@"%.1f km", [[self.business distanceTo:self.locationForDistance] floatValue] / 1000];
+        self.location.hidden = NO;
+        self.locationPinImage.hidden = NO;
     }
 }
 
