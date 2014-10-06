@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A329r" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="m6Z-pY-ich">
     <dependencies>
-        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -454,7 +453,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QFc-m8-YLl">
-                                            <rect key="frame" x="49" y="107" width="222" height="47"/>
+                                            <rect key="frame" x="38" y="107" width="244" height="47"/>
                                             <state key="normal" image="around-me-bttn.png">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
@@ -489,7 +488,7 @@
                                         <constraint firstItem="ag4-eJ-54i" firstAttribute="top" secondItem="tFc-K7-djX" secondAttribute="bottom" constant="36" id="n3L-UY-dwP"/>
                                         <constraint firstItem="QFc-m8-YLl" firstAttribute="bottom" secondItem="ag4-eJ-54i" secondAttribute="bottom" id="siA-e5-4oL"/>
                                         <constraint firstItem="ag4-eJ-54i" firstAttribute="leading" secondItem="3kj-M5-lKI" secondAttribute="leading" constant="91" id="uae-l4-cyE"/>
-                                        <constraint firstItem="QFc-m8-YLl" firstAttribute="leading" secondItem="3kj-M5-lKI" secondAttribute="leading" constant="49" id="vbH-rN-3MO"/>
+                                        <constraint firstItem="QFc-m8-YLl" firstAttribute="leading" secondItem="3kj-M5-lKI" secondAttribute="leading" constant="38" id="vbH-rN-3MO"/>
                                         <constraint firstItem="YLi-t7-pTs" firstAttribute="centerX" secondItem="3kj-M5-lKI" secondAttribute="centerX" id="wEB-BS-blR"/>
                                     </constraints>
                                 </collectionReusableView>
@@ -523,7 +522,8 @@
                                         </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aH7-em-gOi">
-                                        <rect key="frame" x="278" y="26" width="34" height="26"/>
+                                        <rect key="frame" x="272" y="23" width="37" height="29"/>
+                                        <inset key="contentEdgeInsets" minX="5" minY="8" maxX="5" maxY="2"/>
                                         <state key="normal" image="picto-take-picture.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -650,7 +650,7 @@
                     <navigationItem key="navigationItem" title="Home" id="wE9-Qp-qyd">
                         <barButtonItem key="leftBarButtonItem" image="menu-icon.png" id="um7-cD-RZl"/>
                     </navigationItem>
-                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="568"/>
@@ -4649,7 +4649,7 @@
     </scenes>
     <resources>
         <image name="add-comment-textfield.png" width="600" height="71"/>
-        <image name="around-me-bttn.png" width="422" height="93"/>
+        <image name="around-me-bttn.png" width="487" height="93"/>
         <image name="arrow-dropdown.png" width="37" height="22"/>
         <image name="arrow-nav.png" width="40" height="40"/>
         <image name="button-add-favorite.png" width="54" height="52"/>
@@ -4681,7 +4681,7 @@
         <image name="picto-menu-point.png" width="70" height="70"/>
         <image name="picto-phone-white.png" width="32" height="31"/>
         <image name="picto-sales.png" width="42" height="42"/>
-        <image name="picto-take-picture.png" width="68" height="52"/>
+        <image name="picto-take-picture.png" width="48" height="36"/>
         <image name="picto-woman-white.png" width="21" height="25"/>
         <image name="pin-salon.png" width="46" height="64"/>
         <image name="search-advance-field-location.png" width="600" height="54"/>
@@ -4696,11 +4696,11 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="dg2-Ph-4Hs"/>
+        <segue reference="7yU-V8-5Z9"/>
         <segue reference="uEN-by-6gW"/>
-        <segue reference="XXf-5V-koX"/>
-        <segue reference="PSz-m0-val"/>
-        <segue reference="2ml-IS-A8f"/>
         <segue reference="DYR-eo-mJz"/>
+        <segue reference="XXf-5V-koX"/>
         <segue reference="VGS-VM-Pwy"/>
     </inferredMetricsTieBreakers>
 </document>
