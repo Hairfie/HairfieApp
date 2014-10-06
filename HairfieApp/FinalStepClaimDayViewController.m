@@ -131,8 +131,11 @@ numberOfRowsInComponent:(NSInteger)component
    
     TimeWindow *timeWindow = [[TimeWindow alloc] initWithStartTime:_openingTime endTime:_closingTime appointmentMode:nil];
     
+    
+    
     if ([_dayPicked isEqualToString:@"Monday"])
     {
+        NSLog(@"%ld", [claimTimeTable.timeTable.monday count]);
         if ([claimTimeTable.timeTable.monday count] <= 2)
             [claimTimeTable.timeTable.monday addObject:timeWindow];
         else

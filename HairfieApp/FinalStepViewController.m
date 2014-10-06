@@ -487,7 +487,8 @@
     };
     void (^loadSuccessBlock)(NSDictionary *) = ^(NSDictionary *results) {
        
-        NSLog(@"Results %@", results);
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"currentUser" object:self];
+        [self.navigationController popToRootViewControllerAnimated:YES];
     };
     
     [_claim submitClaimWithSuccess:loadSuccessBlock failure:loadErrorBlock];

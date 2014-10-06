@@ -24,6 +24,7 @@
 @property (strong, nonatomic) NSString *numHairfies;
 @property (strong, nonatomic) NSString *phoneNumber;
 @property (strong, nonatomic) NSString *language;
+@property (strong, nonatomic) NSArray *managedBusinesses;
 
 -(id)initWithDictionary:(NSDictionary *)data;
 -(NSString *)name;
@@ -62,6 +63,7 @@
            success:(void (^)())aSuccessHandler
            failure:(void (^)(NSError *))aFailureHandler;
 
-
+-(void)getManagedBusinessesByUserSuccess:(void (^)(NSArray* results))aSuccessHandler
+                                 failure:(void (^)(NSError *))aFailureHandler;
 
 @end
