@@ -81,6 +81,10 @@
     return [UIColor colorWithRed:105/255.0f green:113/255.0f blue:123/255.0f alpha:1];
 }
 
++(UIColor *)salonDetailTab {
+    return [UIColor colorWithRed:254/255.0f green:91/255.0f blue:95/255.0f alpha:1];
+}
+
 + (UIImage *)imageWithColor:(UIColor *)color
 {
     CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);

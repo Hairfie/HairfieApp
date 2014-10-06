@@ -28,7 +28,7 @@
 +(UIColor *)lightGrey;
 +(UIColor *)darkGrey;
 +(UIColor *)titleGrey;
-
++(UIColor *)salonDetailTab;
 
 + (UIImage *)imageWithColor:(UIColor *)color;
 

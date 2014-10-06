@@ -2096,67 +2096,53 @@
                                                 </subviews>
                                                 <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                             </view>
-                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1fN-Tc-Gwu" userLabel="Background Blue View">
-                                                <rect key="frame" x="0.0" y="180" width="320" height="58"/>
-                                                <color key="backgroundColor" red="0.36078431370000003" green="0.67450980390000004" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
-                                            </view>
                                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="F1e-I3-z9r" userLabel="Tab Bar View">
-                                                <rect key="frame" x="0.0" y="183" width="320" height="55"/>
+                                                <rect key="frame" x="0.0" y="180" width="320" height="59"/>
                                                 <subviews>
-                                                    <button opaque="NO" alpha="0.89999997615814209" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9fU-aU-imO" userLabel="Info">
+                                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1fN-Tc-Gwu" userLabel="Background Blue View">
+                                                        <rect key="frame" x="0.0" y="1" width="320" height="58"/>
+                                                        <color key="backgroundColor" red="0.99607843137254903" green="0.67843137254901964" blue="0.69803921568627447" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </view>
+                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9fU-aU-imO" userLabel="Info">
                                                         <rect key="frame" x="0.0" y="0.0" width="80" height="55"/>
-                                                        <color key="backgroundColor" red="0.1960784314" green="0.26274509800000001" blue="0.3411764706" alpha="1" colorSpace="deviceRGB"/>
+                                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <state key="normal">
-                                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                        </state>
+                                                        <inset key="contentEdgeInsets" minX="20" minY="14" maxX="20" maxY="14"/>
+                                                        <state key="normal" image="picto-info2.png"/>
                                                         <connections>
                                                             <action selector="changeTab:" destination="pDa-if-Gwb" eventType="touchUpInside" id="WEF-lo-bWc"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" alpha="0.90000000000000002" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vj0-7V-Aao" userLabel="Hairfie">
-                                                        <rect key="frame" x="80" y="0.0" width="80" height="55"/>
-                                                        <color key="backgroundColor" red="0.1960784314" green="0.26274509800000001" blue="0.3411764706" alpha="1" colorSpace="deviceRGB"/>
-                                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <state key="normal">
-                                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                        </state>
-                                                        <connections>
-                                                            <action selector="changeTab:" destination="pDa-if-Gwb" eventType="touchUpInside" id="bFP-q3-H3B"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button opaque="NO" alpha="0.89999997615814209" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C6D-1X-n7l" userLabel="Hairdresser">
+                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C6D-1X-n7l" userLabel="Hairdresser">
                                                         <rect key="frame" x="160" y="0.0" width="80" height="55"/>
-                                                        <color key="backgroundColor" red="0.1960784314" green="0.26274509800000001" blue="0.3411764706" alpha="1" colorSpace="deviceRGB"/>
-                                                        <state key="normal">
-                                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                        </state>
+                                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <inset key="contentEdgeInsets" minX="20" minY="14" maxX="20" maxY="14"/>
+                                                        <state key="normal" image="picto-users2.png"/>
                                                         <connections>
                                                             <action selector="changeTab:" destination="pDa-if-Gwb" eventType="touchUpInside" id="wjK-d6-BHR"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" alpha="0.89999997615814209" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8xZ-En-Y9u" userLabel="Sales">
+                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8xZ-En-Y9u" userLabel="Sales">
                                                         <rect key="frame" x="240" y="0.0" width="80" height="55"/>
-                                                        <color key="backgroundColor" red="0.1960784314" green="0.26274509800000001" blue="0.3411764706" alpha="1" colorSpace="deviceRGB"/>
-                                                        <state key="normal">
-                                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                        </state>
+                                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <inset key="contentEdgeInsets" minX="20" minY="14" maxX="20" maxY="14"/>
+                                                        <state key="normal" image="picto-price2.png"/>
                                                         <connections>
                                                             <action selector="changeTab:" destination="pDa-if-Gwb" eventType="touchUpInside" id="kfy-iw-qUW"/>
                                                         </connections>
                                                     </button>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="picto-info.png" translatesAutoresizingMaskIntoConstraints="NO" id="fgz-9a-9Ca">
-                                                        <rect key="frame" x="30" y="17" width="21" height="21"/>
-                                                    </imageView>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="picto-camera.png" translatesAutoresizingMaskIntoConstraints="NO" id="I6x-2n-qLL">
-                                                        <rect key="frame" x="110" y="19" width="21" height="18"/>
-                                                    </imageView>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="picto-hairdresser.png" translatesAutoresizingMaskIntoConstraints="NO" id="iqk-lt-GNw">
-                                                        <rect key="frame" x="193" y="15" width="20" height="25"/>
-                                                    </imageView>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="picto-sales.png" translatesAutoresizingMaskIntoConstraints="NO" id="Y5Y-8F-gIS">
-                                                        <rect key="frame" x="270" y="17" width="21" height="21"/>
-                                                    </imageView>
+                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vj0-7V-Aao" userLabel="Hairfie">
+                                                        <rect key="frame" x="80" y="0.0" width="80" height="55"/>
+                                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <inset key="contentEdgeInsets" minX="20" minY="14" maxX="20" maxY="14"/>
+                                                        <state key="normal" image="picto-hairfie2.png"/>
+                                                        <connections>
+                                                            <action selector="changeTab:" destination="pDa-if-Gwb" eventType="touchUpInside" id="bFP-q3-H3B"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                             </view>
                                         </subviews>
@@ -2180,7 +2166,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZZ2-6W-cBv" userLabel="Go Back">
                                         <rect key="frame" x="0.0" y="20" width="60" height="40"/>
                                         <inset key="contentEdgeInsets" minX="10" minY="10" maxX="30" maxY="10"/>
-                                        <state key="normal" image="arrow-nav.png">
+                                        <state key="normal" image="arrow-nav-white.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -2189,6 +2175,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hQX-0k-sCV" userLabel="Menu">
                                         <rect key="frame" x="273" y="22" width="35" height="35"/>
+                                        <inset key="contentEdgeInsets" minX="8" minY="15" maxX="8" maxY="15"/>
                                         <state key="normal" image="picto-menu-point.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -2196,7 +2183,7 @@
                                             <action selector="showMenuActionSheet:" destination="pDa-if-Gwb" eventType="touchDown" id="ZFQ-1Z-rQ2"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Hair Salon" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hdh-5h-kmM">
+                                    <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Hair Salon" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hdh-5h-kmM">
                                         <rect key="frame" x="92" y="27" width="136" height="23"/>
                                         <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="18"/>
                                         <color key="textColor" red="0.41176470590000003" green="0.4431372549" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
@@ -4681,6 +4668,7 @@
         <image name="add-comment-textfield.png" width="600" height="71"/>
         <image name="around-me-bttn.png" width="487" height="93"/>
         <image name="arrow-dropdown.png" width="37" height="22"/>
+        <image name="arrow-nav-white.png" width="40" height="40"/>
         <image name="arrow-nav.png" width="40" height="40"/>
         <image name="button-add-favorite.png" width="54" height="52"/>
         <image name="cancel.png" width="107" height="107"/>
@@ -4703,15 +4691,19 @@
         <image name="picto-hairfie-comment.png" width="52" height="40"/>
         <image name="picto-hairfie-detail-like.png" width="50" height="40"/>
         <image name="picto-hairfie-detail-liked.png" width="50" height="40"/>
+        <image name="picto-hairfie2.png" width="80" height="55"/>
         <image name="picto-home-black.png" width="30" height="32"/>
         <image name="picto-info.png" width="42" height="42"/>
+        <image name="picto-info2.png" width="80" height="55"/>
         <image name="picto-list-phone.png" width="32" height="31"/>
         <image name="picto-list-resume.png" width="22" height="32"/>
         <image name="picto-man-white.png" width="24" height="25"/>
-        <image name="picto-menu-point.png" width="70" height="70"/>
+        <image name="picto-menu-point.png" width="36" height="9"/>
         <image name="picto-phone-white.png" width="32" height="31"/>
+        <image name="picto-price2.png" width="80" height="55"/>
         <image name="picto-sales.png" width="42" height="42"/>
         <image name="picto-take-picture.png" width="48" height="36"/>
+        <image name="picto-users2.png" width="80" height="55"/>
         <image name="picto-woman-white.png" width="21" height="25"/>
         <image name="pin-salon.png" width="46" height="64"/>
         <image name="search-advance-field-location.png" width="600" height="54"/>
