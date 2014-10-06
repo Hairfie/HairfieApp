@@ -61,7 +61,7 @@
     overlayView.frame =  _imagePicker.cameraOverlayView.frame;
     
     UIView *navigationView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 60)];
-    navigationView.backgroundColor = [UIColor blackHairfie];
+    navigationView.backgroundColor = [UIColor whiteColor];
     
     
     UIImage *goBackImg = [UIImage imageNamed:@"arrow-nav.png"];
@@ -72,10 +72,10 @@
     [goBackButton setFrame:CGRectMake(10, 32, 20, 20)];
     
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(92, 30, 136, 23)];
-    titleLabel.text = NSLocalizedStringFromTable(@"Post Hairfie", @"Post_Hairfie", nil);
+    titleLabel.text = NSLocalizedStringFromTable(@"Take Hairfie", @"Post_Hairfie", nil);
     titleLabel.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:18];
     titleLabel.textAlignment = NSTextAlignmentCenter;
-    titleLabel.textColor = [UIColor whiteColor];
+    titleLabel.textColor = [UIColor titleGrey];
     [navigationView addSubview:titleLabel];
     [navigationView addSubview:goBackButton];
     [overlayView addSubview:navigationView];
