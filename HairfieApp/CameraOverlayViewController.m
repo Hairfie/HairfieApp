@@ -35,6 +35,7 @@
         _imagePicker.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
         _imagePicker.allowsEditing = YES;
         [self initOverlayView];
+        
         [self presentViewController:_imagePicker animated:NO completion:nil];
     } else {
         _imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
@@ -78,7 +79,12 @@
     titleLabel.textColor = [UIColor titleGrey];
     [navigationView addSubview:titleLabel];
     [navigationView addSubview:goBackButton];
+    
+    UIView *bottomNavigationView = [[UIView alloc] initWithFrame:CGRectMake(0, 380, 320, self.view.frame.size.height - 380)];
+    bottomNavigationView.backgroundColor = [UIColor whiteColor];
+    
     [overlayView addSubview:navigationView];
+    [overlayView addSubview:bottomNavigationView];
     
     
     UIImage *takePictureImg = [UIImage imageNamed:@"take-picture-button.png"];
