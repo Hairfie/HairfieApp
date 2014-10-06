@@ -49,6 +49,21 @@
     [ARAnalytics pageView:@"AR - Verification Claim"];
 }
 
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    
+    NSInteger nextTag = textField.tag + 1;
+    // Try to find next responder
+    UIResponder* nextResponder = [textField.superview viewWithTag:nextTag];
+    if (nextResponder) {
+        // Found next responder, so set it.
+        [nextResponder becomeFirstResponder];
+    } else {
+        [textField resignFirstResponder];
+    }
+    return YES;
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -10,7 +10,7 @@
 #import "AppDelegate.h"
 #import "User.h"
 
-@interface VerificationClaimViewController : UIViewController <UINavigationControllerDelegate>
+@interface VerificationClaimViewController : UIViewController <UINavigationControllerDelegate, UITextFieldDelegate>
 
 @property (nonatomic) IBOutlet UITextField *civilityField;
 @property (nonatomic) IBOutlet UITextField *firstNameField;
