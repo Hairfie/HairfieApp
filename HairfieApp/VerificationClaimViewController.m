@@ -51,7 +51,7 @@
     if (![delegate.currentUser.phoneNumber isEqual: [NSNull null]])
         _phoneField.text = delegate.currentUser.phoneNumber;
     else
-        _phoneField.text = @"No phone number";
+        _phoneField.placeholder = NSLocalizedStringFromTable(@"Add your phone number", @"Claim", nil);
     dismissCivility = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(hideCivilityPicker)];
     [self.view addGestureRecognizer:self.slidingViewController.panGesture];
     // Do any additional setup after loading the view.

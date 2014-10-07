@@ -56,6 +56,11 @@
 @property (nonatomic) IBOutlet UITableView* hairdresserTableView;
 @property BOOL isEditingHairdresser;
 
+// PRICES/SALES TAB
+
+@property (nonatomic) IBOutlet UITableView* serviceTableView;
+@property BOOL isEditingService;
+
 // FROM SEGUE
 
 @property (nonatomic, strong) Business *businessToManage;

@@ -74,13 +74,13 @@
     return self;
 }
 
--(void)setPictures:(NSArray *)pictures
+-(void)setPictures:(NSMutableArray *)pictures
 {
     NSMutableArray *temp = [[NSMutableArray alloc] init];
     for (NSDictionary *picture in pictures) {
         [temp addObject:[[Picture alloc] initWithDictionary:picture]];
     }
-    _pictures = [[NSArray alloc] initWithArray:temp];
+    _pictures = [[NSMutableArray alloc] initWithArray:temp];
 }
 
 - (void)setAddress:(NSDictionary *)addressDic
@@ -97,20 +97,6 @@
     _gps = [[GeoPoint alloc] initWithJson:geoPointDic];
 }
 
--(void)setServices:(NSArray *)services
-{
-    if ([services isEqual:[NSNull null]]) {
-        _services = @[];
-    } else {
-        NSMutableArray *temp = [[NSMutableArray alloc] init];
-        for (NSDictionary *price in services) {
-            [temp addObject:[[Service alloc] initWithDictionary:price]];
-        }
-        _services = [[NSArray alloc] initWithArray:temp];
-    }
-    
-    NSLog(@"Prices loaded: %@", _services);
-}
 
 -(NSString *)thumbUrl
 {
@@ -158,6 +144,46 @@
                                  aFailureHandler(error);
                              }];
 }
+
+
+-(void)updateWithSuccess:(void(^)(NSArray *results))aSuccessHandler
+                 failure:(void(^)(NSError *error))aFailureHandler
+{
+    [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/businesses/:id" verb:@"PUT"] forMethod:@"businesses.update"];
+    
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    
+    
+    [parameters setObject:self.id forKey:@"id"];
+    
+    if (self.name != nil)
+        [parameters setObject:self.name forKey:@"name"];
+    
+    if (self.gps != nil)
+        [parameters setObject:[self.gps toDictionary] forKey:@"gps"];
+    
+    if (self.phoneNumber != nil)
+        [parameters setObject:self.phoneNumber forKey:@"phoneNumber"];
+    
+    if (self.timetable != nil)
+        [parameters setObject:[self.timetable toDictionary] forKey:@"timetable"];
+    
+    if (self.address != nil)
+        [parameters setObject:[self.address toDictionary]  forKey:@"address"];
+    
+    if (self.desc != nil)
+        [parameters setObject:self.desc forKey:@"description"];
+    
+    if (self.pictures != nil)
+        [parameters setObject:self.pictures forKey:@"pictures"];
+    
+    if (self.services != nil)
+        [parameters setObject:self.services forKey:@"services"];
+    
+    
+    [[Business repository] invokeStaticMethod:@"businesses" parameters:@{} success:aSuccessHandler failure:aFailureHandler];
+}
+
 
 
 +(void)listSimilarTo:(NSString *)aBusinessId

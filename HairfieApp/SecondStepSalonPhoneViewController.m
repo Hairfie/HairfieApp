@@ -108,8 +108,6 @@
             } else {
                 finalStep.businessToManage.name = textField.text;
             }
-            
-            
         } else {
             if (_isSalon == NO) {
                 finalStep.claim.phoneNumber = textField.text;

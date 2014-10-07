@@ -23,9 +23,9 @@
 @property (strong, nonatomic) Timetable *timetable;
 @property (strong, nonatomic) Address *address;
 @property (strong, nonatomic) NSMutableArray *pictures;
-@property (strong, nonatomic) NSArray *hairdressers;
+@property (strong, nonatomic) NSMutableArray *hairdressers;
 @property (strong, nonatomic) NSString *thumbnail;
-@property (strong, nonatomic) NSArray *services;
+@property (strong, nonatomic) NSMutableArray *services;
 @property (strong, nonatomic) NSString *kind;
 @property (strong, nonatomic) NSString *desc;
 @property (strong, nonatomic) NSString *authorRole;

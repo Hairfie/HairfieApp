@@ -55,7 +55,12 @@
 {
     // TO DO enregistrer les horaires modifiés
      FinalStepViewController *finalStep = [self.navigationController.viewControllers objectAtIndex:[self.navigationController.viewControllers count]-2];
-    finalStep.claim.timetable = _timeTable;
+   
+    
+    if (finalStep.businessToManage != nil)
+        finalStep.businessToManage.timetable = _timeTable;
+    else
+        finalStep.claim.timetable = _timeTable;
     
     [self goBack:self];
 }

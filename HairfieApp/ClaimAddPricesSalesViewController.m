@@ -7,15 +7,20 @@
 //
 
 #import "ClaimAddPricesSalesViewController.h"
+#import "FinalStepViewController.h"
+#import "Service.h"
 
 @interface ClaimAddPricesSalesViewController ()
 
 @end
 
 @implementation ClaimAddPricesSalesViewController
-
+{
+    NSMutableArray *services;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
+    services = [[NSMutableArray alloc] init];
     _priceDescriptionView.layer.cornerRadius = 5;
     _priceDescriptionView.layer.borderColor = [UIColor lightGreyHairfie].CGColor;
     _priceDescriptionView.layer.borderWidth = 1;
@@ -29,9 +34,45 @@
     // Do any additional setup after loading the view.
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    if (_serviceClaimed != nil)
+        services = _serviceClaimed;
+    if (_serviceFromSegue != nil)
+    {
+        _priceValue.text = [NSString stringWithFormat:@"%@",_serviceFromSegue.price.amount ];
+        _priceDescription.text = _serviceFromSegue.label;
+    }
+    
+}
+
+-(void)addService
+{
+    NSNumberFormatter * formatter = [[NSNumberFormatter alloc] init];
+    [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+    NSNumber * priceAmount = [formatter numberFromString:_priceValue.text];
+    Money *priceToAdd = [[Money alloc] initWithAmount:priceAmount currency:@"EUR"];
+  
+    Service *serviceToAdd = [[Service alloc] initWithLabel:_priceDescription.text price:priceToAdd];
+  
+    [services addObject:serviceToAdd];
+    
+}
+
 -(IBAction)validatePricesSales:(id)sender
 {
     // TO DO enregistrer les prix/promos ajoutés
+    [self addService];
+    
+    
+    FinalStepViewController *finalStep = [self.navigationController.viewControllers objectAtIndex:[self.navigationController.viewControllers count]-2];
+
+    if (finalStep.businessToManage != nil)
+        finalStep.businessToManage.services = services;
+//    else
+//        finalStep.claim.services = services;
+//    
+   NSLog(@"service %@", finalStep.businessToManage.services);
     
     [self goBack:self];
 }

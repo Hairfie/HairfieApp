@@ -64,6 +64,8 @@
 }
 
 
+
+
 - (NSInteger)numberOfComponentsInPickerView:
 (UIPickerView *)pickerView
 {
@@ -185,6 +187,7 @@ numberOfRowsInComponent:(NSInteger)component
     }
     [_openingTimePicker reloadAllComponents];
     [_closingTimePicker reloadAllComponents];
+    [self goBack:self];
     
 }
 

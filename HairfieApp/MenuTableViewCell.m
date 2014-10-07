@@ -22,4 +22,11 @@
     // Configure the view for the selected state
 }
 
+-(void)setClaimSectionPadding
+{
+    [self.menuPicto setFrame:CGRectMake(32, 12, 20, 20)];
+    [self.menuItem setFrame:CGRectMake(72, 0, 320, 44)];
+
+}
+
 @end
