@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <LoopBack/LoopBack.h>
+#import "User.h"
 #import "Address.h"
 #import "GeoPoint.h"
 #import "Timetable.h"
@@ -17,6 +18,7 @@
 @interface Business : LBModel
 
 @property (strong, nonatomic) NSString *id;
+@property (strong, nonatomic) User *owner;
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) GeoPoint *gps;
 @property (strong, nonatomic) NSString *phoneNumber;
