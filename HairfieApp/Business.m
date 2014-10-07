@@ -18,8 +18,7 @@
 
 -(void)setTimetable:(NSDictionary *)aDictionary
 {
-    if (nil == aDictionary) return;
-    
+    if (nil == aDictionary || [aDictionary isEqual:[NSNull null]]) return;
     _timetable = [[Timetable alloc] initWithDictionary:aDictionary];
 }
 
