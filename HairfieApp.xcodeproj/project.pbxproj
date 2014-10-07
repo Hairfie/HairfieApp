@@ -18,6 +18,9 @@
 		153E1FB419B4AA8200DEC95D /* UserAuthenticator.m in Sources */ = {isa = PBXBuildFile; fileRef = 153E1FB319B4AA8200DEC95D /* UserAuthenticator.m */; };
 		1540150119D030030094DB5E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1540150319D030030094DB5E /* InfoPlist.strings */; };
 		15481A8A19E3E5F600C9D7A7 /* TermsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15481A8919E3E5F600C9D7A7 /* TermsViewController.m */; };
+		15481A8D19E3EBDB00C9D7A7 /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15481A8C19E3EBDB00C9D7A7 /* PopUpViewController.swift */; };
+		15481A8F19E3EC2300C9D7A7 /* PopUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15481A8E19E3EC2300C9D7A7 /* PopUpViewController.xib */; };
+		15481A9119E3EF3C00C9D7A7 /* cancel-popup.png in Resources */ = {isa = PBXBuildFile; fileRef = 15481A9019E3EF3C00C9D7A7 /* cancel-popup.png */; };
 		1550721719DC55B9008F2EAD /* tuto-page-3.png in Resources */ = {isa = PBXBuildFile; fileRef = 1550721419DC55B9008F2EAD /* tuto-page-3.png */; };
 		1550721819DC55B9008F2EAD /* tuto-page-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 1550721519DC55B9008F2EAD /* tuto-page-2.png */; };
 		1550721919DC55B9008F2EAD /* tuto-page-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 1550721619DC55B9008F2EAD /* tuto-page-1.png */; };
@@ -324,6 +327,9 @@
 		1540150519D030080094DB5E /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		15481A8819E3E5F600C9D7A7 /* TermsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TermsViewController.h; sourceTree = "<group>"; };
 		15481A8919E3E5F600C9D7A7 /* TermsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TermsViewController.m; sourceTree = "<group>"; };
+		15481A8C19E3EBDB00C9D7A7 /* PopUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
+		15481A8E19E3EC2300C9D7A7 /* PopUpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopUpViewController.xib; sourceTree = "<group>"; };
+		15481A9019E3EF3C00C9D7A7 /* cancel-popup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cancel-popup.png"; sourceTree = "<group>"; };
 		1550721419DC55B9008F2EAD /* tuto-page-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tuto-page-3.png"; sourceTree = "<group>"; };
 		1550721519DC55B9008F2EAD /* tuto-page-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tuto-page-2.png"; sourceTree = "<group>"; };
 		1550721619DC55B9008F2EAD /* tuto-page-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tuto-page-1.png"; sourceTree = "<group>"; };
@@ -824,6 +830,7 @@
 		1511518E1982B7A8001157A2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				15481A8B19E3EBC400C9D7A7 /* PopUp */,
 				155C170019DD435D0060A0C9 /* UIButton Subclasses */,
 				15E3D2AF19D075B40065A07E /* Localization */,
 				B3FB10B419B09DA600CADCFD /* man-picto.png */,
@@ -894,6 +901,15 @@
 				B33D4C5819D1A655009DE6DD /* BusinessClaimRepository.m */,
 			);
 			name = Repositories;
+			sourceTree = "<group>";
+		};
+		15481A8B19E3EBC400C9D7A7 /* PopUp */ = {
+			isa = PBXGroup;
+			children = (
+				15481A8C19E3EBDB00C9D7A7 /* PopUpViewController.swift */,
+				15481A8E19E3EC2300C9D7A7 /* PopUpViewController.xib */,
+			);
+			name = PopUp;
 			sourceTree = "<group>";
 		};
 		155C170019DD435D0060A0C9 /* UIButton Subclasses */ = {
@@ -1494,6 +1510,7 @@
 			children = (
 				1559630E19E30DE000F84BFA /* search-advance-field-location2.png */,
 				1559631219E32BE000F84BFA /* cancel-white.png */,
+				15481A9019E3EF3C00C9D7A7 /* cancel-popup.png */,
 				1559631319E32BE000F84BFA /* next-white.png */,
 				1559630F19E30DE000F84BFA /* search-advance-field-name2.png */,
 				1559630619E2F54400F84BFA /* picto-hairfie2.png */,
@@ -1700,6 +1717,7 @@
 				B3DD7A731990C8DD007B1621 /* picto-clock-black.png in Resources */,
 				B3EDF87419878F6C00431B70 /* Localizable.strings in Resources */,
 				B3CCE7901998F4F600067DB9 /* CommentTableViewCell.xib in Resources */,
+				15481A9119E3EF3C00C9D7A7 /* cancel-popup.png in Resources */,
 				1559630B19E2F54400F84BFA /* picto-info2.png in Resources */,
 				B35A82A419A629DF003B1321 /* HairdressersTableViewCell.xib in Resources */,
 				B3E0B16319ACE33000C3EACE /* checkbox-false.png in Resources */,
@@ -1753,6 +1771,7 @@
 				B3E65FD51986A9E500AF0C15 /* selected-cell.jpg in Resources */,
 				B3A12821198AA1B1004D90BD /* custom-map-pin.png in Resources */,
 				15E3D2D519D07AB10065A07E /* Main.strings in Resources */,
+				15481A8F19E3EC2300C9D7A7 /* PopUpViewController.xib in Resources */,
 				B3AD59B8198B9A3700909ADE /* SalonTableViewCell.xib in Resources */,
 				B36731E3198FB17800E11C56 /* picto-woman-white.png in Resources */,
 				15B4972619DBEFBB00917B83 /* add-a-hairfie-profile.png in Resources */,
@@ -1946,6 +1965,7 @@
 				B367DC3119C98DC400A0452A /* ThirdStepMapViewController.m in Sources */,
 				71C0D3FF19C1D7600037CBF4 /* Address.m in Sources */,
 				B3AE0D3819C0510200149C2B /* HairfiePostSalonTypeViewController.m in Sources */,
+				15481A8D19E3EBDB00C9D7A7 /* PopUpViewController.swift in Sources */,
 				B3C45BD6199A4A1B000E6C8E /* CameraOverlayView.m in Sources */,
 				B3F95FE119B5E5BA00798D57 /* AdvanceSearch.m in Sources */,
 				B3CCE78A1998CDAC00067DB9 /* HairfieDetailTableViewCell.m in Sources */,

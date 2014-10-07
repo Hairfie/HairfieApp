@@ -27,7 +27,6 @@
 
 @property (nonatomic) IBOutlet UIButton *menuButton;
 
-
 @property (nonatomic) BOOL isNotLogged;
 
 //-(void) userNotLogged;

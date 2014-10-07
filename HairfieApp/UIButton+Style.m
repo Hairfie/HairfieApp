@@ -34,4 +34,9 @@
     self.layer.borderColor = [[UIColor blackColor] CGColor];
 }
 
+-(void)popupStyle {
+    [self roundStyle];
+    self.backgroundColor = [UIColor pinkHairfie];
+}
+
 @end

@@ -13,6 +13,8 @@
 -(void)tutoStyle;
 -(void)roundStyle;
 -(void)noAccountStyle;
+-(void)popupStyle;
+
 
 
 @end

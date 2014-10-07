@@ -22,6 +22,9 @@
 @property (nonatomic) IBOutlet UIButton *titleButton;
 @property (nonatomic) IBOutlet UIPickerView *userTitle;
 
+@property (strong, nonatomic) PopUpViewController *popViewController;
+
+
 -(IBAction)validateVerification:(id)sender;
 
 @end
