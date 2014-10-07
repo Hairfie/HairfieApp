@@ -92,10 +92,20 @@
     
     FinalStepViewController *finalStep = [self.navigationController.viewControllers objectAtIndex:[self.navigationController.viewControllers count]-2];
     
+    
+    if (finalStep.businessToManage != nil)
+    {
+        finalStep.businessToManage.address.street = _street.text;
+        finalStep.businessToManage.address.city = _city.text;
+        finalStep.businessToManage.address.country = _country.text;
+    }
+    else
+    {
+    
     finalStep.claim.address.street = _street.text;
     finalStep.claim.address.city = _city.text;
     finalStep.claim.address.country = _country.text;
-    
+    }
     [self goBack:self];
 }
 

@@ -8,6 +8,7 @@
 
 
 #import "MenuViewController.h"
+#import "FinalStepViewController.h"
 #import "UIViewController+ECSlidingViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "MenuTableViewCell.h"
@@ -28,6 +29,7 @@
     NSMutableArray *data;
     NSMutableArray *headers;
     NSArray *managedBusinesses;
+    Business *businessToManage;
 }
 @synthesize menuTableView = _menuTableView;
 @synthesize profileView = _profileView;
@@ -225,8 +227,8 @@
     {
         if (indexPath.row < [managedBusinesses count])
         {
-            Business *managedBusiness = (Business*)[managedBusinesses objectAtIndex:indexPath.row];
-            cell.menuItem.text = [managedBusiness objectForKeyedSubscript:@"name"];
+             Business *managedBusiness = [[Business alloc] initWithDictionary: [managedBusinesses objectAtIndex:indexPath.row]];
+            cell.menuItem.text = managedBusiness.name;
         }
         else
             cell.menuItem.text = @"Add a business";
@@ -292,12 +294,13 @@
     }
     if (indexPath.section == 1)
     {
-        if (indexPath.row == 0 )// [managedBusinesses count])
+        if (indexPath.row < [managedBusinesses count])
         {
-            NSLog(@"SEGUE PR MANAGE");
+            businessToManage = [[Business alloc] initWithDictionary: [managedBusinesses objectAtIndex:indexPath.row]];
             [self performSegueWithIdentifier:@"ManageBusiness" sender:self];
         }
-        [self performSegueWithIdentifier:@"BusinessSegue" sender:self];
+        else
+            [self performSegueWithIdentifier:@"BusinessSegue" sender:self];
     }
  
     if (indexPath.section == 2)
@@ -336,7 +339,17 @@
 }
 
 
-
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"ManageBusiness"])
+    {
+        UINavigationController *navController = (UINavigationController*)[segue destinationViewController];
+        FinalStepViewController *claimVc = [navController.viewControllers objectAtIndex:0];
+        
+        [claimVc setBusinessToManage:businessToManage];
+     
+    }
+}
 
 
 

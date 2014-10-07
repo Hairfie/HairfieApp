@@ -83,11 +83,6 @@
 
 }
 
-
--(IBAction)checkManaged:(id)sender
-{
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"currentUser" object:self];
-}
 -(void) hideKeyboard
 {
     [_searchView.searchByLocation resignFirstResponder];

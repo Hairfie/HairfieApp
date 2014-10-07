@@ -48,8 +48,10 @@
 {
     // TO DO enregistrer la description modifiée
      FinalStepViewController *finalStep = [self.navigationController.viewControllers objectAtIndex:[self.navigationController.viewControllers count]-2];
-    
-    finalStep.claim.desc = _descriptionView.text;
+    if (finalStep.businessToManage != nil)
+        finalStep.businessToManage.desc = _descriptionView.text;
+    else
+        finalStep.claim.desc = _descriptionView.text;
     [self goBack:self];
 }
 

@@ -128,7 +128,8 @@
             frame.origin.y = 0;
             frame.size = _imageSliderView.frame.size;
             UIImageView *imageView = [[UIImageView alloc] initWithFrame:frame];
-            [imageView sd_setImageWithURL:[NSURL URLWithString:[pictures objectAtIndex:i]]
+            Picture *picture = [pictures objectAtIndex:i];
+            [imageView sd_setImageWithURL:[NSURL URLWithString:picture.url]
                                 placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
             
             imageView.contentMode = UIViewContentModeScaleToFill;
@@ -146,6 +147,19 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    
+    
+    if (_businessToManage != nil)
+    {
+        _phoneLabel.text = _businessToManage.phoneNumber;
+         _addressLabel.text = [_businessToManage.address displayAddress];
+        _nameLabel.text = _businessToManage.name;
+        [self setupGallery:_businessToManage.pictures];
+        _menuButton.hidden = NO;
+        _navButton.hidden = YES;
+    }
+    else
+    {
     _phoneLabel.text = _claim.phoneNumber;
     _addressLabel.text = [_claim.address displayAddress];
     _nameLabel.text = _claim.name;
@@ -153,6 +167,8 @@
         _hairdresserTableView.hidden = YES;
     else
          _hairdresserTableView.hidden = NO;
+    }
+    NSLog(@"Test biz claimed %@", _businessToManage);
 }
 
 -(IBAction)changeTab:(id)sender {
@@ -399,7 +415,10 @@
         salon.isSalon = YES;
         salon.headerTitle = @"Salon's name";
         salon.textFieldPlaceHolder = @"Salon's name";
-        salon.textFieldFromSegue = _claim.name;
+        if (_businessToManage != nil)
+            salon.textFieldFromSegue = _businessToManage.name;
+        else
+            salon.textFieldFromSegue = _claim.name;
         
     }
     
@@ -412,26 +431,38 @@
         phone.isSalon = NO;
         phone.headerTitle = @"Phone Number";
         phone.textFieldPlaceHolder = @"Phone number";
+        if (_businessToManage != nil)
+            phone.textFieldFromSegue = _businessToManage.phoneNumber;
+        else
         phone.textFieldFromSegue = _claim.phoneNumber;
         
     }
     if ([segue.identifier isEqualToString:@"claimAddress"])
     {
         FinalStepAddressViewController *claimAddress = [segue destinationViewController];
-        claimAddress.address = _claim.address;
+        if (_businessToManage != nil)
+            claimAddress.address = _businessToManage.address;
+        else
+            claimAddress.address = _claim.address;
     
     }
     
     if ([segue.identifier isEqualToString:@"claimTimetable"])
     {
         FinalStepTimetableViewController *claimTimetable = [segue destinationViewController];
+        if (_businessToManage != nil)
+            claimTimetable.timeTable = _businessToManage.timetable;
+        else
             claimTimetable.timeTable = _claim.timetable;
         
     }
     if ([segue.identifier isEqualToString:@"claimDesc"])
     {
         FinalStepDescriptionViewController *claimDesc = [segue destinationViewController];
-        claimDesc.desc = _claim.desc;
+        if (_businessToManage != nil)
+            claimDesc.desc = _businessToManage.desc;
+        else
+            claimDesc.desc = _claim.desc;
     }
     if ([segue.identifier isEqualToString:@"claimHairdresser"])
     {
