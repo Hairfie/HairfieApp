@@ -406,8 +406,9 @@
 		15E3D2E619D080280065A07E /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Claim.strings; sourceTree = "<group>"; };
 		15E3D2E719D080300065A07E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Claim.strings; sourceTree = "<group>"; };
 		15ED728B199B9C6400453A74 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
-		2D7E837BAA644663900B5CBF /* Pods-HairfieApp.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HairfieApp.xcconfig"; path = "Pods/Pods-HairfieApp.xcconfig"; sourceTree = "<group>"; };
+		2E7BF59F5DED76D68FEF21D3 /* Pods-HairfieApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HairfieApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-HairfieApp/Pods-HairfieApp.release.xcconfig"; sourceTree = "<group>"; };
 		33C90A5A8A0E44DCA71D5A3A /* libPods-HairfieApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HairfieApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4BAEF9FAE491EAA44861692B /* Pods-HairfieApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HairfieApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HairfieApp/Pods-HairfieApp.debug.xcconfig"; sourceTree = "<group>"; };
 		71026D1919CAE34200994831 /* HairfieLike.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HairfieLike.h; sourceTree = "<group>"; };
 		71026D1A19CAE34200994831 /* HairfieLike.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HairfieLike.m; sourceTree = "<group>"; };
 		71026D1C19CAF1BE00994831 /* HairfieLikeRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HairfieLikeRepository.h; sourceTree = "<group>"; };
@@ -437,7 +438,8 @@
 		71DA85F119E28982001193D4 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		71DA85F319E2CBA9001193D4 /* BusinessSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessSearch.h; sourceTree = "<group>"; };
 		71DA85F419E2CBA9001193D4 /* BusinessSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessSearch.m; sourceTree = "<group>"; };
-		8C8B91109EA849F389B9B603 /* Pods-HairfieAppTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HairfieAppTests.xcconfig"; path = "Pods/Pods-HairfieAppTests.xcconfig"; sourceTree = "<group>"; };
+		7A069E1CB258BE0CB4F47B24 /* Pods-HairfieAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HairfieAppTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HairfieAppTests/Pods-HairfieAppTests.debug.xcconfig"; sourceTree = "<group>"; };
+		A6DB14BC5D0FF868CC1541B5 /* Pods-HairfieAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HairfieAppTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-HairfieAppTests/Pods-HairfieAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		B303B953199B9403008F6BAA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		B308700A198782AF0080E6D2 /* FavoriteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoriteViewController.h; sourceTree = "<group>"; };
 		B308700B198782AF0080E6D2 /* FavoriteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoriteViewController.m; sourceTree = "<group>"; };
@@ -791,9 +793,8 @@
 				1511518D1982B7A8001157A2 /* HairfieApp */,
 				151151A41982B7A8001157A2 /* HairfieAppTests */,
 				1511518C1982B7A8001157A2 /* Products */,
-				2D7E837BAA644663900B5CBF /* Pods-HairfieApp.xcconfig */,
 				38C395959A7A499C87409BBF /* Frameworks */,
-				8C8B91109EA849F389B9B603 /* Pods-HairfieAppTests.xcconfig */,
+				650B70767A2FCE618BDF66BD /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -995,6 +996,17 @@
 				DF845E18C45A4DEEB480539A /* libPods-HairfieAppTests.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		650B70767A2FCE618BDF66BD /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4BAEF9FAE491EAA44861692B /* Pods-HairfieApp.debug.xcconfig */,
+				2E7BF59F5DED76D68FEF21D3 /* Pods-HairfieApp.release.xcconfig */,
+				7A069E1CB258BE0CB4F47B24 /* Pods-HairfieAppTests.debug.xcconfig */,
+				A6DB14BC5D0FF868CC1541B5 /* Pods-HairfieAppTests.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		B3087010198782CF0080E6D2 /* Pages */ = {
@@ -1889,7 +1901,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-HairfieAppTests-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HairfieAppTests/Pods-HairfieAppTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		28D104E3F89D4637BE11C160 /* Check Pods Manifest.lock */ = {
@@ -1934,7 +1946,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-HairfieApp-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HairfieApp/Pods-HairfieApp-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		71DA85F019E28944001193D4 /* Run Script */ = {
@@ -2314,7 +2326,7 @@
 		};
 		151151AC1982B7A8001157A2 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2D7E837BAA644663900B5CBF /* Pods-HairfieApp.xcconfig */;
+			baseConfigurationReference = 4BAEF9FAE491EAA44861692B /* Pods-HairfieApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -2331,6 +2343,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
+					"$(inherited)",
 					"-ObjC",
 					"-lGoogleAnalyticsServices",
 					"-licucore",
@@ -2369,12 +2382,12 @@
 		};
 		151151AD1982B7A8001157A2 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2D7E837BAA644663900B5CBF /* Pods-HairfieApp.xcconfig */;
+			baseConfigurationReference = 2E7BF59F5DED76D68FEF21D3 /* Pods-HairfieApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2423,7 +2436,7 @@
 		};
 		151151AF1982B7A8001157A2 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8C8B91109EA849F389B9B603 /* Pods-HairfieAppTests.xcconfig */;
+			baseConfigurationReference = 7A069E1CB258BE0CB4F47B24 /* Pods-HairfieAppTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/HairfieApp.app/HairfieApp";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2443,7 +2456,7 @@
 		};
 		151151B01982B7A8001157A2 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8C8B91109EA849F389B9B603 /* Pods-HairfieAppTests.xcconfig */;
+			baseConfigurationReference = A6DB14BC5D0FF868CC1541B5 /* Pods-HairfieAppTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/HairfieApp.app/HairfieApp";
 				FRAMEWORK_SEARCH_PATHS = (
