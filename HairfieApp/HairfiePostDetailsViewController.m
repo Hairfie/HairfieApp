@@ -49,7 +49,7 @@
     _hairdresserSubview.hidden = YES;
     //_whoSubviewConstraint.constant = 0.f;
     _emailSubview.hidden = YES;
-    salonTypes = [[NSArray alloc] initWithObjects:@"I did it", @"Hairdresser in a Salon", nil];
+    salonTypes = [[NSArray alloc] initWithObjects:NSLocalizedStringFromTable(@"I did it", @"Post_Hairfie", nil), NSLocalizedStringFromTable(@"Hairdresser in a Salon", @"Post_Hairfie", nil), nil];
     _tableViewHeight.constant = [salonTypes count] * _dataChoice.rowHeight;
     [self addDoneButtonToPriceField];
     [self uploadHairfiePicture:_hairfie];
