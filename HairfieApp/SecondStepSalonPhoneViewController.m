@@ -102,13 +102,20 @@
     {
         FinalStepViewController *finalStep = [self.navigationController.viewControllers objectAtIndex:[self.navigationController.viewControllers count]-2];
         
-        if (_isSalon == NO)
-        {
-            finalStep.claim.phoneNumber = textField.text;
-        }
-        else
-        {
-            finalStep.claim.name = textField.text;
+        if (finalStep.businessToManage != nil) {
+            if (_isSalon == NO) {
+                finalStep.businessToManage.phoneNumber = textField.text;
+            } else {
+                finalStep.businessToManage.name = textField.text;
+            }
+            
+            
+        } else {
+            if (_isSalon == NO) {
+                finalStep.claim.phoneNumber = textField.text;
+            } else {
+                finalStep.claim.name = textField.text;
+            }
         }
     }
     [self.navigationController popViewControllerAnimated:YES];

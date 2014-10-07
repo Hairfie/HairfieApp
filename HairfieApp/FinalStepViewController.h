@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "BusinessClaim.h"
+#import "Business.h"
 
 @interface FinalStepViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIAlertViewDelegate>
 
@@ -30,7 +31,8 @@
 @property (nonatomic) IBOutlet UIView *pageControlView;
 
 @property (nonatomic) BusinessClaim *claim;
-
+@property (nonatomic) IBOutlet UIButton *navButton;
+@property (nonatomic) IBOutlet UIButton *menuButton;
 
 // TAB VIEW
 
@@ -53,5 +55,9 @@
 
 @property (nonatomic) IBOutlet UITableView* hairdresserTableView;
 @property BOOL isEditingHairdresser;
+
+// FROM SEGUE
+
+@property (nonatomic, strong) Business *businessToManage;
 
 @end
