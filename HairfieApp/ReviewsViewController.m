@@ -109,38 +109,31 @@
 
 -(IBAction)addReview:(id)sender
 {
-    if ([_reviewTextView.text isEqualToString:@""] || [_reviewTextView.text isEqualToString:@"Ajoutez votre review..."])
-    {
-        _reviewTextView.text = @"Ajoutez votre review...";
-        // need feedback no text in review = no review
-        _isReviewing = NO;
-        _addReviewButton.hidden = YES;
-        _reviewRating.rating = 0;
-        [_reviewTableView reloadData];
-        [_reviewTextView becomeFirstResponder];
-    }
-    else
-    {
+    if ([self.reviewTextView.text isEqualToString:@""]) {
+        self.isReviewing = NO;
+        self.addReviewButton.hidden = YES;
+        self.reviewRating.rating = 0;
+        [self.reviewTableView reloadData];
+        [self.reviewTextView becomeFirstResponder];
+    } else {
         [self saveReview];
     }
 }
 
 -(void)saveReview
 {
-    NSLog(@"JVIENS SAVE LA REVIEW LA");
-
-    [_reviewTextView resignFirstResponder];
+    [self.reviewTextView resignFirstResponder];
 
     BusinessReview *review = [[BusinessReview alloc] init];
-    review.business = _business;
-    [review setRating:[NSNumber numberWithFloat:_reviewRating.rating] between:@0 and:@5];
-    review.comment = _reviewTextView.text;
+    review.business = self.business;
+    [review setRating:[NSNumber numberWithFloat:self.reviewRating.rating] between:@0 and:@5];
+    review.comment = self.reviewTextView.text;
     [review save];
 
-    _isReviewing = NO;
-    _addReviewButton.hidden = YES;
-    _reviewRating.rating = 0;
-    _reviewTextView.text = @"";
+    self.isReviewing = NO;
+    self.addReviewButton.hidden = YES;
+    self.reviewRating.rating = 0;
+    self.reviewTextView.text = @"";
 }
 
 
