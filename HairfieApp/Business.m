@@ -16,10 +16,20 @@
 
 @implementation Business
 
+-(void)setOwner:(NSDictionary *)aDictionary
+{
+    if ([aDictionary isKindOfClass:[User class]]) {
+        _owner = aDictionary;
+    } else if ([aDictionary isEqual:[NSNull null]]) {
+        _owner = nil;
+    } else {
+        _owner = [[User alloc] initWithDictionary:aDictionary];
+    }
+}
+
 -(void)setTimetable:(NSDictionary *)aDictionary
 {
-    if (nil == aDictionary) return;
-    
+    if (nil == aDictionary || [aDictionary isEqual:[NSNull null]]) return;
     _timetable = [[Timetable alloc] initWithDictionary:aDictionary];
 }
 

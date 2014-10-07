@@ -28,6 +28,8 @@
 		1559630D19E2F54400F84BFA /* picto-users2.png in Resources */ = {isa = PBXBuildFile; fileRef = 1559630919E2F54400F84BFA /* picto-users2.png */; };
 		1559631019E30DE000F84BFA /* search-advance-field-location2.png in Resources */ = {isa = PBXBuildFile; fileRef = 1559630E19E30DE000F84BFA /* search-advance-field-location2.png */; };
 		1559631119E30DE000F84BFA /* search-advance-field-name2.png in Resources */ = {isa = PBXBuildFile; fileRef = 1559630F19E30DE000F84BFA /* search-advance-field-name2.png */; };
+		1559631419E32BE000F84BFA /* cancel-white.png in Resources */ = {isa = PBXBuildFile; fileRef = 1559631219E32BE000F84BFA /* cancel-white.png */; };
+		1559631519E32BE000F84BFA /* next-white.png in Resources */ = {isa = PBXBuildFile; fileRef = 1559631319E32BE000F84BFA /* next-white.png */; };
 		155C170319DD43810060A0C9 /* UIButton+Style.m in Sources */ = {isa = PBXBuildFile; fileRef = 155C170219DD43810060A0C9 /* UIButton+Style.m */; };
 		1564959519AF6292008DC070 /* HairfieColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 1564959419AF6292008DC070 /* HairfieColors.m */; };
 		15697B31199BB03800DA83FE /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 15697B30199BB03800DA83FE /* UIImage+Resize.m */; };
@@ -331,6 +333,8 @@
 		1559630919E2F54400F84BFA /* picto-users2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "picto-users2.png"; sourceTree = "<group>"; };
 		1559630E19E30DE000F84BFA /* search-advance-field-location2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search-advance-field-location2.png"; sourceTree = "<group>"; };
 		1559630F19E30DE000F84BFA /* search-advance-field-name2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search-advance-field-name2.png"; sourceTree = "<group>"; };
+		1559631219E32BE000F84BFA /* cancel-white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cancel-white.png"; sourceTree = "<group>"; };
+		1559631319E32BE000F84BFA /* next-white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "next-white.png"; sourceTree = "<group>"; };
 		155C170119DD43810060A0C9 /* UIButton+Style.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Style.h"; sourceTree = "<group>"; };
 		155C170219DD43810060A0C9 /* UIButton+Style.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Style.m"; sourceTree = "<group>"; };
 		1564959319AF6292008DC070 /* HairfieColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HairfieColors.h; sourceTree = "<group>"; };
@@ -1484,6 +1488,8 @@
 			isa = PBXGroup;
 			children = (
 				1559630E19E30DE000F84BFA /* search-advance-field-location2.png */,
+				1559631219E32BE000F84BFA /* cancel-white.png */,
+				1559631319E32BE000F84BFA /* next-white.png */,
 				1559630F19E30DE000F84BFA /* search-advance-field-name2.png */,
 				1559630619E2F54400F84BFA /* picto-hairfie2.png */,
 				1559630719E2F54400F84BFA /* picto-info2.png */,
@@ -1778,8 +1784,10 @@
 				15C89EAD19D3567600E91171 /* take-hairfie.png in Resources */,
 				B38A8D471993B8E300239BC1 /* map_pin.png in Resources */,
 				B3AD59C3198B9D3500909ADE /* picto-list-woman.png in Resources */,
+				1559631419E32BE000F84BFA /* cancel-white.png in Resources */,
 				152ECE4719E2B02E000ACDCF /* cancel.png in Resources */,
 				B37F9A57198F910B00881071 /* picto-info.png in Resources */,
+				1559631519E32BE000F84BFA /* next-white.png in Resources */,
 				B37F9A4D198F8F5E00881071 /* page-salon-bttn-bg.png in Resources */,
 				B3EDF89E1987C57200431B70 /* menu-bttn.png in Resources */,
 				1559630519E2F31500F84BFA /* arrow-nav-white.png in Resources */,
@@ -2340,8 +2348,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -2382,7 +2390,7 @@
 					UIKit,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "e48114b5-fb0e-477d-86da-2d124a6671af";
 				SWIFT_OBJC_BRIDGING_HEADER = "HairfieApp/HairfieApp-Bridging-Header.h";
 			};
 			name = Release;
