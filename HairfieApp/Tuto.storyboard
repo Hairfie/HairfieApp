@@ -42,6 +42,7 @@
             <string>SourceSansPro-Regular</string>
             <string>SourceSansPro-Regular</string>
             <string>SourceSansPro-Regular</string>
+            <string>SourceSansPro-Regular</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -658,12 +659,17 @@
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="By clicking here, I accept terms and conditions." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="232" translatesAutoresizingMaskIntoConstraints="NO" id="9ON-9H-vtW">
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WaG-5F-Jxq">
                                                 <rect key="frame" x="44" y="400" width="232" height="38"/>
                                                 <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="11"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
+                                                <state key="normal" title="By clicking here, I accept terms and conditions.">
+                                                    <color key="titleColor" red="0.41176470590000003" green="0.4431372549" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <segue destination="7Rp-fn-vk4" kind="show" id="5FW-jh-h5g"/>
+                                                </connections>
+                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dtr-qT-Ve2">
                                                 <rect key="frame" x="20" y="350" width="23" height="23"/>
                                                 <state key="normal" image="checkbox-false.png">
@@ -804,7 +810,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fj0-3n-MAQ">
-                                <rect key="frame" x="0.0" y="353" width="320" height="216"/>
+                                <rect key="frame" x="0.0" y="-353" width="320" height="216"/>
                                 <subviews>
                                     <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V9a-Yy-JXZ">
                                         <rect key="frame" x="0.0" y="37" width="320" height="162"/>
@@ -835,11 +841,11 @@
                         </subviews>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="2Bc-A7-mum" firstAttribute="top" secondItem="LzN-ej-L42" secondAttribute="bottom" id="1EY-RJ-9lW"/>
                             <constraint firstItem="LzN-ej-L42" firstAttribute="leading" secondItem="eiS-DF-RH2" secondAttribute="leading" id="BSd-LA-j4z"/>
                             <constraint firstItem="LzN-ej-L42" firstAttribute="top" secondItem="FK8-bo-ADh" secondAttribute="bottom" id="JHZ-vr-Tzc"/>
-                            <constraint firstItem="2Bc-A7-mum" firstAttribute="top" secondItem="LzN-ej-L42" secondAttribute="bottom" id="Ssv-q0-Ew2"/>
-                            <constraint firstItem="2Bc-A7-mum" firstAttribute="top" secondItem="Fj0-3n-MAQ" secondAttribute="bottom" id="Xuu-Yk-Dmg"/>
-                            <constraint firstItem="2Bc-A7-mum" firstAttribute="top" secondItem="ea1-zA-tIe" secondAttribute="bottom" id="nEd-Mm-EEi"/>
+                            <constraint firstItem="2Bc-A7-mum" firstAttribute="top" secondItem="ea1-zA-tIe" secondAttribute="bottom" id="SqR-jB-be3"/>
+                            <constraint firstItem="2Bc-A7-mum" firstAttribute="top" secondItem="Fj0-3n-MAQ" secondAttribute="bottom" id="Wxb-CM-nG4"/>
                             <constraint firstAttribute="trailing" secondItem="LzN-ej-L42" secondAttribute="trailing" id="nvK-mV-pve"/>
                         </constraints>
                     </view>
@@ -853,6 +859,7 @@
                         <outlet property="infoView" destination="Ray-8g-grE" id="vJc-cS-QRE"/>
                         <outlet property="lastNameField" destination="yXx-UD-mHy" id="zxz-Me-6b1"/>
                         <outlet property="mainScrollView" destination="LzN-ej-L42" id="C8s-A6-p0d"/>
+                        <outlet property="mainView" destination="eiS-DF-RH2" id="8gB-ew-YOj"/>
                         <outlet property="passwordField" destination="gq8-05-OKz" id="oEp-Y1-6c3"/>
                         <outlet property="signUpButton" destination="ea1-zA-tIe" id="46f-BB-cua"/>
                         <outlet property="statusBarButton" destination="q0W-gS-qg5" id="Bad-6g-bOu"/>
@@ -866,6 +873,69 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IkF-XL-1Z0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="209" y="567"/>
+        </scene>
+        <!--Terms View Controller-->
+        <scene sceneID="bu2-qZ-jv4">
+            <objects>
+                <viewController id="7Rp-fn-vk4" customClass="TermsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="b7P-8s-nbx"/>
+                        <viewControllerLayoutGuide type="bottom" id="S63-pw-PC7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="16y-6G-mgl">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="caS-7x-Laa">
+                                <rect key="frame" x="0.0" y="70" width="320" height="498"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </webView>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jjl-mU-7gT" userLabel="Top Bar View">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="71"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lUF-Og-cPt">
+                                        <rect key="frame" x="0.0" y="20" width="67" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="67" id="0Ga-YD-tyk"/>
+                                            <constraint firstAttribute="height" constant="44" id="1Fo-GM-6it"/>
+                                        </constraints>
+                                        <inset key="contentEdgeInsets" minX="12" minY="12" maxX="32" maxY="12"/>
+                                        <state key="normal" image="arrow-nav.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="goBack:" destination="hwG-uZ-z9e" eventType="touchUpInside" id="9lF-fq-wtO"/>
+                                            <action selector="goBack:" destination="7Rp-fn-vk4" eventType="touchUpInside" id="nJP-gC-7Nh"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="TERMS AND CONDITIONS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K2G-PI-fk1">
+                                        <rect key="frame" x="60" y="30" width="200" height="23"/>
+                                        <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="18"/>
+                                        <color key="textColor" red="0.41176470590000003" green="0.4431372549" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.92549019610000005" green="0.92549019610000005" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="lUF-Og-cPt" firstAttribute="leading" secondItem="Jjl-mU-7gT" secondAttribute="leading" constant="8" id="J1i-tb-JaG"/>
+                                    <constraint firstAttribute="centerX" secondItem="K2G-PI-fk1" secondAttribute="centerX" id="QKY-9v-VOM"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="caS-7x-Laa" firstAttribute="top" secondItem="Jjl-mU-7gT" secondAttribute="bottom" constant="-1" id="pgy-Vm-4IJ"/>
+                            <constraint firstItem="S63-pw-PC7" firstAttribute="top" secondItem="caS-7x-Laa" secondAttribute="bottom" id="qO9-zD-3TW"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="webView" destination="caS-7x-Laa" id="vvj-rm-svO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="759-Ef-4rr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="679" y="567"/>
         </scene>
     </scenes>
     <resources>

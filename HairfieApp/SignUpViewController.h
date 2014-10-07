@@ -11,8 +11,9 @@
 #import <CPPickerView.h>
 
 
-@interface SignUpViewController : UIViewController <UINavigationControllerDelegate, UITextFieldDelegate, UIAlertViewDelegate, UIImagePickerControllerDelegate, UIPickerViewDelegate>
+@interface SignUpViewController : UIViewController <UINavigationControllerDelegate, UITextFieldDelegate, UIAlertViewDelegate, UIImagePickerControllerDelegate, UIPickerViewDelegate, UIWebViewDelegate>
 
+@property (nonatomic) IBOutlet UIView *mainView;
 @property (nonatomic) IBOutlet UIButton *signUpButton;
 @property (nonatomic) IBOutlet UIButton *statusBarButton;
 @property (nonatomic) IBOutlet UIView *infoView;
