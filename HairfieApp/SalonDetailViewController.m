@@ -82,14 +82,7 @@
     _telephoneBgView.layer.cornerRadius = 5;
     _telephoneBgView.layer.masksToBounds = YES;
     
-    _previewMap.layer.cornerRadius = 5;
-    _previewMap.layer.masksToBounds = YES;
-    _previewMap.layer.borderWidth = 3;
-    _previewMap.layer.borderColor = [UIColor colorWithRed:249/255.0 green:249/255.0 blue:249/255.0 alpha:1].CGColor;
-    _previewMap.delegate = self;
     
-    coiffeurArray = [[NSArray alloc] init];
-    coiffeurArray = [[NSArray alloc] initWithObjects:@"Charlyne M.", @"Johanna G.", @"Lisa T.", @"Audrey M.", @"Ghislain J.", nil];
     _hairdresserTableViewHeight.constant = [coiffeurArray count] * 60;
     _hairdresserTableView.scrollEnabled = NO;
 

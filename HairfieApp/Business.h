@@ -24,14 +24,16 @@
 @property (strong, nonatomic) NSString *phoneNumber;
 @property (strong, nonatomic) Timetable *timetable;
 @property (strong, nonatomic) Address *address;
-@property (strong, nonatomic) NSArray *pictures;
+@property (strong, nonatomic) NSMutableArray *pictures;
 @property (strong, nonatomic) Picture *thumbnail;
 @property (strong, nonatomic) NSNumber *distance; // TODO: calculate it from frontend
-@property (strong, nonatomic) NSArray *services;
+@property (strong, nonatomic) NSMutableArray *services;
 @property (strong, nonatomic) NSNumber *numHairfies;
 @property (strong, nonatomic) NSNumber *numReviews;
 @property (strong, nonatomic) NSNumber *rating;
 @property (strong, nonatomic) NSString *desc;
+@property (strong, nonatomic) NSMutableArray *hairdressers;
+
 @property (nonatomic) BOOL crossSell;
 
 -(NSString *)thumbUrl;

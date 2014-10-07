@@ -10,13 +10,13 @@
 #import "BusinessClaim.h"
 #import "Hairdresser.h"
 
-@interface ClaimAddHairdresserViewController : UIViewController <UITextFieldDelegate>
+@interface ClaimAddHairdresserViewController : UIViewController <UINavigationControllerDelegate ,UITextFieldDelegate>
 
 @property (nonatomic) IBOutlet UIView* firstNameView;
 @property (nonatomic) IBOutlet UIView* lastNameView;
 @property (nonatomic) IBOutlet UIView* emailView;
 @property (nonatomic) IBOutlet UIView* phoneNumberView;
-@property (nonatomic) NSArray *hairdressersClaimed;
+@property (nonatomic) NSMutableArray *hairdressersClaimed;
 
 @property (nonatomic) IBOutlet UITextField* firstNameField;
 @property (nonatomic) IBOutlet UITextField* lastNameField;

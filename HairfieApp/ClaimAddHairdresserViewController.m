@@ -53,7 +53,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     if (_hairdressersClaimed != nil)
-        hairdressers = (NSMutableArray*)_hairdressersClaimed;
+        hairdressers = _hairdressersClaimed;
     if (_hairdresserFromSegue != nil)
     {
         _firstNameField.text = _hairdresserFromSegue.firstName;
@@ -98,8 +98,11 @@
     [self addHairdresser];
     FinalStepViewController *finalStep = [self.navigationController.viewControllers objectAtIndex:[self.navigationController.viewControllers count]-2];
     
-    finalStep.claim.hairdressers = hairdressers;
-    NSLog(@"hairdressers %@", finalStep.claim.hairdressers);
+    if (finalStep.businessToManage != nil)
+        finalStep.businessToManage.hairdressers = hairdressers;
+    else
+        finalStep.claim.hairdressers = hairdressers;
+    NSLog(@"hairdressers %@", finalStep.businessToManage.hairdressers);
     [self goBack:self];
 }
 

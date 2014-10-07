@@ -7,12 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface ClaimAddPricesSalesViewController : UIViewController
+#import "Service.h"
+@interface ClaimAddPricesSalesViewController : UIViewController <UINavigationControllerDelegate, UITextFieldDelegate>
 
 @property (nonatomic) IBOutlet UIView* priceDescriptionView;
+@property (nonatomic) IBOutlet UITextField *priceDescription;
 @property (nonatomic) IBOutlet UIView* priceValueView;
+@property (nonatomic) IBOutlet UITextField *priceValue;
 @property (nonatomic) IBOutlet UIButton* doneBttn;
+@property (nonatomic) NSMutableArray *serviceClaimed;
+@property (nonatomic) Service *serviceFromSegue;
 
 
 @end

@@ -11,6 +11,7 @@
 #import "FinalStepAddressViewController.h"
 #import "FinalStepTimetableViewController.h"
 #import "HairdresserTableViewCell.h"
+#import "PricesTableViewCell.h"
 #import "FinalStepDescriptionViewController.h"
 #import "Address.h"
 #import "Hairdresser.h"
@@ -18,6 +19,7 @@
 #import "Picture.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "ClaimAddHairdresserViewController.h"
+#import "ClaimAddPricesSalesViewController.h"
 
 
 @interface FinalStepViewController ()
@@ -29,6 +31,7 @@
     UIAlertView *chooseCameraType;
     UIImagePickerController *imagePicker;
     Hairdresser *hairdresserForEditing;
+    Service *serviceForEditing;
 }
 
 -(UIStatusBarStyle)preferredStatusBarStyle{
@@ -86,10 +89,9 @@
         frame.origin.x = 0;
         frame.origin.y = 0;
         frame.size = _imageSliderView.frame.size;
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:frame];
-        imageView.image = [UIImage imageNamed:@"default-picture.jpg"];
-        imageView.contentMode = UIViewContentModeScaleToFill;
-        [_imageSliderView addSubview:imageView];
+        UIView *bgView = [[UIView alloc] initWithFrame:frame];
+        bgView.backgroundColor = [UIColor lightGreyHairfie];
+        [_imageSliderView addSubview:bgView];
         UIView *borderBttn =[[UIView alloc] initWithFrame:CGRectMake(105, 35, 110, 110)];
         borderBttn.backgroundColor = [UIColor whiteColor];
         borderBttn.alpha = 0.2;
@@ -118,7 +120,7 @@
     }
     if ([pictures count] >= 1)
     {
-        NSLog(@"what up %@", pictures);
+        NSLog(@"/////////// COMING HERE ////////////");
         _pageControl.hidden = NO;
         _pageControl.numberOfPages = [pictures count] + 1;
       
@@ -133,9 +135,6 @@
                                 placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
             
             imageView.contentMode = UIViewContentModeScaleToFill;
-            
-            NSLog(@"test : %@", imageView.image);
-
             [_imageSliderView addSubview:imageView];
         }
         
@@ -151,24 +150,37 @@
     
     if (_businessToManage != nil)
     {
+        NSLog(@"business id %@", _businessToManage.id);
+        [_validateBttn setTitle:@"Update" forState:UIControlStateNormal];
         _phoneLabel.text = _businessToManage.phoneNumber;
          _addressLabel.text = [_businessToManage.address displayAddress];
         _nameLabel.text = _businessToManage.name;
         [self setupGallery:_businessToManage.pictures];
         _menuButton.hidden = NO;
         _navButton.hidden = YES;
+        if (_businessToManage.hairdressers == (id)[NSNull null])
+            _hairdresserTableView.hidden = YES;
+        else
+            _hairdresserTableView.hidden = NO;
+        if (_businessToManage.services == (id)[NSNull null])
+            _serviceTableView.hidden = YES;
+        else
+            _serviceTableView.hidden = NO;
+        
+        [_serviceTableView reloadData];
+        [_hairdresserTableView reloadData];
     }
     else
     {
     _phoneLabel.text = _claim.phoneNumber;
     _addressLabel.text = [_claim.address displayAddress];
     _nameLabel.text = _claim.name;
+        
     if ([_claim.hairdressers count] == 0)
         _hairdresserTableView.hidden = YES;
     else
          _hairdresserTableView.hidden = NO;
     }
-    NSLog(@"Test biz claimed %@", _businessToManage);
 }
 
 -(IBAction)changeTab:(id)sender {
@@ -187,15 +199,30 @@
 -(void)setButtonSelected:(UIButton*) button andBringViewUpfront:(UIView*) view {
     
     [self unSelectAll];
-    view.hidden = NO;
+    [button.imageView setTintColor:[UIColor salonDetailTab]];
+    [button setImage:button.imageView.image forState:UIControlStateNormal];
+    button.imageView.image = [button.imageView.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     [_containerView bringSubviewToFront:view];
-    [button setBackgroundColor:[UIColor colorWithRed:50/255.0f green:67/255.0f blue:87/255.0f alpha:1]];
+    
+    UIView *bottomBorder = [[UIView alloc] initWithFrame:CGRectMake(0, button.frame.size.height, button.frame.size.width, 3)];
+    bottomBorder.backgroundColor = [UIColor salonDetailTab];
+    bottomBorder.tag = 1;
+    [button addSubview:bottomBorder];
+    view.hidden = NO;
 }
 
 -(void) setNormalStateColor:(UIButton*) button
 {
-    [button setBackgroundColor:[UIColor colorWithRed:50/255.0f green:67/255.0f blue:87/255.0f alpha:0.9]];
+    [button.imageView setTintColor:[UIColor greyHairfie]];
+    [button setImage:button.imageView.image forState:UIControlStateNormal];
+    button.imageView.image = [button.imageView.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    
+    for (UIView *subView in button.subviews) {
+        if (subView.tag == 1) [subView removeFromSuperview];
+    }
+    //[button setBackgroundColor:[UIColor colorWithRed:50/255.0f green:67/255.0f blue:87/255.0f alpha:0.9]];
 }
+
 
 -(void) unSelectAll
 {
@@ -254,6 +281,7 @@
 
 -(IBAction)modifyService:(id)sender
 {
+    _isEditingService = NO;
     [self performSegueWithIdentifier:@"claimService" sender:self];
 }
 -(void)chooseCameraType
@@ -355,8 +383,17 @@
         NSLog(@"Error : %@", error.description);
     };
     void (^loadSuccessBlock)(Picture *) = ^(Picture *picture) {
-        [_claim.pictures addObject:picture.url];
-        [self setupGallery:_claim.pictures];
+        
+        if (_businessToManage != nil)
+        {
+            [_businessToManage.pictures addObject:picture.url];
+            [self setupGallery:_businessToManage.pictures];
+        }
+        else
+        {
+            [_claim.pictures addObject:picture.url];
+            [self setupGallery:_claim.pictures];
+        }
         [imagePicker dismissViewControllerAnimated:YES completion:nil];
 
     };
@@ -467,65 +504,169 @@
     if ([segue.identifier isEqualToString:@"claimHairdresser"])
     {
         ClaimAddHairdresserViewController *claimHairdresser = [segue destinationViewController];
+        if (_businessToManage != nil)
+        {
+            if  (_businessToManage.hairdressers != (id)[NSNull null])
+                
+                claimHairdresser.hairdressersClaimed = _businessToManage.hairdressers;
+            else
+    
+                claimHairdresser.hairdressersClaimed = [[NSMutableArray alloc] init];
+        }
+        else
+            claimHairdresser.hairdressersClaimed = _claim.hairdressers;
         
-        claimHairdresser.hairdressersClaimed = _claim.hairdressers;
         if (_isEditingHairdresser == YES)
             claimHairdresser.hairdresserFromSegue = hairdresserForEditing;
         _isEditingHairdresser = NO;
     }
+    if ([segue.identifier isEqualToString:@"claimService"])
+    {
+        
+        ClaimAddPricesSalesViewController *claimService = [segue destinationViewController];
+        
+        if (_businessToManage != nil)
+        {
+        if (_businessToManage.services != (id)[NSNull null])
+            claimService.serviceClaimed = _businessToManage.services;
+        else
+            claimService.serviceClaimed = [[NSMutableArray alloc] init];
+        }
+        else
+            claimService.serviceClaimed = _claim.services;
+        if (_isEditingService == YES)
+            claimService.serviceFromSegue = serviceForEditing;
+        _isEditingService = NO;
+        
+    }
     
 }
 
 
 
-// HAIRDRESSER TAB TABLE VIEW
+// TABLE VIEW
 
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"hairdresserCell";
-    HairdresserTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-    if (cell == nil) {
-        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"HairdresserTableViewCell" owner:self options:nil];
-        cell = [nib objectAtIndex:0];
+    if (tableView == _hairdresserTableView)
+    {
+        static NSString *CellIdentifier = @"hairdresserCell";
+        HairdresserTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        
+        if (cell == nil) {
+            NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"HairdresserTableViewCell" owner:self options:nil];
+            cell = [nib objectAtIndex:0];
+        }
+        
+        Hairdresser *hairdresser = [[Hairdresser alloc] init];
+        
+        if (_businessToManage != nil)
+        {
+            hairdresser = [_businessToManage.hairdressers objectAtIndex:indexPath.row];
+            
+        }
+        else
+            hairdresser = [_claim.hairdressers objectAtIndex:indexPath.row];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.fullName.text = [hairdresser displayFullName];
+        
+        return cell;
+    }
+    if (tableView == _serviceTableView)
+    {
+        static NSString *CellIdentifier = @"priceCell";
+        PricesTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        
+        if (cell == nil) {
+            NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"PricesTableViewCell" owner:self options:nil];
+            cell = [nib objectAtIndex:0];
+        }
+        
+        Service *service = [[Service alloc] init];
+        
+        if (_businessToManage != nil)
+        {
+            service = [_businessToManage.services objectAtIndex:indexPath.row];
+            
+        }
+        else
+            service = [_claim.services objectAtIndex:indexPath.row];
+        
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.itemName.text = service.label;
+        cell.price.text = [NSString stringWithFormat:@"%@", service.price.amount];
+        
+        return cell;
     }
     
-    Hairdresser *hairdresser = [_claim.hairdressers objectAtIndex:indexPath.row];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.fullName.text = [hairdresser displayFullName];
-    
-    return cell;
+    return nil;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [_claim.hairdressers count];
+    if (tableView == _hairdresserTableView)
+    {
+    if (_businessToManage.hairdressers != (id)[NSNull null])
+        return [_businessToManage.hairdressers count];
+    else
+        return [_claim.hairdressers count];
+    }
+    
+    if (tableView == _serviceTableView)
+    {
+        if (_businessToManage.services != (id)[NSNull null])
+            return [_businessToManage.services count];
+        else
+            return [_claim.services count];
+    }
+    return 1;
 }
 
 -(void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    hairdresserForEditing = [_claim.hairdressers objectAtIndex:indexPath.row];
+    if (tableView == _hairdresserTableView)
+    {
+    if (_businessToManage != nil)
+        hairdresserForEditing = [_businessToManage.hairdressers objectAtIndex:indexPath.row];
+    else
+        hairdresserForEditing = [_claim.hairdressers objectAtIndex:indexPath.row];
     _isEditingHairdresser = YES;
     [self performSegueWithIdentifier:@"claimHairdresser" sender:self];
+    }
+    if (tableView == _serviceTableView)
+    {
+        if (_businessToManage != nil)
+            serviceForEditing = [_businessToManage.services objectAtIndex:indexPath.row];
+        else
+            serviceForEditing = [_claim.services objectAtIndex:indexPath.row];
+        _isEditingService = YES;
+        [self performSegueWithIdentifier:@"claimService" sender:self];
+    }
 }
 
 -(IBAction)claimThisBusiness:(id)sender
 {
-    void (^loadErrorBlock)(NSError *) = ^(NSError *error){
+    
+    if (_businessToManage != nil)
+    {
+        NSLog(@"UPDATE THIS BIZZZZ");
+        
+    } else {
+   
+        void (^loadErrorBlock)(NSError *) = ^(NSError *error){
         
         NSLog(@"Error : %@", error.description);
     };
-    void (^loadSuccessBlock)(NSDictionary *) = ^(NSDictionary *results) {
+        void (^loadSuccessBlock)(NSDictionary *) = ^(NSDictionary *results) {
        
         [[NSNotificationCenter defaultCenter] postNotificationName:@"currentUser" object:self];
         [self.navigationController popToRootViewControllerAnimated:YES];
     };
     
     [_claim submitClaimWithSuccess:loadSuccessBlock failure:loadErrorBlock];
+    }
 }
-
-
 
 /*
 #pragma mark - Navigation

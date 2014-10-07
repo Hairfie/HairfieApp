@@ -14,4 +14,7 @@
 @property (nonatomic)    IBOutlet UILabel *menuItem;
 @property (nonatomic)    IBOutlet UIView *selectionIndicator;
 
+
+-(void)setClaimSectionPadding;
+
 @end

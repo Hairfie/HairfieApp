@@ -55,27 +55,18 @@
     
     [self initCurrentUser];
     [self initManagedBusinesses];
-   // [self setupMenu];
+    NSIndexPath *path = [NSIndexPath indexPathForRow:0 inSection:0];
+    [_menuTableView selectRowAtIndexPath:path animated:NO scrollPosition:UITableViewScrollPositionNone];
+    [self tableView:_menuTableView didSelectRowAtIndexPath:path];
+
     [_menuTableView reloadData];
     [_menuTableView setExclusiveSections:!_menuTableView.exclusiveSections];
     [_menuTableView openSection:0 animated:NO];
     [_menuTableView openSection:1 animated:NO];
     [_menuTableView openSection:2 animated:NO];
     
-    NSIndexPath *path = [NSIndexPath indexPathForRow:0 inSection:0];
 
-   
-    
-   //  (void)selectRowAtIndexPath:(NSIndexPath *)indexPath animated:(BOOL)animated scrollPosition:(UITableViewScrollPosition)scrollPosition
-    [_menuTableView selectRowAtIndexPath:path animated:NO scrollPosition:UITableViewScrollPositionNone];
-    [self tableView:_menuTableView didSelectRowAtIndexPath:path];
-    //[_menuTableView reloadData];
-    
-    _menuTableView.backgroundColor = [UIColor clearColor];
-    _menuTableView.opaque = NO;
-    _menuTableView.backgroundView = nil;
-    _menuTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    
+    _menuTableView.backgroundColor = [UIColor whiteColor];
     _profileView.backgroundColor = [UIColor clearColor];
    
 }
@@ -105,11 +96,11 @@
     
     NSLog(@"current user img url %@", appDelegate.currentUser.thumbUrl);
     
-    UIImageView *profilePicture = [[UIImageView alloc] initWithFrame:CGRectMake(30, 50, 50, 50)];
+    UIImageView *profilePicture = [[UIImageView alloc] initWithFrame:CGRectMake(90, 30, 92, 92)];
     profilePicture.layer.cornerRadius = profilePicture.frame.size.height / 2;
     profilePicture.clipsToBounds = YES;
-    profilePicture.layer.borderWidth = 1.0f;
-    profilePicture.layer.borderColor = [UIColor whiteColor].CGColor;
+    profilePicture.layer.borderWidth = 5.0f;
+    profilePicture.layer.borderColor = [UIColor salonDetailTab].CGColor;
     
     
     
@@ -148,26 +139,26 @@
 - (void)setupMenu
 {
     
-    _menuTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    _menuTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 1)];
+    _menuTableView.tableFooterView.backgroundColor = [UIColor colorWithRed:236/255.0f green:236/255.0f blue:238/255.0f alpha:1];
     _menuItems = [[NSMutableArray alloc] init];
     
     
     _menuItems = [NSMutableArray arrayWithObjects: NSLocalizedStringFromTable(@"Home", @"Menu", nil), NSLocalizedStringFromTable(@"Likes", @"Menu", nil), nil];
     _menuPictos = [[NSMutableArray alloc] init];
-    [_menuPictos addObject:@"home-picto.png"];
-    [_menuPictos addObject:@"likes-picto.png"];
+    
+    [_menuPictos addObject:@"picto-home.png"];
+    [_menuPictos addObject:@"picto-likes"];
     
     data = [[NSMutableArray alloc] init];
     for (int i = 0 ; i < 3 ; i++)
     {
         NSMutableArray* section = [[NSMutableArray alloc] init];
-        
         if (i == 0)
         {
             for (int j = 0 ; j < 2 ; j++)
             {
                 [section addObject:[NSString stringWithFormat:@"%@", [_menuItems objectAtIndex:j]]];
-                
             }
         }
         else if (i == 1)
@@ -187,16 +178,23 @@
     
     headers = [[NSMutableArray alloc] init];
     
-    UIView* header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
-    [header setBackgroundColor:[UIColor lightGrayColor]];
+    UIView* header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 46)];
+    [header setBackgroundColor:[UIColor whiteColor]];
     UILabel *mylabel = [[UILabel alloc] initWithFrame:CGRectMake(52, 0, 237, 40)];
     mylabel.text = @"Business";
+    UIView *separatorView = [[UIView alloc] initWithFrame:CGRectMake(0, 45, 320, 1)];\
+    separatorView.backgroundColor = [UIColor colorWithRed:236/255.0f green:236/255.0f blue:238/255.0f alpha:1];
+    UIView *topseparatorView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 1)];\
+    topseparatorView.backgroundColor = [UIColor colorWithRed:236/255.0f green:236/255.0f blue:238/255.0f alpha:1];
     UIImageView *pictoBusiness = [[UIImageView alloc] initWithFrame:CGRectMake(12, 12, 20, 20)];
-    pictoBusiness.image = [UIImage imageNamed:@"business-picto.png"];
+    pictoBusiness.image = [UIImage imageNamed:@"picto-home.png"];
     mylabel.font = [UIFont fontWithName:@"SourceSansPro-Light" size:15];
-    mylabel.textColor = [UIColor whiteColor];
+    mylabel.textColor = [UIColor colorWithRed:103/255.0f green:111/255.0f blue:116/255.0f alpha:1];
+    [header addSubview:topseparatorView];
+    [header addSubview:separatorView];
     [header addSubview:pictoBusiness];
     [header addSubview:mylabel];
+    
     [headers addObject:header];
 }
 
@@ -214,8 +212,8 @@
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"MenuTableViewCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
-    
-    cell.backgroundColor = [UIColor lightGrayColor];
+
+
     if (indexPath.section == 0)
     {
         cell.menuItem.text = [_menuItems objectAtIndex:indexPath.row];
@@ -225,14 +223,34 @@
     }
     if (indexPath.section == 1)
     {
+        
         if (indexPath.row < [managedBusinesses count])
         {
              Business *managedBusiness = [[Business alloc] initWithDictionary: [managedBusinesses objectAtIndex:indexPath.row]];
+            
+            Picture *pic = [managedBusiness.pictures objectAtIndex:0];
+            
             cell.menuItem.text = managedBusiness.name;
+//            UIImageView *businessPic = [[UIImageView alloc] init];
+//            businessPic.layer.cornerRadius = businessPic.frame.size.height / 2;
+//            businessPic.clipsToBounds = YES;
+//            businessPic.layer.borderWidth = 1.0f;
+//            businessPic.layer.borderColor = [UIColor lightGreyHairfie].CGColor;
+//            
+//            [businessPic sd_setImageWithURL:[NSURL URLWithString:pic.url]
+//                                placeholderImage:[UIColor imageWithColor:[UIColor colorWithRed:234/255.0f green:236/255.0f blue:238/255.0f alpha:1]]];
+           // cell.menuPicto = businessPic;
         }
         else
+        {
             cell.menuItem.text = @"Add a business";
-        [cell.menuPicto setImage:[UIImage imageNamed:@"addBusiness-picto.png"]];
+            [cell.menuPicto setImage:[UIImage imageNamed:@"picto-add.png"]];
+        }
+        
+        cell.backgroundColor = [UIColor colorWithRed:236/255.0f green:236/255.0f blue:238/255.0f alpha:1];
+        [cell setClaimSectionPadding];
+
+
     }
     if (indexPath.section == 2)
     {
@@ -240,9 +258,10 @@
         cell.menuItem.text = @"Log Out";
         
     }
-     cell.selectionIndicator.hidden = YES;
-    cell.menuItem.textColor = [UIColor colorWithRed:208 green:210 blue:213 alpha:1];
+    cell.selectionIndicator.hidden = YES;
     cell.menuItem.font = [UIFont fontWithName:@"SourceSansPro-Light" size:15];
+    cell.menuItem.textColor = [UIColor colorWithRed:103/255.0f green:111/255.0f blue:116/255.0f alpha:1];
+    cell.menuPicto.contentMode = UIViewContentModeScaleAspectFit;
     cell.separatorInset = UIEdgeInsetsMake(0, 10000, 0, 0);
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
    
@@ -262,7 +281,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     if (section == 1)
-        return 44;
+        return 45;
     return 0;
 }
 
@@ -302,7 +321,6 @@
         else
             [self performSegueWithIdentifier:@"BusinessSegue" sender:self];
     }
- 
     if (indexPath.section == 2)
         [self logOut];
 }
