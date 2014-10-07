@@ -61,7 +61,7 @@
 
 -(id)initWithDictionary:(NSDictionary *)aDictionary
 {
-    return (User *)[[User repository] modelWithDictionary:aDictionary];
+    return (User *)[[[self class] repository] modelWithDictionary:aDictionary];
 }
 
 -(void)saveWithSuccess:(void(^)())aSuccessHandler
@@ -82,8 +82,9 @@
     }
     
     void (^onSuccess)(NSDictionary *) = ^(NSDictionary *result) {
-        NSLog(@"Results : %@",result);
-        [self initWithDictionary:result];
+        if (nil == self.id) {
+            self.id = [result objectForKey:@"id"];
+        }
         aSuccessHandler();
     };
     
@@ -97,13 +98,12 @@
                                       success:onSuccess
                                       failure:aFailureHandler];
     } else {
-        NSLog(@"PUT USER");
         [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/users/:id"
                                                                                      verb:@"PUT"]
                                             forMethod:@"users.update"];
         
       
-         LBModelRepository *repository = (LBModelRepository *)[[self class] repository];
+        LBModelRepository *repository = (LBModelRepository *)[[self class] repository];
         [repository invokeStaticMethod:@"update"
                                    parameters:parameters
                                       success:onSuccess
