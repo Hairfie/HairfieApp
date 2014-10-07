@@ -53,7 +53,7 @@
     
     [self initCurrentUser];
     [self initManagedBusinesses];
-    [self setupMenu];
+   // [self setupMenu];
     [_menuTableView reloadData];
     [_menuTableView setExclusiveSections:!_menuTableView.exclusiveSections];
     [_menuTableView openSection:0 animated:NO];
@@ -118,14 +118,13 @@
 
 -(void)initManagedBusinesses
 {
-    
-    NSLog(@"*********** LOOKING FOR MANAGED BUSINESSES ************");
     void (^loadErrorBlock)(NSError *) = ^(NSError *error){
         NSLog(@"Error : %@", error.description);
     };
     void (^loadSuccessBlock)(NSArray *) = ^(NSArray *results){
-        NSLog(@"Results %@", results);
         managedBusinesses = results;
+        [self setupMenu];
+        [_menuTableView reloadData];
     };
 
     
@@ -162,24 +161,25 @@
         NSMutableArray* section = [[NSMutableArray alloc] init];
         
         if (i == 0)
+        {
             for (int j = 0 ; j < 2 ; j++)
             {
                 [section addObject:[NSString stringWithFormat:@"%@", [_menuItems objectAtIndex:j]]];
+                
             }
-        if (i == 1)
+        }
+        else if (i == 1)
         {
             for(int j = 0; j < [managedBusinesses count]; j++)
             {
-                NSDictionary *busDic = [[NSDictionary alloc] init];
-                busDic = [managedBusinesses objectAtIndex:j];
-                Business *managedBusiness = [[Business alloc] initWithDictionary:busDic];
-                [section addObject:managedBusiness.name];
+                [section addObject:@"claimed business"];
             }
-            [section addObject:[NSString stringWithFormat:@"Add a business"]];
+            [section addObject:[NSString stringWithFormat:@"add business"]];
         }
         
         
         [data addObject:section];
+
     }
     
     
@@ -208,8 +208,7 @@
 {
     static NSString *CellIdentifier = @"MenuCell";
     MenuTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-    if (cell == nil) {
+       if (cell == nil) {
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"MenuTableViewCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
@@ -218,6 +217,7 @@
     if (indexPath.section == 0)
     {
         cell.menuItem.text = [_menuItems objectAtIndex:indexPath.row];
+      
         [cell.menuPicto setImage:[UIImage imageNamed:[_menuPictos objectAtIndex:indexPath.row]]];
         
     }
@@ -225,10 +225,8 @@
     {
         if (indexPath.row < [managedBusinesses count])
         {
-            NSDictionary *busDic = [[NSDictionary alloc] init];
-            busDic = [managedBusinesses objectAtIndex:indexPath.row];
-            Business *managedBusiness = [[Business alloc] initWithDictionary:busDic];
-            cell.menuItem.text = managedBusiness.name;
+            Business *managedBusiness = (Business*)[managedBusinesses objectAtIndex:indexPath.row];
+            cell.menuItem.text = [managedBusiness objectForKeyedSubscript:@"name"];
         }
         else
             cell.menuItem.text = @"Add a business";
@@ -253,6 +251,8 @@
 {
     if (section == 0)
         return 2;
+    if (section == 1)
+        return 1 + [managedBusinesses count];
     else
         return 1;
 }
@@ -292,6 +292,11 @@
     }
     if (indexPath.section == 1)
     {
+        if (indexPath.row == 0 )// [managedBusinesses count])
+        {
+            NSLog(@"SEGUE PR MANAGE");
+            [self performSegueWithIdentifier:@"ManageBusiness" sender:self];
+        }
         [self performSegueWithIdentifier:@"BusinessSegue" sender:self];
     }
  

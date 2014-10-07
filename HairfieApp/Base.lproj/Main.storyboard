@@ -214,130 +214,6 @@
                                                 <color key="separatorColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                 <color key="sectionIndexBackgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <prototypes>
-                                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationWidth="0.0" reuseIdentifier="home" textLabel="29k-aN-s1R" style="IBUITableViewCellStyleDefault" id="C1u-e5-pGp">
-                                                        <rect key="frame" x="0.0" y="22" width="643" height="44"/>
-                                                        <autoresizingMask key="autoresizingMask"/>
-                                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="C1u-e5-pGp" id="mYX-R8-Cb5">
-                                                            <rect key="frame" x="0.0" y="0.0" width="610" height="43"/>
-                                                            <autoresizingMask key="autoresizingMask"/>
-                                                            <subviews>
-                                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Home" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="29k-aN-s1R">
-                                                                    <rect key="frame" x="15" y="0.0" width="593" height="43"/>
-                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                            </subviews>
-                                                        </tableViewCellContentView>
-                                                        <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
-                                                        <connections>
-                                                            <segue destination="KX7-oU-0cL" kind="custom" identifier="HomeSegue" customClass="ECSlidingSegue" id="OEh-Kp-3XI"/>
-                                                        </connections>
-                                                    </tableViewCell>
-                                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="favorites" textLabel="yS6-bd-jQ5" style="IBUITableViewCellStyleDefault" id="s5R-Bt-XHw">
-                                                        <rect key="frame" x="0.0" y="66" width="643" height="44"/>
-                                                        <autoresizingMask key="autoresizingMask"/>
-                                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="s5R-Bt-XHw" id="DB4-z2-IoO">
-                                                            <rect key="frame" x="0.0" y="0.0" width="643" height="43"/>
-                                                            <autoresizingMask key="autoresizingMask"/>
-                                                            <subviews>
-                                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Favorites" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="yS6-bd-jQ5">
-                                                                    <rect key="frame" x="15" y="0.0" width="613" height="43"/>
-                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                            </subviews>
-                                                        </tableViewCellContentView>
-                                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                        <connections>
-                                                            <segue destination="FZU-9Q-qla" kind="custom" identifier="FavoriteSegue" customClass="ECSlidingSegue" id="N3o-rC-gVl"/>
-                                                        </connections>
-                                                    </tableViewCell>
-                                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="likes" textLabel="osT-9b-0AJ" style="IBUITableViewCellStyleDefault" id="0fl-6S-sKy">
-                                                        <rect key="frame" x="0.0" y="110" width="643" height="44"/>
-                                                        <autoresizingMask key="autoresizingMask"/>
-                                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0fl-6S-sKy" id="WJ4-Lp-r3Q">
-                                                            <rect key="frame" x="0.0" y="0.0" width="643" height="43"/>
-                                                            <autoresizingMask key="autoresizingMask"/>
-                                                            <subviews>
-                                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Likes" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="osT-9b-0AJ">
-                                                                    <rect key="frame" x="15" y="0.0" width="613" height="43"/>
-                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                            </subviews>
-                                                        </tableViewCellContentView>
-                                                        <connections>
-                                                            <segue destination="Wat-hN-V45" kind="custom" identifier="LikeSegue" customClass="ECSlidingSegue" id="QVh-Db-1R4"/>
-                                                        </connections>
-                                                    </tableViewCell>
-                                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="friends" textLabel="wGY-Z7-Wsy" style="IBUITableViewCellStyleDefault" id="mhv-NK-hnI">
-                                                        <rect key="frame" x="0.0" y="154" width="643" height="44"/>
-                                                        <autoresizingMask key="autoresizingMask"/>
-                                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mhv-NK-hnI" id="BXe-Qs-mIy">
-                                                            <rect key="frame" x="0.0" y="0.0" width="643" height="43"/>
-                                                            <autoresizingMask key="autoresizingMask"/>
-                                                            <subviews>
-                                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Friends" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wGY-Z7-Wsy">
-                                                                    <rect key="frame" x="15" y="0.0" width="613" height="43"/>
-                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                            </subviews>
-                                                        </tableViewCellContentView>
-                                                        <connections>
-                                                            <segue destination="6PM-V9-Y0q" kind="custom" identifier="FriendSegue" customClass="ECSlidingSegue" id="Rt2-0u-u1h"/>
-                                                        </connections>
-                                                    </tableViewCell>
-                                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="business" textLabel="VCP-xN-iy4" style="IBUITableViewCellStyleDefault" id="FIb-1Z-cFh">
-                                                        <rect key="frame" x="0.0" y="154" width="643" height="44"/>
-                                                        <autoresizingMask key="autoresizingMask"/>
-                                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FIb-1Z-cFh" id="QX8-CD-UKi">
-                                                            <rect key="frame" x="0.0" y="0.0" width="643" height="43"/>
-                                                            <autoresizingMask key="autoresizingMask"/>
-                                                            <subviews>
-                                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Business" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="VCP-xN-iy4">
-                                                                    <rect key="frame" x="15" y="0.0" width="613" height="43"/>
-                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                            </subviews>
-                                                        </tableViewCellContentView>
-                                                        <connections>
-                                                            <segue destination="o71-5b-RoR" kind="custom" identifier="BusinessSegue" customClass="ECSlidingSegue" id="YNt-Qq-vhI"/>
-                                                        </connections>
-                                                    </tableViewCell>
-                                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="settings" textLabel="pvG-3p-9hG" style="IBUITableViewCellStyleDefault" id="Qyl-tP-mJA">
-                                                        <rect key="frame" x="0.0" y="154" width="643" height="44"/>
-                                                        <autoresizingMask key="autoresizingMask"/>
-                                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Qyl-tP-mJA" id="Wos-xM-2k2">
-                                                            <rect key="frame" x="0.0" y="0.0" width="643" height="43"/>
-                                                            <autoresizingMask key="autoresizingMask"/>
-                                                            <subviews>
-                                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Settings" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pvG-3p-9hG">
-                                                                    <rect key="frame" x="15" y="0.0" width="613" height="43"/>
-                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                            </subviews>
-                                                        </tableViewCellContentView>
-                                                        <connections>
-                                                            <segue destination="xHI-3f-hNk" kind="custom" identifier="SettingSegue" customClass="ECSlidingSegue" id="kLx-dW-gnb"/>
-                                                        </connections>
-                                                    </tableViewCell>
-                                                </prototypes>
                                                 <connections>
                                                     <outlet property="dataSource" destination="tx8-KR-901" id="Abp-sw-HFj"/>
                                                     <outlet property="delegate" destination="tx8-KR-901" id="p0z-bu-6TC"/>
@@ -371,6 +247,9 @@
                         <outlet property="menuTableView" destination="fXv-Hv-mwB" id="2IP-YF-Fwt"/>
                         <outlet property="name" destination="JEN-8N-MSc" id="9EQ-Vc-HWZ"/>
                         <outlet property="profileView" destination="9xK-Dr-6cp" id="fWz-6V-l2M"/>
+                        <segue destination="o71-5b-RoR" kind="custom" identifier="BusinessSegue" customClass="ECSlidingSegue" id="Etm-FN-uG0"/>
+                        <segue destination="Y8M-El-PgY" kind="custom" identifier="ManageBusiness" customClass="ECSlidingSegue" id="6CY-V5-Mtq"/>
+                        <segue destination="KX7-oU-0cL" kind="custom" identifier="HomeSegue" customClass="ECSlidingSegue" id="RYv-QS-1uB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xwh-tg-876" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -473,6 +352,15 @@
                                             <rect key="frame" x="72" y="70" width="176" height="1"/>
                                             <color key="backgroundColor" red="0.85490196080000003" green="0.85490196080000003" blue="0.87058823529999996" alpha="1" colorSpace="calibratedRGB"/>
                                         </view>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ffm-i7-AQZ">
+                                            <rect key="frame" x="231" y="71" width="73" height="30"/>
+                                            <state key="normal" title="Button">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="checkManaged:" destination="eci-2w-4CQ" eventType="touchUpInside" id="kyI-U4-Bn9"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="bottom" secondItem="QFc-m8-YLl" secondAttribute="bottom" constant="46" id="2Fs-i9-BEp"/>
@@ -2651,7 +2539,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tu9-rg-dZn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="900" y="1017"/>
+            <point key="canvasLocation" x="858" y="1021"/>
         </scene>
         <!--Verification Claim View Controller-->
         <scene sceneID="Aud-42-FgG">
@@ -3597,7 +3485,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NYO-W8-sRZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="872" y="1659"/>
+            <point key="canvasLocation" x="888" y="1795"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="7OQ-U9-rAV">
@@ -3647,6 +3535,42 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vYK-FV-bqb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="872" y="-339"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="5Xx-qQ-vSb">
+            <objects>
+                <navigationController id="Y8M-El-PgY" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="LZW-MN-HA6"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="NOs-ow-kGf">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="HEP-SA-6uG" kind="relationship" relationship="rootViewController" id="iq6-RU-gZz"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GPZ-mQ-4nM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-295" y="561"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="s2V-Z4-H0H">
+            <objects>
+                <viewController id="HEP-SA-6uG" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="rr6-aN-njz"/>
+                        <viewControllerLayoutGuide type="bottom" id="LZa-gM-eLH"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Hor-qd-mWB">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="cSt-Ol-uyb"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZkZ-0i-FWt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-608" y="1348"/>
         </scene>
         <!--Final Step View Controller-->
         <scene sceneID="AAl-a0-JjW">
@@ -4042,7 +3966,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kgs-18-rHr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3483" y="1274"/>
+            <point key="canvasLocation" x="3" y="1650"/>
         </scene>
         <!--Claim Add Hairdresser View Controller-->
         <scene sceneID="dKZ-9t-aNs">
@@ -4697,8 +4621,8 @@
         <segue reference="XXf-5V-koX"/>
         <segue reference="uEN-by-6gW"/>
         <segue reference="VGS-VM-Pwy"/>
-        <segue reference="K9z-px-huR"/>
-        <segue reference="PSz-m0-val"/>
+        <segue reference="7yU-V8-5Z9"/>
+        <segue reference="dg2-Ph-4Hs"/>
         <segue reference="DYR-eo-mJz"/>
     </inferredMetricsTieBreakers>
 </document>
