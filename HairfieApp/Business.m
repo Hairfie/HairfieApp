@@ -206,9 +206,7 @@
    if (self.timetable != nil)
         [parameters setObject:[self.timetable toDictionary] forKey:@"timetable"];
  
-    
-    NSLog(@"hairdressers %@", self.hairdressers);
-    if (self.hairdressers != (id)[NSNull null])
+    if (self.hairdressers != nil)
     {
         NSMutableArray *hairdresserToSend = [[NSMutableArray alloc] init];
         for (int i = 0; i < [self.hairdressers count]; i++)
@@ -218,9 +216,7 @@
             
         }
         
-        [parameters setObject:hairdresserToSend forKey:@"hairdressers"];
-        NSLog(@"parameters %@", parameters);
-        
+        [parameters setObject:hairdresserToSend forKey:@"hairdressers"]; 
     }
 
     if (self.address != nil)

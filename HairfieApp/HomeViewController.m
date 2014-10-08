@@ -99,7 +99,18 @@
                                                object:self.searchView.businessSearch];
 
     [self getHairfies:nil];
+    if (_didClaim == YES)
+    {
+        [self showPopup];
+    }
     [ARAnalytics pageView:@"AR - Feed"];
+}
+
+
+-(void)showPopup {
+    self.popViewController = [[PopUpViewController alloc] initWithNibName:@"PopUpViewController" bundle:nil];
+    
+    [self.popViewController showInView:self.view withTitle:NSLocalizedStringFromTable(@"You just claimed your business!", @"Claim", nil) withMessage:NSLocalizedStringFromTable(@"If you want to modify it, go into the menu and select your business", @"Claim", nil) withButton:NSLocalizedStringFromTable(@"Ok", @"Claim", nil) animated:YES];
 }
 
 

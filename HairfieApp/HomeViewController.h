@@ -10,6 +10,7 @@
 #import "AdvanceSearch.h"
 #import "GAITrackedViewController.h"
 
+
 @interface HomeViewController : GAITrackedViewController <UINavigationControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UIScrollViewDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate, UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic) IBOutlet UILabel *AroundMeLabel;
@@ -24,10 +25,12 @@
 @property (nonatomic) IBOutlet UIView *topBarView;
 @property (nonatomic) IBOutlet AdvanceSearch *searchView;
 @property (nonatomic) IBOutlet UIButton *takePictureButton;
+@property (nonatomic) PopUpViewController *popViewController;
 
 @property (nonatomic) IBOutlet UIButton *menuButton;
 
 @property (nonatomic) BOOL isNotLogged;
+@property (nonatomic) BOOL didClaim;
 
 //-(void) userNotLogged;
 
