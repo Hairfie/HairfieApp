@@ -3,6 +3,7 @@
     <dependencies>
         <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -241,39 +242,66 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aB9-E2-I12">
-                                <rect key="frame" x="11" y="498" width="288" height="70"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="288" id="dYw-KC-wWp"/>
-                                    <constraint firstAttribute="height" constant="70" id="s4Y-yw-2un"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gtL-CG-tMH">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="330"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="250"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="330" id="L9M-lc-keW"/>
+                                    <constraint firstAttribute="height" priority="100" constant="330" id="L9M-lc-keW"/>
+                                    <constraint firstAttribute="height" constant="250" id="eHl-TM-ZYy"/>
+                                    <constraint firstAttribute="width" secondItem="gtL-CG-tMH" secondAttribute="height" multiplier="32:33" id="uku-el-ZYd"/>
                                     <constraint firstAttribute="width" constant="320" id="wiq-24-VEI"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="L9M-lc-keW"/>
+                                        <exclude reference="uku-el-ZYd"/>
+                                    </mask>
+                                </variation>
                             </imageView>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IFr-c5-bBB">
+                                <rect key="frame" x="0.0" y="327" width="320" height="150"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="aB9-E2-I12">
+                                        <rect key="frame" x="16" y="40" width="288" height="70"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="288" id="dYw-KC-wWp"/>
+                                            <constraint firstAttribute="height" constant="70" id="s4Y-yw-2un"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="320" id="PkO-EM-cev"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="V36-l2-CkZ"/>
+                                    <constraint firstAttribute="centerX" secondItem="aB9-E2-I12" secondAttribute="centerX" id="c9D-ev-dtR"/>
+                                    <constraint firstAttribute="centerY" secondItem="aB9-E2-I12" secondAttribute="centerY" constant="-0.5" id="dXD-5f-hCj"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="V36-l2-CkZ"/>
+                                    </mask>
+                                </variation>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="aB9-E2-I12" firstAttribute="leading" secondItem="Rda-Uc-wo8" secondAttribute="leadingMargin" constant="-5" id="3oF-fg-DgD"/>
-                            <constraint firstItem="1Dx-iF-wsp" firstAttribute="top" secondItem="aB9-E2-I12" secondAttribute="bottom" id="LnJ-tB-3sz"/>
+                            <constraint firstItem="IFr-c5-bBB" firstAttribute="top" secondItem="gtL-CG-tMH" secondAttribute="bottom" constant="-10" id="0xq-cx-xYq"/>
+                            <constraint firstItem="IFr-c5-bBB" firstAttribute="leading" secondItem="Rda-Uc-wo8" secondAttribute="leadingMargin" constant="-16" id="1TT-Qg-dxS"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="IFr-c5-bBB" secondAttribute="trailing" constant="-16" id="35b-xG-x6w"/>
                             <constraint firstItem="1Dx-iF-wsp" firstAttribute="top" relation="greaterThanOrEqual" secondItem="gtL-CG-tMH" secondAttribute="bottom" constant="100" id="PrU-Sw-RA4"/>
                             <constraint firstItem="gtL-CG-tMH" firstAttribute="top" secondItem="Rda-Uc-wo8" secondAttribute="top" id="WDP-OQ-Ch7"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="aB9-E2-I12" secondAttribute="trailing" constant="5" id="rmg-gF-FcC"/>
-                            <constraint firstItem="aB9-E2-I12" firstAttribute="top" secondItem="gtL-CG-tMH" secondAttribute="bottom" constant="168" id="tgc-hm-U64"/>
-                            <constraint firstItem="1Dx-iF-wsp" firstAttribute="top" secondItem="aB9-E2-I12" secondAttribute="bottom" id="y0G-cT-7D7"/>
+                            <constraint firstItem="1Dx-iF-wsp" firstAttribute="top" secondItem="IFr-c5-bBB" secondAttribute="bottom" id="f5a-bn-L5Y"/>
+                            <constraint firstAttribute="trailing" secondItem="IFr-c5-bBB" secondAttribute="trailing" id="jUo-Lz-G5A"/>
+                            <constraint firstItem="IFr-c5-bBB" firstAttribute="leading" secondItem="Rda-Uc-wo8" secondAttribute="leading" id="nsh-ez-dve"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="tgc-hm-U64"/>
+                                <exclude reference="1TT-Qg-dxS"/>
+                                <exclude reference="35b-xG-x6w"/>
                                 <exclude reference="PrU-Sw-RA4"/>
-                                <exclude reference="y0G-cT-7D7"/>
                             </mask>
                         </variation>
                     </view>

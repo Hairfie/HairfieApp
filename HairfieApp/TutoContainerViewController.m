@@ -42,8 +42,8 @@
     [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
     
     
-    CGRect frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height * 0.7f);
-    self.heightConstraint.constant = self.view.frame.size.height * 0.7f - 35;
+    CGRect frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height * 0.75f);
+    self.heightConstraint.constant = self.view.frame.size.height * 0.75f - 35;
     
     // Change the size of page view controller
     self.pageViewController.view.frame = frame;
