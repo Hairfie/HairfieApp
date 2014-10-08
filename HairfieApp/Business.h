@@ -64,4 +64,6 @@
    withSuccess:(void(^)(Business *business))aSuccessHandler
        failure:(void(^)(NSError *error))aFailureHandler;
 
+-(void)updateWithSuccess:(void(^)(NSArray *results))aSuccessHandler
+                 failure:(void(^)(NSError *error))aFailureHandler;
 @end

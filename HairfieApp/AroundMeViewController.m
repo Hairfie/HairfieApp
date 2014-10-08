@@ -302,10 +302,8 @@
             annotationView.contentMode = UIViewContentModeScaleAspectFit;
             annotationView.canShowCallout = YES;
         }
-
         return annotationView;
     }
-
     return nil;
 }
 
