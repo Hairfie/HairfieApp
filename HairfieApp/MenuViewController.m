@@ -185,7 +185,7 @@
     UIView* header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 46)];
     [header setBackgroundColor:[UIColor whiteColor]];
     UILabel *mylabel = [[UILabel alloc] initWithFrame:CGRectMake(52, 0, 237, 40)];
-    mylabel.text = @"Business";
+    mylabel.text = NSLocalizedStringFromTable(@"Business", @"Menu", nil);
     UIView *separatorView = [[UIView alloc] initWithFrame:CGRectMake(0, 45, 320, 1)];\
     separatorView.backgroundColor = [UIColor colorWithRed:236/255.0f green:236/255.0f blue:238/255.0f alpha:1];
     UIView *topseparatorView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 0)];\
