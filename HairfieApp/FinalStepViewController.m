@@ -551,7 +551,12 @@
     if ([segue.identifier isEqualToString:@"claimFinal"])
     {
         HomeViewController *home = [segue destinationViewController];
-        home.didClaim = YES;
+        if (_businessToManage != nil)
+        {
+            home.didClaim = NO;
+        }
+        else
+            home.didClaim = YES;
     }
 }
 
@@ -671,7 +676,7 @@
         void (^loadSuccessBlock)(NSArray *) = ^(NSArray *results) {
             
             [[NSNotificationCenter defaultCenter] postNotificationName:@"currentUser" object:self];
-            [self.navigationController popToRootViewControllerAnimated:YES];
+            [self performSegueWithIdentifier:@"claimFinal" sender:self];
         };
 
         [_businessToManage updateWithSuccess:loadSuccessBlock failure:loadErrorBlock];
