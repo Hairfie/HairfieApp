@@ -20,6 +20,8 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "ClaimAddHairdresserViewController.h"
 #import "ClaimAddPricesSalesViewController.h"
+#import "HomeViewController.h"
+#import "SalonDetailViewController.h"
 
 
 @interface FinalStepViewController ()
@@ -546,6 +548,11 @@
         
     }
     
+    if ([segue.identifier isEqualToString:@"claimFinal"])
+    {
+        HomeViewController *home = [segue destinationViewController];
+        home.didClaim = YES;
+    }
 }
 
 
@@ -678,12 +685,14 @@
         void (^loadSuccessBlock)(NSDictionary *) = ^(NSDictionary *results) {
        
         [[NSNotificationCenter defaultCenter] postNotificationName:@"currentUser" object:self];
-        [self.navigationController popToRootViewControllerAnimated:YES];
-    };
+            [self performSegueWithIdentifier:@"claimFinal" sender:self];
+        };
     
     [_claim submitClaimWithSuccess:loadSuccessBlock failure:loadErrorBlock];
     }
 }
+
+
 
 /*
 #pragma mark - Navigation
