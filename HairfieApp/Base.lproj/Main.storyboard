@@ -324,8 +324,8 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Book the best hairdresser around you" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="200" translatesAutoresizingMaskIntoConstraints="NO" id="YLi-t7-pTs">
-                                            <rect key="frame" x="60" y="21" width="200" height="42"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Book the best hairdresser around you" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="9" preferredMaxLayoutWidth="200" translatesAutoresizingMaskIntoConstraints="NO" id="YLi-t7-pTs">
+                                            <rect key="frame" x="40" y="21" width="240" height="42"/>
                                             <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="18"/>
                                             <color key="textColor" red="0.15686274509803921" green="0.19215686274509802" blue="0.22352941176470587" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -422,14 +422,6 @@
                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" image="search-advance-field-location2.png" translatesAutoresizingMaskIntoConstraints="NO" id="MiA-gO-4hI">
                                         <rect key="frame" x="10" y="108" width="300" height="27"/>
                                     </imageView>
-                                    <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Ex : Paris, Marseille..." minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Hj0-p3-jlf" userLabel="Location Search">
-                                        <rect key="frame" x="54" y="108" width="254" height="27"/>
-                                        <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
-                                        <connections>
-                                            <outlet property="delegate" destination="UlN-Ro-o4h" id="ytW-gK-9NI"/>
-                                        </connections>
-                                    </textField>
                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" image="search-advance-field-name2.png" translatesAutoresizingMaskIntoConstraints="NO" id="2GW-lb-kWa">
                                         <rect key="frame" x="10" y="73" width="300" height="27"/>
                                     </imageView>
@@ -486,6 +478,14 @@
                                         </subviews>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
+                                    <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Ex : Paris, Marseille..." minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Hj0-p3-jlf" userLabel="Location Search">
+                                        <rect key="frame" x="54" y="108" width="254" height="27"/>
+                                        <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="UlN-Ro-o4h" id="ytW-gK-9NI"/>
+                                        </connections>
+                                    </textField>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
@@ -4628,12 +4628,12 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="dg2-Ph-4Hs"/>
         <segue reference="vAT-vQ-WuX"/>
         <segue reference="VGS-VM-Pwy"/>
-        <segue reference="dg2-Ph-4Hs"/>
-        <segue reference="uEN-by-6gW"/>
         <segue reference="7yU-V8-5Z9"/>
-        <segue reference="DYR-eo-mJz"/>
+        <segue reference="uEN-by-6gW"/>
         <segue reference="LOg-O4-mCP"/>
+        <segue reference="DYR-eo-mJz"/>
     </inferredMetricsTieBreakers>
 </document>

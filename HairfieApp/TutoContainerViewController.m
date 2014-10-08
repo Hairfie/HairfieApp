@@ -27,7 +27,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    pagesLabel = @[NSLocalizedStringFromTable(@"Find Haircuts & Hairstyles and take inspiration from people like you", @"tuto", nil), NSLocalizedStringFromTable(@"Find and book the Hairdresser you need. Anywhere. Anytime. ", @"tuto", nil), NSLocalizedStringFromTable(@"Keep & Share inspiring Hairfies", @"tuto", nil)];
+    pagesLabel = @[NSLocalizedStringFromTable(@"Find Haircuts & Hairstyles and take inspiration from people like you", @"Login_Sign_Up", nil), NSLocalizedStringFromTable(@"Find and book the Hairdresser you need. Anywhere. Anytime. ", @"Login_Sign_Up", nil), NSLocalizedStringFromTable(@"Keep & Share inspiring Hairfies", @"Login_Sign_Up", nil)];
     imagesName = @[@"tuto-page-1.png", @"tuto-page-2.png", @"tuto-page-3.png"];
 
     delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];

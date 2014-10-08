@@ -13,6 +13,8 @@
 		1515448219C301ED00FBC07D /* CameraOverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1515448119C301ED00FBC07D /* CameraOverlayViewController.m */; };
 		152ECE4719E2B02E000ACDCF /* cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = 152ECE4619E2B02E000ACDCF /* cancel.png */; };
 		1536598819DED2DC0002D5ED /* back-arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 1536598719DED2DC0002D5ED /* back-arrow.png */; };
+		1538A39D19E53AFD00F09628 /* Tuto.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1538A39F19E53AFD00F09628 /* Tuto.storyboard */; };
+		1538A3A919E53FB600F09628 /* UIView+Borders.m in Sources */ = {isa = PBXBuildFile; fileRef = 1538A3A819E53FB600F09628 /* UIView+Borders.m */; };
 		153B08B919E43834002E915A /* Authentication.strings in Resources */ = {isa = PBXBuildFile; fileRef = 153B08AB19E43834002E915A /* Authentication.strings */; };
 		153B08BA19E43834002E915A /* BusinessErrorReport.strings in Resources */ = {isa = PBXBuildFile; fileRef = 153B08AD19E43834002E915A /* BusinessErrorReport.strings */; };
 		153B08BB19E43834002E915A /* BusinessSearch.strings in Resources */ = {isa = PBXBuildFile; fileRef = 153B08AF19E43834002E915A /* BusinessSearch.strings */; };
@@ -51,7 +53,6 @@
 		15A91EB219DADD97000539C9 /* hairdresser-who-string-hairfie-post.png in Resources */ = {isa = PBXBuildFile; fileRef = 15A91EB119DADD97000539C9 /* hairdresser-who-string-hairfie-post.png */; };
 		15B4972519DBEFBB00917B83 /* add-a-hairfie.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 15B4972319DBEFBB00917B83 /* add-a-hairfie.jpg */; };
 		15B4972619DBEFBB00917B83 /* add-a-hairfie-profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 15B4972419DBEFBB00917B83 /* add-a-hairfie-profile.png */; };
-		15B4972919DBFC6800917B83 /* Tuto.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15B4972819DBFC6800917B83 /* Tuto.storyboard */; };
 		15B4972C19DBFFC600917B83 /* TutoContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B4972B19DBFFC600917B83 /* TutoContentViewController.m */; };
 		15B4972F19DC021B00917B83 /* TutoContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B4972E19DC021B00917B83 /* TutoContainerViewController.m */; };
 		15B4973219DC2EB000917B83 /* AOLinkedStoryboardSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B4973119DC2EB000917B83 /* AOLinkedStoryboardSegue.m */; };
@@ -327,6 +328,11 @@
 		1515448119C301ED00FBC07D /* CameraOverlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraOverlayViewController.m; sourceTree = "<group>"; };
 		152ECE4619E2B02E000ACDCF /* cancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cancel.png; sourceTree = "<group>"; };
 		1536598719DED2DC0002D5ED /* back-arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back-arrow.png"; sourceTree = "<group>"; };
+		1538A39E19E53AFD00F09628 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Tuto.storyboard; sourceTree = "<group>"; };
+		1538A3A319E53BBD00F09628 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Tuto.strings; sourceTree = "<group>"; };
+		1538A3A519E53BC100F09628 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Tuto.strings; sourceTree = "<group>"; };
+		1538A3A719E53FB600F09628 /* UIView+Borders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Borders.h"; sourceTree = "<group>"; };
+		1538A3A819E53FB600F09628 /* UIView+Borders.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Borders.m"; sourceTree = "<group>"; };
 		153B08AE19E43834002E915A /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/BusinessErrorReport.strings; sourceTree = "<group>"; };
 		153B08B019E43834002E915A /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/BusinessSearch.strings; sourceTree = "<group>"; };
 		153B08B219E43834002E915A /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/BusinessTableCell.strings; sourceTree = "<group>"; };
@@ -392,7 +398,6 @@
 		15A91EB119DADD97000539C9 /* hairdresser-who-string-hairfie-post.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hairdresser-who-string-hairfie-post.png"; sourceTree = "<group>"; };
 		15B4972319DBEFBB00917B83 /* add-a-hairfie.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "add-a-hairfie.jpg"; sourceTree = "<group>"; };
 		15B4972419DBEFBB00917B83 /* add-a-hairfie-profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add-a-hairfie-profile.png"; sourceTree = "<group>"; };
-		15B4972819DBFC6800917B83 /* Tuto.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Tuto.storyboard; sourceTree = "<group>"; };
 		15B4972A19DBFFC600917B83 /* TutoContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutoContentViewController.h; sourceTree = "<group>"; };
 		15B4972B19DBFFC600917B83 /* TutoContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutoContentViewController.m; sourceTree = "<group>"; };
 		15B4972D19DC021B00917B83 /* TutoContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutoContainerViewController.h; sourceTree = "<group>"; };
@@ -864,6 +869,7 @@
 		1511518E1982B7A8001157A2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				1538A3A619E53F9800F09628 /* UIView Subclasses */,
 				15481A8B19E3EBC400C9D7A7 /* PopUp */,
 				155C170019DD435D0060A0C9 /* UIButton Subclasses */,
 				15E3D2AF19D075B40065A07E /* Localization */,
@@ -911,11 +917,20 @@
 		1536598919DEFF570002D5ED /* Tuto + Sign Up */ = {
 			isa = PBXGroup;
 			children = (
-				15B4972819DBFC6800917B83 /* Tuto.storyboard */,
+				1538A39F19E53AFD00F09628 /* Tuto.storyboard */,
 				15B4972719DBFC4500917B83 /* Tuto */,
 				B3E0B15719ACC13800C3EACE /* Login + Sign UP */,
 			);
 			name = "Tuto + Sign Up";
+			sourceTree = "<group>";
+		};
+		1538A3A619E53F9800F09628 /* UIView Subclasses */ = {
+			isa = PBXGroup;
+			children = (
+				1538A3A719E53FB600F09628 /* UIView+Borders.h */,
+				1538A3A819E53FB600F09628 /* UIView+Borders.m */,
+			);
+			name = "UIView Subclasses";
 			sourceTree = "<group>";
 		};
 		153E1FB119B4A97600DEC95D /* Repositories */ = {
@@ -1865,7 +1880,7 @@
 				718B6B7819C831E200F2F8EF /* picto-hairfie-liked.png in Resources */,
 				B3901D0419AB68FE00A8C52D /* search-bar.png in Resources */,
 				B3DD7A7C199110FF007B1621 /* test-contour.png in Resources */,
-				15B4972919DBFC6800917B83 /* Tuto.storyboard in Resources */,
+				1538A39D19E53AFD00F09628 /* Tuto.storyboard in Resources */,
 				B33E4C4419A48FE70024F5F7 /* HoraireTableViewCell.xib in Resources */,
 				B3A1281C198A8609004D90BD /* CustomPinView.xib in Resources */,
 				15C89EAD19D3567600E91171 /* take-hairfie.png in Resources */,
@@ -2101,6 +2116,7 @@
 				B3423215198924290058866B /* AFURLConnectionOperation.m in Sources */,
 				B319B5D119C876AC007F79B0 /* SecondStepSalonPhoneViewController.m in Sources */,
 				71AAB62A19D005170000552D /* Money.m in Sources */,
+				1538A3A919E53FB600F09628 /* UIView+Borders.m in Sources */,
 				B319B5CB19C85E2E007F79B0 /* FirstStepViewController.m in Sources */,
 				B33D4C5919D1A655009DE6DD /* BusinessClaimRepository.m in Sources */,
 				B3423216198924290058866B /* AFURLRequestSerialization.m in Sources */,
@@ -2162,6 +2178,16 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		1538A39F19E53AFD00F09628 /* Tuto.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1538A39E19E53AFD00F09628 /* Base */,
+				1538A3A319E53BBD00F09628 /* en */,
+				1538A3A519E53BC100F09628 /* fr */,
+			);
+			name = Tuto.storyboard;
+			sourceTree = "<group>";
+		};
 		153B08AB19E43834002E915A /* Authentication.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
