@@ -26,9 +26,9 @@
 		153E1FB019B4A79B00DEC95D /* UserRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 153E1FAF19B4A79B00DEC95D /* UserRepository.m */; };
 		153E1FB419B4AA8200DEC95D /* UserAuthenticator.m in Sources */ = {isa = PBXBuildFile; fileRef = 153E1FB319B4AA8200DEC95D /* UserAuthenticator.m */; };
 		1540150119D030030094DB5E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1540150319D030030094DB5E /* InfoPlist.strings */; };
-		1543C06E19E57ED5008718E6 /* curve.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 1543C06B19E57ED5008718E6 /* curve.jpeg */; };
-		1543C06F19E57ED5008718E6 /* sepia.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 1543C06C19E57ED5008718E6 /* sepia.jpeg */; };
-		1543C07019E57ED5008718E6 /* original.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 1543C06D19E57ED5008718E6 /* original.jpeg */; };
+		1543C07419E59670008718E6 /* curve.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 1543C07119E59670008718E6 /* curve.jpeg */; };
+		1543C07519E59670008718E6 /* sepia.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 1543C07219E59670008718E6 /* sepia.jpeg */; };
+		1543C07619E59670008718E6 /* original.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 1543C07319E59670008718E6 /* original.jpeg */; };
 		15481A8A19E3E5F600C9D7A7 /* TermsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15481A8919E3E5F600C9D7A7 /* TermsViewController.m */; };
 		15481A8D19E3EBDB00C9D7A7 /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15481A8C19E3EBDB00C9D7A7 /* PopUpViewController.swift */; };
 		15481A8F19E3EC2300C9D7A7 /* PopUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15481A8E19E3EC2300C9D7A7 /* PopUpViewController.xib */; };
@@ -360,9 +360,9 @@
 		153E1FB319B4AA8200DEC95D /* UserAuthenticator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAuthenticator.m; sourceTree = "<group>"; };
 		1540150419D030070094DB5E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1540150519D030080094DB5E /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		1543C06B19E57ED5008718E6 /* curve.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = curve.jpeg; path = "../../../../Google Drive/Hairfie/img/curve.jpeg"; sourceTree = "<group>"; };
-		1543C06C19E57ED5008718E6 /* sepia.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = sepia.jpeg; path = "../../../../Google Drive/Hairfie/img/sepia.jpeg"; sourceTree = "<group>"; };
-		1543C06D19E57ED5008718E6 /* original.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = original.jpeg; path = "../../../../Google Drive/Hairfie/img/original.jpeg"; sourceTree = "<group>"; };
+		1543C07119E59670008718E6 /* curve.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = curve.jpeg; sourceTree = "<group>"; };
+		1543C07219E59670008718E6 /* sepia.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sepia.jpeg; sourceTree = "<group>"; };
+		1543C07319E59670008718E6 /* original.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = original.jpeg; sourceTree = "<group>"; };
 		15481A8819E3E5F600C9D7A7 /* TermsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TermsViewController.h; sourceTree = "<group>"; };
 		15481A8919E3E5F600C9D7A7 /* TermsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TermsViewController.m; sourceTree = "<group>"; };
 		15481A8C19E3EBDB00C9D7A7 /* PopUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
@@ -1540,9 +1540,9 @@
 		B3EDF8991987C43500431B70 /* Ressources */ = {
 			isa = PBXGroup;
 			children = (
-				1543C06B19E57ED5008718E6 /* curve.jpeg */,
-				1543C06C19E57ED5008718E6 /* sepia.jpeg */,
-				1543C06D19E57ED5008718E6 /* original.jpeg */,
+				1543C07119E59670008718E6 /* curve.jpeg */,
+				1543C07219E59670008718E6 /* sepia.jpeg */,
+				1543C07319E59670008718E6 /* original.jpeg */,
 				1559630E19E30DE000F84BFA /* search-advance-field-location2.png */,
 				1559631219E32BE000F84BFA /* cancel-white.png */,
 				15481A9019E3EF3C00C9D7A7 /* cancel-popup.png */,
@@ -1804,7 +1804,7 @@
 				153B08BB19E43834002E915A /* BusinessSearch.strings in Resources */,
 				B36731ED198FE0B000E11C56 /* not_selected_review.png in Resources */,
 				B3DD7A8119911245007B1621 /* ReviewTableViewCell.xib in Resources */,
-				1543C06E19E57ED5008718E6 /* curve.jpeg in Resources */,
+				1543C07419E59670008718E6 /* curve.jpeg in Resources */,
 				B3320B2019A4F34100855BBB /* default-picture.jpg in Resources */,
 				B36731EC198FE0B000E11C56 /* selected_review.png in Resources */,
 				B3AE0D3B19C0565000149C2B /* hairfie-post-search-location.png in Resources */,
@@ -1819,7 +1819,7 @@
 				B3AD59B8198B9A3700909ADE /* SalonTableViewCell.xib in Resources */,
 				B36731E3198FB17800E11C56 /* picto-woman-white.png in Resources */,
 				15B4972619DBEFBB00917B83 /* add-a-hairfie-profile.png in Resources */,
-				1543C07019E57ED5008718E6 /* original.jpeg in Resources */,
+				1543C07619E59670008718E6 /* original.jpeg in Resources */,
 				B3F662401987D52A0041F298 /* SourceSansPro-Light.ttf in Resources */,
 				1559631019E30DE000F84BFA /* search-advance-field-location2.png in Resources */,
 				B345BAD9199502A3007BB61A /* CustomCollectionViewCell.xib in Resources */,
@@ -1854,7 +1854,7 @@
 				B33E4C4419A48FE70024F5F7 /* HoraireTableViewCell.xib in Resources */,
 				B3A1281C198A8609004D90BD /* CustomPinView.xib in Resources */,
 				15C89EAD19D3567600E91171 /* take-hairfie.png in Resources */,
-				1543C06F19E57ED5008718E6 /* sepia.jpeg in Resources */,
+				1543C07519E59670008718E6 /* sepia.jpeg in Resources */,
 				B38A8D471993B8E300239BC1 /* map_pin.png in Resources */,
 				B3AD59C3198B9D3500909ADE /* picto-list-woman.png in Resources */,
 				1559631419E32BE000F84BFA /* cancel-white.png in Resources */,
