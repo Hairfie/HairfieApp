@@ -29,8 +29,13 @@
 
 -(void)setTimetable:(NSDictionary *)aDictionary
 {
-    if (nil == aDictionary || [aDictionary isEqual:[NSNull null]]) return;
-    _timetable = [[Timetable alloc] initWithDictionary:aDictionary];
+    if ([aDictionary isKindOfClass:[Timetable class]]) {
+        _timetable = aDictionary;
+    } else if ([aDictionary isEqual:[NSNull null]]) {
+        _timetable = nil;
+    } else {
+        _timetable = [[Timetable alloc] initWithDictionary:aDictionary];
+    }
 }
 
 -(void)setThumbnail:(NSDictionary *)aThumbnail
@@ -44,17 +49,12 @@
     }
 }
 
--(NSString *)displayNameAndAddress
+-(void)setServices:(NSMutableArray *)services
 {
-    return [NSString stringWithFormat:@"%@ - %@", self.name, self.address.displayAddress];
-}
-
--(NSString *)displayNumHairfies
-{
-    if ([self.numHairfies integerValue] > 1) {
-        return [NSString stringWithFormat:@"%@ hairfies", self.numHairfies];
+    if ([services isEqual:[NSNull null]]) {
+        _services = nil;
     } else {
-        return [NSString stringWithFormat:@"%@ hairfie", self.numHairfies];
+        _services = services;
     }
 }
 
@@ -97,6 +97,19 @@
     _gps = [[GeoPoint alloc] initWithJson:geoPointDic];
 }
 
+-(NSString *)displayNameAndAddress
+{
+    return [NSString stringWithFormat:@"%@ - %@", self.name, self.address.displayAddress];
+}
+
+-(NSString *)displayNumHairfies
+{
+    if ([self.numHairfies integerValue] > 1) {
+        return [NSString stringWithFormat:@"%@ hairfies", self.numHairfies];
+    } else {
+        return [NSString stringWithFormat:@"%@ hairfie", self.numHairfies];
+    }
+}
 
 -(NSString *)thumbUrl
 {

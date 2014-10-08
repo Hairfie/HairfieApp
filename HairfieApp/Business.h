@@ -26,7 +26,7 @@
 @property (strong, nonatomic) Address *address;
 @property (strong, nonatomic) NSMutableArray *pictures;
 @property (strong, nonatomic) Picture *thumbnail;
-@property (strong, nonatomic) NSNumber *distance; // TODO: calculate it from frontend
+@property (strong, nonatomic) NSNumber *distance;
 @property (strong, nonatomic) NSMutableArray *services;
 @property (strong, nonatomic) NSNumber *numHairfies;
 @property (strong, nonatomic) NSNumber *numReviews;
