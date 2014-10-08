@@ -54,7 +54,15 @@
     if ([services isEqual:[NSNull null]]) {
         _services = nil;
     } else {
-        _services = services;
+        NSMutableArray *temp = [[NSMutableArray alloc] init];
+        for (NSDictionary *service in services) {
+            if ([service isKindOfClass:[Service class]]) {
+                [temp addObject:service];
+            } else {
+                [temp addObject:[[Service alloc] initWithDictionary:service]];
+            }
+        }
+        _services = temp;
     }
 }
 
