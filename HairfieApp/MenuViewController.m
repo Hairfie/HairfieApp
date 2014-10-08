@@ -251,7 +251,7 @@
         }
         else
         {
-            cell.menuItem.text = @"Add a business";
+            cell.menuItem.text = NSLocalizedStringFromTable(@"Add a business", @"Menu", nil);
             [cell.menuPicto setImage:[UIImage imageNamed:@"picto-add.png"]];
         }
         
@@ -260,7 +260,7 @@
     if (indexPath.section == 2)
     {
         [cell.menuPicto setImage:[UIImage imageNamed:@"picto-logout.png"]];
-        cell.menuItem.text = @"Log Out";
+        cell.menuItem.text = NSLocalizedStringFromTable(@"Log out", @"Menu", nil);
         cell.indentationWidth = 0;
     }
     cell.selectionIndicator.hidden = YES;
