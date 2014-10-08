@@ -9,6 +9,7 @@
 #import "ApplyFiltersViewController.h"
 #import "HairfiePostDetailsViewController.h"
 #import "UIImage+Filters.h"
+#import "UIButton+Style.h"
 
 @implementation ApplyFiltersViewController
 {
@@ -40,6 +41,11 @@
         sepia = [original toSepia];
         newFilter = [original curveFilter];
     });
+    
+    [_sepiaBttn roundStyle];
+    [_originalBttn roundStyle];
+    [_curveBttn roundStyle];
+    
 }
 
 -(IBAction)goBack:(id)sender

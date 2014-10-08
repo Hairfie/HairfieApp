@@ -18,7 +18,9 @@
 
 @end
 
-@implementation CameraOverlayViewController
+@implementation CameraOverlayViewController {
+    float diff;
+}
 
 @synthesize imageTaken;
 
@@ -34,7 +36,11 @@
         _imagePicker.showsCameraControls = NO;
         _imagePicker.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
         _imagePicker.allowsEditing = YES;
+        
+        diff = 0; //(self.view.frame.size.height - self.view.frame.size.width / 3 * 4)/2;
+
         [self initOverlayView];
+        NSLog(@"diff %f", diff);
         
         [self presentViewController:_imagePicker animated:NO completion:nil];
     } else {
@@ -62,7 +68,7 @@
     overlayView.frame =  _imagePicker.cameraOverlayView.frame;
     
     UIView *navigationView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 60)];
-    navigationView.backgroundColor = [UIColor whiteColor];
+    navigationView.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.78];
     
     
     UIImage *goBackImg = [UIImage imageNamed:@"arrow-nav.png"];
@@ -81,7 +87,7 @@
     [navigationView addSubview:goBackButton];
     
     UIView *bottomNavigationView = [[UIView alloc] initWithFrame:CGRectMake(0, 380, 320, self.view.frame.size.height - 380)];
-    bottomNavigationView.backgroundColor = [UIColor whiteColor];
+    bottomNavigationView.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.78];
     
     [overlayView addSubview:navigationView];
     [overlayView addSubview:bottomNavigationView];
@@ -93,7 +99,7 @@
                                    buttonWithType:UIButtonTypeCustom];
     [takePictureButton setImage:takePictureImg forState:UIControlStateNormal];
     [takePictureButton addTarget:self action:@selector(snapPicture) forControlEvents:UIControlEventTouchUpInside];
-    [takePictureButton setFrame:CGRectMake(122, 387, 77, 77)];
+    [takePictureButton setFrame:CGRectMake(122, 380 + bottomNavigationView.frame.size.height/2 - 38 + diff, 77, 77)];
     
     takePictureButton.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin;
 
@@ -162,7 +168,8 @@
     goToLibrary.layer.borderWidth = 1;
     goToLibrary.layer.borderColor = [UIColor whiteColor].CGColor;
     [goToLibrary addTarget:self action:@selector(switchCameraSourceType) forControlEvents:UIControlEventTouchUpInside];
-    [goToLibrary setFrame:CGRectMake(20, 420, 44, 44)];
+    float topPos = 380 + (self.view.frame.size.height - 380)/2 - 44/2 + diff;
+    [goToLibrary setFrame:CGRectMake(20, topPos, 44, 44)];
     goToLibrary.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin;
     
     for (UIView *subView in cameraOverlayView.subviews) {

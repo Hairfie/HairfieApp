@@ -185,7 +185,7 @@
     UIView* header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 46)];
     [header setBackgroundColor:[UIColor whiteColor]];
     UILabel *mylabel = [[UILabel alloc] initWithFrame:CGRectMake(52, 0, 237, 40)];
-    mylabel.text = @"Business";
+    mylabel.text = NSLocalizedStringFromTable(@"Business", @"Menu", nil);
     UIView *separatorView = [[UIView alloc] initWithFrame:CGRectMake(0, 45, 320, 1)];\
     separatorView.backgroundColor = [UIColor colorWithRed:236/255.0f green:236/255.0f blue:238/255.0f alpha:1];
     UIView *topseparatorView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 0)];\
@@ -251,7 +251,7 @@
         }
         else
         {
-            cell.menuItem.text = @"Add a business";
+            cell.menuItem.text = NSLocalizedStringFromTable(@"Add a business", @"Menu", nil);
             [cell.menuPicto setImage:[UIImage imageNamed:@"picto-add.png"]];
         }
         
@@ -260,7 +260,7 @@
     if (indexPath.section == 2)
     {
         [cell.menuPicto setImage:[UIImage imageNamed:@"picto-logout.png"]];
-        cell.menuItem.text = @"Log Out";
+        cell.menuItem.text = NSLocalizedStringFromTable(@"Log out", @"Menu", nil);
         cell.indentationWidth = 0;
     }
     cell.selectionIndicator.hidden = YES;
