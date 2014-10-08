@@ -40,6 +40,7 @@
 - (IBAction)unwindToMenuViewController:(UIStoryboardSegue *)segue {
 }
 
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -241,7 +242,7 @@
             NSNumber *sideLength = [NSNumber numberWithInt:cell.menuPicto.frame.size.height * 2];
             
             [businessPic sd_setImageWithURL:[NSURL URLWithString:[pic urlWithWidth:sideLength height:sideLength]]
-                                placeholderImage:[UIColor imageWithColor:[UIColor colorWithRed:234/255.0f green:236/255.0f blue:238/255.0f alpha:1]]];
+                                placeholderImage:[UIColor imageWithColor:[UIColor salonDetailTab]]];
            
             cell.menuPicto.layer.cornerRadius = cell.menuPicto.frame.size.height / 2;
             cell.menuPicto.clipsToBounds = YES;
@@ -257,9 +258,6 @@
         }
         
         cell.backgroundColor = [UIColor colorWithRed:236/255.0f green:236/255.0f blue:238/255.0f alpha:1];
-      //  [cell setClaimSectionPadding];
-
-
     }
     if (indexPath.section == 2)
     {
@@ -270,7 +268,7 @@
     cell.selectionIndicator.hidden = YES;
     cell.menuItem.font = [UIFont fontWithName:@"SourceSansPro-Light" size:15];
     cell.menuItem.textColor = [UIColor colorWithRed:103/255.0f green:111/255.0f blue:116/255.0f alpha:1];
-   // cell.menuPicto.contentMode = UIViewContentModeScaleAspectFit;
+    cell.menuPicto.contentMode = UIViewContentModeScaleAspectFit;
     cell.separatorInset = UIEdgeInsetsMake(0, 10000, 0, 0);
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
    
@@ -291,7 +289,17 @@
 {
     if (section == 1)
         return 45;
-    return 0;
+    return 1;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 45;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 45;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section

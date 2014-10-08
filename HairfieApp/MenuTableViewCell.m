@@ -22,19 +22,13 @@
     // Configure the view for the selected state
 }
 
--(void)setClaimSectionPadding
-{
-    [self.menuPicto setFrame:CGRectMake(32, 12, 20, 20)];
-    [self.menuItem setFrame:CGRectMake(72, 0, 320, 44)];
-
-}
-
-- (void)layoutSubviews
-{
-    [super layoutSubviews];
-    float indentPoints = self.indentationLevel * self.indentationWidth;
-    self.contentView.frame = CGRectMake(indentPoints,
-                                        self.contentView.frame.origin.y,self.contentView.frame.size.width - indentPoints,self.contentView.frame.size.height);
-}
+//
+//- (void)layoutSubviews
+//{
+//    [super layoutSubviews];
+//    float indentPoints = self.indentationLevel * self.indentationWidth;
+//    self.contentView.frame = CGRectMake(indentPoints,
+//                                        self.contentView.frame.origin.y,self.contentView.frame.size.width - indentPoints,self.contentView.frame.size.height);
+//}
 
 @end

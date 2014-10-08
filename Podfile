@@ -15,10 +15,12 @@ target "HairfieApp" do
   pod 'MRProgress'
   pod 'SAMTextView'
   pod 'CrashlyticsFramework'
+  pod 'ECSlidingViewController', '~> 2.0.3'
 end
 
 target "HairfieAppTests" do
   pod 'SDWebImage', '~> 3.6'
   pod 'CPPickerView', '~> 1.2.0'
   pod 'SSKeychain'
+  pod 'ECSlidingViewController', '~> 2.0.3'
 end

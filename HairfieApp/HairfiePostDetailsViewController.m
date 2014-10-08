@@ -291,7 +291,7 @@ shouldChangeTextInRange: (NSRange) range
 -(void)addDoneButtonToPriceField {
     UIToolbar* keyboardDoneButtonView = [[UIToolbar alloc] init];
     [keyboardDoneButtonView sizeToFit];
-    keyboardDoneButtonView.barTintColor = [UIColor redHairfie];
+    keyboardDoneButtonView.barTintColor = [UIColor salonDetailTab];
     UIBarButtonItem* doneButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedStringFromTable(@"OK", @"Post_Hairfie", nil)
                                                                    style:UIBarButtonItemStyleBordered
                                                                   target:self
