@@ -181,7 +181,7 @@
         [parameters setObject:self.services forKey:@"services"];
     
     
-    [[Business repository] invokeStaticMethod:@"businesses" parameters:@{} success:aSuccessHandler failure:aFailureHandler];
+    [[Business repository] invokeStaticMethod:@"update" parameters:parameters success:aSuccessHandler failure:aFailureHandler];
 }
 
 

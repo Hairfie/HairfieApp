@@ -101,7 +101,7 @@
         UIButton *addPictureBttn = [[UIButton alloc] initWithFrame:CGRectMake(110, 40, 100, 100)];
         addPictureBttn.layer.cornerRadius = addPictureBttn.frame.size.height / 2;
         addPictureBttn.clipsToBounds = YES;
-        addPictureBttn.backgroundColor = [UIColor redHairfie];
+        addPictureBttn.backgroundColor = [UIColor salonDetailTab];
         [addPictureBttn addTarget:self
                            action:@selector(chooseCameraType)
                  forControlEvents:UIControlEventTouchUpInside];
@@ -649,8 +649,18 @@
 {
     
     if (_businessToManage != nil)
-    {
-        NSLog(@"UPDATE THIS BIZZZZ");
+        
+    {  void (^loadErrorBlock)(NSError *) = ^(NSError *error){
+        
+        NSLog(@"Error : %@", error.description);
+    };
+        void (^loadSuccessBlock)(NSArray *) = ^(NSArray *results) {
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"currentUser" object:self];
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        };
+
+        [_businessToManage updateWithSuccess:loadSuccessBlock failure:loadErrorBlock];
         
     } else {
    

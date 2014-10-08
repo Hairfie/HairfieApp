@@ -331,8 +331,6 @@
    cell.selectionIndicator.hidden = YES;
 }
 
-
-
 -(void)logOut
 {
     [appDelegate.credentialStore clearSavedCredentials];
