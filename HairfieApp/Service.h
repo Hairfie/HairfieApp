@@ -19,4 +19,6 @@
 -(id)initWithLabel:(NSString *)aLabel
              price:(Money *)aPrice;
 
+-(NSDictionary*)toDictionary;
+
 @end

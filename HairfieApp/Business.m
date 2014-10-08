@@ -13,6 +13,7 @@
 #import "AppDelegate.h"
 #import "Service.h"
 #import "Picture.h"
+#import "Hairdresser.h"
 
 @implementation Business
 
@@ -63,6 +64,23 @@
             }
         }
         _services = temp;
+    }
+}
+
+-(void)setHairdressers:(NSMutableArray *)hairdressers
+{
+    if ([hairdressers isEqual:[NSNull null]]) {
+        _hairdressers = nil;
+    } else {
+        NSMutableArray *temp = [[NSMutableArray alloc] init];
+        for (NSDictionary *hairdresser in hairdressers) {
+            if ([hairdresser isKindOfClass:[Hairdresser class]]) {
+                [temp addObject:hairdresser];
+            } else {
+                [temp addObject:[[Hairdresser alloc] initWithDictionary:hairdresser]];
+            }
+        }
+        _hairdressers = temp;
     }
 }
 
@@ -172,35 +190,73 @@
 {
     [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/businesses/:id" verb:@"PUT"] forMethod:@"businesses.update"];
     
-    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+        NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     
-    
-    [parameters setObject:self.id forKey:@"id"];
+       [parameters setObject:self.id forKey:@"id"];
     
     if (self.name != nil)
         [parameters setObject:self.name forKey:@"name"];
-    
+  
     if (self.gps != nil)
         [parameters setObject:[self.gps toDictionary] forKey:@"gps"];
-    
+ 
     if (self.phoneNumber != nil)
         [parameters setObject:self.phoneNumber forKey:@"phoneNumber"];
-    
-    if (self.timetable != nil)
+
+   if (self.timetable != nil)
         [parameters setObject:[self.timetable toDictionary] forKey:@"timetable"];
+ 
     
+    NSLog(@"hairdressers %@", self.hairdressers);
+    if (self.hairdressers != (id)[NSNull null])
+    {
+        NSMutableArray *hairdresserToSend = [[NSMutableArray alloc] init];
+        for (int i = 0; i < [self.hairdressers count]; i++)
+        {
+            Hairdresser *hairdresser = [self.hairdressers objectAtIndex:i];
+            [hairdresserToSend addObject:[hairdresser toDictionary]];
+            
+        }
+        
+        [parameters setObject:hairdresserToSend forKey:@"hairdressers"];
+        NSLog(@"parameters %@", parameters);
+        
+    }
+
     if (self.address != nil)
         [parameters setObject:[self.address toDictionary]  forKey:@"address"];
-    
+ 
     if (self.desc != nil)
         [parameters setObject:self.desc forKey:@"description"];
     
-    if (self.pictures != nil)
-        [parameters setObject:self.pictures forKey:@"pictures"];
+
+    if (self.pictures != (id)[NSNull null])
+    {
+        NSMutableArray *pictureToSend = [[NSMutableArray alloc] init];
+        for (int i = 0; i < [self.pictures count]; i++)
+        {
+            Picture *pic = [self.pictures objectAtIndex:i];
+            [pictureToSend addObject:[pic toApiValue]];
+        }
+        [parameters setObject:pictureToSend forKey:@"pictures"];
+    }
     
+
     if (self.services != nil)
-        [parameters setObject:self.services forKey:@"services"];
+    {
+        NSMutableArray *servicesToSend = [[NSMutableArray alloc] init];
+        for (int i = 0; i < [self.services count]; i++)
+        {
+            Service *service = [self.services objectAtIndex:i];
+            [servicesToSend addObject:[service toDictionary]];
+            
+        }
+        [parameters setObject:servicesToSend forKey:@"services"];
+        
+    }
     
+
+
     
     [[Business repository] invokeStaticMethod:@"update" parameters:parameters success:aSuccessHandler failure:aFailureHandler];
 }

@@ -103,7 +103,7 @@
     UIView *border =[[UIView alloc] initWithFrame:CGRectMake(85, 25, 102, 102)];
     border.layer.cornerRadius = border.frame.size.height / 2;
     border.clipsToBounds = YES;
-    border.backgroundColor = [UIColor colorWithRed:254/255.0f green:91/255.0f blue:95/255.0f alpha:0.5];
+    border.backgroundColor = [UIColor colorWithWhite:1 alpha:0.2];
 
     
     
@@ -144,10 +144,8 @@
 
 - (void)setupMenu
 {
-    
-    _menuTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 1)];
-    _menuTableView.tableFooterView.backgroundColor = [UIColor colorWithRed:236/255.0f green:236/255.0f blue:238/255.0f alpha:1];
-    _menuItems = [[NSMutableArray alloc] init];
+
+     _menuItems = [[NSMutableArray alloc] init];
     
     
     _menuItems = [NSMutableArray arrayWithObjects: NSLocalizedStringFromTable(@"Home", @"Menu", nil), NSLocalizedStringFromTable(@"Likes", @"Menu", nil), nil];
@@ -190,7 +188,7 @@
     mylabel.text = @"Business";
     UIView *separatorView = [[UIView alloc] initWithFrame:CGRectMake(0, 45, 320, 1)];\
     separatorView.backgroundColor = [UIColor colorWithRed:236/255.0f green:236/255.0f blue:238/255.0f alpha:1];
-    UIView *topseparatorView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 1)];\
+    UIView *topseparatorView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 0)];\
     topseparatorView.backgroundColor = [UIColor colorWithRed:236/255.0f green:236/255.0f blue:238/255.0f alpha:1];
     UIImageView *pictoBusiness = [[UIImageView alloc] initWithFrame:CGRectMake(12, 12, 20, 20)];
     pictoBusiness.image = [UIImage imageNamed:@"picto-home.png"];

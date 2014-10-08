@@ -32,6 +32,7 @@
     UIImagePickerController *imagePicker;
     Hairdresser *hairdresserForEditing;
     Service *serviceForEditing;
+    NSMutableArray *pictureForGallery;
 }
 
 -(UIStatusBarStyle)preferredStatusBarStyle{
@@ -42,7 +43,7 @@
     [super viewDidLoad];
     [self setupGallery:nil];
     [self setButtonSelected:_infoBttn andBringViewUpfront:_infoView];
-    
+    pictureForGallery = [[NSMutableArray alloc] init];
     _claim.timetable = [[Timetable alloc] initEmpty];
     _claim.pictures = [[NSMutableArray alloc] init];
     _phoneLabel.text = _claim.phoneNumber;
@@ -85,6 +86,8 @@
     
     if (pictures == nil)
     {
+        _pageControl.hidden = YES;
+        _pageControl.numberOfPages = [pictures count] + 1;
         CGRect frame;
         frame.origin.x = 0;
         frame.origin.y = 0;
@@ -123,15 +126,14 @@
         NSLog(@"/////////// COMING HERE ////////////");
         _pageControl.hidden = NO;
         _pageControl.numberOfPages = [pictures count] + 1;
-      
         for (int i = 0; i < [pictures count]; i++) {
+            Picture *pic = [pictures objectAtIndex:i];
             CGRect frame;
             frame.origin.x = 320 + _imageSliderView.frame.size.width * i;
             frame.origin.y = 0;
             frame.size = _imageSliderView.frame.size;
             UIImageView *imageView = [[UIImageView alloc] initWithFrame:frame];
-            Picture *picture = [pictures objectAtIndex:i];
-            [imageView sd_setImageWithURL:[NSURL URLWithString:picture.url]
+            [imageView sd_setImageWithURL:[NSURL URLWithString:pic.url]
                                 placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
             
             imageView.contentMode = UIViewContentModeScaleToFill;
@@ -150,7 +152,9 @@
     
     if (_businessToManage != nil)
     {
-        NSLog(@"business id %@", _businessToManage.id);
+        
+        NSLog(@"business pictures %@", _businessToManage.id);
+
         [_validateBttn setTitle:@"Update" forState:UIControlStateNormal];
         _phoneLabel.text = _businessToManage.phoneNumber;
          _addressLabel.text = [_businessToManage.address displayAddress];
@@ -172,10 +176,11 @@
     }
     else
     {
+    [self setupGallery:_claim.pictures];
     _phoneLabel.text = _claim.phoneNumber;
     _addressLabel.text = [_claim.address displayAddress];
     _nameLabel.text = _claim.name;
-        
+        _menuButton.hidden = YES;
     if ([_claim.hairdressers count] == 0)
         _hairdresserTableView.hidden = YES;
     else
@@ -386,14 +391,15 @@
         
         if (_businessToManage != nil)
         {
-            [_businessToManage.pictures addObject:picture.url];
-            [self setupGallery:_businessToManage.pictures];
+            [_businessToManage.pictures addObject:picture];
+            NSLog(@"test %@", picture.url);
         }
         else
         {
-            [_claim.pictures addObject:picture.url];
-            [self setupGallery:_claim.pictures];
+            [_claim.pictures addObject:picture];
+
         }
+        
         [imagePicker dismissViewControllerAnimated:YES completion:nil];
 
     };
@@ -568,6 +574,8 @@
         }
         else
             hairdresser = [_claim.hairdressers objectAtIndex:indexPath.row];
+        
+        NSLog(@"Hairdresser %@", hairdresser);
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.fullName.text = [hairdresser displayFullName];
         
@@ -583,12 +591,10 @@
             cell = [nib objectAtIndex:0];
         }
         
-        Service *service = [[Service alloc] init];
-        
+        Service *service;
         if (_businessToManage != nil)
         {
-            service = [_businessToManage.services objectAtIndex:indexPath.row];
-            
+           service =[_businessToManage.services objectAtIndex:indexPath.row];
         }
         else
             service = [_claim.services objectAtIndex:indexPath.row];
@@ -636,6 +642,7 @@
     }
     if (tableView == _serviceTableView)
     {
+        NSLog(@"SERVICE %@", [_businessToManage.services objectAtIndex:indexPath.row]);
         if (_businessToManage != nil)
             serviceForEditing = [_businessToManage.services objectAtIndex:indexPath.row];
         else

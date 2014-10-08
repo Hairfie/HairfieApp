@@ -24,4 +24,8 @@
     // Configure the view for the selected state
 }
 
+-(IBAction)clearDay:(id)sender
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"clearDay" object:self];
+}
 @end

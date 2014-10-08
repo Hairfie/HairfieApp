@@ -89,7 +89,6 @@
     hairdresser.phoneNumber = _phoneNumberField.text;
     
     [hairdressers addObject:hairdresser];
-
 }
 
 -(IBAction)validateHairdresser:(id)sender
@@ -102,8 +101,7 @@
         finalStep.businessToManage.hairdressers = hairdressers;
     else
         finalStep.claim.hairdressers = hairdressers;
-    NSLog(@"hairdressers %@", finalStep.businessToManage.hairdressers);
-    [self goBack:self];
+     [self goBack:self];
 }
 
 // WTF COPIER COLLER LOL

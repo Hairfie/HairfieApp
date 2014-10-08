@@ -26,4 +26,10 @@
     return self;
 }
 
+-(NSDictionary*)toDictionary
+{
+    return [[NSDictionary alloc]initWithObjectsAndKeys:self.label, @"label",[self.price toDictionary], @"price", nil];
+}
+
+
 @end

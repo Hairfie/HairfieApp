@@ -13,5 +13,6 @@
 @property (nonatomic) IBOutlet UILabel *day;
 @property (nonatomic) IBOutlet UILabel *timewindow;
 @property (nonatomic) IBOutlet UIView *containerView;
+@property (nonatomic) IBOutlet UIButton *deleteButton;
 
 @end
