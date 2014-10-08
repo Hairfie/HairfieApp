@@ -65,7 +65,6 @@
     [_menuTableView openSection:1 animated:NO];
     [_menuTableView openSection:2 animated:NO];
     
-
     _menuTableView.backgroundColor = [UIColor whiteColor];
     _profileView.backgroundColor = [UIColor clearColor];
    
@@ -99,14 +98,20 @@
     UIImageView *profilePicture = [[UIImageView alloc] initWithFrame:CGRectMake(90, 30, 92, 92)];
     profilePicture.layer.cornerRadius = profilePicture.frame.size.height / 2;
     profilePicture.clipsToBounds = YES;
-    profilePicture.layer.borderWidth = 5.0f;
-    profilePicture.layer.borderColor = [UIColor salonDetailTab].CGColor;
+
+    UIView *border =[[UIView alloc] initWithFrame:CGRectMake(85, 25, 102, 102)];
+    border.layer.cornerRadius = border.frame.size.height / 2;
+    border.clipsToBounds = YES;
+    border.backgroundColor = [UIColor colorWithRed:254/255.0f green:91/255.0f blue:95/255.0f alpha:0.5];
+
     
     
     
     [profilePicture sd_setImageWithURL:[NSURL URLWithString:appDelegate.currentUser.thumbUrl] placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
-    
+  
+    [_profileView addSubview:border];
     [_profileView addSubview:profilePicture];
+  
 }
 
 -(void)initManagedBusinesses
@@ -148,7 +153,7 @@
     _menuPictos = [[NSMutableArray alloc] init];
     
     [_menuPictos addObject:@"picto-home.png"];
-    [_menuPictos addObject:@"picto-likes"];
+    [_menuPictos addObject:@"picto-like.png"];
     
     data = [[NSMutableArray alloc] init];
     for (int i = 0 ; i < 3 ; i++)
@@ -219,7 +224,7 @@
         cell.menuItem.text = [_menuItems objectAtIndex:indexPath.row];
       
         [cell.menuPicto setImage:[UIImage imageNamed:[_menuPictos objectAtIndex:indexPath.row]]];
-        
+           cell.indentationWidth = 0;
     }
     if (indexPath.section == 1)
     {
@@ -231,15 +236,19 @@
             Picture *pic = [managedBusiness.pictures objectAtIndex:0];
             
             cell.menuItem.text = managedBusiness.name;
-//            UIImageView *businessPic = [[UIImageView alloc] init];
-//            businessPic.layer.cornerRadius = businessPic.frame.size.height / 2;
-//            businessPic.clipsToBounds = YES;
-//            businessPic.layer.borderWidth = 1.0f;
-//            businessPic.layer.borderColor = [UIColor lightGreyHairfie].CGColor;
-//            
-//            [businessPic sd_setImageWithURL:[NSURL URLWithString:pic.url]
-//                                placeholderImage:[UIColor imageWithColor:[UIColor colorWithRed:234/255.0f green:236/255.0f blue:238/255.0f alpha:1]]];
-           // cell.menuPicto = businessPic;
+            UIImageView *businessPic = [[UIImageView alloc] initWithFrame:cell.menuPicto.frame];
+            
+            NSNumber *sideLength = [NSNumber numberWithInt:cell.menuPicto.frame.size.height * 2];
+            
+            [businessPic sd_setImageWithURL:[NSURL URLWithString:[pic urlWithWidth:sideLength height:sideLength]]
+                                placeholderImage:[UIColor imageWithColor:[UIColor colorWithRed:234/255.0f green:236/255.0f blue:238/255.0f alpha:1]]];
+           
+            cell.menuPicto.layer.cornerRadius = cell.menuPicto.frame.size.height / 2;
+            cell.menuPicto.clipsToBounds = YES;
+            cell.menuPicto.layer.borderWidth = 1.0f;
+            cell.menuPicto.layer.borderColor = [UIColor lightGreyHairfie].CGColor;
+
+            [cell.menuPicto setImage:businessPic.image];
         }
         else
         {
@@ -248,7 +257,7 @@
         }
         
         cell.backgroundColor = [UIColor colorWithRed:236/255.0f green:236/255.0f blue:238/255.0f alpha:1];
-        [cell setClaimSectionPadding];
+      //  [cell setClaimSectionPadding];
 
 
     }
@@ -256,12 +265,12 @@
     {
         [cell.menuPicto setImage:[UIImage imageNamed:@"picto-logout.png"]];
         cell.menuItem.text = @"Log Out";
-        
+        cell.indentationWidth = 0;
     }
     cell.selectionIndicator.hidden = YES;
     cell.menuItem.font = [UIFont fontWithName:@"SourceSansPro-Light" size:15];
     cell.menuItem.textColor = [UIColor colorWithRed:103/255.0f green:111/255.0f blue:116/255.0f alpha:1];
-    cell.menuPicto.contentMode = UIViewContentModeScaleAspectFit;
+   // cell.menuPicto.contentMode = UIViewContentModeScaleAspectFit;
     cell.separatorInset = UIEdgeInsetsMake(0, 10000, 0, 0);
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
    
