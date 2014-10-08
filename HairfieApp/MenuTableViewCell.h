@@ -15,6 +15,4 @@
 @property (nonatomic)    IBOutlet UIView *selectionIndicator;
 
 
--(void)setClaimSectionPadding;
-
 @end

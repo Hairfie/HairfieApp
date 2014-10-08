@@ -34,7 +34,7 @@
     _titleView.hidden = YES;
     [self addDoneButtonToPriceField];
     
-    if ([delegate.currentUser.gender isEqualToString:@"male"])
+    if ([delegate.currentUser.gender isEqualToString:GENDER_MALE])
     {
         _civilityLabel.text = NSLocalizedStringFromTable(@"Man", @"Claim", nil);
         [_userTitle selectRow:1 inComponent:0 animated:YES];
@@ -77,7 +77,7 @@
     
     
     UIToolbar* keyboardDoneButtonView = [[UIToolbar alloc] init];
-    keyboardDoneButtonView.barTintColor = [UIColor redHairfie];
+    keyboardDoneButtonView.barTintColor = [UIColor salonDetailTab];
     [keyboardDoneButtonView sizeToFit];
     
     UIBarButtonItem* doneButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedStringFromTable(@"Validate phone", @"Claim", nil)
@@ -133,9 +133,8 @@
 
 -(IBAction)validateVerification:(id)sender
 {
-    [self performSegueWithIdentifier:@"infoVerified" sender:self];
     [self.view endEditing:YES];
-   /* void (^loadErrorBlock)(NSError *) = ^(NSError *error){
+    void (^loadErrorBlock)(NSError *) = ^(NSError *error){
         NSLog(@"Error : %@", error.description);
     };
     void (^loadSuccessBlock)(NSArray *) = ^(NSArray *results){
@@ -144,7 +143,7 @@
     };
     
     [delegate.currentUser saveWithSuccess:loadSuccessBlock failure:loadErrorBlock];
-    */
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -189,10 +188,11 @@ numberOfRowsInComponent:(NSInteger)component
     [_firstNameField becomeFirstResponder];
     _titleView.hidden = YES;
     if (row == 0){
-        delegate.currentUser.gender = @"female";
+        delegate.currentUser.gender = GENDER_FEMALE;
     }
     else
-        delegate.currentUser.gender = @"male";
+        delegate.currentUser.gender = GENDER_MALE
+        ;
     [self.view removeGestureRecognizer:dismissCivility];
     [self validateVerification:self];
 }

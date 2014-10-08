@@ -63,7 +63,7 @@
 
 
     UIToolbar* keyboardDoneButtonView = [[UIToolbar alloc] init];
-    keyboardDoneButtonView.barTintColor = [UIColor redHairfie];
+    keyboardDoneButtonView.barTintColor = [UIColor salonDetailTab];
     [keyboardDoneButtonView sizeToFit];
     
     UIBarButtonItem* doneButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedStringFromTable(@"Validate phone", @"Claim", nil)

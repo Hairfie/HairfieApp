@@ -149,10 +149,11 @@ numberOfRowsInComponent:(NSInteger)component
         else
             newsletter = @false;
         NSString *gender;
-        if([_userTitleLabel.text isEqualToString:NSLocalizedStringFromTable(@"Man", @"Login_Sign_Up", nil)])
-                gender = @"male";
-        else
-            gender = @"female";
+        if([_userTitleLabel.text isEqualToString:NSLocalizedStringFromTable(@"Man", @"Login_Sign_Up", nil)]) {
+            gender = GENDER_MALE;
+        } else {
+            gender = GENDER_FEMALE;
+        }
         
         NSString *repoName = @"users";
         [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/users" verb:@"POST"] forMethod:@"users"];
