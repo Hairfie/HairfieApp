@@ -36,9 +36,16 @@
 
     self.addReviewButton.layer.cornerRadius = 5;
     self.addReviewButton.layer.masksToBounds = YES;
-    self.addReviewButton.hidden = YES;
+    
+    if(_ratingValue > 0) {
+        self.addReviewButton.hidden = NO;
+    } else {
+        self.addReviewButton.hidden = YES;
+    }
 
     self.reviewTableView.backgroundColor = [UIColor whiteColor];
+    
+    _reviewTextView.placeholder = NSLocalizedStringFromTable(@"Ajoutez votre review...", @"Salon_Detail", nil);
 }
 
 
@@ -70,8 +77,8 @@
 
 - (void)rateView:(RatingView *)rateView ratingDidChange:(float)rating
 {
-    if ([_reviewTextView.text isEqualToString:NSLocalizedStringFromTable(@"Ajoutez votre review...", @"Salon_Detail", nil)])
-        _reviewTextView.text = @"";
+//    if ([_reviewTextView.text isEqualToString:NSLocalizedStringFromTable(@"Ajoutez votre review...", @"Salon_Detail", nil)])
+//        _reviewTextView.text = @"";
     if (![_reviewTextView isFirstResponder]) {
         NSLog(@"test");
         [_reviewTextView becomeFirstResponder];

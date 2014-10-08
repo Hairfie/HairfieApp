@@ -172,6 +172,8 @@
     [ARAnalytics pageView:@"AR - Business Detail"];
     [ARAnalytics event:@"AR - Business Detail" withProperties:@{@"Business ID": _business.id, @"Name": _business.name}];
     
+    [_reviewTableView reloadData];
+    
     [self setNormalStateColor:_hairfieBttn];
     [self setNormalStateColor:_hairdresserBttn];
     [self setNormalStateColor:_priceAndSaleBttn];
@@ -579,14 +581,14 @@
     if (_hairfieView.hidden) return;
     
     
-    NSInteger hairfieCount = [hairfies count];
+    NSInteger hairfieCount = [hairfies count] + 1;
     
     if (hairfieCount % 2 != 0) {
         hairfieCount += 1;
     }
    
     
-    NSInteger height =  hairfieCount / 2 * 250 + 88 + _callBttn.frame.size.height;
+    NSInteger height =  hairfieCount / 2 * 250 + 38 + _callBttn.frame.size.height;
     if ([hairfies count] %2 == 0)
         height += 80;
     if ([hairfies count] == 1)

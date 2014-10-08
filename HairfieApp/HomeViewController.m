@@ -78,8 +78,7 @@
         [self prepareUserNotLogged];
     }
     
-    
-    // Do any additional setup after loading the view.
+    [_topBarView addBottomBorderWithHeight:1.0 andColor:[UIColor lightGrey]];
 
 }
 
