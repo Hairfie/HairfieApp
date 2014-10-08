@@ -29,10 +29,7 @@
 
 -(NSDictionary *)toDictionary
 {
-    return @{
-        @"amount"  : self.amount,
-        @"currency": self.currency
-    };
+    return [[NSDictionary alloc]initWithObjectsAndKeys:self.amount, @"amount",self.currency, @"currency", nil];
 }
 
 -(NSString *)formatted

@@ -37,7 +37,7 @@
 
 -(NSString *)toApiValue
 {
-    if ([self.name isEqual:[NSNull null]]) {
+    if ([self.name length] == 0) {
         return self.url;
     } else {
         return self.name;
