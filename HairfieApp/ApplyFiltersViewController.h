@@ -24,4 +24,9 @@
 -(IBAction)newFilter:(id)sender;
 -(IBAction)original:(id)sender;
 
+@property (nonatomic) IBOutlet UIButton *originalBttn;
+@property (nonatomic) IBOutlet UIButton *sepiaBttn;
+@property (nonatomic) IBOutlet UIButton *curveBttn;
+
+
 @end
