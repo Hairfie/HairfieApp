@@ -34,7 +34,7 @@
     _titleView.hidden = YES;
     [self addDoneButtonToPriceField];
     
-    if ([delegate.currentUser.gender isEqualToString:@"male"])
+    if ([delegate.currentUser.gender isEqualToString:GENDER_MALE])
     {
         _civilityLabel.text = NSLocalizedStringFromTable(@"Man", @"Claim", nil);
         [_userTitle selectRow:1 inComponent:0 animated:YES];
@@ -189,10 +189,11 @@ numberOfRowsInComponent:(NSInteger)component
     [_firstNameField becomeFirstResponder];
     _titleView.hidden = YES;
     if (row == 0){
-        delegate.currentUser.gender = @"female";
+        delegate.currentUser.gender = GENDER_FEMALE;
     }
     else
-        delegate.currentUser.gender = @"male";
+        delegate.currentUser.gender = GENDER_MALE
+        ;
     [self.view removeGestureRecognizer:dismissCivility];
     [self validateVerification:self];
 }
