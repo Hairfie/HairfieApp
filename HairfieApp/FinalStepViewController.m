@@ -574,6 +574,8 @@
         }
         else
             hairdresser = [_claim.hairdressers objectAtIndex:indexPath.row];
+        
+        NSLog(@"Hairdresser %@", hairdresser);
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.fullName.text = [hairdresser displayFullName];
         
@@ -592,10 +594,10 @@
         Service *service;
         if (_businessToManage != nil)
         {
-           service =[[Service alloc] initWithDictionary:[_businessToManage.services objectAtIndex:indexPath.row]];
+           service =[_businessToManage.services objectAtIndex:indexPath.row];
         }
         else
-            service = [[Service alloc] initWithDictionary:[_claim.services objectAtIndex:indexPath.row]];
+            service = [_claim.services objectAtIndex:indexPath.row];
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.itemName.text = service.label;

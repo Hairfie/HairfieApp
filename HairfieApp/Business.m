@@ -67,6 +67,23 @@
     }
 }
 
+-(void)setHairdressers:(NSMutableArray *)hairdressers
+{
+    if ([hairdressers isEqual:[NSNull null]]) {
+        _hairdressers = nil;
+    } else {
+        NSMutableArray *temp = [[NSMutableArray alloc] init];
+        for (NSDictionary *hairdresser in hairdressers) {
+            if ([hairdresser isKindOfClass:[Hairdresser class]]) {
+                [temp addObject:hairdresser];
+            } else {
+                [temp addObject:[[Hairdresser alloc] initWithDictionary:hairdresser]];
+            }
+        }
+        _hairdressers = temp;
+    }
+}
+
 -(id)initWithDictionary:(NSDictionary *)data
 {
     self = [super init];

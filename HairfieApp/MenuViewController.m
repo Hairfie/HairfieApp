@@ -103,7 +103,7 @@
     UIView *border =[[UIView alloc] initWithFrame:CGRectMake(85, 25, 102, 102)];
     border.layer.cornerRadius = border.frame.size.height / 2;
     border.clipsToBounds = YES;
-    border.backgroundColor = [UIColor colorWithRed:254/255.0f green:91/255.0f blue:95/255.0f alpha:0.5];
+    border.backgroundColor = [UIColor colorWithWhite:1 alpha:0.2];
 
     
     

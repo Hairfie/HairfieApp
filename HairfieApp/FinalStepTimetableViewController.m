@@ -34,7 +34,8 @@
         _timeTable = [[Timetable alloc] initEmpty];
     
     weekDays = [[NSArray alloc] initWithObjects:@"Monday",@"Tuesday",@"Wednesday",@"Thursday",@"Friday",@"Saturday",@"Sunday", nil];
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(clearDay:) name:@"clearDay" object:nil];
+
     
     
     _doneBttn.layer.cornerRadius = 5;
@@ -44,6 +45,42 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [_timeTableView reloadData];
+}
+
+-(void)clearDay:(NSNotification*)notification
+{
+    ClaimTimetableCell *cell = notification.object;
+    NSLog(@"CLEAR DAY %ld", cell.tag);
+    if (cell.tag == 0)
+    {
+        [_timeTable.monday removeAllObjects];
+    }
+    if (cell.tag == 1)
+    {
+       [_timeTable.monday removeAllObjects];
+    }
+    if (cell.tag == 2)
+    {
+       [_timeTable.monday removeAllObjects];
+    }
+    if (cell.tag == 3)
+    {
+       [_timeTable.monday removeAllObjects];
+    }
+    if (cell.tag == 4)
+    {
+        [_timeTable.monday removeAllObjects];
+    }
+    if (cell.tag == 5)
+    {
+       [_timeTable.monday removeAllObjects];
+    }
+    if (cell.tag == 6)
+    {
+        [_timeTable.monday removeAllObjects];
+    }
+    [_timeTableView reloadData];
+  //  notification.object
 }
 
 -(IBAction)goBack:(id)sender
@@ -91,6 +128,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     dayPicked = [weekDays objectAtIndex:indexPath.row];
+
     [self performSegueWithIdentifier:@"addTimeWindow" sender:self];
 }
 
@@ -109,136 +147,154 @@
     
     cell.day.text = [weekDays objectAtIndex:indexPath.row];
     
-    TimeWindow *timeWindow = [[TimeWindow  alloc]init];
+   
 
-    
-
-    if (indexPath.row== 0){
-        if ([_timeTable.monday count] == 1 ){
-            timeWindow = [_timeTable.monday objectAtIndex:0];
-            cell.timewindow.text = [timeWindow timeWindowFormatted];
-        }
-        else if ([_timeTable.monday count] == 2 )
+    if (indexPath.row == 0)
+    {
+        if ([_timeTable.monday count] != 0)
         {
-            TimeWindow *timeWindow2 = [[TimeWindow  alloc]init];
-            
-            timeWindow = [_timeTable.monday objectAtIndex:0];
-            timeWindow2 = [_timeTable.monday objectAtIndex:1];
-            [cell.timewindow sizeToFit];
-            cell.timewindow.text = [NSString stringWithFormat:@"%@ / %@", [timeWindow timeWindowFormatted], [timeWindow2 timeWindowFormatted]];
+            NSString *display = @"";
+            for (TimeWindow *tm in _timeTable.monday) {
+                if ([display isEqualToString:@""]){
+                    display = [tm timeWindowFormatted];
+                } else {
+                    display = [NSString stringWithFormat:@"%@ / %@", display, [tm timeWindowFormatted]];
+                }
+            }
+            cell.timewindow.text = display;
+            cell.deleteButton.hidden = NO;
+            cell.tag = indexPath.row;
+          //  [cell.deleteButton addTarget:self action:@selector(clearDay:) forControlEvents:UIControlEventTouchUpInside];
         }
         else
+        {
             cell.timewindow.text = @"Set a time window";
+            cell.deleteButton.hidden = YES;
+        }
     }
     if (indexPath.row== 1){
-        if ([_timeTable.tuesday count] != 0 ){
-            timeWindow = [_timeTable.tuesday objectAtIndex:0];
-            cell.timewindow.text = [timeWindow timeWindowFormatted];
-        }
-        else if ([_timeTable.monday count] == 2 )
+        if ([_timeTable.tuesday count] != 0)
         {
-            TimeWindow *timeWindow2 = [[TimeWindow  alloc]init];
+            NSString *display = @"";
+            for (TimeWindow *tm in _timeTable.tuesday) {
+                if ([display isEqualToString:@""]){
+                    display = [tm timeWindowFormatted];
+                } else {
+                    display = [NSString stringWithFormat:@"%@ / %@", display, [tm timeWindowFormatted]];
+                }
+            }
+            cell.timewindow.text = display;
+            cell.deleteButton.hidden = NO;
+        }  else{
             
-            timeWindow = [_timeTable.tuesday objectAtIndex:0];
-            timeWindow2 = [_timeTable.tuesday objectAtIndex:1];
-            [cell.timewindow sizeToFit];
-            cell.timewindow.text = [NSString stringWithFormat:@"%@ / %@", [timeWindow timeWindowFormatted], [timeWindow2 timeWindowFormatted]];
-        }
-
-        else
+            cell.deleteButton.hidden = YES;
+            
             cell.timewindow.text = @"Set a time window";
+        }
     }
     if (indexPath.row== 2){
-        if ([_timeTable.wednesday count] != 0 ){
-            timeWindow = [_timeTable.wednesday objectAtIndex:0];
-            cell.timewindow.text = [timeWindow timeWindowFormatted];
-        }
-        else if ([_timeTable.monday count] == 2 )
+        if ([_timeTable.wednesday count] != 0)
         {
-            TimeWindow *timeWindow2 = [[TimeWindow  alloc]init];
-            
-            timeWindow = [_timeTable.wednesday objectAtIndex:0];
-            timeWindow2 = [_timeTable.wednesday objectAtIndex:1];
-            [cell.timewindow sizeToFit];
-            cell.timewindow.text = [NSString stringWithFormat:@"%@ / %@", [timeWindow timeWindowFormatted], [timeWindow2 timeWindowFormatted]];
-        }
-
-        else
+            NSString *display = @"";
+            for (TimeWindow *tm in _timeTable.wednesday) {
+                if ([display isEqualToString:@""]){
+                    display = [tm timeWindowFormatted];
+                } else {
+                    display = [NSString stringWithFormat:@"%@ / %@", display, [tm timeWindowFormatted]];
+                }
+            }
+            cell.timewindow.text = display;
+            cell.deleteButton.hidden = NO;
+        }        else{
             cell.timewindow.text = @"Set a time window";
+            cell.deleteButton.hidden = YES;
+        }
     }
     if (indexPath.row== 3){
-        if ([_timeTable.thursday count] != 0 )
+        if ([_timeTable.thursday count] != 0)
         {
-            timeWindow = [_timeTable.thursday objectAtIndex:0];
-            cell.timewindow.text = [timeWindow timeWindowFormatted];
-        }
-        else if ([_timeTable.monday count] == 2 )
-        {
-            TimeWindow *timeWindow2 = [[TimeWindow  alloc]init];
+            NSString *display = @"";
+            for (TimeWindow *tm in _timeTable.thursday) {
+                if ([display isEqualToString:@""]){
+                    display = [tm timeWindowFormatted];
+                } else {
+                    display = [NSString stringWithFormat:@"%@ / %@", display, [tm timeWindowFormatted]];
+                }
+            }
+            cell.timewindow.text = display;
+            cell.deleteButton.hidden = NO;
+             cell.deleteButton.tag = indexPath.row;
+        }        else {
             
-            timeWindow = [_timeTable.thursday objectAtIndex:0];
-            timeWindow2 = [_timeTable.thursday objectAtIndex:1];
-            [cell.timewindow sizeToFit];
-            cell.timewindow.text = [NSString stringWithFormat:@"%@ / %@", [timeWindow timeWindowFormatted], [timeWindow2 timeWindowFormatted]];
-        }
-
-        else
+            cell.deleteButton.hidden = YES;
+            
             cell.timewindow.text = @"Set a time window";
+        }
     }
     if (indexPath.row== 4){
-        if ([_timeTable.friday count] != 0 ){
-            timeWindow = [_timeTable.friday objectAtIndex:0];
-            cell.timewindow.text = [timeWindow timeWindowFormatted];
-        }
-        else if ([_timeTable.monday count] == 2 )
+        if ([_timeTable.friday count] != 0)
         {
-            TimeWindow *timeWindow2 = [[TimeWindow  alloc]init];
-            
-            timeWindow = [_timeTable.monday objectAtIndex:0];
-            timeWindow2 = [_timeTable.monday objectAtIndex:1];
-            [cell.timewindow sizeToFit];
-            cell.timewindow.text = [NSString stringWithFormat:@"%@ / %@", [timeWindow timeWindowFormatted], [timeWindow2 timeWindowFormatted]];
-        }
-
-        else
+            NSString *display = @"";
+            for (TimeWindow *tm in _timeTable.friday) {
+                if ([display isEqualToString:@""]){
+                    display = [tm timeWindowFormatted];
+                } else {
+                    display = [NSString stringWithFormat:@"%@ / %@", display, [tm timeWindowFormatted]];
+                }
+            }
+            cell.timewindow.text = display;
+            cell.deleteButton.hidden = NO;
+             cell.deleteButton.tag = indexPath.row;
+        }        else {
             cell.timewindow.text = @"Set a time window";
+            cell.deleteButton.hidden = YES;
+            
+        }
     }
     if (indexPath.row== 5){
-        if ([_timeTable.saturday count] != 0 ){
-            timeWindow = [_timeTable.saturday objectAtIndex:0];
-            cell.timewindow.text = [timeWindow timeWindowFormatted];
-        }
-        else if ([_timeTable.monday count] == 2 )
+        if ([_timeTable.saturday count] != 0)
         {
-            TimeWindow *timeWindow2 = [[TimeWindow  alloc]init];
-            
-            timeWindow = [_timeTable.saturday objectAtIndex:0];
-            timeWindow2 = [_timeTable.saturday objectAtIndex:1];
-            [cell.timewindow sizeToFit];
-            cell.timewindow.text = [NSString stringWithFormat:@"%@ / %@", [timeWindow timeWindowFormatted], [timeWindow2 timeWindowFormatted]];
+            NSString *display = @"";
+            for (TimeWindow *tm in _timeTable.saturday) {
+                if ([display isEqualToString:@""]){
+                    display = [tm timeWindowFormatted];
+                } else {
+                    display = [NSString stringWithFormat:@"%@ / %@", display, [tm timeWindowFormatted]];
+                }
+            }
+            cell.timewindow.text = display;
+            cell.deleteButton.hidden = NO;
+             cell.deleteButton.tag = indexPath.row;
         }
-        else
+        else {
+            cell.deleteButton.hidden = YES;
             cell.timewindow.text = @"Set a time window";
-    }
-    if (indexPath.row== 6){
-        if ([_timeTable.sunday count] != 0 ){
-            timeWindow = [_timeTable.sunday objectAtIndex:0];
-            cell.timewindow.text = [timeWindow timeWindowFormatted];
         }
-        else if ([_timeTable.monday count] == 2 )
+    }
+    if (indexPath.row == 6){
+        if ([_timeTable.sunday count] != 0)
         {
-            TimeWindow *timeWindow2 = [[TimeWindow  alloc]init];
-            
-            timeWindow = [_timeTable.sunday objectAtIndex:0];
-            timeWindow2 = [_timeTable.sunday objectAtIndex:1];
-            [cell.timewindow sizeToFit];
-            cell.timewindow.text = [NSString stringWithFormat:@"%@ / %@", [timeWindow timeWindowFormatted], [timeWindow2 timeWindowFormatted]];
+            NSString *display = @"";
+            for (TimeWindow *tm in _timeTable.sunday) {
+                if ([display isEqualToString:@""]){
+                    display = [tm timeWindowFormatted];
+                } else {
+                    display = [NSString stringWithFormat:@"%@ / %@", display, [tm timeWindowFormatted]];
+                }
+            }
+            cell.timewindow.text = display;
+            cell.deleteButton.hidden = NO;
+             cell.deleteButton.tag = indexPath.row;
         }
-        else
+        else{
+            
+            
             cell.timewindow.text = @"Set a time window";
+            cell.deleteButton.hidden = YES;
+            
+        }
     }
-    
-    
+    cell.tag = indexPath.row;
     return cell;
 }
 

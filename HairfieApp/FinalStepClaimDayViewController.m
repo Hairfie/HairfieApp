@@ -129,61 +129,37 @@ numberOfRowsInComponent:(NSInteger)component
 -(IBAction)addTimeTable:(id)sender
 {
     FinalStepTimetableViewController *claimTimeTable = [self.navigationController.viewControllers objectAtIndex:[self.navigationController.viewControllers count]-2];
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedStringFromTable(@"Warning", @"Claim", nil) message:NSLocalizedStringFromTable(@"Warning TimeWindow", @"Claim", nil) delegate:self cancelButtonTitle:@"Ok"otherButtonTitles:nil, nil];
-   
     TimeWindow *timeWindow = [[TimeWindow alloc] initWithStartTime:_openingTime endTime:_closingTime appointmentMode:nil];
     
     
     
     if ([_dayPicked isEqualToString:@"Monday"])
     {
-        NSLog(@"%ld", [claimTimeTable.timeTable.monday count]);
-        if ([claimTimeTable.timeTable.monday count] <= 2)
-            [claimTimeTable.timeTable.monday addObject:timeWindow];
-        else
-            [alertView show];
+        [claimTimeTable.timeTable.monday addObject:timeWindow];
     }
     if ([_dayPicked isEqualToString:@"Tuesday"])
     {
-        if ([claimTimeTable.timeTable.tuesday count] <= 2)
-        [claimTimeTable.timeTable.tuesday addObject:timeWindow];
-        else
-            [alertView show];
-    }
+         [claimTimeTable.timeTable.tuesday addObject:timeWindow];
+     }
     if ([_dayPicked isEqualToString:@"Wednesday"])
     {
-        if ([claimTimeTable.timeTable.wednesday count] <= 2)
         [claimTimeTable.timeTable.wednesday addObject:timeWindow];
-        else
-            [alertView show];
     }
     if ([_dayPicked isEqualToString:@"Thursday"])
     {
-        if ([claimTimeTable.timeTable.thursday count] <= 2)
         [claimTimeTable.timeTable.thursday addObject:timeWindow];
-        else
-            [alertView show];
     }
     if ([_dayPicked isEqualToString:@"Friday"])
     {
-        if ([claimTimeTable.timeTable.friday count] <= 2)
         [claimTimeTable.timeTable.friday addObject:timeWindow];
-        else
-            [alertView show];
     }
     if ([_dayPicked isEqualToString:@"Saturday"])
     {
-        if ([claimTimeTable.timeTable.saturday count] <= 2)
         [claimTimeTable.timeTable.saturday addObject:timeWindow];
-        else
-            [alertView show];
     }
     if ([_dayPicked isEqualToString:@"Sunday"])
     {
-        if ([claimTimeTable.timeTable.sunday count] <= 2)
-            [claimTimeTable.timeTable.sunday addObject:timeWindow];
-        else
-            [alertView show];
+        [claimTimeTable.timeTable.sunday addObject:timeWindow];
     }
     [_openingTimePicker reloadAllComponents];
     [_closingTimePicker reloadAllComponents];
