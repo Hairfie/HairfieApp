@@ -1715,7 +1715,7 @@
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </view>
-                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8hf-8q-hqK" userLabel="INFO VIEW">
+                                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8hf-8q-hqK" userLabel="INFO VIEW">
                                                 <rect key="frame" x="0.0" y="238" width="320" height="1192"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pQj-wF-6sZ" userLabel="Detail Container View">
@@ -1863,6 +1863,12 @@
                                                         </subviews>
                                                         <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
                                                     </view>
+                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="cCd-OE-JmK" userLabel="Review Table View">
+                                                        <rect key="frame" x="0.0" y="318" width="320" height="252"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                        <sections/>
+                                                    </tableView>
                                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9aj-2o-ahb">
                                                         <rect key="frame" x="80" y="518" width="96" height="25"/>
                                                         <color key="backgroundColor" red="0.36078431370000003" green="0.67450980390000004" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
@@ -1926,18 +1932,14 @@
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </view>
-                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="cCd-OE-JmK" userLabel="Review Table View">
-                                                        <rect key="frame" x="0.0" y="318" width="320" height="252"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                        <sections/>
-                                                    </tableView>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstItem="aTG-pn-ebO" firstAttribute="top" secondItem="9aj-2o-ahb" secondAttribute="bottom" constant="8" id="R3t-rH-tJn"/>
+                                                    <constraint firstItem="9aj-2o-ahb" firstAttribute="top" secondItem="cCd-OE-JmK" secondAttribute="bottom" constant="8" id="VB1-1i-uIX"/>
                                                     <constraint firstItem="VBB-fJ-v6H" firstAttribute="centerY" secondItem="9aj-2o-ahb" secondAttribute="centerY" id="fdK-Nq-n3I"/>
-                                                    <constraint firstItem="9aj-2o-ahb" firstAttribute="top" secondItem="8hf-8q-hqK" secondAttribute="top" constant="567" id="mna-2n-2Uy"/>
+                                                    <constraint firstItem="9aj-2o-ahb" firstAttribute="top" secondItem="8hf-8q-hqK" secondAttribute="top" constant="530" id="mna-2n-2Uy"/>
+                                                    <constraint firstItem="VBB-fJ-v6H" firstAttribute="height" secondItem="9aj-2o-ahb" secondAttribute="height" id="qyF-6N-JV6"/>
                                                     <constraint firstItem="9aj-2o-ahb" firstAttribute="width" secondItem="VBB-fJ-v6H" secondAttribute="width" id="tV2-f3-581"/>
                                                     <constraint firstAttribute="trailing" secondItem="VBB-fJ-v6H" secondAttribute="trailing" constant="8" id="uIR-80-lpx"/>
                                                     <constraint firstItem="9aj-2o-ahb" firstAttribute="leading" secondItem="8hf-8q-hqK" secondAttribute="leading" constant="80" id="ziS-79-KGB"/>
