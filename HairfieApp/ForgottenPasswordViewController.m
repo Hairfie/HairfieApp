@@ -67,7 +67,7 @@
     void (^loadErrorBlock)(NSError *) = ^(NSError *error){
         NSLog(@"Error : %@", error.description);
         [spinner stopAnimating];
-        UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedStringFromTable(@"Error", @"Login_Sign_Up", nil) message:NSLocalizedStringFromTable(@"Sorry, try again later !", @"Login_Sign_Up", nil) delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedStringFromTable(@"Error", @"Login_Sign_Up", nil) message:NSLocalizedStringFromTable(@"Sorry, try again later !", @"Login_Sign_Up", nil) delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
         [errorAlert show];
 
     };
@@ -75,7 +75,7 @@
         
         NSLog(@"results %@", results);
         [spinner stopAnimating];
-        UIAlertView *successAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedStringFromTable(@"Success", @"Login_Sign_Up", nil) message:NSLocalizedStringFromTable(@"Go check your emails !", @"Login_Sign_Up", nil) delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        UIAlertView *successAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedStringFromTable(@"Success", @"Login_Sign_Up", nil) message:NSLocalizedStringFromTable(@"Go check your emails !", @"Login_Sign_Up", nil) delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
         successAlert.delegate = self;
         [successAlert show];
     };

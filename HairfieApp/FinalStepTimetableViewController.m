@@ -50,7 +50,6 @@
 -(void)clearDay:(NSNotification*)notification
 {
     ClaimTimetableCell *cell = notification.object;
-    NSLog(@"CLEAR DAY %ld", cell.tag);
     if (cell.tag == 0)
     {
         [_timeTable.monday removeAllObjects];

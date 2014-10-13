@@ -16,6 +16,7 @@ target "HairfieApp" do
   pod 'SAMTextView'
   pod 'CrashlyticsFramework'
   pod 'ECSlidingViewController', '~> 2.0.3'
+  pod 'libPhoneNumber-iOS', '~> 0.7'
 end
 
 target "HairfieAppTests" do
@@ -23,4 +24,5 @@ target "HairfieAppTests" do
   pod 'CPPickerView', '~> 1.2.0'
   pod 'SSKeychain'
   pod 'ECSlidingViewController', '~> 2.0.3'
+  pod 'libPhoneNumber-iOS', '~> 0.7'
 end

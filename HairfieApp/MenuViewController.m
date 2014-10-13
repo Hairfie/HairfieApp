@@ -18,8 +18,7 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "CredentialStore.h"
 #import <FacebookSDK/FacebookSDK.h>
-
-
+#import "UIRoundImageView.h"
 
 @implementation MenuViewController
 {
@@ -92,23 +91,22 @@
 -(void) initCurrentUser
 {
     _name.text = appDelegate.currentUser.name;
-    _hairfieNb.text = [NSString stringWithFormat:@"%@ hairfies", appDelegate.currentUser.numHairfies];
+
+    _hairfieNb.text = [appDelegate.currentUser displayHairfies];
     
-    NSLog(@"current user img url %@", appDelegate.currentUser.thumbUrl);
+    NSLog(@"current user img url %@", appDelegate.currentUser.picture);
     
-    UIImageView *profilePicture = [[UIImageView alloc] initWithFrame:CGRectMake(90, 30, 92, 92)];
-    profilePicture.layer.cornerRadius = profilePicture.frame.size.height / 2;
+    UIImageView *profilePicture = [[UIRoundImageView alloc] initWithFrame:CGRectMake(90, 30, 92, 92)];
     profilePicture.clipsToBounds = YES;
+    profilePicture.contentMode = UIViewContentModeScaleAspectFit;
 
     UIView *border =[[UIView alloc] initWithFrame:CGRectMake(85, 25, 102, 102)];
     border.layer.cornerRadius = border.frame.size.height / 2;
     border.clipsToBounds = YES;
     border.backgroundColor = [UIColor colorWithWhite:1 alpha:0.5];
 
-    
-    
-    
-    [profilePicture sd_setImageWithURL:[NSURL URLWithString:appDelegate.currentUser.thumbUrl] placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
+    [profilePicture sd_setImageWithURL:[NSURL URLWithString:[appDelegate.currentUser pictureUrlwithWidth:@200 andHeight:@200]]
+                      placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
   
     [_profileView addSubview:border];
     [_profileView addSubview:profilePicture];
@@ -246,29 +244,39 @@
             cell.menuPicto.clipsToBounds = YES;
             cell.menuPicto.layer.borderWidth = 1.0f;
             cell.menuPicto.layer.borderColor = [UIColor lightGreyHairfie].CGColor;
-
+             cell.backgroundColor = [UIColor colorWithRed:236/255.0f green:236/255.0f blue:238/255.0f alpha:1];
             [cell.menuPicto setImage:businessPic.image];
         }
         else
         {
             cell.menuItem.text = NSLocalizedStringFromTable(@"Add a business", @"Menu", nil);
-            cell.menuPicto.layer.borderWidth = 0;
+           cell.menuPicto.layer.borderColor = [UIColor clearColor].CGColor;
             [cell.menuPicto setImage:[UIImage imageNamed:@"picto-add.png"]];
+             cell.backgroundColor = [UIColor colorWithRed:236/255.0f green:236/255.0f blue:238/255.0f alpha:1];
         }
         
-        cell.backgroundColor = [UIColor colorWithRed:236/255.0f green:236/255.0f blue:238/255.0f alpha:1];
+       
     }
     if (indexPath.section == 2)
     {
+         cell.backgroundColor = [UIColor whiteColor];
         [cell.menuPicto setImage:[UIImage imageNamed:@"picto-logout.png"]];
         cell.menuItem.text = NSLocalizedStringFromTable(@"Log out", @"Menu", nil);
-        cell.menuPicto.layer.borderWidth = 0;
+        cell.menuPicto.layer.borderColor = [UIColor clearColor].CGColor;
         cell.indentationWidth = 0;
     }
+    if (indexPath.section == 0) {
+         cell.backgroundColor = [UIColor whiteColor];
+        NSLog(@"COUCOU TA RACE");
+        cell.menuPicto.layer.borderColor = [UIColor clearColor].CGColor;
+        cell.menuPicto.layer.cornerRadius = 0;
+        cell.menuPicto.clipsToBounds = NO;
+    }
+    
     cell.selectionIndicator.hidden = YES;
     cell.menuItem.font = [UIFont fontWithName:@"SourceSansPro-Light" size:15];
     cell.menuItem.textColor = [UIColor colorWithRed:103/255.0f green:111/255.0f blue:116/255.0f alpha:1];
-    cell.menuPicto.contentMode = UIViewContentModeScaleAspectFit;
+    cell.menuPicto.contentMode = UIViewContentModeScaleToFill;
     cell.separatorInset = UIEdgeInsetsMake(0, 10000, 0, 0);
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
    

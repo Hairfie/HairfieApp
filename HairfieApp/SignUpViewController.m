@@ -175,7 +175,7 @@ numberOfRowsInComponent:(NSInteger)component
     }
     else
     {
-        UIAlertView *badLogin = [[UIAlertView alloc] initWithTitle:NSLocalizedStringFromTable(@"Sign up Failed", @"Login_Sign_Up", nil) message:NSLocalizedStringFromTable(@"The email/password in not valid", @"Login_Sign_Up", nil) delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        UIAlertView *badLogin = [[UIAlertView alloc] initWithTitle:NSLocalizedStringFromTable(@"Sign up Failed", @"Login_Sign_Up", nil) message:NSLocalizedStringFromTable(@"The email/password in not valid", @"Login_Sign_Up", nil) delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
         
         [badLogin show];
     }

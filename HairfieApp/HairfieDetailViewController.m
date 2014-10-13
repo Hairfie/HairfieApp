@@ -46,6 +46,7 @@
 
     
     self.headerTitleLabel.text = [NSString stringWithFormat:@"%@'s Hairfie", self.hairfie.author.firstName];
+     [_topBarView addBottomBorderWithHeight:1.0 andColor:[UIColor lightGrey]];
 }
 
 -(void)viewWillAppear:(BOOL)animated

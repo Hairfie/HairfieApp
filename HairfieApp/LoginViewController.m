@@ -110,7 +110,7 @@
     void (^loadErrorBlock)(NSError *) = ^(NSError *error) {
         NSLog(@"Error on load %zd", error.code);
         if (error.code == -1011) {
-            UIAlertView *badLogin = [[UIAlertView alloc] initWithTitle:NSLocalizedStringFromTable(@"Login Failed", @"Login_Sign_Up", nil) message:NSLocalizedStringFromTable(@"The password in incorrect", @"Login_Sign_Up", nil) delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+            UIAlertView *badLogin = [[UIAlertView alloc] initWithTitle:NSLocalizedStringFromTable(@"Login Failed", @"Login_Sign_Up", nil) message:NSLocalizedStringFromTable(@"The password in incorrect", @"Login_Sign_Up", nil) delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
             [badLogin show];
         }
     };
@@ -132,7 +132,7 @@
         LBModelRepository *loginData = [[AppDelegate lbAdaptater] repositoryWithModelName:repoName];
         [loginData invokeStaticMethod:@"login" parameters:@{@"email": _emailField.text, @"password" : _passwordField.text} success:loadSuccessBlock failure:loadErrorBlock];
     } else {
-        UIAlertView *badLogin = [[UIAlertView alloc] initWithTitle:NSLocalizedStringFromTable(@"Login Failed", @"Login_Sign_Up", nil) message:NSLocalizedStringFromTable(@"The email/password in incorrect", @"Login_Sign_Up", nil) delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        UIAlertView *badLogin = [[UIAlertView alloc] initWithTitle:NSLocalizedStringFromTable(@"Login Failed", @"Login_Sign_Up", nil) message:NSLocalizedStringFromTable(@"The email/password in incorrect", @"Login_Sign_Up", nil) delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
         [badLogin show];
     }
 }
@@ -249,7 +249,7 @@
 }
 
 - (void) showMessage:(NSString *)alertText withTitle:(NSString *)alertTitle {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:alertTitle message:alertText delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:alertTitle message:alertText delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
     [alert show];
 }
 
