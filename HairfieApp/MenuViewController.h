@@ -14,7 +14,6 @@
 
 @interface MenuViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
-
 @property (nonatomic) IBOutlet STCollapseTableView *menuTableView;
 @property (nonatomic) IBOutlet UIView *profileView;
 @property (nonatomic, strong) NSMutableArray *menuItems;
@@ -23,7 +22,7 @@
 @property (nonatomic) IBOutlet UILabel *hairfieNb;
 @property (nonatomic) User *currentUser;
 
-- (IBAction)unwindToMenuViewController:(UIStoryboardSegue *)segue;
--(void) initCurrentUser;
+-(IBAction)unwindToMenuViewController:(UIStoryboardSegue *)segue;
+-(void)initCurrentUser;
 
 @end

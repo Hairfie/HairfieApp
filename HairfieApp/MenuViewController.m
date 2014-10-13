@@ -18,8 +18,7 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "CredentialStore.h"
 #import <FacebookSDK/FacebookSDK.h>
-
-
+#import "UIRoundImageView.h"
 
 @implementation MenuViewController
 {
@@ -94,21 +93,19 @@
     _name.text = appDelegate.currentUser.name;
     _hairfieNb.text = [NSString stringWithFormat:@"%@ hairfies", appDelegate.currentUser.numHairfies];
     
-    NSLog(@"current user img url %@", appDelegate.currentUser.thumbUrl);
+    NSLog(@"current user img url %@", appDelegate.currentUser.picture);
     
-    UIImageView *profilePicture = [[UIImageView alloc] initWithFrame:CGRectMake(90, 30, 92, 92)];
-    profilePicture.layer.cornerRadius = profilePicture.frame.size.height / 2;
+    UIImageView *profilePicture = [[UIRoundImageView alloc] initWithFrame:CGRectMake(90, 30, 92, 92)];
     profilePicture.clipsToBounds = YES;
+    profilePicture.contentMode = UIViewContentModeScaleAspectFit;
 
     UIView *border =[[UIView alloc] initWithFrame:CGRectMake(85, 25, 102, 102)];
     border.layer.cornerRadius = border.frame.size.height / 2;
     border.clipsToBounds = YES;
     border.backgroundColor = [UIColor colorWithWhite:1 alpha:0.5];
 
-    
-    
-    
-    [profilePicture sd_setImageWithURL:[NSURL URLWithString:appDelegate.currentUser.thumbUrl] placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
+    [profilePicture sd_setImageWithURL:[NSURL URLWithString:[appDelegate.currentUser pictureUrlwithWidth:@200 andHeight:@200]]
+                      placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
   
     [_profileView addSubview:border];
     [_profileView addSubview:profilePicture];
