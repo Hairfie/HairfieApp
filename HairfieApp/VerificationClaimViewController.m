@@ -8,6 +8,11 @@
 
 #import "VerificationClaimViewController.h"
 #import "UITextField+Style.h"
+#import "NBPhoneMetaData.h"
+#import "NBPhoneNumber.h"
+#import "NBPhoneNumberDesc.h"
+#import "NBPhoneNumberUtil.h"
+#import "NBNumberFormat.h"
 
 @interface VerificationClaimViewController ()
 
@@ -28,6 +33,10 @@
     [super viewDidLoad];
     
     delegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldValidated:) name:@"validateTextField" object:nil];
+    
+
     NSLog(@"current user %@", [delegate.currentUser toDictionary]);
     
     title = [NSArray arrayWithObjects:NSLocalizedStringFromTable(@"Woman", @"Login_Sign_Up", nil), NSLocalizedStringFromTable(@"Man", @"Login_Sign_Up", nil), nil];
@@ -69,8 +78,6 @@
 
 -(void)showPopup {
     
- 
-    
     self.popViewController = [[PopUpViewController alloc] initWithNibName:@"PopUpViewController" bundle:nil];
     
     [self.popViewController showInView:self.view withTitle:NSLocalizedStringFromTable(@"You're hairdresser ? Tell Us !", @"Claim", nil) withMessage:NSLocalizedStringFromTable(@"Claim your business in order to manage your business on Hairfie", @"Claim", nil) withButton:NSLocalizedStringFromTable(@"Claim Your Business", @"Claim", nil) animated:YES];
@@ -96,6 +103,38 @@
     }
     return YES;
 }
+
+- (void)textFieldValidated:(NSNotification *)notification
+{
+    [self formatPhoneNumber:_phoneField.text];
+}
+-(void)formatPhoneNumber:(NSString*)phoneNumber
+{
+    NSLog(@"FORMATING PHONE");
+    NBPhoneNumberUtil *phoneUtil = [NBPhoneNumberUtil sharedInstance];
+    NSError *anError = nil;
+    NBPhoneNumber *myNumber = [phoneUtil parse:phoneNumber
+                                 defaultRegion:@"FR" error:&anError];
+    
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:nil delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+    
+    if (anError == nil) {
+        // Should check error
+        if ([phoneUtil isValidNumber:myNumber] == NO)
+        {
+            alertView.message = NSLocalizedStringFromTable(@"Phone not valid message", @"Claim", nil);
+            alertView.title =  NSLocalizedStringFromTable(@"Phone not valid title", @"Claim", nil);;
+            [alertView show];
+        }
+        else
+            _phoneField.text = [phoneUtil format:myNumber
+                                          numberFormat:NBEPhoneNumberFormatINTERNATIONAL
+                                      error:&anError];
+      } else {
+          NSLog(@"Error : %@", [anError localizedDescription]);
+      }
+}
+
 
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {

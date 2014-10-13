@@ -291,7 +291,7 @@ shouldChangeTextInRange: (NSRange) range
 
 
 -(void)showUploadFailedAlertView {
-    UIAlertView *errorAlert = [[UIAlertView alloc]initWithTitle:@"Error" message:NSLocalizedStringFromTable(@"There was an error uploading your hairfie, Try Again !", @"Post_Hairfie", nil)  delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    UIAlertView *errorAlert = [[UIAlertView alloc]initWithTitle:@"Error" message:NSLocalizedStringFromTable(@"There was an error uploading your hairfie, Try Again !", @"Post_Hairfie", nil)  delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
     [errorAlert show];
 }
 
@@ -299,9 +299,6 @@ shouldChangeTextInRange: (NSRange) range
     [self uploadHairfiePicture:_hairfie];
 }
 
-- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
-    
-}
 
 @end
 

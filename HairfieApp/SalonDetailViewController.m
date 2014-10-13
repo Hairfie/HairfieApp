@@ -271,7 +271,6 @@
     for (UIView *subView in button.subviews) {
         if (subView.tag == 1) [subView removeFromSuperview];
     }
-    //[button setBackgroundColor:[UIColor colorWithRed:50/255.0f green:67/255.0f blue:87/255.0f alpha:0.9]];
 }
 
 -(void) unSelectAll
