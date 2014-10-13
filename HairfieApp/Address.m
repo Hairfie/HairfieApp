@@ -16,7 +16,7 @@
     return [self initWithStreet:[data valueForKey:@"street"]
                            city:[data valueForKey:@"city"]
                         zipCode:[data valueForKey:@"zipCode"]
-                        country:@"FR"]; // TODO: remove this hardcoded value!
+                        country:[data valueForKey:@"country"]];
 }
 
 -(id)initWithStreet:(NSString *)aStreet
@@ -34,7 +34,8 @@
     return self;
 }
 
--(NSString *)displayAddress {
+-(NSString *)displayAddress
+{
     return [NSString stringWithFormat:@"%@ %@ %@", self.street, self.zipCode, self.city];
 }
 
