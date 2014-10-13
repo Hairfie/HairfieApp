@@ -107,30 +107,31 @@
 
     NSArray *timeWindows = nil;
     switch ([components weekday]) {
-        case 0:
+        case 1:
             timeWindows = self.sunday;
             break;
-        case 1:
+        case 2:
             timeWindows = self.monday;
             break;
-        case 2:
+        case 3:
             timeWindows = self.tuesday;
             break;
-        case 3:
+        case 4:
             timeWindows = self.wednesday;
             break;
-        case 4:
+        case 5:
             timeWindows = self.thursday;
             break;
-        case 5:
+        case 6:
             timeWindows = self.friday;
             break;
-        case 6:
+        case 7:
             timeWindows = self.saturday;
             break;
-
         default:
-            [[[NSException alloc] initWithName:@"Invalid week day" reason:@"Invalid week day" userInfo:nil] raise];
+            [[[NSException alloc] initWithName:@"Invalid week day"
+                                        reason:[NSString stringWithFormat:@"Got week day: %@", [components weekday]]
+                                      userInfo:nil] raise];
     }
 
     return timeWindows.count > 0;
