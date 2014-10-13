@@ -123,8 +123,6 @@
         [self setupMenu];
         [_menuTableView reloadData];
     };
-
-    
     [appDelegate.currentUser getManagedBusinessesByUserSuccess:loadSuccessBlock failure:loadErrorBlock];
 }
 
@@ -135,23 +133,16 @@
 #pragma mark - Table view data source
 -(void) viewWillAppear:(BOOL)animated
 {
-  //  [self.slidingViewController.topViewController.view addGestureRecognizer:self.slidingViewController.panGesture];
-
 }
 
 
 - (void)setupMenu
 {
-
-     _menuItems = [[NSMutableArray alloc] init];
-    
-    
+    _menuItems = [[NSMutableArray alloc] init];
     _menuItems = [NSMutableArray arrayWithObjects: NSLocalizedStringFromTable(@"Home", @"Menu", nil), NSLocalizedStringFromTable(@"Likes", @"Menu", nil), nil];
     _menuPictos = [[NSMutableArray alloc] init];
-    
     [_menuPictos addObject:@"picto-home.png"];
     [_menuPictos addObject:@"picto-like.png"];
-    
     data = [[NSMutableArray alloc] init];
     for (int i = 0 ; i < 3 ; i++)
     {
@@ -171,13 +162,8 @@
             }
             [section addObject:[NSString stringWithFormat:@"add business"]];
         }
-        
-        
         [data addObject:section];
-
     }
-    
-    
     headers = [[NSMutableArray alloc] init];
     
     UIView* header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 46)];
@@ -214,8 +200,6 @@
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"MenuTableViewCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
-
-
     if (indexPath.section == 0)
     {
         cell.menuItem.text = [_menuItems objectAtIndex:indexPath.row];
@@ -254,8 +238,6 @@
             [cell.menuPicto setImage:[UIImage imageNamed:@"picto-add.png"]];
              cell.backgroundColor = [UIColor colorWithRed:236/255.0f green:236/255.0f blue:238/255.0f alpha:1];
         }
-        
-       
     }
     if (indexPath.section == 2)
     {
@@ -267,12 +249,10 @@
     }
     if (indexPath.section == 0) {
          cell.backgroundColor = [UIColor whiteColor];
-        NSLog(@"COUCOU TA RACE");
         cell.menuPicto.layer.borderColor = [UIColor clearColor].CGColor;
         cell.menuPicto.layer.cornerRadius = 0;
         cell.menuPicto.clipsToBounds = NO;
     }
-    
     cell.selectionIndicator.hidden = YES;
     cell.menuItem.font = [UIFont fontWithName:@"SourceSansPro-Light" size:15];
     cell.menuItem.textColor = [UIColor colorWithRed:103/255.0f green:111/255.0f blue:116/255.0f alpha:1];

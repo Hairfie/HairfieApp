@@ -22,6 +22,7 @@
 #import "AppDelegate.h"
 #import "NotLoggedAlert.h"
 #import "Hairdresser.h"
+#import "NSString+PhoneFormatter.h"
 
 @interface SalonDetailViewController ()
 
@@ -651,11 +652,6 @@
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"telprompt://%@", self.business.phoneNumber]]];
 }
 
--(IBAction)callPhoneWithNumber:(UIButton *)sender
-{
-    NSLog(@"callPhone %@", self.business.phoneNumber);
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"telprompt://%@", self.business.phoneNumber]]];
-}
 
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -688,33 +684,25 @@
 
     UIButton *phoneBtn=[UIButton buttonWithType:UIButtonTypeRoundedRect];
 
-    phoneBtn.frame= CGRectMake(35, 75, 115, 25);
+    phoneBtn.frame= CGRectMake(35, 75, 135, 25);
     phoneBtn.backgroundColor = [UIColor lightBlueHairfie];
     phoneBtn.layer.cornerRadius = 5;
     phoneBtn.layer.masksToBounds = YES;
 
-    [phoneBtn setTitle:[self formatPhoneNumber:self.business.phoneNumber] forState:UIControlStateNormal];
+    
+    NSString *phoneBttnTitle = [[NSString alloc] init];
+
+    
+    phoneBttnTitle = [phoneBttnTitle formatPhoneNumber:self.business.phoneNumber];
+    NSLog(@"phone bttn %@", phoneBttnTitle);
+    
+    
+     
+    [phoneBtn setTitle:phoneBttnTitle forState:UIControlStateNormal];
     [phoneBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [phoneBtn.titleLabel setTextAlignment: NSTextAlignmentCenter];
-    [phoneBtn addTarget:self action:@selector(callPhoneWithNumber:) forControlEvents:UIControlEventTouchUpInside];
+    [phoneBtn addTarget:self action:@selector(callPhone:) forControlEvents:UIControlEventTouchUpInside];
     [_detailedContainerView addSubview:phoneBtn];
-}
-
-
-// add spaces every 2 char on phone number
-
--(NSString*)formatPhoneNumber:(NSString*) str
-{
-    NSMutableString* mStr= [NSMutableString string];
-    for(NSUInteger i=0 ; i<str.length; i++)
-    {
-        [mStr appendString: [str substringWithRange: NSMakeRange(i,1)]];
-        if(i%2 && i!=0)
-        {
-            [mStr appendString: @" "];
-        }
-    }
-    return  mStr;
 }
 
 

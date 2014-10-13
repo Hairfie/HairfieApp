@@ -9,6 +9,7 @@
 #import "SecondStepViewController.h"
 #import "SecondStepSalonPhoneViewController.h"
 #import "ThirdStepViewController.h"
+#import "NSString+PhoneFormatter.h"
 
 @interface SecondStepViewController ()
 {
@@ -32,8 +33,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSLog(@"2ND STEP CLAIM %@", _claim);
-   
     _salonBttn.layer.cornerRadius =5;
     _salonBttn.layer.borderColor = [UIColor lightGreyHairfie].CGColor;
     _salonBttn.layer.borderWidth = 1;
@@ -54,6 +53,11 @@
     // Do any additional setup after loading the view.
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    if (![_phoneTextField.text isEqual:[NSNull null]])
+        _phoneTextField.text = [_phoneTextField.text formatPhoneNumber:_phoneTextField.text];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

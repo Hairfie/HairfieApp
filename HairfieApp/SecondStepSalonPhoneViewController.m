@@ -10,6 +10,7 @@
 #import "SecondStepViewController.h"
 #import "FinalStepViewController.h"
 #import "UITextField+Style.h"
+#import "NSString+PhoneFormatter.h"
 
 @interface SecondStepSalonPhoneViewController ()
 
@@ -84,13 +85,15 @@
         
         if (finalStep.businessToManage != nil) {
             if (_isSalon == NO) {
-                finalStep.businessToManage.phoneNumber = textField.text;
+                    finalStep.businessToManage.phoneNumber = textField.text;
+                    textField.text = [textField.text formatPhoneNumber:textField.text];
             } else {
                 finalStep.businessToManage.name = textField.text;
             }
         } else {
             if (_isSalon == NO) {
                 finalStep.claim.phoneNumber = textField.text;
+                textField.text = [textField.text formatPhoneNumber:textField.text];
             } else {
                 finalStep.claim.name = textField.text;
             }
@@ -99,8 +102,10 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-
-
+-(IBAction)doneClicked:(id)sender
+{
+    [self textFieldValidated:nil];
+}
 -(IBAction)goBack:(id)sender
 {
     [self textFieldValidated:nil];

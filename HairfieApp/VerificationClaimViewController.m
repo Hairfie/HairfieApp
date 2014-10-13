@@ -8,11 +8,7 @@
 
 #import "VerificationClaimViewController.h"
 #import "UITextField+Style.h"
-#import "NBPhoneMetaData.h"
-#import "NBPhoneNumber.h"
-#import "NBPhoneNumberDesc.h"
-#import "NBPhoneNumberUtil.h"
-#import "NBNumberFormat.h"
+#import "NSString+PhoneFormatter.h"
 
 @interface VerificationClaimViewController ()
 
@@ -36,7 +32,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldValidated:) name:@"validateTextField" object:nil];
     
-
+    
     NSLog(@"current user %@", [delegate.currentUser toDictionary]);
     
     title = [NSArray arrayWithObjects:NSLocalizedStringFromTable(@"Woman", @"Login_Sign_Up", nil), NSLocalizedStringFromTable(@"Man", @"Login_Sign_Up", nil), nil];
@@ -59,7 +55,10 @@
     _lastNameField.text = delegate.currentUser.lastName;
     _emailField.text = delegate.currentUser.email;
     if (![delegate.currentUser.phoneNumber isEqual: [NSNull null]])
-        _phoneField.text = delegate.currentUser.phoneNumber;
+    {
+
+        _phoneField.text = [_phoneField.text formatPhoneNumber:delegate.currentUser.phoneNumber];
+    }
     else
         _phoneField.placeholder = NSLocalizedStringFromTable(@"Add your phone number", @"Claim", nil);
     dismissCivility = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(hideCivilityPicker)];
@@ -83,7 +82,6 @@
     [self.popViewController showInView:self.view withTitle:NSLocalizedStringFromTable(@"You're hairdresser ? Tell Us !", @"Claim", nil) withMessage:NSLocalizedStringFromTable(@"Claim your business in order to manage your business on Hairfie", @"Claim", nil) withButton:NSLocalizedStringFromTable(@"Claim Your Business", @"Claim", nil) animated:YES];
 }
 
-
 -(void) viewWillAppear:(BOOL)animated {
     [ARAnalytics pageView:@"AR - Verification Claim"];
 }
@@ -106,35 +104,8 @@
 
 - (void)textFieldValidated:(NSNotification *)notification
 {
-    [self formatPhoneNumber:_phoneField.text];
+    _phoneField.text = [_phoneField.text formatPhoneNumber:_phoneField.text];
 }
--(void)formatPhoneNumber:(NSString*)phoneNumber
-{
-    NSLog(@"FORMATING PHONE");
-    NBPhoneNumberUtil *phoneUtil = [NBPhoneNumberUtil sharedInstance];
-    NSError *anError = nil;
-    NBPhoneNumber *myNumber = [phoneUtil parse:phoneNumber
-                                 defaultRegion:@"FR" error:&anError];
-    
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:nil delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-    
-    if (anError == nil) {
-        // Should check error
-        if ([phoneUtil isValidNumber:myNumber] == NO)
-        {
-            alertView.message = NSLocalizedStringFromTable(@"Phone not valid message", @"Claim", nil);
-            alertView.title =  NSLocalizedStringFromTable(@"Phone not valid title", @"Claim", nil);;
-            [alertView show];
-        }
-        else
-            _phoneField.text = [phoneUtil format:myNumber
-                                          numberFormat:NBEPhoneNumberFormatINTERNATIONAL
-                                      error:&anError];
-      } else {
-          NSLog(@"Error : %@", [anError localizedDescription]);
-      }
-}
-
 
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
