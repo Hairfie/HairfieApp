@@ -130,7 +130,9 @@
             break;
 
         default:
-            [[[NSException alloc] initWithName:@"Invalid week day" reason:@"Invalid week day" userInfo:nil] raise];
+            [[[NSException alloc] initWithName:@"Invalid week day"
+                                        reason:[NSString stringWithFormat:@"Got week day: %@", [components weekday]]
+                                      userInfo:nil] raise];
     }
 
     return timeWindows.count > 0;
