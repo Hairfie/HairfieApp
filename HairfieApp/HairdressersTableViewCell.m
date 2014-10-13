@@ -12,14 +12,7 @@
 
 - (void)awakeFromNib {
     // Initialization code
-    UIImageView *profilePicture = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 40, 40)];
     
-    profilePicture.layer.cornerRadius = profilePicture.frame.size.height / 2;
-    profilePicture.clipsToBounds = YES;
-    profilePicture.layer.borderWidth = 1.0f;
-    profilePicture.layer.borderColor = [UIColor whiteColor].CGColor;
-    profilePicture.image = [UIImage imageNamed:@"leosquare.jpg"];
-    [self.viewForBaselineLayout addSubview:profilePicture];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

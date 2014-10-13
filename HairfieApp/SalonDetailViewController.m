@@ -21,6 +21,7 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "AppDelegate.h"
 #import "NotLoggedAlert.h"
+#import "Hairdresser.h"
 
 @interface SalonDetailViewController ()
 
@@ -47,6 +48,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _isAddingHairfie = NO;
     [self initKnownData:_business];
     [self setButtonSelected:_infoBttn andBringViewUpfront:_infoView];
     
@@ -82,8 +84,10 @@
     _telephoneBgView.layer.cornerRadius = 5;
     _telephoneBgView.layer.masksToBounds = YES;
     
-    
-    _hairdresserTableViewHeight.constant = [coiffeurArray count] * 60;
+    if (_business.hairdressers.count > 0)
+        _hairdresserTableViewHeight.constant = [_business.hairdressers count] * 60;
+    else
+        _hairdresserTableViewHeight.constant = 60;
     _hairdresserTableView.scrollEnabled = NO;
 
     // Init Rating View
@@ -173,10 +177,17 @@
     [ARAnalytics event:@"AR - Business Detail" withProperties:@{@"Business ID": _business.id, @"Name": _business.name}];
     
     [_reviewTableView reloadData];
-    
     [self setNormalStateColor:_hairfieBttn];
     [self setNormalStateColor:_hairdresserBttn];
     [self setNormalStateColor:_priceAndSaleBttn];
+    if (_isAddingHairfie == YES)
+    {
+        [self setButtonSelected:_hairfieBttn andBringViewUpfront:_hairfieView];
+        _hairfieView.hidden = NO;
+        [self updateHairfiesView];
+        _isAddingHairfie = NO;
+    }
+    
 }
 
 
@@ -249,8 +260,6 @@
     bottomBorder.backgroundColor = [UIColor salonDetailTab];
     bottomBorder.tag = 1;
     [button addSubview:bottomBorder];
-
-    //[button setBackgroundColor:[UIColor colorWithRed:50/255.0f green:67/255.0f blue:87/255.0f alpha:1]];
 }
 
 -(void) setNormalStateColor:(UIButton*) button
@@ -312,7 +321,10 @@
     } else if (tableView == _similarTableView) {
         return self.similarBusinesses.count;
     } else if (tableView == _hairdresserTableView) {
-        return 5;
+        if (self.business.hairdressers.count > 0)
+            return self.business.hairdressers.count;
+        else
+            return 1;
     } else if(tableView == _pricesTableView) {
         return self.business.services.count;
     } else {
@@ -368,11 +380,12 @@
             NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"HairdressersTableViewCell" owner:self options:nil];
             cell = [nib objectAtIndex:0];
         }
-
-        cell.name.text = [coiffeurArray objectAtIndex:indexPath.row];
-        cell.nbHairfie.text = NSLocalizedStringFromTable(@"335 Hairfies", @"Salon_Detail", nil);
-        cell.nbHairfie.textColor = [UIColor colorWithRed:224/255.0f green:106/255.0f blue:71/255.0f alpha:1];
-
+        if ([_business.hairdressers count] > 0) {
+            Hairdresser *hairdresser = [_business.hairdressers objectAtIndex:indexPath.row];
+            cell.name.text = [hairdresser displayFullName];
+           
+        }
+         cell.disclosureImg.hidden = YES;
         return cell;
     } else if (tableView == _pricesTableView) {
         static NSString *CellIdentifier = @"priceCell";
@@ -382,7 +395,7 @@
             NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"PricesTableViewCell" owner:self options:nil];
             cell = [nib objectAtIndex:0];
         }
-
+        if ([_business.services count] > 0)
         [cell updateWithService:self.business.services[indexPath.row]];
 
         return cell;
@@ -453,10 +466,10 @@
         _moreReviewBttn.hidden = YES;
         _moreReviewBttn.enabled = NO;
         _mainViewHeight.constant = 1030;
-        _addReviewButtonYpos.constant = 338;
+        _addReviewButtonYpos.constant = 308;
         _addReviewButtonXpos.constant = 200;
     } else {
-        [_moreReviewBttn setTitle:[NSString stringWithFormat:NSLocalizedStringFromTable(@"more reviews (%@)", @"Salon_Detail", nil), business.numReviews]
+        [_moreReviewBttn setTitle:[NSString stringWithFormat:NSLocalizedStringFromTable(@"more (%@)", @"Salon_Detail", nil), business.numReviews]
                          forState:UIControlStateNormal];
     }
 
@@ -777,6 +790,7 @@
 {
     if(indexPath.row == 0) {
         [self performSegueWithIdentifier:@"postHairfie" sender:nil];
+        _isAddingHairfie = YES;
     } else {
         [self performSegueWithIdentifier:@"hairfieDetail" sender:hairfies[indexPath.row - 1]];
     }

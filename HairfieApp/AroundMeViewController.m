@@ -115,8 +115,8 @@
         return;
     }
     
-    self.searchInProgress.text = self.businessSearch.display;
-    self.searchDesc.text = self.businessSearch.display;
+   // self.searchInProgress.text = [self.businessSearch display];
+   // self.searchDesc.text = [self.businessSearch display];
     self.isSearching = YES;
     
     [self getBusinesses];

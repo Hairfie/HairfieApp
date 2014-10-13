@@ -87,6 +87,7 @@
 
 @property (nonatomic) IBOutlet UICollectionView *hairfieCollection;
 @property (nonatomic) IBOutlet NSLayoutConstraint *hairfieCollectionHeight;
+@property (nonatomic) BOOL isAddingHairfie;
 
 // View Hairdressers
 

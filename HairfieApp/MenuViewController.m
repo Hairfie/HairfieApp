@@ -246,29 +246,39 @@
             cell.menuPicto.clipsToBounds = YES;
             cell.menuPicto.layer.borderWidth = 1.0f;
             cell.menuPicto.layer.borderColor = [UIColor lightGreyHairfie].CGColor;
-
+             cell.backgroundColor = [UIColor colorWithRed:236/255.0f green:236/255.0f blue:238/255.0f alpha:1];
             [cell.menuPicto setImage:businessPic.image];
         }
         else
         {
             cell.menuItem.text = NSLocalizedStringFromTable(@"Add a business", @"Menu", nil);
-            cell.menuPicto.layer.borderWidth = 0;
+           cell.menuPicto.layer.borderColor = [UIColor clearColor].CGColor;
             [cell.menuPicto setImage:[UIImage imageNamed:@"picto-add.png"]];
+             cell.backgroundColor = [UIColor colorWithRed:236/255.0f green:236/255.0f blue:238/255.0f alpha:1];
         }
         
-        cell.backgroundColor = [UIColor colorWithRed:236/255.0f green:236/255.0f blue:238/255.0f alpha:1];
+       
     }
     if (indexPath.section == 2)
     {
+         cell.backgroundColor = [UIColor whiteColor];
         [cell.menuPicto setImage:[UIImage imageNamed:@"picto-logout.png"]];
         cell.menuItem.text = NSLocalizedStringFromTable(@"Log out", @"Menu", nil);
-        cell.menuPicto.layer.borderWidth = 0;
+        cell.menuPicto.layer.borderColor = [UIColor clearColor].CGColor;
         cell.indentationWidth = 0;
     }
+    if (indexPath.section == 0) {
+         cell.backgroundColor = [UIColor whiteColor];
+        NSLog(@"COUCOU TA RACE");
+        cell.menuPicto.layer.borderColor = [UIColor clearColor].CGColor;
+        cell.menuPicto.layer.cornerRadius = 0;
+        cell.menuPicto.clipsToBounds = NO;
+    }
+    
     cell.selectionIndicator.hidden = YES;
     cell.menuItem.font = [UIFont fontWithName:@"SourceSansPro-Light" size:15];
     cell.menuItem.textColor = [UIColor colorWithRed:103/255.0f green:111/255.0f blue:116/255.0f alpha:1];
-    cell.menuPicto.contentMode = UIViewContentModeScaleAspectFit;
+    cell.menuPicto.contentMode = UIViewContentModeScaleToFill;
     cell.separatorInset = UIEdgeInsetsMake(0, 10000, 0, 0);
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
    

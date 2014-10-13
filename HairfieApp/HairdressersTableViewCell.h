@@ -11,7 +11,8 @@
 @interface HairdressersTableViewCell : UITableViewCell
 
 @property (nonatomic) IBOutlet UILabel *name;
-@property (nonatomic) IBOutlet UILabel *nbHairfie;
+@property (nonatomic) IBOutlet UIImageView *disclosureImg;
+
 
 
 @end
