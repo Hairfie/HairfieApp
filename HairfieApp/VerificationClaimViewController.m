@@ -7,6 +7,7 @@
 //
 
 #import "VerificationClaimViewController.h"
+#import "UITextField+Style.h"
 
 @interface VerificationClaimViewController ()
 
@@ -32,7 +33,7 @@
     title = [NSArray arrayWithObjects:NSLocalizedStringFromTable(@"Woman", @"Login_Sign_Up", nil), NSLocalizedStringFromTable(@"Man", @"Login_Sign_Up", nil), nil];
     
     _titleView.hidden = YES;
-    [self addDoneButtonToPriceField];
+    [_phoneField textFieldWithPhoneKeyboard];
     
     if ([delegate.currentUser.gender isEqualToString:GENDER_MALE])
     {
@@ -71,28 +72,6 @@
     
     [self.popViewController showInView:self.view withTitle:NSLocalizedStringFromTable(@"You're hairdresser ? Tell Us !", @"Claim", nil) withMessage:NSLocalizedStringFromTable(@"Claim your business in order to manage your business on Hairfie", @"Claim", nil) withButton:NSLocalizedStringFromTable(@"Claim Your Business", @"Claim", nil) animated:YES];
 }
-
-
--(void) addDoneButtonToPriceField {
-    
-    
-    UIToolbar* keyboardDoneButtonView = [[UIToolbar alloc] init];
-    keyboardDoneButtonView.barTintColor = [UIColor salonDetailTab];
-    [keyboardDoneButtonView sizeToFit];
-    
-    UIBarButtonItem* doneButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedStringFromTable(@"Validate phone", @"Claim", nil)
-                                                                   style:UIBarButtonItemStyleBordered
-                                                                  target:self
-                                                                  action:@selector(validateVerification:)];
-    doneButton.tintColor = [UIColor whiteColor];
-    UIBarButtonItem *fixedSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    fixedSpace.width = 90;
-    
-    [keyboardDoneButtonView setItems:[NSArray arrayWithObjects:fixedSpace,doneButton, nil]];
-    
-    _phoneField.inputAccessoryView = keyboardDoneButtonView;
-}
-
 
 
 -(void) viewWillAppear:(BOOL)animated {

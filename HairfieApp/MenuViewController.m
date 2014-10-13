@@ -252,6 +252,7 @@
         else
         {
             cell.menuItem.text = NSLocalizedStringFromTable(@"Add a business", @"Menu", nil);
+            cell.menuPicto.layer.borderWidth = 0;
             [cell.menuPicto setImage:[UIImage imageNamed:@"picto-add.png"]];
         }
         
@@ -261,6 +262,7 @@
     {
         [cell.menuPicto setImage:[UIImage imageNamed:@"picto-logout.png"]];
         cell.menuItem.text = NSLocalizedStringFromTable(@"Log out", @"Menu", nil);
+        cell.menuPicto.layer.borderWidth = 0;
         cell.indentationWidth = 0;
     }
     cell.selectionIndicator.hidden = YES;

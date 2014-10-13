@@ -13,6 +13,7 @@
 #import "Business.h"
 #import "Money.h"
 #import "NotLoggedAlert.h"
+#import "UITextField+Style.h"
 
 #import <LoopBack/LoopBack.h>
 
@@ -51,7 +52,7 @@
     _emailSubview.hidden = YES;
     salonTypes = [[NSArray alloc] initWithObjects:NSLocalizedStringFromTable(@"I did it", @"Post_Hairfie", nil), NSLocalizedStringFromTable(@"Hairdresser in a Salon", @"Post_Hairfie", nil), nil];
     _tableViewHeight.constant = [salonTypes count] * _dataChoice.rowHeight;
-    [self addDoneButtonToPriceField];
+    [_priceTextField textFieldWithPhoneKeyboard];
     [self uploadHairfiePicture:_hairfie];
 }
 
@@ -288,28 +289,6 @@ shouldChangeTextInRange: (NSRange) range
     [pictureUploader uploadImage:image toContainer:@"hairfies" success:loadSuccessBlock failure:loadErrorBlock];
 }
 
--(void)addDoneButtonToPriceField {
-    UIToolbar* keyboardDoneButtonView = [[UIToolbar alloc] init];
-    [keyboardDoneButtonView sizeToFit];
-    keyboardDoneButtonView.barTintColor = [UIColor salonDetailTab];
-    UIBarButtonItem* doneButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedStringFromTable(@"OK", @"Post_Hairfie", nil)
-                                                                   style:UIBarButtonItemStyleBordered
-                                                                  target:self
-                                                                  action:@selector(doneClicked:)];
-    doneButton.tintColor = [UIColor whiteColor];
-    UIBarButtonItem *flex =
-        [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
-                                                       target:self
-                                                       action:nil];
-
-    [keyboardDoneButtonView setItems:[NSArray arrayWithObjects:flex, doneButton, flex, nil]];
-    _priceTextField.inputAccessoryView = keyboardDoneButtonView;
-}
-
-- (IBAction)doneClicked:(id)sender {
-    NSLog(@"Done Clicked.");
-    [_priceTextField endEditing:YES];
-}
 
 -(void)showUploadFailedAlertView {
     UIAlertView *errorAlert = [[UIAlertView alloc]initWithTitle:@"Error" message:NSLocalizedStringFromTable(@"There was an error uploading your hairfie, Try Again !", @"Post_Hairfie", nil)  delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];

@@ -8,6 +8,7 @@
 
 #import "ClaimAddHairdresserViewController.h"
 #import "FinalStepViewController.h"
+#import "UITextField+Style.h"
 
 @interface ClaimAddHairdresserViewController ()
 
@@ -39,8 +40,7 @@
     _phoneNumberView.layer.borderColor = [UIColor lightGreyHairfie].CGColor;
     _phoneNumberView.layer.borderWidth = 1;
 
-    _phoneNumberField.keyboardType = UIKeyboardTypePhonePad;
-    [self addDoneButtonToPriceField];
+    [_phoneNumberField textFieldWithPhoneKeyboard];
     
     _doneBttn.layer.cornerRadius = 5;
     _doneBttn.layer.masksToBounds = YES;
@@ -103,34 +103,6 @@
         finalStep.claim.hairdressers = hairdressers;
      [self goBack:self];
 }
-
-// WTF COPIER COLLER LOL
-
--(void) addDoneButtonToPriceField {
-    
-    
-    UIToolbar* keyboardDoneButtonView = [[UIToolbar alloc] init];
-    keyboardDoneButtonView.barTintColor = [UIColor salonDetailTab];
-    [keyboardDoneButtonView sizeToFit];
-    
-    UIBarButtonItem* doneButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedStringFromTable(@"Validate phone", @"Claim", nil)
-                                                                   style:UIBarButtonItemStyleBordered
-                                                                  target:self
-                                                                  action:@selector(doneClicked:)];
-    doneButton.tintColor = [UIColor whiteColor];
-    UIBarButtonItem *fixedSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    fixedSpace.width = 90;
-    
-    [keyboardDoneButtonView setItems:[NSArray arrayWithObjects:fixedSpace,doneButton, nil]];
-    
-    _phoneNumberField.inputAccessoryView = keyboardDoneButtonView;
-}
-
--(IBAction)doneClicked:(id)sender
-{
-    [_phoneNumberField resignFirstResponder];
-}
-
 
 -(UIStatusBarStyle)preferredStatusBarStyle{
     return UIStatusBarStyleLightContent;

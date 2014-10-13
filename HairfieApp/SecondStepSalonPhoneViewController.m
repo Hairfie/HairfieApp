@@ -9,6 +9,7 @@
 #import "SecondStepSalonPhoneViewController.h"
 #import "SecondStepViewController.h"
 #import "FinalStepViewController.h"
+#import "UITextField+Style.h"
 
 @interface SecondStepSalonPhoneViewController ()
 
@@ -25,6 +26,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
+     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldValidated:) name:@"validateTextField" object:nil];
+    
     headerLabel.text = headerTitle;
     textField.placeholder = textFieldPlaceHolder;
    
@@ -35,8 +39,7 @@
     }
     if (_isSalon == NO)
     {
-        textField.keyboardType = UIKeyboardTypePhonePad;
-        [self addDoneButtonToPriceField];
+        [textField textFieldWithPhoneKeyboard];
     }
     textField.layer.cornerRadius =5;
     textField.layer.borderColor = [UIColor lightGreyHairfie].CGColor;
@@ -53,36 +56,13 @@
 {
     [_textField resignFirstResponder];
     
-    [self doneClicked:self];
     return YES;
 }
 
-// => WTF, copie coller immonde ici ??
-
--(void) addDoneButtonToPriceField {
 
 
-    UIToolbar* keyboardDoneButtonView = [[UIToolbar alloc] init];
-    keyboardDoneButtonView.barTintColor = [UIColor salonDetailTab];
-    [keyboardDoneButtonView sizeToFit];
-    
-    UIBarButtonItem* doneButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedStringFromTable(@"Validate phone", @"Claim", nil)
-                                                                   style:UIBarButtonItemStyleBordered
-                                                                  target:self
-                                                                  action:@selector(doneClicked:)];
-    doneButton.tintColor = [UIColor whiteColor];
-    UIBarButtonItem *fixedSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    fixedSpace.width = 90;
-    
-    [keyboardDoneButtonView setItems:[NSArray arrayWithObjects:fixedSpace,doneButton, nil]];
-    
-    textField.inputAccessoryView = keyboardDoneButtonView;
-}
-
-- (IBAction)doneClicked:(id)sender
+- (void)textFieldValidated:(NSNotification *)notification
 {
-    
-    [textField resignFirstResponder];
     
     if (_isFinalStep == NO){
         SecondStepViewController *claim = [self.navigationController.viewControllers objectAtIndex:[self.navigationController.viewControllers count]-2];
@@ -121,36 +101,9 @@
 
 
 
--(BOOL) checkPhone
-{
-    NSError *error = NULL;
-    NSDataDetector *detector = [NSDataDetector dataDetectorWithTypes:NSTextCheckingTypePhoneNumber error:&error];
-    
-    NSRange inputRange = NSMakeRange(0, [textField.text length]);
-    NSArray *matches = [detector matchesInString:textField.text options:0 range:inputRange];
-    
-    // no match at all
-    if ([matches count] == 0) {
-        return NO;
-    }
-    
-    // found match but we need to check if it matched the whole string
-    NSTextCheckingResult *result = (NSTextCheckingResult *)[matches objectAtIndex:0];
-    
-    if ([result resultType] == NSTextCheckingTypePhoneNumber && result.range.location == inputRange.location && result.range.length == inputRange.length) {
-        // it matched the whole string
-        return YES;
-    }
-    else {
-        // it only matched partial string
-        return NO;
-    }
-}
-
-
 -(IBAction)goBack:(id)sender
 {
-    [self doneClicked:self];
+    [self textFieldValidated:nil];
 }
 
 - (void)didReceiveMemoryWarning {

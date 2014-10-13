@@ -8,6 +8,7 @@
 
 #import "ClaimAddPricesSalesViewController.h"
 #import "FinalStepViewController.h"
+#import "UITextField+Style.h"
 #import "Service.h"
 
 @interface ClaimAddPricesSalesViewController ()
@@ -28,39 +29,11 @@
     _priceValueView.layer.cornerRadius = 5;
     _priceValueView.layer.borderColor = [UIColor lightGreyHairfie].CGColor;
     _priceValueView.layer.borderWidth = 1;
-    _priceValue.keyboardType = UIKeyboardTypePhonePad;
-    [self addDoneButtonToPriceField];
+    [_priceValue textFieldWithPhoneKeyboard];
     _doneBttn.layer.cornerRadius = 5;
     _doneBttn.layer.masksToBounds = YES;
     // Do any additional setup after loading the view.
 }
-
--(void) addDoneButtonToPriceField {
-    
-    
-    UIToolbar* keyboardDoneButtonView = [[UIToolbar alloc] init];
-    keyboardDoneButtonView.barTintColor = [UIColor salonDetailTab];
-    [keyboardDoneButtonView sizeToFit];
-    
-    UIBarButtonItem* doneButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedStringFromTable(@"Validate phone", @"Claim", nil)
-                                                                   style:UIBarButtonItemStyleBordered
-                                                                  target:self
-                                                                  action:@selector(doneClicked:)];
-    doneButton.tintColor = [UIColor whiteColor];
-    UIBarButtonItem *fixedSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    fixedSpace.width = 90;
-    
-    [keyboardDoneButtonView setItems:[NSArray arrayWithObjects:fixedSpace,doneButton, nil]];
-    
-    _priceValue.inputAccessoryView = keyboardDoneButtonView;
-}
-
--(IBAction)doneClicked:(id)sender
-{
-    [_priceValue resignFirstResponder];
-}
-
-
 
 -(void)viewWillAppear:(BOOL)animated
 {

@@ -282,6 +282,7 @@
 		B3EDF89219879BEF00431B70 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3EDF89119879BEF00431B70 /* QuartzCore.framework */; };
 		B3EDF8981987ABB900431B70 /* leosquare.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B3EDF8971987ABB900431B70 /* leosquare.jpg */; };
 		B3EDF89E1987C57200431B70 /* menu-bttn.png in Resources */ = {isa = PBXBuildFile; fileRef = B3EDF89C1987C57200431B70 /* menu-bttn.png */; };
+		B3F0B22019EBC78400E0E6EE /* UITextField+Style.m in Sources */ = {isa = PBXBuildFile; fileRef = B3F0B21F19EBC78400E0E6EE /* UITextField+Style.m */; };
 		B3F5521619BF047F0033230E /* cancel-hairfie.png in Resources */ = {isa = PBXBuildFile; fileRef = B3F5521519BF047F0033230E /* cancel-hairfie.png */; };
 		B3F5521A19BF2DAD0033230E /* hairdresser-who-hairfie-post.png in Resources */ = {isa = PBXBuildFile; fileRef = B3F5521719BF2DAD0033230E /* hairdresser-who-hairfie-post.png */; };
 		B3F5521B19BF2DAD0033230E /* hairdresser-where-hairfie-post.png in Resources */ = {isa = PBXBuildFile; fileRef = B3F5521819BF2DAD0033230E /* hairdresser-where-hairfie-post.png */; };
@@ -747,6 +748,8 @@
 		B3EDF89119879BEF00431B70 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		B3EDF8971987ABB900431B70 /* leosquare.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = leosquare.jpg; sourceTree = "<group>"; };
 		B3EDF89C1987C57200431B70 /* menu-bttn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu-bttn.png"; sourceTree = "<group>"; };
+		B3F0B21E19EBC78400E0E6EE /* UITextField+Style.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+Style.h"; sourceTree = "<group>"; };
+		B3F0B21F19EBC78400E0E6EE /* UITextField+Style.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+Style.m"; sourceTree = "<group>"; };
 		B3F5521519BF047F0033230E /* cancel-hairfie.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cancel-hairfie.png"; sourceTree = "<group>"; };
 		B3F5521719BF2DAD0033230E /* hairdresser-who-hairfie-post.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hairdresser-who-hairfie-post.png"; sourceTree = "<group>"; };
 		B3F5521819BF2DAD0033230E /* hairdresser-where-hairfie-post.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hairdresser-where-hairfie-post.png"; sourceTree = "<group>"; };
@@ -856,6 +859,7 @@
 		1511518E1982B7A8001157A2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B3F0B21719EBC19E00E0E6EE /* UITextField Subclasses */,
 				1538A3A619E53F9800F09628 /* UIView Subclasses */,
 				15481A8B19E3EBC400C9D7A7 /* PopUp */,
 				155C170019DD435D0060A0C9 /* UIButton Subclasses */,
@@ -1621,6 +1625,15 @@
 			name = "Feed + detail hairfie";
 			sourceTree = "<group>";
 		};
+		B3F0B21719EBC19E00E0E6EE /* UITextField Subclasses */ = {
+			isa = PBXGroup;
+			children = (
+				B3F0B21E19EBC78400E0E6EE /* UITextField+Style.h */,
+				B3F0B21F19EBC78400E0E6EE /* UITextField+Style.m */,
+			);
+			name = "UITextField Subclasses";
+			sourceTree = "<group>";
+		};
 		B3F6622A1987D52A0041F298 /* Source_Sans_Pro */ = {
 			isa = PBXGroup;
 			children = (
@@ -2031,6 +2044,7 @@
 				71026D1B19CAE34200994831 /* HairfieLike.m in Sources */,
 				B345BAD8199502A3007BB61A /* CustomCollectionViewCell.m in Sources */,
 				B3E4B46319A73C830036BAD8 /* Business.m in Sources */,
+				B3F0B22019EBC78400E0E6EE /* UITextField+Style.m in Sources */,
 				712667EB19C6E67500298FF0 /* UIRoundImageView.m in Sources */,
 				15B8D63A19C83DD200C889CF /* LoadingCollectionViewCell.m in Sources */,
 				B3BD869F198BCFE500BD8591 /* RatingView.m in Sources */,
