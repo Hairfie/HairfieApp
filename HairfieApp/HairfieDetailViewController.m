@@ -25,6 +25,7 @@
 @implementation HairfieDetailViewController
 {
     UIView *hairfieDetailView;
+    UIView *hairfieView;
     UILabel *nbLike;
     UITableView *detailsTableView;
     UIButton *likeButton;
@@ -44,7 +45,8 @@
 
     [_hairfieCollection registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView"];
 
-    
+    [self reloadData];
+
     self.headerTitleLabel.text = [NSString stringWithFormat:@"%@'s Hairfie", self.hairfie.author.firstName];
      [_topBarView addBottomBorderWithHeight:1.0 andColor:[UIColor lightGrey]];
 }
@@ -156,7 +158,10 @@
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
 {
-    return CGSizeMake(320, 600);
+    float height = MAX((323 + 100 + displayedInfoNames.count * 50), (self.view.frame.size.height - _topBarView.frame.size.height + 10));
+
+
+    return CGSizeMake(320, height);
 }
 
 // header view data source
@@ -167,7 +172,7 @@
 
     // HAIRFIE
 
-    UIView *hairfieView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 323)];
+    hairfieView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 323)];
     hairfieView.backgroundColor = [UIColor lightGreyHairfie];
     CALayer *bottomBorder = [CALayer layer];
     bottomBorder.frame = CGRectMake(0.0, 320, 320, 3.0f);
@@ -262,8 +267,6 @@
     [collectionHeaderView addSubview:hairfieView];
     [collectionHeaderView addSubview:hairfieDetailView];
     [collectionHeaderView addSubview:detailsTableView];
-
-    [self reloadData];
 
     return collectionHeaderView;
 }
