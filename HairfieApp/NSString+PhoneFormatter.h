@@ -12,4 +12,6 @@
 
 -(NSString*)formatPhoneNumber:(NSString*)phoneNumber;
 
+-(BOOL)checkPhoneValidity:(NSString*)phoneNumber;
+
 @end

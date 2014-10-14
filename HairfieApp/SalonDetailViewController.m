@@ -16,7 +16,7 @@
 #import "HorairesViewController.h"
 #import "CustomCollectionViewCell.h"
 #import "LoadingCollectionViewCell.h"
-#import "HairdressersTableViewCell.h"
+#import "HairdresserTableViewCell.h"
 #import "PricesTableViewCell.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "AppDelegate.h"
@@ -60,9 +60,6 @@
     _imageSliderView.canCancelContentTouches = NO;
     _hairfieCollection.scrollEnabled = NO;
     
-    _pricesTableView.layer.borderWidth = 1;
-    _pricesTableView.layer.borderColor = [UIColor lightGreyHairfie].CGColor;
-    [_pricesTableView setSeparatorInset:UIEdgeInsetsZero];
     
     _reviewTableView.delegate = self;
     _reviewTableView.dataSource = self;
@@ -85,10 +82,6 @@
     _telephoneBgView.layer.cornerRadius = 5;
     _telephoneBgView.layer.masksToBounds = YES;
     
-    if (_business.hairdressers.count > 0)
-        _hairdresserTableViewHeight.constant = [_business.hairdressers count] * 60;
-    else
-        _hairdresserTableViewHeight.constant = 60;
     _hairdresserTableView.scrollEnabled = NO;
 
     // Init Rating View
@@ -339,9 +332,9 @@
     else if (tableView == _similarTableView)
         return 110;
     else if (tableView == _hairdresserTableView)
-        return 60;
+        return 45;
     else if (tableView == _pricesTableView)
-        return 41;
+        return 46;
     else
         return 90;
 }
@@ -374,18 +367,19 @@
         return cell;
     } else if (tableView == _hairdresserTableView) {
         static NSString *CellIdentifier = @"hairdresserCell";
-        HairdressersTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        HairdresserTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 
         if (cell == nil) {
-            NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"HairdressersTableViewCell" owner:self options:nil];
+            NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"HairdresserTableViewCell" owner:self options:nil];
             cell = [nib objectAtIndex:0];
         }
         if ([_business.hairdressers count] > 0) {
             Hairdresser *hairdresser = [_business.hairdressers objectAtIndex:indexPath.row];
-            cell.name.text = [hairdresser displayFullName];
+            cell.fullName.text = [hairdresser displayFullName];
            
         }
-         cell.disclosureImg.hidden = YES;
+        cell.separatorInset = UIEdgeInsetsMake(0, 10000, 0, 0);
+
         return cell;
     } else if (tableView == _pricesTableView) {
         static NSString *CellIdentifier = @"priceCell";
@@ -396,8 +390,8 @@
             cell = [nib objectAtIndex:0];
         }
         if ([_business.services count] > 0)
-        [cell updateWithService:self.business.services[indexPath.row]];
-
+            [cell updateWithService:self.business.services[indexPath.row]];
+        cell.separatorInset = UIEdgeInsetsMake(0, 10000, 0, 0);
         return cell;
     }
 
@@ -418,8 +412,6 @@
     [self setupHairfies];
     
     [self setupGallery:business.pictures];
-    
-    [self setupPrices];
 
     [self setupLastReviews];
     
@@ -489,10 +481,6 @@
 
 }
 
--(void)setupPrices
-{
-    _pricesTableViewHeight.constant = self.business.services.count * 41;
-}
 
 -(void)setupCrossSell
 {
@@ -648,7 +636,6 @@
 }
 
 -(IBAction)callPhone:(id)sender {
-    NSLog(@"callPhone %@", self.business.phoneNumber);
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"telprompt://%@", self.business.phoneNumber]]];
 }
 

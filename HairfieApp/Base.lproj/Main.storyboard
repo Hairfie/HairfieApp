@@ -1595,7 +1595,7 @@
                         <viewControllerLayoutGuide type="bottom" id="EAd-rH-izx"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="AEr-xc-owd">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="2000"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Lw-Ud-rlB">
@@ -1621,16 +1621,15 @@
                                                     </label>
                                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I2R-pl-TuI" userLabel="Separator 1">
                                                         <rect key="frame" x="0.0" y="63" width="320" height="1"/>
-                                                        <color key="backgroundColor" red="0.85490196080000003" green="0.85490196080000003" blue="0.87058823529999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="backgroundColor" red="0.92549019607843142" green="0.92549019607843142" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
                                                     </view>
-                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="gAx-Ib-aqZ">
-                                                        <rect key="frame" x="10" y="84" width="300" height="329"/>
+                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="gAx-Ib-aqZ">
+                                                        <rect key="frame" x="0.0" y="65" width="320" height="329"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="300" id="dwH-B1-29O"/>
+                                                            <constraint firstAttribute="width" constant="320" id="dwH-B1-29O"/>
                                                             <constraint firstAttribute="height" constant="329" id="k64-72-RvG"/>
                                                         </constraints>
-                                                        <color key="separatorColor" red="0.83921568627450982" green="0.85098039215686272" blue="0.8666666666666667" alpha="1" colorSpace="deviceRGB"/>
                                                         <connections>
                                                             <outlet property="dataSource" destination="pDa-if-Gwb" id="Q6w-UE-OsX"/>
                                                             <outlet property="delegate" destination="pDa-if-Gwb" id="qXD-DY-9d1"/>
@@ -1642,7 +1641,7 @@
                                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5ZR-VD-wlu" userLabel="HAIRDRESSER VIEW">
                                                 <rect key="frame" x="0.0" y="238" width="320" height="615"/>
                                                 <subviews>
-                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="FpJ-1K-79p">
+                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="FpJ-1K-79p">
                                                         <rect key="frame" x="0.0" y="0.0" width="320" height="615"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
@@ -2107,7 +2106,7 @@
                                     </label>
                                 </subviews>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0TP-lk-MOz" userLabel="Call Salon">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0TP-lk-MOz" userLabel="Call Salon">
                                 <rect key="frame" x="0.0" y="528" width="320" height="40"/>
                                 <color key="backgroundColor" red="0.98039215686274506" green="0.25882352941176467" blue="0.2627450980392157" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -2142,7 +2141,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="KGy-rj-yyt"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="320" height="2000"/>
+                    <size key="freeformSize" width="320" height="568"/>
                     <connections>
                         <outlet property="addReviewBttn" destination="9aj-2o-ahb" id="SVY-eW-lJx"/>
                         <outlet property="addReviewButtonXpos" destination="ziS-79-KGB" id="flz-UG-4Mf"/>
@@ -2203,7 +2202,7 @@
                         <viewControllerLayoutGuide type="bottom" id="po1-aP-Age"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="bhM-gL-HHz">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="2000"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OHl-hv-ouR" userLabel="Top Bar View">
@@ -2267,7 +2266,7 @@
                         <viewControllerLayoutGuide type="bottom" id="WIZ-TA-wce"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="SAn-a2-ZHJ">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="2000"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wk5-N2-iL6" userLabel="Top Bar View">
@@ -2351,7 +2350,7 @@
                         <viewControllerLayoutGuide type="bottom" id="CU6-9W-Msb"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="bBo-k4-7Fn">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="2000"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OtE-fv-3fq" userLabel="Top Bar View">
@@ -2642,7 +2641,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="16"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="next"/>
                                         <connections>
                                             <outlet property="delegate" destination="12b-3C-dff" id="TsE-XC-2Jq"/>
                                         </connections>
@@ -2652,7 +2651,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="16"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="next"/>
                                         <connections>
                                             <outlet property="delegate" destination="12b-3C-dff" id="Z1S-c4-XFi"/>
                                         </connections>
@@ -2700,7 +2699,7 @@
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dNW-9f-otb">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                                 <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Information check" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VtW-z2-L1C">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Information check" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="VtW-z2-L1C">
                                         <rect key="frame" x="95" y="29" width="138" height="23"/>
                                         <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="18"/>
                                         <color key="textColor" red="0.44294084820000001" green="0.44294084820000001" blue="0.44294084820000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -2856,7 +2855,7 @@
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" image="nav-disclosure.png" translatesAutoresizingMaskIntoConstraints="NO" id="pCM-hz-iut">
                                 <rect key="frame" x="285" y="270" width="8" height="13"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="I am a hairdresser" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wwe-jC-99x">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="I am a hairdresser" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="25" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wwe-jC-99x">
                                 <rect key="frame" x="30" y="146" width="261" height="63"/>
                                 <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="35"/>
                                 <color key="textColor" red="0.1960784314" green="0.26274509800000001" blue="0.3411764706" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
@@ -2928,13 +2927,13 @@
                                     <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ijh-oN-e6c">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Mandatory fields" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nxs-YP-72V">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Salon's information" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nxs-YP-72V">
                                                 <rect key="frame" x="10" y="16" width="159" height="22"/>
                                                 <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="17"/>
                                                 <color key="textColor" red="0.1960784314" green="0.26274509800000001" blue="0.3411764706" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Salon's name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2XC-CX-Muq">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Salon's name*" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2XC-CX-Muq">
                                                 <rect key="frame" x="29" y="52" width="301" height="46"/>
                                                 <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -2951,7 +2950,7 @@
                                                     <action selector="claimDetails:" destination="jCi-BR-inK" eventType="touchUpInside" id="16z-uN-cY8"/>
                                                 </connections>
                                             </button>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phone number" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="D4T-Ew-8UW">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Salon's phone number*" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="D4T-Ew-8UW">
                                                 <rect key="frame" x="29" y="106" width="300" height="46"/>
                                                 <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -3345,7 +3344,7 @@
                                             <action selector="goBack:" destination="NUe-A9-Lt8" eventType="touchUpInside" id="QRw-IO-Bri"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add a salon" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jl0-15-NFb">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add a salon" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="Jl0-15-NFb">
                                         <rect key="frame" x="86" y="27" width="149" height="23"/>
                                         <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="18"/>
                                         <color key="textColor" red="0.44294084820000001" green="0.44294084820000001" blue="0.44294084820000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -3369,7 +3368,7 @@
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Salon's name" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="gQo-72-3ry">
                                 <rect key="frame" x="10" y="88" width="300" height="46"/>
                                 <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="15"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <connections>
                                     <outlet property="delegate" destination="NUe-A9-Lt8" id="oT2-Ot-ZnC"/>
                                 </connections>
@@ -3606,11 +3605,11 @@
                                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CcM-C3-tpq" userLabel="HAIRDRESSER VIEW">
                                                 <rect key="frame" x="0.0" y="238" width="320" height="267"/>
                                                 <subviews>
-                                                    <view alpha="0.20000000298023224" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DMU-QE-hmf" userLabel="separator 1">
+                                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DMU-QE-hmf" userLabel="separator 1">
                                                         <rect key="frame" x="0.0" y="46" width="320" height="1"/>
-                                                        <color key="backgroundColor" red="0.1960784314" green="0.26274509800000001" blue="0.3411764706" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                                        <color key="backgroundColor" red="0.92549019610000005" green="0.92549019610000005" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     </view>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add your salon's hairdressers" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Abb-wJ-wXh">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add your salon's hairdressers" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="Abb-wJ-wXh">
                                                         <rect key="frame" x="8" y="12" width="222" height="21"/>
                                                         <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="17"/>
                                                         <color key="textColor" red="0.73160475127551017" green="0.73160475127551017" blue="0.73160475127551017" alpha="1" colorSpace="calibratedRGB"/>
@@ -3628,49 +3627,13 @@
                                                             <action selector="modifyHairdresser:" destination="BHW-4V-7I5" eventType="touchUpInside" id="moK-6L-btM"/>
                                                         </connections>
                                                     </button>
-                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="PC2-CD-lPW">
-                                                        <rect key="frame" x="0.0" y="46" width="320" height="221"/>
+                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="PC2-CD-lPW">
+                                                        <rect key="frame" x="0.0" y="47" width="320" height="221"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                         <connections>
                                                             <outlet property="dataSource" destination="BHW-4V-7I5" id="S1s-Jl-acR"/>
                                                             <outlet property="delegate" destination="BHW-4V-7I5" id="q46-9C-9RU"/>
-                                                        </connections>
-                                                    </tableView>
-                                                </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            </view>
-                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rfH-9l-Y24" userLabel="PRICES VIEW">
-                                                <rect key="frame" x="0.0" y="238" width="320" height="267"/>
-                                                <subviews>
-                                                    <view alpha="0.20000000298023224" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yEo-gZ-7s5" userLabel="separator 1">
-                                                        <rect key="frame" x="0.0" y="46" width="320" height="1"/>
-                                                        <color key="backgroundColor" red="0.1960784314" green="0.26274509800000001" blue="0.3411764706" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
-                                                    </view>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add prices and sales" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y5T-A0-2CE">
-                                                        <rect key="frame" x="8" y="0.0" width="222" height="47"/>
-                                                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="17"/>
-                                                        <color key="textColor" red="0.73160475130000002" green="0.73160475130000002" blue="0.73160475130000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" image="nav-disclosure.png" translatesAutoresizingMaskIntoConstraints="NO" id="fiP-BL-4Go">
-                                                        <rect key="frame" x="304" y="18" width="8" height="13"/>
-                                                    </imageView>
-                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nub-IQ-vbJ">
-                                                        <rect key="frame" x="0.0" y="0.0" width="320" height="46"/>
-                                                        <state key="normal">
-                                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                        </state>
-                                                        <connections>
-                                                            <action selector="modifyService:" destination="BHW-4V-7I5" eventType="touchUpInside" id="KrH-GW-H4h"/>
-                                                        </connections>
-                                                    </button>
-                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="szY-CZ-DgU">
-                                                        <rect key="frame" x="0.0" y="46" width="320" height="221"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <connections>
-                                                            <outlet property="dataSource" destination="BHW-4V-7I5" id="QBB-rN-oAI"/>
-                                                            <outlet property="delegate" destination="BHW-4V-7I5" id="cBK-EU-LlY"/>
                                                         </connections>
                                                     </tableView>
                                                 </subviews>
@@ -3809,6 +3772,42 @@
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </view>
+                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rfH-9l-Y24" userLabel="PRICES VIEW">
+                                                <rect key="frame" x="0.0" y="238" width="320" height="330"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yEo-gZ-7s5" userLabel="separator 1">
+                                                        <rect key="frame" x="0.0" y="46" width="320" height="1"/>
+                                                        <color key="backgroundColor" red="0.92549019610000005" green="0.92549019610000005" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </view>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add prices and sales" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y5T-A0-2CE">
+                                                        <rect key="frame" x="8" y="0.0" width="222" height="47"/>
+                                                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="17"/>
+                                                        <color key="textColor" red="0.73160475130000002" green="0.73160475130000002" blue="0.73160475130000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" image="nav-disclosure.png" translatesAutoresizingMaskIntoConstraints="NO" id="fiP-BL-4Go">
+                                                        <rect key="frame" x="304" y="18" width="8" height="13"/>
+                                                    </imageView>
+                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nub-IQ-vbJ">
+                                                        <rect key="frame" x="0.0" y="0.0" width="320" height="46"/>
+                                                        <state key="normal">
+                                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="modifyService:" destination="BHW-4V-7I5" eventType="touchUpInside" id="KrH-GW-H4h"/>
+                                                        </connections>
+                                                    </button>
+                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="szY-CZ-DgU">
+                                                        <rect key="frame" x="0.0" y="47" width="320" height="283"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <connections>
+                                                            <outlet property="dataSource" destination="BHW-4V-7I5" id="QBB-rN-oAI"/>
+                                                            <outlet property="delegate" destination="BHW-4V-7I5" id="cBK-EU-LlY"/>
+                                                        </connections>
+                                                    </tableView>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </view>
                                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9do-Br-aXN" userLabel="Page Control View">
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="180"/>
                                                 <subviews>
@@ -3899,18 +3898,6 @@
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GtV-yO-i63" userLabel="Top Bar View">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TQG-mS-hkE">
-                                        <rect key="frame" x="255" y="25" width="52" height="30"/>
-                                        <color key="backgroundColor" red="0.98039215690000003" green="0.25882352939999997" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="14"/>
-                                        <state key="normal" title="Validate">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="claimThisBusiness:" destination="BHW-4V-7I5" eventType="touchUpInside" id="71N-gb-7IF"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8w2-yY-XkF">
                                         <rect key="frame" x="8" y="19" width="40" height="40"/>
                                         <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
@@ -3929,6 +3916,18 @@
                                         </state>
                                         <connections>
                                             <segue destination="Pyc-9a-F9R" kind="unwind" unwindAction="unwindToMenuViewController:" id="u9R-PH-BYn"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TQG-mS-hkE">
+                                        <rect key="frame" x="244" y="25" width="68" height="30"/>
+                                        <color key="backgroundColor" red="0.98039215690000003" green="0.25882352939999997" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="14"/>
+                                        <state key="normal" title="Validate">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="claimThisBusiness:" destination="BHW-4V-7I5" eventType="touchUpInside" id="71N-gb-7IF"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -4006,7 +4005,7 @@
                                             <action selector="validateHairdresser:" destination="vfu-7w-ucu" eventType="touchUpInside" id="OwX-ex-2sy"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add a hairdresser" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qt6-Ub-Iuh">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add a hairdresser" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="qt6-Ub-Iuh">
                                         <rect key="frame" x="86" y="27" width="149" height="23"/>
                                         <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="18"/>
                                         <color key="textColor" red="0.44294084820000001" green="0.44294084820000001" blue="0.44294084820000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -4036,7 +4035,7 @@
                                         <rect key="frame" x="28" y="21" width="270" height="46"/>
                                         <color key="textColor" red="0.44294084820000001" green="0.44294084820000001" blue="0.44294084820000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="16"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="next"/>
                                         <connections>
                                             <outlet property="delegate" destination="vfu-7w-ucu" id="ztW-OG-vVR"/>
                                         </connections>
@@ -4049,7 +4048,7 @@
                                         <rect key="frame" x="28" y="84" width="270" height="46"/>
                                         <color key="textColor" red="0.44294084820000001" green="0.44294084820000001" blue="0.44294084820000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="16"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="next"/>
                                         <connections>
                                             <outlet property="delegate" destination="vfu-7w-ucu" id="PA7-p5-YsB"/>
                                         </connections>
@@ -4117,7 +4116,7 @@
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x0b-SQ-zV9" userLabel="Top Bar View">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                                 <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Modify Schedule" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BSF-Wt-Gb4">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Modify Schedule" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="BSF-Wt-Gb4">
                                         <rect key="frame" x="86" y="27" width="149" height="23"/>
                                         <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="18"/>
                                         <color key="textColor" red="0.44294084820000001" green="0.44294084820000001" blue="0.44294084820000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -4195,7 +4194,7 @@
                                             <action selector="goBack:" destination="m3V-Fr-d7F" eventType="touchUpInside" id="pt4-jg-GkS"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add a time window" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mjS-4o-c28">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add a time window" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="mjS-4o-c28">
                                         <rect key="frame" x="86" y="27" width="149" height="23"/>
                                         <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="18"/>
                                         <color key="textColor" red="0.44294084820000001" green="0.44294084820000001" blue="0.44294084820000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -4236,7 +4235,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cde-ia-zX2" userLabel="Closing">
-                                <rect key="frame" x="179" y="84" width="125" height="274"/>
+                                <rect key="frame" x="179" y="84" width="125" height="292"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Set the closing time" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="100" translatesAutoresizingMaskIntoConstraints="NO" id="iZw-cZ-hf8">
                                         <rect key="frame" x="10" y="10" width="100" height="46"/>
@@ -4245,7 +4244,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tHW-70-57C">
-                                        <rect key="frame" x="-5" y="58" width="130" height="216"/>
+                                        <rect key="frame" x="0.0" y="58" width="130" height="216"/>
                                         <connections>
                                             <outlet property="dataSource" destination="m3V-Fr-d7F" id="mus-xH-Vda"/>
                                             <outlet property="delegate" destination="m3V-Fr-d7F" id="rBQ-Cz-UIa"/>
@@ -4286,7 +4285,7 @@
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Ka-UT-qHY" userLabel="Top Bar View">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                                 <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Modify Description" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZwU-T3-t9g">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Modify Description" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="ZwU-T3-t9g">
                                         <rect key="frame" x="86" y="27" width="149" height="23"/>
                                         <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="18"/>
                                         <color key="textColor" red="0.44294084820000001" green="0.44294084820000001" blue="0.44294084820000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -4353,7 +4352,7 @@
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aQW-rU-WsW" userLabel="Top Bar View">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                                 <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Modify address" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oaY-Nt-jYc">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Modify address" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="oaY-Nt-jYc">
                                         <rect key="frame" x="86" y="27" width="149" height="23"/>
                                         <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="18"/>
                                         <color key="textColor" red="0.44294084820000001" green="0.44294084820000001" blue="0.44294084820000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -4395,15 +4394,15 @@
                             <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="City" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="QW3-mC-bUN">
                                 <rect key="frame" x="10" y="149" width="300" height="46"/>
                                 <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="15"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="next"/>
                                 <connections>
                                     <outlet property="delegate" destination="zTm-H4-2yr" id="JvP-3H-i1t"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Country" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ReD-14-jgc">
+                            <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Zip code" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ReD-14-jgc">
                                 <rect key="frame" x="10" y="213" width="300" height="46"/>
                                 <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="15"/>
-                                <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="done"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardType="numbersAndPunctuation" returnKeyType="done"/>
                                 <connections>
                                     <outlet property="delegate" destination="zTm-H4-2yr" id="TbZ-ri-y8u"/>
                                 </connections>
@@ -4414,9 +4413,9 @@
                     <navigationItem key="navigationItem" id="Q4f-qf-YTJ"/>
                     <connections>
                         <outlet property="city" destination="QW3-mC-bUN" id="vYb-kZ-eRu"/>
-                        <outlet property="country" destination="ReD-14-jgc" id="6oy-wg-MhG"/>
                         <outlet property="doneBttn" destination="Kcg-g3-GWu" id="3jf-zH-lef"/>
                         <outlet property="street" destination="Ndi-in-QEn" id="ofU-OO-J7N"/>
+                        <outlet property="zipCode" destination="ReD-14-jgc" id="v42-dG-zTF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rVx-U9-mRa" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -4438,7 +4437,7 @@
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HJ8-Qx-5yz" userLabel="Top Bar View">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                                 <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add a price" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g2y-bo-9PN">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add a price" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="g2y-bo-9PN">
                                         <rect key="frame" x="86" y="27" width="149" height="23"/>
                                         <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="18"/>
                                         <color key="textColor" red="0.44294084820000001" green="0.44294084820000001" blue="0.44294084820000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -4477,7 +4476,7 @@
                                 <rect key="frame" x="28" y="85" width="270" height="46"/>
                                 <color key="textColor" red="0.44294084820000001" green="0.44294084820000001" blue="0.44294084820000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="16"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="next"/>
                                 <connections>
                                     <outlet property="delegate" destination="vfu-7w-ucu" id="vT4-Fl-kbR"/>
                                 </connections>
@@ -4641,14 +4640,11 @@
     <inferredMetricsTieBreakers>
         <segue reference="vAT-vQ-WuX"/>
         <segue reference="VGS-VM-Pwy"/>
-        <segue reference="uEN-by-6gW"/>
-        <segue reference="dg2-Ph-4Hs"/>
-        <segue reference="7yU-V8-5Z9"/>
-        <segue reference="XXf-5V-koX"/>
         <segue reference="Yfl-ef-Fhz"/>
-        <segue reference="7yU-V8-5Z9"/>
         <segue reference="uEN-by-6gW"/>
-        <segue reference="dg2-Ph-4Hs"/>
+        <segue reference="XXf-5V-koX"/>
+        <segue reference="PSz-m0-val"/>
+        <segue reference="2ml-IS-A8f"/>
         <segue reference="DYR-eo-mJz"/>
     </inferredMetricsTieBreakers>
 </document>

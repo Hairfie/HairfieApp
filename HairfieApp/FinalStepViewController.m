@@ -59,6 +59,8 @@
     _addHairfiesBttn.layer.cornerRadius = 5;
     _addHairfiesBttn.layer.masksToBounds = YES;
     
+    
+    
     // Do any additional setup after loading the view.
 }
 
@@ -114,18 +116,17 @@
         [_imageSliderView addSubview:borderBttn];
         [_imageSliderView addSubview:addPictureBttn];
     
-        UILabel *addPictureLabel = [[UILabel alloc] initWithFrame:CGRectMake(135, 60, 50, 50)];
+        UILabel *addPictureLabel = [[UILabel alloc] initWithFrame:CGRectMake(130, 60, 60, 60)];
+        addPictureLabel.minimumScaleFactor = 0.5;
         addPictureLabel.font = [UIFont fontWithName:@"SourceSansPro-Light" size:15];
         addPictureLabel.textColor = [UIColor whiteColor];
-        addPictureLabel.text = @"Add Pictures";
-        addPictureLabel.textAlignment = NSTextAlignmentCenter;
-        addPictureLabel.numberOfLines = 2;
+        addPictureLabel.text = NSLocalizedStringFromTable(@"Add Pictures", @"Claim", nil);         addPictureLabel.textAlignment = NSTextAlignmentCenter;
+        addPictureLabel.numberOfLines = 3;
        
         [_imageSliderView addSubview:addPictureLabel];
     }
     if ([pictures count] >= 1)
     {
-        NSLog(@"/////////// COMING HERE ////////////");
         _pageControl.hidden = NO;
         _pageControl.numberOfPages = [pictures count] + 1;
         for (int i = 0; i < [pictures count]; i++) {
@@ -154,17 +155,15 @@
     
     if (_businessToManage != nil)
     {
-        
-        NSLog(@"business pictures %@", _businessToManage.id);
-
-        [_validateBttn setTitle:@"Update" forState:UIControlStateNormal];
+        [_validateBttn setTitle:NSLocalizedStringFromTable(@"Update",@"Claim", nil) forState:UIControlStateNormal];
+        [_validateBttn.titleLabel setMinimumScaleFactor:0.9];
         _phoneLabel.text = _businessToManage.phoneNumber;
          _addressLabel.text = [_businessToManage.address displayAddress];
         _nameLabel.text = _businessToManage.name;
         [self setupGallery:_businessToManage.pictures];
         _menuButton.hidden = NO;
         _navButton.hidden = YES;
-        if (_businessToManage.hairdressers == (id)[NSNull null])
+        if ([_businessToManage.hairdressers count] == 0)
             _hairdresserTableView.hidden = YES;
         else
             _hairdresserTableView.hidden = NO;
@@ -178,15 +177,23 @@
     }
     else
     {
-    [self setupGallery:_claim.pictures];
-    _phoneLabel.text = _claim.phoneNumber;
-    _addressLabel.text = [_claim.address displayAddress];
-    _nameLabel.text = _claim.name;
+        [self setupGallery:_claim.pictures];
+        _phoneLabel.text = _claim.phoneNumber;
+        _addressLabel.text = [_claim.address displayAddress];
+        _nameLabel.text = _claim.name;
         _menuButton.hidden = YES;
-    if ([_claim.hairdressers count] == 0)
-        _hairdresserTableView.hidden = YES;
-    else
-         _hairdresserTableView.hidden = NO;
+        if ([_claim.hairdressers count] == 0)
+            _hairdresserTableView.hidden = YES;
+        else
+            _hairdresserTableView.hidden = NO;
+        
+        if ([_claim.services count] == 0)
+            _serviceTableView.hidden = YES;
+        else
+            _serviceTableView.hidden = NO;
+        [_serviceTableView reloadData];
+        [_hairdresserTableView reloadData];
+        
     }
 }
 
@@ -294,7 +301,7 @@
 -(void)chooseCameraType
 {
     
-    chooseCameraType = [[UIAlertView alloc] initWithTitle:NSLocalizedStringFromTable(@"Choose camera type", @"Login_Sign_Up", nil) message:NSLocalizedStringFromTable(@"Take picture or pick one from the saved photos", @"Login_Sign_Up", nil) delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:NSLocalizedStringFromTable(@"Camera", @"Login_Sign_Up", nil), NSLocalizedStringFromTable(@"Library", @"Login_Sign_Up", nil),nil];
+    chooseCameraType = [[UIAlertView alloc] initWithTitle:NSLocalizedStringFromTable(@"Choose camera type", @"Login_Sign_Up", nil) message:NSLocalizedStringFromTable(@"Take picture or pick one from the saved photos", @"Login_Sign_Up", nil) delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:NSLocalizedStringFromTable(@"Camera", @"Login_Sign_Up", nil), NSLocalizedStringFromTable(@"Library", @"Login_Sign_Up", nil),nil];
     chooseCameraType.delegate = self;
     [chooseCameraType show];
     
@@ -458,8 +465,8 @@
         salon.isFinalStep = YES;
         salon.isExisting = YES;
         salon.isSalon = YES;
-        salon.headerTitle = @"Salon's name";
-        salon.textFieldPlaceHolder = @"Salon's name";
+        salon.headerTitle = NSLocalizedStringFromTable(@"Salon's name", @"Claim", nil);
+        salon.textFieldPlaceHolder = NSLocalizedStringFromTable(@"Salon's name", @"Claim", nil);
         if (_businessToManage != nil)
             salon.textFieldFromSegue = _businessToManage.name;
         else
@@ -474,8 +481,8 @@
         phone.isFinalStep = YES;
         phone.isExisting = YES;
         phone.isSalon = NO;
-        phone.headerTitle = @"Phone Number";
-        phone.textFieldPlaceHolder = @"Phone number";
+        phone.headerTitle = NSLocalizedStringFromTable(@"Phone number", @"Claim", nil);
+        phone.textFieldPlaceHolder = NSLocalizedStringFromTable(@"Phone number", @"Claim", nil);
         if (_businessToManage != nil)
             phone.textFieldFromSegue = _businessToManage.phoneNumber;
         else
@@ -564,6 +571,10 @@
 
 // TABLE VIEW
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 45;
+}
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -587,10 +598,9 @@
         else
             hairdresser = [_claim.hairdressers objectAtIndex:indexPath.row];
         
-        NSLog(@"Hairdresser %@", hairdresser);
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.fullName.text = [hairdresser displayFullName];
-        
+        cell.separatorInset = UIEdgeInsetsMake(0, 10000, 0, 0);
         return cell;
     }
     if (tableView == _serviceTableView)
@@ -613,13 +623,14 @@
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.itemName.text = service.label;
-        cell.price.text = [NSString stringWithFormat:@"%@", service.price.amount];
-        
+        cell.price.text = [service.price formatted];
+        cell.separatorInset = UIEdgeInsetsMake(0, 10000, 0, 0);
         return cell;
     }
     
     return nil;
 }
+
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {

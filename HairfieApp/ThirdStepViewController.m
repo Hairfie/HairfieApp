@@ -88,8 +88,6 @@
 }
 
 
-
-
 -(void)reverseGeocodeGps:(CLLocation*)myLocation
 {
     CLGeocoder *geocoder = [[CLGeocoder alloc] init];
@@ -144,15 +142,15 @@
     NSInteger nextTag = textField.tag + 1;
     // Try to find next responder
     UIResponder* nextResponder = [textField.superview viewWithTag:nextTag];
+     NSString *address = [NSString stringWithFormat:@"%@ %@ %@", _address.text, _city.text, _postalCode.text];
     if (nextResponder) {
         // Found next responder, so set it.
         [nextResponder becomeFirstResponder];
     } else {
-        NSString *address = [NSString stringWithFormat:@"%@ %@ %@", _address.text, _city.text, _postalCode.text];
-        
-        [self geocodeAddress:address];
         [textField resignFirstResponder];
+        [self claimSalonLocation:self];
     }
+    [self geocodeAddress:address];
     return YES;
 }
 
@@ -176,6 +174,7 @@
 -(IBAction)claimSalonLocation:(id)sender
 {
     Address *address = [[Address alloc] initWithStreet:_address.text city:_city.text zipCode:_postalCode.text country:_country];
+    [self geocodeAddress:[address displayAddress]];
     
     GeoPoint *gps = [[GeoPoint alloc] initWithLocation:_location];
     

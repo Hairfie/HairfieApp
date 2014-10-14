@@ -13,7 +13,7 @@
 
 @property (nonatomic) IBOutlet UITextField *street;
 @property (nonatomic) IBOutlet UITextField *city;
-@property (nonatomic) IBOutlet UITextField *country;
+@property (nonatomic) IBOutlet UITextField *zipCode;
 @property (nonatomic) IBOutlet UIButton *doneBttn;
 @property (nonatomic) Address *address;
 

@@ -38,10 +38,10 @@
     {
         textField.text = textFieldFromSegue;
     }
-    if (_isSalon == NO)
-    {
+    if (_isSalon == NO) {
         [textField textFieldWithPhoneKeyboard];
     }
+
     textField.layer.cornerRadius =5;
     textField.layer.borderColor = [UIColor lightGreyHairfie].CGColor;
     textField.layer.borderWidth = 1;
@@ -56,7 +56,7 @@
 -(BOOL)textFieldShouldReturn:(UITextField *)_textField
 {
     [_textField resignFirstResponder];
-    
+    [self textFieldValidated:nil];
     return YES;
 }
 
@@ -64,19 +64,26 @@
 
 - (void)textFieldValidated:(NSNotification *)notification
 {
+    BOOL isPhoneValid = NO;
     
     if (_isFinalStep == NO){
         SecondStepViewController *claim = [self.navigationController.viewControllers objectAtIndex:[self.navigationController.viewControllers count]-2];
         
         if (_isSalon == NO)
         {
-            claim.isPhoneSet = YES;
-            claim.phoneTextField.text = textField.text;
+            
+            isPhoneValid = [textField.text checkPhoneValidity:textField.text];
+            if (isPhoneValid == YES) {
+                [self.navigationController popViewControllerAnimated:YES];
+                claim.phoneTextField.text = [textField.text formatPhoneNumber:textField.text];
+                claim.isPhoneSet = YES;
+            }
         }
         else
         {
             claim.isSalonSet = YES;
             claim.salonTextField.text = textField.text;
+            [self.navigationController popViewControllerAnimated:YES];
         }
     }
     else
@@ -85,21 +92,29 @@
         
         if (finalStep.businessToManage != nil) {
             if (_isSalon == NO) {
-                    finalStep.businessToManage.phoneNumber = textField.text;
-                    textField.text = [textField.text formatPhoneNumber:textField.text];
+                isPhoneValid = [textField.text checkPhoneValidity:textField.text];
+                if (isPhoneValid == YES) {
+                    [self.navigationController popViewControllerAnimated:YES];
+                    finalStep.businessToManage.phoneNumber = [textField.text formatPhoneNumber:textField.text];
+                }
             } else {
                 finalStep.businessToManage.name = textField.text;
+                [self.navigationController popViewControllerAnimated:YES];
             }
         } else {
             if (_isSalon == NO) {
-                finalStep.claim.phoneNumber = textField.text;
-                textField.text = [textField.text formatPhoneNumber:textField.text];
+                isPhoneValid = [textField.text checkPhoneValidity:textField.text];
+               
+                if (isPhoneValid == YES) {
+                    [self.navigationController popViewControllerAnimated:YES];
+                    finalStep.claim.phoneNumber = [textField.text formatPhoneNumber:textField.text];
+                }
             } else {
                 finalStep.claim.name = textField.text;
+                [self.navigationController popViewControllerAnimated:YES];
             }
         }
     }
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(IBAction)doneClicked:(id)sender

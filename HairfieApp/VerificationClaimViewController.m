@@ -104,7 +104,9 @@
 
 - (void)textFieldValidated:(NSNotification *)notification
 {
-    _phoneField.text = [_phoneField.text formatPhoneNumber:_phoneField.text];
+    BOOL isPhoneValid = [_phoneField.text checkPhoneValidity:_phoneField.text];
+    if (isPhoneValid == YES)
+        _phoneField.text = [_phoneField.text formatPhoneNumber:_phoneField.text];
 }
 
 -(void)textFieldDidEndEditing:(UITextField *)textField
@@ -125,6 +127,9 @@
 
 -(IBAction)validateVerification:(id)sender
 {
+    
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedStringFromTable(@"Warning", @"Claim", nil) message:NSLocalizedStringFromTable(@"No Phone Verification Message", @"Claim", nil) delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+
     [self.view endEditing:YES];
     void (^loadErrorBlock)(NSError *) = ^(NSError *error){
         NSLog(@"Error : %@", error.description);
@@ -134,7 +139,10 @@
         [self performSegueWithIdentifier:@"infoVerified" sender:self];
     };
     
-    [delegate.currentUser saveWithSuccess:loadSuccessBlock failure:loadErrorBlock];
+    if (_phoneField.text.length == 0)
+        [alertView show];
+    else
+        [delegate.currentUser saveWithSuccess:loadSuccessBlock failure:loadErrorBlock];
     
 }
 

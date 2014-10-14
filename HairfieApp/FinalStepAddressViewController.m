@@ -8,13 +8,18 @@
 
 #import "FinalStepAddressViewController.h"
 #import "FinalStepViewController.h"
+#import <AddressBook/AddressBook.h>
+#import "GeoPoint.h"
 
 @interface FinalStepAddressViewController ()
 
 @end
 
 @implementation FinalStepAddressViewController
-
+{
+    CLLocation *newLocation;
+    NSString *geocodeCountry;
+}
 -(UIStatusBarStyle)preferredStatusBarStyle{
     return UIStatusBarStyleLightContent;
 }
@@ -22,11 +27,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
+  
     _street.text = _address.street;
     _city.text = _address.city;
-    _country.text = _address.country;
-    
+    _zipCode.text = _address.zipCode;
+   
     UIView *streetPadding = [[UIView alloc] initWithFrame:CGRectMake(0, 0,20, 46)];
 
     
@@ -49,13 +54,13 @@
     _city.leftView = cityPadding;
     _city.leftViewMode = UITextFieldViewModeAlways;
     
-    UIView *countryPadding = [[UIView alloc] initWithFrame:CGRectMake(0, 0,20, 46)];
+    UIView *zipCodePadding = [[UIView alloc] initWithFrame:CGRectMake(0, 0,20, 46)];
     
-    _country.layer.cornerRadius =5;
-    _country.layer.borderColor = [UIColor lightGreyHairfie].CGColor;
-    _country.layer.borderWidth = 1;
-    _country.leftView = countryPadding;
-    _country.leftViewMode = UITextFieldViewModeAlways;
+    _zipCode.layer.cornerRadius =5;
+    _zipCode.layer.borderColor = [UIColor lightGreyHairfie].CGColor;
+    _zipCode.layer.borderWidth = 1;
+    _zipCode.leftView = zipCodePadding;
+    _zipCode.leftViewMode = UITextFieldViewModeAlways;
 
      _doneBttn.layer.cornerRadius = 5;
     
@@ -75,10 +80,14 @@
     NSInteger nextTag = textField.tag + 1;
     // Try to find next responder
     UIResponder* nextResponder = [textField.superview viewWithTag:nextTag];
+    Address *address = [[Address alloc] initWithStreet:_street.text city:_city.text zipCode:_zipCode.text country:nil];
     if (nextResponder) {
         // Found next responder, so set it.
         [nextResponder becomeFirstResponder];
+        [self geocodeAddress:[address displayAddress]];
     } else {
+        
+        [self geocodeAddress:[address displayAddress]];
         [self validateAddress:self];
         [textField resignFirstResponder];
     }
@@ -91,22 +100,60 @@
     // TO DO enregistrer l'adresse modifiée
     
     FinalStepViewController *finalStep = [self.navigationController.viewControllers objectAtIndex:[self.navigationController.viewControllers count]-2];
-    
+   
+    Address *address = [[Address alloc] initWithStreet:_street.text city:_city.text zipCode:_zipCode.text country:geocodeCountry];
+    GeoPoint *gps = [[GeoPoint alloc] initWithLocation:newLocation];
     
     if (finalStep.businessToManage != nil)
     {
-        finalStep.businessToManage.address.street = _street.text;
-        finalStep.businessToManage.address.city = _city.text;
-        finalStep.businessToManage.address.country = _country.text;
+        finalStep.businessToManage.address = address;
+        finalStep.businessToManage.gps = gps;
     }
     else
     {
-    
-    finalStep.claim.address.street = _street.text;
-    finalStep.claim.address.city = _city.text;
-    finalStep.claim.address.country = _country.text;
+        finalStep.claim.address = address;
+        finalStep.claim.gps = gps;
     }
     [self goBack:self];
+}
+
+
+-(void)geocodeAddress:(NSString *)address
+{
+    
+    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+    [geocoder geocodeAddressString:address completionHandler:^(NSArray* placemarks, NSError* error){
+        for (CLPlacemark* aPlacemark in placemarks)
+        {
+            // Process the placemark.
+            
+            newLocation =  aPlacemark.location;
+            [self reverseGeocodeGps:newLocation];
+        }
+    }];
+}
+
+
+-(void)reverseGeocodeGps:(CLLocation*)myLocation
+{
+    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+    [geocoder reverseGeocodeLocation:myLocation
+                   completionHandler:^(NSArray *placemarks, NSError *error) {
+                       if (error) {
+                           NSLog(@"Geocode failed with error: %@", error);
+                           return;
+                       }
+                       if (placemarks && placemarks.count > 0)
+                       {
+                           CLPlacemark *placemark = placemarks[0];
+                           NSDictionary *addressDictionary =
+                           placemark.addressDictionary;
+
+                           NSString *country = [addressDictionary objectForKey:(NSString*)kABPersonAddressCountryKey];
+                           geocodeCountry = country;
+                       }
+                       
+                   }];
 }
 
 - (void)didReceiveMemoryWarning {
