@@ -57,6 +57,9 @@
 
     userAuthenticator = [[UserAuthenticator alloc] init];
     
+    _fbLogin.titleLabel.text = NSLocalizedStringFromTable(@"fbConnect", @"tuto", nil);
+    _login.titleLabel.text = NSLocalizedStringFromTable(@"login", @"tuto", nil);
+    _signUp.titleLabel.text = NSLocalizedStringFromTable(@"signUp", @"tuto", nil);
     [_fbLogin tutoStyle];
     [_login tutoStyle];
     [_signUp tutoStyle];

@@ -52,12 +52,13 @@
                  action:@selector(chooseCameraType)
        forControlEvents:UIControlEventTouchUpInside];
     
-    UILabel *addPictureLabel = [[UILabel alloc] initWithFrame:CGRectMake(135, 17, 50, 50)];
+    UILabel *addPictureLabel = [[UILabel alloc] initWithFrame:CGRectMake(130, 15, 60, 50)];
     addPictureLabel.font = [UIFont fontWithName:@"SourceSansPro-Light" size:14];
     addPictureLabel.textColor = [UIColor colorWithRed:148/255.0f green:154/255.0f blue:162/255.0f alpha:1];
     addPictureLabel.text = NSLocalizedStringFromTable(@"Add Photo", @"Login_Sign_Up", nil);
     addPictureLabel.textAlignment = NSTextAlignmentCenter;
-    addPictureLabel.numberOfLines = 2;
+    addPictureLabel.numberOfLines = 3;
+    addPictureLabel.minimumScaleFactor = 0.2;
      _userTitleLabel.text = NSLocalizedStringFromTable(@"Woman", @"Login_Sign_Up", nil);
     _titleView.hidden = YES;
     
