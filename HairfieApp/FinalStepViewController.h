@@ -27,6 +27,8 @@
 
 
 @property (nonatomic) IBOutlet UIButton* validateBttn;
+@property (nonatomic) IBOutlet NSLayoutConstraint *validateBttnWidth;
+@property (nonatomic) IBOutlet NSLayoutConstraint *validateBttnXpos;
 
 @property (nonatomic) IBOutlet UIView *pageControlView;
 

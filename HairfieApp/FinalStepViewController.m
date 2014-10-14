@@ -22,6 +22,7 @@
 #import "ClaimAddPricesSalesViewController.h"
 #import "HomeViewController.h"
 #import "SalonDetailViewController.h"
+#import "AppDelegate.h"
 
 
 @interface FinalStepViewController ()
@@ -35,6 +36,7 @@
     Hairdresser *hairdresserForEditing;
     Service *serviceForEditing;
     NSMutableArray *pictureForGallery;
+    AppDelegate *appDelegate;
 }
 
 -(UIStatusBarStyle)preferredStatusBarStyle{
@@ -43,6 +45,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [self setupGallery:nil];
     [self setButtonSelected:_infoBttn andBringViewUpfront:_infoView];
     pictureForGallery = [[NSMutableArray alloc] init];
@@ -108,7 +112,7 @@
         UIButton *addPictureBttn = [[UIButton alloc] initWithFrame:CGRectMake(110, 40, 100, 100)];
         addPictureBttn.layer.cornerRadius = addPictureBttn.frame.size.height / 2;
         addPictureBttn.clipsToBounds = YES;
-        addPictureBttn.backgroundColor = [UIColor salonDetailTab];
+        addPictureBttn.backgroundColor = [UIColor colorWithRed:250/255.0f green:66/255.0f blue:77/255.0f alpha:1];
         [addPictureBttn addTarget:self
                            action:@selector(chooseCameraType)
                  forControlEvents:UIControlEventTouchUpInside];
@@ -155,8 +159,17 @@
     
     if (_businessToManage != nil)
     {
+        NSString * language = [[NSLocale preferredLanguages] objectAtIndex:0];
+        if ([language isEqualToString:@"fr"]) {
+            _validateBttnWidth.constant = 83;
+            _validateBttnXpos.constant = 229;
+        } else {
+            _validateBttnXpos.constant = 255;
+            _validateBttnWidth.constant = 53;
+        }
+        
         [_validateBttn setTitle:NSLocalizedStringFromTable(@"Update",@"Claim", nil) forState:UIControlStateNormal];
-        [_validateBttn.titleLabel setMinimumScaleFactor:0.9];
+       
         _phoneLabel.text = _businessToManage.phoneNumber;
          _addressLabel.text = [_businessToManage.address displayAddress];
         _nameLabel.text = _businessToManage.name;

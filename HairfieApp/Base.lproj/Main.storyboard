@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="m6Z-pY-ich">
     <dependencies>
-        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -2548,6 +2547,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="MTL-zK-T9A" id="v70-DL-ls2"/>
+                        <outlet property="topBarView" destination="Th5-eS-mBn" id="4HM-op-Qp1"/>
                         <segue destination="wuV-Ro-JC1" kind="push" identifier="hairfieDetail" id="N9Q-F2-pvG"/>
                     </connections>
                 </viewController>
@@ -3895,12 +3895,16 @@
                                     <constraint firstAttribute="width" constant="320" id="cHK-7j-J0o"/>
                                 </constraints>
                             </scrollView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GtV-yO-i63" userLabel="Top Bar View">
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GtV-yO-i63" userLabel="Top Bar View">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8w2-yY-XkF">
-                                        <rect key="frame" x="8" y="19" width="40" height="40"/>
-                                        <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8w2-yY-XkF">
+                                        <rect key="frame" x="8" y="19" width="71" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="XuJ-Sj-yT4"/>
+                                            <constraint firstAttribute="height" constant="40" id="ybt-lV-u3z"/>
+                                        </constraints>
+                                        <inset key="contentEdgeInsets" minX="10" minY="10" maxX="40" maxY="10"/>
                                         <state key="normal" image="arrow-nav.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -3908,8 +3912,12 @@
                                             <action selector="goBack:" destination="BHW-4V-7I5" eventType="touchUpInside" id="EOo-86-6ga"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lEJ-yK-g2s">
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lEJ-yK-g2s">
                                         <rect key="frame" x="8" y="24" width="71" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="32" id="E9u-AH-D0s"/>
+                                            <constraint firstAttribute="width" constant="71" id="c9i-Nd-BMh"/>
+                                        </constraints>
                                         <inset key="contentEdgeInsets" minX="10" minY="10" maxX="40" maxY="10"/>
                                         <state key="normal" image="menu-bttn.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -3918,9 +3926,12 @@
                                             <segue destination="Pyc-9a-F9R" kind="unwind" unwindAction="unwindToMenuViewController:" id="u9R-PH-BYn"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TQG-mS-hkE">
-                                        <rect key="frame" x="244" y="25" width="68" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TQG-mS-hkE">
+                                        <rect key="frame" x="255" y="24" width="57" height="30"/>
                                         <color key="backgroundColor" red="0.98039215690000003" green="0.25882352939999997" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="57" id="ng4-Nv-pa8"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="14"/>
                                         <state key="normal" title="Validate">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -3932,6 +3943,9 @@
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="TQG-mS-hkE" firstAttribute="leading" secondItem="GtV-yO-i63" secondAttribute="leading" constant="255" id="kOd-vM-v3k"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -3964,6 +3978,8 @@
                         <outlet property="priceAndSaleView" destination="rfH-9l-Y24" id="1j9-8G-o3I"/>
                         <outlet property="serviceTableView" destination="szY-CZ-DgU" id="32w-Rq-M0T"/>
                         <outlet property="validateBttn" destination="TQG-mS-hkE" id="sQ7-S9-xNa"/>
+                        <outlet property="validateBttnWidth" destination="ng4-Nv-pa8" id="a7I-0R-bQe"/>
+                        <outlet property="validateBttnXpos" destination="kOd-vM-v3k" id="eX6-gw-DF5"/>
                         <segue destination="NUe-A9-Lt8" kind="push" identifier="claimPhone" id="VGS-VM-Pwy"/>
                         <segue destination="NUe-A9-Lt8" kind="push" identifier="claimSalon" id="2Zn-eA-CWz"/>
                         <segue destination="zTm-H4-2yr" kind="push" identifier="claimAddress" id="ckv-Nm-GTR"/>
@@ -4638,13 +4654,13 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="vAT-vQ-WuX"/>
+        <segue reference="WYb-zG-qo5"/>
         <segue reference="VGS-VM-Pwy"/>
         <segue reference="Yfl-ef-Fhz"/>
         <segue reference="uEN-by-6gW"/>
-        <segue reference="XXf-5V-koX"/>
-        <segue reference="PSz-m0-val"/>
-        <segue reference="2ml-IS-A8f"/>
+        <segue reference="dg2-Ph-4Hs"/>
+        <segue reference="N9Q-F2-pvG"/>
         <segue reference="DYR-eo-mJz"/>
+        <segue reference="LOg-O4-mCP"/>
     </inferredMetricsTieBreakers>
 </document>
