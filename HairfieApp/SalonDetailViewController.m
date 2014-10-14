@@ -307,11 +307,11 @@
         if (self.business.hairdressers.count > 0)
             return self.business.hairdressers.count;
         else
-            return 0;
+            return 1;
     } else if(tableView == _pricesTableView) {
         return self.business.services.count;
     } else {
-        return 0;
+        return 2;
     }
 }
 

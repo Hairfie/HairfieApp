@@ -26,7 +26,9 @@
     AppDelegate *delegate;
 }
 
- 
+-(UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleLightContent;
+}
 
 
 -(void)viewDidLoad

@@ -15,7 +15,9 @@
 
 @implementation FirstStepViewController
 
- 
+-(UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleLightContent;
+}
 
 -(IBAction)goBack:(id)sender
 {
