@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Cfc-gn-Xzs">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A388b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Cfc-gn-Xzs">
     <dependencies>
         <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
@@ -82,7 +82,7 @@
                                     <constraint firstAttribute="width" constant="120" id="L2F-Kb-wbI"/>
                                     <constraint firstAttribute="height" constant="44" id="Y2N-Vc-3su"/>
                                 </constraints>
-                                <state key="normal">
+                                <state key="normal" title="Login">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -95,18 +95,18 @@
                                     <constraint firstAttribute="height" constant="44" id="FqI-7v-9n1"/>
                                     <constraint firstAttribute="width" constant="120" id="GEn-le-46p"/>
                                 </constraints>
-                                <state key="normal">
+                                <state key="normal" title="Sign up">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <segue destination="hwG-uZ-z9e" kind="show" id="f7H-tx-8dc"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="43u-m3-dxB">
-                                <rect key="frame" x="92" y="538" width="136" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="43u-m3-dxB">
+                                <rect key="frame" x="72" y="538" width="176" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="9Ms-h3-NJR"/>
-                                    <constraint firstAttribute="width" constant="136" id="mIe-T3-eNF"/>
+                                    <constraint firstAttribute="width" constant="176" id="mIe-T3-eNF"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="16"/>
                                 <state key="normal" title="or skip for now">
@@ -124,7 +124,7 @@
                                     <constraint firstAttribute="width" constant="260" id="hog-8r-gkX"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="18"/>
-                                <state key="normal">
+                                <state key="normal" title="Login with Facebook">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -147,7 +147,7 @@
                             <constraint firstItem="43u-m3-dxB" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Yyr-i4-eWk" secondAttribute="bottom" constant="4" id="B4r-4D-Oil"/>
                             <constraint firstItem="b9x-Dl-UbK" firstAttribute="leading" secondItem="zh8-wV-vN5" secondAttribute="leadingMargin" constant="-16" id="BpL-wd-HuC"/>
                             <constraint firstAttribute="trailingMargin" secondItem="nMO-hx-ySB" secondAttribute="trailing" constant="14" id="Br8-IY-z1k"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="43u-m3-dxB" secondAttribute="trailing" constant="76" id="CLY-ve-Odt"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="43u-m3-dxB" secondAttribute="trailing" constant="56" id="CLY-ve-Odt"/>
                             <constraint firstItem="Yyr-i4-eWk" firstAttribute="top" relation="greaterThanOrEqual" secondItem="b9x-Dl-UbK" secondAttribute="bottom" constant="80" id="CPH-SX-5UD"/>
                             <constraint firstItem="myv-jB-Wfc" firstAttribute="leading" secondItem="zh8-wV-vN5" secondAttribute="leadingMargin" constant="154" id="EAn-Wr-5fw"/>
                             <constraint firstItem="nMO-hx-ySB" firstAttribute="leading" secondItem="zh8-wV-vN5" secondAttribute="leadingMargin" constant="14" id="FGM-gf-Y2C"/>
@@ -169,7 +169,7 @@
                             <constraint firstItem="GgU-Bi-RhW" firstAttribute="top" secondItem="myv-jB-Wfc" secondAttribute="bottom" constant="239" id="o8d-9m-ZPU"/>
                             <constraint firstItem="GgU-Bi-RhW" firstAttribute="top" secondItem="43u-m3-dxB" secondAttribute="bottom" constant="201" id="vl5-Pb-HGg"/>
                             <constraint firstItem="nMO-hx-ySB" firstAttribute="top" relation="greaterThanOrEqual" secondItem="b9x-Dl-UbK" secondAttribute="bottom" constant="30" id="wK5-vl-49s"/>
-                            <constraint firstItem="43u-m3-dxB" firstAttribute="leading" secondItem="zh8-wV-vN5" secondAttribute="leadingMargin" constant="76" id="wl1-bz-PwC"/>
+                            <constraint firstItem="43u-m3-dxB" firstAttribute="leading" secondItem="zh8-wV-vN5" secondAttribute="leadingMargin" constant="56" id="wl1-bz-PwC"/>
                             <constraint firstItem="b9x-Dl-UbK" firstAttribute="top" secondItem="nkz-3I-qcc" secondAttribute="bottom" constant="-20" id="zE3-Sm-1qK"/>
                         </constraints>
                         <variation key="default">
@@ -985,6 +985,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="mbp-pX-Mpk"/>
-        <segue reference="Hxu-vu-aFy"/>
+        <segue reference="D94-cf-nhS"/>
     </inferredMetricsTieBreakers>
 </document>
