@@ -137,7 +137,7 @@
     
     static NSString *CellIdentifier = @"claimTimetableCell";
     ClaimTimetableCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-  
+    
     
     if (cell == nil) {
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ClaimTimetableCell" owner:self options:nil];
@@ -146,8 +146,8 @@
     
     cell.day.text = [weekDays objectAtIndex:indexPath.row];
     
-   
-
+    
+    
     if (indexPath.row == 0)
     {
         if ([_timeTable.monday count] != 0)
@@ -163,11 +163,11 @@
             cell.timewindow.text = display;
             cell.deleteButton.hidden = NO;
             cell.tag = indexPath.row;
-          //  [cell.deleteButton addTarget:self action:@selector(clearDay:) forControlEvents:UIControlEventTouchUpInside];
+            //  [cell.deleteButton addTarget:self action:@selector(clearDay:) forControlEvents:UIControlEventTouchUpInside];
         }
         else
         {
-            cell.timewindow.text = @"Set a time window";
+            cell.timewindow.text = NSLocalizedStringFromTable(@"Set a time window", @"Claim", nil);
             cell.deleteButton.hidden = YES;
         }
     }
@@ -188,8 +188,7 @@
             
             cell.deleteButton.hidden = YES;
             
-            cell.timewindow.text = @"Set a time window";
-        }
+            cell.timewindow.text = NSLocalizedStringFromTable(@"Set a time window", @"Claim", nil);         }
     }
     if (indexPath.row== 2){
         if ([_timeTable.wednesday count] != 0)
@@ -205,7 +204,7 @@
             cell.timewindow.text = display;
             cell.deleteButton.hidden = NO;
         }        else{
-            cell.timewindow.text = @"Set a time window";
+            cell.timewindow.text = NSLocalizedStringFromTable(@"Set a time window", @"Claim", nil);
             cell.deleteButton.hidden = YES;
         }
     }
@@ -222,12 +221,12 @@
             }
             cell.timewindow.text = display;
             cell.deleteButton.hidden = NO;
-             cell.deleteButton.tag = indexPath.row;
+            cell.deleteButton.tag = indexPath.row;
         }        else {
             
             cell.deleteButton.hidden = YES;
             
-            cell.timewindow.text = @"Set a time window";
+            cell.timewindow.text = NSLocalizedStringFromTable(@"Set a time window", @"Claim", nil);
         }
     }
     if (indexPath.row== 4){
@@ -243,9 +242,9 @@
             }
             cell.timewindow.text = display;
             cell.deleteButton.hidden = NO;
-             cell.deleteButton.tag = indexPath.row;
+            cell.deleteButton.tag = indexPath.row;
         }        else {
-            cell.timewindow.text = @"Set a time window";
+            cell.timewindow.text = NSLocalizedStringFromTable(@"Set a time window", @"Claim", nil);
             cell.deleteButton.hidden = YES;
             
         }
@@ -263,11 +262,11 @@
             }
             cell.timewindow.text = display;
             cell.deleteButton.hidden = NO;
-             cell.deleteButton.tag = indexPath.row;
+            cell.deleteButton.tag = indexPath.row;
         }
         else {
             cell.deleteButton.hidden = YES;
-            cell.timewindow.text = @"Set a time window";
+            cell.timewindow.text = NSLocalizedStringFromTable(@"Set a time window", @"Claim", nil);
         }
     }
     if (indexPath.row == 6){
@@ -283,12 +282,12 @@
             }
             cell.timewindow.text = display;
             cell.deleteButton.hidden = NO;
-             cell.deleteButton.tag = indexPath.row;
+            cell.deleteButton.tag = indexPath.row;
         }
         else{
             
             
-            cell.timewindow.text = @"Set a time window";
+            cell.timewindow.text = NSLocalizedStringFromTable(@"Set a time window", @"Claim", nil);
             cell.deleteButton.hidden = YES;
             
         }

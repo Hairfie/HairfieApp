@@ -9,6 +9,7 @@
 #import "ThirdStepMapViewController.h"
 #import "BusinessAnnotation.h"
 #import "FinalStepViewController.h"
+#import <AddressBook/AddressBook.h>
 
 @interface ThirdStepMapViewController ()
 
@@ -17,6 +18,10 @@
 @implementation ThirdStepMapViewController
 {
     CLLocation *newLocation;
+    NSString *newStreet;
+    NSString *newCity;
+    NSString *newZipCode;
+    NSString *newCountry;
 }
 
 #define METERS_PER_MILE 1609.344
@@ -54,6 +59,39 @@
     NSLog(@"drag to %f,%f", _businessMapView.centerCoordinate.longitude, _businessMapView.centerCoordinate.latitude);
     
     newLocation = [[CLLocation alloc] initWithLatitude:_businessMapView.centerCoordinate.latitude longitude: _businessMapView.centerCoordinate.longitude];
+    [self reverseGeocodeGps:newLocation];
+}
+
+-(void)reverseGeocodeGps:(CLLocation*)myLocation
+{
+    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+    [geocoder reverseGeocodeLocation:myLocation
+                   completionHandler:^(NSArray *placemarks, NSError *error) {
+                       if (error) {
+                           NSLog(@"Geocode failed with error: %@", error);
+                           return;
+                       }
+                       if (placemarks && placemarks.count > 0)
+                       {
+                           CLPlacemark *placemark = placemarks[0];
+                           NSDictionary *addressDictionary =
+                           placemark.addressDictionary;
+                           NSString *address = [addressDictionary
+                                                objectForKey:(NSString *)kABPersonAddressStreetKey];
+                           NSString *city = [addressDictionary
+                                             objectForKey:(NSString *)kABPersonAddressCityKey];
+                           NSString *zip = [addressDictionary
+                                            objectForKey:(NSString *)kABPersonAddressZIPKey];
+                           NSString *country = [addressDictionary objectForKey:(NSString*)kABPersonAddressCountryKey];
+                           
+                           
+                           newStreet = address;
+                           newCity = city;
+                           newZipCode = zip;
+                           newCountry = country;
+                       }
+                       
+                   }];
 }
 
 
@@ -61,7 +99,10 @@
 {
     
     GeoPoint *gps = [[GeoPoint alloc] initWithLocation:newLocation];
+    Address *address = [[Address alloc] initWithStreet:newStreet city:newCity zipCode:newZipCode country:newCountry];
+   
     _claim.gps = gps;
+    _claim.address = address;
   
     void (^loadErrorBlock)(NSError *) = ^(NSError *error){
         NSLog(@"Error : %@", error.description);

@@ -16,7 +16,7 @@
 #import "HorairesViewController.h"
 #import "CustomCollectionViewCell.h"
 #import "LoadingCollectionViewCell.h"
-#import "HairdressersTableViewCell.h"
+#import "HairdresserTableViewCell.h"
 #import "PricesTableViewCell.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "AppDelegate.h"
@@ -51,31 +51,25 @@
     [super viewDidLoad];
     _isAddingHairfie = NO;
     [self initKnownData:_business];
-    [self setButtonSelected:_infoBttn andBringViewUpfront:_infoView];
-    
+    [self setButtonSelected:self.infoBttn]; // slowest method call of this method
     delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-
     
     _infoView.hidden = NO;
     _imageSliderView.canCancelContentTouches = NO;
     _hairfieCollection.scrollEnabled = NO;
-    
-    _pricesTableView.layer.borderWidth = 1;
-    _pricesTableView.layer.borderColor = [UIColor lightGreyHairfie].CGColor;
-    [_pricesTableView setSeparatorInset:UIEdgeInsetsZero];
     
     _reviewTableView.delegate = self;
     _reviewTableView.dataSource = self;
     _reviewTableView.userInteractionEnabled = NO;
     _reviewTableView.scrollEnabled = NO;
     _reviewTableView.backgroundColor = [UIColor clearColor];
-    
+
     _similarTableView.delegate = self;
     _similarTableView.dataSource = self;
     _similarTableView.userInteractionEnabled = YES;
     _similarTableView.scrollEnabled = NO;
     _similarTableView.backgroundColor = [UIColor clearColor];
-    
+
     _addReviewBttn.layer.cornerRadius = 5;
     _addReviewBttn.layer.masksToBounds = YES;
     
@@ -84,15 +78,10 @@
     
     _telephoneBgView.layer.cornerRadius = 5;
     _telephoneBgView.layer.masksToBounds = YES;
-    
-    if (_business.hairdressers.count > 0)
-        _hairdresserTableViewHeight.constant = [_business.hairdressers count] * 60;
-    else
-        _hairdresserTableViewHeight.constant = 60;
+
     _hairdresserTableView.scrollEnabled = NO;
 
     // Init Rating View
-    
     _reviewRating.notSelectedImage = [UIImage imageNamed:@"not_selected_review.png"];
     _reviewRating.halfSelectedImage = [UIImage imageNamed:@"half_selected_review.png"];
     _reviewRating.fullSelectedImage = [UIImage imageNamed:@"selected_review.png"];
@@ -108,19 +97,18 @@
     
     [_hairfieCollection registerNib:[UINib nibWithNibName:@"LoadingCollectionViewCell" bundle:nil]
          forCellWithReuseIdentifier:@"loadingCell"];
-    
-    // Do any additional setup after loading the view.
 
     menuActions = @[
         @{@"label": @"Report an error", @"segue": @"reportError"}
     ];
-
 }
 
 -(void) setupGallery:(NSArray*) pictures
 {
-    if ([pictures count] == 1)
+    if ([pictures count] == 1) {
         _pageControl.hidden = YES;
+    }
+
     if ([pictures count] == 0)
     {
         _pageControl.numberOfPages = 1;
@@ -133,32 +121,27 @@
         imageView.image = [UIImage imageNamed:@"default-picture.jpg"];
         imageView.contentMode = UIViewContentModeScaleToFill;
         [_imageSliderView addSubview:imageView];
-    }
-    else {
-        
-    _pageControl.numberOfPages = [pictures count];
-    for (int i = 0; i < [pictures count]; i++) {
-        CGRect frame;
-        frame.origin.x = _imageSliderView.frame.size.width * i;
-        frame.origin.y = 0;
-        frame.size = _imageSliderView.frame.size;
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:frame];
-        
-        [SDWebImageDownloader.sharedDownloader downloadImageWithURL:[NSURL URLWithString:[pictures[i] urlWithWidth:@640 height:@360]]
-                                                            options:0
-                                                           progress:^(NSInteger receivedSize, NSInteger expectedSize) { }
-                                                          completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished)
-         {
-             if (image && finished)
-             {
-                 imageView.image = image;
-             }
-         }];
+    } else {
+        _pageControl.numberOfPages = [pictures count];
+        for (int i = 0; i < [pictures count]; i++) {
+            CGRect frame;
+            frame.origin.x = _imageSliderView.frame.size.width * i;
+            frame.origin.y = 0;
+            frame.size = _imageSliderView.frame.size;
+            UIImageView *imageView = [[UIImageView alloc] initWithFrame:frame];
+            [SDWebImageDownloader.sharedDownloader downloadImageWithURL:[NSURL URLWithString:[pictures[i] urlWithWidth:@640
+                                                                                                                height:@360]]
+                                                                options:0
+                                                               progress:^(NSInteger receivedSize, NSInteger expectedSize) { }
+                                                              completed:^(UIImage *image, NSData *d, NSError *e, BOOL finished) {
+                                                                  if (finished && image) {
+                                                                      imageView.image = image;
+                                                                  }
+                                                              }];
 
-        imageView.contentMode = UIViewContentModeScaleToFill;
-        [_imageSliderView addSubview:imageView];
-    }
-   
+            imageView.contentMode = UIViewContentModeScaleToFill;
+            [_imageSliderView addSubview:imageView];
+        }
     }
     _imageSliderView.pagingEnabled = YES;
     _imageSliderView.contentSize = CGSizeMake(_imageSliderView.frame.size.width * [pictures count], _imageSliderView.frame.size.height);
@@ -176,30 +159,26 @@
     _reviewRating.rating = 0;
     [ARAnalytics pageView:@"AR - Business Detail"];
     [ARAnalytics event:@"AR - Business Detail" withProperties:@{@"Business ID": _business.id, @"Name": _business.name}];
-    
+
     [_reviewTableView reloadData];
-    [self setNormalStateColor:_hairfieBttn];
-    [self setNormalStateColor:_hairdresserBttn];
-    [self setNormalStateColor:_priceAndSaleBttn];
     if (_isAddingHairfie == YES)
     {
-        [self setButtonSelected:_hairfieBttn andBringViewUpfront:_hairfieView];
-        _hairfieView.hidden = NO;
+        [self setButtonSelected:_hairfieBttn];
         [self updateHairfiesView];
         _isAddingHairfie = NO;
     }
-    
 }
 
 
--(UIStatusBarStyle)preferredStatusBarStyle{
+-(UIStatusBarStyle)preferredStatusBarStyle
+{
     return UIStatusBarStyleLightContent;
 }
 
-- (void)rateView:(RatingView *)rateView ratingDidChange:(float)rating {
+-(void)rateView:(RatingView *)rateView ratingDidChange:(float)rating
+{
     if(delegate.currentUser) {
         [self performSegueWithIdentifier:@"addReview" sender:self];
-
     } else {
         [self showNotLoggedAlertWithDelegate:nil andTitle:nil andMessage:nil];
         _reviewRating.rating = 0;
@@ -219,85 +198,79 @@
 
 -(void) scrollViewDidEndDecelerating:(UIScrollView *)scrollview
 {
-    if (scrollview == _imageSliderView)
-    {
-       
-    // Update the page when more than 50% of the previous/next page is visible
-    CGFloat pageWidth = scrollview.frame.size.width;
-    int page = floor((scrollview.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
-    _pageControl.currentPage = page;
+    if (scrollview == _imageSliderView) {
+        // Update the page when more than 50% of the previous/next page is visible
+        CGFloat pageWidth = scrollview.frame.size.width;
+        int page = floor((scrollview.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
+        _pageControl.currentPage = page;
     }
 }
 
 
--(IBAction)changeTab:(id)sender {
-    if(sender == _infoBttn) {
-        [self setButtonSelected:_infoBttn andBringViewUpfront:_infoView];
-        _mainViewHeight.constant = 1030;
-        _infoView.hidden = NO;
-    } else if(sender == _hairfieBttn) {
-        [self setButtonSelected:_hairfieBttn andBringViewUpfront:_hairfieView];
-        _hairfieView.hidden = NO;
-        [self updateHairfiesView];
-    } else if(sender == _hairdresserBttn) {
-        _mainViewHeight.constant = 600;
-        [self setButtonSelected:_hairdresserBttn andBringViewUpfront:_hairdresserView];
-        _hairdresserView.hidden = NO;
-    } else if(sender == _priceAndSaleBttn) {
-        _mainViewHeight.constant = 600;
-        [self setButtonSelected:_priceAndSaleBttn andBringViewUpfront:_priceAndSaleView];
-        _priceAndSaleView.hidden = NO;
-    }
+-(IBAction)changeTab:(id)sender
+{
+    [self setButtonSelected:sender];
 }
 
--(void)setButtonSelected:(UIButton*) button andBringViewUpfront:(UIView*) view {
-    [self unSelectAll];
-    [button.imageView setTintColor:[UIColor salonDetailTab]];
-    [button setImage:button.imageView.image forState:UIControlStateNormal];
-    button.imageView.image = [button.imageView.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-    [_containerView bringSubviewToFront:view];
+-(void)decorateButton:(UIButton *)aButton withImage:(NSString *)anImage active:(BOOL)isActive
+{
+    NSString *imageName;
+    if (isActive) {
+        imageName = [NSString stringWithFormat:@"tab-business-%@-active", anImage];
+    } else {
+        imageName = [NSString stringWithFormat:@"tab-business-%@", anImage];
+    }
     
-    UIView *bottomBorder = [[UIView alloc] initWithFrame:CGRectMake(0, button.frame.size.height, button.frame.size.width, 3)];
+    [aButton setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
+}
+
+-(void)setButtonSelected:(UIButton*)aButton
+{
+    self.infoView.hidden = YES;
+    self.hairfieView.hidden = YES;
+    self.hairdresserView.hidden = YES;
+    self.priceAndSaleView.hidden = YES;
+
+    [self decorateButton:self.infoBttn withImage:@"infos" active:NO];
+    [self decorateButton:self.hairfieBttn withImage:@"hairfies" active:NO];
+    [self decorateButton:self.hairdresserBttn withImage:@"hairdressers" active:NO];
+    [self decorateButton:self.priceAndSaleBttn withImage:@"prices" active:NO];
+
+    if (aButton == self.infoBttn) {
+        [self decorateButton:self.infoBttn withImage:@"infos" active:YES];
+        [self.containerView bringSubviewToFront:self.infoView];
+        self.infoView.hidden = NO;
+    } else if (aButton == self.hairfieBttn) {
+        [self decorateButton:self.hairfieBttn withImage:@"hairfies" active:YES];
+        [self.containerView bringSubviewToFront:self.hairfieView];
+        self.hairfieView.hidden = NO;
+    } else if (aButton == self.hairdresserBttn) {
+        [self decorateButton:self.hairdresserBttn withImage:@"hairdressers" active:YES];
+        [self.containerView bringSubviewToFront:self.hairdresserView];
+        self.hairdresserView.hidden = NO;
+    } else if (aButton == self.priceAndSaleBttn) {
+        [self decorateButton:self.priceAndSaleBttn withImage:@"prices" active:YES];
+        [self.containerView bringSubviewToFront:self.priceAndSaleView];
+        self.priceAndSaleView.hidden = NO;
+    }
+
+    for (UIButton *btn in @[self.infoBttn, self.hairfieBttn, self.hairdresserBttn, self.priceAndSaleBttn]) {
+        for (UIView *subView in btn.subviews) {
+            if (subView.tag == 1) [subView removeFromSuperview];
+        }
+    }
+
+    UIView *bottomBorder = [[UIView alloc] initWithFrame:CGRectMake(0, aButton.frame.size.height, aButton.frame.size.width, 3)];
     bottomBorder.backgroundColor = [UIColor salonDetailTab];
     bottomBorder.tag = 1;
-    [button addSubview:bottomBorder];
+    [aButton addSubview:bottomBorder];
 }
 
--(void) setNormalStateColor:(UIButton*) button
+-(IBAction)changePage:(id)sender
 {
-    [button.imageView setTintColor:[UIColor greyHairfie]];
-    [button setImage:button.imageView.image forState:UIControlStateNormal];
-    button.imageView.image = [button.imageView.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-    
-    for (UIView *subView in button.subviews) {
-        if (subView.tag == 1) [subView removeFromSuperview];
-    }
-}
-
--(void) unSelectAll
-{
-    _infoView.hidden = YES;
-    _hairfieView.hidden = YES;
-    _hairdresserView.hidden = YES;
-    _priceAndSaleView.hidden = YES;
-    [self setNormalStateColor:_infoBttn];
-    [self setNormalStateColor:_hairfieBttn];
-    [self setNormalStateColor:_hairdresserBttn];
-    [self setNormalStateColor:_priceAndSaleBttn];
-}
-
-
--(IBAction)changePage:(id)sender {
-    
     UIPageControl *pager = sender;
     CGPoint offset = CGPointMake(pager.currentPage * _imageSliderView.frame.size.width, 0);
     [_imageSliderView setContentOffset:offset animated:YES];
-}
-
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 -(IBAction)goBack:(id)sender
@@ -339,9 +312,9 @@
     else if (tableView == _similarTableView)
         return 110;
     else if (tableView == _hairdresserTableView)
-        return 60;
+        return 45;
     else if (tableView == _pricesTableView)
-        return 41;
+        return 46;
     else
         return 90;
 }
@@ -374,18 +347,19 @@
         return cell;
     } else if (tableView == _hairdresserTableView) {
         static NSString *CellIdentifier = @"hairdresserCell";
-        HairdressersTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        HairdresserTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 
         if (cell == nil) {
-            NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"HairdressersTableViewCell" owner:self options:nil];
+            NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"HairdresserTableViewCell" owner:self options:nil];
             cell = [nib objectAtIndex:0];
         }
         if ([_business.hairdressers count] > 0) {
             Hairdresser *hairdresser = [_business.hairdressers objectAtIndex:indexPath.row];
-            cell.name.text = [hairdresser displayFullName];
+            cell.fullName.text = [hairdresser displayFullName];
            
         }
-         cell.disclosureImg.hidden = YES;
+        cell.separatorInset = UIEdgeInsetsMake(0, 10000, 0, 0);
+
         return cell;
     } else if (tableView == _pricesTableView) {
         static NSString *CellIdentifier = @"priceCell";
@@ -396,8 +370,8 @@
             cell = [nib objectAtIndex:0];
         }
         if ([_business.services count] > 0)
-        [cell updateWithService:self.business.services[indexPath.row]];
-
+            [cell updateWithService:self.business.services[indexPath.row]];
+        cell.separatorInset = UIEdgeInsetsMake(0, 10000, 0, 0);
         return cell;
     }
 
@@ -418,8 +392,6 @@
     [self setupHairfies];
     
     [self setupGallery:business.pictures];
-    
-    [self setupPrices];
 
     [self setupLastReviews];
     
@@ -489,10 +461,6 @@
 
 }
 
--(void)setupPrices
-{
-    _pricesTableViewHeight.constant = self.business.services.count * 41;
-}
 
 -(void)setupCrossSell
 {
@@ -648,7 +616,6 @@
 }
 
 -(IBAction)callPhone:(id)sender {
-    NSLog(@"callPhone %@", self.business.phoneNumber);
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"telprompt://%@", self.business.phoneNumber]]];
 }
 
@@ -804,16 +771,5 @@
     
     [self performSegueWithIdentifier:[menuActions[buttonIndex - 1] objectForKey:@"segue"] sender:self];
 }
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

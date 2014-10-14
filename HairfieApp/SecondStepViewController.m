@@ -165,7 +165,7 @@
     }
     else
     {
-        UIAlertView *errorAlert = [[UIAlertView alloc]initWithTitle:@"Error" message:@"Please fill in your business' name and phone number" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        UIAlertView *errorAlert = [[UIAlertView alloc]initWithTitle:NSLocalizedStringFromTable(@"Warning", @"Claim", nil) message:NSLocalizedStringFromTable(@"Please fill in your business' name and phone number", @"Claim", nil)delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [errorAlert show];
     }
 
@@ -182,7 +182,7 @@
         phone.isSalon= NO;
         phone.isFinalStep = NO;
         phone.textFieldFromSegue = _phoneTextField.text;
-        phone.headerTitle = NSLocalizedStringFromTable(@"Phone", @"Claim", nil);
+        phone.headerTitle = NSLocalizedStringFromTable(@"Phone number", @"Claim", nil);
         phone.textFieldPlaceHolder = _phoneTextField.placeholder;
         if (_isPhoneSet == YES)
         {
@@ -193,7 +193,7 @@
     {
         SecondStepSalonPhoneViewController *salon = [segue destinationViewController];
         
-        salon.headerTitle = NSLocalizedStringFromTable(@"Salon's Name", @"Claim", nil);
+        salon.headerTitle = NSLocalizedStringFromTable(@"Salon's name", @"Claim", nil);
          salon.isFinalStep = NO;
         salon.isSalon = YES;
     
