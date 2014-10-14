@@ -134,11 +134,6 @@
 }
 
 
--(UIStatusBarStyle)preferredStatusBarStyle
-{
-    return UIStatusBarStyleDefault;
-}
-
 -(void)businessSearchChanged:(NSNotification *)notification
 {
     [self updateSearchResults];

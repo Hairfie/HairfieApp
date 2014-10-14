@@ -24,6 +24,8 @@
 
 @property (strong, nonatomic) PopUpViewController *popViewController;
 
+@property (nonatomic) BOOL isFirstTime;
+
 
 -(IBAction)validateVerification:(id)sender;
 

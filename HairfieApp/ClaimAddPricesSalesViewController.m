@@ -94,9 +94,6 @@
     return YES;
 }
 
--(UIStatusBarStyle)preferredStatusBarStyle{
-    return UIStatusBarStyleLightContent;
-}
 
 -(IBAction)goBack:(id)sender
 {
