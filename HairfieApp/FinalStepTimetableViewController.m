@@ -22,9 +22,6 @@
     NSArray *weekDays;
     
 }
--(UIStatusBarStyle)preferredStatusBarStyle{
-    return UIStatusBarStyleLightContent;
-}
 
 
 - (void)viewDidLoad {

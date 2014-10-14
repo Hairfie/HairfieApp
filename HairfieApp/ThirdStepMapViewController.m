@@ -26,9 +26,7 @@
 
 #define METERS_PER_MILE 1609.344
 
--(UIStatusBarStyle)preferredStatusBarStyle{
-    return UIStatusBarStyleLightContent;
-}
+ 
 
 - (void)viewDidLoad {
     [super viewDidLoad];

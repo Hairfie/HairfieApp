@@ -126,9 +126,7 @@
     [appDelegate.currentUser getManagedBusinessesByUserSuccess:loadSuccessBlock failure:loadErrorBlock];
 }
 
--(UIStatusBarStyle)preferredStatusBarStyle{
-    return UIStatusBarStyleLightContent;
-}
+ 
 
 #pragma mark - Table view data source
 -(void) viewWillAppear:(BOOL)animated

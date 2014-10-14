@@ -22,10 +22,6 @@
 
 @synthesize hairfie, imageView;
 
--(UIStatusBarStyle)preferredStatusBarStyle {
-    return UIStatusBarStyleLightContent;
-}
-
 
 -(void)viewDidLoad
 {
