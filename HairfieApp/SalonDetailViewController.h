@@ -106,9 +106,6 @@
 @property (nonatomic) IBOutlet NSLayoutConstraint *addReviewButtonXpos;
 @property (nonatomic) IBOutlet NSLayoutConstraint *mainViewHeight;
 
-@property (nonatomic) BOOL didClaim;
-@property (nonatomic) IBOutlet UIButton *goBackBttn;
-@property (nonatomic) IBOutlet UIButton *menuBttn;
 
 
 -(IBAction)goBack:(id)sender;

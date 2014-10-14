@@ -171,12 +171,6 @@
         [self updateHairfiesView];
         _isAddingHairfie = NO;
     }
-    
-    if(_didClaim) {
-        [_goBackBttn setHidden:YES];
-    } else {
-        [_menuBttn setHidden:YES];
-    }
 }
 
 
@@ -285,11 +279,7 @@
 
 -(IBAction)goBack:(id)sender
 {
-    if(_didClaim) {
-        
-    } else {
-        [self.navigationController popViewControllerAnimated:YES];
-    }
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 
@@ -315,7 +305,7 @@
     } else if(tableView == _pricesTableView) {
         return self.business.services.count;
     } else {
-        return 2;
+        return 0;
     }
 }
 

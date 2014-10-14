@@ -20,9 +20,7 @@
 
 @synthesize headerTitle, headerLabel,textFieldPlaceHolder, textField, textFieldFromSegue;
 
--(UIStatusBarStyle)preferredStatusBarStyle{
-    return UIStatusBarStyleLightContent;
-}
+ 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
