@@ -104,6 +104,9 @@
      [self goBack:self];
 }
 
+-(UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleLightContent;
+}
 
 -(IBAction)goBack:(id)sender
 {

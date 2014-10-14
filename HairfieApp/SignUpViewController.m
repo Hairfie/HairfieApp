@@ -116,7 +116,9 @@ numberOfRowsInComponent:(NSInteger)component
     
 }
 
- 
+-(UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleLightContent;
+}
 
 -(IBAction)createAccount:(id)sender
 {

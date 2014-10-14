@@ -39,6 +39,9 @@
     AppDelegate *appDelegate;
 }
 
+-(UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleLightContent;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -565,15 +568,11 @@
         
     }
     
-    if ([segue.identifier isEqualToString:@"claimFinal"])
+    if ([segue.identifier isEqualToString:@"toSalonDetail"])
     {
-        HomeViewController *home = [segue destinationViewController];
-        if (_businessToManage != nil)
-        {
-            home.didClaim = NO;
-        }
-        else
-            home.didClaim = YES;
+        SalonDetailViewController *salonDetail = [segue destinationViewController];
+        salonDetail.didClaim = YES;
+        salonDetail.business = _businessToManage;
     }
 }
 
@@ -697,7 +696,7 @@
         void (^loadSuccessBlock)(NSArray *) = ^(NSArray *results) {
             
             [[NSNotificationCenter defaultCenter] postNotificationName:@"currentUser" object:self];
-            [self performSegueWithIdentifier:@"claimFinal" sender:self];
+            [self performSegueWithIdentifier:@"toSalonDetail" sender:self];
         };
 
         [_businessToManage updateWithSuccess:loadSuccessBlock failure:loadErrorBlock];
@@ -705,16 +704,15 @@
     } else {
    
         void (^loadErrorBlock)(NSError *) = ^(NSError *error){
-        
-        NSLog(@"Error : %@", error.description);
-    };
+            NSLog(@"Error : %@", error.description);
+        };
         void (^loadSuccessBlock)(NSDictionary *) = ^(NSDictionary *results) {
-       
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"currentUser" object:self];
-            [self performSegueWithIdentifier:@"claimFinal" sender:self];
+            _businessToManage = [[Business alloc] initWithDictionary:results];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"currentUser" object:self];
+            [self performSegueWithIdentifier:@"toSalonDetail" sender:self];
         };
     
-    [_claim submitClaimWithSuccess:loadSuccessBlock failure:loadErrorBlock];
+        [_claim submitClaimWithSuccess:loadSuccessBlock failure:loadErrorBlock];
     }
 }
 

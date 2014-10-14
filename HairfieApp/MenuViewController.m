@@ -126,7 +126,9 @@
     [appDelegate.currentUser getManagedBusinessesByUserSuccess:loadSuccessBlock failure:loadErrorBlock];
 }
 
- 
+-(UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleLightContent;
+}
 
 #pragma mark - Table view data source
 -(void) viewWillAppear:(BOOL)animated
@@ -207,16 +209,10 @@
     }
     if (indexPath.section == 1)
     {
-        if (indexPath.row == 0)
+        
+        if (indexPath.row < [managedBusinesses count])
         {
-            cell.menuItem.text = NSLocalizedStringFromTable(@"Add a business", @"Menu", nil);
-            cell.menuPicto.layer.borderColor = [UIColor clearColor].CGColor;
-            [cell.menuPicto setImage:[UIImage imageNamed:@"picto-add.png"]];
-            cell.backgroundColor = [UIColor colorWithRed:236/255.0f green:236/255.0f blue:238/255.0f alpha:1];
-        }
-        if (indexPath.row < [managedBusinesses count] && indexPath.row > 0)
-        {
-             Business *managedBusiness = [[Business alloc] initWithDictionary: [managedBusinesses objectAtIndex:indexPath.row -1]];
+             Business *managedBusiness = [[Business alloc] initWithDictionary: [managedBusinesses objectAtIndex:indexPath.row]];
             
             Picture *pic = [managedBusiness.pictures objectAtIndex:0];
             
@@ -235,7 +231,13 @@
              cell.backgroundColor = [UIColor colorWithRed:236/255.0f green:236/255.0f blue:238/255.0f alpha:1];
             [cell.menuPicto setImage:businessPic.image];
         }
- 
+        else
+        {
+            cell.menuItem.text = NSLocalizedStringFromTable(@"Add a business", @"Menu", nil);
+           cell.menuPicto.layer.borderColor = [UIColor clearColor].CGColor;
+            [cell.menuPicto setImage:[UIImage imageNamed:@"picto-add.png"]];
+             cell.backgroundColor = [UIColor colorWithRed:236/255.0f green:236/255.0f blue:238/255.0f alpha:1];
+        }
     }
     if (indexPath.section == 2)
     {
@@ -316,15 +318,14 @@
     }
     if (indexPath.section == 1)
     {
-        if (indexPath.row == 0)
-            [self performSegueWithIdentifier:@"BusinessSegue" sender:self];
-
-        if (indexPath.row < [managedBusinesses count] && indexPath.row > 0)
+        if (indexPath.row < [managedBusinesses count])
         {
-            businessToManage = [[Business alloc] initWithDictionary: [managedBusinesses objectAtIndex:indexPath.row - 1]];
+            businessToManage = [[Business alloc] initWithDictionary: [managedBusinesses objectAtIndex:indexPath.row]];
             [self performSegueWithIdentifier:@"ManageBusiness" sender:self];
         }
-           }
+        else
+            [self performSegueWithIdentifier:@"BusinessSegue" sender:self];
+    }
     if (indexPath.section == 2)
         [self logOut];
 }
