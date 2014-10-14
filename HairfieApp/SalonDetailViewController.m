@@ -167,6 +167,12 @@
         [self updateHairfiesView];
         _isAddingHairfie = NO;
     }
+    
+    if(_didClaim) {
+        [_goBackBttn setHidden:YES];
+    } else {
+        [_menuBttn setHidden:YES];
+    }
 }
 
 
@@ -275,7 +281,11 @@
 
 -(IBAction)goBack:(id)sender
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    if(_didClaim) {
+        
+    } else {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 
