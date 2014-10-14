@@ -80,6 +80,10 @@
     _telephoneBgView.layer.masksToBounds = YES;
 
     _hairdresserTableView.scrollEnabled = NO;
+    if ([_business.hairdressers count] == 0)
+        _hairdresserTableView.userInteractionEnabled = YES;
+    else
+        _hairdresserTableView.userInteractionEnabled = YES;
 
     // Init Rating View
     _reviewRating.notSelectedImage = [UIImage imageNamed:@"not_selected_review.png"];
@@ -99,7 +103,7 @@
          forCellWithReuseIdentifier:@"loadingCell"];
 
     menuActions = @[
-        @{@"label": @"Report an error", @"segue": @"reportError"}
+        @{@"label": NSLocalizedStringFromTable(@"Report an error", @"Salon_Detail",nil), @"segue": @"reportError"}
     ];
 }
 
@@ -368,6 +372,10 @@
             cell.fullName.text = [hairdresser displayFullName];
            
         }
+        else
+        {
+            cell.fullName.text = NSLocalizedStringFromTable(@"No Hairdresser", @"Salon_Detail", nil);
+        }
         cell.separatorInset = UIEdgeInsetsMake(0, 10000, 0, 0);
 
         return cell;
@@ -392,6 +400,11 @@
 {
     if (tableView == _similarTableView) {
         [self performSegueWithIdentifier:@"similarBusiness" sender:self.similarBusinesses[indexPath.row]];
+    }
+    if (tableView == _hairdresserTableView)
+    {
+        if ([_business.hairdressers count] == 0)
+             [self performSegueWithIdentifier:[menuActions[0] objectForKey:@"segue"] sender:self];
     }
 }
 
@@ -626,6 +639,7 @@
 }
 
 -(IBAction)callPhone:(id)sender {
+    
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"telprompt://%@", self.business.phoneNumber]]];
 }
 
@@ -671,7 +685,6 @@
 
     
     phoneBttnTitle = [phoneBttnTitle formatPhoneNumber:self.business.phoneNumber];
-    NSLog(@"phone bttn %@", phoneBttnTitle);
     
     
      
@@ -778,6 +791,7 @@
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (0 == buttonIndex) return; // it's the cancel button
+    
     
     [self performSegueWithIdentifier:[menuActions[buttonIndex - 1] objectForKey:@"segue"] sender:self];
 }
