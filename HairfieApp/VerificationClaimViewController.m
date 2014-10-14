@@ -27,7 +27,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    _isFirstTime = YES;
     delegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldValidated:) name:@"validateTextField" object:nil];
@@ -67,7 +67,11 @@
 }
 
 -(void)viewDidAppear:(BOOL)animated {
-    [self showPopup];
+    if (_isFirstTime == YES)
+    {
+        _isFirstTime = NO;
+        [self showPopup];
+    }
 }
 
 -(void)hideCivilityPicker
@@ -79,7 +83,7 @@
     
     self.popViewController = [[PopUpViewController alloc] initWithNibName:@"PopUpViewController" bundle:nil];
     
-    [self.popViewController showInView:self.view withTitle:NSLocalizedStringFromTable(@"You're hairdresser ? Tell Us !", @"Claim", nil) withMessage:NSLocalizedStringFromTable(@"Claim your business in order to manage your business on Hairfie", @"Claim", nil) withButton:NSLocalizedStringFromTable(@"Claim Your Business", @"Claim", nil) animated:YES];
+    [self.popViewController showInView:self.view withTitle:NSLocalizedStringFromTable(@"You're hairdresser ? Tell Us !", @"Claim", nil) withMessage:NSLocalizedStringFromTable(@"Claim and manage your business on Hairfie", @"Claim", nil) withButton:NSLocalizedStringFromTable(@"Claim your business", @"Claim", nil) animated:YES];
 }
 
 -(void) viewWillAppear:(BOOL)animated {

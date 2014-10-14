@@ -32,7 +32,7 @@ import QuartzCore
         self.popUpView.layer.cornerRadius = 5
         self.popUpView.layer.shadowOpacity = 0.8
         self.popUpView.layer.shadowOffset = CGSizeMake(0.0, 0.0)
-        
+        self.titleLabel.minimumScaleFactor = 0.9
         self.nextButton.layer.cornerRadius = 5
         self.nextButton.layer.masksToBounds = true
 
