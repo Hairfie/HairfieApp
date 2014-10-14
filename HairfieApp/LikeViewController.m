@@ -49,6 +49,8 @@
     if (nil != currentUser) {
         [self refreshHairfieLikes];
     }
+    
+    [_topBarView addBottomBorderWithHeight:1.0 andColor:[UIColor lightGrey]];
 }
 
 - (void)didReceiveMemoryWarning {

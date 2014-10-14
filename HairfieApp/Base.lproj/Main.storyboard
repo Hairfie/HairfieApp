@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="m6Z-pY-ich">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A388b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="m6Z-pY-ich">
     <dependencies>
         <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
@@ -2549,6 +2549,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="MTL-zK-T9A" id="v70-DL-ls2"/>
+                        <outlet property="topBarView" destination="Th5-eS-mBn" id="4HM-op-Qp1"/>
                         <segue destination="wuV-Ro-JC1" kind="push" identifier="hairfieDetail" id="N9Q-F2-pvG"/>
                     </connections>
                 </viewController>
@@ -4640,15 +4641,12 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="vAT-vQ-WuX"/>
+        <segue reference="Yfl-ef-Fhz"/>
         <segue reference="VGS-VM-Pwy"/>
         <segue reference="uEN-by-6gW"/>
         <segue reference="dg2-Ph-4Hs"/>
-        <segue reference="7yU-V8-5Z9"/>
         <segue reference="XXf-5V-koX"/>
-        <segue reference="Yfl-ef-Fhz"/>
-        <segue reference="7yU-V8-5Z9"/>
-        <segue reference="uEN-by-6gW"/>
-        <segue reference="dg2-Ph-4Hs"/>
+        <segue reference="N9Q-F2-pvG"/>
         <segue reference="DYR-eo-mJz"/>
     </inferredMetricsTieBreakers>
 </document>

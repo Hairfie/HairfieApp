@@ -15,6 +15,8 @@
 }
 
 @property (nonatomic, strong) IBOutlet UICollectionView *collectionView;
+@property (nonatomic) IBOutlet UIView *topBarView;
+
 
 
 @end
