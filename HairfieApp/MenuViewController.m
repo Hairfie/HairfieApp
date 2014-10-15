@@ -93,31 +93,10 @@
     _name.text = appDelegate.currentUser.name;
 
     _hairfieNb.text = [appDelegate.currentUser displayHairfies];
-    
 
     
-    //[_profileImageView sd_setImageWithURL:
-  //   [NSURL URLWithString:[appDelegate.currentUser pictureUrlwithWidth:@320 andHeight:@200]] placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
-    
     SDWebImageManager *manager = [SDWebImageManager sharedManager];
-   
-//    
-//    [manager downloadImageWithURL:[NSURL URLWithString:appDelegate.currentUser.picture.url]
-//                          options:0
-//                        progress:^(NSInteger receivedSize, NSInteger expectedSize)
-//    {
-//        
-//    }
-//                        completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
-//                            if (image)
-//                            {
-//                                _profileImageView.image = [image applyLightEffect];
-//                            }
-//
-//                        }
-//     ];
-//
-    
+
     [manager downloadImageWithURL:[NSURL URLWithString:appDelegate.currentUser.picture.url]
                      options:0
                     progress:^(NSInteger receivedSize, NSInteger expectedSize)
