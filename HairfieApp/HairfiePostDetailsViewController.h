@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "SAMTextView.h"
 #import "Business.h"
+#import "HairfiePost.h"
 
 @interface HairfiePostDetailsViewController : UIViewController <UINavigationControllerDelegate, UITextViewDelegate, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, UIAlertViewDelegate>
 
@@ -33,6 +34,7 @@
 @property (nonatomic) BOOL salonOrHairdresser;
 
 @property (nonatomic) UIImage *hairfie;
+@property (nonatomic) HairfiePost *hairfiePost;
 
 @property (nonatomic) IBOutlet NSLayoutConstraint *tableViewHeight;
 @property (nonatomic) IBOutlet NSLayoutConstraint *tableViewYPos;

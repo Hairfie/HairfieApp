@@ -37,7 +37,6 @@
 -(NSString *)displayNumLikes;
 -(NSString *)displayNumComments;
 
-
 +(void)listLatest:(NSNumber *)limit
              skip:(NSNumber *)skip
           success:(void(^)(NSArray *hairfies))aSuccessHandler
