@@ -30,13 +30,36 @@
     if (_timeTable == nil)
         _timeTable = [[Timetable alloc] initEmpty];
     
-    weekDays = [[NSArray alloc] initWithObjects:@"Monday",@"Tuesday",@"Wednesday",@"Thursday",@"Friday",@"Saturday",@"Sunday", nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(clearDay:) name:@"clearDay" object:nil];
-
-    
-    
+ 
+    [self allDatesInWeekContainingDate];
     _doneBttn.layer.cornerRadius = 5;
     // Do any additional setup after loading the view.
+}
+
+
+-(void)allDatesInWeekContainingDate {
+   
+    NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
+    NSString *language = [[NSLocale preferredLanguages] objectAtIndex:0];
+
+    [dateFormatter setLocale: [[NSLocale alloc] initWithLocaleIdentifier:language]];
+    weekDays = [dateFormatter weekdaySymbols];
+    
+    NSUInteger firstWeekdayIndex = [[NSCalendar currentCalendar] firstWeekday];
+    if (firstWeekdayIndex > 0)
+    {
+        weekDays = [[weekDays subarrayWithRange:NSMakeRange(firstWeekdayIndex, 7-firstWeekdayIndex)]
+                    arrayByAddingObjectsFromArray:[weekDays subarrayWithRange:NSMakeRange(0,firstWeekdayIndex)]];
+    }
+    
+    NSMutableArray *weekDayCapitalized = [[NSMutableArray alloc] init];
+    for (NSString *day in weekDays)
+    {
+        
+        NSString *capitalizedString = [day capitalizedString];
+        [weekDayCapitalized addObject:capitalizedString];
+    }
+    weekDays = (NSArray*)weekDayCapitalized;
 }
 
 -(void)viewWillAppear:(BOOL)animated

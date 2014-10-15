@@ -36,6 +36,9 @@
 
     self.addReviewButton.layer.cornerRadius = 5;
     self.addReviewButton.layer.masksToBounds = YES;
+
+    self.containerReview.layer.cornerRadius = 5;
+    self.containerReview.layer.masksToBounds = YES;
     
     if(_ratingValue > 0) {
         self.addReviewButton.hidden = NO;

@@ -6,7 +6,6 @@
 //  Copyright (c) 2014 Hairfie. All rights reserved.
 //
 
-
 #import "MenuViewController.h"
 #import "FinalStepViewController.h"
 #import "UIViewController+ECSlidingViewController.h"
@@ -19,6 +18,7 @@
 #import "CredentialStore.h"
 #import <FacebookSDK/FacebookSDK.h>
 #import "UIRoundImageView.h"
+#import "UIImage+Filters.h"
 
 @implementation MenuViewController
 {
@@ -93,8 +93,24 @@
     _name.text = appDelegate.currentUser.name;
 
     _hairfieNb.text = [appDelegate.currentUser displayHairfies];
+
     
-    NSLog(@"current user img url %@", appDelegate.currentUser.picture);
+    SDWebImageManager *manager = [SDWebImageManager sharedManager];
+
+    [manager downloadImageWithURL:[NSURL URLWithString:appDelegate.currentUser.picture.url]
+                     options:0
+                    progress:^(NSInteger receivedSize, NSInteger expectedSize)
+     {
+         // progression tracking code
+     }
+                   completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL)
+     {
+         if (image)
+         {
+             _profileImageView.image = [image applyLightEffect];
+         }
+     }];
+    _profileImageView.contentMode = UIViewContentModeScaleAspectFill;
     
     UIImageView *profilePicture = [[UIRoundImageView alloc] initWithFrame:CGRectMake(90, 30, 92, 92)];
     profilePicture.clipsToBounds = YES;
@@ -126,7 +142,7 @@
     [appDelegate.currentUser getManagedBusinessesByUserSuccess:loadSuccessBlock failure:loadErrorBlock];
 }
 
- 
+
 
 #pragma mark - Table view data source
 -(void) viewWillAppear:(BOOL)animated

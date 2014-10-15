@@ -16,6 +16,7 @@
 
 @property (nonatomic) IBOutlet STCollapseTableView *menuTableView;
 @property (nonatomic) IBOutlet UIView *profileView;
+@property (nonatomic) IBOutlet UIImageView *profileImageView;
 @property (nonatomic, strong) NSMutableArray *menuItems;
 @property (nonatomic, strong) NSMutableArray *menuPictos;
 @property (nonatomic) IBOutlet UILabel *name;

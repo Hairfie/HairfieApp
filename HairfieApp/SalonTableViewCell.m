@@ -63,7 +63,7 @@ nbReviews = _nbReviews;
 }
 
 - (void)rateView:(RatingView *)rateView ratingDidChange:(float)rating {
- //   _statusLabel.text = [NSString stringWithFormat:@"%.f", rating];
+
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

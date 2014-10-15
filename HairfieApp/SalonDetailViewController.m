@@ -82,12 +82,14 @@
     _telephoneBgView.layer.masksToBounds = YES;
 
     _hairdresserTableView.scrollEnabled = NO;
-    if ([_business.hairdressers count] == 0)
+    if ([_business.activeHairdressers count] == 0)
         _hairdresserTableView.userInteractionEnabled = YES;
     else
         _hairdresserTableView.userInteractionEnabled = YES;
 
     // Init Rating View
+    _containerReview.layer.cornerRadius = 5;
+    _containerReview.layer.masksToBounds = YES;
     _reviewRating.notSelectedImage = [UIImage imageNamed:@"not_selected_review.png"];
     _reviewRating.halfSelectedImage = [UIImage imageNamed:@"half_selected_review.png"];
     _reviewRating.fullSelectedImage = [UIImage imageNamed:@"selected_review.png"];
@@ -306,8 +308,8 @@
     } else if (tableView == _similarTableView) {
         return self.similarBusinesses.count;
     } else if (tableView == _hairdresserTableView) {
-        if (self.business.hairdressers.count > 0)
-            return self.business.hairdressers.count;
+        if (self.business.activeHairdressers.count > 0)
+            return self.business.activeHairdressers.count;
         else
             return 1;
     } else if(tableView == _pricesTableView) {
@@ -365,8 +367,8 @@
             NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"HairdresserTableViewCell" owner:self options:nil];
             cell = [nib objectAtIndex:0];
         }
-        if ([_business.hairdressers count] > 0) {
-            Hairdresser *hairdresser = [_business.hairdressers objectAtIndex:indexPath.row];
+        if ([_business.activeHairdressers count] > 0) {
+            Hairdresser *hairdresser = [_business.activeHairdressers objectAtIndex:indexPath.row];
             cell.fullName.text = [hairdresser displayFullName];
            
         }
@@ -401,7 +403,7 @@
     }
     if (tableView == _hairdresserTableView)
     {
-        if ([_business.hairdressers count] == 0)
+        if ([_business.activeHairdressers count] == 0)
              [self performSegueWithIdentifier:[menuActions[0] objectForKey:@"segue"] sender:self];
     }
 }
@@ -437,6 +439,7 @@
         _telephone.text = [NSString stringWithFormat:NSLocalizedStringFromTable(@"No phone number", @"Salon_Detail", nil)];
         _telephoneLabelWidth.constant = 133;
         _isPhoneAvailable.hidden = YES;
+
     } else {
         [self addPhoneNumbersToView];
         
@@ -458,10 +461,14 @@
         _reviewTableView.hidden = YES;
         _moreReviewBttn.hidden = YES;
         _moreReviewBttn.enabled = NO;
-        _mainViewHeight.constant = 1030;
-        _addReviewButtonYpos.constant = 308;
+        _mainViewHeight.constant = 980;
+        _addReviewButtonYpos.constant = 288;
         _addReviewButtonXpos.constant = 200;
     } else {
+        NSInteger tes = [_business.numReviews integerValue];
+        
+        _addReviewButtonYpos.constant = 288 + (130 * tes);
+        _moreReviewButtonYpos.constant = 288 + (130 * tes);
         [_moreReviewBttn setTitle:[NSString stringWithFormat:NSLocalizedStringFromTable(@"more (%@)", @"Salon_Detail", nil), business.numReviews]
                          forState:UIControlStateNormal];
     }
@@ -677,7 +684,7 @@
     UIButton *phoneBtn=[UIButton buttonWithType:UIButtonTypeRoundedRect];
 
     phoneBtn.frame= CGRectMake(35, 75, 135, 25);
-    phoneBtn.backgroundColor = [UIColor lightBlueHairfie];
+    phoneBtn.backgroundColor = [UIColor colorWithRed:250/255.0f green:66/255.0f blue:77/255.0f alpha:1];
     phoneBtn.layer.cornerRadius = 5;
     phoneBtn.layer.masksToBounds = YES;
 
