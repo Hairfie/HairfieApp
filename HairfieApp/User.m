@@ -231,6 +231,10 @@
     [[User repository] invokeStaticMethod:@"managed-businesses" parameters:parameters success:loadSuccessBlock failure:aFailureHandler];
 }
 
+-(BOOL)hasClaimedBusinesses {
+    return (_managedBusinesses > 0) ? YES : NO;
+}
+
 
 +(void)unlikeHairfie:(NSString *)hairfieId
             asUser:(NSString *)userId

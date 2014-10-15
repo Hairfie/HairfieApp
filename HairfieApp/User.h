@@ -34,6 +34,8 @@
 -(NSString *)pictureUrl;
 -(NSString *)thumbUrl;
 
+-(BOOL)hasClaimedBusinesses;
+
 -(void)saveWithSuccess:(void(^)())aSuccessHandler
                failure:(void(^)(NSError *error))aFailureHandler;
 
