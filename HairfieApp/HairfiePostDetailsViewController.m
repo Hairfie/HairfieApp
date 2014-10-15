@@ -237,7 +237,7 @@ shouldChangeTextInRange: (NSRange) range
         void (^loadSuccessBlock)(Hairfie *) = ^(Hairfie *hairfiePosted){
             NSLog(@"Hairfie Posté");
             [self removeSpinnerAndOverlay];
-            [self.navigationController popToRootViewControllerAnimated:YES];
+            [self performSegueWithIdentifier:@"toHome" sender:self];
         };
         [hairfieToPost saveWithSuccess:loadSuccessBlock failure:loadErrorBlock];
     } else {
