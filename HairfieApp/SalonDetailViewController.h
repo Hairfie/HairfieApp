@@ -45,6 +45,7 @@
 /////////
 
 @property (weak, nonatomic) IBOutlet RatingView *salonRating;
+@property (weak, nonatomic) IBOutlet UIView *containerReview;
 @property (weak, nonatomic) IBOutlet RatingView *reviewRating;
 
 
@@ -104,6 +105,7 @@
 @property (nonatomic) IBOutlet NSLayoutConstraint *telephoneLabelWidth;
 @property (nonatomic) IBOutlet NSLayoutConstraint *addReviewButtonYpos;
 @property (nonatomic) IBOutlet NSLayoutConstraint *addReviewButtonXpos;
+@property (nonatomic) IBOutlet NSLayoutConstraint *moreReviewButtonYpos;
 @property (nonatomic) IBOutlet NSLayoutConstraint *mainViewHeight;
 
 

@@ -175,9 +175,6 @@
 		B36731E2198FB17800E11C56 /* picto-man-white.png in Resources */ = {isa = PBXBuildFile; fileRef = B36731E0198FB17800E11C56 /* picto-man-white.png */; };
 		B36731E3198FB17800E11C56 /* picto-woman-white.png in Resources */ = {isa = PBXBuildFile; fileRef = B36731E1198FB17800E11C56 /* picto-woman-white.png */; };
 		B36731E5198FD87600E11C56 /* picto-home-black.png in Resources */ = {isa = PBXBuildFile; fileRef = B36731E4198FD87600E11C56 /* picto-home-black.png */; };
-		B36731EB198FE0B000E11C56 /* half_selected_review.png in Resources */ = {isa = PBXBuildFile; fileRef = B36731E8198FE0B000E11C56 /* half_selected_review.png */; };
-		B36731EC198FE0B000E11C56 /* selected_review.png in Resources */ = {isa = PBXBuildFile; fileRef = B36731E9198FE0B000E11C56 /* selected_review.png */; };
-		B36731ED198FE0B000E11C56 /* not_selected_review.png in Resources */ = {isa = PBXBuildFile; fileRef = B36731EA198FE0B000E11C56 /* not_selected_review.png */; };
 		B367DC2E19C8802200A0452A /* ThirdStepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B367DC2D19C8802200A0452A /* ThirdStepViewController.m */; };
 		B367DC3119C98DC400A0452A /* ThirdStepMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B367DC3019C98DC400A0452A /* ThirdStepMapViewController.m */; };
 		B367DC3419C98EBF00A0452A /* BusinessAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = B367DC3319C98EBF00A0452A /* BusinessAnnotation.m */; };
@@ -228,11 +225,14 @@
 		B3AE0D3F19C05EE900149C2B /* PostSalonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B3AE0D3E19C05EE900149C2B /* PostSalonTableViewCell.m */; };
 		B3AE0D4119C05F0000149C2B /* PostSalonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3AE0D4019C05F0000149C2B /* PostSalonTableViewCell.xib */; };
 		B3AE0D4319C060DA00149C2B /* salon-cell-separator.png in Resources */ = {isa = PBXBuildFile; fileRef = B3AE0D4219C060DA00149C2B /* salon-cell-separator.png */; };
+		B3B29D4019EE77ED00C293C6 /* half_selected_star.png in Resources */ = {isa = PBXBuildFile; fileRef = B3B29D3D19EE77ED00C293C6 /* half_selected_star.png */; };
+		B3B29D4119EE77ED00C293C6 /* selected_star.png in Resources */ = {isa = PBXBuildFile; fileRef = B3B29D3E19EE77ED00C293C6 /* selected_star.png */; };
+		B3B29D4219EE77ED00C293C6 /* not_selected_star.png in Resources */ = {isa = PBXBuildFile; fileRef = B3B29D3F19EE77ED00C293C6 /* not_selected_star.png */; };
+		B3B29D4619EE796200C293C6 /* not_selected_review.png in Resources */ = {isa = PBXBuildFile; fileRef = B3B29D4319EE796200C293C6 /* not_selected_review.png */; };
+		B3B29D4719EE796200C293C6 /* half_selected_review.png in Resources */ = {isa = PBXBuildFile; fileRef = B3B29D4419EE796200C293C6 /* half_selected_review.png */; };
+		B3B29D4819EE796200C293C6 /* selected_review.png in Resources */ = {isa = PBXBuildFile; fileRef = B3B29D4519EE796200C293C6 /* selected_review.png */; };
 		B3BB4820199B983800F8CD5B /* arrow-nav.png in Resources */ = {isa = PBXBuildFile; fileRef = B3BB481F199B983800F8CD5B /* arrow-nav.png */; };
 		B3BD869F198BCFE500BD8591 /* RatingView.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BD869E198BCFE500BD8591 /* RatingView.m */; };
-		B3BD86AA198BD3DA00BD8591 /* half_selected_star.png in Resources */ = {isa = PBXBuildFile; fileRef = B3BD86A7198BD3DA00BD8591 /* half_selected_star.png */; };
-		B3BD86AB198BD3DA00BD8591 /* not_selected_star.png in Resources */ = {isa = PBXBuildFile; fileRef = B3BD86A8198BD3DA00BD8591 /* not_selected_star.png */; };
-		B3BD86AC198BD3DA00BD8591 /* selected_star.png in Resources */ = {isa = PBXBuildFile; fileRef = B3BD86A9198BD3DA00BD8591 /* selected_star.png */; };
 		B3BD86AE198BDDB700BD8591 /* statusLabelView.png in Resources */ = {isa = PBXBuildFile; fileRef = B3BD86AD198BDDB700BD8591 /* statusLabelView.png */; };
 		B3BD86B0198BE0DF00BD8591 /* picto-list-nav.png in Resources */ = {isa = PBXBuildFile; fileRef = B3BD86AF198BE0DF00BD8591 /* picto-list-nav.png */; };
 		B3C45BD1199A4670000E6C8E /* switch-camera-button.png in Resources */ = {isa = PBXBuildFile; fileRef = B3C45BCF199A4670000E6C8E /* switch-camera-button.png */; };
@@ -610,9 +610,6 @@
 		B36731E0198FB17800E11C56 /* picto-man-white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "picto-man-white.png"; sourceTree = "<group>"; };
 		B36731E1198FB17800E11C56 /* picto-woman-white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "picto-woman-white.png"; sourceTree = "<group>"; };
 		B36731E4198FD87600E11C56 /* picto-home-black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "picto-home-black.png"; sourceTree = "<group>"; };
-		B36731E8198FE0B000E11C56 /* half_selected_review.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = half_selected_review.png; sourceTree = "<group>"; };
-		B36731E9198FE0B000E11C56 /* selected_review.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = selected_review.png; sourceTree = "<group>"; };
-		B36731EA198FE0B000E11C56 /* not_selected_review.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = not_selected_review.png; sourceTree = "<group>"; };
 		B367DC2C19C8802200A0452A /* ThirdStepViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThirdStepViewController.h; sourceTree = "<group>"; };
 		B367DC2D19C8802200A0452A /* ThirdStepViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThirdStepViewController.m; sourceTree = "<group>"; };
 		B367DC2F19C98DC300A0452A /* ThirdStepMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThirdStepMapViewController.h; sourceTree = "<group>"; };
@@ -681,12 +678,15 @@
 		B3AE0D3E19C05EE900149C2B /* PostSalonTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostSalonTableViewCell.m; sourceTree = "<group>"; };
 		B3AE0D4019C05F0000149C2B /* PostSalonTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostSalonTableViewCell.xib; sourceTree = "<group>"; };
 		B3AE0D4219C060DA00149C2B /* salon-cell-separator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "salon-cell-separator.png"; sourceTree = "<group>"; };
+		B3B29D3D19EE77ED00C293C6 /* half_selected_star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = half_selected_star.png; sourceTree = "<group>"; };
+		B3B29D3E19EE77ED00C293C6 /* selected_star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = selected_star.png; sourceTree = "<group>"; };
+		B3B29D3F19EE77ED00C293C6 /* not_selected_star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = not_selected_star.png; sourceTree = "<group>"; };
+		B3B29D4319EE796200C293C6 /* not_selected_review.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = not_selected_review.png; sourceTree = "<group>"; };
+		B3B29D4419EE796200C293C6 /* half_selected_review.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = half_selected_review.png; sourceTree = "<group>"; };
+		B3B29D4519EE796200C293C6 /* selected_review.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = selected_review.png; sourceTree = "<group>"; };
 		B3BB481F199B983800F8CD5B /* arrow-nav.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow-nav.png"; sourceTree = "<group>"; };
 		B3BD869D198BCFE500BD8591 /* RatingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RatingView.h; sourceTree = "<group>"; };
 		B3BD869E198BCFE500BD8591 /* RatingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RatingView.m; sourceTree = "<group>"; };
-		B3BD86A7198BD3DA00BD8591 /* half_selected_star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = half_selected_star.png; sourceTree = "<group>"; };
-		B3BD86A8198BD3DA00BD8591 /* not_selected_star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = not_selected_star.png; sourceTree = "<group>"; };
-		B3BD86A9198BD3DA00BD8591 /* selected_star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = selected_star.png; sourceTree = "<group>"; };
 		B3BD86AD198BDDB700BD8591 /* statusLabelView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = statusLabelView.png; sourceTree = "<group>"; };
 		B3BD86AF198BE0DF00BD8591 /* picto-list-nav.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "picto-list-nav.png"; sourceTree = "<group>"; };
 		B3C45BCF199A4670000E6C8E /* switch-camera-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "switch-camera-button.png"; sourceTree = "<group>"; };
@@ -1289,9 +1289,9 @@
 		B36731E7198FE0A300E11C56 /* review */ = {
 			isa = PBXGroup;
 			children = (
-				B36731E8198FE0B000E11C56 /* half_selected_review.png */,
-				B36731E9198FE0B000E11C56 /* selected_review.png */,
-				B36731EA198FE0B000E11C56 /* not_selected_review.png */,
+				B3B29D4319EE796200C293C6 /* not_selected_review.png */,
+				B3B29D4419EE796200C293C6 /* half_selected_review.png */,
+				B3B29D4519EE796200C293C6 /* selected_review.png */,
 			);
 			name = review;
 			sourceTree = "<group>";
@@ -1439,10 +1439,10 @@
 		B3BD86A0198BD13E00BD8591 /* star rating */ = {
 			isa = PBXGroup;
 			children = (
+				B3B29D3D19EE77ED00C293C6 /* half_selected_star.png */,
+				B3B29D3E19EE77ED00C293C6 /* selected_star.png */,
+				B3B29D3F19EE77ED00C293C6 /* not_selected_star.png */,
 				B3BD86AD198BDDB700BD8591 /* statusLabelView.png */,
-				B3BD86A7198BD3DA00BD8591 /* half_selected_star.png */,
-				B3BD86A8198BD3DA00BD8591 /* not_selected_star.png */,
-				B3BD86A9198BD3DA00BD8591 /* selected_star.png */,
 			);
 			name = "star rating";
 			sourceTree = "<group>";
@@ -1793,8 +1793,8 @@
 				B3EBE754199BACFD0073B844 /* bg-book-no-info.png in Resources */,
 				153B08BF19E43834002E915A /* tuto.strings in Resources */,
 				B3EC30B819E52854006A604C /* picto-home.png in Resources */,
-				B36731EB198FE0B000E11C56 /* half_selected_review.png in Resources */,
 				B3EC30B719E52854006A604C /* picto-like.png in Resources */,
+				B3B29D4719EE796200C293C6 /* half_selected_review.png in Resources */,
 				B3CCE7821998BF7400067DB9 /* picto-hairfie-detail-price.png in Resources */,
 				B3DD7A861991288F007B1621 /* SimilarTableViewCell.xib in Resources */,
 				B3E0B14C19ACA8B400C3EACE /* hairfie-typo.png in Resources */,
@@ -1816,22 +1816,23 @@
 				B36731E2198FB17800E11C56 /* picto-man-white.png in Resources */,
 				B34231601988E1DC0058866B /* likes-picto.png in Resources */,
 				B37F9A56198F910B00881071 /* picto-camera.png in Resources */,
+				B3B29D4819EE796200C293C6 /* selected_review.png in Resources */,
 				B3CCE78B1998CDAC00067DB9 /* HairfieDetailTableViewCell.xib in Resources */,
+				B3B29D4119EE77ED00C293C6 /* selected_star.png in Resources */,
 				B3F5522619BF357D0033230E /* send-email-client-button.png in Resources */,
+				B3B29D4619EE796200C293C6 /* not_selected_review.png in Resources */,
 				1536598819DED2DC0002D5ED /* back-arrow.png in Resources */,
 				B3CCE7861998BFBB00067DB9 /* picto-hairfie-detail-hairdresser.png in Resources */,
 				B37F9A55198F910B00881071 /* picto-hairdresser.png in Resources */,
 				B3DD7A751990CA21007B1621 /* phone-label-bg.png in Resources */,
-				B3BD86AB198BD3DA00BD8591 /* not_selected_star.png in Resources */,
 				B3AD59C1198B9D3500909ADE /* picto-list-promo.png in Resources */,
 				B3F6623B1987D52A0041F298 /* SourceSansPro-Bold.ttf in Resources */,
 				15B8D63719C83A3700C889CF /* LoadingCollectionViewCell.xib in Resources */,
 				153B08BB19E43834002E915A /* BusinessSearch.strings in Resources */,
-				B36731ED198FE0B000E11C56 /* not_selected_review.png in Resources */,
 				B3DD7A8119911245007B1621 /* ReviewTableViewCell.xib in Resources */,
 				1543C07419E59670008718E6 /* curve.jpeg in Resources */,
 				B3320B2019A4F34100855BBB /* default-picture.jpg in Resources */,
-				B36731EC198FE0B000E11C56 /* selected_review.png in Resources */,
+				B3B29D4019EE77ED00C293C6 /* half_selected_star.png in Resources */,
 				719C208319ED5016008E0B17 /* tab-business-infos-active.png in Resources */,
 				B3AE0D3B19C0565000149C2B /* hairfie-post-search-location.png in Resources */,
 				1550721719DC55B9008F2EAD /* tuto-page-3.png in Resources */,
@@ -1854,7 +1855,6 @@
 				B3AD59BF198B9D3500909ADE /* picto-list-resume.png in Resources */,
 				B36AE55619AB72AC0045FDDA /* location-button-image.png in Resources */,
 				B3CCE794199921C700067DB9 /* picto-menu-point.png in Resources */,
-				B3BD86AC198BD3DA00BD8591 /* selected_star.png in Resources */,
 				B3F6623F1987D52A0041F298 /* SourceSansPro-Italic.ttf in Resources */,
 				B3F0B22219EC06D500E0E6EE /* cancel.png in Resources */,
 				B3AD59C0198B9D3500909ADE /* list-button-call.png in Resources */,
@@ -1906,6 +1906,7 @@
 				B342315D1988E1DC0058866B /* settings-picto.png in Resources */,
 				1576492919C9B8BA00DDC141 /* help-hairfie.png in Resources */,
 				15E3D2C719D075CC0065A07E /* Login_Sign_Up.strings in Resources */,
+				B3B29D4219EE77ED00C293C6 /* not_selected_star.png in Resources */,
 				B37F9A4E198F8F5E00881071 /* picto-list-phone.png in Resources */,
 				B3AE0D3519C04D1A00149C2B /* hairdresser-price-hairfie-post.png in Resources */,
 				B3C45BD1199A4670000E6C8E /* switch-camera-button.png in Resources */,
@@ -1915,7 +1916,6 @@
 				B303B954199B9403008F6BAA /* Images.xcassets in Resources */,
 				B33E4C4D19A4CA0B0024F5F7 /* picto-aroundme-salon.png in Resources */,
 				B3F662421987D52A0041F298 /* SourceSansPro-Regular.ttf in Resources */,
-				B3BD86AA198BD3DA00BD8591 /* half_selected_star.png in Resources */,
 				B3BD86AE198BDDB700BD8591 /* statusLabelView.png in Resources */,
 				719C208219ED5016008E0B17 /* tab-business-hairfies.png in Resources */,
 				B34231641988E60D0058866B /* SourceSansPro-ExtraLightItalic.ttf in Resources */,

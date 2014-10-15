@@ -15,6 +15,7 @@
 
 
 @property (nonatomic) IBOutlet UITableView *reviewTableView;
+@property (nonatomic) IBOutlet UIView *containerReview;
 @property (nonatomic) NSInteger ratingValue;
 @property (nonatomic) BOOL isReviewing;
 @property (nonatomic) IBOutlet UIButton *addReviewButton;

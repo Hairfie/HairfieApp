@@ -1766,7 +1766,7 @@
                                                             </button>
                                                             <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RrZ-5c-jUF" userLabel="bgTelephone">
                                                                 <rect key="frame" x="34" y="78" width="123" height="19"/>
-                                                                <color key="backgroundColor" red="0.36078431370000003" green="0.67450980390000004" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <color key="backgroundColor" red="0.98039215690000003" green="0.25882352939999997" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="87" id="8X2-ll-edA"/>
                                                                 </constraints>
@@ -1848,20 +1848,20 @@
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </view>
                                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HDM-ep-dgz" userLabel="Rating Container View">
-                                                        <rect key="frame" x="0.0" y="208" width="320" height="60"/>
+                                                        <rect key="frame" x="10" y="208" width="300" height="60"/>
                                                         <subviews>
-                                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add a review" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TE0-Qo-gk8">
-                                                                <rect key="frame" x="110" y="5" width="100" height="21"/>
+                                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add a review" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TE0-Qo-gk8">
+                                                                <rect key="frame" x="100" y="8" width="100" height="21"/>
                                                                 <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="13"/>
-                                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tg1-Ua-4sM" customClass="RatingView">
-                                                                <rect key="frame" x="70" y="29" width="180" height="20"/>
+                                                                <rect key="frame" x="60" y="32" width="180" height="20"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             </view>
                                                         </subviews>
-                                                        <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="backgroundColor" red="0.98039215690000003" green="0.25882352939999997" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     </view>
                                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="cCd-OE-JmK" userLabel="Review Table View">
                                                         <rect key="frame" x="0.0" y="285" width="320" height="252"/>
@@ -1869,9 +1869,9 @@
                                                         <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <sections/>
                                                     </tableView>
-                                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9aj-2o-ahb">
+                                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9aj-2o-ahb">
                                                         <rect key="frame" x="80" y="518" width="96" height="25"/>
-                                                        <color key="backgroundColor" red="0.36078431370000003" green="0.67450980390000004" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="backgroundColor" red="0.98039215686274506" green="0.25882352941176467" blue="0.30196078431372547" alpha="1" colorSpace="calibratedRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="25" id="eNq-kw-ddV"/>
                                                             <constraint firstAttribute="width" constant="96" id="zkY-JY-b6R"/>
@@ -1887,7 +1887,7 @@
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VBB-fJ-v6H">
                                                         <rect key="frame" x="184" y="518" width="128" height="25"/>
-                                                        <color key="backgroundColor" red="0.36078431370000003" green="0.67450980390000004" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="backgroundColor" red="0.98039215690000003" green="0.25882352939999997" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
                                                         <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="14"/>
                                                         <state key="normal" title="more reviews (43)">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1935,6 +1935,7 @@
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
+                                                    <constraint firstItem="VBB-fJ-v6H" firstAttribute="top" secondItem="8hf-8q-hqK" secondAttribute="top" constant="518" id="O1a-ij-pta"/>
                                                     <constraint firstItem="aTG-pn-ebO" firstAttribute="top" secondItem="9aj-2o-ahb" secondAttribute="bottom" constant="8" id="R3t-rH-tJn"/>
                                                     <constraint firstItem="9aj-2o-ahb" firstAttribute="top" secondItem="cCd-OE-JmK" secondAttribute="bottom" constant="8" id="VB1-1i-uIX"/>
                                                     <constraint firstItem="VBB-fJ-v6H" firstAttribute="centerY" secondItem="9aj-2o-ahb" secondAttribute="centerY" id="fdK-Nq-n3I"/>
@@ -2158,6 +2159,7 @@
                         <outlet property="addReviewButtonYpos" destination="mna-2n-2Uy" id="ZcE-mB-iwM"/>
                         <outlet property="address" destination="5iT-Mx-8vK" id="uWz-El-obZ"/>
                         <outlet property="city" destination="3VZ-B5-oF7" id="bCx-gT-mCp"/>
+                        <outlet property="containerReview" destination="HDM-ep-dgz" id="HPQ-tg-qdM"/>
                         <outlet property="containerView" destination="guP-Fw-zqY" id="F4U-Dr-9jF"/>
                         <outlet property="detailedContainerView" destination="pQj-wF-6sZ" id="wb1-Qt-5ii"/>
                         <outlet property="goBackBttn" destination="ZZ2-6W-cBv" id="Xo3-Bg-KPz"/>
@@ -2180,6 +2182,7 @@
                         <outlet property="manPrice" destination="Vpu-ko-4aC" id="WTd-7J-pbW"/>
                         <outlet property="menuBttn" destination="QZJ-9f-2GT" id="3wk-vc-6v1"/>
                         <outlet property="moreReviewBttn" destination="VBB-fJ-v6H" id="ogl-4e-YVP"/>
+                        <outlet property="moreReviewButtonYpos" destination="O1a-ij-pta" id="055-Fh-kLx"/>
                         <outlet property="name" destination="9OD-9V-Y8a" id="8Zc-F2-lPN"/>
                         <outlet property="nbReviews" destination="NJ0-DF-4Gn" id="IXt-xg-vNr"/>
                         <outlet property="pageControl" destination="wUc-zk-Z94" id="lYs-tK-Uh0"/>
@@ -2315,7 +2318,7 @@
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="wuf-TE-yeF" userLabel="Review Table View">
-                                <rect key="frame" x="0.0" y="124" width="320" height="455"/>
+                                <rect key="frame" x="0.0" y="142" width="320" height="437"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <sections/>
@@ -2325,20 +2328,20 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qJq-4u-TRW" userLabel="Rating Container View">
-                                <rect key="frame" x="0.0" y="64" width="320" height="60"/>
+                                <rect key="frame" x="10" y="74" width="300" height="60"/>
                                 <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add a review" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TB4-V8-Xbm">
-                                        <rect key="frame" x="110" y="5" width="100" height="21"/>
-                                        <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="13"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1w4-gP-Hqd" customClass="RatingView">
-                                        <rect key="frame" x="70" y="29" width="180" height="20"/>
+                                        <rect key="frame" x="60" y="29" width="180" height="20"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add a review" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TB4-V8-Xbm">
+                                        <rect key="frame" x="100" y="0.0" width="100" height="21"/>
+                                        <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="13"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.98039215690000003" green="0.25882352939999997" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2346,6 +2349,7 @@
                     <navigationItem key="navigationItem" id="XQ0-mw-ZR8"/>
                     <connections>
                         <outlet property="addReviewButton" destination="25n-DB-i7U" id="tJj-NR-Fci"/>
+                        <outlet property="containerReview" destination="qJq-4u-TRW" id="5gZ-jD-d9Q"/>
                         <outlet property="reviewRating" destination="1w4-gP-Hqd" id="12a-1r-6g3"/>
                         <outlet property="reviewTableView" destination="wuf-TE-yeF" id="YsI-IJ-BmA"/>
                     </connections>
