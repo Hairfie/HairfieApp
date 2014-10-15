@@ -30,9 +30,6 @@
 
 -(id)initWithDictionary:(NSDictionary *)data;
 
--(void)saveWithSuccess:(void(^)())aSuccessHandler
-               failure:(void(^)(NSError *error))aFailureHandler;
-
 -(NSString *)pictureUrl;
 -(NSString *)hairfieCellUrl;
 -(NSString *)hairfieDetailUrl;
