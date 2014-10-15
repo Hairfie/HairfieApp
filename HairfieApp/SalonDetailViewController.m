@@ -47,7 +47,8 @@
 
 
 
-- (void)viewDidLoad {
+-(void)viewDidLoad
+{
     [super viewDidLoad];
     _isAddingHairfie = NO;
     [self initKnownData:_business];
@@ -477,7 +478,11 @@
         _addReviewButtonXpos.constant = 200;
     } else {
         NSInteger tes = MIN(2, [_business.numReviews integerValue]);
-        
+    
+        _reviewTableView.hidden = NO;
+        _moreReviewBttn.hidden = NO;
+        _moreReviewBttn.enabled = YES;
+        _addReviewButtonXpos.constant = 80;
         _addReviewButtonYpos.constant = 288 + (130 * tes);
         _moreReviewButtonYpos.constant = 288 + (130 * tes);
         [_moreReviewBttn setTitle:[NSString stringWithFormat:NSLocalizedStringFromTable(@"more (%@)", @"Salon_Detail", nil), business.numReviews]
