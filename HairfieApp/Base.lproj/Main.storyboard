@@ -3356,7 +3356,7 @@
                         <viewControllerLayoutGuide type="bottom" id="BB5-sW-Rac"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="xcl-Ye-blg">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YSr-H0-EiX" userLabel="Top Bar View">
@@ -3620,17 +3620,71 @@
                         <viewControllerLayoutGuide type="bottom" id="VqP-Tv-CU2"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="ACl-lb-M7R">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xt3-i7-57w">
-                                <rect key="frame" x="8" y="-30" width="312" height="598"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GtV-yO-i63" userLabel="Top Bar View">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EuT-Lu-oD6" userLabel="VIEW CONTAINER">
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8w2-yY-XkF">
+                                        <rect key="frame" x="8" y="19" width="71" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="71" id="XuJ-Sj-yT4"/>
+                                            <constraint firstAttribute="height" constant="40" id="ybt-lV-u3z"/>
+                                        </constraints>
+                                        <inset key="contentEdgeInsets" minX="10" minY="10" maxX="40" maxY="10"/>
+                                        <state key="normal" image="arrow-nav.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="goBack:" destination="BHW-4V-7I5" eventType="touchUpInside" id="EOo-86-6ga"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lEJ-yK-g2s">
+                                        <rect key="frame" x="8" y="24" width="71" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="32" id="E9u-AH-D0s"/>
+                                            <constraint firstAttribute="width" constant="71" id="c9i-Nd-BMh"/>
+                                        </constraints>
+                                        <inset key="contentEdgeInsets" minX="10" minY="10" maxX="40" maxY="10"/>
+                                        <state key="normal" image="menu-bttn.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="Pyc-9a-F9R" kind="unwind" unwindAction="unwindToMenuViewController:" id="u9R-PH-BYn"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TQG-mS-hkE">
+                                        <rect key="frame" x="255" y="24" width="57" height="30"/>
+                                        <color key="backgroundColor" red="0.98039215690000003" green="0.25882352939999997" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="57" id="ng4-Nv-pa8"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="14"/>
+                                        <state key="normal" title="Validate">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="claimThisBusiness:" destination="BHW-4V-7I5" eventType="touchUpInside" id="71N-gb-7IF"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="TQG-mS-hkE" firstAttribute="leading" secondItem="GtV-yO-i63" secondAttribute="leading" constant="255" id="0Jl-Pg-Lt9"/>
+                                    <constraint firstAttribute="height" constant="64" id="1zM-XJ-6Qb"/>
+                                    <constraint firstAttribute="width" constant="320" id="rL6-T0-fiH"/>
+                                </constraints>
+                            </view>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xt3-i7-57w">
+                                <rect key="frame" x="0.0" y="-20" width="320" height="588"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EuT-Lu-oD6" userLabel="VIEW CONTAINER">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="URA-Dh-nh8" userLabel="HAIRFIE VIEW">
-                                                <rect key="frame" x="-1" y="239" width="320" height="267"/>
+                                                <rect key="frame" x="0.0" y="239" width="320" height="267"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Submit your business to add your first Hairfie!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="129" translatesAutoresizingMaskIntoConstraints="NO" id="Za9-Tb-6rh">
                                                         <rect key="frame" x="0.0" y="68" width="320" height="62"/>
@@ -3913,81 +3967,32 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="320" id="Ghm-SU-5Cy"/>
-                                            <constraint firstAttribute="height" constant="506" id="Pj7-EZ-HLz"/>
+                                            <constraint firstAttribute="height" constant="568" id="Pj7-EZ-HLz"/>
                                         </constraints>
                                     </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="EuT-Lu-oD6" secondAttribute="bottom" id="2pQ-b7-U2Y"/>
+                                    <constraint firstAttribute="bottom" secondItem="EuT-Lu-oD6" secondAttribute="bottom" constant="20" id="2pQ-b7-U2Y"/>
+                                    <constraint firstAttribute="width" constant="320" id="EpE-t1-Ree"/>
                                     <constraint firstItem="EuT-Lu-oD6" firstAttribute="top" secondItem="xt3-i7-57w" secondAttribute="top" id="VKR-IY-hLp"/>
                                     <constraint firstAttribute="trailing" secondItem="EuT-Lu-oD6" secondAttribute="trailing" id="WJ3-n2-Zwv"/>
                                     <constraint firstItem="EuT-Lu-oD6" firstAttribute="leading" secondItem="xt3-i7-57w" secondAttribute="leading" id="cJw-G1-bsB"/>
+                                    <constraint firstAttribute="height" constant="588" id="ggp-27-B96"/>
                                 </constraints>
                             </scrollView>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GtV-yO-i63" userLabel="Top Bar View">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8w2-yY-XkF">
-                                        <rect key="frame" x="8" y="19" width="71" height="40"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="71" id="XuJ-Sj-yT4"/>
-                                            <constraint firstAttribute="height" constant="40" id="ybt-lV-u3z"/>
-                                        </constraints>
-                                        <inset key="contentEdgeInsets" minX="10" minY="10" maxX="40" maxY="10"/>
-                                        <state key="normal" image="arrow-nav.png">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="goBack:" destination="BHW-4V-7I5" eventType="touchUpInside" id="EOo-86-6ga"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lEJ-yK-g2s">
-                                        <rect key="frame" x="8" y="24" width="71" height="32"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="32" id="E9u-AH-D0s"/>
-                                            <constraint firstAttribute="width" constant="71" id="c9i-Nd-BMh"/>
-                                        </constraints>
-                                        <inset key="contentEdgeInsets" minX="10" minY="10" maxX="40" maxY="10"/>
-                                        <state key="normal" image="menu-bttn.png">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <segue destination="Pyc-9a-F9R" kind="unwind" unwindAction="unwindToMenuViewController:" id="u9R-PH-BYn"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TQG-mS-hkE">
-                                        <rect key="frame" x="255" y="24" width="57" height="30"/>
-                                        <color key="backgroundColor" red="0.98039215690000003" green="0.25882352939999997" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="57" id="ng4-Nv-pa8"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="14"/>
-                                        <state key="normal" title="Validate">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="claimThisBusiness:" destination="BHW-4V-7I5" eventType="touchUpInside" id="71N-gb-7IF"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstItem="TQG-mS-hkE" firstAttribute="leading" secondItem="GtV-yO-i63" secondAttribute="leading" constant="255" id="kOd-vM-v3k"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="VqP-Tv-CU2" firstAttribute="top" secondItem="xt3-i7-57w" secondAttribute="bottom" id="2BY-kt-deP"/>
-                            <constraint firstItem="xt3-i7-57w" firstAttribute="top" secondItem="ACl-lb-M7R" secondAttribute="topMargin" constant="-30" id="Gdr-Qb-e8I"/>
-                            <constraint firstItem="xt3-i7-57w" firstAttribute="leading" secondItem="ACl-lb-M7R" secondAttribute="leadingMargin" constant="-8" id="JLb-k7-P6g"/>
+                            <constraint firstItem="xt3-i7-57w" firstAttribute="leading" secondItem="ACl-lb-M7R" secondAttribute="leadingMargin" constant="-16" id="JLb-k7-P6g"/>
+                            <constraint firstItem="GtV-yO-i63" firstAttribute="top" secondItem="ACl-lb-M7R" secondAttribute="topMargin" id="OPW-Ah-LYg"/>
                             <constraint firstAttribute="trailingMargin" secondItem="xt3-i7-57w" secondAttribute="trailing" constant="-16" id="PBm-lv-TD1"/>
+                            <constraint firstItem="xt3-i7-57w" firstAttribute="top" secondItem="ACl-lb-M7R" secondAttribute="topMargin" constant="-20" id="TT2-lK-nxk"/>
+                            <constraint firstItem="GtV-yO-i63" firstAttribute="leading" secondItem="0Si-BM-r8q" secondAttribute="leading" id="yqA-s3-Zxq"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="EaX-Mr-ZpV"/>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="320" height="568"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="addressBttn" destination="Api-cY-vQX" id="cKD-3w-NcB"/>
                         <outlet property="addressLabel" destination="dar-4B-YwN" id="Vmw-sy-qQA"/>
@@ -4009,9 +4014,10 @@
                         <outlet property="priceAndSaleBttn" destination="cjT-7e-Ww7" id="Hnx-Hs-qPF"/>
                         <outlet property="priceAndSaleView" destination="rfH-9l-Y24" id="1j9-8G-o3I"/>
                         <outlet property="serviceTableView" destination="szY-CZ-DgU" id="32w-Rq-M0T"/>
+                        <outlet property="topBarView" destination="GtV-yO-i63" id="S7w-RD-SSf"/>
                         <outlet property="validateBttn" destination="TQG-mS-hkE" id="sQ7-S9-xNa"/>
                         <outlet property="validateBttnWidth" destination="ng4-Nv-pa8" id="a7I-0R-bQe"/>
-                        <outlet property="validateBttnXpos" destination="kOd-vM-v3k" id="eX6-gw-DF5"/>
+                        <outlet property="validateBttnXpos" destination="0Jl-Pg-Lt9" id="9wb-Ih-i3f"/>
                         <segue destination="NUe-A9-Lt8" kind="push" identifier="claimPhone" id="VGS-VM-Pwy"/>
                         <segue destination="NUe-A9-Lt8" kind="push" identifier="claimSalon" id="2Zn-eA-CWz"/>
                         <segue destination="zTm-H4-2yr" kind="push" identifier="claimAddress" id="ckv-Nm-GTR"/>
@@ -4160,7 +4166,7 @@
                         <viewControllerLayoutGuide type="bottom" id="lg8-XI-QXd"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Wqd-TZ-hfe">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x0b-SQ-zV9" userLabel="Top Bar View">
@@ -4198,7 +4204,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" bounces="NO" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Q0G-P4-5JE">
-                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="504" id="KRr-Ty-jG2"/>
@@ -4237,7 +4243,7 @@
                         <viewControllerLayoutGuide type="bottom" id="qiH-EP-AGM"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="j9G-AJ-ZW7">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pwJ-zm-gy0" userLabel="Top Bar View">
@@ -4337,7 +4343,7 @@
                         <viewControllerLayoutGuide type="bottom" id="8xQ-b7-Pck"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Er8-Yx-uYL">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Ka-UT-qHY" userLabel="Top Bar View">
@@ -4404,7 +4410,7 @@
                         <viewControllerLayoutGuide type="bottom" id="wP0-tX-gcM"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="a0K-ly-yx2">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aQW-rU-WsW" userLabel="Top Bar View">
@@ -4489,7 +4495,7 @@
                         <viewControllerLayoutGuide type="bottom" id="NgD-1U-0GJ"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="OdV-mC-Pdf">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HJ8-Qx-5yz" userLabel="Top Bar View">

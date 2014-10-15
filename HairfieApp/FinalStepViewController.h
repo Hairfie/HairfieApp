@@ -49,6 +49,9 @@
 @property (nonatomic) IBOutlet UIView* hairdresserView;
 @property (nonatomic) IBOutlet UIView* priceAndSaleView;
 
+
+@property (nonatomic) IBOutlet UIView* topBarView;
+
 // HAIRFIE TAB
 
 @property (nonatomic) IBOutlet UIButton* addHairfiesBttn;

@@ -45,6 +45,8 @@
     
     appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [self setupGallery:nil];
+  
+    [self.view bringSubviewToFront:self.topBarView];
     [self setButtonSelected:_infoBttn];
     pictureForGallery = [[NSMutableArray alloc] init];
     _claim.timetable = [[Timetable alloc] initEmpty];
