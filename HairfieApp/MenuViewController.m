@@ -134,14 +134,13 @@
     void (^loadErrorBlock)(NSError *) = ^(NSError *error){
         NSLog(@"Error : %@", error.description);
     };
-    void (^loadSuccessBlock)(NSArray *) = ^(NSArray *results){
-        managedBusinesses = results;
+    void (^loadSuccessBlock)(void) = ^(void){
+        managedBusinesses = appDelegate.currentUser.managedBusinesses;
         [self setupMenu];
         [_menuTableView reloadData];
     };
     [appDelegate.currentUser getManagedBusinessesByUserSuccess:loadSuccessBlock failure:loadErrorBlock];
 }
-
 
 
 #pragma mark - Table view data source
@@ -232,7 +231,7 @@
         }
         if (indexPath.row <= [managedBusinesses count] && indexPath.row > 0)
         {
-             Business *managedBusiness = [[Business alloc] initWithDictionary: [managedBusinesses objectAtIndex:indexPath.row -1]];
+             Business *managedBusiness = [managedBusinesses objectAtIndex:indexPath.row -1];
             
             Picture *pic = [managedBusiness.pictures objectAtIndex:0];
             
@@ -337,7 +336,7 @@
 
         if (indexPath.row <= [managedBusinesses count] && indexPath.row > 0)
         {
-            businessToManage = [[Business alloc] initWithDictionary: [managedBusinesses objectAtIndex:indexPath.row - 1]];
+            businessToManage = [managedBusinesses objectAtIndex:indexPath.row - 1];
             [self performSegueWithIdentifier:@"ManageBusiness" sender:self];
         }
            }

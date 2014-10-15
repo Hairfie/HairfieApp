@@ -63,7 +63,7 @@
            success:(void (^)())aSuccessHandler
            failure:(void (^)(NSError *))aFailureHandler;
 
--(void)getManagedBusinessesByUserSuccess:(void (^)(NSArray* results))aSuccessHandler
+-(void)getManagedBusinessesByUserSuccess:(void (^)())aSuccessHandler
                                  failure:(void (^)(NSError *))aFailureHandler;
 
 @end

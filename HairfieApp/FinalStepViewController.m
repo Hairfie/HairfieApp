@@ -351,11 +351,10 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     
-    imagePicker = [[UIImagePickerController alloc]init];
+    imagePicker = [[UIImagePickerController alloc] init];
     [imagePicker setDelegate:self];
     if (buttonIndex == 2) {
         if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeSavedPhotosAlbum]) {
-            //_camera.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
             imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
             imagePicker.allowsEditing = YES;
             
