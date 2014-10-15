@@ -127,6 +127,10 @@
     }
 }
 
+-(void)textFieldDidBeginEditing:(UITextField *)textField
+{
+}
+
 -(IBAction)validateVerification:(id)sender
 {
     
@@ -193,10 +197,8 @@ numberOfRowsInComponent:(NSInteger)component
         delegate.currentUser.gender = GENDER_FEMALE;
     }
     else
-        delegate.currentUser.gender = GENDER_MALE
-        ;
+        delegate.currentUser.gender = GENDER_MALE;
     [self.view removeGestureRecognizer:dismissCivility];
-    [self validateVerification:self];
 }
 
 

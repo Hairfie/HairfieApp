@@ -2735,7 +2735,7 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gw7-iJ-pa5">
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gw7-iJ-pa5">
                                 <rect key="frame" x="0.0" y="352" width="320" height="216"/>
                                 <subviews>
                                     <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="39r-IS-RRx">
@@ -2783,6 +2783,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Hj4-Jf-qfc" firstAttribute="top" secondItem="Cpv-aD-zUF" secondAttribute="bottom" id="QW3-mv-s0x"/>
+                            <constraint firstItem="Hj4-Jf-qfc" firstAttribute="top" secondItem="gw7-iJ-pa5" secondAttribute="bottom" id="cnt-OH-k1t"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="9p6-vk-y8i"/>
