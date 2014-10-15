@@ -10,7 +10,6 @@
 #import "AppDelegate.h"
 #import "HomeViewController.h"
 #import "UserAuthenticator.h"
-#import "PictureUploader.h"
 #import "Picture.h"
 #import "MRProgress.h"
 
