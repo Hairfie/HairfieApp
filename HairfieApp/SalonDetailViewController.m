@@ -179,8 +179,12 @@
     } else {
         [_menuBttn setHidden:YES];
     }
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(businessChanged:)
+                                                 name:[Business EVENT_CHANGED]
+                                               object:nil];
 }
-
 
 -(UIStatusBarStyle)preferredStatusBarStyle
 {
@@ -205,6 +209,15 @@
         
     } else {
         [self showNotLoggedAlertWithDelegate:nil andTitle:nil andMessage:nil];
+    }
+}
+
+-(void)businessChanged:(NSNotification*)notification
+{
+    Business *changedBusiness = (Business *)notification.object;
+    
+    if (changedBusiness == self.business) {
+        [self initKnownData:changedBusiness];
     }
 }
 

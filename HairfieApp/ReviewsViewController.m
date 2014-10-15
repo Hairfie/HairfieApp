@@ -31,7 +31,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(refreshReviews:)
-                                                 name:@"reviewSaved"
+                                                 name:[BusinessReview EVENT_SAVED]
                                                object:nil];
 
     self.addReviewButton.layer.cornerRadius = 5;
@@ -50,7 +50,6 @@
     
     _reviewTextView.placeholder = NSLocalizedStringFromTable(@"Ajoutez votre review...", @"Salon_Detail", nil);
 }
-
 
 -(void)refreshReviews:(NSNotification*) notification
 {
