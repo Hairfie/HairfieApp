@@ -7,7 +7,6 @@
 //
 
 #import "HairfiePostDetailsViewController.h"
-#import "PictureUploader.h"
 #import "Picture.h"
 #import "AppDelegate.h"
 #import "Business.h"
