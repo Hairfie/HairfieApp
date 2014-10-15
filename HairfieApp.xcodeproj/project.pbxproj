@@ -59,6 +59,7 @@
 		15B8D63719C83A3700C889CF /* LoadingCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15B8D63619C83A3700C889CF /* LoadingCollectionViewCell.xib */; };
 		15B8D63A19C83DD200C889CF /* LoadingCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B8D63919C83DD200C889CF /* LoadingCollectionViewCell.m */; };
 		15C89EAD19D3567600E91171 /* take-hairfie.png in Resources */ = {isa = PBXBuildFile; fileRef = 15C89EAC19D3567600E91171 /* take-hairfie.png */; };
+		15CAC9AF19EE700C00FEC13A /* HairfiePost.m in Sources */ = {isa = PBXBuildFile; fileRef = 15CAC9AE19EE700C00FEC13A /* HairfiePost.m */; };
 		15CE407319B0E78C0088FEA7 /* CredentialStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 15CE407219B0E78C0088FEA7 /* CredentialStore.m */; };
 		15E3D2C219D075CC0065A07E /* Around_Me.strings in Resources */ = {isa = PBXBuildFile; fileRef = 15E3D2B019D075CC0065A07E /* Around_Me.strings */; };
 		15E3D2C319D075CC0065A07E /* Claim.strings in Resources */ = {isa = PBXBuildFile; fileRef = 15E3D2B219D075CC0065A07E /* Claim.strings */; };
@@ -408,6 +409,8 @@
 		15B8D63819C83DD200C889CF /* LoadingCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingCollectionViewCell.h; sourceTree = "<group>"; };
 		15B8D63919C83DD200C889CF /* LoadingCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingCollectionViewCell.m; sourceTree = "<group>"; };
 		15C89EAC19D3567600E91171 /* take-hairfie.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "take-hairfie.png"; sourceTree = "<group>"; };
+		15CAC9AD19EE700C00FEC13A /* HairfiePost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HairfiePost.h; sourceTree = "<group>"; };
+		15CAC9AE19EE700C00FEC13A /* HairfiePost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HairfiePost.m; sourceTree = "<group>"; };
 		15CE407119B0E78C0088FEA7 /* CredentialStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CredentialStore.h; sourceTree = "<group>"; };
 		15CE407219B0E78C0088FEA7 /* CredentialStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CredentialStore.m; sourceTree = "<group>"; };
 		15E3D2B119D075CC0065A07E /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Around_Me.strings; sourceTree = "<group>"; };
@@ -1540,6 +1543,8 @@
 				B33D4C5219D176E9009DE6DD /* BusinessClaim.m */,
 				71DA85F319E2CBA9001193D4 /* BusinessSearch.h */,
 				71DA85F419E2CBA9001193D4 /* BusinessSearch.m */,
+				15CAC9AD19EE700C00FEC13A /* HairfiePost.h */,
+				15CAC9AE19EE700C00FEC13A /* HairfiePost.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -2096,6 +2101,7 @@
 				711FB93E19D998730023CAD4 /* BusinessErrorReport.m in Sources */,
 				B330409519BDB21200BA6211 /* HairfieRepository.m in Sources */,
 				71A0AC3D19CC2CEA00BC1ABB /* Timetable.m in Sources */,
+				15CAC9AF19EE700C00FEC13A /* HairfiePost.m in Sources */,
 				B36AC50A19DC27B000B8AC13 /* Hairdresser.m in Sources */,
 				B33E4C4919A4AA4C0024F5F7 /* CommentViewController.m in Sources */,
 				B3E0B15A19ACC14800C3EACE /* SignUpViewController.m in Sources */,

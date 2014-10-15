@@ -23,6 +23,8 @@
 #import "NotLoggedAlert.h"
 #import "Hairdresser.h"
 #import "NSString+PhoneFormatter.h"
+#import "CameraOverlayViewController.h"
+#import "HairfiePost.h"
 
 @interface SalonDetailViewController ()
 
@@ -661,6 +663,9 @@
         controller.business = sender;
     } else if ([segue.identifier isEqualToString:@"reportError"]) {
         [[segue destinationViewController] setBusiness:self.business];
+    } else if ([segue.identifier isEqualToString:@"postHairfie"]) {
+        CameraOverlayViewController *controller = [segue destinationViewController];
+        controller.hairfiePost = [[HairfiePost alloc] initWithBusiness:_business];
     }
 }
 

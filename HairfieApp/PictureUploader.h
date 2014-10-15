@@ -12,12 +12,12 @@
 
 @interface PictureUploader : NSObject
 
-typedef void(^uploadSucessBlock)(Picture *);
+typedef void(^uploadSuccessBlock)(Picture *);
 
 // TODO: move me to Picture.h?
 -(void) uploadImage:(UIImage *) image
                toContainer:(NSString *) containerName
-                   success:(uploadSucessBlock) success
+                   success:(uploadSuccessBlock) success
                    failure:(SLFailureBlock) failure;
 
 

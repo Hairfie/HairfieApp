@@ -15,7 +15,7 @@
 
 -(void) uploadImage:(UIImage *) image
                toContainer:(NSString *) containerName
-                   success:(uploadSucessBlock) success
+                   success:(uploadSuccessBlock) success
                     failure:(SLFailureBlock) failure {
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSString *imgName = @"pictureToUpload.jpg";

@@ -30,13 +30,15 @@
 
 -(id)initWithDictionary:(NSDictionary *)data;
 
+-(void)saveWithSuccess:(void(^)())aSuccessHandler
+               failure:(void(^)(NSError *error))aFailureHandler;
+
 -(NSString *)pictureUrl;
 -(NSString *)hairfieCellUrl;
 -(NSString *)hairfieDetailUrl;
 -(NSString *)displayPrice;
 -(NSString *)displayNumLikes;
 -(NSString *)displayNumComments;
-
 
 +(void)listLatest:(NSNumber *)limit
              skip:(NSNumber *)skip
