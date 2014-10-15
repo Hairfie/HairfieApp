@@ -214,7 +214,7 @@
             [cell.menuPicto setImage:[UIImage imageNamed:@"picto-add.png"]];
             cell.backgroundColor = [UIColor colorWithRed:236/255.0f green:236/255.0f blue:238/255.0f alpha:1];
         }
-        if (indexPath.row < [managedBusinesses count] && indexPath.row > 0)
+        if (indexPath.row <= [managedBusinesses count] && indexPath.row > 0)
         {
              Business *managedBusiness = [[Business alloc] initWithDictionary: [managedBusinesses objectAtIndex:indexPath.row -1]];
             
@@ -319,7 +319,7 @@
         if (indexPath.row == 0)
             [self performSegueWithIdentifier:@"BusinessSegue" sender:self];
 
-        if (indexPath.row < [managedBusinesses count] && indexPath.row > 0)
+        if (indexPath.row <= [managedBusinesses count] && indexPath.row > 0)
         {
             businessToManage = [[Business alloc] initWithDictionary: [managedBusinesses objectAtIndex:indexPath.row - 1]];
             [self performSegueWithIdentifier:@"ManageBusiness" sender:self];
