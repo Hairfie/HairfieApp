@@ -17,8 +17,7 @@
 
 @end
 
-@implementation SignUpViewController
-{
+@implementation SignUpViewController {
     UIAlertView *chooseCameraType;
     UIImagePickerController *imagePicker;
     NSArray *title;
