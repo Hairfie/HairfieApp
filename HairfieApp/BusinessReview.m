@@ -12,14 +12,14 @@
 
 @implementation BusinessReview
 
-- (void)setAuthor:(NSDictionary *)authorDic
+-(void)setAuthor:(NSDictionary *)authorDic
 {
     if([authorDic isKindOfClass:[NSNull class]]) return;
     
     _author = [[User alloc] initWithDictionary:authorDic];
 }
 
-- (void) setBusiness:(NSDictionary *)aDictionary
+-(void)setBusiness:(NSDictionary *)aDictionary
 {
     if ([aDictionary isEqual:[NSNull null]]) {
         _business = nil;
@@ -77,7 +77,7 @@
         NSLog(@"Error : %@", error.description);
     };
     void (^loadSuccessBlock)(NSDictionary *) = ^(NSDictionary *results){
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"reviewSaved" object:self];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"BusinessReview.saved" object:self];
     };
     
     NSDictionary *parameters = @{

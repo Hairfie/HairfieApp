@@ -15,7 +15,7 @@
 
 
 -(void)claimWithSuccess:(void(^)(NSDictionary *results))aSuccessHandler
-               failure:(void(^)(NSError *error))aFailureHandler
+                failure:(void(^)(NSError *error))aFailureHandler
 {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     if (self.id!= nil) {

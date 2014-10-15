@@ -52,8 +52,10 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    if (_hairdressersClaimed != nil)
+    if (_hairdressersClaimed != nil) {
         hairdressers = _hairdressersClaimed;
+    }
+
     if (_hairdresserFromSegue != nil)
     {
         _firstNameField.text = _hairdresserFromSegue.firstName;
@@ -78,51 +80,43 @@
     return YES;
 }
 
-
--(void)addHairdresser
+-(void)addHairdresserWithBusiness:(Business *)aBusiness
 {
     Hairdresser *hairdresser = [[Hairdresser alloc] init];
-    
+    hairdresser.business = aBusiness;
+    hairdresser.active = YES;
     hairdresser.firstName = _firstNameField.text;
     hairdresser.lastName = _lastNameField.text;
     hairdresser.email = _emailField.text;
     hairdresser.phoneNumber = _phoneNumberField.text;
     
     [hairdressers addObject:hairdresser];
+    
+    [hairdresser saveWithSuccess:^() { NSLog(@"Hairdresser saved"); }
+                         failure:^(NSError *error) {
+                             NSLog(@"Failed to save hairdresser: %@", error.localizedDescription);
+                         }];
 }
 
 -(IBAction)validateHairdresser:(id)sender
 {
     // TO DO enregistrer les coiffeurs ajoutés
-    [self addHairdresser];
-    FinalStepViewController *finalStep = [self.navigationController.viewControllers objectAtIndex:[self.navigationController.viewControllers count]-2];
+    FinalStepViewController *finalStep = [self.navigationController.viewControllers objectAtIndex:[self.navigationController.viewControllers count]-2]; // TODO: c'est pas super beau...
     
-    if (finalStep.businessToManage != nil)
-        finalStep.businessToManage.hairdressers = hairdressers;
-    else
-        finalStep.claim.hairdressers = hairdressers;
-     [self goBack:self];
-}
+    [self addHairdresserWithBusiness:finalStep.businessToManage];
 
+    if (finalStep.businessToManage != nil) {
+        finalStep.businessToManage.activeHairdressers = hairdressers;
+    } else {
+        finalStep.claim.hairdressers = hairdressers;
+    }
+
+    [self goBack:self];
+}
 
 -(IBAction)goBack:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
