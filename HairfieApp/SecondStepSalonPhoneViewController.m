@@ -121,7 +121,10 @@
 }
 -(IBAction)goBack:(id)sender
 {
-    [self textFieldValidated:nil];
+    if (_isSalon == YES)
+        [self textFieldValidated:nil];
+    else
+        [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
