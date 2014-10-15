@@ -46,7 +46,8 @@
 
 -(IBAction)goBack:(id)sender
 {
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    [[self.navigationController.viewControllers objectAtIndex:[self.navigationController.viewControllers count]-2] viewWillAppear:YES];;
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

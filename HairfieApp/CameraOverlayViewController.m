@@ -28,31 +28,47 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    _imagePicker = [[UIImagePickerController alloc]init];
-    [_imagePicker setDelegate:self];
-    if ([UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera]) {
-        _imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-        _imagePicker.cameraDevice = UIImagePickerControllerCameraDeviceFront;
-        _imagePicker.showsCameraControls = NO;
-        _imagePicker.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
-        _imagePicker.allowsEditing = YES;
-        
-        diff = 0; //(self.view.frame.size.height - self.view.frame.size.width / 3 * 4)/2;
-
-        [self initOverlayView];
-        NSLog(@"diff %f", diff);
-        
-        [self presentViewController:_imagePicker animated:NO completion:nil];
-    } else {
-        _imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-        _imagePicker.allowsEditing = YES;
-        [self presentViewController:_imagePicker animated:NO completion:nil];
-    }
+    //[self setupImagePicker];
     
 }
 
 -(void) viewWillAppear:(BOOL)animated {
     [ARAnalytics pageView:@"AR - Post Hairfie step #1 - Camera Overlay"];
+    [self setupImagePicker];
+}
+
+
+
+//- (void)navigationController:(UINavigationController *)navigationController
+//      willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+//{
+//    [self viewWillAppear:animated];
+//}
+
+-(void) setupImagePicker {
+    if(!_imagePicker) {
+        _imagePicker = [[UIImagePickerController alloc]init];
+        [_imagePicker setDelegate:self];
+        if ([UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera]) {
+            _imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+            _imagePicker.cameraDevice = UIImagePickerControllerCameraDeviceFront;
+            _imagePicker.showsCameraControls = NO;
+            _imagePicker.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
+            _imagePicker.allowsEditing = YES;
+            
+            diff = 0; //(self.view.frame.size.height - self.view.frame.size.width / 3 * 4)/2;
+            
+            [self initOverlayView];
+            NSLog(@"diff %f", diff);
+            
+        } else {
+            _imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            _imagePicker.allowsEditing = YES;
+        }
+    }
+    if(![self.presentedViewController isEqual:_imagePicker]) {
+        [self presentViewController:_imagePicker animated:NO completion:nil];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
