@@ -12,6 +12,11 @@
 
 @implementation BusinessReview
 
++(NSString *)EVENT_SAVED
+{
+    return @"BusinessReview.saved";
+}
+
 -(void)setAuthor:(NSDictionary *)authorDic
 {
     if([authorDic isKindOfClass:[NSNull class]]) return;
@@ -73,11 +78,12 @@
 
 -(void)save
 {
-    void (^loadErrorBlock)(NSError *) = ^(NSError *error){
+    void (^loadErrorBlock)(NSError *) = ^(NSError *error) {
         NSLog(@"Error : %@", error.description);
     };
-    void (^loadSuccessBlock)(NSDictionary *) = ^(NSDictionary *results){
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"BusinessReview.saved" object:self];
+    void (^loadSuccessBlock)(NSDictionary *) = ^(NSDictionary *results) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:[BusinessReview EVENT_SAVED]
+                                                            object:self];
     };
     
     NSDictionary *parameters = @{

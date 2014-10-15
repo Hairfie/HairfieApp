@@ -14,8 +14,14 @@
 #import "Service.h"
 #import "Picture.h"
 #import "Hairdresser.h"
+#import "BusinessReview.h"
 
 @implementation Business
+
++(NSString *)EVENT_CHANGED
+{
+    return @"Business.changed";
+}
 
 -(void)setOwner:(NSDictionary *)aDictionary
 {
@@ -84,10 +90,82 @@
     }
 }
 
--(id)initWithDictionary:(NSDictionary *)data
+-(id)init
 {
     self = [super init];
+    if (self) {
+        [self setupEventListeners];
+    }
 
+    return self;
+}
+
+-(void)setupEventListeners
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(reviewSaved:)
+                                                 name:[BusinessReview EVENT_SAVED]
+                                               object:nil];
+}
+
+-(void)clearEventListeners
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+-(void)dealloc
+{
+    [self clearEventListeners];
+}
+
+-(void)reviewSaved:(NSNotification *)notification
+{
+    BusinessReview *review = (BusinessReview *)notification.object;
+    
+    if ([self.id isEqualToString:review.business.id]) {
+        NSLog(@"review saved");
+        [self refreshWithSuccess:^() { NSLog(@"Business<%@> reloaded", self.id); }
+                         failure:^(NSError *error) {
+                             NSLog(@"Failed to reload business<%@>: %@", self.id, error.localizedDescription);
+                         }];
+    }
+}
+
+-(void)refreshWithSuccess:(void(^)())aSuccessHandler
+                  failure:(void(^)(NSError *error))aFailureHandler
+{
+    [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/businesses/:id" verb:@"GET"]
+                                        forMethod:@"businesses.get"];
+
+    [[[self class] repository] invokeStaticMethod:@"get"
+                                       parameters:@{@"id": self.id}
+                                          success:^(NSDictionary *result) {
+                                              self.id = [result objectForKey:@"id"];
+                                              self.owner = [result objectForKey:@"owner"];
+                                              self.name = [result objectForKey:@"name"];
+                                              self.gps = [result objectForKey:@"gps"];
+                                              self.phoneNumber = [result objectForKey:@"phoneNumber"];
+                                              self.timetable = [result objectForKey:@"timetable"];
+                                              self.address = [result objectForKey:@"address"];
+                                              self.pictures = [result objectForKey:@"pictures"];
+                                              self.thumbnail = [result objectForKey:@"thumbnail"];
+                                              self.services = [result objectForKey:@"services"];
+                                              self.numHairfies = [result objectForKey:@"numHairfies"];
+                                              self.numReviews = [result objectForKey:@"numReviews"];
+                                              self.rating = [result objectForKey:@"rating"];
+                                              self.desc = [result objectForKey:@"description"];
+                                              self.activeHairdressers = [result objectForKey:@"activeHairdressers"];
+
+                                              [[NSNotificationCenter defaultCenter] postNotificationName:[Business EVENT_CHANGED]
+                                                                                                  object:self];
+
+                                              aSuccessHandler();
+                                          }
+                                          failure:aFailureHandler];
+}
+
+-(id)initWithDictionary:(NSDictionary *)data
+{
     self = (Business*)[[Business repository] modelWithDictionary:data];
 
     // seems there is a parser issue with boolean values...
@@ -96,6 +174,8 @@
     } else {
         self.crossSell = NO;
     }
+
+    [self setupEventListeners];
 
     return self;
 }

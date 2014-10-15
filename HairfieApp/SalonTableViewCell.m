@@ -59,7 +59,6 @@ nbReviews = _nbReviews;
 {
     _name.text = business.name;
     _salonPicture.contentMode = UIViewContentModeScaleAspectFill;
-    _location.text = [NSString stringWithFormat:@"%.1f km", [business.distance floatValue] / 1000];
 }
 
 - (void)rateView:(RatingView *)rateView ratingDidChange:(float)rating {
