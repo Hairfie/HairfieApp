@@ -7,43 +7,99 @@
 //
 
 #import "Hairdresser.h"
+#import "AppDelegate.h"
+#import "HairdresserRepository.h"
 
 @implementation Hairdresser
 
+-(void)setBusiness:(NSDictionary *)aBusiness
+{
+    if ([aBusiness isKindOfClass:[Business class]]) {
+        _business = aBusiness;
+    } else if ([aBusiness isEqual:[NSNull null]]) {
+        _business = nil;
+    } else {
+        _business = [[Business alloc] initWithDictionary:aBusiness];
+    }
+}
 
 -(id)initWithDictionary:(NSDictionary *)aDictionary
 {
-    return [self initWithFirstName:[aDictionary objectForKey:@"firstName"]
-                          lastName:[aDictionary objectForKey:@"lastName"]
-                             email:[aDictionary objectForKey:@"email"]
-                       phoneNumber:[aDictionary objectForKey:@"phoneNumber"]];
+    return (Hairdresser *)[[[self class] repository] modelWithDictionary:aDictionary];
 }
 
--(id)initWithFirstName:(NSString*)aFirstName
-              lastName:(NSString*)aLastName
-                 email:(NSString*)anEmail
-           phoneNumber:(NSString*)aPhoneNumber
-{
-    self = [super init];
-    if (self) {
-        self.firstName = aFirstName;
-        self.lastName = aLastName;
-        self.email = anEmail;
-        self.phoneNumber = aPhoneNumber;
-    }
-    return self;
-}
-
-
--(NSString*)displayFullName
+-(NSString *)displayFullName
 {
     return [NSString stringWithFormat:@"%@ %@",self.firstName, self.lastName];
 }
 
-
--(NSDictionary*)toDictionary
+-(NSDictionary *)toDictionary
 {
-    return [[NSDictionary alloc]initWithObjectsAndKeys:self.firstName, @"firstName",self.lastName, @"lastName", self.email,@"email", self.phoneNumber, @"phoneNumber", nil];
+    NSMutableDictionary *temp = [[NSMutableDictionary alloc] init];
+    
+    if (nil != self.id) {
+        [temp setObject:self.id forKey:@"id"];
+    }
+
+    [temp setObject:[NSNumber numberWithBool:self.active] forKey:@"active"];
+
+    if (nil != self.business.id) {
+        [temp setObject:self.business.id forKey:@"businessId"];
+    }
+
+    if (nil != self.firstName) {
+        [temp setObject:self.firstName forKey:@"firstName"];
+    }
+
+    if (nil != self.lastName) {
+        [temp setObject:self.lastName forKey:@"lastName"];
+    }
+
+    if (nil != self.email) {
+        [temp setObject:self.email forKey:@"email"];
+    }
+
+    if (nil != self.phoneNumber) {
+        [temp setObject:self.phoneNumber forKey:@"phoneNumber"];
+    }
+
+    return [[NSDictionary alloc] initWithDictionary:temp];
+}
+
+-(void)saveWithSuccess:(void(^)())aSuccessHandler
+               failure:(void(^)(NSError *))aFailureHandler
+{
+    void(^onSuccess)(NSDictionary *) = ^(NSDictionary *result) {
+        if (nil == self.id) {
+            self.id = [result objectForKey:@"id"];
+        }
+        aSuccessHandler();
+    };
+    
+    if (nil == self.id) {
+        [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/hairdressers"
+                                                                                     verb:@"POST"]
+                                            forMethod:@"hairdressers.create"];
+
+        [[[self class] repository] invokeStaticMethod:@"create"
+                                           parameters:[self toDictionary]
+                                              success:onSuccess
+                                              failure:aFailureHandler];
+    } else {
+        [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/hairdressers/:id"
+                                                                                     verb:@"PUT"]
+                                            forMethod:@"hairdressers.update"];
+
+        [[[self class] repository] invokeStaticMethod:@"update"
+                                           parameters:[self toDictionary]
+                                              success:onSuccess
+                                              failure:aFailureHandler];
+    }
+}
+
++(LBModelRepository *)repository
+{
+    return [[AppDelegate lbAdaptater] repositoryWithClass:[HairdresserRepository class]];
 }
 
 @end

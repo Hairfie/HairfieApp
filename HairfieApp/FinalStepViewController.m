@@ -173,7 +173,7 @@
         [self setupGallery:_businessToManage.pictures];
         _menuButton.hidden = NO;
         _navButton.hidden = YES;
-        if ([_businessToManage.hairdressers count] == 0)
+        if ([_businessToManage.activeHairdressers count] == 0)
             _hairdresserTableView.hidden = YES;
         else
             _hairdresserTableView.hidden = NO;
@@ -561,9 +561,9 @@
         ClaimAddHairdresserViewController *claimHairdresser = [segue destinationViewController];
         if (_businessToManage != nil)
         {
-            if  (_businessToManage.hairdressers != (id)[NSNull null])
+            if  (_businessToManage.activeHairdressers != (id)[NSNull null])
                 
-                claimHairdresser.hairdressersClaimed = _businessToManage.hairdressers;
+                claimHairdresser.hairdressersClaimed = _businessToManage.activeHairdressers;
             else
     
                 claimHairdresser.hairdressersClaimed = [[NSMutableArray alloc] init];
@@ -627,7 +627,7 @@
         
         if (_businessToManage != nil)
         {
-            hairdresser = [_businessToManage.hairdressers objectAtIndex:indexPath.row];
+            hairdresser = [_businessToManage.activeHairdressers objectAtIndex:indexPath.row];
             
         }
         else
@@ -671,8 +671,8 @@
 {
     if (tableView == _hairdresserTableView)
     {
-    if (_businessToManage.hairdressers != (id)[NSNull null])
-        return [_businessToManage.hairdressers count];
+    if (_businessToManage.activeHairdressers != (id)[NSNull null])
+        return [_businessToManage.activeHairdressers count];
     else
         return [_claim.hairdressers count];
     }
@@ -692,7 +692,7 @@
     if (tableView == _hairdresserTableView)
     {
     if (_businessToManage != nil)
-        hairdresserForEditing = [_businessToManage.hairdressers objectAtIndex:indexPath.row];
+        hairdresserForEditing = [_businessToManage.activeHairdressers objectAtIndex:indexPath.row];
     else
         hairdresserForEditing = [_claim.hairdressers objectAtIndex:indexPath.row];
     _isEditingHairdresser = YES;

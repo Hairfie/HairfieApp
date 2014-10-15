@@ -67,10 +67,10 @@
     }
 }
 
--(void)setHairdressers:(NSMutableArray *)hairdressers
+-(void)setActiveHairdressers:(NSArray *)hairdressers
 {
     if ([hairdressers isEqual:[NSNull null]]) {
-        _hairdressers = nil;
+        _activeHairdressers = [[NSMutableArray alloc] init];
     } else {
         NSMutableArray *temp = [[NSMutableArray alloc] init];
         for (NSDictionary *hairdresser in hairdressers) {
@@ -80,7 +80,7 @@
                 [temp addObject:[[Hairdresser alloc] initWithDictionary:hairdresser]];
             }
         }
-        _hairdressers = temp;
+        _activeHairdressers = temp;
     }
 }
 
@@ -179,9 +179,7 @@
 
                                  aSuccessHandler([[NSArray alloc] initWithArray: businesses]);
                              }
-                             failure:^(NSError *error) {
-                                 aFailureHandler(error);
-                             }];
+                             failure:aFailureHandler];
 }
 
 
@@ -205,19 +203,6 @@
 
    if (self.timetable != nil)
         [parameters setObject:[self.timetable toDictionary] forKey:@"timetable"];
- 
-    if (self.hairdressers != nil)
-    {
-        NSMutableArray *hairdresserToSend = [[NSMutableArray alloc] init];
-        for (int i = 0; i < [self.hairdressers count]; i++)
-        {
-            Hairdresser *hairdresser = [self.hairdressers objectAtIndex:i];
-            [hairdresserToSend addObject:[hairdresser toDictionary]];
-            
-        }
-        
-        [parameters setObject:hairdresserToSend forKey:@"hairdressers"]; 
-    }
 
     if (self.address != nil)
         [parameters setObject:[self.address toDictionary]  forKey:@"address"];
@@ -236,7 +221,6 @@
         }
         [parameters setObject:pictureToSend forKey:@"pictures"];
     }
-    
 
     if (self.services != nil)
     {
@@ -250,9 +234,6 @@
         [parameters setObject:servicesToSend forKey:@"services"];
         
     }
-    
-
-
     
     [[Business repository] invokeStaticMethod:@"update" parameters:parameters success:aSuccessHandler failure:aFailureHandler];
 }

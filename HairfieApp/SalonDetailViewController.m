@@ -80,7 +80,7 @@
     _telephoneBgView.layer.masksToBounds = YES;
 
     _hairdresserTableView.scrollEnabled = NO;
-    if ([_business.hairdressers count] == 0)
+    if ([_business.activeHairdressers count] == 0)
         _hairdresserTableView.userInteractionEnabled = YES;
     else
         _hairdresserTableView.userInteractionEnabled = YES;
@@ -304,8 +304,8 @@
     } else if (tableView == _similarTableView) {
         return self.similarBusinesses.count;
     } else if (tableView == _hairdresserTableView) {
-        if (self.business.hairdressers.count > 0)
-            return self.business.hairdressers.count;
+        if (self.business.activeHairdressers.count > 0)
+            return self.business.activeHairdressers.count;
         else
             return 1;
     } else if(tableView == _pricesTableView) {
@@ -363,8 +363,8 @@
             NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"HairdresserTableViewCell" owner:self options:nil];
             cell = [nib objectAtIndex:0];
         }
-        if ([_business.hairdressers count] > 0) {
-            Hairdresser *hairdresser = [_business.hairdressers objectAtIndex:indexPath.row];
+        if ([_business.activeHairdressers count] > 0) {
+            Hairdresser *hairdresser = [_business.activeHairdressers objectAtIndex:indexPath.row];
             cell.fullName.text = [hairdresser displayFullName];
            
         }
@@ -399,7 +399,7 @@
     }
     if (tableView == _hairdresserTableView)
     {
-        if ([_business.hairdressers count] == 0)
+        if ([_business.activeHairdressers count] == 0)
              [self performSegueWithIdentifier:[menuActions[0] objectForKey:@"segue"] sender:self];
     }
 }
