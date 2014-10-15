@@ -476,7 +476,7 @@
         _addReviewButtonYpos.constant = 288;
         _addReviewButtonXpos.constant = 200;
     } else {
-        NSInteger tes = [_business.numReviews integerValue];
+        NSInteger tes = MIN(2, [_business.numReviews integerValue]);
         
         _addReviewButtonYpos.constant = 288 + (130 * tes);
         _moreReviewButtonYpos.constant = 288 + (130 * tes);
