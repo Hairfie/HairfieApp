@@ -45,7 +45,7 @@
     
     appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [self setupGallery:nil];
-    [self setButtonSelected:_infoBttn andBringViewUpfront:_infoView];
+    [self setButtonSelected:_infoBttn];
     pictureForGallery = [[NSMutableArray alloc] init];
     _claim.timetable = [[Timetable alloc] initEmpty];
     _claim.pictures = [[NSMutableArray alloc] init];
@@ -208,31 +208,61 @@
 }
 
 -(IBAction)changeTab:(id)sender {
-    if(sender == _infoBttn) {
-        [self setButtonSelected:_infoBttn andBringViewUpfront:_infoView];
-    } else if(sender == _hairfieBttn) {
-        [self setButtonSelected:_hairfieBttn andBringViewUpfront:_hairfieView];
-    } else if(sender == _hairdresserBttn) {
-        [self setButtonSelected:_hairdresserBttn andBringViewUpfront:_hairdresserView];
-    } else if(sender == _priceAndSaleBttn) {
-        [self setButtonSelected:_priceAndSaleBttn andBringViewUpfront:_priceAndSaleView];
-    }
+    [self setButtonSelected:sender];
 }
 
+-(void)decorateButton:(UIButton *)aButton withImage:(NSString *)anImage active:(BOOL)isActive
+{
+    NSString *imageName;
+    if (isActive) {
+        imageName = [NSString stringWithFormat:@"tab-business-%@-active", anImage];
+    } else {
+        imageName = [NSString stringWithFormat:@"tab-business-%@", anImage];
+    }
+    
+    [aButton setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
+}
 
--(void)setButtonSelected:(UIButton*) button andBringViewUpfront:(UIView*) view {
+-(void)setButtonSelected:(UIButton*)aButton
+{
+    self.infoView.hidden = YES;
+    self.hairfieView.hidden = YES;
+    self.hairdresserView.hidden = YES;
+    self.priceAndSaleView.hidden = YES;
     
-    [self unSelectAll];
-    [button.imageView setTintColor:[UIColor salonDetailTab]];
-    [button setImage:button.imageView.image forState:UIControlStateNormal];
-    button.imageView.image = [button.imageView.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-    [_containerView bringSubviewToFront:view];
+    [self decorateButton:self.infoBttn withImage:@"infos" active:NO];
+    [self decorateButton:self.hairfieBttn withImage:@"hairfies" active:NO];
+    [self decorateButton:self.hairdresserBttn withImage:@"hairdressers" active:NO];
+    [self decorateButton:self.priceAndSaleBttn withImage:@"prices" active:NO];
     
-    UIView *bottomBorder = [[UIView alloc] initWithFrame:CGRectMake(0, button.frame.size.height, button.frame.size.width, 3)];
+    if (aButton == self.infoBttn) {
+        [self decorateButton:self.infoBttn withImage:@"infos" active:YES];
+        [self.containerView bringSubviewToFront:self.infoView];
+        self.infoView.hidden = NO;
+    } else if (aButton == self.hairfieBttn) {
+        [self decorateButton:self.hairfieBttn withImage:@"hairfies" active:YES];
+        [self.containerView bringSubviewToFront:self.hairfieView];
+        self.hairfieView.hidden = NO;
+    } else if (aButton == self.hairdresserBttn) {
+        [self decorateButton:self.hairdresserBttn withImage:@"hairdressers" active:YES];
+        [self.containerView bringSubviewToFront:self.hairdresserView];
+        self.hairdresserView.hidden = NO;
+    } else if (aButton == self.priceAndSaleBttn) {
+        [self decorateButton:self.priceAndSaleBttn withImage:@"prices" active:YES];
+        [self.containerView bringSubviewToFront:self.priceAndSaleView];
+        self.priceAndSaleView.hidden = NO;
+    }
+    
+    for (UIButton *btn in @[self.infoBttn, self.hairfieBttn, self.hairdresserBttn, self.priceAndSaleBttn]) {
+        for (UIView *subView in btn.subviews) {
+            if (subView.tag == 1) [subView removeFromSuperview];
+        }
+    }
+    
+    UIView *bottomBorder = [[UIView alloc] initWithFrame:CGRectMake(0, aButton.frame.size.height, aButton.frame.size.width, 3)];
     bottomBorder.backgroundColor = [UIColor salonDetailTab];
     bottomBorder.tag = 1;
-    [button addSubview:bottomBorder];
-    view.hidden = NO;
+    [aButton addSubview:bottomBorder];
 }
 
 -(void) setNormalStateColor:(UIButton*) button
@@ -565,15 +595,10 @@
         
     }
     
-    if ([segue.identifier isEqualToString:@"claimFinal"])
-    {
-        HomeViewController *home = [segue destinationViewController];
-        if (_businessToManage != nil)
-        {
-            home.didClaim = NO;
-        }
-        else
-            home.didClaim = YES;
+    if ([segue.identifier isEqualToString:@"toSalonDetail"]) {
+        SalonDetailViewController *salonDetail = [segue destinationViewController];
+        salonDetail.didClaim = YES;
+        salonDetail.business = _businessToManage;
     }
 }
 
@@ -697,24 +722,23 @@
         void (^loadSuccessBlock)(NSArray *) = ^(NSArray *results) {
             
             [[NSNotificationCenter defaultCenter] postNotificationName:@"currentUser" object:self];
-            [self performSegueWithIdentifier:@"claimFinal" sender:self];
+            [self performSegueWithIdentifier:@"toSalonDetail" sender:self];
         };
-
+        
         [_businessToManage updateWithSuccess:loadSuccessBlock failure:loadErrorBlock];
         
     } else {
-   
-        void (^loadErrorBlock)(NSError *) = ^(NSError *error){
         
-        NSLog(@"Error : %@", error.description);
-    };
-        void (^loadSuccessBlock)(NSDictionary *) = ^(NSDictionary *results) {
-       
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"currentUser" object:self];
-            [self performSegueWithIdentifier:@"claimFinal" sender:self];
+        void (^loadErrorBlock)(NSError *) = ^(NSError *error){
+            NSLog(@"Error : %@", error.description);
         };
-    
-    [_claim submitClaimWithSuccess:loadSuccessBlock failure:loadErrorBlock];
+        void (^loadSuccessBlock)(NSDictionary *) = ^(NSDictionary *results) {
+            _businessToManage = [[Business alloc] initWithDictionary:results];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"currentUser" object:self];
+            [self performSegueWithIdentifier:@"toSalonDetail" sender:self];
+        };
+        
+        [_claim submitClaimWithSuccess:loadSuccessBlock failure:loadErrorBlock];
     }
 }
 

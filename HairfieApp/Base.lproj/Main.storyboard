@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="m6Z-pY-ich">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A388b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="m6Z-pY-ich">
     <dependencies>
         <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
@@ -2023,7 +2023,7 @@
                                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <inset key="contentEdgeInsets" minX="20" minY="14" maxX="20" maxY="14"/>
-                                                        <state key="normal" image="picto-info2.png"/>
+                                                        <state key="normal" image="tab-business-infos.png"/>
                                                         <connections>
                                                             <action selector="changeTab:" destination="pDa-if-Gwb" eventType="touchUpInside" id="WEF-lo-bWc"/>
                                                         </connections>
@@ -2033,7 +2033,7 @@
                                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                         <inset key="contentEdgeInsets" minX="20" minY="14" maxX="20" maxY="14"/>
-                                                        <state key="normal" image="picto-users2.png"/>
+                                                        <state key="normal" image="tab-business-hairdressers.png"/>
                                                         <connections>
                                                             <action selector="changeTab:" destination="pDa-if-Gwb" eventType="touchUpInside" id="wjK-d6-BHR"/>
                                                         </connections>
@@ -2043,7 +2043,7 @@
                                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                         <inset key="contentEdgeInsets" minX="20" minY="14" maxX="20" maxY="14"/>
-                                                        <state key="normal" image="picto-price2.png"/>
+                                                        <state key="normal" image="tab-business-prices.png"/>
                                                         <connections>
                                                             <action selector="changeTab:" destination="pDa-if-Gwb" eventType="touchUpInside" id="kfy-iw-qUW"/>
                                                         </connections>
@@ -2053,7 +2053,7 @@
                                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <inset key="contentEdgeInsets" minX="20" minY="14" maxX="20" maxY="14"/>
-                                                        <state key="normal" image="picto-hairfie2.png"/>
+                                                        <state key="normal" image="tab-business-hairfies.png"/>
                                                         <connections>
                                                             <action selector="changeTab:" destination="pDa-if-Gwb" eventType="touchUpInside" id="bFP-q3-H3B"/>
                                                         </connections>
@@ -2078,6 +2078,16 @@
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ebK-Fy-Pfs" userLabel="Top Bar View">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                                 <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QZJ-9f-2GT">
+                                        <rect key="frame" x="0.0" y="24" width="71" height="32"/>
+                                        <inset key="contentEdgeInsets" minX="10" minY="10" maxX="40" maxY="10"/>
+                                        <state key="normal" image="menu-bttn.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="a86-yp-v45" kind="unwind" unwindAction="unwindToMenuViewController:" id="Ofe-7b-ZOj"/>
+                                        </connections>
+                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZZ2-6W-cBv" userLabel="Go Back">
                                         <rect key="frame" x="0.0" y="20" width="60" height="40"/>
                                         <inset key="contentEdgeInsets" minX="10" minY="10" maxX="30" maxY="10"/>
@@ -2150,6 +2160,7 @@
                         <outlet property="city" destination="3VZ-B5-oF7" id="bCx-gT-mCp"/>
                         <outlet property="containerView" destination="guP-Fw-zqY" id="F4U-Dr-9jF"/>
                         <outlet property="detailedContainerView" destination="pQj-wF-6sZ" id="wb1-Qt-5ii"/>
+                        <outlet property="goBackBttn" destination="ZZ2-6W-cBv" id="Xo3-Bg-KPz"/>
                         <outlet property="hairdresserBttn" destination="C6D-1X-n7l" id="wda-Ax-GTB"/>
                         <outlet property="hairdresserTableView" destination="FpJ-1K-79p" id="Fzd-8i-FUf"/>
                         <outlet property="hairdresserTableViewHeight" destination="hRH-in-5yv" id="aVP-bl-hxo"/>
@@ -2167,6 +2178,7 @@
                         <outlet property="isOpenLabelDetail" destination="mxf-SU-fU8" id="1yq-eH-55J"/>
                         <outlet property="mainViewHeight" destination="iPD-6f-Gsc" id="i9P-xc-Ckg"/>
                         <outlet property="manPrice" destination="Vpu-ko-4aC" id="WTd-7J-pbW"/>
+                        <outlet property="menuBttn" destination="QZJ-9f-2GT" id="3wk-vc-6v1"/>
                         <outlet property="moreReviewBttn" destination="VBB-fJ-v6H" id="ogl-4e-YVP"/>
                         <outlet property="name" destination="9OD-9V-Y8a" id="8Zc-F2-lPN"/>
                         <outlet property="nbReviews" destination="NJ0-DF-4Gn" id="IXt-xg-vNr"/>
@@ -2190,6 +2202,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TsP-dW-B6k" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="a86-yp-v45" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2352" y="-1621"/>
         </scene>
@@ -3842,7 +3855,7 @@
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <inset key="contentEdgeInsets" minX="20" minY="14" maxX="20" maxY="14"/>
-                                                        <state key="normal" image="picto-info2.png">
+                                                        <state key="normal" image="tab-business-infos.png">
                                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
                                                         <connections>
@@ -3854,7 +3867,7 @@
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <inset key="contentEdgeInsets" minX="20" minY="14" maxX="20" maxY="14"/>
-                                                        <state key="normal" image="picto-hairfie2.png">
+                                                        <state key="normal" image="tab-business-hairfies.png">
                                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
                                                         <connections>
@@ -3865,7 +3878,7 @@
                                                         <rect key="frame" x="160" y="0.0" width="80" height="55"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <inset key="contentEdgeInsets" minX="20" minY="14" maxX="20" maxY="14"/>
-                                                        <state key="normal" image="picto-users2.png">
+                                                        <state key="normal" image="tab-business-hairdressers.png">
                                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
                                                         <connections>
@@ -3876,7 +3889,7 @@
                                                         <rect key="frame" x="240" y="0.0" width="80" height="55"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <inset key="contentEdgeInsets" minX="20" minY="14" maxX="20" maxY="14"/>
-                                                        <state key="normal" image="picto-price2.png">
+                                                        <state key="normal" image="tab-business-prices.png">
                                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
                                                         <connections>
@@ -3991,12 +4004,12 @@
                         <segue destination="J9A-9n-U3u" kind="push" identifier="claimDesc" id="btP-wW-6NE"/>
                         <segue destination="vfu-7w-ucu" kind="push" identifier="claimHairdresser" id="5Qy-oY-xGh"/>
                         <segue destination="iwq-rU-PkG" kind="push" identifier="claimService" id="K4m-SQ-rIk"/>
-                        <segue destination="eci-2w-4CQ" kind="push" identifier="claimFinal" id="Yfl-ef-Fhz"/>
+                        <segue destination="pDa-if-Gwb" kind="push" identifier="toSalonDetail" id="6S8-Dh-Oyu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kgs-18-rHr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3302" y="440"/>
+            <point key="canvasLocation" x="3340" y="412"/>
         </scene>
         <!--Claim Add Hairdresser View Controller-->
         <scene sceneID="dKZ-9t-aNs">
@@ -4632,17 +4645,13 @@
         <image name="picto-hairfie-comment.png" width="52" height="40"/>
         <image name="picto-hairfie-detail-like.png" width="50" height="40"/>
         <image name="picto-hairfie-detail-liked.png" width="50" height="40"/>
-        <image name="picto-hairfie2.png" width="80" height="55"/>
         <image name="picto-home-black.png" width="30" height="32"/>
-        <image name="picto-info2.png" width="80" height="55"/>
         <image name="picto-list-phone.png" width="32" height="31"/>
         <image name="picto-list-resume.png" width="22" height="32"/>
         <image name="picto-man-white.png" width="24" height="25"/>
         <image name="picto-menu-point.png" width="36" height="9"/>
         <image name="picto-phone-white.png" width="32" height="31"/>
-        <image name="picto-price2.png" width="80" height="55"/>
         <image name="picto-take-picture.png" width="59" height="45"/>
-        <image name="picto-users2.png" width="80" height="55"/>
         <image name="picto-woman-white.png" width="21" height="25"/>
         <image name="pin-salon.png" width="46" height="64"/>
         <image name="search-advance-field-location2.png" width="602" height="56"/>
@@ -4650,6 +4659,10 @@
         <image name="search-bar.png" width="491" height="54"/>
         <image name="send-email-client-button.png" width="599" height="79"/>
         <image name="sepia.jpeg" width="640" height="640"/>
+        <image name="tab-business-hairdressers.png" width="80" height="55"/>
+        <image name="tab-business-hairfies.png" width="80" height="55"/>
+        <image name="tab-business-infos.png" width="80" height="55"/>
+        <image name="tab-business-prices.png" width="80" height="55"/>
         <image name="take-picture-button.png" width="153" height="153"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
@@ -4658,13 +4671,12 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="o5i-ex-i4q"/>
+        <segue reference="6S8-Dh-Oyu"/>
         <segue reference="WYb-zG-qo5"/>
-        <segue reference="Yfl-ef-Fhz"/>
         <segue reference="uEN-by-6gW"/>
-        <segue reference="XXf-5V-koX"/>
-        <segue reference="2ml-IS-A8f"/>
+        <segue reference="VGS-VM-Pwy"/>
         <segue reference="PSz-m0-val"/>
+        <segue reference="2ml-IS-A8f"/>
         <segue reference="DYR-eo-mJz"/>
     </inferredMetricsTieBreakers>
 </document>
