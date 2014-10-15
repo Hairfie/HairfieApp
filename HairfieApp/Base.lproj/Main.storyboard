@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A388b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="m6Z-pY-ich">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="m6Z-pY-ich">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -2735,7 +2735,7 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gw7-iJ-pa5">
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gw7-iJ-pa5">
                                 <rect key="frame" x="0.0" y="352" width="320" height="216"/>
                                 <subviews>
                                     <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="39r-IS-RRx">
@@ -2783,6 +2783,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Hj4-Jf-qfc" firstAttribute="top" secondItem="Cpv-aD-zUF" secondAttribute="bottom" id="QW3-mv-s0x"/>
+                            <constraint firstItem="Hj4-Jf-qfc" firstAttribute="top" secondItem="gw7-iJ-pa5" secondAttribute="bottom" id="cnt-OH-k1t"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="9p6-vk-y8i"/>
@@ -3613,10 +3614,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xt3-i7-57w">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xt3-i7-57w">
+                                <rect key="frame" x="8" y="-30" width="312" height="598"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EuT-Lu-oD6" userLabel="VIEW CONTAINER">
+                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EuT-Lu-oD6" userLabel="VIEW CONTAINER">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="URA-Dh-nh8" userLabel="HAIRFIE VIEW">
@@ -3631,8 +3632,81 @@
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </view>
-                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RWQ-a2-S7l" userLabel="INFO VIEW">
+                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rfH-9l-Y24" userLabel="PRICES VIEW">
+                                                <rect key="frame" x="0.0" y="238" width="320" height="330"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yEo-gZ-7s5" userLabel="separator 1">
+                                                        <rect key="frame" x="0.0" y="46" width="320" height="1"/>
+                                                        <color key="backgroundColor" red="0.92549019610000005" green="0.92549019610000005" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </view>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add prices and sales" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y5T-A0-2CE">
+                                                        <rect key="frame" x="8" y="0.0" width="222" height="47"/>
+                                                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="17"/>
+                                                        <color key="textColor" red="0.73160475130000002" green="0.73160475130000002" blue="0.73160475130000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" image="nav-disclosure.png" translatesAutoresizingMaskIntoConstraints="NO" id="fiP-BL-4Go">
+                                                        <rect key="frame" x="304" y="18" width="8" height="13"/>
+                                                    </imageView>
+                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nub-IQ-vbJ">
+                                                        <rect key="frame" x="0.0" y="0.0" width="320" height="46"/>
+                                                        <state key="normal">
+                                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="modifyService:" destination="BHW-4V-7I5" eventType="touchUpInside" id="KrH-GW-H4h"/>
+                                                        </connections>
+                                                    </button>
+                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="szY-CZ-DgU">
+                                                        <rect key="frame" x="0.0" y="47" width="320" height="283"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <connections>
+                                                            <outlet property="dataSource" destination="BHW-4V-7I5" id="QBB-rN-oAI"/>
+                                                            <outlet property="delegate" destination="BHW-4V-7I5" id="cBK-EU-LlY"/>
+                                                        </connections>
+                                                    </tableView>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CcM-C3-tpq" userLabel="HAIRDRESSER VIEW">
                                                 <rect key="frame" x="0.0" y="238" width="320" height="267"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DMU-QE-hmf" userLabel="separator 1">
+                                                        <rect key="frame" x="0.0" y="46" width="320" height="1"/>
+                                                        <color key="backgroundColor" red="0.92549019610000005" green="0.92549019610000005" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </view>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add your salon's hairdressers" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="Abb-wJ-wXh">
+                                                        <rect key="frame" x="8" y="12" width="222" height="21"/>
+                                                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="17"/>
+                                                        <color key="textColor" red="0.73160475127551017" green="0.73160475127551017" blue="0.73160475127551017" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" image="nav-disclosure.png" translatesAutoresizingMaskIntoConstraints="NO" id="fF2-9C-Gqd">
+                                                        <rect key="frame" x="304" y="17" width="8" height="13"/>
+                                                    </imageView>
+                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UZt-PL-5gG">
+                                                        <rect key="frame" x="0.0" y="0.0" width="320" height="46"/>
+                                                        <state key="normal">
+                                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="modifyHairdresser:" destination="BHW-4V-7I5" eventType="touchUpInside" id="moK-6L-btM"/>
+                                                        </connections>
+                                                    </button>
+                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="PC2-CD-lPW">
+                                                        <rect key="frame" x="0.0" y="47" width="320" height="221"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                        <connections>
+                                                            <outlet property="dataSource" destination="BHW-4V-7I5" id="S1s-Jl-acR"/>
+                                                            <outlet property="delegate" destination="BHW-4V-7I5" id="q46-9C-9RU"/>
+                                                        </connections>
+                                                    </tableView>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RWQ-a2-S7l" userLabel="INFO VIEW">
+                                                <rect key="frame" x="0.0" y="238" width="320" height="330"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="picto-home-black.png" translatesAutoresizingMaskIntoConstraints="NO" id="ifk-3l-buX">
                                                         <rect key="frame" x="20" y="80" width="15" height="16"/>
@@ -3752,79 +3826,6 @@
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </view>
-                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rfH-9l-Y24" userLabel="PRICES VIEW">
-                                                <rect key="frame" x="0.0" y="238" width="320" height="330"/>
-                                                <subviews>
-                                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yEo-gZ-7s5" userLabel="separator 1">
-                                                        <rect key="frame" x="0.0" y="46" width="320" height="1"/>
-                                                        <color key="backgroundColor" red="0.92549019610000005" green="0.92549019610000005" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                    </view>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add prices and sales" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y5T-A0-2CE">
-                                                        <rect key="frame" x="8" y="0.0" width="222" height="47"/>
-                                                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="17"/>
-                                                        <color key="textColor" red="0.73160475130000002" green="0.73160475130000002" blue="0.73160475130000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" image="nav-disclosure.png" translatesAutoresizingMaskIntoConstraints="NO" id="fiP-BL-4Go">
-                                                        <rect key="frame" x="304" y="18" width="8" height="13"/>
-                                                    </imageView>
-                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nub-IQ-vbJ">
-                                                        <rect key="frame" x="0.0" y="0.0" width="320" height="46"/>
-                                                        <state key="normal">
-                                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                        </state>
-                                                        <connections>
-                                                            <action selector="modifyService:" destination="BHW-4V-7I5" eventType="touchUpInside" id="KrH-GW-H4h"/>
-                                                        </connections>
-                                                    </button>
-                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="szY-CZ-DgU">
-                                                        <rect key="frame" x="0.0" y="47" width="320" height="283"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <connections>
-                                                            <outlet property="dataSource" destination="BHW-4V-7I5" id="QBB-rN-oAI"/>
-                                                            <outlet property="delegate" destination="BHW-4V-7I5" id="cBK-EU-LlY"/>
-                                                        </connections>
-                                                    </tableView>
-                                                </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            </view>
-                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CcM-C3-tpq" userLabel="HAIRDRESSER VIEW">
-                                                <rect key="frame" x="0.0" y="238" width="320" height="267"/>
-                                                <subviews>
-                                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DMU-QE-hmf" userLabel="separator 1">
-                                                        <rect key="frame" x="0.0" y="46" width="320" height="1"/>
-                                                        <color key="backgroundColor" red="0.92549019610000005" green="0.92549019610000005" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                    </view>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add your salon's hairdressers" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="Abb-wJ-wXh">
-                                                        <rect key="frame" x="8" y="12" width="222" height="21"/>
-                                                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="17"/>
-                                                        <color key="textColor" red="0.73160475127551017" green="0.73160475127551017" blue="0.73160475127551017" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" image="nav-disclosure.png" translatesAutoresizingMaskIntoConstraints="NO" id="fF2-9C-Gqd">
-                                                        <rect key="frame" x="304" y="17" width="8" height="13"/>
-                                                    </imageView>
-                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UZt-PL-5gG">
-                                                        <rect key="frame" x="0.0" y="0.0" width="320" height="46"/>
-                                                        <state key="normal">
-                                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                        </state>
-                                                        <connections>
-                                                            <action selector="modifyHairdresser:" destination="BHW-4V-7I5" eventType="touchUpInside" id="moK-6L-btM"/>
-                                                        </connections>
-                                                    </button>
-                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="PC2-CD-lPW">
-                                                        <rect key="frame" x="0.0" y="47" width="320" height="221"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                        <connections>
-                                                            <outlet property="dataSource" destination="BHW-4V-7I5" id="S1s-Jl-acR"/>
-                                                            <outlet property="delegate" destination="BHW-4V-7I5" id="q46-9C-9RU"/>
-                                                        </connections>
-                                                    </tableView>
-                                                </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            </view>
                                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9do-Br-aXN" userLabel="Page Control View">
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="180"/>
                                                 <subviews>
@@ -3902,14 +3903,16 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="320" id="Hzi-MD-UUM"/>
-                                            <constraint firstAttribute="height" constant="568" id="eJz-oP-plV"/>
+                                            <constraint firstAttribute="width" constant="320" id="Ghm-SU-5Cy"/>
+                                            <constraint firstAttribute="height" constant="506" id="Pj7-EZ-HLz"/>
                                         </constraints>
                                     </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="568" id="VsA-vH-9hA"/>
-                                    <constraint firstAttribute="width" constant="320" id="cHK-7j-J0o"/>
+                                    <constraint firstAttribute="bottom" secondItem="EuT-Lu-oD6" secondAttribute="bottom" id="2pQ-b7-U2Y"/>
+                                    <constraint firstItem="EuT-Lu-oD6" firstAttribute="top" secondItem="xt3-i7-57w" secondAttribute="top" id="VKR-IY-hLp"/>
+                                    <constraint firstAttribute="trailing" secondItem="EuT-Lu-oD6" secondAttribute="trailing" id="WJ3-n2-Zwv"/>
+                                    <constraint firstItem="EuT-Lu-oD6" firstAttribute="leading" secondItem="xt3-i7-57w" secondAttribute="leading" id="cJw-G1-bsB"/>
                                 </constraints>
                             </scrollView>
                             <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GtV-yO-i63" userLabel="Top Bar View">
@@ -3967,7 +3970,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="xt3-i7-57w" firstAttribute="top" secondItem="ACl-lb-M7R" secondAttribute="topMargin" constant="-30" id="Mc0-m6-DCZ"/>
+                            <constraint firstItem="VqP-Tv-CU2" firstAttribute="top" secondItem="xt3-i7-57w" secondAttribute="bottom" id="2BY-kt-deP"/>
+                            <constraint firstItem="xt3-i7-57w" firstAttribute="top" secondItem="ACl-lb-M7R" secondAttribute="topMargin" constant="-30" id="Gdr-Qb-e8I"/>
+                            <constraint firstItem="xt3-i7-57w" firstAttribute="leading" secondItem="ACl-lb-M7R" secondAttribute="leadingMargin" constant="-8" id="JLb-k7-P6g"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="xt3-i7-57w" secondAttribute="trailing" constant="-16" id="PBm-lv-TD1"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="EaX-Mr-ZpV"/>
@@ -4674,6 +4680,11 @@
         <segue reference="6S8-Dh-Oyu"/>
         <segue reference="WYb-zG-qo5"/>
         <segue reference="VGS-VM-Pwy"/>
+        <segue reference="uEN-by-6gW"/>
+        <segue reference="WYb-zG-qo5"/>
+        <segue reference="6S8-Dh-Oyu"/>
+        <segue reference="VGS-VM-Pwy"/>
+        <segue reference="2ml-IS-A8f"/>
         <segue reference="PSz-m0-val"/>
         <segue reference="DYR-eo-mJz"/>
         <segue reference="K9z-px-huR"/>

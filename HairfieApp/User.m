@@ -106,7 +106,7 @@
         LBModelRepository *repository = (LBModelRepository *)[[self class] repository];
         [repository invokeStaticMethod:@"update"
                                    parameters:parameters
-                                      success:onSuccess
+                                      success:aSuccessHandler
                                       failure:aFailureHandler];
     }
 }
