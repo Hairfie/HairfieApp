@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="m6Z-pY-ich">
     <dependencies>
-        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -191,6 +190,9 @@
                                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9xK-Dr-6cp">
                                                 <rect key="frame" x="0.0" y="0.0" width="600" height="200"/>
                                                 <subviews>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pyY-8o-DoL">
+                                                        <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
+                                                    </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DRm-3b-PEJ">
                                                         <rect key="frame" x="-20" y="154" width="320" height="21"/>
                                                         <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="15"/>
@@ -246,6 +248,7 @@
                         <outlet property="hairfieNb" destination="DRm-3b-PEJ" id="XmV-hv-zeV"/>
                         <outlet property="menuTableView" destination="fXv-Hv-mwB" id="2IP-YF-Fwt"/>
                         <outlet property="name" destination="JEN-8N-MSc" id="9EQ-Vc-HWZ"/>
+                        <outlet property="profileImageView" destination="pyY-8o-DoL" id="2sK-2N-zjE"/>
                         <outlet property="profileView" destination="9xK-Dr-6cp" id="fWz-6V-l2M"/>
                         <segue destination="o71-5b-RoR" kind="custom" identifier="BusinessSegue" customClass="ECSlidingSegue" id="Etm-FN-uG0"/>
                         <segue destination="Y8M-El-PgY" kind="custom" identifier="ManageBusiness" customClass="ECSlidingSegue" id="6CY-V5-Mtq"/>
@@ -2298,8 +2301,14 @@
                                             <action selector="goBack:" destination="kE9-13-80o" eventType="touchUpInside" id="VQO-ek-jOo"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Reviews" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AXt-rm-MQ8">
+                                        <rect key="frame" x="92" y="28" width="136" height="23"/>
+                                        <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="18"/>
+                                        <color key="textColor" red="0.41176470590000003" green="0.4431372549" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="25n-DB-i7U">
-                                        <rect key="frame" x="266" y="25" width="46" height="30"/>
+                                        <rect key="frame" x="257" y="25" width="46" height="30"/>
                                         <color key="backgroundColor" red="0.98039215690000003" green="0.25882352939999997" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="14"/>
                                         <state key="normal" title="add">
@@ -2309,12 +2318,6 @@
                                             <action selector="addReview:" destination="kE9-13-80o" eventType="touchUpInside" id="4K4-It-Ud9"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Reviews" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AXt-rm-MQ8">
-                                        <rect key="frame" x="92" y="28" width="136" height="23"/>
-                                        <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="18"/>
-                                        <color key="textColor" red="0.41176470590000003" green="0.4431372549" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </view>

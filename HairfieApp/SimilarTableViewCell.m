@@ -61,11 +61,11 @@
     
     self.ratingView.rating = [[self.business ratingBetween:@0 and:@5] floatValue];
     if ([self.business.numReviews isEqualToNumber:@0]) {
-        self.statusLabel.text = NSLocalizedStringFromTable(@"rate this hairdresser", @"BusinessTableCell", nil);
+        self.statusLabel.text = NSLocalizedStringFromTable(@"- rate this hairdresser", @"BusinessTableCell", nil);
     } else if ([self.business.numReviews isEqualToNumber:@1]) {
-        self.statusLabel.text = NSLocalizedStringFromTable(@"1 review", @"BusinessTableCell", nil);
+        self.statusLabel.text = NSLocalizedStringFromTable(@"- 1 review", @"BusinessTableCell", nil);
     } else {
-        self.statusLabel.text = [NSString stringWithFormat:NSLocalizedStringFromTable(@"%@ reviews", @"BusinessTableCell", nil), self.business.numReviews];
+        self.statusLabel.text = [NSString stringWithFormat:NSLocalizedStringFromTable(@"- %@ reviews", @"BusinessTableCell", nil), self.business.numReviews];
     }
     
     if (nil == self.locationForDistance) {
