@@ -26,6 +26,8 @@
 @property (weak, nonatomic) Business *business;
 @property (weak, nonatomic) GeoPoint *locationForDistance;
 
+-(void)businessChanged:(NSNotification *)notification;
+
 -(void)customInit:(Business* )business;
 
 @end

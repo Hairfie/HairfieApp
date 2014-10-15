@@ -10,7 +10,6 @@
 #import "AppDelegate.h"
 #import "HomeViewController.h"
 #import "UserAuthenticator.h"
-#import "PictureUploader.h"
 #import "Picture.h"
 #import "MRProgress.h"
 
@@ -183,18 +182,18 @@ numberOfRowsInComponent:(NSInteger)component
 -(void) uploadProfileImage:(UIImage *)image
 {
     uploadInProgress = YES;
-    PictureUploader *pictureUploader = [[PictureUploader alloc] init];
+    Picture *imagePost = [[Picture alloc] initWithImage:image andContainer:@"user-profile-pictures"];
 
     void (^loadErrorBlock)(NSError *) = ^(NSError *error){
         uploadInProgress = NO;
         NSLog(@"Error : %@", error.description);
     };
-    void (^loadSuccessBlock)(Picture *) = ^(Picture *picture){
-        uploadedPicture = picture;
+    void (^loadSuccessBlock)(void) = ^(void){
+        uploadedPicture = imagePost;
         uploadInProgress = NO;
     };
     
-    [pictureUploader uploadImage:image toContainer:@"user-profile-pictures" success:loadSuccessBlock failure:loadErrorBlock];
+    [imagePost uploadWithSuccess:loadSuccessBlock failure:loadErrorBlock];
 }
 
 

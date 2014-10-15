@@ -15,7 +15,6 @@
 #import "FinalStepDescriptionViewController.h"
 #import "Address.h"
 #import "Hairdresser.h"
-#import "PictureUploader.h"
 #import "Picture.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "ClaimAddHairdresserViewController.h"
@@ -431,31 +430,25 @@
 
 -(void) uploadSalonImage:(UIImage *)image
 {
-   
-    PictureUploader *pictureUploader = [[PictureUploader alloc] init];
+    Picture *imagePost = [[Picture alloc] initWithImage:image andContainer:@"business-pictures"];
     
     void (^loadErrorBlock)(NSError *) = ^(NSError *error){
-       
         NSLog(@"Error : %@", error.description);
     };
-    void (^loadSuccessBlock)(Picture *) = ^(Picture *picture) {
-        
-        if (_businessToManage != nil)
-        {
-            [_businessToManage.pictures addObject:picture];
-            NSLog(@"test %@", picture.url);
-        }
-        else
-        {
-            [_claim.pictures addObject:picture];
 
+    void (^loadSuccessBlock)(void) = ^(void){
+        if (_businessToManage != nil) {
+            [_businessToManage.pictures addObject:imagePost];
+            NSLog(@"test %@", imagePost.url);
+        }
+        else {
+            [_claim.pictures addObject:imagePost];
         }
         
         [imagePicker dismissViewControllerAnimated:YES completion:nil];
-
     };
     
-    [pictureUploader uploadImage:image toContainer:@"business-pictures" success:loadSuccessBlock failure:loadErrorBlock];
+    [imagePost uploadWithSuccess:loadSuccessBlock failure:loadErrorBlock];
 }
 
 - (void)switchCamera

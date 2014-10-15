@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "UIImage+Filters.h"
+#import "HairfiePost.h"
 
 @interface ApplyFiltersViewController : UIViewController <UINavigationControllerDelegate>
 
-@property (nonatomic) UIImage *hairfie;
+@property (nonatomic) HairfiePost *hairfiePost;
 
 @property (nonatomic) IBOutlet UIImageView *imageView;
 

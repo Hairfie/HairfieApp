@@ -30,7 +30,20 @@
     _ratingView.maxRating = 5;
     _ratingView.delegate = self;
     _salonPicture.image = [UIImage imageNamed:@"placeholder-image.jpg"];
-    // Initialization code
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(businessChanged:)
+                                                 name:[Business EVENT_CHANGED]
+                                               object:nil];
+}
+
+-(void)businessChanged:(NSNotification *)notification
+{
+    Business *changedBusiness = (Business *)notification.object;
+    
+    if (changedBusiness == self.business) {
+        [self refresh];
+    }
 }
 
 -(void)setBusiness:(Business *)business

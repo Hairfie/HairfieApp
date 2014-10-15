@@ -84,7 +84,6 @@
     return [self pictureUrlwithWidth:@640 andHeight:@640];
 }
 
-
 -(NSString *)displayPrice
 {
     if([self.price isEqual:[NSNull null]]) return @"";
@@ -100,40 +99,6 @@
     return [NSString stringWithFormat:@"%@", _numComments];
 }
 
--(void)saveWithSuccess:(void(^)())aSuccessHandler
-               failure:(void(^)(NSError *error))aFailureHandler
-{
-    void (^onSuccess)(NSDictionary *) = ^(NSDictionary *result) {
-        aSuccessHandler();
-    };
-    
-    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
-    
-    [parameters setObject:[self.picture toApiValue] forKey:@"picture"];
-
-    if(self.price != nil) {
-        [parameters setObject:self.price.toDictionary forKey:@"price"];
-    }
-    if(self.description != nil) {
-        [parameters setObject:self.description forKey:@"description"];
-    }
-    if(self.hairdresserName != nil) {
-        [parameters setObject:self.hairdresserName forKey:@"hairdresserName"];
-    }
-    if(self.business != nil) {
-        [parameters setObject:self.business.id forKey:@"businessId"];
-    }
-    
-    [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/hairfies"
-                                                                                     verb:@"POST"]
-                                        forMethod:@"hairfies.create"];
-    LBModelRepository *repository = (LBModelRepository *)[[self class] repository];
-    
-    [repository invokeStaticMethod:@"create"
-                                   parameters:parameters
-                                      success:onSuccess
-                                      failure:aFailureHandler];
-}
 
 + (void) listLatest:(NSNumber *)limit
                skip:(NSNumber *)skip

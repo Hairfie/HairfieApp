@@ -28,22 +28,15 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    //[self setupImagePicker];
-    
+    if(!_hairfiePost){
+        _hairfiePost = [[HairfiePost alloc] init];
+    }
 }
 
 -(void) viewWillAppear:(BOOL)animated {
     [ARAnalytics pageView:@"AR - Post Hairfie step #1 - Camera Overlay"];
     [self setupImagePicker];
 }
-
-
-
-//- (void)navigationController:(UINavigationController *)navigationController
-//      willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
-//{
-//    [self viewWillAppear:animated];
-//}
 
 -(void) setupImagePicker {
     if(!_imagePicker) {
@@ -263,8 +256,9 @@
     if ([segue.identifier isEqualToString:@"cameraFilters"])
     {
         ApplyFiltersViewController *filters = [segue destinationViewController];
-        
-        filters.hairfie = imageTaken;
+
+        [_hairfiePost setPictureWithImage:imageTaken andContainer:@"hairfies"];
+        filters.hairfiePost = _hairfiePost;
         
     }
 }

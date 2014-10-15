@@ -26,7 +26,6 @@
 @property (strong, nonatomic) Address *address;
 @property (strong, nonatomic) NSMutableArray *pictures;
 @property (strong, nonatomic) Picture *thumbnail;
-@property (strong, nonatomic) NSNumber *distance;
 @property (strong, nonatomic) NSMutableArray *services;
 @property (strong, nonatomic) NSNumber *numHairfies;
 @property (strong, nonatomic) NSNumber *numReviews;
@@ -35,6 +34,10 @@
 @property (strong, nonatomic) NSMutableArray *activeHairdressers;
 
 @property (nonatomic) BOOL crossSell;
+
++(NSString *)EVENT_CHANGED;
+
+-(void)reviewSaved:(NSNotification *)notification;
 
 -(NSString *)thumbUrl;
 

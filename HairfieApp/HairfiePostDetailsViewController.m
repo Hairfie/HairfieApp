@@ -7,7 +7,6 @@
 //
 
 #import "HairfiePostDetailsViewController.h"
-#import "PictureUploader.h"
 #import "Picture.h"
 #import "AppDelegate.h"
 #import "Business.h"
@@ -38,30 +37,36 @@
     
     [_emailTextField setValue:placeholder
                     forKeyPath:@"_placeholderLabel.textColor"];
-    _hairfieImageView.image= _hairfie;
+    _hairfieImageView.image = _hairfiePost.picture.image;
+
     _hairfieDesc.alpha = 0.5;
     _hairfieDesc.placeholder = NSLocalizedStringFromTable(@"Add a description", @"Post_Hairfie", nil);
+
     _dataChoice.hidden = YES;
     _dataChoice.layer.borderWidth = 1;
     _dataChoice.layer.borderColor = [UIColor lightGreyHairfie].CGColor;
     [_dataChoice setSeparatorInset:UIEdgeInsetsZero];
+
     _isSalon = NO;
     _isHairdresser = NO;
     _hairdresserSubview.hidden = YES;
-    //_whoSubviewConstraint.constant = 0.f;
     _emailSubview.hidden = YES;
+
     salonTypes = [[NSArray alloc] initWithObjects:NSLocalizedStringFromTable(@"I did it", @"Post_Hairfie", nil), NSLocalizedStringFromTable(@"Hairdresser in a Salon", @"Post_Hairfie", nil), nil];
     _tableViewHeight.constant = [salonTypes count] * _dataChoice.rowHeight;
     [_priceTextField textFieldWithPhoneKeyboard];
-    [self uploadHairfiePicture:_hairfie];
+
+    [self uploadHairfiePicture];
 }
 
 -(void)viewWillAppear:(BOOL)animated {
+    if(_salonChosen != nil) {
+        _hairfiePost.business = _salonChosen;
+    }
     
-    if (_salonChosen != nil) {
-        [_salonLabelButton setTitle:[_salonChosen objectForKeyedSubscript:@"name"] forState:UIControlStateNormal];
+    if (_hairfiePost.business != nil) {
+        [_salonLabelButton setTitle:_hairfiePost.business.name forState:UIControlStateNormal];
         _hairdresserSubview.hidden = NO;
-        
     }
     [ARAnalytics pageView:@"AR - Post Hairfie step #3 - Post Detail"];
 }
@@ -203,30 +208,27 @@ shouldChangeTextInRange: (NSRange) range
             [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
         }
 
-        if(!uploadedPicture) {
+        if(![_hairfiePost pictureIsUploaded]) {
             [self removeSpinnerAndOverlay];
             [self showUploadFailedAlertView];
             return; 
         }
 
-        Hairfie *hairfieToPost = [[Hairfie alloc] init];
-        hairfieToPost.description = self.hairfieDesc.text;
-        hairfieToPost.hairdresserName = self.whoTextField.text;
-        hairfieToPost.picture = uploadedPicture;
+        _hairfiePost.description = self.hairfieDesc.text;
+        _hairfiePost.hairdresserName = self.whoTextField.text;
 
         if (![self.priceTextField.text isEqualToString:@""]) {
             Money *price = [[Money alloc] initWithAmount:[NSNumber numberWithDouble:[self.priceTextField.text doubleValue]]
                                                 currency:@"EUR"];
             
-            hairfieToPost.price = price;
+            _hairfiePost.price = price;
         }
 
         if (self.salonChosen) {
-            hairfieToPost.business = self.salonChosen;
+            _hairfiePost.business = self.salonChosen;
         }
         
-        NSLog(@"UploadedPicture to post : %@", uploadedPicture);
-        NSLog(@"Hairfie to post : %@", hairfieToPost);
+        NSLog(@"Hairfie to post : %@", _hairfiePost);
         
         void (^loadErrorBlock)(NSError *) = ^(NSError *error){
             NSLog(@"Error : %@", error.description);
@@ -234,12 +236,12 @@ shouldChangeTextInRange: (NSRange) range
             [self showUploadFailedAlertView];
 
         };
-        void (^loadSuccessBlock)(Hairfie *) = ^(Hairfie *hairfiePosted){
+        void (^loadSuccessBlock)(void) = ^(void){
             NSLog(@"Hairfie Posté");
             [self removeSpinnerAndOverlay];
             [self performSegueWithIdentifier:@"toHome" sender:self];
         };
-        [hairfieToPost saveWithSuccess:loadSuccessBlock failure:loadErrorBlock];
+        [_hairfiePost saveWithSuccess:loadSuccessBlock failure:loadErrorBlock];
     } else {
         [self showNotLoggedAlertWithDelegate:nil andTitle:nil andMessage:nil];
     }
@@ -271,22 +273,16 @@ shouldChangeTextInRange: (NSRange) range
     [[_mainView viewWithTag:OVERLAY_TAG] removeFromSuperview];
 }
 
--(void) uploadHairfiePicture:(UIImage *)image
-{
+-(void) uploadHairfiePicture {
     uploadInProgress = YES;
-    PictureUploader *pictureUploader = [[PictureUploader alloc] init];
     
-    void (^loadErrorBlock)(NSError *) = ^(NSError *error){
+    [_hairfiePost uploadPictureWithSuccess:^{
+        NSLog(@"Uploaded !");
+        uploadInProgress = NO;
+    } failure:^(NSError *error) {
         uploadInProgress = NO;
         NSLog(@"Error : %@", error.description);
-    };
-    void (^loadSuccessBlock)(Picture *) = ^(Picture *picture){
-        NSLog(@"Uploaded !");
-        uploadedPicture = picture;
-        uploadInProgress = NO;
-    };
-    
-    [pictureUploader uploadImage:image toContainer:@"hairfies" success:loadSuccessBlock failure:loadErrorBlock];
+    }];
 }
 
 
@@ -296,7 +292,7 @@ shouldChangeTextInRange: (NSRange) range
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    [self uploadHairfiePicture:_hairfie];
+    [self uploadHairfiePicture];
 }
 
 

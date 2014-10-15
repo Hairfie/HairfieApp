@@ -7,12 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <LoopBack/LoopBack.h>
 
 @interface Picture : NSObject
 
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSString *container;
 @property (strong, nonatomic) NSString *url;
+@property (strong, nonatomic) UIImage *image;
+
 
 -(id)initWithDictionary:(NSDictionary *)aDictionary;
 
@@ -26,5 +29,11 @@
 
 -(NSString *)urlWithWidth:(NSNumber *)aWidth
                    height:(NSNumber *)anHeight;
+
+
+- initWithImage:(UIImage *)image andContainer:(NSString *)container;
+
+-(void)uploadWithSuccess:(void(^)())aSuccessHandler
+                 failure:(void(^)())aFailureHandler;
 
 @end

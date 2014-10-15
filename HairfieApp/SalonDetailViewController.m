@@ -23,6 +23,8 @@
 #import "NotLoggedAlert.h"
 #import "Hairdresser.h"
 #import "NSString+PhoneFormatter.h"
+#import "CameraOverlayViewController.h"
+#import "HairfiePost.h"
 
 @interface SalonDetailViewController ()
 
@@ -47,7 +49,8 @@
 
 
 
-- (void)viewDidLoad {
+-(void)viewDidLoad
+{
     [super viewDidLoad];
     _isAddingHairfie = NO;
     [self initKnownData:_business];
@@ -179,8 +182,12 @@
     } else {
         [_menuBttn setHidden:YES];
     }
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(businessChanged:)
+                                                 name:[Business EVENT_CHANGED]
+                                               object:nil];
 }
-
 
 -(UIStatusBarStyle)preferredStatusBarStyle
 {
@@ -205,6 +212,15 @@
         
     } else {
         [self showNotLoggedAlertWithDelegate:nil andTitle:nil andMessage:nil];
+    }
+}
+
+-(void)businessChanged:(NSNotification*)notification
+{
+    Business *changedBusiness = (Business *)notification.object;
+    
+    if (changedBusiness == self.business) {
+        [self initKnownData:changedBusiness];
     }
 }
 
@@ -463,8 +479,12 @@
         _addReviewButtonYpos.constant = 288;
         _addReviewButtonXpos.constant = 200;
     } else {
-        NSInteger tes = [_business.numReviews integerValue];
-        
+        NSInteger tes = MIN(2, [_business.numReviews integerValue]);
+    
+        _reviewTableView.hidden = NO;
+        _moreReviewBttn.hidden = NO;
+        _moreReviewBttn.enabled = YES;
+        _addReviewButtonXpos.constant = 80;
         _addReviewButtonYpos.constant = 288 + (130 * tes);
         _moreReviewButtonYpos.constant = 288 + (130 * tes);
         [_moreReviewBttn setTitle:[NSString stringWithFormat:NSLocalizedStringFromTable(@"more (%@)", @"Salon_Detail", nil), business.numReviews]
@@ -668,6 +688,9 @@
         controller.business = sender;
     } else if ([segue.identifier isEqualToString:@"reportError"]) {
         [[segue destinationViewController] setBusiness:self.business];
+    } else if ([segue.identifier isEqualToString:@"postHairfie"]) {
+        CameraOverlayViewController *controller = [segue destinationViewController];
+        controller.hairfiePost = [[HairfiePost alloc] initWithBusiness:_business];
     }
 }
 

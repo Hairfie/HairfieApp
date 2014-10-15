@@ -20,12 +20,12 @@
     BOOL frontCamera;
 }
 
-@synthesize hairfie, imageView;
+@synthesize imageView;
 
 
 -(void)viewDidLoad
 {
-    original = [self squareCropImage:hairfie ToSideLength:320];
+    original = [self squareCropImage:_hairfiePost.picture.image ToSideLength:320];
     imageView.image = original;
     output = original;
     _nextBttn.layer.cornerRadius = 5;
@@ -55,7 +55,9 @@
     if ([segue.identifier isEqualToString:@"setupHairfie"])
     {
         HairfiePostDetailsViewController *details = [segue destinationViewController];
-        details.hairfie = output;
+        [_hairfiePost setPictureWithImage:output andContainer:@"hairfies"];
+        details.hairfiePost = _hairfiePost;
+        
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             UIImageWriteToSavedPhotosAlbum(output, nil, nil, nil);
         });

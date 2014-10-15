@@ -20,6 +20,8 @@
 @property (strong, nonatomic) NSString *comment;
 @property (strong, nonatomic) NSDate *createdAt;
 
++(NSString *)EVENT_SAVED;
+
 -(id)initWithDictionary:(NSDictionary *)data;
 
 -(NSNumber *)ratingBetween:(NSNumber *)theMin
