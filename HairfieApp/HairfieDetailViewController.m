@@ -45,6 +45,9 @@
 
     [_hairfieCollection registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView"];
 
+    // Hotfix, should be better organized
+    nbLike = [[UILabel alloc] init];
+    
     [self reloadData];
 
     self.headerTitleLabel.text = [NSString stringWithFormat:@"%@'s Hairfie", self.hairfie.author.firstName];
@@ -191,7 +194,7 @@
     [hairfieImageView addSubview:likeView];
     [likeView setHidden:YES];
 
-    likeButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 290, 25, 20)];
+    likeButton = [[UIButton alloc] initWithFrame:CGRectMake(262, 290, 25, 20)];
     [likeButton setImage:[UIImage imageNamed:@"picto-hairfie-detail-liked.png"] forState:UIControlStateSelected];
     [likeButton setImage:[UIImage imageNamed:@"picto-hairfie-detail-like.png"] forState:UIControlStateNormal];
     [likeButton addTarget:self action:@selector(likeButtonHandler:) forControlEvents:UIControlEventTouchUpInside];
@@ -214,7 +217,7 @@
                 }];
     }
 
-    nbLike = [[UILabel alloc] initWithFrame:CGRectMake(43, 290, 35, 21)];
+    [nbLike setFrame:CGRectMake(295, 290, 35, 21)];
     nbLike.textColor = [UIColor whiteColor];
     nbLike.font = [UIFont fontWithName:@"SourceSansPro-SemiBold" size:18];
 
