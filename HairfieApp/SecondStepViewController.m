@@ -44,9 +44,8 @@
     _phoneBttn.layer.borderWidth = 1;
     _nextBttn.layer.cornerRadius = 5;
     
-//    [_workType setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor greyHairfie]} forState:UIControlStateNormal];
-//    
-//    _workType.layer.borderColor = [UIColor greyHairfie].CGColor;
+    [_workType setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor greyHairfie]} forState:UIControlStateNormal];
+    _workType.layer.borderColor = [UIColor greyHairfie].CGColor;
     
     NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
                                 [UIFont fontWithName:@"SourceSansPro-Light" size:15], NSFontAttributeName,

@@ -3012,8 +3012,12 @@
                                                 <color key="textColor" red="0.1960784314" green="0.26274509800000001" blue="0.3411764706" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="checkbox-true.png" translatesAutoresizingMaskIntoConstraints="NO" id="Eb7-Dc-38w" userLabel="man checkbox">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="checkbox-true.png" translatesAutoresizingMaskIntoConstraints="NO" id="Eb7-Dc-38w" userLabel="man checkbox">
                                                 <rect key="frame" x="283" y="308" width="23" height="23"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="23" id="PwR-wT-Ibn"/>
+                                                    <constraint firstAttribute="height" constant="23" id="whT-06-AL3"/>
+                                                </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Woman" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y8G-DF-72y">
                                                 <rect key="frame" x="16" y="341" width="61" height="44"/>
@@ -3021,8 +3025,12 @@
                                                 <color key="textColor" red="0.1960784314" green="0.26274509800000001" blue="0.3411764706" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="checkbox-true.png" translatesAutoresizingMaskIntoConstraints="NO" id="SFQ-bF-dKe" userLabel="woman checkbox">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="checkbox-true.png" translatesAutoresizingMaskIntoConstraints="NO" id="SFQ-bF-dKe" userLabel="woman checkbox">
                                                 <rect key="frame" x="283" y="353" width="23" height="23"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="23" id="Lte-pD-OGb"/>
+                                                    <constraint firstAttribute="height" constant="23" id="kxx-ME-VgF"/>
+                                                </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Kids" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AfU-cv-Zjb">
                                                 <rect key="frame" x="16" y="386" width="61" height="44"/>
@@ -3030,8 +3038,12 @@
                                                 <color key="textColor" red="0.1960784314" green="0.26274509800000001" blue="0.3411764706" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="checkbox-true.png" translatesAutoresizingMaskIntoConstraints="NO" id="8k6-55-cgE" userLabel="kids checkbox">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="checkbox-true.png" translatesAutoresizingMaskIntoConstraints="NO" id="8k6-55-cgE" userLabel="kids checkbox">
                                                 <rect key="frame" x="283" y="398" width="23" height="23"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="23" id="Crz-N7-I3G"/>
+                                                    <constraint firstAttribute="width" constant="23" id="KL9-ej-2zT"/>
+                                                </constraints>
                                             </imageView>
                                             <view alpha="0.20000000000000001" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QyO-Y4-n0p" userLabel="separator 1">
                                                 <rect key="frame" x="10" y="296" width="300" height="1"/>
