@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "TimeWindow.h"
 
 @interface Timetable : NSObject
 
@@ -19,6 +20,9 @@
 @property (strong, nonatomic) NSMutableArray *sunday;
 
 -(id)initWithDictionary:(NSDictionary *)aDictionary;
+
+-(void)addTimeWindow:(TimeWindow *)timewindow toDayInteger:(NSInteger)integer;
+-(void)clearDayInteger:(NSInteger)integer;
 
 -(id)initWithMonday:(NSArray *)aMonday
             tuesday:(NSArray *)aTuesday

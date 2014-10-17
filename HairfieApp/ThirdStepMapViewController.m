@@ -22,6 +22,7 @@
     NSString *newCity;
     NSString *newZipCode;
     NSString *newCountry;
+    Business *businessClaimed;
 }
 
 #define METERS_PER_MILE 1609.344
@@ -105,13 +106,14 @@
     void (^loadErrorBlock)(NSError *) = ^(NSError *error){
         NSLog(@"Error : %@", error.description);
     };
-    void (^loadSuccessBlock)(NSDictionary *) = ^(NSDictionary *results){
-       // NSLog(@"results %@", results);
-        _claim.id = [results objectForKey:@"id"];
+    void (^loadSuccessBlock)(NSDictionary *) = ^(NSDictionary *results) {
+        
+        businessClaimed = [[Business alloc] initWithDictionary:results];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"currentUser" object:self];
         [self performSegueWithIdentifier:@"claimOtherInfos" sender:self];
     };
     
-    [_claim claimWithSuccess:loadSuccessBlock failure:loadErrorBlock];
+    [_claim submitClaimWithSuccess:loadSuccessBlock failure:loadErrorBlock];
 }
 
 
@@ -120,8 +122,7 @@
     if ([segue.identifier isEqualToString:@"claimOtherInfos"])
     {
         FinalStepViewController *finalStep = [segue destinationViewController];
-        finalStep.claim = [[BusinessClaim alloc] init];
-        finalStep.claim = _claim;
+        finalStep.businessToManage = businessClaimed;
     }
 }
 

@@ -14,5 +14,6 @@
 @property (nonatomic) IBOutlet UILabel *timewindow;
 @property (nonatomic) IBOutlet UIView *containerView;
 @property (nonatomic) IBOutlet UIButton *deleteButton;
+@property (nonatomic) NSInteger *dayInt;
 
 @end

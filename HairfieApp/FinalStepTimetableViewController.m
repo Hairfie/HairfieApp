@@ -19,6 +19,7 @@
 @implementation FinalStepTimetableViewController
 {
     NSString *dayPicked;
+    NSInteger dayPickedInt;
     NSArray *weekDays;
     
 }
@@ -33,6 +34,10 @@
  
     [self allDatesInWeekContainingDate];
     _doneBttn.layer.cornerRadius = 5;
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(clearDay:)
+                                                 name:@"clearDay"
+                                               object:nil];
     // Do any additional setup after loading the view.
 }
 
@@ -43,6 +48,7 @@
     NSString *language = [[NSLocale preferredLanguages] objectAtIndex:0];
 
     [dateFormatter setLocale: [[NSLocale alloc] initWithLocaleIdentifier:language]];
+
     weekDays = [dateFormatter weekdaySymbols];
     
     NSUInteger firstWeekdayIndex = [[NSCalendar currentCalendar] firstWeekday];
@@ -70,34 +76,7 @@
 -(void)clearDay:(NSNotification*)notification
 {
     ClaimTimetableCell *cell = notification.object;
-    if (cell.tag == 0)
-    {
-        [_timeTable.monday removeAllObjects];
-    }
-    if (cell.tag == 1)
-    {
-       [_timeTable.monday removeAllObjects];
-    }
-    if (cell.tag == 2)
-    {
-       [_timeTable.monday removeAllObjects];
-    }
-    if (cell.tag == 3)
-    {
-       [_timeTable.monday removeAllObjects];
-    }
-    if (cell.tag == 4)
-    {
-        [_timeTable.monday removeAllObjects];
-    }
-    if (cell.tag == 5)
-    {
-       [_timeTable.monday removeAllObjects];
-    }
-    if (cell.tag == 6)
-    {
-        [_timeTable.monday removeAllObjects];
-    }
+    [_timeTable clearDayInteger:cell.tag];
     [_timeTableView reloadData];
   //  notification.object
 }
@@ -147,7 +126,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     dayPicked = [weekDays objectAtIndex:indexPath.row];
-
+    dayPickedInt = indexPath.row;
     [self performSegueWithIdentifier:@"addTimeWindow" sender:self];
 }
 
@@ -166,8 +145,6 @@
     
     cell.day.text = [weekDays objectAtIndex:indexPath.row];
     
-    
-    
     if (indexPath.row == 0)
     {
         if ([_timeTable.monday count] != 0)
@@ -183,7 +160,6 @@
             cell.timewindow.text = display;
             cell.deleteButton.hidden = NO;
             cell.tag = indexPath.row;
-            //  [cell.deleteButton addTarget:self action:@selector(clearDay:) forControlEvents:UIControlEventTouchUpInside];
         }
         else
         {
@@ -322,6 +298,7 @@
     {
         FinalStepClaimDayViewController *claimDay = [segue destinationViewController];
         claimDay.dayPicked = dayPicked;
+        claimDay.dayPickedInt= dayPickedInt;
     }
 }
 

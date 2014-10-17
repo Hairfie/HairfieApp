@@ -21,6 +21,7 @@
 @property (nonatomic) IBOutlet UIView* openingTimeView;
 
 @property (nonatomic) NSString *dayPicked;
+@property (nonatomic) NSInteger dayPickedInt;
 @property (nonatomic) NSString *openingTime;
 @property (nonatomic) NSString *closingTime;
 

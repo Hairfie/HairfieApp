@@ -48,7 +48,10 @@
     [self.view bringSubviewToFront:self.topBarView];
     [self setButtonSelected:_infoBttn];
     pictureForGallery = [[NSMutableArray alloc] init];
-    _claim.timetable = [[Timetable alloc] initEmpty];
+
+    if(![_businessToManage.timetable isKindOfClass:[Timetable class]]) {
+       _businessToManage.timetable = [[Timetable alloc] initEmpty];
+    }
     _claim.pictures = [[NSMutableArray alloc] init];
     _phoneLabel.text = _claim.phoneNumber;
 
@@ -711,33 +714,17 @@
 -(IBAction)claimThisBusiness:(id)sender
 {
     
-    if (_businessToManage != nil)
-        
-    {  void (^loadErrorBlock)(NSError *) = ^(NSError *error){
+    void (^loadErrorBlock)(NSError *) = ^(NSError *error){
         
         NSLog(@"Error : %@", error.description);
     };
-        void (^loadSuccessBlock)(NSArray *) = ^(NSArray *results) {
-            
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"currentUser" object:self];
-            [self performSegueWithIdentifier:@"toSalonDetail" sender:self];
-        };
+    void (^loadSuccessBlock)(NSArray *) = ^(NSArray *results) {
         
-        [_businessToManage updateWithSuccess:loadSuccessBlock failure:loadErrorBlock];
-        
-    } else {
-        
-        void (^loadErrorBlock)(NSError *) = ^(NSError *error){
-            NSLog(@"Error : %@", error.description);
-        };
-        void (^loadSuccessBlock)(NSDictionary *) = ^(NSDictionary *results) {
-            _businessToManage = [[Business alloc] initWithDictionary:results];
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"currentUser" object:self];
-            [self performSegueWithIdentifier:@"toSalonDetail" sender:self];
-        };
-        
-        [_claim submitClaimWithSuccess:loadSuccessBlock failure:loadErrorBlock];
-    }
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"currentUser" object:self];
+        [self performSegueWithIdentifier:@"toSalonDetail" sender:self];
+    };
+    
+    [_businessToManage updateWithSuccess:loadSuccessBlock failure:loadErrorBlock];
 }
 
 

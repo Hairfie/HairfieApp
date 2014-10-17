@@ -74,6 +74,42 @@
     return self;
 }
 
+-(void)addTimeWindow:(TimeWindow *)timewindow toDayInteger:(NSInteger)integer {
+    if (integer == 0) {
+        [self.monday addObject:timewindow];
+    } else if (integer == 1) {
+        [self.tuesday addObject:timewindow];
+    } else if (integer == 2) {
+        [self.wednesday addObject:timewindow];
+    } else if (integer == 3) {
+        [self.thursday addObject:timewindow];
+    } else if (integer == 4) {
+        [self.friday addObject:timewindow];
+    } else if (integer == 5) {
+        [self.saturday addObject:timewindow];
+    } else if (integer == 6) {
+        [self.sunday addObject:timewindow];
+    }
+}
+
+-(void)clearDayInteger:(NSInteger)integer {
+    if (integer == 0) {
+        [self.monday removeAllObjects];
+    } else if (integer == 1) {
+        [self.tuesday removeAllObjects];
+    } else if (integer == 2) {
+        [self.wednesday removeAllObjects];
+    } else if (integer == 3) {
+        [self.thursday removeAllObjects];
+    } else if (integer == 4) {
+        [self.friday removeAllObjects];
+    } else if (integer == 5) {
+        [self.saturday removeAllObjects];
+    } else if (integer == 6) {
+        [self.sunday removeAllObjects];
+    }
+}
+
 -(NSDictionary*) toDictionary
 {
     return @{
