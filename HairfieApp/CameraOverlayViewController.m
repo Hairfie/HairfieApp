@@ -85,7 +85,8 @@
                               buttonWithType:UIButtonTypeCustom];
     [goBackButton setImage:goBackImg forState:UIControlStateNormal];
     [goBackButton addTarget:self action:@selector(cancelTakePicture) forControlEvents:UIControlEventTouchUpInside];
-    [goBackButton setFrame:CGRectMake(10, 32, 20, 20)];
+    [goBackButton setFrame:CGRectMake(0, 22, 60, 40)];
+    [goBackButton setImageEdgeInsets:UIEdgeInsetsMake(10,10,10,30)];
     
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(92, 30, 136, 23)];
     titleLabel.text = NSLocalizedStringFromTable(@"Take Hairfie", @"Post_Hairfie", nil);
