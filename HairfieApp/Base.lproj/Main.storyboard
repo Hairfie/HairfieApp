@@ -1476,7 +1476,7 @@
                                         </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T84-uD-hx7">
-                                        <rect key="frame" x="272" y="29" width="45" height="23"/>
+                                        <rect key="frame" x="275" y="29" width="45" height="23"/>
                                         <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="15" maxY="0.0"/>
                                         <state key="normal" image="picto-take-picture.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -3000,17 +3000,6 @@
                                                 <color key="textColor" red="0.1960784314" green="0.26274509800000001" blue="0.3411764706" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ujM-Ih-uXJ">
-                                                <rect key="frame" x="10" y="198" width="300" height="29"/>
-                                                <segments>
-                                                    <segment title="Manager"/>
-                                                    <segment title="Employee"/>
-                                                </segments>
-                                                <color key="tintColor" red="0.98039215690000003" green="0.25882352939999997" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                <connections>
-                                                    <action selector="segmentedControlValueChanged:" destination="jCi-BR-inK" eventType="valueChanged" id="v0D-OX-Jm0"/>
-                                                </connections>
-                                            </segmentedControl>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="This salon does" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h0R-Ye-6Mm">
                                                 <rect key="frame" x="10" y="262" width="159" height="22"/>
                                                 <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="17"/>
@@ -3087,6 +3076,20 @@
                                                     <action selector="checkKids:" destination="jCi-BR-inK" eventType="touchUpInside" id="2K1-qJ-raz"/>
                                                 </connections>
                                             </button>
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ujM-Ih-uXJ">
+                                                <rect key="frame" x="10" y="198" width="300" height="47"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="46" id="kb7-kN-khp"/>
+                                                </constraints>
+                                                <segments>
+                                                    <segment title="Manager"/>
+                                                    <segment title="Employee"/>
+                                                </segments>
+                                                <color key="tintColor" red="0.85882352941176465" green="0.8666666666666667" blue="0.8784313725490196" alpha="1" colorSpace="calibratedRGB"/>
+                                                <connections>
+                                                    <action selector="segmentedControlValueChanged:" destination="jCi-BR-inK" eventType="valueChanged" id="v0D-OX-Jm0"/>
+                                                </connections>
+                                            </segmentedControl>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -3356,7 +3359,7 @@
                         <viewControllerLayoutGuide type="bottom" id="BB5-sW-Rac"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="xcl-Ye-blg">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YSr-H0-EiX" userLabel="Top Bar View">
@@ -4702,8 +4705,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="o5i-ex-i4q"/>
         <segue reference="WYb-zG-qo5"/>
-        <segue reference="VGS-VM-Pwy"/>
         <segue reference="dg2-Ph-4Hs"/>
         <segue reference="N5w-ND-ZjU"/>
         <segue reference="7yU-V8-5Z9"/>
