@@ -272,6 +272,7 @@
         [self decorateButton:self.hairfieBttn withImage:@"hairfies" active:YES];
         [self.containerView bringSubviewToFront:self.hairfieView];
         self.hairfieView.hidden = NO;
+        [self updateHairfiesView];
     } else if (aButton == self.hairdresserBttn) {
         [self decorateButton:self.hairdresserBttn withImage:@"hairdressers" active:YES];
         [self.containerView bringSubviewToFront:self.hairdresserView];
@@ -602,9 +603,6 @@
 
 -(void)updateHairfiesView
 {
-    
-    NSLog(@"hairfies %@", hairfies);
-    
     if (_hairfieView.hidden) return;
     
     
