@@ -171,24 +171,29 @@
 
 -(IBAction)claimSalonLocation:(id)sender
 {
-    Address *address = [[Address alloc] initWithStreet:_address.text city:_city.text zipCode:_postalCode.text country:_country];
-    [self geocodeAddress:[address displayAddress]];
-    
-    GeoPoint *gps = [[GeoPoint alloc] initWithLocation:_location];
-    
-    _claim.address = address;
-    _claim.gps = gps;
-    
-    void (^loadErrorBlock)(NSError *) = ^(NSError *error){
-        NSLog(@"Error : %@", error.description);
-    };
-    void (^loadSuccessBlock)(NSDictionary *) = ^(NSDictionary *results){
-        //NSLog(@"results %@", results);
-        _claim.id = [results objectForKey:@"id"];
-         [self performSegueWithIdentifier:@"claimBusinessMapLocation" sender:self];
-    };
-    
-    [_claim claimWithSuccess:loadSuccessBlock failure:loadErrorBlock];
+    if(![_address hasText] || ![_city hasText] || ![_postalCode hasText]) {
+        UIAlertView *errorAlert = [[UIAlertView alloc]initWithTitle:NSLocalizedStringFromTable(@"Warning", @"Claim", nil) message:NSLocalizedStringFromTable(@"Please fill in your address !", @"Claim", nil)delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [errorAlert show];
+    } else {
+        Address *address = [[Address alloc] initWithStreet:_address.text city:_city.text zipCode:_postalCode.text country:_country];
+        [self geocodeAddress:[address displayAddress]];
+        
+        GeoPoint *gps = [[GeoPoint alloc] initWithLocation:_location];
+        
+        _claim.address = address;
+        _claim.gps = gps;
+        
+        void (^loadErrorBlock)(NSError *) = ^(NSError *error){
+            NSLog(@"Error : %@", error.description);
+        };
+        void (^loadSuccessBlock)(NSDictionary *) = ^(NSDictionary *results){
+            //NSLog(@"results %@", results);
+            _claim.id = [results objectForKey:@"id"];
+            [self performSegueWithIdentifier:@"claimBusinessMapLocation" sender:self];
+        };
+        
+        [_claim claimWithSuccess:loadSuccessBlock failure:loadErrorBlock];
+    }
 }
 
 
