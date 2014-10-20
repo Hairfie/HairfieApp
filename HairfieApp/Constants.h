@@ -22,9 +22,6 @@
 #define SYSTEM_VERSION_LESS_THAN(v)                 ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
 #define SYSTEM_VERSION_LESS_THAN_OR_EQUAL_TO(v)     ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedDescending)
 
-#define FB_APP_ID @"726709544031609"
-#define FB_SCOPE @[@"email"]
-
 #define NEWRELIC_APP_TOKEN @"AA8f75d88dd218aca42fcb24e02ce104e351150d96"
 #define GOOGLE_ANALYTICS_TOKEN @"UA-55125713-1"
 #define CRASHLYTICS_API_KEY @"dbe02c1fae1a4ced539089c3010f899dfcfc6b18"
