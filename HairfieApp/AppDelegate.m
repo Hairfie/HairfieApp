@@ -27,7 +27,9 @@ static LBRESTAdapter * _lbAdaptater = nil;
 
 + (LBRESTAdapter *) lbAdaptater
 {
+    NSLog(@"PAS INIT");
     if ( !_lbAdaptater) {
+        NSLog(@"INIT");
         _lbAdaptater = [LBRESTAdapter adapterWithURL:[NSURL URLWithString:API_URL]];
     }
     return _lbAdaptater;
@@ -49,12 +51,12 @@ static LBRESTAdapter * _lbAdaptater = nil;
     NSLog(@"USER ID : %@", [_credentialStore userId]);
 
     if (self.credentialStore.isLoggedIn) {
+        [[[self class] lbAdaptater] setAccessToken:self.credentialStore.authToken];
         [User getById:self.credentialStore.userId
               success:^(User *user) {
                   self.currentUser = user;
-                  _lbAdaptater.accessToken = self.credentialStore.authToken;
+                 
                   [[NSNotificationCenter defaultCenter] postNotificationName:@"currentUser" object:nil];
-
               }
               failure:^(NSError *error) {
                   NSLog(@"Error retrieving logged in user: %@", error.localizedDescription);
@@ -64,14 +66,11 @@ static LBRESTAdapter * _lbAdaptater = nil;
     } else {
         [self.credentialStore clearTutorialSeen];
         [self showLoginStoryboard];
-        
     }
-    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(saveUserLanguage:)
                                                  name:@"currentUser"
                                                object:nil];
-
     return YES;
 }
 

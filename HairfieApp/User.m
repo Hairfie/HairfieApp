@@ -117,7 +117,8 @@
 {
     [[User repository] findById:anId
                         success:^(LBModel *result) {
-                            aSuccessHandler(result);
+                            User *aUser = (User*)result;
+                            aSuccessHandler(aUser);
                         }
                         failure:aFailureHandler];
 }
