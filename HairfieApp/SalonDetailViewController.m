@@ -391,6 +391,7 @@
         {
             cell.fullName.text = NSLocalizedStringFromTable(@"No Hairdresser", @"Salon_Detail", nil);
         }
+        cell.clearButton.hidden = YES;
         cell.separatorInset = UIEdgeInsetsMake(0, 10000, 0, 0);
 
         return cell;

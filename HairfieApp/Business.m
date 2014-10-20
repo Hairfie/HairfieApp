@@ -174,6 +174,7 @@
     } else {
         self.crossSell = NO;
     }
+    
 
     [self setupEventListeners];
 
@@ -289,8 +290,22 @@
  
     if (self.desc != nil)
         [parameters setObject:self.desc forKey:@"description"];
+     NSMutableArray *hairdresserToSend = [[NSMutableArray alloc] init];
+    if (self.activeHairdressers != nil)
+    {
+          //NSMutableArray *hairdresserToSend = [[NSMutableArray alloc] init];
+        
+        for (int i = 0; i < [self.activeHairdressers count]; i++)
+        {
+            Hairdresser *hairdresser = [self.activeHairdressers objectAtIndex:i];
+            [hairdresserToSend addObject:[hairdresser toDictionary]];
+            
+        }
+        
+        [parameters setObject:hairdresserToSend forKey:@"hairdressers"];
+    }
+    NSLog(@"hairdresser sent %@", hairdresserToSend);
     
-
     if (self.pictures != (id)[NSNull null])
     {
         NSMutableArray *pictureToSend = [[NSMutableArray alloc] init];

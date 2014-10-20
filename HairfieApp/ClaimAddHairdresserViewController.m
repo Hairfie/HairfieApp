@@ -89,9 +89,17 @@
     hairdresser.lastName = _lastNameField.text;
     hairdresser.email = _emailField.text;
     hairdresser.phoneNumber = _phoneNumberField.text;
+   
+    if (_hairdresserFromSegue.id != nil)
+    {
+        hairdresser.id = _hairdresserFromSegue.id;
+    }
     
+    
+    
+   
     [hairdressers addObject:hairdresser];
-    
+    NSLog(@"hairdressers %@", hairdresser);
     [hairdresser saveWithSuccess:^() { NSLog(@"Hairdresser saved"); }
                          failure:^(NSError *error) {
                              NSLog(@"Failed to save hairdresser: %@", error.localizedDescription);

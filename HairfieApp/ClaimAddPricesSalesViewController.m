@@ -55,8 +55,12 @@
     Money *priceToAdd = [[Money alloc] initWithAmount:priceAmount currency:@"EUR"];
   
     Service *serviceToAdd = [[Service alloc] initWithLabel:_priceDescription.text price:priceToAdd];
+    
   
-    [services addObject:serviceToAdd];
+    if (_serviceFromSegue != nil)
+        [services replaceObjectAtIndex:_serviceIndexFromSegue withObject:serviceToAdd];
+    else
+        [services addObject:serviceToAdd];
     
 }
 

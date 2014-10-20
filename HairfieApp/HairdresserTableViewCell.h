@@ -11,5 +11,6 @@
 @interface HairdresserTableViewCell : UITableViewCell
 
 @property (nonatomic) IBOutlet UILabel *fullName;
+@property (nonatomic) IBOutlet UIButton *clearButton;
 
 @end
