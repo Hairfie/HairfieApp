@@ -114,11 +114,15 @@
     }
     
     cell.name.text = business.name;
-    [cell.salonPicture sd_setImageWithURL:business.thumbUrl
+    [cell.salonPicture sd_setImageWithURL:[NSURL URLWithString:business.thumbUrl]
                        placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
-    cell.address.text = business.address.street;
-    cell.city.text = [NSString stringWithFormat:@"%@ %@", business.address.city, business.address.zipCode];
+    
    
+    
+    if (![business.address.street isEqual:[NSNull null]])
+        cell.address.text = business.address.street;
+    if (![business.address.city isEqual:[NSNull null]] || ![business.address.zipCode isEqual:[NSNull null]])
+        cell.city.text = [NSString stringWithFormat:@"%@ %@", business.address.city, business.address.zipCode];
     return cell;
 }
 
@@ -128,7 +132,6 @@
     HairfiePostDetailsViewController *details = [self.navigationController.viewControllers objectAtIndex:[self.navigationController.viewControllers count]-2];
     details.salonChosen = businesses[indexPath.row];
    
-    NSLog(@"salon %@", details.salonChosen.id);
     
     [self.navigationController popViewControllerAnimated:YES];
 }
