@@ -25,7 +25,15 @@
 
 -(id)initWithDictionary:(NSDictionary *)aDictionary
 {
-    return (Hairdresser *)[[[self class] repository] modelWithDictionary:aDictionary];
+    
+    self = (Hairdresser *)[[[self class] repository] modelWithDictionary:aDictionary];
+    
+    if ([[aDictionary valueForKey:@"active"] isEqualToNumber:@1])
+        self.active = YES;
+    else
+        self.active = NO;
+    
+    return self;
 }
 
 -(NSString *)displayFullName
@@ -62,6 +70,12 @@
     if (nil != self.phoneNumber) {
         [temp setObject:self.phoneNumber forKey:@"phoneNumber"];
     }
+    
+    if (self.active == YES)
+        [temp setObject:@true forKey:@"active"];
+    else
+        [temp setObject:@false forKey:@"active"];
+    
 
     return [[NSDictionary alloc] initWithDictionary:temp];
 }
@@ -76,7 +90,10 @@
         aSuccessHandler();
     };
     
+    NSLog(@"PARAMS %@", [self toDictionary]);
+    
     if (nil == self.id) {
+       
         [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/hairdressers"
                                                                                      verb:@"POST"]
                                             forMethod:@"hairdressers.create"];

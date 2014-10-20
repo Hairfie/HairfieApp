@@ -212,6 +212,8 @@
 		B3A1281A198A85D8004D90BD /* CustomPinView.m in Sources */ = {isa = PBXBuildFile; fileRef = B3A12819198A85D8004D90BD /* CustomPinView.m */; };
 		B3A1281C198A8609004D90BD /* CustomPinView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3A1281B198A8609004D90BD /* CustomPinView.xib */; };
 		B3A12821198AA1B1004D90BD /* custom-map-pin.png in Resources */ = {isa = PBXBuildFile; fileRef = B3A12820198AA1B1004D90BD /* custom-map-pin.png */; };
+		B3A2F48D19F4FEF000BD9354 /* ClaimServiceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B3A2F48B19F4FEF000BD9354 /* ClaimServiceTableViewCell.m */; };
+		B3A2F48E19F4FEF000BD9354 /* ClaimServiceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3A2F48C19F4FEF000BD9354 /* ClaimServiceTableViewCell.xib */; };
 		B3AD59B7198B9A3700909ADE /* SalonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B3AD59B5198B9A3700909ADE /* SalonTableViewCell.m */; };
 		B3AD59B8198B9A3700909ADE /* SalonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3AD59B6198B9A3700909ADE /* SalonTableViewCell.xib */; };
 		B3AD59BF198B9D3500909ADE /* picto-list-resume.png in Resources */ = {isa = PBXBuildFile; fileRef = B3AD59BA198B9D3500909ADE /* picto-list-resume.png */; };
@@ -664,6 +666,9 @@
 		B3A12819198A85D8004D90BD /* CustomPinView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomPinView.m; sourceTree = "<group>"; };
 		B3A1281B198A8609004D90BD /* CustomPinView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomPinView.xib; sourceTree = "<group>"; };
 		B3A12820198AA1B1004D90BD /* custom-map-pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "custom-map-pin.png"; path = "../custom-map-pin.png"; sourceTree = "<group>"; };
+		B3A2F48A19F4FEF000BD9354 /* ClaimServiceTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClaimServiceTableViewCell.h; sourceTree = "<group>"; };
+		B3A2F48B19F4FEF000BD9354 /* ClaimServiceTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClaimServiceTableViewCell.m; sourceTree = "<group>"; };
+		B3A2F48C19F4FEF000BD9354 /* ClaimServiceTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClaimServiceTableViewCell.xib; sourceTree = "<group>"; };
 		B3AD59B4198B9A3700909ADE /* SalonTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SalonTableViewCell.h; sourceTree = "<group>"; };
 		B3AD59B5198B9A3700909ADE /* SalonTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SalonTableViewCell.m; sourceTree = "<group>"; };
 		B3AD59B6198B9A3700909ADE /* SalonTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SalonTableViewCell.xib; sourceTree = "<group>"; };
@@ -865,6 +870,7 @@
 		1511518E1982B7A8001157A2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B382114219EEB6F40020C25E /* New Group */,
 				B3F0B22319EC1D9F00E0E6EE /* NSString Subclasses */,
 				B3F0B21719EBC19E00E0E6EE /* UITextField Subclasses */,
 				1538A3A619E53F9800F09628 /* UIView Subclasses */,
@@ -1320,6 +1326,9 @@
 				B36AC50B19DC31C600B8AC13 /* HairdresserTableViewCell.h */,
 				B36AC50C19DC31C600B8AC13 /* HairdresserTableViewCell.m */,
 				B36AC50D19DC31C600B8AC13 /* HairdresserTableViewCell.xib */,
+				B3A2F48A19F4FEF000BD9354 /* ClaimServiceTableViewCell.h */,
+				B3A2F48B19F4FEF000BD9354 /* ClaimServiceTableViewCell.m */,
+				B3A2F48C19F4FEF000BD9354 /* ClaimServiceTableViewCell.xib */,
 			);
 			name = "Custom Cells";
 			sourceTree = "<group>";
@@ -1378,6 +1387,13 @@
 				B36731E6198FDFCF00E11C56 /* Pictos */,
 			);
 			name = "Salon Detail";
+			sourceTree = "<group>";
+		};
+		B382114219EEB6F40020C25E /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "New Group";
 			sourceTree = "<group>";
 		};
 		B3923189198BA9C800E0817D /* Around Me Controller + Views */ = {
@@ -1799,6 +1815,7 @@
 				B35A829F19A5FF02003B1321 /* placeholder-image.jpg in Resources */,
 				B39BA17819AF46CD00A48BD5 /* picto-logout.png in Resources */,
 				B3FB10B619B09DA600CADCFD /* man-picto.png in Resources */,
+				B3A2F48E19F4FEF000BD9354 /* ClaimServiceTableViewCell.xib in Resources */,
 				15E3D2C919D075CC0065A07E /* Post_Hairfie.strings in Resources */,
 				B3AD59C2198B9D3500909ADE /* picto-list-man.png in Resources */,
 				1540150119D030030094DB5E /* InfoPlist.strings in Resources */,
@@ -2061,6 +2078,7 @@
 				712667EB19C6E67500298FF0 /* UIRoundImageView.m in Sources */,
 				15B8D63A19C83DD200C889CF /* LoadingCollectionViewCell.m in Sources */,
 				B3BD869F198BCFE500BD8591 /* RatingView.m in Sources */,
+				B3A2F48D19F4FEF000BD9354 /* ClaimServiceTableViewCell.m in Sources */,
 				B3423211198924290058866B /* AFHTTPRequestOperationManager.m in Sources */,
 				B367DC3419C98EBF00A0452A /* BusinessAnnotation.m in Sources */,
 				B319B5C719C6E77D007F79B0 /* BusinessReviewRepository.m in Sources */,

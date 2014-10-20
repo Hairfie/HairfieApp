@@ -17,6 +17,6 @@
 @property (nonatomic) IBOutlet UIButton* doneBttn;
 @property (nonatomic) NSMutableArray *serviceClaimed;
 @property (nonatomic) Service *serviceFromSegue;
-
+@property (nonatomic) NSInteger serviceIndexFromSegue;
 
 @end

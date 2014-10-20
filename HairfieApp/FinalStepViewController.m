@@ -11,7 +11,7 @@
 #import "FinalStepAddressViewController.h"
 #import "FinalStepTimetableViewController.h"
 #import "HairdresserTableViewCell.h"
-#import "PricesTableViewCell.h"
+#import "ClaimServiceTableViewCell.h"
 #import "FinalStepDescriptionViewController.h"
 #import "Address.h"
 #import "Hairdresser.h"
@@ -36,13 +36,23 @@
     Service *serviceForEditing;
     NSMutableArray *pictureForGallery;
     AppDelegate *appDelegate;
+    NSInteger serviceIndex;
 }
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(clearHairdresser:)
+                                                 name:@"clearHairdresser"
+                                               object:nil];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(clearService:)
+                                                 name:@"clearService"
+                                               object:nil];
+
     [self setupGallery:nil];
   
     [self.view bringSubviewToFront:self.topBarView];
@@ -177,6 +187,7 @@
         [self setupGallery:_businessToManage.pictures];
         _menuButton.hidden = NO;
         _navButton.hidden = YES;
+        
         if ([_businessToManage.activeHairdressers count] == 0)
             _hairdresserTableView.hidden = YES;
         else
@@ -563,8 +574,11 @@
         if (_businessToManage != nil)
         {
             if  (_businessToManage.activeHairdressers != (id)[NSNull null])
+            {
                 
                 claimHairdresser.hairdressersClaimed = _businessToManage.activeHairdressers;
+                [_businessToManage.activeHairdressers removeObjectIdenticalTo:hairdresserForEditing];
+            }
             else
     
                 claimHairdresser.hairdressersClaimed = [[NSMutableArray alloc] init];
@@ -593,6 +607,7 @@
         if (_isEditingService == YES)
             claimService.serviceFromSegue = serviceForEditing;
         _isEditingService = NO;
+        claimService.serviceIndexFromSegue = serviceIndex;
         
     }
     
@@ -626,26 +641,28 @@
         
         Hairdresser *hairdresser = [[Hairdresser alloc] init];
         
+        
         if (_businessToManage != nil)
         {
             hairdresser = [_businessToManage.activeHairdressers objectAtIndex:indexPath.row];
-            
         }
         else
             hairdresser = [_claim.hairdressers objectAtIndex:indexPath.row];
         
+
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.fullName.text = [hairdresser displayFullName];
         cell.separatorInset = UIEdgeInsetsMake(0, 10000, 0, 0);
+        cell.tag = indexPath.row;
         return cell;
     }
     if (tableView == _serviceTableView)
     {
-        static NSString *CellIdentifier = @"priceCell";
-        PricesTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        static NSString *CellIdentifier = @"serviceCell";
+        ClaimServiceTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         
         if (cell == nil) {
-            NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"PricesTableViewCell" owner:self options:nil];
+            NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ClaimServiceTableViewCell" owner:self options:nil];
             cell = [nib objectAtIndex:0];
         }
         
@@ -658,9 +675,10 @@
             service = [_claim.services objectAtIndex:indexPath.row];
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.itemName.text = service.label;
-        cell.price.text = [service.price formatted];
+        cell.serviceName.text = service.label;
+        cell.serviceAmount.text = [service.price formatted];
         cell.separatorInset = UIEdgeInsetsMake(0, 10000, 0, 0);
+        cell.tag = indexPath.row;
         return cell;
     }
     
@@ -697,46 +715,58 @@
     else
         hairdresserForEditing = [_claim.hairdressers objectAtIndex:indexPath.row];
     _isEditingHairdresser = YES;
+   
     [self performSegueWithIdentifier:@"claimHairdresser" sender:self];
     }
     if (tableView == _serviceTableView)
     {
-        NSLog(@"SERVICE %@", [_businessToManage.services objectAtIndex:indexPath.row]);
         if (_businessToManage != nil)
             serviceForEditing = [_businessToManage.services objectAtIndex:indexPath.row];
         else
             serviceForEditing = [_claim.services objectAtIndex:indexPath.row];
         _isEditingService = YES;
+        serviceIndex = indexPath.row;
         [self performSegueWithIdentifier:@"claimService" sender:self];
     }
 }
 
+-(void)clearHairdresser:(NSNotification*)notification
+{
+  
+    HairdresserTableViewCell *cell = notification.object;
+    Hairdresser *hairdresser = [_businessToManage.activeHairdressers objectAtIndex:cell.tag];
+    if (hairdresser.active == YES)
+        hairdresser.active = NO;
+    else
+        hairdresser.active = YES;
+    [hairdresser saveWithSuccess:^() { NSLog(@"Hairdresser saved"); }
+                         failure:^(NSError *error) {
+                             NSLog(@"Failed to save hairdresser: %@", error.localizedDescription);
+                         }];
+    [_businessToManage.activeHairdressers removeObjectAtIndex:cell.tag];
+    [_hairdresserTableView reloadData];
+}
+
+-(void)clearService:(NSNotification*)notification
+{
+    ClaimServiceTableViewCell *cell = notification.object;
+    [_businessToManage.services removeObjectAtIndex:cell.tag];
+    [_serviceTableView reloadData];
+}
 -(IBAction)claimThisBusiness:(id)sender
 {
-    
     void (^loadErrorBlock)(NSError *) = ^(NSError *error){
         
         NSLog(@"Error : %@", error.description);
     };
     void (^loadSuccessBlock)(NSArray *) = ^(NSArray *results) {
         
+        NSLog(@"Rez %@", results);
         [[NSNotificationCenter defaultCenter] postNotificationName:@"currentUser" object:self];
         [self performSegueWithIdentifier:@"toSalonDetail" sender:self];
     };
     
     [_businessToManage updateWithSuccess:loadSuccessBlock failure:loadErrorBlock];
 }
-
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

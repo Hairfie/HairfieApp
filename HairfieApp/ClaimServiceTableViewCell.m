@@ -1,14 +1,14 @@
 //
-//  HairdresserTableViewCell.m
+//  ClaimServiceTableViewCell.m
 //  HairfieApp
 //
-//  Created by Leo Martin on 01/10/2014.
+//  Created by Leo Martin on 10/20/14.
 //  Copyright (c) 2014 Hairfie. All rights reserved.
 //
 
-#import "HairdresserTableViewCell.h"
+#import "ClaimServiceTableViewCell.h"
 
-@implementation HairdresserTableViewCell
+@implementation ClaimServiceTableViewCell
 
 - (void)awakeFromNib {
     // Initialization code
@@ -20,9 +20,9 @@
     // Configure the view for the selected state
 }
 
--(IBAction)clearHairdresser:(id)sender
+-(IBAction)clearService:(id)sender
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"clearHairdresser" object:self];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"clearService" object:self];
 }
 
 @end
