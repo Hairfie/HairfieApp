@@ -179,6 +179,7 @@
             _validateBttnWidth.constant = 53;
         }
         
+        
         [_validateBttn setTitle:NSLocalizedStringFromTable(@"Update",@"Claim", nil) forState:UIControlStateNormal];
        
         _phoneLabel.text = _businessToManage.phoneNumber;
