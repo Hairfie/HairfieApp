@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="m6Z-pY-ich">
     <dependencies>
-        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -109,12 +108,8 @@
             <string>SourceSansPro-Light</string>
             <string>SourceSansPro-Light</string>
             <string>SourceSansPro-Light</string>
-            <string>SourceSansPro-Light</string>
-            <string>SourceSansPro-Light</string>
-            <string>SourceSansPro-Light</string>
         </mutableArray>
         <mutableArray key="SourceSansPro-Regular.ttf">
-            <string>SourceSansPro-Regular</string>
             <string>SourceSansPro-Regular</string>
             <string>SourceSansPro-Regular</string>
             <string>SourceSansPro-Regular</string>
@@ -3838,18 +3833,6 @@
                                                         <color key="textColor" red="0.36078431370000003" green="0.67450980390000004" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MKT-50-A2a">
-                                                        <rect key="frame" x="51" y="215" width="238" height="51"/>
-                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="16"/>
-                                                        <state key="normal" title="Description">
-                                                            <color key="titleColor" red="0.1960784314" green="0.26274509800000001" blue="0.3411764706" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
-                                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                        </state>
-                                                        <connections>
-                                                            <action selector="modifyDesc:" destination="BHW-4V-7I5" eventType="touchUpInside" id="mcn-Bq-PYn"/>
-                                                        </connections>
-                                                    </button>
                                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jlS-xo-xdI" userLabel="Separator 2">
                                                         <rect key="frame" x="20" y="165" width="300" height="1"/>
                                                         <color key="backgroundColor" red="0.85490196080000003" green="0.85490196080000003" blue="0.87058823529999996" alpha="1" colorSpace="calibratedRGB"/>
@@ -3869,16 +3852,10 @@
                                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" image="nav-disclosure.png" translatesAutoresizingMaskIntoConstraints="NO" id="xyD-dQ-tcu">
                                                         <rect key="frame" x="297" y="134" width="8" height="13"/>
                                                     </imageView>
-                                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" image="nav-disclosure.png" translatesAutoresizingMaskIntoConstraints="NO" id="z1j-Wl-9Ra">
-                                                        <rect key="frame" x="297" y="235" width="8" height="13"/>
-                                                    </imageView>
                                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LmZ-So-Wxw" userLabel="Separator 3">
                                                         <rect key="frame" x="20" y="215" width="300" height="1"/>
                                                         <color key="backgroundColor" red="0.85490196080000003" green="0.85490196080000003" blue="0.87058823529999996" alpha="1" colorSpace="calibratedRGB"/>
                                                     </view>
-                                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" image="picto-list-resume.png" translatesAutoresizingMaskIntoConstraints="NO" id="lpN-gn-qkl">
-                                                        <rect key="frame" x="20" y="233" width="11" height="16"/>
-                                                    </imageView>
                                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DhN-eM-sQL">
                                                         <rect key="frame" x="51" y="165" width="238" height="51"/>
                                                         <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="16"/>
@@ -4024,7 +4001,6 @@
                         <outlet property="addressBttn" destination="Api-cY-vQX" id="cKD-3w-NcB"/>
                         <outlet property="addressLabel" destination="dar-4B-YwN" id="Vmw-sy-qQA"/>
                         <outlet property="containerView" destination="EuT-Lu-oD6" id="ccp-Nq-x37"/>
-                        <outlet property="descriptionBttn" destination="MKT-50-A2a" id="gMB-k5-oTh"/>
                         <outlet property="hairdresserBttn" destination="RFm-7d-baz" id="IRN-ve-yUi"/>
                         <outlet property="hairdresserTableView" destination="PC2-CD-lPW" id="SCL-Rm-mPr"/>
                         <outlet property="hairdresserView" destination="CcM-C3-tpq" id="61Y-g1-4HH"/>
@@ -4051,7 +4027,6 @@
                         <segue destination="NUe-A9-Lt8" kind="push" identifier="claimSalon" id="2Zn-eA-CWz"/>
                         <segue destination="zTm-H4-2yr" kind="push" identifier="claimAddress" id="ckv-Nm-GTR"/>
                         <segue destination="QDs-5V-jNB" kind="push" identifier="claimTimetable" id="gaM-xQ-0j1"/>
-                        <segue destination="J9A-9n-U3u" kind="push" identifier="claimDesc" id="btP-wW-6NE"/>
                         <segue destination="vfu-7w-ucu" kind="push" identifier="claimHairdresser" id="5Qy-oY-xGh"/>
                         <segue destination="iwq-rU-PkG" kind="push" identifier="claimService" id="K4m-SQ-rIk"/>
                         <segue destination="pDa-if-Gwb" kind="push" identifier="toSalonDetail" id="6S8-Dh-Oyu"/>
@@ -4059,7 +4034,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kgs-18-rHr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3340" y="412"/>
+            <point key="canvasLocation" x="3356" y="426"/>
         </scene>
         <!--Claim Add Hairdresser View Controller-->
         <scene sceneID="dKZ-9t-aNs">
@@ -4261,7 +4236,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W8f-2x-6Al" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3554" y="2039"/>
+            <point key="canvasLocation" x="3680" y="1927"/>
         </scene>
         <!--Final Step Claim Day View Controller-->
         <scene sceneID="G4U-b0-BK7">
@@ -4363,73 +4338,6 @@
             </objects>
             <point key="canvasLocation" x="3554" y="2714"/>
         </scene>
-        <!--Final Step Description View Controller-->
-        <scene sceneID="rEV-4d-Ne8">
-            <objects>
-                <viewController id="J9A-9n-U3u" customClass="FinalStepDescriptionViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="1y7-61-FO1"/>
-                        <viewControllerLayoutGuide type="bottom" id="8xQ-b7-Pck"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Er8-Yx-uYL">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Ka-UT-qHY" userLabel="Top Bar View">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
-                                <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Modify Description" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="ZwU-T3-t9g">
-                                        <rect key="frame" x="86" y="27" width="149" height="23"/>
-                                        <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="18"/>
-                                        <color key="textColor" red="0.44294084820000001" green="0.44294084820000001" blue="0.44294084820000001" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sy9-ow-bTD">
-                                        <rect key="frame" x="255" y="25" width="52" height="30"/>
-                                        <color key="backgroundColor" red="0.98039215690000003" green="0.25882352939999997" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="14"/>
-                                        <state key="normal" title="Validate">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="validateDescription:" destination="J9A-9n-U3u" eventType="touchUpInside" id="K0e-P6-LUg"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3od-FM-Pll">
-                                        <rect key="frame" x="8" y="20" width="40" height="40"/>
-                                        <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
-                                        <state key="normal" image="arrow-nav.png">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="goBack:" destination="J9A-9n-U3u" eventType="touchUpInside" id="pLD-Jw-Xde"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YXw-Wv-R14">
-                                <rect key="frame" x="10" y="72" width="300" height="150"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <inset key="scrollIndicatorInsets" minX="15" minY="10" maxX="15" maxY="0.0"/>
-                                <color key="textColor" red="0.1960784314" green="0.26274509800000001" blue="0.3411764706" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
-                            </textView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="CVa-pt-z57"/>
-                    <connections>
-                        <outlet property="descriptionView" destination="YXw-Wv-R14" id="Adi-Ua-sTu"/>
-                        <outlet property="doneBttn" destination="Sy9-ow-bTD" id="SYM-fM-j8y"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="swM-PN-xQA" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3928" y="2039"/>
-        </scene>
         <!--Final Step Address View Controller-->
         <scene sceneID="VIa-oN-OH3">
             <objects>
@@ -4513,7 +4421,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rVx-U9-mRa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3179" y="2039"/>
+            <point key="canvasLocation" x="3279" y="1927"/>
         </scene>
         <!--Claim Add Prices Sales View Controller-->
         <scene sceneID="6En-TP-VEe">
@@ -4817,7 +4725,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="o5i-ex-i4q"/>
+        <segue reference="VGS-VM-Pwy"/>
         <segue reference="WYb-zG-qo5"/>
         <segue reference="6S8-Dh-Oyu"/>
         <segue reference="PSz-m0-val"/>

@@ -40,9 +40,6 @@
     if (self.address != nil)
         [parameters setObject:[self.address toDictionary]  forKey:@"address"];
     
-    if (self.desc != nil)
-        [parameters setObject:self.desc forKey:@"description"];
-    
     if (self.pictures != nil)
         [parameters setObject:self.pictures forKey:@"pictures"];
     

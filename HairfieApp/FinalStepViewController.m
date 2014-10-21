@@ -12,7 +12,6 @@
 #import "FinalStepTimetableViewController.h"
 #import "HairdresserTableViewCell.h"
 #import "ClaimServiceTableViewCell.h"
-#import "FinalStepDescriptionViewController.h"
 #import "Address.h"
 #import "Hairdresser.h"
 #import "Picture.h"
@@ -167,7 +166,6 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     
-    
     if (_businessToManage != nil)
     {
         NSString * language = [[NSLocale preferredLanguages] objectAtIndex:0];
@@ -179,8 +177,6 @@
             _validateBttnWidth.constant = 53;
         }
         
-        if(_businessToManage.desc != nil)
-            [_descriptionBttn setTitle:_businessToManage.desc forState:UIControlStateNormal];
         if (_businessToManage.timetable.monday.count != 0)
         {
             TimeWindow *tw = [_businessToManage.timetable.monday objectAtIndex:0];
@@ -345,10 +341,6 @@
     [self performSegueWithIdentifier:@"claimTimetable" sender:self]; 
 }
 
--(IBAction)modifyDesc:(id)sender
-{
-    [self performSegueWithIdentifier:@"claimDesc" sender:self];
-}
 
 -(IBAction)modifyHairdresser:(id)sender
 {
@@ -567,14 +559,6 @@
         else
             claimTimetable.timeTable = _claim.timetable;
         
-    }
-    if ([segue.identifier isEqualToString:@"claimDesc"])
-    {
-        FinalStepDescriptionViewController *claimDesc = [segue destinationViewController];
-        if (_businessToManage != nil)
-            claimDesc.desc = _businessToManage.desc;
-        else
-            claimDesc.desc = _claim.desc;
     }
     if ([segue.identifier isEqualToString:@"claimHairdresser"])
     {

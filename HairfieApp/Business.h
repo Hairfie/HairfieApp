@@ -30,7 +30,6 @@
 @property (strong, nonatomic) NSNumber *numHairfies;
 @property (strong, nonatomic) NSNumber *numReviews;
 @property (strong, nonatomic) NSNumber *rating;
-@property (strong, nonatomic) NSString *desc;
 @property (strong, nonatomic) NSMutableArray *activeHairdressers;
 
 @property (nonatomic) BOOL crossSell;

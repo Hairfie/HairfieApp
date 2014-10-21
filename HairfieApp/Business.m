@@ -153,7 +153,6 @@
                                               self.numHairfies = [result objectForKey:@"numHairfies"];
                                               self.numReviews = [result objectForKey:@"numReviews"];
                                               self.rating = [result objectForKey:@"rating"];
-                                              self.desc = [result objectForKey:@"description"];
                                               self.activeHairdressers = [result objectForKey:@"activeHairdressers"];
 
                                               [[NSNotificationCenter defaultCenter] postNotificationName:[Business EVENT_CHANGED]
@@ -174,7 +173,6 @@
     } else {
         self.crossSell = NO;
     }
-    self.desc = [data objectForKey:@"description"];
 
     [self setupEventListeners];
 
@@ -291,13 +289,6 @@
 
     if (self.address != nil)
         [parameters setObject:[self.address toDictionary]  forKey:@"address"];
- 
-    if (self.desc != nil)
-    {
-        [parameters setObject:self.desc forKey:@"description"];
-        NSLog(@"DESC %@", self.desc);
-    }
-    
     
      NSMutableArray *hairdresserToSend = [[NSMutableArray alloc] init];
     
