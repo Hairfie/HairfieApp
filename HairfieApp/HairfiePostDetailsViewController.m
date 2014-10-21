@@ -21,9 +21,10 @@
 
 @implementation HairfiePostDetailsViewController
 {
-    NSArray *salonTypes;
+    NSMutableArray *salonTypes;
     Picture *uploadedPicture;
     BOOL uploadInProgress;
+    AppDelegate *appDelegate;
 }
 
 -(UIStatusBarStyle)preferredStatusBarStyle
@@ -34,7 +35,7 @@
 -(void)viewDidLoad
 {
     UIColor *placeholder = [[UIColor whiteColor] colorWithAlphaComponent:0.6];
-    
+    appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [_emailTextField setValue:placeholder
                     forKeyPath:@"_placeholderLabel.textColor"];
     _hairfieImageView.image = _hairfiePost.picture.image;
@@ -52,7 +53,7 @@
     _hairdresserSubview.hidden = YES;
     _emailSubview.hidden = YES;
 
-    salonTypes = [[NSArray alloc] initWithObjects:NSLocalizedStringFromTable(@"I did it", @"Post_Hairfie", nil), NSLocalizedStringFromTable(@"Hairdresser in a Salon", @"Post_Hairfie", nil), nil];
+    salonTypes = [[NSMutableArray alloc] initWithObjects:NSLocalizedStringFromTable(@"I did it", @"Post_Hairfie", nil), NSLocalizedStringFromTable(@"Hairdresser in a Salon", @"Post_Hairfie", nil), nil];
     _tableViewHeight.constant = [salonTypes count] * _dataChoice.rowHeight;
     [_priceTextField textFieldWithPhoneKeyboard];
 
@@ -60,6 +61,17 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated {
+    
+    if (appDelegate.currentUser.managedBusinesses.count != 0)
+    {
+        if (salonTypes.count == 2) {
+            for (Business *business in appDelegate.currentUser.managedBusinesses)
+            {
+                [salonTypes insertObject:business atIndex:1];
+            }
+        }
+        _tableViewHeight.constant = salonTypes.count * _dataChoice.rowHeight;
+    }
     if(_salonChosen != nil) {
         _hairfiePost.business = _salonChosen;
     }
@@ -94,7 +106,10 @@ shouldChangeTextInRange: (NSRange) range
         _dataChoice.hidden = YES;
         _isSalon = NO;
     } else {
-        _tableViewYPos.constant = 213;
+        
+        CGFloat ypos = _dataChoice.rowHeight * salonTypes.count;
+        [_tableViewHeight setConstant:ypos];
+        NSLog(@"%f , %f, %ld", _tableViewHeight.constant, _dataChoice.rowHeight, salonTypes.count);
         _salonOrHairdresser = YES;
         [_dataChoice reloadData];
         _dataChoice.hidden = NO;
@@ -140,7 +155,7 @@ shouldChangeTextInRange: (NSRange) range
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 2;
+    return salonTypes.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -155,31 +170,45 @@ shouldChangeTextInRange: (NSRange) range
     
     if (_salonOrHairdresser == YES)
     {
-        if (indexPath.row != 0)
+        if (indexPath.row == salonTypes.count - 1)
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
-        cell.textLabel.text = [salonTypes objectAtIndex:indexPath.row];
+        if ([[salonTypes objectAtIndex:indexPath.row] isKindOfClass:[Business class]])
+        {
+            Business *business = [salonTypes objectAtIndex:indexPath.row];
+            cell.textLabel.text = business.name;
+        }
+        else
+            cell.textLabel.text = [salonTypes objectAtIndex:indexPath.row];
         cell.textLabel.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:16];
         cell.textLabel.textColor =
             [UIColor colorWithRed:191/255.0f green:194/255.0f blue:199/255.0f alpha:1];
     }
     else
     {
-        cell.textLabel.text = [NSString stringWithFormat:@"Haidresser %ld", indexPath.row];
+        cell.textLabel.text = [NSString stringWithFormat:@"Hairdresser %ld", indexPath.row];
     }
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row != 0)
+    if (indexPath.row == salonTypes.count - 1)
     {
         [self performSegueWithIdentifier:@"choseSalonType" sender:self];
         [self showSalonsChoices:self];
     }
-    else
+    else if (indexPath.row == 0)
     {
         [_salonLabelButton setTitle:@"I did it" forState:UIControlStateNormal];
+        [self showSalonsChoices:self];
+    }
+    else
+    {
+        
+        Business *business = [salonTypes objectAtIndex:indexPath.row];
+         [_salonLabelButton setTitle:business.name forState:UIControlStateNormal];
+        _salonChosen = business;
         [self showSalonsChoices:self];
     }
 }
