@@ -161,15 +161,23 @@
     if (_isOpenLabelDetail.hidden == NO)
         [self performSegueWithIdentifier:@"showTimetable" sender:self];
 }
-        
+
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+ 
+
+    NSLog(@"LAYOUT SUBVIEWS");
+}
+
 -(void)viewWillAppear:(BOOL)animated
 {
-    [self updateMapView];
+
     _reviewRating.rating = 0;
     [ARAnalytics pageView:@"AR - Business Detail"];
     [ARAnalytics event:@"AR - Business Detail" withProperties:@{@"Business ID": _business.id, @"Name": _business.name}];
-
+    [self initKnownData:_business];
     [_reviewTableView reloadData];
+    
     if (_isAddingHairfie == YES)
     {
         [self setButtonSelected:_hairfieBttn];
@@ -187,6 +195,7 @@
                                              selector:@selector(businessChanged:)
                                                  name:[Business EVENT_CHANGED]
                                                object:nil];
+    
 }
 
 -(UIStatusBarStyle)preferredStatusBarStyle
@@ -420,7 +429,7 @@
     if (tableView == _hairdresserTableView)
     {
         if ([_business.activeHairdressers count] == 0)
-             [self performSegueWithIdentifier:[menuActions[0] objectForKey:@"segue"] sender:self];
+             [self performSegueWithIdentifier:@"suggestHairdresser" sender:self];
     }
 }
 
@@ -625,40 +634,7 @@
     [self.hairfieCollection reloadData];
 }
 
-- (void)updateMapView {
-    
-    CLLocationCoordinate2D coord;
-    coord.longitude = [[NSString stringWithFormat:@"%@", _haidresserLng] floatValue];
-    coord.latitude = [[NSString stringWithFormat:@"%@", _haidresserLat] floatValue];
-    MyAnnotation *annotObj =[[MyAnnotation alloc]init];
-    annotObj.title = _name.text;
-    annotObj.coordinate = coord;
-    [_previewMap addAnnotation:annotObj];
-    [_previewMap showAnnotations:@[annotObj] animated:NO];
-    _previewMap.camera.altitude = 1000;
-  
-}
 
-
-- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id)annotation {
-    
-    static NSString *myIdentifier =@"MyAnnotation";
-    if([annotation isKindOfClass:[MyAnnotation class]])
-    {
-        MKAnnotationView *annotationView=[mapView dequeueReusableAnnotationViewWithIdentifier:myIdentifier];
-        if(!annotationView)
-        {
-            annotationView=[[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:myIdentifier];
-            annotationView.image = [UIImage imageNamed:@"map_pin.png"];
-            [annotationView setFrame:CGRectMake(0, 0, 17, 24)];
-            annotationView.contentMode = UIViewContentModeScaleAspectFit;
-            annotationView.centerOffset = CGPointMake(0, -annotationView.image.size.height / 2);
-            annotationView.canShowCallout = YES;
-        }
-        return annotationView;
-    }
-    return nil;
-}
 
 -(IBAction)callPhone:(id)sender {
     
@@ -686,7 +662,9 @@
         SalonDetailViewController *controller = [segue destinationViewController];
         controller.business = sender;
     } else if ([segue.identifier isEqualToString:@"reportError"]) {
+        
         [[segue destinationViewController] setBusiness:self.business];
+        
     } else if ([segue.identifier isEqualToString:@"postHairfie"]) {
         CameraOverlayViewController *controller = [segue destinationViewController];
         controller.hairfiePost = [[HairfiePost alloc] initWithBusiness:_business];

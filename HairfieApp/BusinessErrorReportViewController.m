@@ -42,7 +42,7 @@
 
 -(IBAction)goBack:(id)sender
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 -(IBAction)submitErrorReport:(id)sender
@@ -74,7 +74,8 @@
 }
 -(void)errorReportSubmitted
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

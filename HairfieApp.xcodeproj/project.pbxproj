@@ -303,6 +303,8 @@
 		B3F662431987D52A0041F298 /* SourceSansPro-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B3F662361987D52A0041F298 /* SourceSansPro-Semibold.ttf */; };
 		B3F6624D1987E87E0041F298 /* MenuTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B3F6624B1987E87E0041F298 /* MenuTableViewCell.m */; };
 		B3F6624E1987E87E0041F298 /* MenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3F6624C1987E87E0041F298 /* MenuTableViewCell.xib */; };
+		B3F6B70719F69A3900EF4B5C /* SuggestHairdresserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3F6B70619F69A3900EF4B5C /* SuggestHairdresserViewController.m */; };
+		B3F6B70A19F69F4300EF4B5C /* SuggestHairdresser.strings in Resources */ = {isa = PBXBuildFile; fileRef = B3F6B70C19F69F4300EF4B5C /* SuggestHairdresser.strings */; };
 		B3F95FE119B5E5BA00798D57 /* AdvanceSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = B3F95FE019B5E5BA00798D57 /* AdvanceSearch.m */; };
 		B3FB10B619B09DA600CADCFD /* man-picto.png in Resources */ = {isa = PBXBuildFile; fileRef = B3FB10B419B09DA600CADCFD /* man-picto.png */; };
 		B3FB10B719B09DA600CADCFD /* woman-picto.png in Resources */ = {isa = PBXBuildFile; fileRef = B3FB10B519B09DA600CADCFD /* woman-picto.png */; };
@@ -781,6 +783,11 @@
 		B3F6624B1987E87E0041F298 /* MenuTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuTableViewCell.m; sourceTree = "<group>"; };
 		B3F6624C1987E87E0041F298 /* MenuTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuTableViewCell.xib; sourceTree = "<group>"; };
 		B3F6B70319F6749200EF4B5C /* libPods-HairfieApp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-HairfieApp.a"; path = "Pods/build/Debug-iphoneos/libPods-HairfieApp.a"; sourceTree = "<group>"; };
+		B3F6B70519F69A3900EF4B5C /* SuggestHairdresserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuggestHairdresserViewController.h; sourceTree = "<group>"; };
+		B3F6B70619F69A3900EF4B5C /* SuggestHairdresserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuggestHairdresserViewController.m; sourceTree = "<group>"; };
+		B3F6B70B19F69F4300EF4B5C /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/SuggestHairdresser.strings; sourceTree = "<group>"; };
+		B3F6B70D19F69F4400EF4B5C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/SuggestHairdresser.strings; sourceTree = "<group>"; };
+		B3F6B70E19F69F4500EF4B5C /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/SuggestHairdresser.strings; sourceTree = "<group>"; };
 		B3F95FDF19B5E5BA00798D57 /* AdvanceSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdvanceSearch.h; sourceTree = "<group>"; };
 		B3F95FE019B5E5BA00798D57 /* AdvanceSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdvanceSearch.m; sourceTree = "<group>"; };
 		B3FB10B419B09DA600CADCFD /* man-picto.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "man-picto.png"; sourceTree = "<group>"; };
@@ -1034,6 +1041,7 @@
 				15E3D2BC19D075CC0065A07E /* Menu.strings */,
 				15E3D2BE19D075CC0065A07E /* Post_Hairfie.strings */,
 				15E3D2C019D075CC0065A07E /* Salon_Detail.strings */,
+				B3F6B70C19F69F4300EF4B5C /* SuggestHairdresser.strings */,
 			);
 			name = Localization;
 			sourceTree = "<group>";
@@ -1269,6 +1277,8 @@
 				B337B6F919A25116003B0EA5 /* HorairesViewController.m */,
 				711FB93919D9911E0023CAD4 /* BusinessErrorReportViewController.h */,
 				711FB93A19D9911E0023CAD4 /* BusinessErrorReportViewController.m */,
+				B3F6B70519F69A3900EF4B5C /* SuggestHairdresserViewController.h */,
+				B3F6B70619F69A3900EF4B5C /* SuggestHairdresserViewController.m */,
 			);
 			name = "Salon Detail";
 			sourceTree = "<group>";
@@ -1961,6 +1971,7 @@
 				B3AE0D4319C060DA00149C2B /* salon-cell-separator.png in Resources */,
 				719C208619ED5016008E0B17 /* tab-business-prices.png in Resources */,
 				B3E0B14F19ACAA5400C3EACE /* login-form.png in Resources */,
+				B3F6B70A19F69F4300EF4B5C /* SuggestHairdresser.strings in Resources */,
 				1559631119E30DE000F84BFA /* search-advance-field-name2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2166,6 +2177,7 @@
 				B3423213198924290058866B /* AFNetworkReachabilityManager.m in Sources */,
 				71C0D40B19C1DC040037CBF4 /* Picture.m in Sources */,
 				B378D49219D02EA4004745E9 /* ClaimAddPricesSalesViewController.m in Sources */,
+				B3F6B70719F69A3900EF4B5C /* SuggestHairdresserViewController.m in Sources */,
 				B3615B3819AF242800F1141D /* User.m in Sources */,
 				15697B31199BB03800DA83FE /* UIImage+Resize.m in Sources */,
 				B36AC50519DAB47E00B8AC13 /* STCollapseTableView.m in Sources */,
@@ -2404,6 +2416,16 @@
 				153B08D119E43DBD002E915A /* fr */,
 			);
 			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		B3F6B70C19F69F4300EF4B5C /* SuggestHairdresser.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B3F6B70B19F69F4300EF4B5C /* Base */,
+				B3F6B70D19F69F4400EF4B5C /* en */,
+				B3F6B70E19F69F4500EF4B5C /* fr */,
+			);
+			name = SuggestHairdresser.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
