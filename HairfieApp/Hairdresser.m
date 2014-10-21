@@ -90,8 +90,6 @@
         aSuccessHandler();
     };
     
-    NSLog(@"PARAMS %@", [self toDictionary]);
-    
     if (nil == self.id) {
        
         [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/hairdressers"

@@ -74,6 +74,12 @@
     [parameters setObject:self.firstName forKey:@"firstName"];
     [parameters setObject:self.lastName forKey:@"lastName"];
     [parameters setObject:self.gender forKey:@"gender"];
+   
+    if ([self.gender isEqualToString: NSLocalizedStringFromTable(@"Woman", @"Claim", nil)])
+        self.gender = GENDER_FEMALE;
+    else
+        self.gender = GENDER_MALE;
+    
     if (self.language != nil) {
         [parameters setObject:self.language forKey:@"language"];
     }

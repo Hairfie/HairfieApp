@@ -148,7 +148,6 @@
 -(IBAction)claimBusinessLocation:(id)sender
 {
     if (![_salonTextField.text isEqualToString:@""] && ![_phoneTextField.text isEqualToString:@""]) {
-        NSLog(@"CLAIM CLAIM CLAIM");
         _claim.name = _salonTextField.text;
         _claim.phoneNumber = _phoneTextField.text;
         _claim.men = man;

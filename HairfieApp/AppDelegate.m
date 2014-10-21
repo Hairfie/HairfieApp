@@ -27,9 +27,7 @@ static LBRESTAdapter * _lbAdaptater = nil;
 
 + (LBRESTAdapter *) lbAdaptater
 {
-    NSLog(@"PAS INIT");
     if ( !_lbAdaptater) {
-        NSLog(@"INIT");
         _lbAdaptater = [LBRESTAdapter adapterWithURL:[NSURL URLWithString:API_URL]];
     }
     return _lbAdaptater;

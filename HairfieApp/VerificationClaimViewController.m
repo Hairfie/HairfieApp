@@ -45,7 +45,7 @@
     }
     else
     {
-         _civilityLabel.text = NSLocalizedStringFromTable(@"Women", @"Claim", nil);
+         _civilityLabel.text = NSLocalizedStringFromTable(@"Woman", @"Claim", nil);
         [_userTitle selectRow:0 inComponent:0 animated:YES];
     }
   
@@ -144,6 +144,8 @@
         NSLog(@"USER UPDATED");
         [self performSegueWithIdentifier:@"infoVerified" sender:self];
     };
+    
+    
     
     if (_phoneField.text.length == 0)
         [alertView show];
