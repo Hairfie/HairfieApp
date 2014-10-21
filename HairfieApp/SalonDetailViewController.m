@@ -477,7 +477,7 @@
         _reviewTableView.hidden = YES;
         _moreReviewBttn.hidden = YES;
         _moreReviewBttn.enabled = NO;
-        _mainViewHeight.constant = 980;
+        _mainViewHeight.constant = 1000;
         _addReviewButtonYpos.constant = 288;
         _addReviewButtonXpos.constant = 200;
     } else {

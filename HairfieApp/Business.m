@@ -247,14 +247,18 @@
     if (nil == aQuery) {
         aQuery = @"";
     }
+    
 
     [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/businesses/nearby" verb:@"GET"] forMethod:@"businesses.nearby"];
     LBModelRepository *businessData = [[AppDelegate lbAdaptater] repositoryWithModelName:@"businesses"];
+  
     [businessData invokeStaticMethod:@"nearby"
                           parameters:@{@"here": aGeoPoint.asApiString, @"limit" : aLimit, @"query" : aQuery}
                              success:^(NSArray *results) {
                                  NSMutableArray *businesses = [[NSMutableArray alloc] init];
                                  for (NSDictionary *result in results) {
+                                     NSLog(@"RESULTS %@", result);
+                                     NSLog(@"BUSINESS DIC %@", [[Business alloc] initWithDictionary:result]);
                                      [businesses addObject:[[Business alloc] initWithDictionary:result]];
                                  }
 
