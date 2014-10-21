@@ -164,14 +164,12 @@
 
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
- 
 
-    NSLog(@"LAYOUT SUBVIEWS");
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
-
+    
     _reviewRating.rating = 0;
     [ARAnalytics pageView:@"AR - Business Detail"];
     [ARAnalytics event:@"AR - Business Detail" withProperties:@{@"Business ID": _business.id, @"Name": _business.name}];
@@ -190,7 +188,6 @@
     } else {
         [_menuBttn setHidden:YES];
     }
-    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(businessChanged:)
                                                  name:[Business EVENT_CHANGED]
@@ -267,7 +264,7 @@
     self.hairfieView.hidden = YES;
     self.hairdresserView.hidden = YES;
     self.priceAndSaleView.hidden = YES;
-
+    
     [self decorateButton:self.infoBttn withImage:@"infos" active:NO];
     [self decorateButton:self.hairfieBttn withImage:@"hairfies" active:NO];
     [self decorateButton:self.hairdresserBttn withImage:@"hairdressers" active:NO];
@@ -277,19 +274,24 @@
         [self decorateButton:self.infoBttn withImage:@"infos" active:YES];
         [self.containerView bringSubviewToFront:self.infoView];
         self.infoView.hidden = NO;
+        _mainViewHeight.constant = 1000;
     } else if (aButton == self.hairfieBttn) {
         [self decorateButton:self.hairfieBttn withImage:@"hairfies" active:YES];
         [self.containerView bringSubviewToFront:self.hairfieView];
         self.hairfieView.hidden = NO;
+        _mainViewHeight.constant = 568 + (hairfies.count * 210) + _callBttn.frame.size.height + 210;
+        
         [self updateHairfiesView];
     } else if (aButton == self.hairdresserBttn) {
         [self decorateButton:self.hairdresserBttn withImage:@"hairdressers" active:YES];
         [self.containerView bringSubviewToFront:self.hairdresserView];
         self.hairdresserView.hidden = NO;
+        _mainViewHeight.constant = 568 + (_business.activeHairdressers.count * _hairdresserTableView.rowHeight);
     } else if (aButton == self.priceAndSaleBttn) {
         [self decorateButton:self.priceAndSaleBttn withImage:@"prices" active:YES];
         [self.containerView bringSubviewToFront:self.priceAndSaleView];
         self.priceAndSaleView.hidden = NO;
+        _mainViewHeight.constant = 568 + (_business.services.count * _pricesTableView.rowHeight);
     }
 
     for (UIButton *btn in @[self.infoBttn, self.hairfieBttn, self.hairdresserBttn, self.priceAndSaleBttn]) {
@@ -678,7 +680,7 @@
 
     UIButton *phoneBtn=[UIButton buttonWithType:UIButtonTypeRoundedRect];
 
-    phoneBtn.frame= CGRectMake(35, 75, 135, 25);
+    phoneBtn.frame= CGRectMake(35, 85, 135, 20);
     phoneBtn.backgroundColor = [UIColor colorWithRed:250/255.0f green:66/255.0f blue:77/255.0f alpha:1];
     phoneBtn.layer.cornerRadius = 5;
     phoneBtn.layer.masksToBounds = YES;
