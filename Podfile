@@ -26,3 +26,4 @@ target "HairfieAppTests" do
   pod 'ECSlidingViewController', '~> 2.0.3'
   pod 'libPhoneNumber-iOS', '~> 0.7'
 end
+

@@ -10,6 +10,7 @@
 #import "AdvanceSearch.h"
 #import "GAITrackedViewController.h"
 
+//@class PopUpViewController;
 
 @interface HomeViewController : GAITrackedViewController <UINavigationControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UIScrollViewDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate, UICollectionViewDelegateFlowLayout>
 
@@ -25,8 +26,8 @@
 @property (nonatomic) IBOutlet UIView *topBarView;
 @property (nonatomic) IBOutlet AdvanceSearch *searchView;
 @property (nonatomic) IBOutlet UIButton *takePictureButton;
-@property (nonatomic) PopUpViewController *popViewController;
 
+@property (nonatomic) PopUpViewController *popViewController;
 @property (nonatomic) IBOutlet UIButton *menuButton;
 
 @property (nonatomic) BOOL isNotLogged;
