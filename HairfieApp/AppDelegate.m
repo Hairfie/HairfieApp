@@ -53,7 +53,7 @@ static LBRESTAdapter * _lbAdaptater = nil;
         [User getById:self.credentialStore.userId
               success:^(User *user) {
                   self.currentUser = user;
-                 
+                  NSLog(@"USER : %@", self.currentUser.picture.url);
                   [[NSNotificationCenter defaultCenter] postNotificationName:@"currentUser" object:nil];
               }
               failure:^(NSError *error) {

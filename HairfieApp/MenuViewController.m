@@ -97,6 +97,8 @@
     
     SDWebImageManager *manager = [SDWebImageManager sharedManager];
 
+    
+    NSLog(@"USER URL %@, URLWITHWIDTH %@", appDelegate.currentUser.picture.url, [appDelegate.currentUser pictureUrlwithWidth:@200 andHeight:@200]);
     [manager downloadImageWithURL:[NSURL URLWithString:appDelegate.currentUser.picture.url]
                      options:0
                     progress:^(NSInteger receivedSize, NSInteger expectedSize)

@@ -179,7 +179,14 @@
             _validateBttnWidth.constant = 53;
         }
         
-        
+        if(_businessToManage.desc != nil)
+            [_descriptionBttn setTitle:_businessToManage.desc forState:UIControlStateNormal];
+        if (_businessToManage.timetable.monday.count != 0)
+        {
+            TimeWindow *tw = [_businessToManage.timetable.monday objectAtIndex:0];
+            NSString *dayFormatted = [NSString stringWithFormat:@"%@ %@ ...", NSLocalizedStringFromTable(@"Monday", @"Claim", nil), [tw timeWindowFormatted]];
+            [_timetableBttn setTitle:dayFormatted forState:UIControlStateNormal];
+        }
         [_validateBttn setTitle:NSLocalizedStringFromTable(@"Update",@"Claim", nil) forState:UIControlStateNormal];
        
         _phoneLabel.text = _businessToManage.phoneNumber;
@@ -762,9 +769,10 @@
     };
     void (^loadSuccessBlock)(NSArray *) = ^(NSArray *results) {
         
-        NSLog(@"Rez %@", results);
+        
+        NSLog(@"RESULTS %@", results);
         [[NSNotificationCenter defaultCenter] postNotificationName:@"currentUser" object:self];
-        [self performSegueWithIdentifier:@"toSalonDetail" sender:self];
+      //  [self performSegueWithIdentifier:@"toSalonDetail" sender:self];
     };
     
     [_businessToManage updateWithSuccess:loadSuccessBlock failure:loadErrorBlock];
