@@ -35,6 +35,9 @@
 @property (nonatomic) UIImage *backgroundProfileImage;
 @property (nonatomic) UIImage *profileImage;
 
+@property (nonatomic) IBOutlet NSLayoutConstraint *collectionViewHeight;
+@property (nonatomic) IBOutlet NSLayoutConstraint *mainViewHeight;
+
 
 
 @end

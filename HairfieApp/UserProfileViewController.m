@@ -18,6 +18,9 @@
 #import "CustomCollectionViewCell.h"
 #import "LoadingCollectionViewCell.h"
 
+#define HAIRFIE_CELL @"hairfieCell"
+#define LOADING_CELL @"loadingCell"
+
 @interface UserProfileViewController ()
 
 @end
@@ -33,11 +36,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.hairfiesCollection registerNib:[UINib nibWithNibName:@"CustomCollectionViewCell" bundle:nil]forCellWithReuseIdentifier:@"hairfieRelated"];
+    [self.hairfiesCollection registerNib:[UINib nibWithNibName:@"CustomCollectionViewCell" bundle:nil]forCellWithReuseIdentifier:HAIRFIE_CELL];
     
     
     [self.hairfiesCollection registerNib:[UINib nibWithNibName:@"LoadingCollectionViewCell" bundle:nil]
-          forCellWithReuseIdentifier:@"loadingCell"];
+          forCellWithReuseIdentifier:LOADING_CELL];
     
     appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     loadingNext = NO;
@@ -69,27 +72,6 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)setupHairfies
-{
-    
-    NSDate *until = nil;
-    if (userHairfies.count > 0) {
-        until = [userHairfies[0] createdAt];
-    }
-
-    void (^loadErrorBlock)(NSError *) = ^(NSError *error){
-        
-        NSLog(@"Error : %@", error.description);
-    };
-    void (^loadSuccessBlock)(NSArray *) = ^(NSArray *results) {
-        
-        userHairfies = [NSMutableArray arrayWithArray:results];
-        [self.hairfiesCollection reloadData];
-        //  [self performSegueWithIdentifier:@"toSalonDetail" sender:self];
-    };
-    [Hairfie getHairfiesByAuthor:self.user.id until:nil limit:@HAIRFIES_PAGE_SIZE skip:@0 success:loadSuccessBlock failure:loadErrorBlock];
-    
-}
 -(void) initKnownData
 {
     if (self.isCurrentUser == YES) {
@@ -99,7 +81,6 @@
         self.navBttn.hidden = NO;
         self.menuBttn.hidden = YES;
     }
-  //  [self setupHairfies];
     
     [self.followUserBttn setTitle:NSLocalizedStringFromTable(@"Follow", @"UserProfile", nil) forState:UIControlStateNormal];
     [self.followUserBttn profileFollowStyle];
@@ -157,6 +138,7 @@
     if (aButton == self.hairfieBttn) {
         self.hairfieView.hidden = NO;
         [bottomBorder setFrame:CGRectMake(0, aButton.frame.size.height, aButton.frame.size.width - 1, 3)];
+        self.mainViewHeight.constant = (userHairfies.count * 210);
     }
     if (aButton == self.reviewBttn)
     {
@@ -212,7 +194,7 @@
 
 -(UICollectionViewCell *)hairfieCellAtIndexPath:(NSIndexPath *)indexPath
 {
-    CustomCollectionViewCell *cell = [self.hairfiesCollection dequeueReusableCellWithReuseIdentifier:@"hairfieCell"
+    CustomCollectionViewCell *cell = [self.hairfiesCollection dequeueReusableCellWithReuseIdentifier:HAIRFIE_CELL
         forIndexPath:indexPath];
     
     if (cell == nil) {
@@ -230,8 +212,8 @@
 
 -(UICollectionViewCell *)loadingCellAtIndexPath:(NSIndexPath *)indexPath
 {
-    LoadingCollectionViewCell *cell = [self.hairfiesCollection dequeueReusableCellWithReuseIdentifier:@"loadingCell"
-                                                                                     forIndexPath:indexPath];
+    LoadingCollectionViewCell *cell = [self.hairfiesCollection dequeueReusableCellWithReuseIdentifier:LOADING_CELL
+        forIndexPath:indexPath];
     
     if (endOfScroll) {
         [cell showEndOfScroll];
@@ -245,16 +227,17 @@
     if (loadingNext || endOfScroll) {
         return;
     }
-    
     loadingNext = YES;
-    
     void (^successHandler)(NSArray *) = ^(NSArray *results) {
         for (Hairfie *result in results) {
             if (![userHairfies containsObject:result]) {
                 [userHairfies addObject:result];
+                
             }
         }
-        
+        self.mainViewHeight.constant = (userHairfies.count * 210);
+        self.collectionViewHeight.constant = ((userHairfies.count) * 210);
+        NSLog(@"CONSTANTS : %f // %f", self.mainViewHeight.constant, self.collectionViewHeight.constant);
         [self.hairfiesCollection reloadData];
         
         // did we reach the end of scroll?
