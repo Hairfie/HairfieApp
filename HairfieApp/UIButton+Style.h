@@ -14,7 +14,7 @@
 -(void)roundStyle;
 -(void)noAccountStyle;
 -(void)popupStyle;
-
-
+-(void)profileTabStyle;
+-(void)profileFollowStyle;
 
 @end

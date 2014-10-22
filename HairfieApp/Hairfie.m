@@ -100,6 +100,46 @@
 }
 
 
+
++(void)getHairfiesByAuthor:(NSString *)userId
+                     until:(NSDate *)until
+                     limit:(NSNumber *)limit
+                      skip:(NSNumber *)skip
+                   success:(void(^)(NSArray *hairfies))aSuccessHandler
+                   failure:(void(^)(NSError *error))aFailureHandler
+{
+    NSMutableDictionary *where = [[NSMutableDictionary alloc] initWithDictionary:@{@"authorId": userId}];
+    
+    if (nil != until) {
+        [where setObject:@{@"lte": until} forKey:@"createdAt"];
+    }
+    
+    NSDictionary *parameters = @{
+                                 @"filter": @{
+                                         @"where":where,
+                                         @"limit": limit,
+                                         @"skip": skip,
+                                         @"order": @"createdAt DESC"
+                                         }
+                                 };
+    
+    [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/hairfies" verb:@"GET"]
+                                        forMethod:@"hairfies.find"];
+    
+    LBModelRepository *repository = [[self class] repository];
+    
+    [repository invokeStaticMethod:@"find"
+                        parameters:parameters
+                           success:^(NSArray *results) {
+                               NSMutableArray *hairfies = [[NSMutableArray alloc] init];
+                               for (NSDictionary *result in results) {
+                                   [hairfies addObject:[[Hairfie alloc] initWithDictionary:result]];
+                               }
+                               aSuccessHandler([[NSArray alloc] initWithArray:hairfies]);
+                           }
+                           failure:aFailureHandler];
+}
+
 + (void) listLatest:(NSNumber *)limit
                skip:(NSNumber *)skip
             success:(void (^)(NSArray *))aSuccessHandler
@@ -129,6 +169,8 @@
                                }
                                failure:aFailureHandler];
 }
+
+
 
 +(void)listLatestPerPage:(NSNumber *)page
                     success:(void(^)(NSArray *hairfies))aSuccessHandler

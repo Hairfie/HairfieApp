@@ -19,6 +19,7 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import "UIRoundImageView.h"
 #import "UIImage+Filters.h"
+#import "UserProfileViewController.h"
 
 @implementation MenuViewController
 {
@@ -29,6 +30,7 @@
     NSMutableArray *headers;
     NSArray *managedBusinesses;
     Business *businessToManage;
+    UIImageView *profilePicture;
 }
 @synthesize menuTableView = _menuTableView;
 @synthesize profileView = _profileView;
@@ -114,7 +116,7 @@
      }];
     _profileImageView.contentMode = UIViewContentModeScaleAspectFill;
     
-    UIImageView *profilePicture = [[UIRoundImageView alloc] initWithFrame:CGRectMake(90, 30, 92, 92)];
+    profilePicture = [[UIRoundImageView alloc] initWithFrame:CGRectMake(90, 30, 92, 92)];
     profilePicture.clipsToBounds = YES;
     profilePicture.contentMode = UIViewContentModeScaleAspectFit;
 
@@ -376,6 +378,10 @@
 }
 
 
+-(IBAction)showUserProfile:(id)sender
+{
+    [self performSegueWithIdentifier:@"ProfileSegue" sender:self];
+}
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"ManageBusiness"])
@@ -385,6 +391,17 @@
         
         [claimVc setBusinessToManage:businessToManage];
      
+    }
+    if ([segue.identifier isEqualToString:@"ProfileSegue"])
+    {
+        
+        UINavigationController *navController = (UINavigationController*)[segue destinationViewController];
+        UserProfileViewController *userProfile = [navController.viewControllers objectAtIndex:0];
+        
+        [userProfile setUser:appDelegate.currentUser];
+        userProfile.isCurrentUser = YES;
+        userProfile.backgroundProfileImage = _profileImageView.image;
+        userProfile.profileImage = profilePicture.image;
     }
 }
 
