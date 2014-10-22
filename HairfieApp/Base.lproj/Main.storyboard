@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="m6Z-pY-ich">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A388b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="m6Z-pY-ich">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -913,6 +914,16 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hdf-Fe-9Xd">
+                                        <rect key="frame" x="137" y="237" width="46" height="30"/>
+                                        <state key="normal" title="FB">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="fbShare:" destination="60g-nd-hW0" eventType="touchUpInside" id="DK5-Pc-Pqh"/>
+                                            <action selector="searchAroundMe:" destination="60g-nd-hW0" eventType="touchUpInside" id="my5-sE-cgi"/>
+                                        </connections>
+                                    </button>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="HkZ-R9-OZp">
                                         <rect key="frame" x="10" y="205" width="300" height="200"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -931,6 +942,7 @@
                                 <constraints>
                                     <constraint firstItem="2o9-JL-3ON" firstAttribute="top" secondItem="xfh-mY-dbB" secondAttribute="top" constant="165" id="8DI-3S-AVb"/>
                                     <constraint firstItem="HkZ-R9-OZp" firstAttribute="width" secondItem="85z-mr-SaL" secondAttribute="width" id="G6z-i5-Lgx"/>
+                                    <constraint firstAttribute="centerX" secondItem="Hdf-Fe-9Xd" secondAttribute="centerX" id="aLa-6g-RKt"/>
                                     <constraint firstItem="HkZ-R9-OZp" firstAttribute="top" secondItem="85z-mr-SaL" secondAttribute="bottom" constant="-1" id="viD-cx-3fR"/>
                                 </constraints>
                             </scrollView>
@@ -961,6 +973,7 @@
                     <connections>
                         <outlet property="dataChoice" destination="HkZ-R9-OZp" id="iGK-vn-EE3"/>
                         <outlet property="emailSubview" destination="ihB-lj-Iee" id="GF1-u9-Lrg"/>
+                        <outlet property="fbShareButton" destination="Hdf-Fe-9Xd" id="IGw-5N-rbK"/>
                         <outlet property="hairdresserSubview" destination="xSZ-Hu-sLy" id="NMc-NR-H2v"/>
                         <outlet property="hairfieDesc" destination="gFo-ft-JjF" id="12p-0m-f8C"/>
                         <outlet property="hairfieImageView" destination="GIY-2G-FaB" id="zZA-KP-CH3"/>
