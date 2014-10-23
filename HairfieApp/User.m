@@ -11,18 +11,13 @@
 #import "AppDelegate.h"
 #import "MenuViewController.h"
 #import "HairfieLike.h"
+#import "SetterUtils.h"
 
 @implementation User
 
--(void)setPicture:(NSDictionary *)aPicture
+-(void)setPicture:(id)aPicture
 {
-    if ([aPicture isKindOfClass:[Picture class]]) {
-        _picture = aPicture;
-    } else if ([aPicture isEqual:[NSNull null]]) {
-        _picture = nil;
-    } else {
-        _picture = [[Picture alloc] initWithDictionary:aPicture];
-    }
+    _picture = [Picture fromSetterValue:aPicture];
 }
 
 -(NSString *)name
@@ -258,6 +253,11 @@
                                       aSuccessHandler();
                                   }
                                   failure:aFailureHandler];
+}
+
++(id)fromSetterValue:(id)aValue
+{
+    return [SetterUtils getInstanceOf:[self class] fromSetterValue:aValue];
 }
 
 +(UserRepository *)repository

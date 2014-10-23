@@ -15,4 +15,6 @@
 
 -(id)initWithDictionary:(NSDictionary *)aDictionary;
 
++(id)fromSetterValue:(id)aValue;
+
 @end

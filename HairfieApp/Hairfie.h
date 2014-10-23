@@ -53,6 +53,8 @@
                     success:(void(^)(NSArray *hairfies))aSuccessHandler
                     failure:(void(^)(NSError *error))aFailureHandler;
 
++(id)fromSetterValue:(id)aValue;
+
 +(HairfieRepository *)repository;
 
 @end

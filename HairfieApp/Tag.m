@@ -13,22 +13,7 @@
 
 -(void)setCategory:(id)aCategory
 {
-    if ([aCategory isKindOfClass:[TagCategory class]]) {
-        _category = aCategory;
-        return;
-    }
-    
-    if ([aCategory isKindOfClass:[NSDictionary class]]) {
-        _category = [[TagCategory alloc] initWithDictionary:aCategory];
-        return;
-    }
-    
-    if ([aCategory isEqual:[NSNull null]]) {
-        _category = nil;
-        return;
-    }
-    
-    [NSException raise:@"Invalid category value" format:@"value %@ is invalid", aCategory];
+    _category = [TagCategory fromSetterValue:aCategory];
 }
 
 -(id)initWithDictionary:(NSDictionary *)aDictionary

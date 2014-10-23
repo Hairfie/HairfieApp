@@ -27,30 +27,20 @@
     return self;
 }
 
--(void)setBusiness:(NSDictionary *)aBusiness
+-(void)setBusiness:(id)aBusiness
 {
-    if ([aBusiness isKindOfClass:[Business class]]) {
-        _business = (Business *) aBusiness;
-    } else if ([aBusiness isEqual:[NSNull null]]) {
-        _business = nil;
-    } else {
-        _business = [[Business alloc] initWithDictionary:aBusiness];
-    }
+    _business = [Business fromSetterValue:aBusiness];
 }
 
--(void)setPictureWithImage:(UIImage *)image andContainer:(NSString *)container {
+-(void)setPictureWithImage:(UIImage *)image
+              andContainer:(NSString *)container
+{
     _picture = [[Picture alloc] initWithImage:image andContainer:container];
 }
 
--(void)setPrice:(NSDictionary *)aPrice
+-(void)setPrice:(id)aPrice
 {
-    if ([aPrice isKindOfClass:[Money class]]) {
-        _price = (Money *)aPrice;
-    } else if ([aPrice isEqual:[NSNull null]]) {
-        _price = (Money *)aPrice;
-    } else {
-        _price = [[Money alloc] initWithDictionary:aPrice];
-    }
+    _price = [Money fromSetterValue:aPrice];
 }
 
 -(void)uploadPictureWithSuccess:(void(^)())aSuccessHandler
@@ -93,7 +83,8 @@
                            failure:aFailureHandler];
 }
 
--(BOOL)pictureIsUploaded {
+-(BOOL)pictureIsUploaded
+{
     BOOL result = self.picture.name ? YES : NO;
     return result;
 }

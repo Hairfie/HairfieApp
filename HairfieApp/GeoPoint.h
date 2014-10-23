@@ -16,7 +16,8 @@
 
 -(id)initWithString:(NSString *)aString;
 
--(id)initWithJson:(NSDictionary *)data;
+-(id)initWithDictionary:(NSDictionary *)data;
+-(id)initWithJson:(NSDictionary *)data __deprecated;
 
 -(id)initWithLocation:(CLLocation *)aLocation;
 
@@ -31,5 +32,7 @@
 
 -(NSString *)asApiString;
 -(NSDictionary*)toDictionary;
+
++(id)fromSetterValue:(id)aValue;
 
 @end

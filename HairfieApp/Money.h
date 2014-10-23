@@ -22,4 +22,6 @@
 
 -(NSString *)formatted;
 
++(id)fromSetterValue:(id)aValue;
+
 @end

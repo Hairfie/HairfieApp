@@ -7,6 +7,7 @@
 //
 
 #import "Money.h"
+#import "SetterUtils.h"
 
 @implementation Money
 
@@ -39,6 +40,11 @@
     } else {
         return [NSString stringWithFormat:@"%@ %@", self.currency, self.amount];
     }
+}
+
++(id)fromSetterValue:(id)aValue
+{
+    return [SetterUtils getInstanceOf:[self class] fromSetterValue:aValue];
 }
 
 @end

@@ -13,7 +13,6 @@
 
 @implementation BusinessClaim
 
-
 -(void)claimWithSuccess:(void(^)(NSDictionary *results))aSuccessHandler
                 failure:(void(^)(NSError *error))aFailureHandler
 {

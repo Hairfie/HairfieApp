@@ -36,4 +36,6 @@
 -(void)uploadWithSuccess:(void(^)())aSuccessHandler
                  failure:(void(^)())aFailureHandler;
 
++(id)fromSetterValue:(id)aValue;
+
 @end

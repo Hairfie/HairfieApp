@@ -21,4 +21,6 @@
 
 -(NSDictionary*)toDictionary;
 
++(id)fromSetterValue:(id)aValue;
+
 @end

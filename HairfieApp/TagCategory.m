@@ -9,12 +9,18 @@
 
 #import "TagCategory.h"
 #import "AppDelegate.h"
+#import "SetterUtils.h"
 
 @implementation TagCategory
 
 -(id)initWithDictionary:(NSDictionary *)aDictionary
 {
     return (TagCategory *)[[[self class] repository] modelWithDictionary:aDictionary];
+}
+
++(id)fromSetterValue:(id)aValue
+{
+    return [SetterUtils getInstanceOf:[self class] fromSetterValue:aValue];
 }
 
 +(LBModelRepository *)repository
