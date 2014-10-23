@@ -61,6 +61,13 @@ static LBRESTAdapter * _lbAdaptater = nil;
                   self.currentUser = nil;
                   [self.credentialStore clearSavedCredentials];
               }];
+        
+        [FBSession openActiveSessionWithReadPermissions:@[@"public_profile", @"email"]
+                                           allowLoginUI:NO
+                                      completionHandler:
+         ^(FBSession *session, FBSessionState state, NSError *error) {
+             NSLog(@"FB Connected");
+         }];
     } else {
         [self.credentialStore clearTutorialSeen];
         [self showLoginStoryboard];
