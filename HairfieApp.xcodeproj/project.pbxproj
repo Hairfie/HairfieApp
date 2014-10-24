@@ -45,6 +45,8 @@
 		1564959519AF6292008DC070 /* HairfieColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 1564959419AF6292008DC070 /* HairfieColors.m */; };
 		15697B31199BB03800DA83FE /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 15697B30199BB03800DA83FE /* UIImage+Resize.m */; };
 		1576492919C9B8BA00DDC141 /* help-hairfie.png in Resources */ = {isa = PBXBuildFile; fileRef = 1576492819C9B8BA00DDC141 /* help-hairfie.png */; };
+		158FCA8019FA3DA10001F86C /* DateUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 158FCA7F19FA3DA10001F86C /* DateUtils.m */; };
+		158FCA8319FA3DCF0001F86C /* SetterUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 158FCA8219FA3DCF0001F86C /* SetterUtils.m */; };
 		15A50D9A19CC39AF0043BFB4 /* login-user.png in Resources */ = {isa = PBXBuildFile; fileRef = 15A50D9919CC39AF0043BFB4 /* login-user.png */; };
 		15A50D9D19CC6FAC0043BFB4 /* NotLoggedAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A50D9C19CC6FAB0043BFB4 /* NotLoggedAlert.m */; };
 		15A91EB219DADD97000539C9 /* hairdresser-who-string-hairfie-post.png in Resources */ = {isa = PBXBuildFile; fileRef = 15A91EB119DADD97000539C9 /* hairdresser-who-string-hairfie-post.png */; };
@@ -391,6 +393,10 @@
 		15697B30199BB03800DA83FE /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
 		1576492819C9B8BA00DDC141 /* help-hairfie.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "help-hairfie.png"; sourceTree = "<group>"; };
 		157D7715198FF309006C1947 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		158FCA7E19FA3DA10001F86C /* DateUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateUtils.h; sourceTree = "<group>"; };
+		158FCA7F19FA3DA10001F86C /* DateUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateUtils.m; sourceTree = "<group>"; };
+		158FCA8119FA3DCF0001F86C /* SetterUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetterUtils.h; sourceTree = "<group>"; };
+		158FCA8219FA3DCF0001F86C /* SetterUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetterUtils.m; sourceTree = "<group>"; };
 		15A50D9919CC39AF0043BFB4 /* login-user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-user.png"; sourceTree = "<group>"; };
 		15A50D9B19CC6FAB0043BFB4 /* NotLoggedAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotLoggedAlert.h; sourceTree = "<group>"; };
 		15A50D9C19CC6FAB0043BFB4 /* NotLoggedAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotLoggedAlert.m; sourceTree = "<group>"; };
@@ -876,7 +882,7 @@
 		1511518E1982B7A8001157A2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				B382114219EEB6F40020C25E /* New Group */,
+				158FCA8419FA3DD70001F86C /* Utils */,
 				B3F0B22319EC1D9F00E0E6EE /* NSString Subclasses */,
 				B3F0B21719EBC19E00E0E6EE /* UITextField Subclasses */,
 				1538A3A619E53F9800F09628 /* UIView Subclasses */,
@@ -993,6 +999,17 @@
 				1554FAA819D3408E00A0426B /* UIImage+Filters.m */,
 			);
 			name = "UIImage Subclasses";
+			sourceTree = "<group>";
+		};
+		158FCA8419FA3DD70001F86C /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				158FCA8119FA3DCF0001F86C /* SetterUtils.h */,
+				158FCA8219FA3DCF0001F86C /* SetterUtils.m */,
+				158FCA7E19FA3DA10001F86C /* DateUtils.h */,
+				158FCA7F19FA3DA10001F86C /* DateUtils.m */,
+			);
+			name = Utils;
 			sourceTree = "<group>";
 		};
 		15B4972719DBFC4500917B83 /* Tuto */ = {
@@ -1396,13 +1413,6 @@
 				B36731E6198FDFCF00E11C56 /* Pictos */,
 			);
 			name = "Salon Detail";
-			sourceTree = "<group>";
-		};
-		B382114219EEB6F40020C25E /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "New Group";
 			sourceTree = "<group>";
 		};
 		B3923189198BA9C800E0817D /* Around Me Controller + Views */ = {
@@ -2144,9 +2154,11 @@
 				B33D4C5919D1A655009DE6DD /* BusinessClaimRepository.m in Sources */,
 				B3423216198924290058866B /* AFURLRequestSerialization.m in Sources */,
 				718E16C919EE6A3C00AF26A1 /* HairdresserRepository.m in Sources */,
+				158FCA8319FA3DCF0001F86C /* SetterUtils.m in Sources */,
 				711FB93B19D9911E0023CAD4 /* BusinessErrorReportViewController.m in Sources */,
 				B33E4C4319A48FE70024F5F7 /* HoraireTableViewCell.m in Sources */,
 				B3423218198924290058866B /* AFURLSessionManager.m in Sources */,
+				158FCA8019FA3DA10001F86C /* DateUtils.m in Sources */,
 				15B8ADE319C09A3E009846AA /* BusinessRepository.m in Sources */,
 				B3F5522219BF313E0033230E /* HairfiePostDetailsViewController.m in Sources */,
 				B36AC50E19DC31C600B8AC13 /* HairdresserTableViewCell.m in Sources */,
