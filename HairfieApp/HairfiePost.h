@@ -14,12 +14,14 @@
 #import "HairfieRepository.h"
 #import "Picture.h"
 #import "Money.h"
+#import "HairfieShare.h"
 
 @interface HairfiePost : LBModel
 
 @property (strong, nonatomic) Picture *picture;
 @property (strong, nonatomic) NSString *description;
 @property (strong, nonatomic) NSString *hairdresserName;
+@property (nonatomic)         BOOL shareOnFB;
 @property (strong, nonatomic) Money *price;
 @property (strong, nonatomic) Business *business;
 

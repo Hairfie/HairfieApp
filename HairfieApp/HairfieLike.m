@@ -18,11 +18,9 @@
     return (HairfieLike *)[[HairfieLike repository] modelWithDictionary:data];
 }
 
--(void)setHairfie:(NSDictionary *)hairfieDic
-{    
-    if ([hairfieDic isKindOfClass:[NSNull class]]) return;
-    
-    _hairfie = [[Hairfie alloc] initWithDictionary:hairfieDic];
+-(void)setHairfie:(id)aHairfie
+{
+    _hairfie = [Hairfie fromSetterValue:aHairfie];
 }
 
 +(HairfieLikeRepository *)repository

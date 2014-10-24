@@ -68,4 +68,6 @@
 -(void)getManagedBusinessesByUserSuccess:(void (^)())aSuccessHandler
                                  failure:(void (^)(NSError *))aFailureHandler;
 
++(id)fromSetterValue:(id)aValue;
+
 @end

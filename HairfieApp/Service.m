@@ -7,6 +7,7 @@
 //
 
 #import "Service.h"
+#import "SetterUtils.h"
 
 @implementation Service
 
@@ -31,5 +32,9 @@
     return [[NSDictionary alloc]initWithObjectsAndKeys:self.label, @"label",[self.price toDictionary], @"price", nil];
 }
 
++(id)fromSetterValue:(id)aValue
+{
+    return [SetterUtils getInstanceOf:[self class] fromSetterValue:aValue];
+}
 
 @end

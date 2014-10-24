@@ -37,4 +37,6 @@
 
 -(BOOL)isOpenToday;
 
++(id)fromSetterValue:(id)aValue;
+
 @end

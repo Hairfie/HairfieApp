@@ -14,6 +14,7 @@
 #import "NotLoggedAlert.h"
 #import "UITextField+Style.h"
 #import <FacebookSDK/FacebookSDK.h>
+#import "FBUtils.h"
 
 #import <LoopBack/LoopBack.h>
 
@@ -25,6 +26,7 @@
     NSMutableArray *salonTypes;
     Picture *uploadedPicture;
     BOOL uploadInProgress;
+    BOOL isFbShareActivated;
     AppDelegate *appDelegate;
 }
 
@@ -327,44 +329,22 @@ shouldChangeTextInRange: (NSRange) range
 
 
 -(IBAction)fbShare:(id)sender {
-        // We will post on behalf of the user, these are the permissions we need:
+    if(isFbShareActivated) {
+        [sender setTitle:@"FB" forState:UIControlStateNormal];
+        isFbShareActivated = NO;
+        _hairfiePost.shareOnFB = NO;
+    } else {
         NSArray *permissionsNeeded = @[@"publish_actions"];
-        
-        // Request the permissions the user currently has
-        [FBRequestConnection startWithGraphPath:@"/me/permissions"
-                              completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
-                                  if (!error){
-                                      NSDictionary *currentPermissions= [(NSArray *)[result data] objectAtIndex:0];
-                                      NSMutableArray *requestPermissions = [[NSMutableArray alloc] initWithArray:@[]];
-                                      
-                                      // Check if all the permissions we need are present in the user's current permissions
-                                      // If they are not present add them to the permissions to be requested
-                                      for (NSString *permission in permissionsNeeded){
-                                          if (![currentPermissions objectForKey:permission]){
-                                              [requestPermissions addObject:permission];
-                                          }
-                                      }
-                                      
-                                      // If we have permissions to request
-                                      if ([requestPermissions count] > 0){
-                                          // Ask for the missing permissions
-                                          [FBSession.activeSession requestNewPublishPermissions:requestPermissions
-                                                                                defaultAudience:FBSessionDefaultAudienceFriends
-                                                                              completionHandler:^(FBSession *session, NSError *error) {
-                                                                                  if (!error) {
-                                                                                                                                                                NSLog(@"Share is OK !");
-                                                                                  } else {
-                                                                                      NSLog(@"%@", error.description);
-                                                                                  }
-                                                                              }];
-                                      } else {
-                                          NSLog(@"Share is OK !");
-                                      }
-                                      
-                                  } else {
-                                      NSLog(@"%@", error.description);
-                                  }
-                              }];
+
+        [FBUtils getPermissions:permissionsNeeded success:^{
+            NSLog(@"GOGO Share !");
+            [sender setTitle:@"FB ACTIVATED" forState:UIControlStateNormal];
+            isFbShareActivated = YES;
+            _hairfiePost.shareOnFB = YES;
+        } failure:^(NSError *error) {
+            NSLog(@"Sharing failed !");
+        }];
+    }
 }
 
 

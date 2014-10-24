@@ -7,6 +7,7 @@
 //
 
 #import "GeoPoint.h"
+#import "SetterUtils.h"
 
 @implementation GeoPoint
 
@@ -26,10 +27,15 @@
     return self;
 }
 
--(id)initWithJson:(NSDictionary *)data
+-(id)initWithDictionary:(NSDictionary *)data
 {
     return [self initWithLongitude:[data valueForKey:@"lng"]
                           latitude:[data valueForKey:@"lat"]];
+}
+
+-(id)initWithJson:(NSDictionary *)data
+{
+    return [self initWithDictionary:data];
 }
 
 -(id)initWithLocation:(CLLocation *)aLocation
@@ -67,6 +73,11 @@
 -(NSDictionary*)toDictionary
 {
     return [[NSDictionary alloc] initWithObjectsAndKeys:self.lng, @"lng", self.lat, @"lat",nil];
+}
+
++(id)fromSetterValue:(id)aValue
+{
+    return [SetterUtils getInstanceOf:[self class] fromSetterValue:aValue];
 }
 
 @end

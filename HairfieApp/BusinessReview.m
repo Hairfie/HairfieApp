@@ -9,6 +9,7 @@
 #import "BusinessReview.h"
 #import "BusinessReviewRepository.h"
 #import "AppDelegate.h"
+#import "DateUtils.h"
 
 @implementation BusinessReview
 
@@ -17,33 +18,19 @@
     return @"BusinessReview.saved";
 }
 
--(void)setAuthor:(NSDictionary *)authorDic
+-(void)setAuthor:(id)aUser
 {
-    if([authorDic isKindOfClass:[NSNull class]]) return;
-    
-    _author = [[User alloc] initWithDictionary:authorDic];
+    _author = [User fromSetterValue:aUser];
 }
 
--(void)setBusiness:(NSDictionary *)aDictionary
+-(void)setBusiness:(id)aBusiness
 {
-    if ([aDictionary isEqual:[NSNull null]]) {
-        _business = nil;
-    } else if ([aDictionary isKindOfClass:[Business class]]) {
-        _business = aDictionary;
-    } else {
-        _business = [[[self class] alloc] initWithDictionary:aDictionary];
-    }
+    _business = [Business fromSetterValue:aBusiness];
 }
 
--(void)setCreatedAt:(NSDate *)aDate
+-(void)setCreatedAt:(id)aDate
 {
-    if ([aDate isKindOfClass:[NSString class]]) {
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:API_DATE_FORMAT];
-        _createdAt = [dateFormatter dateFromString:aDate];
-    } else {
-        _createdAt = aDate;
-    }
+    _createdAt = [DateUtils dateFromSetterValue:aDate];
 }
 
 -(id)initWithDictionary:(NSDictionary *)data
@@ -134,7 +121,5 @@
 {
     return [[AppDelegate lbAdaptater] repositoryWithClass:[BusinessReviewRepository class]];
 }
-
-
 
 @end

@@ -8,6 +8,7 @@
 
 #import "Timetable.h"
 #import "TimeWindow.h"
+#import "SetterUtils.h"
 
 @implementation Timetable
 
@@ -165,12 +166,16 @@
             timeWindows = self.saturday;
             break;
         default:
-            [[[NSException alloc] initWithName:@"Invalid week day"
-                                        reason:[NSString stringWithFormat:@"Got week day: %@", [components weekday]]
-                                      userInfo:nil] raise];
+            [NSException raise:@"Invalid week day" format:@"value %ld is invalid", (long)[components weekday]];
+
     }
 
     return timeWindows.count > 0;
+}
+
++(id)fromSetterValue:(id)aValue
+{
+    return [SetterUtils getInstanceOf:[self class] fromSetterValue:aValue];
 }
 
 @end
