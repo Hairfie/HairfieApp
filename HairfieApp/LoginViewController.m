@@ -20,12 +20,14 @@
 #import "HomeViewController.h"
 #import "MRProgress.h"
 #import "UIButton+Style.h"
+#import "FBAuthenticator.h"
 
 @interface LoginViewController ()
 @end
 
 @implementation LoginViewController {
     UserAuthenticator *userAuthenticator;
+    FBAuthenticator *fbAuthenticator;
 }
 
 - (void)viewDidLoad {
@@ -35,9 +37,10 @@
     [_loginButton roundStyle];
     
     _noPasswordButton.titleLabel.adjustsFontSizeToFitWidth = YES;
-    _delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    _dismiss = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissTextFields)];
-    userAuthenticator = [[UserAuthenticator alloc] init];
+    _delegate           = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    _dismiss            = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissTextFields)];
+    userAuthenticator   = [[UserAuthenticator alloc] init];
+    fbAuthenticator     = [[FBAuthenticator alloc] init];
 
     [_passwordField fixSecureTextFieldFont];
 
@@ -184,6 +187,9 @@
         FBAccessTokenData *accessTokenData = [session accessTokenData];
         NSString *fbAuthToken = [accessTokenData accessToken];
         
+        _delegate.fbSession = session;
+        
+        
         [self loginWithFbToken:fbAuthToken];
         return;
     }
@@ -223,29 +229,20 @@
 
 -(void)loginWithFbToken:(NSString*)fbAuthToken
 {
-    LBRESTAdapter *fbLbAdaptater = [LBRESTAdapter adapterWithURL:[NSURL URLWithString:BASE_URL]];
+    BOOL performLogin = ![_delegate.credentialStore isLoggedIn];
+
     
     void (^loadErrorBlock)(NSError *) = ^(NSError *error) {
         NSLog(@"Error on load %@", error.description);
         [MRProgressOverlayView dismissAllOverlaysForView:self.view animated:YES];
     };
     
-    void (^loadSuccessBlock)(NSDictionary *) = ^(NSDictionary *results) {
+    void (^loadSuccessBlock)(void) = ^(void) {
         [MRProgressOverlayView dismissAllOverlaysForView:self.view animated:YES];
-        BOOL performLogin = ![_delegate.credentialStore isLoggedIn];
-        [AppDelegate lbAdaptater].accessToken = [results objectForKey:@"id"];
-        [_delegate.credentialStore setAuthTokenAndUserId:[results objectForKey:@"id"] forUser:[results objectForKey:@"userId"]];
-        [userAuthenticator getCurrentUser];
         if(performLogin)    [self performSegueWithIdentifier:@"@Main" sender:self];
     };
 
-    NSString *repoName = @"auth/facebook/token";
-
-    [[fbLbAdaptater contract] addItem:[SLRESTContractItem itemWithPattern:@"" verb:@"POST"] forMethod:@"facebook.login"];
-    
-    LBModelRepository *loginData = [fbLbAdaptater repositoryWithModelName:repoName];
-
-    [loginData invokeStaticMethod:@"" parameters:@{@"access_token":fbAuthToken} success:loadSuccessBlock failure:loadErrorBlock];
+    [fbAuthenticator loginWithFbToken:fbAuthToken success:loadSuccessBlock failure:loadErrorBlock];
 }
 
 - (void) showMessage:(NSString *)alertText withTitle:(NSString *)alertTitle {

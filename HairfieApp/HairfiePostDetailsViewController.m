@@ -15,6 +15,7 @@
 #import "UITextField+Style.h"
 #import <FacebookSDK/FacebookSDK.h>
 #import "FBUtils.h"
+#import "FBAuthenticator.h"
 
 #import <LoopBack/LoopBack.h>
 
@@ -334,16 +335,31 @@ shouldChangeTextInRange: (NSRange) range
         isFbShareActivated = NO;
         _hairfiePost.shareOnFB = NO;
     } else {
-        NSArray *permissionsNeeded = @[@"publish_actions"];
-
-        [FBUtils getPermissions:permissionsNeeded success:^{
-            NSLog(@"GOGO Share !");
-            [sender setTitle:@"FB ACTIVATED" forState:UIControlStateNormal];
-            isFbShareActivated = YES;
-            _hairfiePost.shareOnFB = YES;
+        [self checkFbSessionWithSuccess:^{
+            NSArray *permissionsNeeded = @[@"publish_actions"];
+            [FBUtils getPermissions:permissionsNeeded success:^{
+                NSLog(@"GOGO Share !");
+                [sender setTitle:@"FB ACTIVATED" forState:UIControlStateNormal];
+                isFbShareActivated = YES;
+                _hairfiePost.shareOnFB = YES;
+            } failure:^(NSError *error) {
+                NSLog(@"Sharing failed !");
+            }];
         } failure:^(NSError *error) {
             NSLog(@"Sharing failed !");
         }];
+        
+    }
+}
+
+-(void)checkFbSessionWithSuccess:(void(^)())aSuccessHandler
+                         failure:(void(^)(NSError *error))aFailureHandler {
+    if (FBSession.activeSession.state == FBSessionStateOpen
+        || FBSession.activeSession.state == FBSessionStateOpenTokenExtended) {
+        aSuccessHandler();
+    } else {
+        FBAuthenticator *fbAuthenticator = [[FBAuthenticator alloc] init];
+        [fbAuthenticator linkFbAccountWithPermissions:@[@"publish_actions"] success:aSuccessHandler failure:aFailureHandler];
     }
 }
 

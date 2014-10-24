@@ -49,6 +49,7 @@
 		158FCA8319FA3DCF0001F86C /* SetterUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 158FCA8219FA3DCF0001F86C /* SetterUtils.m */; };
 		158FCA8719FA659E0001F86C /* FBUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 158FCA8619FA659E0001F86C /* FBUtils.m */; };
 		158FCA8A19FA67820001F86C /* HairfieShare.m in Sources */ = {isa = PBXBuildFile; fileRef = 158FCA8919FA67820001F86C /* HairfieShare.m */; };
+		158FCA9119FA9B870001F86C /* FBAuthenticator.m in Sources */ = {isa = PBXBuildFile; fileRef = 158FCA9019FA9B870001F86C /* FBAuthenticator.m */; };
 		15A50D9A19CC39AF0043BFB4 /* login-user.png in Resources */ = {isa = PBXBuildFile; fileRef = 15A50D9919CC39AF0043BFB4 /* login-user.png */; };
 		15A50D9D19CC6FAC0043BFB4 /* NotLoggedAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A50D9C19CC6FAB0043BFB4 /* NotLoggedAlert.m */; };
 		15A91EB219DADD97000539C9 /* hairdresser-who-string-hairfie-post.png in Resources */ = {isa = PBXBuildFile; fileRef = 15A91EB119DADD97000539C9 /* hairdresser-who-string-hairfie-post.png */; };
@@ -403,6 +404,8 @@
 		158FCA8619FA659E0001F86C /* FBUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBUtils.m; sourceTree = "<group>"; };
 		158FCA8819FA67820001F86C /* HairfieShare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HairfieShare.h; sourceTree = "<group>"; };
 		158FCA8919FA67820001F86C /* HairfieShare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HairfieShare.m; sourceTree = "<group>"; };
+		158FCA8F19FA9B870001F86C /* FBAuthenticator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBAuthenticator.h; sourceTree = "<group>"; };
+		158FCA9019FA9B870001F86C /* FBAuthenticator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBAuthenticator.m; sourceTree = "<group>"; };
 		15A50D9919CC39AF0043BFB4 /* login-user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-user.png"; sourceTree = "<group>"; };
 		15A50D9B19CC6FAB0043BFB4 /* NotLoggedAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotLoggedAlert.h; sourceTree = "<group>"; };
 		15A50D9C19CC6FAB0043BFB4 /* NotLoggedAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotLoggedAlert.m; sourceTree = "<group>"; };
@@ -1040,6 +1043,8 @@
 				15A50D9C19CC6FAB0043BFB4 /* NotLoggedAlert.m */,
 				158FCA8519FA659E0001F86C /* FBUtils.h */,
 				158FCA8619FA659E0001F86C /* FBUtils.m */,
+				158FCA8F19FA9B870001F86C /* FBAuthenticator.h */,
+				158FCA9019FA9B870001F86C /* FBAuthenticator.m */,
 			);
 			name = Authentication;
 			sourceTree = "<group>";
@@ -2145,6 +2150,7 @@
 				B3E0B15A19ACC14800C3EACE /* SignUpViewController.m in Sources */,
 				B3E0B15619ACB6ED00C3EACE /* LoginViewController.m in Sources */,
 				B319B5CE19C8609E007F79B0 /* SecondStepViewController.m in Sources */,
+				158FCA9119FA9B870001F86C /* FBAuthenticator.m in Sources */,
 				B39BA17E19AF535400A48BD5 /* KeychainItemWrapper.m in Sources */,
 				B3AE0D3F19C05EE900149C2B /* PostSalonTableViewCell.m in Sources */,
 				15B777A119EECCE100C49DFE /* HairfiePost.m in Sources */,
