@@ -19,6 +19,7 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import "UIRoundImageView.h"
 #import "UIImage+Filters.h"
+#import "UserProfileViewController.h"
 
 @implementation MenuViewController
 {
@@ -29,6 +30,7 @@
     NSMutableArray *headers;
     NSArray *managedBusinesses;
     Business *businessToManage;
+    UIImageView *profilePicture;
 }
 @synthesize menuTableView = _menuTableView;
 @synthesize profileView = _profileView;
@@ -73,6 +75,7 @@
 
 -(void)currentUserChanged:(NSNotification*)notification
 {
+    NSLog(@"### CURRENT USER CHANGED ###");
     [self initCurrentUser];
     [self initManagedBusinesses];
     if ([managedBusinesses count] > 0)
@@ -92,13 +95,14 @@
 {
     _name.text = appDelegate.currentUser.name;
 
-    _hairfieNb.text = [appDelegate.currentUser displayHairfies];
+    
 
+    _hairfieNb.text = [appDelegate.currentUser displayHairfies];
+  
     
     SDWebImageManager *manager = [SDWebImageManager sharedManager];
 
-    
-    NSLog(@"USER URL %@, URLWITHWIDTH %@", appDelegate.currentUser.picture.url, [appDelegate.currentUser pictureUrlwithWidth:@200 andHeight:@200]);
+
     [manager downloadImageWithURL:[NSURL URLWithString:appDelegate.currentUser.picture.url]
                      options:0
                     progress:^(NSInteger receivedSize, NSInteger expectedSize)
@@ -114,7 +118,7 @@
      }];
     _profileImageView.contentMode = UIViewContentModeScaleAspectFill;
     
-    UIImageView *profilePicture = [[UIRoundImageView alloc] initWithFrame:CGRectMake(90, 30, 92, 92)];
+    profilePicture = [[UIRoundImageView alloc] initWithFrame:CGRectMake(90, 30, 92, 92)];
     profilePicture.clipsToBounds = YES;
     profilePicture.contentMode = UIViewContentModeScaleAspectFit;
 
@@ -376,6 +380,10 @@
 }
 
 
+-(IBAction)showUserProfile:(id)sender
+{
+    [self performSegueWithIdentifier:@"ProfileSegue" sender:self];
+}
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"ManageBusiness"])
@@ -385,6 +393,17 @@
         
         [claimVc setBusinessToManage:businessToManage];
      
+    }
+    if ([segue.identifier isEqualToString:@"ProfileSegue"])
+    {
+        
+        UINavigationController *navController = (UINavigationController*)[segue destinationViewController];
+        UserProfileViewController *userProfile = [navController.viewControllers objectAtIndex:0];
+        
+        [userProfile setUser:appDelegate.currentUser];
+        userProfile.isCurrentUser = YES;
+        userProfile.backgroundProfileImage = _profileImageView.image;
+        userProfile.profileImage = profilePicture.image;
     }
 }
 

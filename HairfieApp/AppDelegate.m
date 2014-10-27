@@ -49,11 +49,12 @@ static LBRESTAdapter * _lbAdaptater = nil;
 
     if (self.credentialStore.isLoggedIn) {
         [[[self class] lbAdaptater] setAccessToken:self.credentialStore.authToken];
+        
         [User getById:self.credentialStore.userId
               success:^(User *user) {
                   self.currentUser = user;
                   NSLog(@"USER : %@", self.currentUser.picture.url);
-                  [[NSNotificationCenter defaultCenter] postNotificationName:@"currentUser" object:nil];
+                  [[NSNotificationCenter defaultCenter] postNotificationName:@"userLanguage" object:nil];
               }
               failure:^(NSError *error) {
                   NSLog(@"Error retrieving logged in user: %@", error.localizedDescription);
@@ -74,7 +75,7 @@ static LBRESTAdapter * _lbAdaptater = nil;
     }
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(saveUserLanguage:)
-                                                 name:@"currentUser"
+                                                 name:@"userLanguage"
                                                object:nil];
     return YES;
 }

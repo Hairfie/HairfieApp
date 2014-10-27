@@ -15,7 +15,13 @@
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) TagCategory *category;
 
+-(id)initWithDictionary:(NSDictionary *)aDictionary;
+
+-(NSString *)toApiValue;
+
 +(void)getTagsGroupedByCategoryWithSuccess:(void(^)(NSArray *results))aSuccessHandler
                                    failure:(void(^)(NSError *error))aFailureHandler;
+
++(id)fromSetterValue:(id)aValue;
 
 @end
