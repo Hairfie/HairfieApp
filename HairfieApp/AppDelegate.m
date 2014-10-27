@@ -12,7 +12,6 @@
 #import "CredentialStore.h"
 #import "HomeViewController.h"
 #import "ECSlidingViewController.h"
-#import <FacebookSDK/FacebookSDK.h>
 #import <Crashlytics/Crashlytics.h>
 
 @interface AppDelegate ()
@@ -61,6 +60,14 @@ static LBRESTAdapter * _lbAdaptater = nil;
                   self.currentUser = nil;
                   [self.credentialStore clearSavedCredentials];
               }];
+        
+        [FBSession openActiveSessionWithReadPermissions:@[@"public_profile", @"email"]
+                                           allowLoginUI:NO
+                                      completionHandler:
+         ^(FBSession *session, FBSessionState state, NSError *error) {
+             NSLog(@"FB Connected");
+             _fbSession = session;
+         }];
     } else {
         [self.credentialStore clearTutorialSeen];
         [self showLoginStoryboard];

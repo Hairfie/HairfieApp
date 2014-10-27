@@ -13,6 +13,8 @@
 #import "Hairfie.h"
 #import "KeychainItemWrapper.h"
 #import "CredentialStore.h"
+#import <FacebookSDK/FacebookSDK.h>
+
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, CLLocationManagerDelegate>
 
@@ -25,6 +27,7 @@
 @property (nonatomic) CredentialStore *credentialStore;
 + ( LBRESTAdapter *) lbAdaptater;
 @property (nonatomic) KeychainItemWrapper *keychainItem;
+@property (nonatomic) FBSession *fbSession;
 
 -(void)showLoginStoryboard;
 -(void)startTrackingLocation:(BOOL)forceLocation;

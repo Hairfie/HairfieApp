@@ -29,6 +29,9 @@
 @property (nonatomic) IBOutlet UIView *priceSubview;
 @property (nonatomic) IBOutlet NSLayoutConstraint *whoSubviewConstraint;
 @property (nonatomic) IBOutlet UIView *emailSubview;
+@property (nonatomic) IBOutlet UIButton *fbShareButton;
+
+-(IBAction)fbShare:(id)sender;
 
 
 @property (nonatomic) BOOL isSalon;

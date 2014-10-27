@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Cfc-gn-Xzs">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A388b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Cfc-gn-Xzs">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
@@ -128,7 +128,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="Bt3-3W-QQM" kind="show" identifier="fbLogin" id="9LD-7P-Dhc"/>
+                                    <action selector="getFacebookUserInfo:" destination="UhD-xL-mKa" eventType="touchUpInside" id="zfo-2m-ATH"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b9x-Dl-UbK">
@@ -192,15 +192,16 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="bgView" destination="b9x-Dl-UbK" id="pC5-mp-uDW"/>
-                        <outlet property="fbLogin" destination="nMO-hx-ySB" id="mZx-lV-e2i"/>
+                        <outlet property="fbLogin" destination="nMO-hx-ySB" id="fn1-cs-7ia"/>
                         <outlet property="heightConstraint" destination="uUd-SE-zYi" id="d83-pH-q9r"/>
                         <outlet property="login" destination="myv-jB-Wfc" id="dKU-No-Biq"/>
                         <outlet property="signUp" destination="Yyr-i4-eWk" id="4Oy-YW-euT"/>
+                        <segue destination="cg1-Sk-FPr" kind="custom" identifier="@Main" customClass="AOLinkedStoryboardSegue" id="ACP-sz-MRl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dU2-t1-4QP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-773" y="133"/>
+            <point key="canvasLocation" x="-803" y="45"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="hdU-A3-tk0">
@@ -218,7 +219,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LcR-C2-32i" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-848" y="1189"/>
+            <point key="canvasLocation" x="-880" y="1091"/>
         </scene>
         <!--Page View Controller-->
         <scene sceneID="ztP-1o-1Pp">
@@ -984,7 +985,6 @@
         <image name="login-separator.png" width="533" height="1"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="mbp-pX-Mpk"/>
-        <segue reference="D94-cf-nhS"/>
+        <segue reference="ACP-sz-MRl"/>
     </inferredMetricsTieBreakers>
 </document>
