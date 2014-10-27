@@ -9,9 +9,20 @@
 #import "FBAuthenticator.h"
 #import <FacebookSDK/FacebookSDK.h>
 #import "AppDelegate.h"
+#import "UserAuthenticator.h"
 
 @implementation FBAuthenticator {
     AppDelegate *delegate;
+    UserAuthenticator *userAuthenticator;
+}
+
+- (id)init {
+    self = [super init];
+    if (self) {
+        delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+        userAuthenticator = [[UserAuthenticator alloc] init];
+    }
+    return self;
 }
 
 
@@ -146,6 +157,9 @@
     };
     
     void (^loadSuccessBlock)(NSDictionary *) = ^(NSDictionary *results) {
+        [delegate.credentialStore setAuthTokenAndUserId:[results objectForKey:@"id"] forUser:[results objectForKey:@"userId"]];
+        [AppDelegate lbAdaptater].accessToken = [results objectForKey:@"id"];
+        [userAuthenticator getCurrentUser];
         aSuccessHandler();
     };
     
