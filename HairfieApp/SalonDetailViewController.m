@@ -53,7 +53,6 @@
 {
     [super viewDidLoad];
     _isAddingHairfie = NO;
-    [self initKnownData:_business];
     [self setButtonSelected:self.infoBttn]; // slowest method call of this method
     delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     

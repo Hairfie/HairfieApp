@@ -49,13 +49,6 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc ]init];
     [dateFormatter setDateFormat:@"MMMM yyyy"];
     _postDate.text = [dateFormatter stringFromDate:review.createdAt];
-    
-    if ([review.createdAt isKindOfClass:[NSDate class]]) {
-        NSLog(@"instance of NSDate");
-    }
-    
-    NSLog(@"date: %@", review.createdAt);
-    
     _contentLabel.text = review.comment;
     _ratingView.rating = [[review ratingBetween:@0 and:@5] floatValue];
     _statusLabel.text = [[review ratingBetween:@0 and:@5] stringValue];
