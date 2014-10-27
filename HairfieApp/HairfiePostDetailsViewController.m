@@ -331,7 +331,8 @@ shouldChangeTextInRange: (NSRange) range
 
 -(IBAction)fbShare:(id)sender {
     if(isFbShareActivated) {
-        [sender setTitle:@"FB" forState:UIControlStateNormal];
+        [sender setImage:[UIImage imageNamed:@"fb-share-off.png"] forState:UIControlStateNormal];
+
         isFbShareActivated = NO;
         _hairfiePost.shareOnFB = NO;
     } else {
@@ -339,7 +340,7 @@ shouldChangeTextInRange: (NSRange) range
             NSArray *permissionsNeeded = @[@"publish_actions"];
             [FBUtils getPermissions:permissionsNeeded success:^{
                 NSLog(@"GOGO Share !");
-                [sender setTitle:@"FB ACTIVATED" forState:UIControlStateNormal];
+                [sender setImage:[UIImage imageNamed:@"fb-share-on.png"] forState:UIControlStateNormal];
                 isFbShareActivated = YES;
                 _hairfiePost.shareOnFB = YES;
             } failure:^(NSError *error) {
