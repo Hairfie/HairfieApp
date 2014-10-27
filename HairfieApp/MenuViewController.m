@@ -75,6 +75,7 @@
 
 -(void)currentUserChanged:(NSNotification*)notification
 {
+    NSLog(@"### CURRENT USER CHANGED ###");
     [self initCurrentUser];
     [self initManagedBusinesses];
     if ([managedBusinesses count] > 0)
@@ -94,8 +95,10 @@
 {
     _name.text = appDelegate.currentUser.name;
 
-    _hairfieNb.text = [appDelegate.currentUser displayHairfies];
+    
 
+    _hairfieNb.text = [appDelegate.currentUser displayHairfies];
+  
     
     SDWebImageManager *manager = [SDWebImageManager sharedManager];
 

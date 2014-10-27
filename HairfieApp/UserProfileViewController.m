@@ -145,15 +145,18 @@
     if (aButton == self.hairfieBttn) {
         self.hairfieView.hidden = NO;
         [bottomBorder setFrame:CGRectMake(0, aButton.frame.size.height, aButton.frame.size.width - 1, 3)];
-        self.mainViewHeight.constant = (userHairfies.count * 210);
+        
+        
+        if (userHairfies.count % 2 == 1)
+            self.mainViewHeight.constant = ((userHairfies.count / 2 + 1) * 220)+ 274 + 58;
+        else
+            self.mainViewHeight.constant = ((userHairfies.count / 2) * 220)+ 274 + 58;
     }
     if (aButton == self.reviewBttn)
     {
          [bottomBorder setFrame:CGRectMake(1, aButton.frame.size.height, aButton.frame.size.width, 3)];
         self.reviewView.hidden = NO;
-        self.mainViewHeight.constant = (userReviews.count * 130);
-        
-
+        self.mainViewHeight.constant = (userReviews.count * 130) + 274;
     }
     
     for (UIButton *btn in @[self.hairfieBttn, self.reviewBttn]) {
@@ -244,9 +247,15 @@
                 
             }
         }
-        self.mainViewHeight.constant = (userHairfies.count * 210);
-        self.collectionViewHeight.constant = ((userHairfies.count) * 210);
-        NSLog(@"CONSTANTS : %f // %f", self.mainViewHeight.constant, self.collectionViewHeight.constant);
+        
+        if (userHairfies.count % 2 == 1)
+            self.mainViewHeight.constant = ((userHairfies.count / 2 + 1) * 220)+ 274 + 58;
+        else
+            self.mainViewHeight.constant = ((userHairfies.count / 2) * 220)+ 274 + 58;
+        
+        self.collectionViewHeight.constant = ((userHairfies.count / 2 + 1) * 220) + 58;
+        
+          [self.hairfieBttn setTitle:[NSString stringWithFormat:@"%ld", userHairfies.count] forState:UIControlStateNormal];
         [self.hairfiesCollection reloadData];
         
         // did we reach the end of scroll?
@@ -278,6 +287,9 @@
     
     void (^successHandler)(NSArray *) = ^(NSArray *results) {
         userReviews = [NSMutableArray arrayWithArray:results];
+        self.mainViewHeight.constant = (userReviews.count * 130) + 274;
+        self.tableViewHeight.constant = (userReviews.count * 130);
+        [self.reviewBttn setTitle:[NSString stringWithFormat:@"%ld", userReviews.count] forState:UIControlStateNormal];
         [self.reviewTableView reloadData];
     };
     
@@ -316,22 +328,10 @@
     cell.backgroundColor = [UIColor whiteColor];
    
     if (tableView == self.reviewTableView)
-    {
         [cell setReview:review];
-        NSLog(@"SETTING REVIEWS");
-    }
+    
     return cell;
-
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

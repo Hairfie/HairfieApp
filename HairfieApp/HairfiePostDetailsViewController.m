@@ -268,6 +268,7 @@ shouldChangeTextInRange: (NSRange) range
         void (^loadSuccessBlock)(void) = ^(void){
             NSLog(@"Hairfie Posté");
             [self removeSpinnerAndOverlay];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"currentUser" object:self];
             [self performSegueWithIdentifier:@"toHome" sender:self];
         };
         [_hairfiePost saveWithSuccess:loadSuccessBlock failure:loadErrorBlock];

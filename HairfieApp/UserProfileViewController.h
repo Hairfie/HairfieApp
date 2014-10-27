@@ -38,7 +38,7 @@
 
 @property (nonatomic) IBOutlet NSLayoutConstraint *collectionViewHeight;
 @property (nonatomic) IBOutlet NSLayoutConstraint *mainViewHeight;
-
+@property (nonatomic) IBOutlet NSLayoutConstraint *tableViewHeight;
 
 
 @end

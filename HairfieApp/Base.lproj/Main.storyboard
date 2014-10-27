@@ -240,7 +240,7 @@
                                                                 <fontDescription key="fontDescription" name="SourceSansPro-Semibold" family="Source Sans Pro" pointSize="18"/>
                                                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="20" maxY="14"/>
-                                                                <state key="normal" title="380"/>
+                                                                <state key="normal" title=".."/>
                                                                 <connections>
                                                                     <action selector="changeTab:" destination="T79-5J-2Oj" eventType="touchUpInside" id="lRe-L2-Gga"/>
                                                                 </connections>
@@ -251,7 +251,7 @@
                                                                 <fontDescription key="fontDescription" name="SourceSansPro-Semibold" family="Source Sans Pro" pointSize="18"/>
                                                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="20" maxY="14"/>
-                                                                <state key="normal" title="145"/>
+                                                                <state key="normal" title=".."/>
                                                                 <connections>
                                                                     <action selector="changeTab:" destination="T79-5J-2Oj" eventType="touchUpInside" id="Qoo-Gn-abM"/>
                                                                 </connections>
@@ -276,9 +276,14 @@
                                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nO9-La-hKl" userLabel="REVIEW VIEW">
                                                 <rect key="frame" x="0.0" y="274" width="320" height="294"/>
                                                 <subviews>
-                                                    <tableView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" bounces="NO" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="RzC-CX-MyT">
+                                                    <tableView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" bounces="NO" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="RzC-CX-MyT">
                                                         <rect key="frame" x="0.0" y="0.0" width="320" height="294"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="294" id="Hub-hf-PEN"/>
+                                                            <constraint firstAttribute="width" constant="320" id="hrz-px-CDl"/>
+                                                        </constraints>
+                                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                         <connections>
                                                             <outlet property="dataSource" destination="T79-5J-2Oj" id="QGN-Ag-1ad"/>
                                                             <outlet property="delegate" destination="T79-5J-2Oj" id="c7o-EM-ofb"/>
@@ -290,8 +295,8 @@
                                             <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="chj-Tc-vYD" userLabel="HAIRFIE VIEW">
                                                 <rect key="frame" x="0.0" y="274" width="320" height="294"/>
                                                 <subviews>
-                                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="hTw-wS-fXv">
-                                                        <rect key="frame" x="0.0" y="0.0" width="320" height="294"/>
+                                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="hTw-wS-fXv">
+                                                        <rect key="frame" x="0.0" y="10" width="320" height="284"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="294" id="LfM-zb-Zn5"/>
@@ -399,6 +404,7 @@
                         <outlet property="reviewLbl" destination="74n-zI-jqc" id="KTO-yS-btZ"/>
                         <outlet property="reviewTableView" destination="RzC-CX-MyT" id="vvg-cb-wkC"/>
                         <outlet property="reviewView" destination="nO9-La-hKl" id="8p6-9L-sG3"/>
+                        <outlet property="tableViewHeight" destination="Hub-hf-PEN" id="K5j-KG-GQ4"/>
                         <outlet property="topView" destination="Nwq-3q-qNC" id="1Gh-D3-iUV"/>
                         <outlet property="userName" destination="J0Z-zy-xpw" id="SO7-n9-jLp"/>
                     </connections>
