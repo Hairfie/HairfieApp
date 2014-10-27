@@ -56,6 +56,8 @@
 // HAIRFIE TAB
 
 @property (nonatomic) IBOutlet UIButton* addHairfiesBttn;
+@property (nonatomic) IBOutlet UILabel* addHairfiesLbl;
+
 
 // HAIRDRESSER TAB
 

@@ -39,11 +39,11 @@ static LBRESTAdapter * _lbAdaptater = nil;
 {
     [NewRelicAgent startWithApplicationToken:NEWRELIC_APP_TOKEN];
     //[Crashlytics startWithAPIKey:CRASHLYTICS_API_KEY];
-    
+
     [ARAnalytics setupWithAnalytics:@{
                                       ARGoogleAnalyticsID : GOOGLE_ANALYTICS_TOKEN
                                       }];
-    
+
     _manager = [[CLLocationManager alloc] init];
     _credentialStore = [[CredentialStore alloc] init];
     userAuthenticator = [[UserAuthenticator alloc] init];
@@ -53,8 +53,9 @@ static LBRESTAdapter * _lbAdaptater = nil;
 
     if (self.credentialStore.isLoggedIn) {
         [[[self class] lbAdaptater] setAccessToken:self.credentialStore.authToken];
+
         [userAuthenticator getCurrentUser];
-        
+
         [FBSession openActiveSessionWithReadPermissions:@[@"public_profile", @"email"]
                                            allowLoginUI:NO
                                       completionHandler:
@@ -68,7 +69,7 @@ static LBRESTAdapter * _lbAdaptater = nil;
     }
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(saveUserLanguage:)
-                                                 name:@"userLanguage"
+                                                 name:@"currentUser"
                                                object:nil];
     return YES;
 }
@@ -79,7 +80,7 @@ static LBRESTAdapter * _lbAdaptater = nil;
          annotation:(id)annotation {
 
     BOOL wasHandled = [FBAppCall handleOpenURL:url sourceApplication:sourceApplication];
-    
+
     return wasHandled;
 }
 
@@ -133,7 +134,7 @@ static LBRESTAdapter * _lbAdaptater = nil;
     } else {
         self.currentLocation = [[GeoPoint alloc] initWithLocation:self.myLocation];
     }
-    
+
     [[NSNotificationCenter defaultCenter] postNotificationName:@"newLocationNotif"
                                                         object:self
                                                       userInfo:[NSDictionary dictionaryWithObject:_myLocation

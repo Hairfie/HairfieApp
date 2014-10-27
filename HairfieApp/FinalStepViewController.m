@@ -201,7 +201,7 @@
             _serviceTableView.hidden = YES;
         else
             _serviceTableView.hidden = NO;
-        
+        _addHairfiesLbl.text = NSLocalizedStringFromTable(@"hairfie claim update", @"Claim", nil);
         [_serviceTableView reloadData];
         [_hairdresserTableView reloadData];
     }
@@ -221,6 +221,8 @@
             _serviceTableView.hidden = YES;
         else
             _serviceTableView.hidden = NO;
+        
+        _addHairfiesLbl.text = NSLocalizedStringFromTable(@"hairfie claim new", @"Claim", nil);
         [_serviceTableView reloadData];
         [_hairdresserTableView reloadData];
         
