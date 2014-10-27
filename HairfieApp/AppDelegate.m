@@ -50,7 +50,6 @@ static LBRESTAdapter * _lbAdaptater = nil;
 
     if (self.credentialStore.isLoggedIn) {
         [[[self class] lbAdaptater] setAccessToken:self.credentialStore.authToken];
-        
         [User getById:self.credentialStore.userId
               success:^(User *user) {
                   self.currentUser = user;
