@@ -37,7 +37,7 @@
                                  JSONObjectWithData: [httpString dataUsingEncoding:NSUTF8StringEncoding]
                                             options: NSJSONReadingMutableContainers
                                             error: &error];
-        int statusCode = [[[httpDic objectForKey:@"error"] objectForKey:@"statusCode"] integerValue];
+        int statusCode = (int)[[[httpDic objectForKey:@"error"] objectForKey:@"statusCode"] integerValue];
 
         if(statusCode == 404 || statusCode == 401) {
             [delegate.credentialStore clearSavedCredentials];
