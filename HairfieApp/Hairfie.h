@@ -27,6 +27,7 @@
 @property (strong, nonatomic) NSDate *updatedAt;
 @property (strong, nonatomic) User *author;
 @property (strong, nonatomic) Business *business;
+@property (strong, nonatomic) NSArray *tags;
 
 -(id)initWithDictionary:(NSDictionary *)data;
 
@@ -59,6 +60,8 @@
                       skip:(NSNumber *)skip
                    success:(void(^)(NSArray *hairfies))aSuccessHandler
                    failure:(void(^)(NSError *error))aFailureHandler;
+                   
++(id)fromSetterValue:(id)aValue;
 
 +(HairfieRepository *)repository;
 

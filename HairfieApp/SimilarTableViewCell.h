@@ -28,6 +28,4 @@
 
 -(void)businessChanged:(NSNotification *)notification;
 
--(void)customInit:(Business* )business;
-
 @end

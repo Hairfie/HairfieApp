@@ -10,6 +10,8 @@
 #import "UserRepository.h"
 #import "BusinessRepository.h"
 #import "AppDelegate.h"
+#import "SetterUtils.h"
+#import "Tag.h"
 
 @implementation Hairfie
 
@@ -20,48 +22,35 @@
     return (Hairfie*)[[Hairfie repository] modelWithDictionary:data];
 }
 
-- (void)setAuthor:(NSDictionary *)anAuthor
+-(void)setAuthor:(id)aUser
 {
-    if ([anAuthor isKindOfClass:[User class]]) {
-        _author = anAuthor;
-    } else if ([anAuthor isEqual:[NSNull null]]) {
-        _author = nil;
-    } else {
-        _author = [[User alloc] initWithDictionary:anAuthor];
-    }
+    _author = [User fromSetterValue:aUser];
 }
 
--(void)setBusiness:(NSDictionary *)aBusiness
+-(void)setBusiness:(id)aBusiness
 {
-    if ([aBusiness isKindOfClass:[Business class]]) {
-        _business = aBusiness;
-    } else if ([aBusiness isEqual:[NSNull null]]) {
-        _business = nil;
-    } else {
-        _business = [[Business alloc] initWithDictionary:aBusiness];
-    }
+    _business = [Business fromSetterValue:aBusiness];
 }
 
--(void)setPicture:(NSDictionary *)aPicture
+-(void)setPicture:(id)aPicture
 {
-    if ([aPicture isKindOfClass:[Picture class]]) {
-        _picture = aPicture;
-    } else if ([aPicture isEqual:[NSNull null]]) {
-        _picture = nil;
-    } else {
-        _picture = [[Picture alloc] initWithDictionary:aPicture];
-    }
+    _picture = [Picture fromSetterValue:aPicture];
 }
 
--(void)setPrice:(NSDictionary *)aPrice
+-(void)setPrice:(id)aPrice
 {
-    if ([aPrice isKindOfClass:[Money class]]) {
-        _price = aPrice;
-    } else if ([aPrice isEqual:[NSNull null]]) {
-        _price = aPrice;
-    } else {
-        _price = [[Money alloc] initWithDictionary:aPrice];
+    _price = [Money fromSetterValue:aPrice];
+}
+
+-(void)setTags:(id)someTags
+{
+    NSMutableArray *temp = [[NSMutableArray alloc] init];
+    if (![someTags isEqual:[NSNull null]]) {
+        for (id aTag in someTags) {
+            [temp addObject:[Tag fromSetterValue:aTag]];
+        }
     }
+    _tags = [[NSArray alloc] initWithArray:temp];
 }
 
 -(NSString *)pictureUrlwithWidth:(NSNumber *)width andHeight:(NSNumber *)height
@@ -221,6 +210,11 @@
                                aSuccessHandler([[NSArray alloc] initWithArray:hairfies]);
                             }
                             failure:aFailureHandler];
+}
+
++(id)fromSetterValue:(id)aValue
+{
+    return [SetterUtils getInstanceOf:[self class] fromSetterValue:aValue];
 }
 
 +(HairfieRepository *)repository

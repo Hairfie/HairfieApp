@@ -8,6 +8,7 @@
 
 #import "Picture.h"
 #import "AppDelegate.h"
+#import "SetterUtils.h"
 
 @implementation Picture {
     AppDelegate *delegate;
@@ -111,6 +112,11 @@
             parameters:[file toDictionary]
                success:loadSuccessBlock
                failure:loadErrorBlock];
+}
+
++(id)fromSetterValue:(id)aValue
+{
+    return [SetterUtils getInstanceOf:[self class] fromSetterValue:aValue];
 }
 
 @end

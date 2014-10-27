@@ -8,6 +8,7 @@
 
 #import "HairfiePost.h"
 #import "AppDelegate.h"
+#import "Tag.h"
 
 @implementation HairfiePost
 
@@ -27,30 +28,20 @@
     return self;
 }
 
--(void)setBusiness:(NSDictionary *)aBusiness
+-(void)setBusiness:(id)aBusiness
 {
-    if ([aBusiness isKindOfClass:[Business class]]) {
-        _business = (Business *) aBusiness;
-    } else if ([aBusiness isEqual:[NSNull null]]) {
-        _business = nil;
-    } else {
-        _business = [[Business alloc] initWithDictionary:aBusiness];
-    }
+    _business = [Business fromSetterValue:aBusiness];
 }
 
--(void)setPictureWithImage:(UIImage *)image andContainer:(NSString *)container {
+-(void)setPictureWithImage:(UIImage *)image
+              andContainer:(NSString *)container
+{
     _picture = [[Picture alloc] initWithImage:image andContainer:container];
 }
 
--(void)setPrice:(NSDictionary *)aPrice
+-(void)setPrice:(id)aPrice
 {
-    if ([aPrice isKindOfClass:[Money class]]) {
-        _price = (Money *)aPrice;
-    } else if ([aPrice isEqual:[NSNull null]]) {
-        _price = (Money *)aPrice;
-    } else {
-        _price = [[Money alloc] initWithDictionary:aPrice];
-    }
+    _price = [Money fromSetterValue:aPrice];
 }
 
 -(void)uploadPictureWithSuccess:(void(^)())aSuccessHandler
@@ -81,6 +72,13 @@
     if(self.business != nil) {
         [parameters setObject:self.business.id forKey:@"businessId"];
     }
+    if (self.tags != nil) {
+        NSMutableArray *tagsToSend = [[NSMutableArray alloc] init];
+        for (Tag *tag in self.tags) {
+            [tagsToSend addObject:[tag toApiValue]];
+        }
+        [parameters setObject:tagsToSend forKey:@"tags"];
+    }
     
     [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/hairfies"
                                                                                  verb:@"POST"]
@@ -93,7 +91,8 @@
                            failure:aFailureHandler];
 }
 
--(BOOL)pictureIsUploaded {
+-(BOOL)pictureIsUploaded
+{
     BOOL result = self.picture.name ? YES : NO;
     return result;
 }

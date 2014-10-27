@@ -15,6 +15,7 @@
 #import "Picture.h"
 #import "Hairdresser.h"
 #import "BusinessReview.h"
+#import "SetterUtils.h"
 
 @implementation Business
 
@@ -23,71 +24,62 @@
     return @"Business.changed";
 }
 
--(void)setOwner:(NSDictionary *)aDictionary
+-(void)setOwner:(id)aUser
 {
-    if ([aDictionary isKindOfClass:[User class]]) {
-        _owner = aDictionary;
-    } else if ([aDictionary isEqual:[NSNull null]]) {
-        _owner = nil;
-    } else {
-        _owner = [[User alloc] initWithDictionary:aDictionary];
-    }
+    _owner = [User fromSetterValue:aUser];
 }
 
--(void)setTimetable:(NSDictionary *)aDictionary
+-(void)setTimetable:(id)aTimetable
 {
-    if ([aDictionary isKindOfClass:[Timetable class]]) {
-        _timetable = aDictionary;
-    } else if ([aDictionary isEqual:[NSNull null]]) {
-        _timetable = nil;
-    } else {
-        _timetable = [[Timetable alloc] initWithDictionary:aDictionary];
-    }
+    _timetable = [Timetable fromSetterValue:aTimetable];
 }
 
--(void)setThumbnail:(NSDictionary *)aThumbnail
+-(void)setThumbnail:(id)aPicture
 {
-    if ([aThumbnail isKindOfClass:[Picture class]]) {
-        _thumbnail = aThumbnail;
-    } else if ([aThumbnail isEqual:[NSNull null]]) {
-        _thumbnail = nil;
-    } else {
-        _thumbnail = [[Picture alloc] initWithDictionary:aThumbnail];
-    }
+    _thumbnail = [Picture fromSetterValue:aPicture];
 }
 
 -(void)setServices:(NSMutableArray *)services
 {
-    if ([services isEqual:[NSNull null]]) {
-        _services = nil;
-    } else {
-        NSMutableArray *temp = [[NSMutableArray alloc] init];
-        for (NSDictionary *service in services) {
-            if ([service isKindOfClass:[Service class]]) {
-                [temp addObject:service];
-            } else {
-                [temp addObject:[[Service alloc] initWithDictionary:service]];
-            }
+    NSMutableArray *temp = [[NSMutableArray alloc] init];
+    if (![services isEqual:[NSNull null]]) {
+        for (id service in services) {
+            [temp addObject:[Service fromSetterValue:service]];
         }
-        _services = temp;
     }
+    _services = temp;
 }
 
 -(void)setActiveHairdressers:(NSArray *)hairdressers
 {
-    if ([hairdressers isEqual:[NSNull null]]) {
-        _activeHairdressers = [[NSMutableArray alloc] init];
-    } else {
-        NSMutableArray *temp = [[NSMutableArray alloc] init];
-        for (NSDictionary *hairdresser in hairdressers) {
-            if ([hairdresser isKindOfClass:[Hairdresser class]]) {
-                [temp addObject:hairdresser];
-            } else {
-                [temp addObject:[[Hairdresser alloc] initWithDictionary:hairdresser]];
-            }
+    NSMutableArray *temp = [[NSMutableArray alloc] init];
+    if (![hairdressers isEqual:[NSNull null]]) {
+        for (id hairdresser in hairdressers) {
+            [temp addObject:[Hairdresser fromSetterValue:hairdresser]];
         }
-        _activeHairdressers = temp;
     }
+    _activeHairdressers = temp;
+}
+
+-(void)setPictures:(id)pictures
+{
+    NSMutableArray *temp = [[NSMutableArray alloc] init];
+    if (![pictures isEqual:[NSNull null]]) {
+        for (id picture in pictures) {
+            [temp addObject:[Picture fromSetterValue:picture]];
+        }
+    }
+    _pictures = temp;
+}
+
+- (void)setAddress:(id)anAddress
+{
+    _address = [Address fromSetterValue:anAddress];
+}
+
+- (void)setGps:(id)aGeoPoint
+{
+    _gps = [GeoPoint fromSetterValue:aGeoPoint];
 }
 
 -(id)init
@@ -97,6 +89,22 @@
         [self setupEventListeners];
     }
 
+    return self;
+}
+
+-(id)initWithDictionary:(NSDictionary *)data
+{
+    self = (Business*)[[Business repository] modelWithDictionary:data];
+    
+    // seems there is a parser issue with boolean values...
+    if ([[data objectForKey:@"crossSell"] isEqualToNumber:@1]) {
+        self.crossSell = YES;
+    } else {
+        self.crossSell = NO;
+    }
+    
+    [self setupEventListeners];
+    
     return self;
 }
 
@@ -161,45 +169,6 @@
                                               aSuccessHandler();
                                           }
                                           failure:aFailureHandler];
-}
-
--(id)initWithDictionary:(NSDictionary *)data
-{
-    self = (Business*)[[Business repository] modelWithDictionary:data];
-
-    // seems there is a parser issue with boolean values...
-    if ([[data objectForKey:@"crossSell"] isEqualToNumber:@1]) {
-        self.crossSell = YES;
-    } else {
-        self.crossSell = NO;
-    }
-
-    [self setupEventListeners];
-
-    return self;
-}
-
--(void)setPictures:(NSMutableArray *)pictures
-{
-    NSMutableArray *temp = [[NSMutableArray alloc] init];
-    for (NSDictionary *picture in pictures) {
-        [temp addObject:[[Picture alloc] initWithDictionary:picture]];
-    }
-    _pictures = [[NSMutableArray alloc] initWithArray:temp];
-}
-
-- (void)setAddress:(NSDictionary *)addressDic
-{
-    if([addressDic isKindOfClass:[NSNull class]]) return;
-
-    _address = [[Address alloc] initWithJson:addressDic];
-}
-
-- (void)setGps:(NSDictionary *)geoPointDic
-{
-    if([geoPointDic isKindOfClass:[NSNull class]]) return;
-
-    _gps = [[GeoPoint alloc] initWithJson:geoPointDic];
 }
 
 -(NSString *)displayNameAndAddress
@@ -327,9 +296,8 @@
             
         }
         [parameters setObject:servicesToSend forKey:@"services"];
-        
     }
-    
+
     [[Business repository] invokeStaticMethod:@"update" parameters:parameters success:aSuccessHandler failure:aFailureHandler];
 }
 
@@ -374,6 +342,11 @@
                                               aSuccessHandler([[[self class] alloc] initWithDictionary:value]);
                                           }
                                           failure:aFailureHandler];
+}
+
++(id)fromSetterValue:(id)aValue
+{
+    return [SetterUtils getInstanceOf:[self class] fromSetterValue:aValue];
 }
 
 +(LBModelRepository *)repository

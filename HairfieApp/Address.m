@@ -7,16 +7,22 @@
 //
 
 #import "Address.h"
+#import "SetterUtils.h"
 
 // TODO: use a struct?
 @implementation Address
 
+-(id)initWithDictionary:(NSDictionary *)aDictionary
+{
+    return [self initWithStreet:[aDictionary valueForKey:@"street"]
+                           city:[aDictionary valueForKey:@"city"]
+                        zipCode:[aDictionary valueForKey:@"zipCode"]
+                        country:[aDictionary valueForKey:@"country"]];
+}
+
 -(id)initWithJson:(NSDictionary *)data
 {
-    return [self initWithStreet:[data valueForKey:@"street"]
-                           city:[data valueForKey:@"city"]
-                        zipCode:[data valueForKey:@"zipCode"]
-                        country:[data valueForKey:@"country"]];
+    return [self initWithDictionary:data];
 }
 
 -(id)initWithStreet:(NSString *)aStreet
@@ -42,6 +48,11 @@
 -(NSDictionary*)toDictionary
 {
     return [[NSDictionary alloc] initWithObjectsAndKeys:self.country, @"country", self.zipCode, @"zipCode", self.city, @"city", self.street, @"street", nil];
+}
+
++(id)fromSetterValue:(id)aValue
+{
+    return [SetterUtils getInstanceOf:[self class] fromSetterValue:aValue];
 }
 
 @end

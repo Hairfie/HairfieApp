@@ -9,23 +9,17 @@
 #import "Hairdresser.h"
 #import "AppDelegate.h"
 #import "HairdresserRepository.h"
+#import "SetterUtils.h"
 
 @implementation Hairdresser
 
--(void)setBusiness:(NSDictionary *)aBusiness
+-(void)setBusiness:(id)aBusiness
 {
-    if ([aBusiness isKindOfClass:[Business class]]) {
-        _business = aBusiness;
-    } else if ([aBusiness isEqual:[NSNull null]]) {
-        _business = nil;
-    } else {
-        _business = [[Business alloc] initWithDictionary:aBusiness];
-    }
+    _business = [Business fromSetterValue:aBusiness];
 }
 
 -(id)initWithDictionary:(NSDictionary *)aDictionary
 {
-    
     self = (Hairdresser *)[[[self class] repository] modelWithDictionary:aDictionary];
     
     if ([[aDictionary valueForKey:@"active"] isEqualToNumber:@1])
@@ -110,6 +104,11 @@
                                               success:onSuccess
                                               failure:aFailureHandler];
     }
+}
+
++(id)fromSetterValue:(id)aValue
+{
+    return [SetterUtils getInstanceOf:[self class] fromSetterValue:aValue];
 }
 
 +(LBModelRepository *)repository

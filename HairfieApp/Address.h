@@ -16,7 +16,9 @@
 @property (strong, nonatomic) NSString *zipCode;
 @property (strong, nonatomic) NSString *country;
 
--(id)initWithJson:(NSDictionary *)data;
+-(id)initWithDictionary:(NSDictionary *)aDictionary;
+
+-(id)initWithJson:(NSDictionary *)data __deprecated;
 
 -(id)initWithStreet:(NSString *)aStreet
                 city:(NSString *)aCity
@@ -25,5 +27,7 @@
 
 -(NSString *)displayAddress;
 -(NSDictionary*)toDictionary;
+
++(id)fromSetterValue:(id)aValue;
 
 @end

@@ -14,6 +14,7 @@
 #import "HairfieRepository.h"
 #import "Picture.h"
 #import "Money.h"
+#import "Tag.h"
 
 @interface HairfiePost : LBModel
 
@@ -22,6 +23,7 @@
 @property (strong, nonatomic) NSString *hairdresserName;
 @property (strong, nonatomic) Money *price;
 @property (strong, nonatomic) Business *business;
+@property (strong, nonatomic) NSArray *tags;
 
 -(id)initWithDictionary:(NSDictionary *)data;
 -(id)initWithBusiness:(Business *)aBusiness;
