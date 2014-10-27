@@ -111,8 +111,11 @@
             <string>SourceSansPro-Light</string>
             <string>SourceSansPro-Light</string>
             <string>SourceSansPro-Light</string>
+            <string>SourceSansPro-Light</string>
+            <string>SourceSansPro-Light</string>
         </mutableArray>
         <mutableArray key="SourceSansPro-Regular.ttf">
+            <string>SourceSansPro-Regular</string>
             <string>SourceSansPro-Regular</string>
             <string>SourceSansPro-Regular</string>
             <string>SourceSansPro-Regular</string>
@@ -1029,8 +1032,19 @@
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GIY-2G-FaB">
                                                 <rect key="frame" x="204" y="20" width="100" height="100"/>
                                             </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1DC-Gq-b8R">
+                                                <rect key="frame" x="12" y="45" width="172" height="50"/>
+                                                <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="16"/>
+                                                <state key="normal" title="AJOUTER DES TAGS" backgroundImage="add-tags-button.png">
+                                                    <color key="titleColor" red="0.52941176470588236" green="0.55686274509803924" blue="0.59215686274509804" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="addTags:" destination="60g-nd-hW0" eventType="touchUpInside" id="OPj-81-Vx5"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.95294117647058818" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" image="hairdresser-where-hairfie-post.png" translatesAutoresizingMaskIntoConstraints="NO" id="85z-mr-SaL">
                                         <rect key="frame" x="10" y="166" width="300" height="39"/>
@@ -1214,6 +1228,7 @@
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="dataChoice" destination="HkZ-R9-OZp" id="iGK-vn-EE3"/>
+                        <outlet property="descView" destination="Vjl-H2-Nzu" id="tcX-p5-bhu"/>
                         <outlet property="emailSubview" destination="ihB-lj-Iee" id="GF1-u9-Lrg"/>
                         <outlet property="hairdresserSubview" destination="xSZ-Hu-sLy" id="NMc-NR-H2v"/>
                         <outlet property="hairfieDesc" destination="gFo-ft-JjF" id="12p-0m-f8C"/>
@@ -1223,9 +1238,11 @@
                         <outlet property="priceTextField" destination="9jn-WQ-rGO" id="ugm-w6-LWA"/>
                         <outlet property="salonLabelButton" destination="2o9-JL-3ON" id="xcr-Y9-xP4"/>
                         <outlet property="tableViewHeight" destination="8M2-fm-fgM" id="ZUf-iY-eke"/>
+                        <outlet property="topView" destination="TQK-UT-z3v" id="Nu4-Nq-Vxi"/>
                         <outlet property="whoTextField" destination="Svn-cu-8nV" id="Y6n-Hn-abj"/>
                         <segue destination="8ER-eF-RXx" kind="push" identifier="choseSalonType" id="KDo-Hs-2DW"/>
                         <segue destination="eci-2w-4CQ" kind="push" identifier="toHome" id="N5w-ND-ZjU"/>
+                        <segue destination="5Jc-DC-T4C" kind="push" identifier="addTagsToHairfie" id="vMC-hw-Qfr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lcd-wd-fUu" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1361,7 +1378,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="puL-1O-nxO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="422" y="-3308"/>
+            <point key="canvasLocation" x="437" y="-3612"/>
         </scene>
         <!--Hairfie Detail View Controller-->
         <scene sceneID="dLB-PY-NHH">
@@ -4923,27 +4940,64 @@
             </objects>
             <point key="canvasLocation" x="3619" y="-1219"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="ntx-Hv-QkX">
+        <!--Add Tags To Hairfie View Controller-->
+        <scene sceneID="rso-yf-Omf">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="ghU-9s-0il" sceneMemberID="viewController">
+                <viewController id="5Jc-DC-T4C" customClass="AddTagsToHairfieViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="1Vp-iF-rIj"/>
-                        <viewControllerLayoutGuide type="bottom" id="9xB-DR-GOe"/>
+                        <viewControllerLayoutGuide type="top" id="Jo4-C0-jSL"/>
+                        <viewControllerLayoutGuide type="bottom" id="lze-4P-2SE"/>
                     </layoutGuides>
-                    <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="CMB-sb-IS3">
+                    <view key="view" contentMode="scaleToFill" id="Tug-Mp-K6B">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ESL-St-Rmr">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tag your Hairfie" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r7g-ii-dXf">
+                                        <rect key="frame" x="95" y="28" width="130" height="23"/>
+                                        <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="18"/>
+                                        <color key="textColor" red="0.41176470590000003" green="0.4431372549" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qGf-oU-7WE">
+                                        <rect key="frame" x="8" y="20" width="40" height="40"/>
+                                        <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                        <state key="normal" image="arrow-nav.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="goBack:" destination="5Jc-DC-T4C" eventType="touchUpInside" id="cBc-Iu-apF"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zux-99-l6M">
+                                        <rect key="frame" x="252" y="29" width="60" height="22"/>
+                                        <color key="backgroundColor" red="0.63529411764705879" green="0.70980392156862748" blue="0.74901960784313726" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="14"/>
+                                        <state key="normal" title="Validate">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="GnV-v6-AWY"/>
+                    <connections>
+                        <outlet property="topView" destination="ESL-St-Rmr" id="f2v-jK-REZ"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="15f-C9-cHd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0no-5H-Ij8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="437" y="-2990"/>
         </scene>
     </scenes>
     <resources>
         <image name="add-comment-textfield.png" width="600" height="71"/>
+        <image name="add-tags-button.png" width="344" height="99"/>
         <image name="around-me-bttn.png" width="487" height="93"/>
         <image name="arrow-dropdown.png" width="37" height="22"/>
         <image name="arrow-nav-white.png" width="40" height="40"/>

@@ -203,6 +203,8 @@
 		B37F9A55198F910B00881071 /* picto-hairdresser.png in Resources */ = {isa = PBXBuildFile; fileRef = B37F9A51198F910B00881071 /* picto-hairdresser.png */; };
 		B37F9A56198F910B00881071 /* picto-camera.png in Resources */ = {isa = PBXBuildFile; fileRef = B37F9A52198F910B00881071 /* picto-camera.png */; };
 		B37F9A57198F910B00881071 /* picto-info.png in Resources */ = {isa = PBXBuildFile; fileRef = B37F9A53198F910B00881071 /* picto-info.png */; };
+		B3844E3719FE65E40083CE0D /* AddTagsToHairfieViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3844E3619FE65E40083CE0D /* AddTagsToHairfieViewController.m */; };
+		B3844E3919FE67B60083CE0D /* add-tags-button.png in Resources */ = {isa = PBXBuildFile; fileRef = B3844E3819FE67B60083CE0D /* add-tags-button.png */; };
 		B38A8D471993B8E300239BC1 /* map_pin.png in Resources */ = {isa = PBXBuildFile; fileRef = B38A8D461993B8E300239BC1 /* map_pin.png */; };
 		B3901CFE19AB443600A8C52D /* search-advance-field-name.png in Resources */ = {isa = PBXBuildFile; fileRef = B3901CFC19AB443600A8C52D /* search-advance-field-name.png */; };
 		B3901D0019AB63E200A8C52D /* pin-salon.png in Resources */ = {isa = PBXBuildFile; fileRef = B3901CFF19AB63E200A8C52D /* pin-salon.png */; };
@@ -669,6 +671,9 @@
 		B37F9A51198F910B00881071 /* picto-hairdresser.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "picto-hairdresser.png"; sourceTree = "<group>"; };
 		B37F9A52198F910B00881071 /* picto-camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "picto-camera.png"; sourceTree = "<group>"; };
 		B37F9A53198F910B00881071 /* picto-info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "picto-info.png"; sourceTree = "<group>"; };
+		B3844E3519FE65E40083CE0D /* AddTagsToHairfieViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddTagsToHairfieViewController.h; sourceTree = "<group>"; };
+		B3844E3619FE65E40083CE0D /* AddTagsToHairfieViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddTagsToHairfieViewController.m; sourceTree = "<group>"; };
+		B3844E3819FE67B60083CE0D /* add-tags-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add-tags-button.png"; sourceTree = "<group>"; };
 		B38A8D461993B8E300239BC1 /* map_pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map_pin.png; sourceTree = "<group>"; };
 		B3901CFC19AB443600A8C52D /* search-advance-field-name.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search-advance-field-name.png"; sourceTree = "<group>"; };
 		B3901CFF19AB63E200A8C52D /* pin-salon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pin-salon.png"; sourceTree = "<group>"; };
@@ -1286,6 +1291,8 @@
 				B3AE0D4019C05F0000149C2B /* PostSalonTableViewCell.xib */,
 				1515448019C301ED00FBC07D /* CameraOverlayViewController.h */,
 				1515448119C301ED00FBC07D /* CameraOverlayViewController.m */,
+				B3844E3519FE65E40083CE0D /* AddTagsToHairfieViewController.h */,
+				B3844E3619FE65E40083CE0D /* AddTagsToHairfieViewController.m */,
 			);
 			name = "Post Hairfie";
 			sourceTree = "<group>";
@@ -1615,6 +1622,7 @@
 		B3EDF8991987C43500431B70 /* Ressources */ = {
 			isa = PBXGroup;
 			children = (
+				B3844E3819FE67B60083CE0D /* add-tags-button.png */,
 				B34582FE19F7DB2A00A91F5A /* userprofile-filter-button.png */,
 				719C207719ED5016008E0B17 /* tab-business-hairdressers-active.png */,
 				719C207819ED5016008E0B17 /* tab-business-hairdressers.png */,
@@ -1961,6 +1969,7 @@
 				B3DD7A7C199110FF007B1621 /* test-contour.png in Resources */,
 				1538A39D19E53AFD00F09628 /* Tuto.storyboard in Resources */,
 				B33E4C4419A48FE70024F5F7 /* HoraireTableViewCell.xib in Resources */,
+				B3844E3919FE67B60083CE0D /* add-tags-button.png in Resources */,
 				B3A1281C198A8609004D90BD /* CustomPinView.xib in Resources */,
 				15C89EAD19D3567600E91171 /* take-hairfie.png in Resources */,
 				1543C07519E59670008718E6 /* sepia.jpeg in Resources */,
@@ -2184,6 +2193,7 @@
 				711FB93E19D998730023CAD4 /* BusinessErrorReport.m in Sources */,
 				B330409519BDB21200BA6211 /* HairfieRepository.m in Sources */,
 				71A0AC3D19CC2CEA00BC1ABB /* Timetable.m in Sources */,
+				B3844E3719FE65E40083CE0D /* AddTagsToHairfieViewController.m in Sources */,
 				B36AC50A19DC27B000B8AC13 /* Hairdresser.m in Sources */,
 				B33E4C4919A4AA4C0024F5F7 /* CommentViewController.m in Sources */,
 				B3E0B15A19ACC14800C3EACE /* SignUpViewController.m in Sources */,

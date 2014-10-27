@@ -13,6 +13,7 @@
 #import "Money.h"
 #import "NotLoggedAlert.h"
 #import "UITextField+Style.h"
+#import "UIView+Borders.h"
 
 #import <LoopBack/LoopBack.h>
 
@@ -27,13 +28,14 @@
     AppDelegate *appDelegate;
 }
 
--(UIStatusBarStyle)preferredStatusBarStyle
-{
-    return UIStatusBarStyleLightContent;
-}
-
 -(void)viewDidLoad
 {
+    
+    //// TAGS = NO DESCRIPTION
+    _hairfieDesc.hidden = YES;
+    ////
+    
+    
     UIColor *placeholder = [[UIColor whiteColor] colorWithAlphaComponent:0.6];
     appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [_emailTextField setValue:placeholder
@@ -56,7 +58,8 @@
     salonTypes = [[NSMutableArray alloc] initWithObjects:NSLocalizedStringFromTable(@"I did it", @"Post_Hairfie", nil), NSLocalizedStringFromTable(@"Hairdresser in a Salon", @"Post_Hairfie", nil), nil];
     _tableViewHeight.constant = [salonTypes count] * _dataChoice.rowHeight;
     [_priceTextField textFieldWithPhoneKeyboard];
-
+    [_descView addBottomBorderWithHeight:5 andColor:[UIColor salonDetailTab]];
+     [_topView addBottomBorderWithHeight:1 andColor:[UIColor lightGrey]];
     [self uploadHairfiePicture];
 }
 
@@ -99,6 +102,10 @@ shouldChangeTextInRange: (NSRange) range
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+-(IBAction)addTags:(id)sender
+{
+    [self performSegueWithIdentifier:@"addTagsToHairfie" sender:self];
+}
 -(IBAction)showSalonsChoices:(id)sender
 {
     [_hairfieDesc resignFirstResponder];
