@@ -11,6 +11,8 @@
 #import "AppDelegate.h"
 #import "CredentialStore.h"
 #import "LoginViewController.h"
+#import "FBAuthenticator.h"
+#import "MRProgress.h"
 
 
 @interface TutoContainerViewController ()
@@ -21,6 +23,7 @@
     NSArray *pagesLabel;
     NSArray *imagesName;
     UserAuthenticator *userAuthenticator;
+    FBAuthenticator *fbAuthenticator;
     AppDelegate *delegate;
 }
 
@@ -31,6 +34,9 @@
     imagesName = @[@"tuto-page-1.png", @"tuto-page-2.png", @"tuto-page-3.png"];
 
     delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    userAuthenticator = [[UserAuthenticator alloc] init];
+    fbAuthenticator   = [[FBAuthenticator alloc] init];
+    
 
 
     // Create page view controller
@@ -54,8 +60,6 @@
     [self addChildViewController:_pageViewController];
     [self.view addSubview:_pageViewController.view];
     [self.pageViewController didMoveToParentViewController:self];
-
-    userAuthenticator = [[UserAuthenticator alloc] init];
     
     _fbLogin.titleLabel.text = NSLocalizedStringFromTable(@"fbConnect", @"tuto", nil);
     _login.titleLabel.text = NSLocalizedStringFromTable(@"login", @"tuto", nil);
@@ -123,7 +127,19 @@
 }
 
 - (IBAction)getFacebookUserInfo:(id)sender {
-    //[self fbConnect];
+    BOOL performLogin = ![delegate.credentialStore isLoggedIn];
+    [MRProgressOverlayView showOverlayAddedTo:self.view title:NSLocalizedStringFromTable(@"Login in progress", @"Login_Sign_Up", nil) mode:MRProgressOverlayViewModeIndeterminateSmall animated:YES];
+    
+    [fbAuthenticator loginFbAccountWithPermissions:@[] allowUI:YES
+                                           success:^{
+                                               [MRProgressOverlayView dismissAllOverlaysForView:self.view animated:YES];
+                                               if(performLogin)    [self performSegueWithIdentifier:@"@Main" sender:self];
+                                           }
+                                           failure:^(NSError *error) {
+                                               NSLog(@"Error : %@", error.description);
+                                               [MRProgressOverlayView dismissAllOverlaysForView:self.view animated:YES];
+                                           }
+     ];
 }
 
 
@@ -134,9 +150,6 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"@Main#skip"]) {
         [userAuthenticator skipLogin];
-    } else if ([segue.identifier isEqualToString:@"fbLogin"]) {
-        LoginViewController *viewCtrl = [segue destinationViewController];
-        viewCtrl.doFbConnect = YES;
     }
 }
 

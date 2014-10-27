@@ -15,8 +15,9 @@
                             failure:(void(^)(NSError *error)) aFailureHandler;
 
 -(void)loginFbAccountWithPermissions:(NSArray *) permissionsNeeded
-                            success:(void(^)()) aSuccessHandler
-                            failure:(void(^)(NSError *error)) aFailureHandler;
+                             allowUI:(BOOL)allowUI
+                             success:(void(^)()) aSuccessHandler
+                             failure:(void(^)(NSError *error)) aFailureHandler;
 
 -(void)loginWithFbToken:(NSString*)fbAuthToken
                 success:(void(^)())aSuccessHandler

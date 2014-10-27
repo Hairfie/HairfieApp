@@ -10,6 +10,7 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import "AppDelegate.h"
 #import "UserAuthenticator.h"
+#import "MRProgress.h"
 
 @implementation FBAuthenticator {
     AppDelegate *delegate;
@@ -63,6 +64,7 @@
 }
 
 -(void)loginFbAccountWithPermissions:(NSArray *) permissionsNeeded
+                             allowUI:(BOOL)allowUI
                             success:(void(^)()) aSuccessHandler
                             failure:(void(^)(NSError *error)) aFailureHandler {
     
@@ -90,7 +92,7 @@
         [self sessionStateChanged:FBSession.activeSession state:FBSession.activeSession.state error:nil success:loadSuccessBlock failure:loadErrorBlock];
     } else {
         [FBSession openActiveSessionWithReadPermissions:permissions
-                                           allowLoginUI:YES
+                                           allowLoginUI:allowUI
                                       completionHandler:
          ^(FBSession *session, FBSessionState state, NSError *error) {
              [self sessionStateChanged:session state:state error:error success:loadSuccessBlock failure:loadErrorBlock];
