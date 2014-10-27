@@ -11,6 +11,7 @@
 #import "FinalStepViewController.h"
 #import "ClaimTimetableCell.h"
 #import "TimeWindow.h"
+#import "WeekDays.h"
 
 @interface FinalStepTimetableViewController ()
 
@@ -18,7 +19,7 @@
 
 @implementation FinalStepTimetableViewController
 {
-    NSString *dayPicked;
+    NSDictionary *dayPicked;
     NSInteger dayPickedInt;
     NSArray *weekDays;
     
@@ -32,40 +33,13 @@
         _timeTable = [[Timetable alloc] initEmpty];
     
  
-    [self allDatesInWeekContainingDate];
+    weekDays = [[[WeekDays alloc] init] all];
     _doneBttn.layer.cornerRadius = 5;
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(clearDay:)
                                                  name:@"clearDay"
                                                object:nil];
     // Do any additional setup after loading the view.
-}
-
-
--(void)allDatesInWeekContainingDate {
-   
-    NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
-    NSString *language = [[NSLocale preferredLanguages] objectAtIndex:0];
-
-    [dateFormatter setLocale: [[NSLocale alloc] initWithLocaleIdentifier:language]];
-
-    weekDays = [dateFormatter weekdaySymbols];
-    
-    NSUInteger firstWeekdayIndex = [[NSCalendar currentCalendar] firstWeekday];
-    if (firstWeekdayIndex > 0)
-    {
-        weekDays = [[weekDays subarrayWithRange:NSMakeRange(firstWeekdayIndex, 7-firstWeekdayIndex)]
-                    arrayByAddingObjectsFromArray:[weekDays subarrayWithRange:NSMakeRange(0,firstWeekdayIndex)]];
-    }
-    
-    NSMutableArray *weekDayCapitalized = [[NSMutableArray alloc] init];
-    for (NSString *day in weekDays)
-    {
-        
-        NSString *capitalizedString = [day capitalizedString];
-        [weekDayCapitalized addObject:capitalizedString];
-    }
-    weekDays = (NSArray*)weekDayCapitalized;
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -126,7 +100,6 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     dayPicked = [weekDays objectAtIndex:indexPath.row];
-    dayPickedInt = indexPath.row;
     [self performSegueWithIdentifier:@"addTimeWindow" sender:self];
 }
 
@@ -143,7 +116,7 @@
         cell = [nib objectAtIndex:0];
     }
     
-    cell.day.text = [weekDays objectAtIndex:indexPath.row];
+    cell.day.text = [[weekDays objectAtIndex:indexPath.row] objectForKey:@"string"];;
     
     if (indexPath.row == 0)
     {
