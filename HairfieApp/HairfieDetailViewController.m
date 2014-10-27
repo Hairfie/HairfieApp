@@ -11,7 +11,7 @@
 #import "HairfieDetailTableViewCell.h"
 #import "CommentTableViewCell.h"
 #import "CustomCollectionViewCell.h"
-#import "HairfieDetailCollectionReusableView.h"
+//#import "HairfieDetailCollectionReusableView.h"
 #import "CommentViewController.h"
 #import <LoopBack/LoopBack.h>
 #import "Hairfie.h"
@@ -31,6 +31,7 @@
     UIButton *likeButton;
     UIImageView *likeView;
     NSArray *displayedInfoNames;
+    NSArray *menuActions;
 }
 
 - (void)viewDidLoad
@@ -41,7 +42,7 @@
     _hairfieCollection.dataSource = self;
 
     [_hairfieCollection registerNib:[UINib nibWithNibName:@"CustomCollectionViewCell" bundle:nil]forCellWithReuseIdentifier:@"hairfieRelated"];
-    [_hairfieCollection registerNib:[UINib nibWithNibName:@"HairfieDetailCollectionReusableView" bundle:nil]forCellWithReuseIdentifier:@"headerCollection"];
+   // [_hairfieCollection registerNib:[UINib nibWithNibName:@"HairfieDetailCollectionReusableView" bundle:nil]forCellWithReuseIdentifier:@"headerCollection"];
 
     [_hairfieCollection registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView"];
 
@@ -52,6 +53,24 @@
 
     self.headerTitleLabel.text = [NSString stringWithFormat:@"%@'s Hairfie", self.hairfie.author.firstName];
      [_topBarView addBottomBorderWithHeight:1.0 andColor:[UIColor lightGrey]];
+    menuActions = @[
+                    @{@"label": NSLocalizedStringFromTable(@"Report content", @"Hairfie_Detail",nil), @"segue": @"reportContent"}
+                    ];
+}
+
+-(IBAction)showMenuActionSheet:(id)sender
+{
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                             delegate:self
+                                                    cancelButtonTitle:NSLocalizedStringFromTable(@"Cancel", @"Salon_Detail", nil)
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:nil];
+    
+    for (NSDictionary *menuAction in menuActions) {
+        [actionSheet addButtonWithTitle:NSLocalizedStringFromTable([menuAction objectForKey:@"label"], @"Hairfie_Detail", nil)];
+    }
+    
+    [actionSheet showInView:self.view];
 }
 
 -(void)viewWillAppear:(BOOL)animated

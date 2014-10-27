@@ -36,6 +36,7 @@
     NSMutableArray *pictureForGallery;
     AppDelegate *appDelegate;
     NSInteger serviceIndex;
+    
 }
 
 

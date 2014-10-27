@@ -164,7 +164,6 @@
 {
     LoadingCollectionViewCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:@"loadingCell"
                                                                                      forIndexPath:indexPath];
-
     if (endOfScroll) {
         [cell showEndOfScroll];
     }
