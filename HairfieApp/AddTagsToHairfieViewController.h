@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AddTagsToHairfieViewController : UIViewController
+@interface AddTagsToHairfieViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+
 @property (nonatomic) IBOutlet UIView *topView;
+@property (nonatomic) IBOutlet UIButton *validateBttn;
+@property (nonatomic) IBOutlet UITableView *tagsTableView;
 
 @end
