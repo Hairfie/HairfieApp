@@ -138,7 +138,7 @@ shouldChangeTextInRange: (NSRange) range
     }
     else
     {
-        NSString *contentComment = textView.text;
+        //NSString *contentComment = textView.text;
         _isCommenting = NO;
 
         [_commentTableView reloadData];

@@ -13,12 +13,15 @@
 #import "HomeViewController.h"
 #import "ECSlidingViewController.h"
 #import <Crashlytics/Crashlytics.h>
+#import "UserAuthenticator.h"
 
 @interface AppDelegate ()
 
 @end
 
-@implementation AppDelegate
+@implementation AppDelegate {
+    UserAuthenticator *userAuthenticator;
+}
 
 @synthesize manager = _manager, myLocation = _myLocation, credentialStore = _credentialStore;
 
@@ -43,24 +46,14 @@ static LBRESTAdapter * _lbAdaptater = nil;
     
     _manager = [[CLLocationManager alloc] init];
     _credentialStore = [[CredentialStore alloc] init];
+    userAuthenticator = [[UserAuthenticator alloc] init];
 
     NSLog(@"LOGIN STATUS : %d", [_credentialStore isLoggedIn]);
     NSLog(@"USER ID : %@", [_credentialStore userId]);
 
     if (self.credentialStore.isLoggedIn) {
         [[[self class] lbAdaptater] setAccessToken:self.credentialStore.authToken];
-        
-        [User getById:self.credentialStore.userId
-              success:^(User *user) {
-                  self.currentUser = user;
-                  NSLog(@"USER : %@", self.currentUser.picture.url);
-                  [[NSNotificationCenter defaultCenter] postNotificationName:@"userLanguage" object:nil];
-              }
-              failure:^(NSError *error) {
-                  NSLog(@"Error retrieving logged in user: %@", error.localizedDescription);
-                  self.currentUser = nil;
-                  [self.credentialStore clearSavedCredentials];
-              }];
+        [userAuthenticator getCurrentUser];
         
         [FBSession openActiveSessionWithReadPermissions:@[@"public_profile", @"email"]
                                            allowLoginUI:NO

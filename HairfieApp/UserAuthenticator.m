@@ -51,6 +51,7 @@
         
         delegate.currentUser = user;
         [[NSNotificationCenter defaultCenter] postNotificationName:@"currentUser" object:self];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"userLanguage" object:nil];
         [ARAnalytics identifyUserWithID:user.id andEmailAddress:user.email];
     };
     
