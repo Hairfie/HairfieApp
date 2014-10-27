@@ -21,8 +21,9 @@
                                         forMethod:@"hairfies.share"];
     
     [[[self class] repository] invokeStaticMethod:@"share"
-                               parameters:@{@"hairfieId": hairfieId}
+                               parameters:@{@"hairfieId": hairfieId, @"facebook": @"true"}
                                   success:^(id value) {
+                                      NSLog(@"Sharing Result : %@", value);
                                       aSuccessHandler();
                                   }
                                   failure:aFailureHandler];
