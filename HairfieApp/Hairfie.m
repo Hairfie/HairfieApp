@@ -11,6 +11,7 @@
 #import "BusinessRepository.h"
 #import "AppDelegate.h"
 #import "SetterUtils.h"
+#import "Tag.h"
 
 @implementation Hairfie
 
@@ -39,6 +40,17 @@
 -(void)setPrice:(id)aPrice
 {
     _price = [Money fromSetterValue:aPrice];
+}
+
+-(void)setTags:(id)someTags
+{
+    NSMutableArray *temp = [[NSMutableArray alloc] init];
+    if (![someTags isEqual:[NSNull null]]) {
+        for (id aTag in someTags) {
+            [temp addObject:[Tag fromSetterValue:aTag]];
+        }
+    }
+    _tags = [[NSArray alloc] initWithArray:temp];
 }
 
 -(NSString *)pictureUrlwithWidth:(NSNumber *)width andHeight:(NSNumber *)height

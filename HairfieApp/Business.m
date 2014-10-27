@@ -296,9 +296,8 @@
             
         }
         [parameters setObject:servicesToSend forKey:@"services"];
-        
     }
-    
+
     [[Business repository] invokeStaticMethod:@"update" parameters:parameters success:aSuccessHandler failure:aFailureHandler];
 }
 

@@ -27,6 +27,7 @@
 @property (strong, nonatomic) NSDate *updatedAt;
 @property (strong, nonatomic) User *author;
 @property (strong, nonatomic) Business *business;
+@property (strong, nonatomic) NSArray *tags;
 
 -(id)initWithDictionary:(NSDictionary *)data;
 

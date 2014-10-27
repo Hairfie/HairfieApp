@@ -8,6 +8,7 @@
 
 #import "HairfiePost.h"
 #import "AppDelegate.h"
+#import "Tag.h"
 
 @implementation HairfiePost
 
@@ -70,6 +71,13 @@
     }
     if(self.business != nil) {
         [parameters setObject:self.business.id forKey:@"businessId"];
+    }
+    if (self.tags != nil) {
+        NSMutableArray *tagsToSend = [[NSMutableArray alloc] init];
+        for (Tag *tag in self.tags) {
+            [tagsToSend addObject:[tag toApiValue]];
+        }
+        [parameters setObject:tagsToSend forKey:@"tags"];
     }
     
     [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/hairfies"

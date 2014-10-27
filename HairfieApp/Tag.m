@@ -8,6 +8,7 @@
 
 #import "Tag.h"
 #import "AppDelegate.h"
+#import "SetterUtils.h"
 
 @implementation Tag
 
@@ -19,6 +20,11 @@
 -(id)initWithDictionary:(NSDictionary *)aDictionary
 {
     return (Tag *)[[[self class] repository] modelWithDictionary:aDictionary];
+}
+
+-(NSString *)toApiValue
+{
+    return self.id;
 }
 
 +(void)getTagsGroupedByCategoryWithSuccess:(void (^)(NSArray *))aSuccessHandler
@@ -48,6 +54,11 @@
     };
     
     [[self repository] invokeStaticMethod:@"/" parameters:@{} success:loadSuccessBlock failure:aFailureHandler];
+}
+
++(id)fromSetterValue:(id)aValue
+{
+    return [SetterUtils getInstanceOf:[self class] fromSetterValue:aValue];
 }
 
 +(LBModelRepository *)repository
