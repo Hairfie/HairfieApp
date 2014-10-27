@@ -53,7 +53,18 @@
                failure:(void(^)(NSError *error))aFailureHandler
 {
     void (^onSuccess)(NSDictionary *) = ^(NSDictionary *result) {
-        aSuccessHandler();
+        NSLog(@"result :%@", result);
+        if(self.shareOnFB) {
+            Hairfie *newHairfie = [[Hairfie alloc] initWithDictionary:result];
+            [HairfieShare shareHairfie:newHairfie.id success:^{
+                aSuccessHandler();
+            } failure:^(NSError *error) {
+                NSLog(@"Error : %@", error.description);
+                aSuccessHandler();
+            }];
+        } else {
+            aSuccessHandler();
+        }
     };
     
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];

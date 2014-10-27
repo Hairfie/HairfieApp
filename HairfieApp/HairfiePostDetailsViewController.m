@@ -13,6 +13,9 @@
 #import "Money.h"
 #import "NotLoggedAlert.h"
 #import "UITextField+Style.h"
+#import <FacebookSDK/FacebookSDK.h>
+#import "FBUtils.h"
+#import "FBAuthenticator.h"
 #import "UIView+Borders.h"
 
 #import <LoopBack/LoopBack.h>
@@ -25,17 +28,18 @@
     NSMutableArray *salonTypes;
     Picture *uploadedPicture;
     BOOL uploadInProgress;
+    BOOL isFbShareActivated;
     AppDelegate *appDelegate;
 }
 
 -(void)viewDidLoad
 {
-    
+
     //// TAGS = NO DESCRIPTION
     _hairfieDesc.hidden = YES;
     ////
-    
-    
+
+
     UIColor *placeholder = [[UIColor whiteColor] colorWithAlphaComponent:0.6];
     appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [_emailTextField setValue:placeholder
@@ -64,7 +68,7 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated {
-    
+
     if (appDelegate.currentUser.managedBusinesses.count != 0)
     {
         if (salonTypes.count == 2) {
@@ -78,7 +82,7 @@
     if(_salonChosen != nil) {
         _hairfiePost.business = _salonChosen;
     }
-    
+
     if (_hairfiePost.business != nil) {
         [_salonLabelButton setTitle:_hairfiePost.business.name forState:UIControlStateNormal];
         _hairdresserSubview.hidden = NO;
@@ -113,7 +117,7 @@ shouldChangeTextInRange: (NSRange) range
         _dataChoice.hidden = YES;
         _isSalon = NO;
     } else {
-        
+
         CGFloat ypos = _dataChoice.rowHeight * salonTypes.count;
         [_tableViewHeight setConstant:ypos];
         NSLog(@"%f , %f, %ld", _tableViewHeight.constant, _dataChoice.rowHeight, salonTypes.count);
@@ -167,19 +171,19 @@ shouldChangeTextInRange: (NSRange) range
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
+
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    
+
     if (_salonOrHairdresser == YES)
     {
         if (indexPath.row == salonTypes.count - 1)
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    
+
         if ([[salonTypes objectAtIndex:indexPath.row] isKindOfClass:[Business class]])
         {
             Business *business = [salonTypes objectAtIndex:indexPath.row];
@@ -212,7 +216,7 @@ shouldChangeTextInRange: (NSRange) range
     }
     else
     {
-        
+
         Business *business = [salonTypes objectAtIndex:indexPath.row];
          [_salonLabelButton setTitle:business.name forState:UIControlStateNormal];
         _salonChosen = business;
@@ -235,9 +239,9 @@ shouldChangeTextInRange: (NSRange) range
 {
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     if([delegate.credentialStore isLoggedIn]) {
-        
+
         [self addSpinnerAndOverlay];
-        
+
         NSLog(@"Post Hairfie");
         while (uploadInProgress) {
             NSLog(@"---------- Upload in progress ----------");
@@ -247,7 +251,7 @@ shouldChangeTextInRange: (NSRange) range
         if(![_hairfiePost pictureIsUploaded]) {
             [self removeSpinnerAndOverlay];
             [self showUploadFailedAlertView];
-            return; 
+            return;
         }
 
         _hairfiePost.description = self.hairfieDesc.text;
@@ -256,16 +260,16 @@ shouldChangeTextInRange: (NSRange) range
         if (![self.priceTextField.text isEqualToString:@""]) {
             Money *price = [[Money alloc] initWithAmount:[NSNumber numberWithDouble:[self.priceTextField.text doubleValue]]
                                                 currency:@"EUR"];
-            
+
             _hairfiePost.price = price;
         }
 
         if (self.salonChosen) {
             _hairfiePost.business = self.salonChosen;
         }
-        
+
         NSLog(@"Hairfie to post : %@", _hairfiePost);
-        
+
         void (^loadErrorBlock)(NSError *) = ^(NSError *error){
             NSLog(@"Error : %@", error.description);
             [self removeSpinnerAndOverlay];
@@ -289,16 +293,16 @@ shouldChangeTextInRange: (NSRange) range
     [spinner setFrame:CGRectMake(150, self.view.frame.size.height/2, spinner.frame.size.width, spinner.frame.size.height)];
     spinner.hidesWhenStopped = YES;
     [spinner startAnimating];
-    
+
     UILabel *text = [[UILabel alloc] initWithFrame:CGRectMake(80, self.view.frame.size.height/2 + 20, 140, 50)];
     text.text = NSLocalizedStringFromTable(@"Upload in progress", @"Post_Hairfie", nil);
     text.font = [UIFont fontWithName:@"SourceSansPro-Light" size:16];
     [text setTextColor:[UIColor whiteColor]];
     [text setTextAlignment:NSTextAlignmentCenter];
-    
+
     UIView *overlay = [[UIView alloc] initWithFrame:_mainView.frame];
     overlay.backgroundColor = [[UIColor blackHairfie] colorWithAlphaComponent:0.6];
-    
+
     [overlay addSubview:spinner];
     [overlay addSubview:text];
 
@@ -312,7 +316,7 @@ shouldChangeTextInRange: (NSRange) range
 
 -(void) uploadHairfiePicture {
     uploadInProgress = YES;
-    
+
     [_hairfiePost uploadPictureWithSuccess:^{
         NSLog(@"Uploaded !");
         uploadInProgress = NO;
@@ -330,6 +334,42 @@ shouldChangeTextInRange: (NSRange) range
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     [self uploadHairfiePicture];
+}
+
+
+-(IBAction)fbShare:(id)sender {
+    if(isFbShareActivated) {
+        [sender setImage:[UIImage imageNamed:@"fb-share-off.png"] forState:UIControlStateNormal];
+
+        isFbShareActivated = NO;
+        _hairfiePost.shareOnFB = NO;
+    } else {
+        [self checkFbSessionWithSuccess:^{
+            NSArray *permissionsNeeded = @[@"publish_actions"];
+            [FBUtils getPermissions:permissionsNeeded success:^{
+                NSLog(@"GOGO Share !");
+                [sender setImage:[UIImage imageNamed:@"fb-share-on.png"] forState:UIControlStateNormal];
+                isFbShareActivated = YES;
+                _hairfiePost.shareOnFB = YES;
+            } failure:^(NSError *error) {
+                NSLog(@"Sharing failed !");
+            }];
+        } failure:^(NSError *error) {
+            NSLog(@"Sharing failed !");
+        }];
+
+    }
+}
+
+-(void)checkFbSessionWithSuccess:(void(^)())aSuccessHandler
+                         failure:(void(^)(NSError *error))aFailureHandler {
+    if (FBSession.activeSession.state == FBSessionStateOpen
+        || FBSession.activeSession.state == FBSessionStateOpenTokenExtended) {
+        aSuccessHandler();
+    } else {
+        FBAuthenticator *fbAuthenticator = [[FBAuthenticator alloc] init];
+        [fbAuthenticator linkFbAccountWithPermissions:@[@"publish_actions"] success:aSuccessHandler failure:aFailureHandler];
+    }
 }
 
 

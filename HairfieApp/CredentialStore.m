@@ -13,7 +13,6 @@
 #define AUTH_TOKEN_KEY @"auth_token"
 #define USER_ID_KEY @"user_id"
 #define TUTORIAL_KEY @"tuto"
-#define TUTORIAL_DO_FB_KEY @"tuto_do_fb"
 
 
 
@@ -79,22 +78,6 @@
         return NO;
     }
     //return NO;
-}
-
-- (void)setDoFbConnect {
-    [self setSecureValue:@"YES" forKey:TUTORIAL_DO_FB_KEY];
-}
-
-- (void)clearDoFbConnect {
-    [self setSecureValue:@"NO" forKey:TUTORIAL_DO_FB_KEY];
-}
-
-- (BOOL)doFbConnect {
-    if([self secureValueForKey:TUTORIAL_DO_FB_KEY]) {
-        return YES;
-    } else {
-        return NO;
-    }
 }
 
 @end
