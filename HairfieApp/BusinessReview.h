@@ -39,4 +39,8 @@
                     success:(void(^)(NSArray *reviews))aSuccessHandler
                     failure:(void(^)(NSError *error))aFailureHandler;
 
++(void)getReviewsByAuthor:(NSString *)userId
+                  success:(void(^)(NSArray *reviews))aSuccessHandler
+                  failure:(void(^)(NSError *error))aFailureHandler;
+
 @end

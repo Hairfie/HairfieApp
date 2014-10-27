@@ -8,6 +8,7 @@
 
 #import "UserProfileViewController.h"
 #import "Hairfie.h"
+#import "BusinessReview.h"
 #import "AppDelegate.h"
 #import "UIButton+Style.h"
 #import "UILabel+Style.h"
@@ -17,6 +18,7 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "CustomCollectionViewCell.h"
 #import "LoadingCollectionViewCell.h"
+#import "ReviewTableViewCell.h"
 
 #define HAIRFIE_CELL @"hairfieCell"
 #define LOADING_CELL @"loadingCell"
@@ -30,6 +32,7 @@
     AppDelegate *appDelegate;
     UIImageView *userProfilePicture;
     NSMutableArray *userHairfies;
+    NSMutableArray *userReviews;
     BOOL loadingNext;
     BOOL endOfScroll;
 }
@@ -82,6 +85,9 @@
         self.menuBttn.hidden = YES;
     }
     
+    userReviews= [[NSMutableArray alloc] init];
+    [self getReviews];
+    
     [self.followUserBttn setTitle:NSLocalizedStringFromTable(@"Follow", @"UserProfile", nil) forState:UIControlStateNormal];
     [self.followUserBttn profileFollowStyle];
     
@@ -98,6 +104,7 @@
      {
          if (image)
          {
+             NSLog(@"COOL");
              self.backgroundProfilePicture.image = [image applyLightEffect];
          }
      }];
@@ -144,6 +151,9 @@
     {
          [bottomBorder setFrame:CGRectMake(1, aButton.frame.size.height, aButton.frame.size.width, 3)];
         self.reviewView.hidden = NO;
+        self.mainViewHeight.constant = (userReviews.count * 130);
+        
+
     }
     
     for (UIButton *btn in @[self.hairfieBttn, self.reviewBttn]) {
@@ -203,7 +213,6 @@
     }
     
     Hairfie *hairfie = (Hairfie *)[userHairfies objectAtIndex:indexPath.row];
-    NSLog(@"hairfie : %@", hairfie);
     
     [cell setHairfie:hairfie];
     
@@ -257,12 +266,63 @@
     NSDate *until = nil;
     if (userHairfies.count > 0) {
         
-        //until = [[userHairfies objectAtIndex:0] createdAt];
+        until = [[userHairfies objectAtIndex:0] createdAt];
     }
     
     [Hairfie getHairfiesByAuthor:self.user.id until:until limit:@HAIRFIES_PAGE_SIZE skip:[NSNumber numberWithLong:userHairfies.count] success:successHandler failure:failureHandler];
 }
 
+
+-(void)getReviews
+{
+    
+    void (^successHandler)(NSArray *) = ^(NSArray *results) {
+        userReviews = [NSMutableArray arrayWithArray:results];
+        [self.reviewTableView reloadData];
+    };
+    
+    void (^failureHandler)(NSError *) = ^(NSError *error) {
+        NSLog(@"Failed to get user's reviews");
+    };
+    
+    [BusinessReview getReviewsByAuthor:self.user.id success:successHandler failure:failureHandler];
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return userReviews.count;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 130;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"reviewCell";
+    ReviewTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    BusinessReview *review = (BusinessReview *)[userReviews objectAtIndex:indexPath.row];
+    
+    if (cell == nil) {
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ReviewTableViewCell" owner:self options:nil];
+        cell = [nib objectAtIndex:0];
+    }
+    cell.backgroundColor = [UIColor whiteColor];
+   
+    if (tableView == self.reviewTableView)
+    {
+        [cell setReview:review];
+        NSLog(@"SETTING REVIEWS");
+    }
+    return cell;
+
+}
 
 /*
 #pragma mark - Navigation

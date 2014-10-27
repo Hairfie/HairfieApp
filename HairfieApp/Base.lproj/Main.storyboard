@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="m6Z-pY-ich">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="m6Z-pY-ich">
     <dependencies>
-        <deployment defaultVersion="1808" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -12,7 +12,6 @@
             <string>SourceSansPro-Bold</string>
         </mutableArray>
         <mutableArray key="SourceSansPro-Light.ttf">
-            <string>SourceSansPro-Light</string>
             <string>SourceSansPro-Light</string>
             <string>SourceSansPro-Light</string>
             <string>SourceSansPro-Light</string>
@@ -215,7 +214,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="274"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qk7-i7-gpL">
-                                                        <rect key="frame" x="0.0" y="0.0" width="320" height="274"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="320" height="270"/>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J0Z-zy-xpw">
                                                         <rect key="frame" x="77" y="163" width="167" height="21"/>
@@ -230,7 +229,6 @@
                                                                 <rect key="frame" x="0.0" y="49" width="320" height="3"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Jq-sC-woz">
-                                                                        <rect key="frame" x="159" y="0.0" width="2" height="3"/>
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                     </view>
                                                                 </subviews>
@@ -276,25 +274,27 @@
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </view>
                                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nO9-La-hKl" userLabel="REVIEW VIEW">
-                                                <rect key="frame" x="0.0" y="274" width="320" height="300"/>
+                                                <rect key="frame" x="0.0" y="274" width="320" height="294"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CdP-O3-TRH">
-                                                        <rect key="frame" x="139" y="137" width="42" height="21"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
+                                                    <tableView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" bounces="NO" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="RzC-CX-MyT">
+                                                        <rect key="frame" x="0.0" y="0.0" width="320" height="294"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <connections>
+                                                            <outlet property="dataSource" destination="T79-5J-2Oj" id="QGN-Ag-1ad"/>
+                                                            <outlet property="delegate" destination="T79-5J-2Oj" id="c7o-EM-ofb"/>
+                                                        </connections>
+                                                    </tableView>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </view>
                                             <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="chj-Tc-vYD" userLabel="HAIRFIE VIEW">
                                                 <rect key="frame" x="0.0" y="274" width="320" height="294"/>
                                                 <subviews>
-                                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="hTw-wS-fXv">
-                                                        <rect key="frame" x="0.0" y="70" width="320" height="234"/>
+                                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="hTw-wS-fXv">
+                                                        <rect key="frame" x="0.0" y="0.0" width="320" height="294"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="234" id="LfM-zb-Zn5"/>
+                                                            <constraint firstAttribute="height" constant="294" id="LfM-zb-Zn5"/>
                                                             <constraint firstAttribute="width" constant="320" id="yP6-gJ-ZGH"/>
                                                         </constraints>
                                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Nwa-io-Y8D">
@@ -320,31 +320,12 @@
                                                             <outlet property="delegate" destination="T79-5J-2Oj" id="8fE-PY-Ede"/>
                                                         </connections>
                                                     </collectionView>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="userprofile-filter-button.png" translatesAutoresizingMaskIntoConstraints="NO" id="o3M-z5-SnI">
-                                                        <rect key="frame" x="8" y="10" width="304" height="52"/>
-                                                    </imageView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1zh-dq-i3C" userLabel="FILTER HAIRFIE LBL">
-                                                        <rect key="frame" x="25" y="16" width="156" height="39"/>
-                                                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="17"/>
-                                                        <color key="textColor" red="0.51764705882352946" green="0.54509803921568623" blue="0.58431372549019611" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z06-n3-jqb" userLabel="FILTER HAIRFIE BTTN">
-                                                        <rect key="frame" x="244" y="10" width="68" height="52"/>
-                                                        <state key="normal">
-                                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                        </state>
-                                                    </button>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="294" id="FVp-Ko-lLc"/>
                                                     <constraint firstAttribute="width" constant="320" id="jp0-EB-MXQ"/>
                                                 </constraints>
-                                            </view>
-                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="30S-Pv-rBn" userLabel="BOTTOM CONTAINER VIEW">
-                                                <rect key="frame" x="0.0" y="274" width="320" height="1000"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             </view>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -416,6 +397,7 @@
                         <outlet property="navBttn" destination="fUS-Tu-iRq" id="ZL4-or-wky"/>
                         <outlet property="reviewBttn" destination="Atl-Od-EZd" id="KDO-7m-Ae2"/>
                         <outlet property="reviewLbl" destination="74n-zI-jqc" id="KTO-yS-btZ"/>
+                        <outlet property="reviewTableView" destination="RzC-CX-MyT" id="vvg-cb-wkC"/>
                         <outlet property="reviewView" destination="nO9-La-hKl" id="8p6-9L-sG3"/>
                         <outlet property="topView" destination="Nwq-3q-qNC" id="1Gh-D3-iUV"/>
                         <outlet property="userName" destination="J0Z-zy-xpw" id="SO7-n9-jLp"/>
@@ -5001,7 +4983,6 @@
         <image name="tab-business-infos.png" width="80" height="55"/>
         <image name="tab-business-prices.png" width="80" height="55"/>
         <image name="take-picture-button.png" width="153" height="153"/>
-        <image name="userprofile-filter-button.png" width="609" height="104"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

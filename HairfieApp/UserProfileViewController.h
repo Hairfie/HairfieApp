@@ -9,12 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "User.h"
 
-@interface UserProfileViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate>
+@interface UserProfileViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UITableViewDataSource, UITableViewDelegate>
 
 
 @property (nonatomic) IBOutlet UICollectionView *hairfiesCollection;
 @property (nonatomic) BOOL isCurrentUser;
 @property (nonatomic) IBOutlet UIView *topView;
+@property (nonatomic) IBOutlet UITableView *reviewTableView;
 
 @property (nonatomic) IBOutlet UIView *hairfieView;
 @property (nonatomic) IBOutlet UIView *reviewView;

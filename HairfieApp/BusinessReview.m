@@ -130,6 +130,39 @@
                                failure:aFailureHandler];
 }
 
+
++(void)getReviewsByAuthor:(NSString *)userId
+                   success:(void(^)(NSArray *reviews))aSuccessHandler
+                   failure:(void(^)(NSError *error))aFailureHandler
+{
+    NSMutableDictionary *where = [[NSMutableDictionary alloc] initWithDictionary:@{@"authorId": userId}];
+    
+    
+    NSDictionary *parameters = @{
+                                 @"filter": @{
+                                         @"where":where,
+                                         }
+                                 };
+    
+    [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/businessReviews" verb:@"GET"]
+                                        forMethod:@"businessReviews.find"];
+    
+    LBModelRepository *repository = [[self class] repository];
+    
+    [repository invokeStaticMethod:@"find"
+                        parameters:parameters
+                           success:^(NSArray *results) {
+                               NSMutableArray *reviews = [[NSMutableArray alloc] init];
+                               for (NSDictionary *result in results) {
+                                   [reviews addObject:[[BusinessReview alloc] initWithDictionary:result]];
+                               }
+                               aSuccessHandler([[NSArray alloc] initWithArray:reviews]);
+                           }
+                           failure:aFailureHandler];
+}
+
+
+
 +(LBModelRepository *)repository
 {
     return [[AppDelegate lbAdaptater] repositoryWithClass:[BusinessReviewRepository class]];
