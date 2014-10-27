@@ -54,6 +54,13 @@
                     success:(void(^)(NSArray *hairfies))aSuccessHandler
                     failure:(void(^)(NSError *error))aFailureHandler;
 
++(void)getHairfiesByAuthor:(NSString *)userId
+                     until:(NSDate *)until
+                     limit:(NSNumber *)limit
+                      skip:(NSNumber *)skip
+                   success:(void(^)(NSArray *hairfies))aSuccessHandler
+                   failure:(void(^)(NSError *error))aFailureHandler;
+                   
 +(id)fromSetterValue:(id)aValue;
 
 +(HairfieRepository *)repository;

@@ -59,6 +59,7 @@
     return (User *)[[[self class] repository] modelWithDictionary:aDictionary];
 }
 
+
 -(void)saveWithSuccess:(void(^)())aSuccessHandler
                failure:(void(^)(NSError *error))aFailureHandler
 {

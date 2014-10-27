@@ -39,4 +39,23 @@
     self.backgroundColor = [UIColor pinkHairfie];
 }
 
+-(void)profileTabStyle
+{
+    self.layer.borderColor = [UIColor colorWithWhite:1 alpha:0.3].CGColor;
+    
+    self.layer.borderWidth = 1;
+    [self setContentEdgeInsets:UIEdgeInsetsMake(0, 14, 20, 20)];
+    self.titleLabel.font = [UIFont fontWithName:@"SourceSansPro-SemiBold" size:18];
+}
+-(void)profileFollowStyle
+{
+    self.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.layer.borderWidth = 1;
+    self.titleLabel.font = [UIFont fontWithName:@"SourceSansPro-Light" size:16];
+    self.layer.cornerRadius = 5.0;
+    self.layer.masksToBounds = YES;
+
+}
+
+
 @end
