@@ -9,18 +9,22 @@
 #import "HorairesViewController.h"
 #import "HoraireTableViewCell.h"
 #import "TimeWindow.h"
+#import "Week.h"
+#import "Day.h"
 
 @interface HorairesViewController ()
 
 @end
 
-@implementation HorairesViewController
+@implementation HorairesViewController {
+    NSArray *weekdays;
+}
 
 -(void)viewDidLoad
 {
     [super viewDidLoad];
     _tableViewHeight.constant = 7 * 65;
-    // Do any additional setup after loading the view.
+    weekdays = [[[Week alloc] init] weekdays];
 }
 
 - (void)didReceiveMemoryWarning
@@ -65,41 +69,11 @@
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"HoraireTableViewCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
-
-    NSArray *timeWindows;
-    NSString *dayOfWeek;
     
-    switch (indexPath.row) {
-        case 0:
-            timeWindows = self.timetable.monday;
-            dayOfWeek = NSLocalizedStringFromTable(@"Monday", @"Horaires", nil);
-            break;
-        case 1:
-            timeWindows = self.timetable.tuesday;
-            dayOfWeek = NSLocalizedStringFromTable(@"Tuesday", @"Horaires", nil);
-            break;
-        case 2:
-            timeWindows = self.timetable.wednesday;
-            dayOfWeek = NSLocalizedStringFromTable(@"Wednesday", @"Horaires", nil);
-            break;
-        case 3:
-            timeWindows = self.timetable.thursday;
-            dayOfWeek = NSLocalizedStringFromTable(@"Thursday", @"Horaires", nil);
-            break;
-        case 4:
-            timeWindows = self.timetable.friday;
-            dayOfWeek = NSLocalizedStringFromTable(@"Friday", @"Horaires", nil);
-            break;
-        case 5:
-            timeWindows = self.timetable.saturday;
-            dayOfWeek = NSLocalizedStringFromTable(@"Saturday", @"Horaires", nil);
-            break;
-        case 6:
-            timeWindows = self.timetable.sunday;
-            dayOfWeek = NSLocalizedStringFromTable(@"Sunday", @"Horaires", nil);
-            break;
-    }
-
+    Day *currentDay = [weekdays objectAtIndex:indexPath.row];
+    NSArray *timeWindows = [self.timetable performSelector:currentDay.selector];
+    NSString *dayOfWeek = currentDay.name;
+    
     NSMutableArray *timeArray = [[NSMutableArray alloc] init];
 
     for (TimeWindow *timeWindow in timeWindows) {

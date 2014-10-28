@@ -71,6 +71,7 @@ static LBRESTAdapter * _lbAdaptater = nil;
                                              selector:@selector(saveUserLanguage:)
                                                  name:@"currentUser"
                                                object:nil];
+
     return YES;
 }
 
