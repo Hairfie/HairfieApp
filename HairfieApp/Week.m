@@ -6,11 +6,12 @@
 //  Copyright (c) 2014 Hairfie. All rights reserved.
 //
 
-#import "WeekDays.h"
+#import "Week.h"
+#import "Day.h"
 
-@implementation WeekDays
+@implementation Week
 
--(NSArray *)all {
+-(NSArray *)weekdays {
     NSDate *date = [NSDate date];
     NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     [gregorian setLocale:[NSLocale currentLocale]];
@@ -29,19 +30,15 @@
     
     for (int i = 1; i < 8; i++) {
         [nowComponents setWeekday:i];
-        NSDate *day = [gregorian dateFromComponents:nowComponents];
+        NSDate *dayDate = [gregorian dateFromComponents:nowComponents];
+        
+        Day *day = [[Day alloc] initWithName:[[dateFormatter stringFromDate:dayDate] capitalizedString] andSelector:[[englishFormatter stringFromDate:dayDate] lowercaseString] andInt:[NSNumber numberWithInt:i]];
 
-        [temp addObject:@{
-                          @"string"     : [[dateFormatter stringFromDate:day] capitalizedString],
-                          @"int"        : [NSNumber numberWithInt:i],
-                          @"selector"   : [[englishFormatter stringFromDate:day] lowercaseString]
-                        }
-         ];
+        [temp addObject:day];
     }
-    NSUInteger firstWeekdayIndex = [gregorian firstWeekday];
 
-    NSArray *output = [[temp subarrayWithRange:NSMakeRange(firstWeekdayIndex, 7-firstWeekdayIndex)]
-                    arrayByAddingObjectsFromArray:[temp subarrayWithRange:NSMakeRange(0,firstWeekdayIndex)]];
+    NSArray *output = [[temp subarrayWithRange:NSMakeRange(1, 6)]
+                    arrayByAddingObjectsFromArray:[temp subarrayWithRange:NSMakeRange(0,1)]];
     
     return output;
 }

@@ -11,7 +11,8 @@
 #import "FinalStepViewController.h"
 #import "ClaimTimetableCell.h"
 #import "TimeWindow.h"
-#import "WeekDays.h"
+#import "Week.h"
+#import "Day.h"
 
 @interface FinalStepTimetableViewController ()
 
@@ -33,7 +34,7 @@
         _timeTable = [[Timetable alloc] initEmpty];
     
  
-    weekDays = [[[WeekDays alloc] init] all];
+    weekDays = [[[Week alloc] init] weekdays];
     _doneBttn.layer.cornerRadius = 5;
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(clearDay:)
@@ -116,7 +117,9 @@
         cell = [nib objectAtIndex:0];
     }
     
-    cell.day.text = [[weekDays objectAtIndex:indexPath.row] objectForKey:@"string"];;
+    Day *currentDay = [weekDays objectAtIndex:indexPath.row];
+    
+    cell.day.text = currentDay.name;
     
     if (indexPath.row == 0)
     {

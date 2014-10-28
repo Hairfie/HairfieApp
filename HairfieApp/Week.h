@@ -8,8 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@interface WeekDays : NSObject
+@interface Week : NSObject
 
--(NSArray *)all;
+-(NSArray *)weekdays;
 
 @end
