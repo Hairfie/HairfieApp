@@ -7,14 +7,21 @@
 //
 
 #import "TagsTableViewCell.h"
+#import "AddTagsToHairfieViewController.h"
 #import "Tag.h"
 
 @implementation TagsTableViewCell
 {
     NSInteger indentValue;
+    BOOL isSelected;
+    NSMutableArray *tagsSelected;
+    NSMutableDictionary *tagsDic;
+    NSArray *tagsList;
 }
 - (void)awakeFromNib {
     // Initialization code
+    tagsSelected = [[NSMutableArray alloc] init];
+    tagsDic = [[NSMutableDictionary alloc] init];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -25,6 +32,7 @@
 
 -(void)setTags:(NSArray*)tags
 {
+    tagsList = [NSArray arrayWithArray:tags];
     NSInteger posX = 10;
     indentValue = 0;
     NSInteger screenWidth = self.bounds.size.width;
@@ -32,36 +40,41 @@
      
         Tag *tag = [tags objectAtIndex:i - 1];
         UIButton *button = [[UIButton alloc] init];
-        
+        CGRect frame;
         [button setTitle:tag.name forState:UIControlStateNormal];
         [button addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
         if (i != 1)
             posX += indentValue + 15;
-         button.titleLabel.font = [UIFont fontWithName:@"SourceSansPro-Light" size:13];
+         button.titleLabel.font = [UIFont fontWithName:@"SourceSansPro-Light" size:15];
         [self getLabelWidth:button.titleLabel];
-        
-      
+        button.selected = NO;
        
         
-        CGRect frame;
+        
         frame.origin.x = posX;
-        frame.origin.y = 40;
+        if (i == 1)
+            frame.origin.y = 40;
+        
         if (posX + indentValue >= screenWidth)
         {
             frame.origin.y += 30;
-            frame.origin.x = 10;
+            posX = 10;
+            frame.origin.x = posX;
         }
+        
         frame.size.width = indentValue + 10;
         frame.size.height = 27;
        
-        button.titleLabel.textColor = [UIColor whiteColor];
-        button.backgroundColor = [UIColor salonDetailTab];
+         [button setTitleColor:[UIColor colorWithRed:148/255.f green:153/255.0f blue:161/255.0f alpha:1] forState:UIControlStateNormal];
+        button.backgroundColor = [UIColor colorWithRed:240/255.f green:241/255.0f blue:241/255.0f alpha:1];
         button.titleLabel.textAlignment = NSTextAlignmentCenter;
+        
+        
         [button setFrame:frame];
         button.layer.cornerRadius = 3;
         button.layer.masksToBounds = YES;
-        button.tag = i;
-       
+        button.tag = i - 1;
+        
         
        // NSLog(@"TAG NAME %@", tag.name);
         [self addSubview:button];
@@ -83,8 +96,21 @@
 
 -(IBAction)buttonClicked:(UIButton*)sender
 {
-  
+    Tag *tag = [tagsList objectAtIndex:sender.tag];
     
-    NSLog(@"BUTTON CLICKED %ld", sender.tag);
+    if (sender.selected == YES) {
+        [sender setTitleColor:[UIColor colorWithRed:148/255.f green:153/255.0f blue:161/255.0f alpha:1] forState:UIControlStateNormal];
+        [sender setBackgroundColor:[UIColor colorWithRed:240/255.f green:241/255.0f blue:241/255.0f alpha:1]];
+        sender.selected = NO;
+        [self.delegate tagWasSelected:tag inCell:self isSelected:NO];
+    } else {
+        [sender setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [sender setBackgroundColor:[UIColor salonDetailTab]];
+        sender.selected = YES;
+        [self.delegate tagWasSelected:tag inCell:self isSelected:YES];
+    }
+    
 }
+
+
 @end

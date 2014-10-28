@@ -8,9 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+@class Tag, TagsTableViewCell;
+
+@protocol TagsTableViewCellDelegate
+- (void)tagWasSelected:(Tag*)tag inCell:(TagsTableViewCell*)cell isSelected:(BOOL)selected;
+@end
+
 @interface TagsTableViewCell : UITableViewCell
 
+
 @property (nonatomic) IBOutlet UILabel *tagCategory;
+
+@property (weak, nonatomic) id<TagsTableViewCellDelegate> delegate;
 
 -(void)setTags:(NSArray*)tags;
 

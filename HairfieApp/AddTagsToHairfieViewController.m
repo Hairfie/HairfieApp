@@ -18,11 +18,13 @@
 @implementation AddTagsToHairfieViewController
 {
     NSArray *tags;
+    NSMutableArray *tagsArray;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    tagsArray = [[NSMutableArray alloc] init];
+    self.tagsDictionary = [[NSMutableDictionary alloc] init];
     [self.topView addBottomBorderWithHeight:1 andColor:[UIColor lightGrey]];
     self.validateBttn.layer.cornerRadius = 5;
     self.validateBttn.layer.masksToBounds = YES;
@@ -93,11 +95,22 @@
     
     if (tableView == self.tagsTableView) {
         cell.tagCategory.text = category.name;
+        cell.tag = indexPath.row;
         [cell setTags:tagsFromCategory];
+        cell.delegate = self;
+    
     }
     return cell;
 }
 
+
+-(void)tagWasSelected:(Tag *)tag inCell:(TagsTableViewCell *)cell isSelected:(BOOL)selected
+{
+    if (selected == YES)
+        [tagsArray addObject:tag];
+    else
+        [tagsArray removeObject:tag];
+}
 
 /*
 #pragma mark - Navigation
