@@ -14,6 +14,7 @@
 @property (strong, nonatomic) NSString *id;
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) TagCategory *category;
+@property (nonatomic) BOOL selected;
 
 -(id)initWithDictionary:(NSDictionary *)aDictionary;
 

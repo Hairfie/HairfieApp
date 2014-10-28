@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "TagsTableViewCell.h"
+#import "HairfiePost.h"
 
 @interface AddTagsToHairfieViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, TagsTableViewCellDelegate>
 
@@ -15,4 +16,5 @@
 @property (nonatomic) IBOutlet UIButton *validateBttn;
 @property (nonatomic) IBOutlet UITableView *tagsTableView;
 @property (nonatomic)  NSMutableDictionary *tagsDictionary;
+@property (nonatomic) HairfiePost *hairfiePost;
 @end

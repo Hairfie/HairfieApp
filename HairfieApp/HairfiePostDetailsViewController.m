@@ -17,6 +17,7 @@
 #import "FBUtils.h"
 #import "FBAuthenticator.h"
 #import "UIView+Borders.h"
+#import "AddTagsToHairfieViewController.h"
 
 #import <LoopBack/LoopBack.h>
 
@@ -69,6 +70,12 @@
 
 -(void)viewWillAppear:(BOOL)animated {
 
+    
+    if (self.hairfiePost.tags.count != 0)
+    {
+        NSLog(@"HAIRFIE TO POST TAGS %@", self.hairfiePost.tags);
+    }
+    
     if (appDelegate.currentUser.managedBusinesses.count != 0)
     {
         if (salonTypes.count == 2) {
@@ -372,6 +379,15 @@ shouldChangeTextInRange: (NSRange) range
     }
 }
 
-
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"addTagsToHairfie"])
+    {
+        AddTagsToHairfieViewController *addTagsVc = [segue destinationViewController];
+        
+        addTagsVc.hairfiePost = self.hairfiePost;
+        
+    }
+}
 @end
 

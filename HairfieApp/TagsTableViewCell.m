@@ -30,7 +30,7 @@
     // Configure the view for the selected state
 }
 
--(void)setTags:(NSArray*)tags
+-(void)setTags:(NSArray*)tags withSelectedTags:(NSArray*)selectedTags
 {
     tagsList = [NSArray arrayWithArray:tags];
     NSInteger posX = 10;
@@ -47,9 +47,11 @@
             posX += indentValue + 15;
          button.titleLabel.font = [UIFont fontWithName:@"SourceSansPro-Light" size:15];
         [self getLabelWidth:button.titleLabel];
-        button.selected = NO;
-       
         
+        if ([selectedTags containsObject:tag])
+            button.selected = YES;
+        else
+           button.selected = NO;
         
         frame.origin.x = posX;
         if (i == 1)
@@ -65,18 +67,21 @@
         frame.size.width = indentValue + 10;
         frame.size.height = 27;
        
+        if (button.selected == NO) {
+            NSLog(@"TEST");
          [button setTitleColor:[UIColor colorWithRed:148/255.f green:153/255.0f blue:161/255.0f alpha:1] forState:UIControlStateNormal];
-        button.backgroundColor = [UIColor colorWithRed:240/255.f green:241/255.0f blue:241/255.0f alpha:1];
+        [button setBackgroundColor:[UIColor colorWithRed:240/255.f green:241/255.0f blue:241/255.0f alpha:1]];
+        } else {
+            [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            [button setBackgroundColor:[UIColor salonDetailTab]];
+        }
+        
         button.titleLabel.textAlignment = NSTextAlignmentCenter;
-        
-        
         [button setFrame:frame];
         button.layer.cornerRadius = 3;
         button.layer.masksToBounds = YES;
         button.tag = i - 1;
         
-        
-       // NSLog(@"TAG NAME %@", tag.name);
         [self addSubview:button];
     }
 }
@@ -102,11 +107,13 @@
         [sender setTitleColor:[UIColor colorWithRed:148/255.f green:153/255.0f blue:161/255.0f alpha:1] forState:UIControlStateNormal];
         [sender setBackgroundColor:[UIColor colorWithRed:240/255.f green:241/255.0f blue:241/255.0f alpha:1]];
         sender.selected = NO;
+        tag.selected = YES;
         [self.delegate tagWasSelected:tag inCell:self isSelected:NO];
     } else {
         [sender setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [sender setBackgroundColor:[UIColor salonDetailTab]];
         sender.selected = YES;
+        tag.selected = NO;
         [self.delegate tagWasSelected:tag inCell:self isSelected:YES];
     }
     

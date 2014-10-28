@@ -21,6 +21,6 @@
 
 @property (weak, nonatomic) id<TagsTableViewCellDelegate> delegate;
 
--(void)setTags:(NSArray*)tags;
+-(void)setTags:(NSArray*)tags withSelectedTags:(NSArray*)selectedTags;
 
 @end

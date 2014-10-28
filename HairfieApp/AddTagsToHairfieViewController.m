@@ -7,6 +7,7 @@
 //
 
 #import "AddTagsToHairfieViewController.h"
+#import "HairfiePostDetailsViewController.h"
 #import "TagsTableViewCell.h"
 #import "UIView+Borders.h"
 #import "Tag.h"
@@ -17,13 +18,13 @@
 
 @implementation AddTagsToHairfieViewController
 {
-    NSArray *tags;
-    NSMutableArray *tagsArray;
+    NSMutableArray *tags;
+    NSMutableArray *hairfieTags;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    tagsArray = [[NSMutableArray alloc] init];
+    hairfieTags = [NSMutableArray arrayWithArray:self.hairfiePost.tags];
     self.tagsDictionary = [[NSMutableDictionary alloc] init];
     [self.topView addBottomBorderWithHeight:1 andColor:[UIColor lightGrey]];
     self.validateBttn.layer.cornerRadius = 5;
@@ -32,13 +33,12 @@
     // Do any additional setup after loading the view.
 }
 
+
 -(void)initTags
 {
     void (^successHandler)(NSArray *) = ^(NSArray *results) {
        
-        tags = [NSArray arrayWithArray:results];
-        
-        
+        tags = [NSMutableArray arrayWithArray:results];
         [self.tagsTableView reloadData];
     };
     
@@ -48,6 +48,7 @@
     
     [Tag getTagsGroupedByCategoryWithSuccess:successHandler failure:failureHandler];
 }
+
 
 -(IBAction)goBack:(id)sender
 {
@@ -96,9 +97,8 @@
     if (tableView == self.tagsTableView) {
         cell.tagCategory.text = category.name;
         cell.tag = indexPath.row;
-        [cell setTags:tagsFromCategory];
+        [cell setTags:tagsFromCategory withSelectedTags:hairfieTags];
         cell.delegate = self;
-    
     }
     return cell;
 }
@@ -107,11 +107,19 @@
 -(void)tagWasSelected:(Tag *)tag inCell:(TagsTableViewCell *)cell isSelected:(BOOL)selected
 {
     if (selected == YES)
-        [tagsArray addObject:tag];
+        [hairfieTags addObject:tag];
     else
-        [tagsArray removeObject:tag];
+        [hairfieTags removeObject:tag];
 }
 
+
+-(IBAction)validateTags:(id)sender
+{
+    HairfiePostDetailsViewController *hairfiePostVc = [self.navigationController.viewControllers objectAtIndex:[self.navigationController.viewControllers count]-2];
+
+    hairfiePostVc.hairfiePost.tags = hairfieTags;
+    [self goBack:self];
+}
 /*
 #pragma mark - Navigation
 
