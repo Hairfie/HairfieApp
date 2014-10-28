@@ -28,7 +28,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSLog(@"day picked %@", _dayPicked);
+    NSLog(@"Daypicked : %@", _dayPicked.name);
     _doneBttn.layer.cornerRadius = 5;
     timeTable = [[NSDictionary alloc] init];
     halfHour = [[NSArray alloc] initWithObjects:@"00",@"30", nil];
@@ -123,8 +123,8 @@ numberOfRowsInComponent:(NSInteger)component
 {
     FinalStepTimetableViewController *claimTimeTable = [self.navigationController.viewControllers objectAtIndex:[self.navigationController.viewControllers count]-2];
     TimeWindow *timeWindow = [[TimeWindow alloc] initWithStartTime:_openingTime endTime:_closingTime appointmentMode:nil];
-    NSLog(@"Daypicked int: %ld", _dayPickedInt);
-    [claimTimeTable.timeTable addTimeWindow:timeWindow toDayInteger:_dayPickedInt];
+    NSLog(@"Daypicked : %@", _dayPicked.name);
+    [[claimTimeTable.timeTable performSelector:_dayPicked.selector] addObject:timeWindow];
     [_openingTimePicker reloadAllComponents];
     [_closingTimePicker reloadAllComponents];
     [self goBack:self];

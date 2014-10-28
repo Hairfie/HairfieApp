@@ -11,10 +11,11 @@
 @interface Day : NSObject
 
 @property (strong, nonatomic) NSString *name;
-@property (strong, nonatomic) NSString *selector;
-@property (nonatomic) int dayInt;
+@property (strong, nonatomic) NSString *selectorName;
+@property (nonatomic) NSNumber *dayInt;
 
 
--(id)initWithName:(NSString *)aName andSelector:(NSString *)aSelector andInt:(NSNumber*)aDayInt;
+-(id)initWithName:(NSString *)aName andSelectorName:(NSString *)aSelector andInt:(NSNumber*)aDayInt;
+-(SEL)selector;
 
 @end

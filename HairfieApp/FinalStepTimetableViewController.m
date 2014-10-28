@@ -20,10 +20,8 @@
 
 @implementation FinalStepTimetableViewController
 {
-    NSDictionary *dayPicked;
-    NSInteger dayPickedInt;
+    Day *dayPicked;
     NSArray *weekDays;
-    
 }
 
 
@@ -53,7 +51,6 @@
     ClaimTimetableCell *cell = notification.object;
     [_timeTable clearDayInteger:cell.tag];
     [_timeTableView reloadData];
-  //  notification.object
 }
 
 -(IBAction)goBack:(id)sender
@@ -63,7 +60,6 @@
 
 -(IBAction)validateTimetable:(id)sender
 {
-    // TO DO enregistrer les horaires modifiés
      FinalStepViewController *finalStep = [self.navigationController.viewControllers objectAtIndex:[self.navigationController.viewControllers count]-2];
    
     
@@ -118,152 +114,27 @@
     }
     
     Day *currentDay = [weekDays objectAtIndex:indexPath.row];
-    
     cell.day.text = currentDay.name;
     
-    if (indexPath.row == 0)
-    {
-        if ([_timeTable.monday count] != 0)
-        {
-            NSString *display = @"";
-            for (TimeWindow *tm in _timeTable.monday) {
-                if ([display isEqualToString:@""]){
-                    display = [tm timeWindowFormatted];
-                } else {
-                    display = [NSString stringWithFormat:@"%@ / %@", display, [tm timeWindowFormatted]];
-                }
+    NSArray *currentTimeWindows = [_timeTable performSelector:currentDay.selector];
+    
+    if ([currentTimeWindows count] != 0) {
+        NSString *display = @"";
+        for (TimeWindow *tm in currentTimeWindows) {
+            if ([display isEqualToString:@""]){
+                display = [tm timeWindowFormatted];
+            } else {
+                display = [NSString stringWithFormat:@"%@ / %@", display, [tm timeWindowFormatted]];
             }
-            cell.timewindow.text = display;
-            cell.deleteButton.hidden = NO;
-            cell.tag = indexPath.row;
         }
-        else
-        {
-            cell.timewindow.text = NSLocalizedStringFromTable(@"Set a time window", @"Claim", nil);
-            cell.deleteButton.hidden = YES;
-        }
+        cell.timewindow.text = display;
+        cell.deleteButton.hidden = NO;
+        cell.tag = indexPath.row;
+    } else {
+        cell.timewindow.text = NSLocalizedStringFromTable(@"Set a time window", @"Claim", nil);
+        cell.deleteButton.hidden = YES;
     }
-    if (indexPath.row== 1){
-        if ([_timeTable.tuesday count] != 0)
-        {
-            NSString *display = @"";
-            for (TimeWindow *tm in _timeTable.tuesday) {
-                if ([display isEqualToString:@""]){
-                    display = [tm timeWindowFormatted];
-                } else {
-                    display = [NSString stringWithFormat:@"%@ / %@", display, [tm timeWindowFormatted]];
-                }
-            }
-            cell.timewindow.text = display;
-            cell.deleteButton.hidden = NO;
-        }  else{
-            
-            cell.deleteButton.hidden = YES;
-            
-            cell.timewindow.text = NSLocalizedStringFromTable(@"Set a time window", @"Claim", nil);         }
-    }
-    if (indexPath.row== 2){
-        if ([_timeTable.wednesday count] != 0)
-        {
-            NSString *display = @"";
-            for (TimeWindow *tm in _timeTable.wednesday) {
-                if ([display isEqualToString:@""]){
-                    display = [tm timeWindowFormatted];
-                } else {
-                    display = [NSString stringWithFormat:@"%@ / %@", display, [tm timeWindowFormatted]];
-                }
-            }
-            cell.timewindow.text = display;
-            cell.deleteButton.hidden = NO;
-        }        else{
-            cell.timewindow.text = NSLocalizedStringFromTable(@"Set a time window", @"Claim", nil);
-            cell.deleteButton.hidden = YES;
-        }
-    }
-    if (indexPath.row== 3){
-        if ([_timeTable.thursday count] != 0)
-        {
-            NSString *display = @"";
-            for (TimeWindow *tm in _timeTable.thursday) {
-                if ([display isEqualToString:@""]){
-                    display = [tm timeWindowFormatted];
-                } else {
-                    display = [NSString stringWithFormat:@"%@ / %@", display, [tm timeWindowFormatted]];
-                }
-            }
-            cell.timewindow.text = display;
-            cell.deleteButton.hidden = NO;
-            cell.deleteButton.tag = indexPath.row;
-        }        else {
-            
-            cell.deleteButton.hidden = YES;
-            
-            cell.timewindow.text = NSLocalizedStringFromTable(@"Set a time window", @"Claim", nil);
-        }
-    }
-    if (indexPath.row== 4){
-        if ([_timeTable.friday count] != 0)
-        {
-            NSString *display = @"";
-            for (TimeWindow *tm in _timeTable.friday) {
-                if ([display isEqualToString:@""]){
-                    display = [tm timeWindowFormatted];
-                } else {
-                    display = [NSString stringWithFormat:@"%@ / %@", display, [tm timeWindowFormatted]];
-                }
-            }
-            cell.timewindow.text = display;
-            cell.deleteButton.hidden = NO;
-            cell.deleteButton.tag = indexPath.row;
-        }        else {
-            cell.timewindow.text = NSLocalizedStringFromTable(@"Set a time window", @"Claim", nil);
-            cell.deleteButton.hidden = YES;
-            
-        }
-    }
-    if (indexPath.row== 5){
-        if ([_timeTable.saturday count] != 0)
-        {
-            NSString *display = @"";
-            for (TimeWindow *tm in _timeTable.saturday) {
-                if ([display isEqualToString:@""]){
-                    display = [tm timeWindowFormatted];
-                } else {
-                    display = [NSString stringWithFormat:@"%@ / %@", display, [tm timeWindowFormatted]];
-                }
-            }
-            cell.timewindow.text = display;
-            cell.deleteButton.hidden = NO;
-            cell.deleteButton.tag = indexPath.row;
-        }
-        else {
-            cell.deleteButton.hidden = YES;
-            cell.timewindow.text = NSLocalizedStringFromTable(@"Set a time window", @"Claim", nil);
-        }
-    }
-    if (indexPath.row == 6){
-        if ([_timeTable.sunday count] != 0)
-        {
-            NSString *display = @"";
-            for (TimeWindow *tm in _timeTable.sunday) {
-                if ([display isEqualToString:@""]){
-                    display = [tm timeWindowFormatted];
-                } else {
-                    display = [NSString stringWithFormat:@"%@ / %@", display, [tm timeWindowFormatted]];
-                }
-            }
-            cell.timewindow.text = display;
-            cell.deleteButton.hidden = NO;
-            cell.deleteButton.tag = indexPath.row;
-        }
-        else{
-            
-            
-            cell.timewindow.text = NSLocalizedStringFromTable(@"Set a time window", @"Claim", nil);
-            cell.deleteButton.hidden = YES;
-            
-        }
-    }
+    
     cell.tag = indexPath.row;
     return cell;
 }
@@ -274,7 +145,6 @@
     {
         FinalStepClaimDayViewController *claimDay = [segue destinationViewController];
         claimDay.dayPicked = dayPicked;
-        claimDay.dayPickedInt= dayPickedInt;
     }
 }
 

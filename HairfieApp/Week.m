@@ -32,7 +32,7 @@
         [nowComponents setWeekday:i];
         NSDate *dayDate = [gregorian dateFromComponents:nowComponents];
         
-        Day *day = [[Day alloc] initWithName:[[dateFormatter stringFromDate:dayDate] capitalizedString] andSelector:[[englishFormatter stringFromDate:dayDate] lowercaseString] andInt:[NSNumber numberWithInt:i]];
+        Day *day = [[Day alloc] initWithName:[[dateFormatter stringFromDate:dayDate] capitalizedString] andSelectorName:[[englishFormatter stringFromDate:dayDate] lowercaseString] andInt:[NSNumber numberWithInt:i]];
 
         [temp addObject:day];
     }

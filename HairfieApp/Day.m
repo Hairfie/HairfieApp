@@ -10,17 +10,19 @@
 
 @implementation Day
 
-@synthesize selector;
-
--(id)initWithName:(NSString *)aName andSelector:(NSString *)aSelector andInt:(NSNumber *)aDayInt
+-(id)initWithName:(NSString *)aName andSelectorName:(NSString *)aSelector andInt:(NSNumber *)aDayInt
 {
     self = [super init];
     if (self) {
-        self.name       = aName;
-        self.selector   = aSelector;
-        self.dayInt     = aDayInt;
+        self.name           = aName;
+        self.selectorName   = aSelector;
+        self.dayInt         = aDayInt;
     }
     return self;
+}
+
+-(SEL)selector {
+    return NSSelectorFromString(self.selectorName);
 }
 
 @end
