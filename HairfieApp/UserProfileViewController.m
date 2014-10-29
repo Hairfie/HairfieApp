@@ -39,6 +39,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.bottomMenuBttn.hidden = YES;
+    
     [self.hairfiesCollection registerNib:[UINib nibWithNibName:@"CustomCollectionViewCell" bundle:nil]forCellWithReuseIdentifier:HAIRFIE_CELL];
     
     
@@ -53,6 +55,12 @@
     }
     // Do any additional setup after loading the view.
 }
+
+-(IBAction)goBack:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 
 -(void)refreshHairfieList
 {
@@ -79,10 +87,10 @@
 {
     if (self.isCurrentUser == YES) {
         self.navBttn.hidden = YES;
-        self.menuBttn.hidden = NO;
+        self.leftMenuBttn.hidden = NO;
     } else {
         self.navBttn.hidden = NO;
-        self.menuBttn.hidden = YES;
+        self.leftMenuBttn.hidden = YES;
     }
     
     userReviews= [[NSMutableArray alloc] init];

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A388b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="m6Z-pY-ich">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="m6Z-pY-ich">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
@@ -381,6 +381,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
+                                            <action selector="goBack:" destination="T79-5J-2Oj" eventType="touchUpInside" id="nbO-Gl-7NY"/>
                                             <action selector="goBack:" destination="pDa-if-Gwb" eventType="touchUpInside" id="p5X-bY-IjN"/>
                                         </connections>
                                     </button>
@@ -397,12 +398,13 @@
                     <navigationItem key="navigationItem" id="bYZ-Ge-Sbd"/>
                     <connections>
                         <outlet property="backgroundProfilePicture" destination="qk7-i7-gpL" id="fvH-vb-huZ"/>
+                        <outlet property="bottomMenuBttn" destination="Q7p-Ph-fMp" id="OXl-5n-Z2t"/>
                         <outlet property="collectionViewHeight" destination="LfM-zb-Zn5" id="AMH-sw-SHE"/>
                         <outlet property="hairfieBttn" destination="ZSW-dA-vOn" id="kWo-9K-U2o"/>
                         <outlet property="hairfieView" destination="chj-Tc-vYD" id="7Yg-FC-eF4"/>
                         <outlet property="hairfiesCollection" destination="hTw-wS-fXv" id="782-7M-UvZ"/>
+                        <outlet property="leftMenuBttn" destination="cfb-iE-QR5" id="Yjp-dK-mmd"/>
                         <outlet property="mainViewHeight" destination="glV-WM-LeP" id="YbR-ff-nkh"/>
-                        <outlet property="menuBttn" destination="cfb-iE-QR5" id="WoE-9X-48s"/>
                         <outlet property="navBttn" destination="fUS-Tu-iRq" id="ZL4-or-wky"/>
                         <outlet property="reviewBttn" destination="Atl-Od-EZd" id="KDO-7m-Ae2"/>
                         <outlet property="reviewLbl" destination="74n-zI-jqc" id="KTO-yS-btZ"/>
@@ -1633,6 +1635,7 @@
                         <outlet property="headerTitleLabel" destination="ZWR-sP-OId" id="F9a-H0-2b2"/>
                         <outlet property="topBarView" destination="jZA-oj-8Vd" id="ib0-Cg-NZs"/>
                         <segue destination="pDa-if-Gwb" kind="push" identifier="businessDetail" id="LOg-O4-mCP"/>
+                        <segue destination="T79-5J-2Oj" kind="push" identifier="showUserProfile" id="cG7-he-Xw7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hv8-dL-qIH" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -5107,11 +5110,12 @@
     <inferredMetricsTieBreakers>
         <segue reference="WYb-zG-qo5"/>
         <segue reference="VGS-VM-Pwy"/>
-        <segue reference="6S8-Dh-Oyu"/>
-        <segue reference="PSz-m0-val"/>
-        <segue reference="DYR-eo-mJz"/>
         <segue reference="dg2-Ph-4Hs"/>
         <segue reference="N5w-ND-ZjU"/>
         <segue reference="uEN-by-6gW"/>
+        <segue reference="LOg-O4-mCP"/>
+        <segue reference="PSz-m0-val"/>
+        <segue reference="DYR-eo-mJz"/>
+        <segue reference="cG7-he-Xw7"/>
     </inferredMetricsTieBreakers>
 </document>
