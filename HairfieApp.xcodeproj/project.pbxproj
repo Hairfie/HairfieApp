@@ -212,6 +212,10 @@
 		B37F9A57198F910B00881071 /* picto-info.png in Resources */ = {isa = PBXBuildFile; fileRef = B37F9A53198F910B00881071 /* picto-info.png */; };
 		B3844E3719FE65E40083CE0D /* AddTagsToHairfieViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3844E3619FE65E40083CE0D /* AddTagsToHairfieViewController.m */; };
 		B3844E3919FE67B60083CE0D /* add-tags-button.png in Resources */ = {isa = PBXBuildFile; fileRef = B3844E3819FE67B60083CE0D /* add-tags-button.png */; };
+		B3844E3D19FE83A20083CE0D /* TagsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B3844E3B19FE83A20083CE0D /* TagsTableViewCell.m */; };
+		B3844E3E19FE83A20083CE0D /* TagsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3844E3C19FE83A20083CE0D /* TagsTableViewCell.xib */; };
+		B3844E4119FE978D0083CE0D /* TagRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = B3844E4019FE978D0083CE0D /* TagRepository.m */; };
+		B3844E4419FE98570083CE0D /* TagCategoryRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = B3844E4319FE98570083CE0D /* TagCategoryRepository.m */; };
 		B38A8D471993B8E300239BC1 /* map_pin.png in Resources */ = {isa = PBXBuildFile; fileRef = B38A8D461993B8E300239BC1 /* map_pin.png */; };
 		B3901CFE19AB443600A8C52D /* search-advance-field-name.png in Resources */ = {isa = PBXBuildFile; fileRef = B3901CFC19AB443600A8C52D /* search-advance-field-name.png */; };
 		B3901D0019AB63E200A8C52D /* pin-salon.png in Resources */ = {isa = PBXBuildFile; fileRef = B3901CFF19AB63E200A8C52D /* pin-salon.png */; };
@@ -693,6 +697,13 @@
 		B3844E3519FE65E40083CE0D /* AddTagsToHairfieViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddTagsToHairfieViewController.h; sourceTree = "<group>"; };
 		B3844E3619FE65E40083CE0D /* AddTagsToHairfieViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddTagsToHairfieViewController.m; sourceTree = "<group>"; };
 		B3844E3819FE67B60083CE0D /* add-tags-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add-tags-button.png"; sourceTree = "<group>"; };
+		B3844E3A19FE83A20083CE0D /* TagsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagsTableViewCell.h; sourceTree = "<group>"; };
+		B3844E3B19FE83A20083CE0D /* TagsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagsTableViewCell.m; sourceTree = "<group>"; };
+		B3844E3C19FE83A20083CE0D /* TagsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TagsTableViewCell.xib; sourceTree = "<group>"; };
+		B3844E3F19FE978D0083CE0D /* TagRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagRepository.h; sourceTree = "<group>"; };
+		B3844E4019FE978D0083CE0D /* TagRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagRepository.m; sourceTree = "<group>"; };
+		B3844E4219FE98570083CE0D /* TagCategoryRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagCategoryRepository.h; sourceTree = "<group>"; };
+		B3844E4319FE98570083CE0D /* TagCategoryRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagCategoryRepository.m; sourceTree = "<group>"; };
 		B38A8D461993B8E300239BC1 /* map_pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map_pin.png; sourceTree = "<group>"; };
 		B3901CFC19AB443600A8C52D /* search-advance-field-name.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search-advance-field-name.png"; sourceTree = "<group>"; };
 		B3901CFF19AB63E200A8C52D /* pin-salon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pin-salon.png"; sourceTree = "<group>"; };
@@ -1012,6 +1023,10 @@
 				B33D4C5819D1A655009DE6DD /* BusinessClaimRepository.m */,
 				718E16C719EE6A3C00AF26A1 /* HairdresserRepository.h */,
 				718E16C819EE6A3C00AF26A1 /* HairdresserRepository.m */,
+				B3844E3F19FE978D0083CE0D /* TagRepository.h */,
+				B3844E4019FE978D0083CE0D /* TagRepository.m */,
+				B3844E4219FE98570083CE0D /* TagCategoryRepository.h */,
+				B3844E4319FE98570083CE0D /* TagCategoryRepository.m */,
 			);
 			name = Repositories;
 			sourceTree = "<group>";
@@ -1326,6 +1341,9 @@
 				B3AE0D4019C05F0000149C2B /* PostSalonTableViewCell.xib */,
 				1515448019C301ED00FBC07D /* CameraOverlayViewController.h */,
 				1515448119C301ED00FBC07D /* CameraOverlayViewController.m */,
+				B3844E3A19FE83A20083CE0D /* TagsTableViewCell.h */,
+				B3844E3B19FE83A20083CE0D /* TagsTableViewCell.m */,
+				B3844E3C19FE83A20083CE0D /* TagsTableViewCell.xib */,
 				B3844E3519FE65E40083CE0D /* AddTagsToHairfieViewController.h */,
 				B3844E3619FE65E40083CE0D /* AddTagsToHairfieViewController.m */,
 			);
@@ -2035,6 +2053,7 @@
 				B3E0B15119ACB39200C3EACE /* facebook-connect.png in Resources */,
 				B3B29D4E19EE8E7D00C293C6 /* selected_star.png in Resources */,
 				B342315D1988E1DC0058866B /* settings-picto.png in Resources */,
+				B3844E3E19FE83A20083CE0D /* TagsTableViewCell.xib in Resources */,
 				1576492919C9B8BA00DDC141 /* help-hairfie.png in Resources */,
 				B3FA620819F7B4B7002D8B6F /* UserProfile.strings in Resources */,
 				15E3D2C719D075CC0065A07E /* Login_Sign_Up.strings in Resources */,
@@ -2249,6 +2268,7 @@
 				B3423212198924290058866B /* AFHTTPSessionManager.m in Sources */,
 				B330B5C5198658970059AE56 /* HomeViewController.m in Sources */,
 				71C0D40219C1D9190037CBF4 /* BusinessReview.m in Sources */,
+				B3844E4419FE98570083CE0D /* TagCategoryRepository.m in Sources */,
 				71DA85F519E2CBA9001193D4 /* BusinessSearch.m in Sources */,
 				B3F6624D1987E87E0041F298 /* MenuTableViewCell.m in Sources */,
 				B337B6F619A22B11003B0EA5 /* HairfieDetailCollectionReusableView.m in Sources */,
@@ -2259,6 +2279,7 @@
 				1538A3A919E53FB600F09628 /* UIView+Borders.m in Sources */,
 				B319B5CB19C85E2E007F79B0 /* FirstStepViewController.m in Sources */,
 				B33D4C5919D1A655009DE6DD /* BusinessClaimRepository.m in Sources */,
+				B3844E4119FE978D0083CE0D /* TagRepository.m in Sources */,
 				B3423216198924290058866B /* AFURLRequestSerialization.m in Sources */,
 				718E16C919EE6A3C00AF26A1 /* HairdresserRepository.m in Sources */,
 				158FCA8319FA3DCF0001F86C /* SetterUtils.m in Sources */,
@@ -2284,6 +2305,7 @@
 				15E9526E19FEAC5A00699CBE /* Week.m in Sources */,
 				B367DC2E19C8802200A0452A /* ThirdStepViewController.m in Sources */,
 				B3615B3519AF1D0600F1141D /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
+				B3844E3D19FE83A20083CE0D /* TagsTableViewCell.m in Sources */,
 				B34231671988ECF50058866B /* FriendViewController.m in Sources */,
 				B345BAEA19951A7E007BB61A /* OLEContainerScrollViewContentView.m in Sources */,
 				B337B6FD19A252B7003B0EA5 /* ReviewsViewController.m in Sources */,
