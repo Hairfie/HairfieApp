@@ -818,7 +818,7 @@
                         <viewControllerLayoutGuide type="bottom" id="SHl-eq-JF1"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="iev-fr-inl">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="1300"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="tintColor" red="0.36078431370000003" green="0.67450980390000004" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
@@ -841,7 +841,7 @@
                         <viewControllerLayoutGuide type="bottom" id="j1p-Ri-5Sm"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="nui-gI-JXj">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="1300"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BYw-ul-o7V">
@@ -2559,21 +2559,12 @@
                         <viewControllerLayoutGuide type="bottom" id="po1-aP-Age"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="bhM-gL-HHz">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="1300"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OHl-hv-ouR" userLabel="Top Bar View">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ddo-9x-9gk" userLabel="Go Back">
-                                        <rect key="frame" x="10" y="30" width="20" height="20"/>
-                                        <state key="normal" image="arrow-nav.png">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="goBack:" destination="oWk-He-lbw" eventType="touchUpInside" id="dqt-Tq-R7K"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JtC-J3-dW3" userLabel="Menu">
                                         <rect key="frame" x="273" y="22" width="35" height="35"/>
                                         <state key="normal" image="picto-menu-point.png">
@@ -2586,6 +2577,16 @@
                                         <color key="textColor" red="0.41176470590000003" green="0.4431372549" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ddo-9x-9gk" userLabel="Go Back">
+                                        <rect key="frame" x="8" y="20" width="40" height="40"/>
+                                        <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                        <state key="normal" image="arrow-nav.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="goBack:" destination="oWk-He-lbw" eventType="touchUpInside" id="dqt-Tq-R7K"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
@@ -2623,7 +2624,7 @@
                         <viewControllerLayoutGuide type="bottom" id="WIZ-TA-wce"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="SAn-a2-ZHJ">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="1300"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wk5-N2-iL6" userLabel="Top Bar View">
@@ -2659,7 +2660,6 @@
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="wuf-TE-yeF" userLabel="Review Table View">
-                                <rect key="frame" x="0.0" y="142" width="320" height="437"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <sections/>
@@ -2672,7 +2672,6 @@
                                 <rect key="frame" x="10" y="74" width="300" height="60"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1w4-gP-Hqd" customClass="RatingView">
-                                        <rect key="frame" x="60" y="29" width="180" height="20"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add a review" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TB4-V8-Xbm">
@@ -5124,11 +5123,11 @@
     <inferredMetricsTieBreakers>
         <segue reference="VGS-VM-Pwy"/>
         <segue reference="WYb-zG-qo5"/>
-        <segue reference="LOg-O4-mCP"/>
+        <segue reference="6S8-Dh-Oyu"/>
         <segue reference="PSz-m0-val"/>
+        <segue reference="2ml-IS-A8f"/>
         <segue reference="DYR-eo-mJz"/>
         <segue reference="cG7-he-Xw7"/>
-        <segue reference="2ml-IS-A8f"/>
         <segue reference="N5w-ND-ZjU"/>
         <segue reference="uEN-by-6gW"/>
     </inferredMetricsTieBreakers>
