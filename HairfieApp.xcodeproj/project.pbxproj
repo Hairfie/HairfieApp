@@ -77,6 +77,8 @@
 		15E3D2C919D075CC0065A07E /* Post_Hairfie.strings in Resources */ = {isa = PBXBuildFile; fileRef = 15E3D2BE19D075CC0065A07E /* Post_Hairfie.strings */; };
 		15E3D2CA19D075CC0065A07E /* Salon_Detail.strings in Resources */ = {isa = PBXBuildFile; fileRef = 15E3D2C019D075CC0065A07E /* Salon_Detail.strings */; };
 		15E3D2D519D07AB10065A07E /* Main.strings in Resources */ = {isa = PBXBuildFile; fileRef = 15E3D2D319D07AB10065A07E /* Main.strings */; };
+		15E9526E19FEAC5A00699CBE /* Week.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E9526D19FEAC5A00699CBE /* Week.m */; };
+		15E9527119FF9C0700699CBE /* Day.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E9527019FF9C0700699CBE /* Day.m */; };
 		15ED728C199B9C6400453A74 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15ED728B199B9C6400453A74 /* ImageIO.framework */; };
 		71026D1B19CAE34200994831 /* HairfieLike.m in Sources */ = {isa = PBXBuildFile; fileRef = 71026D1A19CAE34200994831 /* HairfieLike.m */; };
 		71026D1E19CAF1BE00994831 /* HairfieLikeRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 71026D1D19CAF1BE00994831 /* HairfieLikeRepository.m */; };
@@ -473,6 +475,10 @@
 		15E3D2E019D07BF50065A07E /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Salon_Detail.strings; sourceTree = "<group>"; };
 		15E3D2E619D080280065A07E /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Claim.strings; sourceTree = "<group>"; };
 		15E3D2E719D080300065A07E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Claim.strings; sourceTree = "<group>"; };
+		15E9526C19FEAC5A00699CBE /* Week.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Week.h; sourceTree = "<group>"; };
+		15E9526D19FEAC5A00699CBE /* Week.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Week.m; sourceTree = "<group>"; };
+		15E9526F19FF9C0700699CBE /* Day.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Day.h; sourceTree = "<group>"; };
+		15E9527019FF9C0700699CBE /* Day.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Day.m; sourceTree = "<group>"; };
 		15ED728B199B9C6400453A74 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		2E7BF59F5DED76D68FEF21D3 /* Pods-HairfieApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HairfieApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-HairfieApp/Pods-HairfieApp.release.xcconfig"; sourceTree = "<group>"; };
 		33C90A5A8A0E44DCA71D5A3A /* libPods-HairfieApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HairfieApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -931,6 +937,7 @@
 		1511518E1982B7A8001157A2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				15E9526B19FEABA500699CBE /* Week */,
 				B382114219EEB6F40020C25E /* UILabel Subclasses */,
 				158FCA8419FA3DD70001F86C /* Utils */,
 				B3F0B22319EC1D9F00E0E6EE /* NSString Subclasses */,
@@ -1117,6 +1124,17 @@
 				B3FA620A19F7B4B7002D8B6F /* UserProfile.strings */,
 			);
 			name = Localization;
+			sourceTree = "<group>";
+		};
+		15E9526B19FEABA500699CBE /* Week */ = {
+			isa = PBXGroup;
+			children = (
+				15E9526C19FEAC5A00699CBE /* Week.h */,
+				15E9526D19FEAC5A00699CBE /* Week.m */,
+				15E9526F19FF9C0700699CBE /* Day.h */,
+				15E9527019FF9C0700699CBE /* Day.m */,
+			);
+			name = Week;
 			sourceTree = "<group>";
 		};
 		38C395959A7A499C87409BBF /* Frameworks */ = {
@@ -2203,6 +2221,7 @@
 				B3A2F48D19F4FEF000BD9354 /* ClaimServiceTableViewCell.m in Sources */,
 				B3423211198924290058866B /* AFHTTPRequestOperationManager.m in Sources */,
 				B367DC3419C98EBF00A0452A /* BusinessAnnotation.m in Sources */,
+				15E9527119FF9C0700699CBE /* Day.m in Sources */,
 				715290DE19FE477900C93950 /* TagCategory.m in Sources */,
 				B319B5C719C6E77D007F79B0 /* BusinessReviewRepository.m in Sources */,
 				B33D4C5619D1A46D009DE6DD /* Service.m in Sources */,
@@ -2283,6 +2302,7 @@
 				B3DD7A8019911245007B1621 /* ReviewTableViewCell.m in Sources */,
 				B33DF76819B4C93900B4877F /* ForgottenPasswordViewController.m in Sources */,
 				B342317A19891EA40058866B /* MyAnnotation.m in Sources */,
+				15E9526E19FEAC5A00699CBE /* Week.m in Sources */,
 				B367DC2E19C8802200A0452A /* ThirdStepViewController.m in Sources */,
 				B3615B3519AF1D0600F1141D /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
 				B3844E3D19FE83A20083CE0D /* TagsTableViewCell.m in Sources */,

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Day.h"
 
 @interface FinalStepClaimDayViewController : UIViewController <UINavigationControllerDelegate, UIPickerViewDataSource, UIPickerViewDelegate>
 
@@ -20,8 +21,7 @@
 @property (nonatomic) IBOutlet UIView* closingTimeView;
 @property (nonatomic) IBOutlet UIView* openingTimeView;
 
-@property (nonatomic) NSString *dayPicked;
-@property (nonatomic) NSInteger dayPickedInt;
+@property (nonatomic) Day *dayPicked;
 @property (nonatomic) NSString *openingTime;
 @property (nonatomic) NSString *closingTime;
 

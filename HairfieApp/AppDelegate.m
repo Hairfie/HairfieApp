@@ -13,12 +13,15 @@
 #import "HomeViewController.h"
 #import "ECSlidingViewController.h"
 #import <Crashlytics/Crashlytics.h>
+#import "UserAuthenticator.h"
 
 @interface AppDelegate ()
 
 @end
 
-@implementation AppDelegate
+@implementation AppDelegate {
+    UserAuthenticator *userAuthenticator;
+}
 
 @synthesize manager = _manager, myLocation = _myLocation, credentialStore = _credentialStore;
 
@@ -36,31 +39,23 @@ static LBRESTAdapter * _lbAdaptater = nil;
 {
     [NewRelicAgent startWithApplicationToken:NEWRELIC_APP_TOKEN];
     //[Crashlytics startWithAPIKey:CRASHLYTICS_API_KEY];
-    
+
     [ARAnalytics setupWithAnalytics:@{
                                       ARGoogleAnalyticsID : GOOGLE_ANALYTICS_TOKEN
                                       }];
-    
+
     _manager = [[CLLocationManager alloc] init];
     _credentialStore = [[CredentialStore alloc] init];
+    userAuthenticator = [[UserAuthenticator alloc] init];
 
     NSLog(@"LOGIN STATUS : %d", [_credentialStore isLoggedIn]);
     NSLog(@"USER ID : %@", [_credentialStore userId]);
 
     if (self.credentialStore.isLoggedIn) {
         [[[self class] lbAdaptater] setAccessToken:self.credentialStore.authToken];
-        [User getById:self.credentialStore.userId
-              success:^(User *user) {
-                  self.currentUser = user;
-                  NSLog(@"USER : %@", self.currentUser.picture.url);
-                  [[NSNotificationCenter defaultCenter] postNotificationName:@"currentUser" object:nil];
-              }
-              failure:^(NSError *error) {
-                  NSLog(@"Error retrieving logged in user: %@", error.localizedDescription);
-                  self.currentUser = nil;
-                  [self.credentialStore clearSavedCredentials];
-              }];
-        
+
+        [userAuthenticator getCurrentUser];
+
         [FBSession openActiveSessionWithReadPermissions:@[@"public_profile", @"email"]
                                            allowLoginUI:NO
                                       completionHandler:
@@ -76,6 +71,7 @@ static LBRESTAdapter * _lbAdaptater = nil;
                                              selector:@selector(saveUserLanguage:)
                                                  name:@"currentUser"
                                                object:nil];
+
     return YES;
 }
 
@@ -85,7 +81,7 @@ static LBRESTAdapter * _lbAdaptater = nil;
          annotation:(id)annotation {
 
     BOOL wasHandled = [FBAppCall handleOpenURL:url sourceApplication:sourceApplication];
-    
+
     return wasHandled;
 }
 
@@ -139,7 +135,7 @@ static LBRESTAdapter * _lbAdaptater = nil;
     } else {
         self.currentLocation = [[GeoPoint alloc] initWithLocation:self.myLocation];
     }
-    
+
     [[NSNotificationCenter defaultCenter] postNotificationName:@"newLocationNotif"
                                                         object:self
                                                       userInfo:[NSDictionary dictionaryWithObject:_myLocation
