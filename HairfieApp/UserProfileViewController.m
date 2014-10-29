@@ -112,7 +112,6 @@
      {
          if (image)
          {
-             NSLog(@"COOL");
              self.backgroundProfilePicture.image = [image applyLightEffect];
          }
      }];
