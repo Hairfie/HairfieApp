@@ -1017,239 +1017,258 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xfh-mY-dbB" customClass="TPKeyboardAvoidingScrollView">
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vjl-H2-Nzu">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="140"/>
+                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tcL-Zl-sdh" userLabel="CONTAINER">
+                                        <rect key="frame" x="-20" y="-20" width="360" height="460"/>
                                         <subviews>
-                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" image="hairfie-post-contour.png" translatesAutoresizingMaskIntoConstraints="NO" id="GX5-OH-2BU">
-                                                <rect key="frame" x="196" y="14" width="116" height="111"/>
-                                            </imageView>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gFo-ft-JjF" customClass="SAMTextView">
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
-                                                <connections>
-                                                    <outlet property="delegate" destination="60g-nd-hW0" id="54s-39-mhm"/>
-                                                </connections>
-                                            </textView>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GIY-2G-FaB">
-                                                <rect key="frame" x="204" y="20" width="100" height="100"/>
-                                            </imageView>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1DC-Gq-b8R">
-                                                <rect key="frame" x="12" y="45" width="172" height="50"/>
-                                                <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="16"/>
-                                                <state key="normal" title="AJOUTER DES TAGS" backgroundImage="add-tags-button.png">
-                                                    <color key="titleColor" red="0.52941176470588236" green="0.55686274509803924" blue="0.59215686274509804" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="addTags:" destination="60g-nd-hW0" eventType="touchUpInside" id="OPj-81-Vx5"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </view>
-                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" image="hairdresser-where-hairfie-post.png" translatesAutoresizingMaskIntoConstraints="NO" id="85z-mr-SaL">
-                                        <rect key="frame" x="10" y="166" width="300" height="39"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="300" id="2fl-CC-rrf"/>
-                                            <constraint firstAttribute="height" constant="39" id="R1H-HL-mFs"/>
-                                        </constraints>
-                                    </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="arrow-dropdown.png" translatesAutoresizingMaskIntoConstraints="NO" id="Yyb-Bc-PPR">
-                                        <rect key="frame" x="275" y="181" width="20" height="11"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="11" id="TnN-I0-8sa"/>
-                                            <constraint firstAttribute="width" constant="20" id="ays-pc-rX9"/>
-                                        </constraints>
-                                    </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="28K-Qp-mRm" userLabel="Where Button">
-                                        <rect key="frame" x="261" y="166" width="48" height="39"/>
-                                        <state key="normal">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="showSalonsChoices:" destination="60g-nd-hW0" eventType="touchUpInside" id="bBc-mc-Jjn"/>
-                                        </connections>
-                                    </button>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ihB-lj-Iee">
-                                        <rect key="frame" x="0.0" y="331" width="320" height="55"/>
-                                        <subviews>
-                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" image="send-email-client-button.png" translatesAutoresizingMaskIntoConstraints="NO" id="jXt-6m-Fer">
-                                                <rect key="frame" x="10" y="8" width="300" height="39"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="300" id="WiF-nA-VUV"/>
-                                                    <constraint firstAttribute="height" constant="39" id="ocQ-hA-nOk"/>
-                                                </constraints>
-                                            </imageView>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email du client" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Pjf-U8-rg7">
-                                                <rect key="frame" x="58" y="8" width="203" height="39"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
-                                        </subviews>
-                                    </view>
-                                    <view contentMode="scaleToFill" verticalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xSZ-Hu-sLy">
-                                        <rect key="frame" x="0.0" y="213" width="320" height="55"/>
-                                        <subviews>
-                                            <imageView hidden="YES" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" image="hairdresser-where-hairfie-post.png" translatesAutoresizingMaskIntoConstraints="NO" id="l1R-V1-aKa">
-                                                <rect key="frame" x="10" y="12" width="300" height="39"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="300" id="eBJ-gl-pzU"/>
-                                                    <constraint firstAttribute="height" constant="39" id="iZs-ye-LoW"/>
-                                                </constraints>
-                                            </imageView>
-                                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="arrow-dropdown.png" translatesAutoresizingMaskIntoConstraints="NO" id="0zk-lj-FS9">
-                                                <rect key="frame" x="275" y="27" width="20" height="11"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="20" id="BbT-rJ-qAL"/>
-                                                    <constraint firstAttribute="height" constant="11" id="yZc-bF-1Lg"/>
-                                                </constraints>
-                                            </imageView>
-                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XXJ-UR-geU">
-                                                <rect key="frame" x="30" y="12" width="254" height="39"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="230" id="G4L-29-sjY"/>
-                                                    <constraint firstAttribute="height" constant="39" id="eTG-fa-pWf"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="18"/>
-                                                <state key="normal" title="Who ?">
-                                                    <color key="titleColor" red="0.35686274509999999" green="0.41176470590000003" blue="0.46666666670000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                            </button>
-                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" image="hairdresser-who-string-hairfie-post.png" translatesAutoresizingMaskIntoConstraints="NO" id="JCD-Fu-5rM">
-                                                <rect key="frame" x="10" y="12" width="300" height="39"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="39" id="SBX-wB-jsx"/>
-                                                    <constraint firstAttribute="width" constant="300" id="Z0c-fM-JaR"/>
-                                                </constraints>
-                                            </imageView>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Who ?" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Svn-cu-8nV">
-                                                <rect key="frame" x="30" y="12" width="270" height="39"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="270" id="gbZ-cX-JHH"/>
-                                                    <constraint firstAttribute="height" constant="39" id="xbd-NE-26r"/>
-                                                </constraints>
-                                                <color key="textColor" red="0.1764705882" green="0.22352941179999999" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
-                                                <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="18"/>
-                                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
-                                                <connections>
-                                                    <outlet property="delegate" destination="60g-nd-hW0" id="yy0-re-2Tu"/>
-                                                </connections>
-                                            </textField>
-                                        </subviews>
-                                    </view>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2o9-JL-3ON">
-                                        <rect key="frame" x="31" y="166" width="230" height="39"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="39" id="EvZ-hJ-c7N"/>
-                                            <constraint firstAttribute="width" constant="230" id="xqL-CG-qHH"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="18"/>
-                                        <state key="normal" title="Where ?">
-                                            <color key="titleColor" red="0.35686274509999999" green="0.41176470590000003" blue="0.46666666670000001" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="showSalonsChoices:" destination="60g-nd-hW0" eventType="touchUpInside" id="H0G-2l-oYY"/>
-                                        </connections>
-                                    </button>
-                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" image="hairdresser-price-hairfie-post.png" translatesAutoresizingMaskIntoConstraints="NO" id="dJj-zm-Orv">
-                                        <rect key="frame" x="10" y="284" width="300" height="39"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="300" id="4tx-S3-EQC"/>
-                                            <constraint firstAttribute="height" constant="39" id="Zef-wf-eMF"/>
-                                        </constraints>
-                                    </imageView>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="How Much ?" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9jn-WQ-rGO">
-                                        <rect key="frame" x="72" y="284" width="237" height="39"/>
-                                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="17"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
-                                        <connections>
-                                            <outlet property="delegate" destination="60g-nd-hW0" id="zJn-nK-G0f"/>
-                                        </connections>
-                                    </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4aW-yv-yzw">
-                                        <rect key="frame" x="27" y="284" width="18" height="37"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="37" id="gUB-fF-Tub"/>
-                                            <constraint firstAttribute="width" constant="18" id="gej-AR-Ix4"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="18"/>
-                                        <state key="normal" title="€">
-                                            <color key="titleColor" red="0.35686274509999999" green="0.41176470590000003" blue="0.46666666670000001" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                    </button>
-                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vCq-Ny-suf" userLabel="SHARE">
-                                        <rect key="frame" x="0.0" y="320" width="320" height="100"/>
-                                        <subviews>
-                                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kWo-Wz-VZI" userLabel="horizontal bar">
-                                                <rect key="frame" x="0.0" y="15" width="320" height="1"/>
-                                                <color key="backgroundColor" red="0.99607843139999996" green="0.67843137249999996" blue="0.69803921570000005" alpha="1" colorSpace="calibratedRGB"/>
-                                            </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="SHARE THIS HAIRFIE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oyF-yb-8ea">
-                                                <rect key="frame" x="80" y="5" width="160" height="21"/>
-                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="17"/>
-                                                <color key="textColor" red="0.99607843139999996" green="0.67843137249999996" blue="0.69803921570000005" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rSe-a6-aw5" userLabel="Share buttons">
-                                                <rect key="frame" x="80" y="50" width="160" height="30"/>
+                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vjl-H2-Nzu">
+                                                <rect key="frame" x="20" y="20" width="320" height="140"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yet-bx-XB9" userLabel="FB">
-                                                        <rect key="frame" x="65" y="0.0" width="30" height="30"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="30" id="AjV-pQ-mki"/>
-                                                            <constraint firstAttribute="width" constant="30" id="H6a-jz-UoI"/>
-                                                        </constraints>
-                                                        <state key="normal" image="fb-share-off.png">
+                                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" image="hairfie-post-contour.png" translatesAutoresizingMaskIntoConstraints="NO" id="GX5-OH-2BU">
+                                                        <rect key="frame" x="196" y="14" width="116" height="111"/>
+                                                    </imageView>
+                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gFo-ft-JjF" customClass="SAMTextView">
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="60g-nd-hW0" id="54s-39-mhm"/>
+                                                        </connections>
+                                                    </textView>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GIY-2G-FaB">
+                                                        <rect key="frame" x="204" y="20" width="100" height="100"/>
+                                                    </imageView>
+                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1DC-Gq-b8R">
+                                                        <rect key="frame" x="12" y="45" width="172" height="50"/>
+                                                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="16"/>
+                                                        <state key="normal" title="AJOUTER DES TAGS" backgroundImage="add-tags-button.png">
+                                                            <color key="titleColor" red="0.52941176470588236" green="0.55686274509803924" blue="0.59215686274509804" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="fbShare:" destination="60g-nd-hW0" eventType="touchUpInside" id="kJ0-3d-olU"/>
+                                                            <action selector="addTags:" destination="60g-nd-hW0" eventType="touchUpInside" id="OPj-81-Vx5"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pFo-Y9-kQ0" userLabel="WHERE CONTAINER">
+                                                <rect key="frame" x="10" y="166" width="340" height="79"/>
+                                                <subviews>
+                                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" image="hairdresser-where-hairfie-post.png" translatesAutoresizingMaskIntoConstraints="NO" id="85z-mr-SaL">
+                                                        <rect key="frame" x="20" y="20" width="300" height="39"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="300" id="2fl-CC-rrf"/>
+                                                            <constraint firstAttribute="height" constant="39" id="R1H-HL-mFs"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="arrow-dropdown.png" translatesAutoresizingMaskIntoConstraints="NO" id="Yyb-Bc-PPR">
+                                                        <rect key="frame" x="285" y="35" width="20" height="11"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="11" id="TnN-I0-8sa"/>
+                                                            <constraint firstAttribute="width" constant="20" id="ays-pc-rX9"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="28K-Qp-mRm" userLabel="Where Button">
+                                                        <rect key="frame" x="271" y="20" width="48" height="39"/>
+                                                        <state key="normal">
+                                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="showSalonsChoices:" destination="60g-nd-hW0" eventType="touchUpInside" id="bBc-mc-Jjn"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2o9-JL-3ON">
+                                                        <rect key="frame" x="41" y="20" width="230" height="39"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="39" id="EvZ-hJ-c7N"/>
+                                                            <constraint firstAttribute="width" constant="230" id="xqL-CG-qHH"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="18"/>
+                                                        <state key="normal" title="Where ?">
+                                                            <color key="titleColor" red="0.35686274509999999" green="0.41176470590000003" blue="0.46666666670000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="showSalonsChoices:" destination="60g-nd-hW0" eventType="touchUpInside" id="H0G-2l-oYY"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ihB-lj-Iee" userLabel="EMAIL CONTAINER">
+                                                <rect key="frame" x="20" y="351" width="320" height="55"/>
+                                                <subviews>
+                                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" image="send-email-client-button.png" translatesAutoresizingMaskIntoConstraints="NO" id="jXt-6m-Fer">
+                                                        <rect key="frame" x="10" y="8" width="300" height="39"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="300" id="WiF-nA-VUV"/>
+                                                            <constraint firstAttribute="height" constant="39" id="ocQ-hA-nOk"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email du client" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Pjf-U8-rg7">
+                                                        <rect key="frame" x="58" y="8" width="203" height="39"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                    </textField>
+                                                </subviews>
+                                            </view>
+                                            <view contentMode="scaleToFill" verticalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xSZ-Hu-sLy" userLabel="WHO CONTAINER">
+                                                <rect key="frame" x="20" y="233" width="320" height="55"/>
+                                                <subviews>
+                                                    <imageView hidden="YES" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" image="hairdresser-where-hairfie-post.png" translatesAutoresizingMaskIntoConstraints="NO" id="l1R-V1-aKa">
+                                                        <rect key="frame" x="10" y="12" width="300" height="39"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="300" id="eBJ-gl-pzU"/>
+                                                            <constraint firstAttribute="height" constant="39" id="iZs-ye-LoW"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="arrow-dropdown.png" translatesAutoresizingMaskIntoConstraints="NO" id="0zk-lj-FS9">
+                                                        <rect key="frame" x="275" y="27" width="20" height="11"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="20" id="BbT-rJ-qAL"/>
+                                                            <constraint firstAttribute="height" constant="11" id="yZc-bF-1Lg"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XXJ-UR-geU">
+                                                        <rect key="frame" x="30" y="12" width="254" height="39"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="230" id="G4L-29-sjY"/>
+                                                            <constraint firstAttribute="height" constant="39" id="eTG-fa-pWf"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="18"/>
+                                                        <state key="normal" title="Who ?">
+                                                            <color key="titleColor" red="0.35686274509999999" green="0.41176470590000003" blue="0.46666666670000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                    </button>
+                                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" image="hairdresser-who-string-hairfie-post.png" translatesAutoresizingMaskIntoConstraints="NO" id="JCD-Fu-5rM">
+                                                        <rect key="frame" x="10" y="12" width="300" height="39"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="39" id="SBX-wB-jsx"/>
+                                                            <constraint firstAttribute="width" constant="300" id="Z0c-fM-JaR"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Who ?" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Svn-cu-8nV">
+                                                        <rect key="frame" x="30" y="12" width="270" height="39"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="270" id="gbZ-cX-JHH"/>
+                                                            <constraint firstAttribute="height" constant="39" id="xbd-NE-26r"/>
+                                                        </constraints>
+                                                        <color key="textColor" red="0.1764705882" green="0.22352941179999999" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="18"/>
+                                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="60g-nd-hW0" id="yy0-re-2Tu"/>
+                                                        </connections>
+                                                    </textField>
+                                                </subviews>
+                                            </view>
+                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ohU-Ir-QA0" userLabel="PRICE CONTAINER">
+                                                <rect key="frame" x="10" y="284" width="340" height="79"/>
+                                                <subviews>
+                                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" image="hairdresser-price-hairfie-post.png" translatesAutoresizingMaskIntoConstraints="NO" id="dJj-zm-Orv">
+                                                        <rect key="frame" x="20" y="20" width="300" height="39"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="300" id="4tx-S3-EQC"/>
+                                                            <constraint firstAttribute="height" constant="39" id="Zef-wf-eMF"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="How Much ?" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9jn-WQ-rGO">
+                                                        <rect key="frame" x="82" y="20" width="237" height="39"/>
+                                                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="17"/>
+                                                        <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="60g-nd-hW0" id="zJn-nK-G0f"/>
+                                                        </connections>
+                                                    </textField>
+                                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4aW-yv-yzw">
+                                                        <rect key="frame" x="37" y="20" width="18" height="37"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="37" id="gUB-fF-Tub"/>
+                                                            <constraint firstAttribute="width" constant="18" id="gej-AR-Ix4"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="18"/>
+                                                        <state key="normal" title="€">
+                                                            <color key="titleColor" red="0.35686274509999999" green="0.41176470590000003" blue="0.46666666670000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vCq-Ny-suf" userLabel="SHARE">
+                                                <rect key="frame" x="20" y="340" width="320" height="100"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kWo-Wz-VZI" userLabel="horizontal bar">
+                                                        <rect key="frame" x="0.0" y="15" width="320" height="1"/>
+                                                        <color key="backgroundColor" red="0.99607843139999996" green="0.67843137249999996" blue="0.69803921570000005" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </view>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="SHARE THIS HAIRFIE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oyF-yb-8ea">
+                                                        <rect key="frame" x="80" y="5" width="160" height="21"/>
+                                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="17"/>
+                                                        <color key="textColor" red="0.99607843139999996" green="0.67843137249999996" blue="0.69803921570000005" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rSe-a6-aw5" userLabel="Share buttons">
+                                                        <rect key="frame" x="80" y="50" width="160" height="30"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yet-bx-XB9" userLabel="FB">
+                                                                <rect key="frame" x="65" y="0.0" width="30" height="30"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="30" id="AjV-pQ-mki"/>
+                                                                    <constraint firstAttribute="width" constant="30" id="H6a-jz-UoI"/>
+                                                                </constraints>
+                                                                <state key="normal" image="fb-share-off.png">
+                                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                                </state>
+                                                                <connections>
+                                                                    <action selector="fbShare:" destination="60g-nd-hW0" eventType="touchUpInside" id="kJ0-3d-olU"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="centerX" secondItem="Yet-bx-XB9" secondAttribute="centerX" id="5IJ-4D-mO0"/>
+                                                        </constraints>
+                                                    </view>
+                                                </subviews>
                                                 <constraints>
-                                                    <constraint firstAttribute="centerX" secondItem="Yet-bx-XB9" secondAttribute="centerX" id="5IJ-4D-mO0"/>
+                                                    <constraint firstAttribute="centerY" secondItem="kWo-Wz-VZI" secondAttribute="centerY" constant="34.5" id="DiS-Hb-dg3"/>
+                                                    <constraint firstAttribute="trailing" secondItem="kWo-Wz-VZI" secondAttribute="trailing" constant="10" id="NtR-om-04u"/>
+                                                    <constraint firstItem="rSe-a6-aw5" firstAttribute="top" secondItem="oyF-yb-8ea" secondAttribute="bottom" constant="15" id="fr9-Yt-i43"/>
+                                                    <constraint firstAttribute="centerX" secondItem="kWo-Wz-VZI" secondAttribute="centerX" id="pJ9-Hh-frd"/>
+                                                    <constraint firstItem="kWo-Wz-VZI" firstAttribute="centerX" secondItem="oyF-yb-8ea" secondAttribute="centerX" id="tgs-ab-kn7"/>
+                                                    <constraint firstItem="kWo-Wz-VZI" firstAttribute="leading" secondItem="vCq-Ny-suf" secondAttribute="leading" constant="10" id="vLi-Em-YNd"/>
                                                 </constraints>
                                             </view>
+                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="HkZ-R9-OZp">
+                                                <rect key="frame" x="30" y="225" width="300" height="200"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="200" id="8M2-fm-fgM"/>
+                                                </constraints>
+                                                <color key="separatorColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <connections>
+                                                    <outlet property="dataSource" destination="60g-nd-hW0" id="G7z-MI-Jg8"/>
+                                                    <outlet property="delegate" destination="60g-nd-hW0" id="ZGo-72-3xj"/>
+                                                </connections>
+                                            </tableView>
                                         </subviews>
-                                        <constraints>
-                                            <constraint firstAttribute="centerY" secondItem="kWo-Wz-VZI" secondAttribute="centerY" constant="34.5" id="DiS-Hb-dg3"/>
-                                            <constraint firstAttribute="trailing" secondItem="kWo-Wz-VZI" secondAttribute="trailing" constant="10" id="NtR-om-04u"/>
-                                            <constraint firstItem="rSe-a6-aw5" firstAttribute="top" secondItem="oyF-yb-8ea" secondAttribute="bottom" constant="15" id="fr9-Yt-i43"/>
-                                            <constraint firstAttribute="centerX" secondItem="kWo-Wz-VZI" secondAttribute="centerX" id="pJ9-Hh-frd"/>
-                                            <constraint firstItem="kWo-Wz-VZI" firstAttribute="centerX" secondItem="oyF-yb-8ea" secondAttribute="centerX" id="tgs-ab-kn7"/>
-                                            <constraint firstItem="kWo-Wz-VZI" firstAttribute="leading" secondItem="vCq-Ny-suf" secondAttribute="leading" constant="10" id="vLi-Em-YNd"/>
-                                        </constraints>
-                                    </view>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="HkZ-R9-OZp">
-                                        <rect key="frame" x="10" y="205" width="300" height="200"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="200" id="8M2-fm-fgM"/>
-                                        </constraints>
-                                        <color key="separatorColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <connections>
-                                            <outlet property="dataSource" destination="60g-nd-hW0" id="G7z-MI-Jg8"/>
-                                            <outlet property="delegate" destination="60g-nd-hW0" id="ZGo-72-3xj"/>
-                                        </connections>
-                                    </tableView>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="vCq-Ny-suf" secondAttribute="width" id="4Q9-mC-azz"/>
-                                    <constraint firstItem="2o9-JL-3ON" firstAttribute="top" secondItem="xfh-mY-dbB" secondAttribute="top" constant="165" id="8DI-3S-AVb"/>
-                                    <constraint firstItem="HkZ-R9-OZp" firstAttribute="width" secondItem="85z-mr-SaL" secondAttribute="width" id="G6z-i5-Lgx"/>
-                                    <constraint firstItem="vCq-Ny-suf" firstAttribute="top" secondItem="dJj-zm-Orv" secondAttribute="bottom" constant="10" id="Hqm-TH-Z6e"/>
-                                    <constraint firstItem="HkZ-R9-OZp" firstAttribute="top" secondItem="85z-mr-SaL" secondAttribute="bottom" constant="-1" id="viD-cx-3fR"/>
+                                    <constraint firstAttribute="height" secondItem="tcL-Zl-sdh" secondAttribute="height" id="GMx-Mk-hFs"/>
+                                    <constraint firstAttribute="bottom" secondItem="tcL-Zl-sdh" secondAttribute="bottom" constant="64" id="NeM-EJ-6U7"/>
+                                    <constraint firstAttribute="trailing" secondItem="tcL-Zl-sdh" secondAttribute="trailing" constant="-20" id="OjO-oN-BN9"/>
+                                    <constraint firstItem="tcL-Zl-sdh" firstAttribute="leading" secondItem="xfh-mY-dbB" secondAttribute="leading" constant="-20" id="WvS-Ef-DNK"/>
+                                    <constraint firstAttribute="width" secondItem="tcL-Zl-sdh" secondAttribute="width" id="awY-uA-gJs"/>
+                                    <constraint firstItem="tcL-Zl-sdh" firstAttribute="top" secondItem="xfh-mY-dbB" secondAttribute="top" constant="-20" id="vD1-5n-041"/>
                                 </constraints>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BLb-LA-FH2">
