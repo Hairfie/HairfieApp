@@ -140,9 +140,9 @@
         aSuccessHandler();
     };
     
-    NSString *repoName = @"link/facebook/";
+    NSString *repoName = @"link/facebook";
     
-    [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"token" verb:@"POST"] forMethod:@"facebook.token"];
+    [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"token" verb:@"POST"] forMethod:@"token"];
     
     LBModelRepository *loginData = [[AppDelegate lbAdaptater] repositoryWithModelName:repoName];
     
@@ -165,9 +165,9 @@
         aSuccessHandler();
     };
     
-    NSString *repoName = @"auth/facebook/";
+    NSString *repoName = @"auth/facebook";
     
-    [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"token" verb:@"POST"] forMethod:@"facebook.token"];
+    [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"token" verb:@"POST"] forMethod:@"token"];
     
     LBModelRepository *loginData = [[AppDelegate lbAdaptater] repositoryWithModelName:repoName];
     
