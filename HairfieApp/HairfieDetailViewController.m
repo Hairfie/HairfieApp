@@ -269,9 +269,10 @@
 
     UILabel *descLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, 43, 280, 54)];
     descLabel.numberOfLines = 2;
-    descLabel.text = self.hairfie.description;
-    descLabel.font = [UIFont fontWithName:@"SourceSansPro-Light" size:12];
-    descLabel.textColor = [[UIColor blackHairfie] colorWithAlphaComponent:0.8];
+    descLabel.attributedText = self.hairfie.displayDescAndTags;
+//    descLabel.text = self.hairfie.description;
+//    descLabel.font = [UIFont fontWithName:@"SourceSansPro-Light" size:12];
+//    descLabel.textColor = [[UIColor blackHairfie] colorWithAlphaComponent:0.8];
 
     [hairfieDetailView addSubview:profilePicture];
     [hairfieDetailView addSubview:usernameButton];

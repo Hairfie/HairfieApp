@@ -37,6 +37,7 @@
 -(NSString *)displayPrice;
 -(NSString *)displayNumLikes;
 -(NSString *)displayNumComments;
+-(NSAttributedString *)displayDescAndTags;
 
 +(void)listLatest:(NSNumber *)limit
              skip:(NSNumber *)skip

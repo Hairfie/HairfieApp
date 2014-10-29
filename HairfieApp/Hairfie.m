@@ -88,7 +88,29 @@
     return [NSString stringWithFormat:@"%@", _numComments];
 }
 
+-(NSAttributedString *)displayDescAndTags {
+    NSDictionary *descAttributes = @{
+                               NSFontAttributeName : [UIFont fontWithName:@"SourceSansPro-Light" size:12],
+                               NSForegroundColorAttributeName : [[UIColor blackHairfie] colorWithAlphaComponent:0.8]
+                               };
+    
+    NSDictionary *tagsAttributes = @{
+                                     NSFontAttributeName : [UIFont fontWithName:@"SourceSansPro-Light" size:12],
+                                     NSForegroundColorAttributeName : [UIColor pinkHairfie]
+                                     };
+    
+    NSMutableAttributedString *output = [[NSMutableAttributedString alloc] initWithString:self.description attributes:descAttributes];
+    
+    NSString *tagsString = [_.arrayMap(self.tags, ^(Tag *tag) {
+        return [NSString stringWithFormat:@"#%@", tag.name];
+    }) componentsJoinedByString:@" "];
+    
+    NSAttributedString *tags = [[NSAttributedString alloc] initWithString:tagsString attributes:tagsAttributes];
 
+    [output appendAttributedString:tags];
+    
+    return (NSAttributedString *) output;
+}
 
 +(void)getHairfiesByAuthor:(NSString *)userId
                      until:(NSDate *)until

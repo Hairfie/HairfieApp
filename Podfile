@@ -17,6 +17,7 @@ target "HairfieApp" do
   pod 'CrashlyticsFramework'
   pod 'ECSlidingViewController', '~> 2.0.3'
   pod 'libPhoneNumber-iOS', '~> 0.7'
+  pod 'Underscore.m'
 end
 
 target "HairfieAppTests" do
