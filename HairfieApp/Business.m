@@ -224,8 +224,6 @@
                              success:^(NSArray *results) {
                                  NSMutableArray *businesses = [[NSMutableArray alloc] init];
                                  for (NSDictionary *result in results) {
-                                     NSLog(@"RESULTS %@", result);
-                                     NSLog(@"BUSINESS DIC %@", [[Business alloc] initWithDictionary:result]);
                                      [businesses addObject:[[Business alloc] initWithDictionary:result]];
                                  }
 

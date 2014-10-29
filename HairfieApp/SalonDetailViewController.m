@@ -82,11 +82,7 @@
     _telephoneBgView.layer.masksToBounds = YES;
 
     _hairdresserTableView.scrollEnabled = NO;
-    if ([_business.activeHairdressers count] == 0)
-        _hairdresserTableView.userInteractionEnabled = YES;
-    else
-        _hairdresserTableView.userInteractionEnabled = YES;
-
+    _hairdresserTableView.userInteractionEnabled= YES;
     // Init Rating View
     _containerReview.layer.cornerRadius = 5;
     _containerReview.layer.masksToBounds = YES;
@@ -395,6 +391,7 @@
         else
         {
             cell.fullName.text = NSLocalizedStringFromTable(@"No Hairdresser", @"Salon_Detail", nil);
+            NSLog(@"HERE //////////////");
         }
         cell.clearButton.hidden = YES;
         cell.separatorInset = UIEdgeInsetsMake(0, 10000, 0, 0);
@@ -422,12 +419,16 @@
     if (tableView == _similarTableView) {
         [self performSegueWithIdentifier:@"similarBusiness" sender:self.similarBusinesses[indexPath.row]];
     }
+    
     if (tableView == _hairdresserTableView)
     {
         if ([_business.activeHairdressers count] == 0)
-             [self performSegueWithIdentifier:@"suggestHairdresser" sender:self];
+        {
+            [self performSegueWithIdentifier:@"suggestHairdresser" sender:self];
+            [_hairdresserTableView deselectRowAtIndexPath:indexPath animated:NO];
+        }
     }
-}
+   }
 
 - (void) initKnownData:(Business*)business
 {
