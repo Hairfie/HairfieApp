@@ -132,8 +132,18 @@
   
     [_profileView addSubview:border];
     [_profileView addSubview:profilePicture];
-  
+    
+    UITapGestureRecognizer *singleTap =  [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showUserProfileFromImage:)];
+    [singleTap setNumberOfTapsRequired:1];
+    [_profileView addGestureRecognizer:singleTap];
+    
 }
+
+-(void)showUserProfileFromImage:(UIGestureRecognizer*)gesture
+{
+    [self showUserProfile:self];
+}
+
 
 -(void)initManagedBusinesses
 {

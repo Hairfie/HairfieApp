@@ -22,6 +22,7 @@
 @property (nonatomic) IBOutlet UILabel *name;
 @property (nonatomic) IBOutlet UILabel *hairfieNb;
 @property (nonatomic) User *currentUser;
+@property (nonatomic) IBOutlet UIButton *userProfileButton;
 
 -(IBAction)unwindToMenuViewController:(UIStoryboardSegue *)segue;
 -(void)initCurrentUser;
