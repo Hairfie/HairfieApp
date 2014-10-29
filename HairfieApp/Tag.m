@@ -13,6 +13,7 @@
 
 @implementation Tag
 
+@synthesize id;
 -(void)setCategory:(id)aCategory
 {
     _category = [TagCategory fromSetterValue:aCategory];

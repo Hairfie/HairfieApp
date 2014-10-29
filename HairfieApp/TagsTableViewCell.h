@@ -11,7 +11,7 @@
 @class Tag, TagsTableViewCell;
 
 @protocol TagsTableViewCellDelegate
-- (void)tagWasSelected:(Tag*)tag inCell:(TagsTableViewCell*)cell isSelected:(BOOL)selected;
+- (void)tagWasSelected:(Tag*)tag isSelected:(BOOL)selected;
 @end
 
 @interface TagsTableViewCell : UITableViewCell

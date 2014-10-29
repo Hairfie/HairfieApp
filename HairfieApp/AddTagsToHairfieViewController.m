@@ -104,7 +104,7 @@
 }
 
 
--(void)tagWasSelected:(Tag *)tag inCell:(TagsTableViewCell *)cell isSelected:(BOOL)selected
+-(void)tagWasSelected:(Tag *)tag isSelected:(BOOL)selected
 {
     if (selected == YES)
         [hairfieTags addObject:tag];
