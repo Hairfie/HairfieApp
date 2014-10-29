@@ -12,6 +12,7 @@
 #import "UIView+Borders.h"
 #import "Tag.h"
 
+
 @interface AddTagsToHairfieViewController ()
 
 @end
@@ -109,7 +110,17 @@
     if (selected == YES)
         [hairfieTags addObject:tag];
     else
-        [hairfieTags removeObject:tag];
+    {
+        
+        NSArray *filteredHairfies = _.reject(hairfieTags, ^BOOL(Tag *hairfieTag) {
+         
+            return [tag.id isEqualToString:hairfieTag.id];
+        });
+        
+        hairfieTags = [NSMutableArray arrayWithArray:filteredHairfies];
+        
+    }
+    NSLog(@"HAIRFIE TAFS %@", hairfieTags);
 }
 
 

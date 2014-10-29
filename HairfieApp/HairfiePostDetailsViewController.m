@@ -261,9 +261,8 @@ shouldChangeTextInRange: (NSRange) range
             return;
         }
 
-        _hairfiePost.description = self.hairfieDesc.text;
         _hairfiePost.hairdresserName = self.whoTextField.text;
-
+        
         if (![self.priceTextField.text isEqualToString:@""]) {
             Money *price = [[Money alloc] initWithAmount:[NSNumber numberWithDouble:[self.priceTextField.text doubleValue]]
                                                 currency:@"EUR"];

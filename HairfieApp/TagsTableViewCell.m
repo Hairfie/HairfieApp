@@ -8,6 +8,7 @@
 
 #import "TagsTableViewCell.h"
 #import "AddTagsToHairfieViewController.h"
+#import <Underscore.m/Underscore.h>
 #import "Tag.h"
 
 @implementation TagsTableViewCell
@@ -49,19 +50,16 @@
          button.titleLabel.font = [UIFont fontWithName:@"SourceSansPro-Light" size:15];
         [self getLabelWidth:button.titleLabel];
         
-        for (Tag *hairfieTag in selectedTags)
-        {
-            if ([tag.id isEqualToString:hairfieTag.id])
-            {
-                [button setSelected:YES];
-                break;
-            }
-        }
+        BOOL isTagSelected = _.any(selectedTags, ^BOOL (Tag *hairfieTag){
+         return [tag.id isEqualToString:hairfieTag.id];
+        });
+        
+        [button setSelected:isTagSelected];
+        
         frame.origin.x = posX;
         if (i == 1)
             frame.origin.y = 40;
         
-        NSLog(@"test %d %@", posX + indentValue, tag.name);
         if (posX + indentValue >= screenWidth - 20)
         {
             frame.origin.y += 30;

@@ -756,8 +756,6 @@
     };
     void (^loadSuccessBlock)(NSArray *) = ^(NSArray *results) {
         
-        
-        NSLog(@"RESULTS %@", results);
         [[NSNotificationCenter defaultCenter] postNotificationName:@"currentUser" object:self];
         [self performSegueWithIdentifier:@"toSalonDetail" sender:self];
     };

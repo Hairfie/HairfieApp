@@ -90,7 +90,6 @@
         }
         [parameters setObject:tagsToSend forKey:@"tags"];
     }
-    
     [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/hairfies"
                                                                                  verb:@"POST"]
                                         forMethod:@"hairfies.create"];
