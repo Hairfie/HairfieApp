@@ -28,8 +28,9 @@
 @property (nonatomic) IBOutlet UILabel *userName;
 @property (nonatomic) IBOutlet UILabel *reviewLbl;
 @property (nonatomic) IBOutlet UIButton *followUserBttn;
-@property (nonatomic) IBOutlet UIButton *menuBttn;
+@property (nonatomic) IBOutlet UIButton *leftMenuBttn;
 @property (nonatomic) IBOutlet UIButton *navBttn;
+@property (nonatomic) IBOutlet UIButton *bottomMenuBttn;
 
 @property (nonatomic, strong) User *user;
 

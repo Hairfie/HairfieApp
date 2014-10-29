@@ -11,6 +11,7 @@
 #import "HairfieDetailTableViewCell.h"
 #import "CommentTableViewCell.h"
 #import "CustomCollectionViewCell.h"
+#import "UserProfileViewController.h"
 //#import "HairfieDetailCollectionReusableView.h"
 #import "CommentViewController.h"
 #import <LoopBack/LoopBack.h>
@@ -77,11 +78,6 @@
 {
     [ARAnalytics pageView:@"AR - Hairfie Detail"];
     [ARAnalytics event:@"AR - Hairfie Detail" withProperties:@{@"Hairfie ID": self.hairfie.id, @"Author": self.hairfie.author.name}];
-}
-
--(UIStatusBarStyle)preferredStatusBarStyle
-{
-    return UIStatusBarStyleLightContent;
 }
 
 -(IBAction)goBack:(id)sender
@@ -255,11 +251,15 @@
     profilePicture.layer.borderWidth = 2.0f;
     profilePicture.layer.borderColor = [[UIColor blackHairfie] colorWithAlphaComponent:0.1].CGColor;
 
-    UILabel *usernameLabel = [[UILabel alloc]initWithFrame:CGRectMake(68, 8, 232, 21)];
-    usernameLabel.text = self.hairfie.author.displayName;
-    usernameLabel.font = [UIFont fontWithName:@"SourceSansPro-Light" size:18];
-    usernameLabel.textColor = [[UIColor blackHairfie] colorWithAlphaComponent:0.4];
-    usernameLabel.adjustsFontSizeToFitWidth = YES;
+    
+    
+    UIButton *usernameButton = [[UIButton alloc] initWithFrame:CGRectMake(-10, 8, 232, 21)];
+    [usernameButton addTarget:self action:@selector(showProfile:) forControlEvents:UIControlEventTouchUpInside];
+    usernameButton.titleLabel.textAlignment = NSTextAlignmentLeft;
+    [usernameButton setTitle:self.hairfie.author.displayName forState:UIControlStateNormal];
+    [usernameButton setTitleColor:[[UIColor blackHairfie] colorWithAlphaComponent:0.4] forState:UIControlStateNormal];
+    usernameButton.titleLabel.font = [UIFont fontWithName:@"SourceSansPro-Light" size:18];
+   // usernameButton.titleLabel.adjustsFontSizeToFitWidth = YES;
 
     
     UILabel *nbHairfies = [[UILabel alloc]initWithFrame:CGRectMake(68, 30, 92, 21)];
@@ -274,7 +274,7 @@
     descLabel.textColor = [[UIColor blackHairfie] colorWithAlphaComponent:0.8];
 
     [hairfieDetailView addSubview:profilePicture];
-    [hairfieDetailView addSubview:usernameLabel];
+    [hairfieDetailView addSubview:usernameButton];
     [hairfieDetailView addSubview:nbHairfies];
     [hairfieDetailView addSubview:descLabel];
 
@@ -291,6 +291,11 @@
     [collectionHeaderView addSubview:detailsTableView];
 
     return collectionHeaderView;
+}
+
+-(IBAction)showProfile:(id)sender
+{
+    [self performSegueWithIdentifier:@"showUserProfile" sender:self];
 }
 
 -(void)reloadData
@@ -403,6 +408,15 @@
     } else if ([segue.identifier isEqualToString:@"businessDetail"]) {
         SalonDetailViewController *controller = [segue destinationViewController];
         controller.business = sender;
+    }
+    if ([segue.identifier isEqualToString:@"showUserProfile"])
+    {
+        
+        UserProfileViewController *userProfile = [segue destinationViewController];
+        
+        [userProfile setUser:self.hairfie.author];
+        userProfile.isCurrentUser = NO;
+
     }
 }
 

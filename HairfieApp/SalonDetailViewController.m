@@ -194,11 +194,6 @@
     
 }
 
--(UIStatusBarStyle)preferredStatusBarStyle
-{
-    return UIStatusBarStyleLightContent;
-}
-
 -(void)rateView:(RatingView *)rateView ratingDidChange:(float)rating
 {
     if(delegate.currentUser) {

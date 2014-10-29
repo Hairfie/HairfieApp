@@ -17,4 +17,5 @@
 
 +(id)fromSetterValue:(id)aValue;
 
+
 @end

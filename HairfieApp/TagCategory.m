@@ -8,6 +8,7 @@
 //
 
 #import "TagCategory.h"
+#import "TagCategoryRepository.h"
 #import "AppDelegate.h"
 #import "SetterUtils.h"
 
@@ -23,9 +24,9 @@
     return [SetterUtils getInstanceOf:[self class] fromSetterValue:aValue];
 }
 
-+(LBModelRepository *)repository
++(TagCategoryRepository *)repository
 {
-    return [[AppDelegate lbAdaptater] repositoryWithModelName:@"tagCategories"];
+    return (TagCategoryRepository *)[[AppDelegate lbAdaptater] repositoryWithClass:[TagCategoryRepository class]];
 }
 
 @end
