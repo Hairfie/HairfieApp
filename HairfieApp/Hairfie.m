@@ -15,11 +15,21 @@
 
 @implementation Hairfie
 
-@synthesize description;
+@synthesize description = _description;
 
 -(id)initWithDictionary:(NSDictionary *)data
 {
     return (Hairfie*)[[Hairfie repository] modelWithDictionary:data];
+}
+
+-(void)setDescription:(NSString *)aDescription
+{
+    if ([aDescription isEqual:[NSNull null]] || aDescription.length == 0)
+    {
+        _description  = @"";
+    }
+    else
+        _description = aDescription;
 }
 
 -(void)setAuthor:(id)aUser
@@ -89,13 +99,14 @@
 }
 
 -(NSAttributedString *)displayDescAndTags {
+    NSLog(@"DESCRIPTION %@ \n TAGS %@", self.description, self.tags);
     NSDictionary *descAttributes = @{
-                               NSFontAttributeName : [UIFont fontWithName:@"SourceSansPro-Light" size:12],
+                               NSFontAttributeName : [UIFont fontWithName:@"SourceSansPro-Light" size:15],
                                NSForegroundColorAttributeName : [[UIColor blackHairfie] colorWithAlphaComponent:0.8]
                                };
     
     NSDictionary *tagsAttributes = @{
-                                     NSFontAttributeName : [UIFont fontWithName:@"SourceSansPro-Light" size:12],
+                                     NSFontAttributeName : [UIFont fontWithName:@"SourceSansPro-Light" size:15],
                                      NSForegroundColorAttributeName : [UIColor pinkHairfie]
                                      };
     

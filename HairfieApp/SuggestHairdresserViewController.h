@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Business.h"
 
 @interface SuggestHairdresserViewController : UIViewController <UITextFieldDelegate>
 
@@ -16,6 +17,7 @@
 @property (nonatomic) IBOutlet UIView *lastNameView;
 @property (nonatomic) IBOutlet UIButton *submitBttn;
 @property (nonatomic) IBOutlet UILabel *headerTitle;
+@property (nonatomic) Business *business;
 
 
 @end

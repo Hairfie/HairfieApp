@@ -7,6 +7,7 @@
 //
 
 #import "SuggestHairdresserViewController.h"
+#import "SuggestHairdresserReport.h"
 
 @interface SuggestHairdresserViewController ()
 
@@ -47,11 +48,33 @@
         // Found next responder, so set it.
         [nextResponder becomeFirstResponder];
     } else {
+        [self suggestHairdresser:self];
         [textField resignFirstResponder];
     }
     return YES;
 }
 
+-(IBAction)suggestHairdresser:(id)sender
+{
+    SuggestHairdresserReport *report = [[SuggestHairdresserReport alloc]initWithBusiness:self.business];
+    
+    report.firstName = self.firstName.text;
+    report.lastName  = self.lastName.text;
+    
+    
+    [report saveWithSuccess:^() { [self errorReportSubmitted]; }
+                    failure:^(NSError *error) {
+                        NSLog(@"Failed to submit error report: %@", error.localizedDescription);
+                    }];
+
+    
+}
+
+-(void)errorReportSubmitted
+{
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 /*
 #pragma mark - Navigation
 

@@ -125,9 +125,9 @@ shouldChangeTextInRange: (NSRange) range
         _isSalon = NO;
     } else {
 
-        CGFloat ypos = _dataChoice.rowHeight * salonTypes.count;
-        [_tableViewHeight setConstant:ypos];
-        NSLog(@"%f , %f, %ld", _tableViewHeight.constant, _dataChoice.rowHeight, salonTypes.count);
+       // CGFloat ypos = _dataChoice.rowHeight * salonTypes.count;
+       // [_tableViewHeight setConstant:ypos];
+      //  NSLog(@"%f , %f, %ld", _tableViewHeight.constant, _dataChoice.rowHeight, salonTypes.count);
         _salonOrHairdresser = YES;
         [_dataChoice reloadData];
         _dataChoice.hidden = NO;
@@ -260,7 +260,8 @@ shouldChangeTextInRange: (NSRange) range
             [self showUploadFailedAlertView];
             return;
         }
-
+        
+        _hairfiePost.description = self.hairfieDesc.text;
         _hairfiePost.hairdresserName = self.whoTextField.text;
         
         if (![self.priceTextField.text isEqualToString:@""]) {
@@ -273,6 +274,7 @@ shouldChangeTextInRange: (NSRange) range
         if (self.salonChosen) {
             _hairfiePost.business = self.salonChosen;
         }
+        
 
         NSLog(@"Hairfie to post : %@", _hairfiePost);
 
