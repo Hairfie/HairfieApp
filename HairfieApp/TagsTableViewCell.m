@@ -36,6 +36,7 @@
     NSInteger posX = 10;
     indentValue = 0;
     NSInteger screenWidth = self.bounds.size.width;
+    NSLog(@"screenwidth %d", screenWidth - 10);
     for (int i = 1; i < [tags count] + 1; i++) {
      
         Tag *tag = [tags objectAtIndex:i - 1];
@@ -50,21 +51,18 @@
         
         for (Tag *hairfieTag in selectedTags)
         {
-            
-            NSLog(@"\n NAMES : \nTAG %@ SELECTED TAG %@", tag.id, hairfieTag.id);
             if ([tag.id isEqualToString:hairfieTag.id])
             {
-                NSLog(@"SELECTED");
                 [button setSelected:YES];
                 break;
             }
-
         }
         frame.origin.x = posX;
         if (i == 1)
             frame.origin.y = 40;
         
-        if (posX + indentValue >= screenWidth)
+        NSLog(@"test %d %@", posX + indentValue, tag.name);
+        if (posX + indentValue >= screenWidth - 20)
         {
             frame.origin.y += 30;
             posX = 10;
