@@ -43,6 +43,8 @@
 
     NSArray *latestReviews;
     BOOL loadingLastestReviews;
+    
+    SalonDetailHeaderViewController *headerViewController;
 }
 
 @synthesize imageSliderView =_imageSliderView, pageControl = _pageControl,hairfieView = _hairfieView, hairdresserView = _hairdresserView, priceAndSaleView = _priceAndSaleView, infoBttn = _infoBttn, hairfieBttn = _hairfieBttn, hairdresserBttn = _hairdresserBttn, priceAndSaleBttn = _priceAndSaleBttn, reviewRating = _reviewRating, reviewTableView = _reviewTableView, addReviewBttn = _addReviewBttn, moreReviewBttn = _moreReviewBttn, similarTableView = _similarTableView, business = _business, name = _name , womanPrice = _womanPrice, manPrice = _manPrice, salonRating = _salonRating, address = _address, city = _city, salonAvailability = _salonAvailability, nbReviews = _nbReviews, previewMap = _previewMap, isOpenLabel = _isOpenLabel, isOpenLabelDetail = _isOpenLabelDetail, isOpenImage = _isOpenImage, isOpenImageDetail = _isOpenImageDetail, callBttn = _callBttn, telephoneBgView = _telephoneBgView, detailedContainerView = _detailedContainerView;
@@ -105,50 +107,12 @@
     menuActions = @[
         @{@"label": NSLocalizedStringFromTable(@"Report an error", @"Salon_Detail",nil), @"segue": @"reportError"}
     ];
-}
-
--(void) setupGallery:(NSArray*) pictures
-{
-    if ([pictures count] == 1) {
-        _pageControl.hidden = YES;
-    }
-
-    if ([pictures count] == 0)
-    {
-        _pageControl.numberOfPages = 1;
-        _pageControl.hidden = YES;
-        CGRect frame;
-        frame.origin.x = 0;
-        frame.origin.y = 0;
-        frame.size = _imageSliderView.frame.size;
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:frame];
-        imageView.image = [UIImage imageNamed:@"default-picture.jpg"];
-        imageView.contentMode = UIViewContentModeScaleToFill;
-        [_imageSliderView addSubview:imageView];
-    } else {
-        _pageControl.numberOfPages = [pictures count];
-        for (int i = 0; i < [pictures count]; i++) {
-            CGRect frame;
-            frame.origin.x = _imageSliderView.frame.size.width * i;
-            frame.origin.y = 0;
-            frame.size = _imageSliderView.frame.size;
-            UIImageView *imageView = [[UIImageView alloc] initWithFrame:frame];
-            [SDWebImageDownloader.sharedDownloader downloadImageWithURL:[NSURL URLWithString:[pictures[i] urlWithWidth:@640
-                                                                                                                height:@360]]
-                                                                options:0
-                                                               progress:^(NSInteger receivedSize, NSInteger expectedSize) { }
-                                                              completed:^(UIImage *image, NSData *d, NSError *e, BOOL finished) {
-                                                                  if (finished && image) {
-                                                                      imageView.image = image;
-                                                                  }
-                                                              }];
-
-            imageView.contentMode = UIViewContentModeScaleToFill;
-            [_imageSliderView addSubview:imageView];
-        }
-    }
-    _imageSliderView.pagingEnabled = YES;
-    _imageSliderView.contentSize = CGSizeMake(_imageSliderView.frame.size.width * [pictures count], _imageSliderView.frame.size.height);
+    
+    headerViewController = [[SalonDetailHeaderViewController alloc] initWithNibName:@"SalonDetailHeaderViewController" bundle:nil];
+    [headerViewController.view setFrame:self.headerContainerView.frame];
+    [self addChildViewController:headerViewController];
+    [self.headerContainerView addSubview:headerViewController.view];
+    [headerViewController didMoveToParentViewController:self];
 }
 
 -(IBAction)showTimeTable:(id)sender
@@ -187,7 +151,6 @@
                                              selector:@selector(businessChanged:)
                                                  name:[Business EVENT_CHANGED]
                                                object:nil];
-    
 }
 
 -(void)rateView:(RatingView *)rateView ratingDidChange:(float)rating
@@ -433,12 +396,10 @@
 - (void) initKnownData:(Business*)business
 {
     [self setupCrossSell];
-    
     [self setupHairfies];
-    
-    [self setupGallery:business.pictures];
-
     [self setupLastReviews];
+    
+    headerViewController.business = business;
     
     if (nil == business.timetable) {
         _isOpenImageDetail.hidden = YES;
@@ -497,12 +458,6 @@
         _moreReviewButtonYpos.constant = 288 + (130 * tes);
         [_moreReviewBttn setTitle:[NSString stringWithFormat:NSLocalizedStringFromTable(@"more (%@)", @"Salon_Detail", nil), business.numReviews]
                          forState:UIControlStateNormal];
-    }
-
-    if ([business.numReviews isEqualToNumber:@0] || [business.numReviews isEqualToNumber:@1]) {
-        _nbReviews.text = [NSString stringWithFormat:NSLocalizedStringFromTable(@"%@ review", @"Salon_Detail", nil), business.numReviews];
-    } else {
-        _nbReviews.text =[NSString stringWithFormat:NSLocalizedStringFromTable(@"%@ reviews", @"Salon_Detail", nil), business.numReviews];
     }
     
     _address.text = business.address.street;

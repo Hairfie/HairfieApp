@@ -14,10 +14,20 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.layer.cornerRadius = self.frame.size.height / 2;
-        self.clipsToBounds = YES;
+        [self applyRound];
     }
     return self;
+}
+
+-(void)willMoveToSuperview:(UIView *)newSuperview
+{
+    [self applyRound];
+}
+
+-(void)applyRound
+{
+    self.layer.cornerRadius = self.frame.size.height / 2;
+    self.clipsToBounds = YES;
 }
 
 @end

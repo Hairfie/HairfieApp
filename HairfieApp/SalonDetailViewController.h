@@ -13,6 +13,9 @@
 
 @interface SalonDetailViewController : UIViewController <UIScrollViewDelegate, RatingViewDelegate, UITableViewDataSource, UITableViewDelegate, MKMapViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UIActionSheetDelegate>
 
+
+@property (nonatomic) IBOutlet UIView *headerContainerView;
+
 @property (nonatomic) IBOutlet UIScrollView *imageSliderView;
 @property (nonatomic) IBOutlet UIPageControl *pageControl;
 
