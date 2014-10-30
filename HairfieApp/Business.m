@@ -218,7 +218,11 @@
 
     [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/businesses/nearby" verb:@"GET"] forMethod:@"businesses.nearby"];
     LBModelRepository *businessData = [[AppDelegate lbAdaptater] repositoryWithModelName:@"businesses"];
-  
+    if(!aGeoPoint.lng || !aGeoPoint.lat){
+        aFailureHandler(nil);
+        return;
+    }
+
     [businessData invokeStaticMethod:@"nearby"
                           parameters:@{@"here": aGeoPoint.asApiString, @"limit" : aLimit, @"query" : aQuery}
                              success:^(NSArray *results) {
@@ -228,8 +232,9 @@
                                  }
 
                                  aSuccessHandler([[NSArray alloc] initWithArray: businesses]);
-                             }
-                             failure:aFailureHandler];
+                             } failure:^(NSError *error) {
+                                 aFailureHandler(error);
+                             }];
 }
 
 
