@@ -407,14 +407,24 @@
         _isOpenLabel.text = NSLocalizedStringFromTable(@"No information", @"Salon_Detail", nil);
     } else {
         if (business.timetable.isOpenToday) {
-            _isOpenLabel.text = NSLocalizedStringFromTable(@"Open today", @"Salon_Detail", nil);
+            if ([business.kind isEqualToString:KIND_ATHOME]) {
+                _isOpenLabel.text = NSLocalizedStringFromTable(@"Works today", @"Salon_Detail", nil);
+            } else {
+                _isOpenLabel.text = NSLocalizedStringFromTable(@"Open today", @"Salon_Detail", nil);
+            }
             _isOpenLabel.textColor = [UIColor greenHairfie];
             
             _isOpenImage.image = [_isOpenImage.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
             [_isOpenImage setTintColor:[UIColor greenHairfie]];
         }
         else {
-            _isOpenLabel.text = NSLocalizedStringFromTable(@"Closed today", @"Salon_Detail", nil);
+            if ([business.kind isEqualToString:KIND_ATHOME]) {
+                _isOpenLabel.text = NSLocalizedStringFromTable(@"Do not work today", @"Salon_Detail", nil);
+            } else {
+                _isOpenLabel.text = NSLocalizedStringFromTable(@"Closed today", @"Salon_Detail", nil);
+            }
+
+            _isOpenLabel.text = NSLocalizedStringFromTable(@"Do not work today", @"Salon_Detail", nil);
         }
     }
 
