@@ -52,8 +52,13 @@
 -(void)saveWithSuccess:(void(^)())aSuccessHandler
                failure:(void(^)(NSError *error))aFailureHandler
 {
+    // TODO: move hairfie save to Hairfie class
     void (^onSuccess)(NSDictionary *) = ^(NSDictionary *result) {
-        NSLog(@"result :%@", result);
+        Hairfie *hairfie = [[Hairfie alloc] initWithDictionary:result];
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:[Hairfie EVENT_SAVED] object:hairfie];
+        
+        NSLog(@"result :%@", hairfie);
         if(self.shareOnFB) {
             Hairfie *newHairfie = [[Hairfie alloc] initWithDictionary:result];
             [HairfieShare shareHairfie:newHairfie.id success:^{

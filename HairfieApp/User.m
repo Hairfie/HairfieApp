@@ -15,6 +15,11 @@
 
 @implementation User
 
++(NSString *)EVENT_CHANGED
+{
+    return @"User.changed";
+}
+
 -(void)setPicture:(id)aPicture
 {
     _picture = [Picture fromSetterValue:aPicture];
@@ -54,11 +59,70 @@
     return [self pictureUrlwithWidth:@100 andHeight:@100];
 }
 
--(id)initWithDictionary:(NSDictionary *)aDictionary
+-(void)setupEventListeners
 {
-    return (User *)[[[self class] repository] modelWithDictionary:aDictionary];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(hairfieSaved:)
+                                                 name:[Hairfie EVENT_SAVED]
+                                               object:nil];
 }
 
+-(void)clearEventListeners
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+-(id)init
+{
+    self = [super init];
+    if (self) {
+        [self setupEventListeners];
+    }
+    return self;
+}
+
+-(id)initWithDictionary:(NSDictionary *)aDictionary
+{
+    self = (User *)[[[self class] repository] modelWithDictionary:aDictionary];
+    if (self) {
+        [self setupEventListeners];
+    }
+    return self;
+}
+
+-(void)dealloc
+{
+    [self clearEventListeners];
+}
+
+-(void)hairfieSaved:(NSNotification *)aNotification
+{
+    Hairfie *hairfie = aNotification.object;
+    if (nil != hairfie.author && [hairfie.author.id isEqualToString:self.id]) {
+        
+        // an haifie was added to the user, let's reload it
+        [self refresh];
+    }
+}
+
+-(void)refresh
+{
+    if (nil == self.id) {
+        // refresh only works on existing entities, should we throw an exception?
+        return;
+    }
+    
+    [[self class] getById:self.id
+                  success:^(User *user) {
+                      // TODO: complete updated properties
+                      self.numHairfies = user.numHairfies;
+                      [[NSNotificationCenter defaultCenter] postNotificationName:[[self class] EVENT_CHANGED]
+                                                                          object:self];
+                  }
+                  failure:^(NSError *error) {
+                      NSLog(@"Failed to refresh user: %@", error.localizedDescription);
+                  }];
+}
 
 -(void)saveWithSuccess:(void(^)())aSuccessHandler
                failure:(void(^)(NSError *error))aFailureHandler
@@ -117,12 +181,16 @@
      success:(void (^)(User *user))aSuccessHandler
      failure:(void (^)(NSError *error))aFailureHandler
 {
-    [[User repository] findById:anId
-                        success:^(LBModel *result) {
-                            User *aUser = (User*)result;
-                            aSuccessHandler(aUser);
-                        }
-                        failure:aFailureHandler];
+    [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/users/:id"
+                                                                                 verb:@"GET"]
+                                        forMethod:@"users.get"];
+    
+    [[[self class] repository] invokeStaticMethod:@"get"
+                                       parameters:@{@"id":anId}
+                                          success:^(NSDictionary *result) {
+                                              aSuccessHandler([[User alloc] initWithDictionary:result]);
+                                          }
+                                          failure:aFailureHandler];
 }
 
 +(void)listHairfieLikesByUser:(NSString *)userId

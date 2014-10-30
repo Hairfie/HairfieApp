@@ -27,7 +27,6 @@
 
 - (void)getCurrentUser
 {
-    UserRepository *userRepository = (UserRepository *)[[AppDelegate lbAdaptater] repositoryWithClass:[UserRepository class]];
     __block User *user;
     
     void (^loadErrorBlock)(NSError *) = ^(NSError *error){
@@ -45,9 +44,8 @@
         }
         NSLog(@"Error on load %@", error.description);
     };
-    void (^loadSuccessBlock)(LBModel *) = ^(LBModel *model){
-
-        user = (User*)model;
+    void (^loadSuccessBlock)(User *) = ^(User *result){
+        user = result;
         
         delegate.currentUser = user;
         [[NSNotificationCenter defaultCenter] postNotificationName:@"currentUser" object:self];
@@ -57,10 +55,7 @@
     
     NSString *userId = [delegate.credentialStore userId];
     
-    [userRepository findById:userId
-                     success:loadSuccessBlock
-                     failure:loadErrorBlock];
-    
+    [User getById:userId success:loadSuccessBlock failure:loadErrorBlock];
 }
 
 -(void) skipLogin {
