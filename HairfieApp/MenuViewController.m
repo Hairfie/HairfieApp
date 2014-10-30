@@ -69,9 +69,22 @@
     
     _menuTableView.backgroundColor = [UIColor whiteColor];
     _profileView.backgroundColor = [UIColor clearColor];
-   
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(userChanged:)
+                                                 name:[User EVENT_CHANGED]
+                                               object:nil];
 }
 
+-(void)userChanged:(NSNotification *)aNotification
+{
+    User *eventUser = aNotification.object;
+    User *displayUser = appDelegate.currentUser;
+    
+    if (displayUser == eventUser) {
+        [self initCurrentUser];
+    }
+}
 
 -(void)currentUserChanged:(NSNotification*)notification
 {
@@ -94,9 +107,6 @@
 -(void) initCurrentUser
 {
     _name.text = appDelegate.currentUser.name;
-
-    
-
     _hairfieNb.text = [appDelegate.currentUser displayHairfies];
   
     
