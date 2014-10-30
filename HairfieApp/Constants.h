@@ -10,10 +10,10 @@
 #define HairfieApp_constants_h
 
 #ifdef DEV
-    #define BASE_URL @"http://www.hairfie.com/"
+    #define BASE_URL @"http://staging.hairfie.com/"
 #elif ADHOC
     #define BASE_URL @"http://staging.hairfie.com/"
-#else
+#elif RELEASE
     #define BASE_URL @"http://www.hairfie.com/"
 #endif
 
