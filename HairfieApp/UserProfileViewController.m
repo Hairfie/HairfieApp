@@ -309,7 +309,7 @@
         NSLog(@"Failed to get user's reviews");
     };
     
-    [BusinessReview getReviewsByAuthor:self.user.id success:successHandler failure:failureHandler];
+    [BusinessReview listLatestByAuthor:self.user.id success:successHandler failure:failureHandler];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
