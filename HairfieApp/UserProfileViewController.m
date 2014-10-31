@@ -61,7 +61,6 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-
 -(void)refreshHairfieList
 {
     // (re)initialize hairfies list
@@ -72,15 +71,9 @@
     [self loadNextHairfieLikes];
 }
 
-
 -(void)viewWillAppear:(BOOL)animated
 {
     [self initKnownData];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 -(void) initKnownData
@@ -134,8 +127,11 @@
     [self.userName profileUserNameStyle];
     self.userName.text = self.user.name;
     [self.hairfieBttn profileTabStyle];
+    [self.hairfieBttn setTitle:[NSString stringWithFormat:@"%@", self.user.numHairfies] forState:UIControlStateNormal];
+
     [self.reviewBttn profileTabStyle];
-    
+    [self.reviewBttn setTitle:[NSString stringWithFormat:@"%@", self.user.numBusinessReviews] forState:UIControlStateNormal];
+
     self.reviewLbl.text = NSLocalizedStringFromTable(@"Reviews", @"UserProfile", nil);
 }
 
@@ -143,6 +139,7 @@
 {
     [self setButtonSelected:sender];
 }
+
 -(void)setButtonSelected:(UIButton*)aButton
 {
     self.hairfieView.hidden = YES;
@@ -262,7 +259,6 @@
         
         self.collectionViewHeight.constant = ((userHairfies.count / 2 + 1) * 220) + 58;
         
-          [self.hairfieBttn setTitle:[NSString stringWithFormat:@"%ld", userHairfies.count] forState:UIControlStateNormal];
         [self.hairfiesCollection reloadData];
         
         // did we reach the end of scroll?
@@ -296,7 +292,6 @@
         userReviews = [NSMutableArray arrayWithArray:results];
         self.mainViewHeight.constant = (userReviews.count * 130) + 274;
         self.tableViewHeight.constant = (userReviews.count * 130);
-        [self.reviewBttn setTitle:[NSString stringWithFormat:@"%ld", userReviews.count] forState:UIControlStateNormal];
         [self.reviewTableView reloadData];
     };
     
