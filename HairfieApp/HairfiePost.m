@@ -88,6 +88,10 @@
     if(self.business != nil) {
         [parameters setObject:self.business.id forKey:@"businessId"];
     }
+    if(self.selfmade == YES) {
+        [parameters setObject:@true forKey:@"selfmade"];
+    }
+
     if (self.tags != nil) {
         NSMutableArray *tagsToSend = [[NSMutableArray alloc] init];
         for (Tag *tag in self.tags) {
