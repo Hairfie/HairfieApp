@@ -31,9 +31,6 @@
 @end
 
 @implementation SalonDetailViewController {
-    // Variables de test (vu qu'il y a pas de backend)
-    NSArray *coiffeurArray;
-    
     NSMutableArray *hairfies;
     BOOL endOfHairfies;
     BOOL loadingHairfies;
@@ -47,10 +44,6 @@
     SalonDetailHeaderViewController *headerViewController;
 }
 
-@synthesize imageSliderView =_imageSliderView, pageControl = _pageControl,hairfieView = _hairfieView, hairdresserView = _hairdresserView, priceAndSaleView = _priceAndSaleView, infoBttn = _infoBttn, hairfieBttn = _hairfieBttn, hairdresserBttn = _hairdresserBttn, priceAndSaleBttn = _priceAndSaleBttn, reviewRating = _reviewRating, reviewTableView = _reviewTableView, addReviewBttn = _addReviewBttn, moreReviewBttn = _moreReviewBttn, similarTableView = _similarTableView, business = _business, name = _name , womanPrice = _womanPrice, manPrice = _manPrice, salonRating = _salonRating, address = _address, city = _city, salonAvailability = _salonAvailability, nbReviews = _nbReviews, previewMap = _previewMap, isOpenLabel = _isOpenLabel, isOpenLabelDetail = _isOpenLabelDetail, isOpenImage = _isOpenImage, isOpenImageDetail = _isOpenImageDetail, callBttn = _callBttn, telephoneBgView = _telephoneBgView, detailedContainerView = _detailedContainerView;
-
-
-
 -(void)viewDidLoad
 {
     [super viewDidLoad];
@@ -59,7 +52,6 @@
     delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
     _infoView.hidden = NO;
-    _imageSliderView.canCancelContentTouches = NO;
     _hairfieCollection.scrollEnabled = NO;
     
     _reviewTableView.delegate = self;
@@ -183,17 +175,6 @@
     }
 }
 
--(void) scrollViewDidEndDecelerating:(UIScrollView *)scrollview
-{
-    if (scrollview == _imageSliderView) {
-        // Update the page when more than 50% of the previous/next page is visible
-        CGFloat pageWidth = scrollview.frame.size.width;
-        int page = floor((scrollview.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
-        _pageControl.currentPage = page;
-    }
-}
-
-
 -(IBAction)changeTab:(id)sender
 {
     [self setButtonSelected:sender];
@@ -257,13 +238,6 @@
     bottomBorder.backgroundColor = [UIColor salonDetailTab];
     bottomBorder.tag = 1;
     [aButton addSubview:bottomBorder];
-}
-
--(IBAction)changePage:(id)sender
-{
-    UIPageControl *pager = sender;
-    CGPoint offset = CGPointMake(pager.currentPage * _imageSliderView.frame.size.width, 0);
-    [_imageSliderView setContentOffset:offset animated:YES];
 }
 
 -(IBAction)goBack:(id)sender
@@ -437,8 +411,7 @@
         [self addPhoneNumbersToView];
         
     }
-    _name.text = business.name;
-    
+
     _pricesView.hidden = YES;
     
     _salonRating.notSelectedImage = [UIImage imageNamed:@"not_selected_star.png"];
@@ -471,15 +444,8 @@
     }
     
     _address.text = business.address.street;
-    _zipCode.text = business.address.zipCode;
     _city.text = business.address.city;
-    
-    // MapView Setup
-    _haidresserLat = [NSString stringWithFormat:@"%@", business.gps.lat];
-    _haidresserLng = [NSString stringWithFormat:@"%@", business.gps.lng];
-
 }
-
 
 -(void)setupCrossSell
 {
@@ -613,7 +579,6 @@
             review.isReviewing = YES;
         review.business = _business;
         review.addReviewButton.hidden = NO;
-        
     } else if ([segue.identifier isEqualToString:@"showTimetable"]) {
         HorairesViewController *horaires = [segue destinationViewController];
         horaires.timetable = _business.timetable;
@@ -624,13 +589,9 @@
         SalonDetailViewController *controller = [segue destinationViewController];
         controller.business = sender;
     } else if ([segue.identifier isEqualToString:@"reportError"]) {
-        
         [[segue destinationViewController] setBusiness:self.business];
-        
     } else if ([segue.identifier isEqualToString:@"suggestHairdresser"]) {
-        
         [[segue destinationViewController] setBusiness:self.business];
-        
     } else if ([segue.identifier isEqualToString:@"postHairfie"]) {
         CameraOverlayViewController *controller = [segue destinationViewController];
         controller.hairfiePost = [[HairfiePost alloc] initWithBusiness:_business];
@@ -649,14 +610,10 @@
     phoneBtn.layer.cornerRadius = 5;
     phoneBtn.layer.masksToBounds = YES;
 
-    
     NSString *phoneBttnTitle = [[NSString alloc] init];
 
-    
     phoneBttnTitle = [phoneBttnTitle formatPhoneNumber:self.business.phoneNumber];
-    
-    
-     
+
     [phoneBtn setTitle:phoneBttnTitle forState:UIControlStateNormal];
     [phoneBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [phoneBtn.titleLabel setTextAlignment: NSTextAlignmentCenter];
@@ -695,7 +652,7 @@
            // NSLog(@"Gimme more!");
             [self loadNextHairfies];
         }
-        
+
         return [self collectionView:cv hairfieCellForItemAtIndexPath:indexPath];
     } else {
         return [self collectionView:cv loadingCellForItemAtIndexPath:indexPath];
@@ -705,9 +662,9 @@
 -(CustomCollectionViewCell *)collectionView:(UICollectionView *)cv newHairfieCellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     CustomCollectionViewCell *cell = [cv dequeueReusableCellWithReuseIdentifier:@"hairfieCell" forIndexPath:indexPath];
-    
+
     [cell setAsNewHairfieButton];
-    
+
     return cell;
 }
 
@@ -749,19 +706,18 @@
                                                     cancelButtonTitle:NSLocalizedStringFromTable(@"Cancel", @"Salon_Detail", nil)
                                                destructiveButtonTitle:nil
                                                     otherButtonTitles:nil];
-    
+
     for (NSDictionary *menuAction in menuActions) {
         [actionSheet addButtonWithTitle:NSLocalizedStringFromTable([menuAction objectForKey:@"label"], @"Salon_Detail", nil)];
     }
-    
+
     [actionSheet showInView:self.view];
 }
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (0 == buttonIndex) return; // it's the cancel button
-    
-    
+
     [self performSegueWithIdentifier:[menuActions[buttonIndex - 1] objectForKey:@"segue"] sender:self];
 }
 

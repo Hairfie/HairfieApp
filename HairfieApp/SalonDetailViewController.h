@@ -16,10 +16,6 @@
 
 @property (nonatomic) IBOutlet UIView *headerContainerView;
 
-@property (nonatomic) IBOutlet UIScrollView *imageSliderView;
-@property (nonatomic) IBOutlet UIPageControl *pageControl;
-
-
 @property (nonatomic) IBOutlet UIView *mainView;
 @property (nonatomic) IBOutlet UIScrollView *mainScrollView;
 
@@ -54,24 +50,14 @@
 
 @property (nonatomic) IBOutlet UILabel *salonAvailability;
 
-@property (nonatomic) IBOutlet UILabel *name;
 @property (nonatomic) IBOutlet UILabel *address;
 @property (nonatomic) IBOutlet UILabel *city;
-@property (nonatomic) IBOutlet UILabel *zipCode;
-@property (nonatomic) IBOutlet UILabel *manPrice;
-@property (nonatomic) IBOutlet UILabel *womanPrice;
 @property (nonatomic) IBOutlet UILabel *telephone;
-@property (nonatomic) IBOutlet UILabel *nbReviews;
 @property (nonatomic) IBOutlet UILabel *isOpenLabel;
 @property (nonatomic) IBOutlet UILabel *isOpenLabelDetail;
 @property (nonatomic) IBOutlet UIImageView *isOpenImage;
 @property (nonatomic) IBOutlet UIImageView *isOpenImageDetail;
 @property (nonatomic) IBOutlet UIImageView *isPhoneAvailable;
-
-@property (nonatomic) NSString *haidresserLat;
-@property (nonatomic) NSString *haidresserLng;
-
-
 @property (nonatomic) IBOutlet UITableView *reviewTableView;
 @property (nonatomic) IBOutlet UITableView *similarTableView;
 @property (nonatomic) IBOutlet UITableView *detailTableView;
@@ -83,9 +69,6 @@
 
 @property (strong, nonatomic) Business *business;
 @property (strong, nonatomic) NSArray *similarBusinesses;
-
-@property (nonatomic) IBOutlet MKMapView *previewMap;
-
 
 // View Hairfie
 
@@ -119,7 +102,6 @@
 
 
 -(IBAction)goBack:(id)sender;
--(IBAction)changePage:(id)sender;
 -(IBAction)changeTab:(id)sender;
 
 
