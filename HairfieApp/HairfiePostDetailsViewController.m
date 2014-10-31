@@ -97,16 +97,13 @@
     [ARAnalytics pageView:@"AR - Post Hairfie step #3 - Post Detail"];
 }
 
-- (BOOL) textView: (UITextView*) textView
-shouldChangeTextInRange: (NSRange) range
-  replacementText: (NSString*) text
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
     if ([text isEqualToString:@"\n"]) {
         [textView resignFirstResponder];
     }
     return YES;
 }
-
 
 -(IBAction)goBack:(id)sender
 {
@@ -117,6 +114,7 @@ shouldChangeTextInRange: (NSRange) range
 {
     [self performSegueWithIdentifier:@"addTagsToHairfie" sender:self];
 }
+
 -(IBAction)showSalonsChoices:(id)sender
 {
     [_hairfieDesc resignFirstResponder];
@@ -124,10 +122,6 @@ shouldChangeTextInRange: (NSRange) range
         _dataChoice.hidden = YES;
         _isSalon = NO;
     } else {
-
-       // CGFloat ypos = _dataChoice.rowHeight * salonTypes.count;
-       // [_tableViewHeight setConstant:ypos];
-      //  NSLog(@"%f , %f, %ld", _tableViewHeight.constant, _dataChoice.rowHeight, salonTypes.count);
         _salonOrHairdresser = YES;
         [_dataChoice reloadData];
         _dataChoice.hidden = NO;
@@ -390,5 +384,6 @@ shouldChangeTextInRange: (NSRange) range
         
     }
 }
+
 @end
 
