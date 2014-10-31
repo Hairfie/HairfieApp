@@ -19,6 +19,7 @@
 #import "CustomCollectionViewCell.h"
 #import "LoadingCollectionViewCell.h"
 #import "ReviewTableViewCell.h"
+#import "HairfieDetailViewController.h"
 
 #define HAIRFIE_CELL @"hairfieCell"
 #define LOADING_CELL @"loadingCell"
@@ -209,6 +210,15 @@
     return [self loadingCellAtIndexPath:indexPath];
 }
 
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"clicked");
+    
+    if (collectionView == self.hairfiesCollection) {
+        [self performSegueWithIdentifier:@"hairfieDetail" sender:userHairfies[indexPath.row]];
+    }
+}
+
 -(UICollectionViewCell *)hairfieCellAtIndexPath:(NSIndexPath *)indexPath
 {
     CustomCollectionViewCell *cell = [self.hairfiesCollection dequeueReusableCellWithReuseIdentifier:HAIRFIE_CELL
@@ -335,5 +345,12 @@
     return cell;
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"hairfieDetail"]) {
+        HairfieDetailViewController *vc = (HairfieDetailViewController *)segue.destinationViewController;
+        vc.hairfie = sender;
+    }
+}
 
 @end
