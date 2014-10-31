@@ -393,12 +393,10 @@
         }
         else {
             if ([business.kind isEqualToString:KIND_ATHOME]) {
-                _isOpenLabel.text = NSLocalizedStringFromTable(@"Do not work today", @"Salon_Detail", nil);
+                _isOpenLabel.text = NSLocalizedStringFromTable(@"Does not work today", @"Salon_Detail", nil);
             } else {
                 _isOpenLabel.text = NSLocalizedStringFromTable(@"Closed today", @"Salon_Detail", nil);
             }
-
-            _isOpenLabel.text = NSLocalizedStringFromTable(@"Do not work today", @"Salon_Detail", nil);
         }
     }
 
