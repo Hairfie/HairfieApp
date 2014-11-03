@@ -27,6 +27,7 @@
 
 -(NSString *)displayAddress;
 -(NSDictionary*)toDictionary;
+-(NSString*)displayCityAndZipCode;
 
 +(id)fromSetterValue:(id)aValue;
 

@@ -113,8 +113,12 @@
             <string>SourceSansPro-Light</string>
             <string>SourceSansPro-Light</string>
             <string>SourceSansPro-Light</string>
+            <string>SourceSansPro-Light</string>
+            <string>SourceSansPro-Light</string>
         </mutableArray>
         <mutableArray key="SourceSansPro-Regular.ttf">
+            <string>SourceSansPro-Regular</string>
+            <string>SourceSansPro-Regular</string>
             <string>SourceSansPro-Regular</string>
             <string>SourceSansPro-Regular</string>
             <string>SourceSansPro-Regular</string>
@@ -246,7 +250,7 @@
                                                             <inset key="sectionInset" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                                                         </collectionViewFlowLayout>
                                                         <cells>
-                                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="tnp-gY-XVH">
+                                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="hairfieCell" id="tnp-gY-XVH">
                                                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -258,16 +262,6 @@
                                                                 <connections>
                                                                     <segue destination="wuV-Ro-JC1" kind="push" identifier="hairfieDetailtest" id="9tp-c4-Wfy"/>
                                                                 </connections>
-                                                            </collectionViewCell>
-                                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="3gd-XY-xf5">
-                                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                                                <autoresizingMask key="autoresizingMask"/>
-                                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="145" height="210"/>
-                                                                    <autoresizingMask key="autoresizingMask"/>
-                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                                </view>
-                                                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                             </collectionViewCell>
                                                         </cells>
                                                         <connections>
@@ -828,7 +822,7 @@
                         <viewControllerLayoutGuide type="bottom" id="SHl-eq-JF1"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="iev-fr-inl">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="1300"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="tintColor" red="0.36078431370000003" green="0.67450980390000004" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
@@ -851,7 +845,7 @@
                         <viewControllerLayoutGuide type="bottom" id="j1p-Ri-5Sm"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="nui-gI-JXj">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="1300"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BYw-ul-o7V">
@@ -1028,7 +1022,7 @@
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tcL-Zl-sdh" userLabel="CONTAINER">
-                                        <rect key="frame" x="-20" y="-20" width="360" height="460"/>
+                                        <rect key="frame" x="-20" y="-20" width="360" height="480"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vjl-H2-Nzu">
                                                 <rect key="frame" x="20" y="20" width="320" height="140"/>
@@ -1104,25 +1098,6 @@
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            </view>
-                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ihB-lj-Iee" userLabel="EMAIL CONTAINER">
-                                                <rect key="frame" x="20" y="351" width="320" height="55"/>
-                                                <subviews>
-                                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" image="send-email-client-button.png" translatesAutoresizingMaskIntoConstraints="NO" id="jXt-6m-Fer">
-                                                        <rect key="frame" x="10" y="8" width="300" height="39"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="300" id="WiF-nA-VUV"/>
-                                                            <constraint firstAttribute="height" constant="39" id="ocQ-hA-nOk"/>
-                                                        </constraints>
-                                                    </imageView>
-                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email du client" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Pjf-U8-rg7">
-                                                        <rect key="frame" x="58" y="8" width="203" height="39"/>
-                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
-                                                    </textField>
-                                                </subviews>
                                             </view>
                                             <view contentMode="scaleToFill" verticalCompressionResistancePriority="250" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xSZ-Hu-sLy" userLabel="WHO CONTAINER">
                                                 <rect key="frame" x="20" y="233" width="320" height="55"/>
@@ -1208,8 +1183,54 @@
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </view>
+                                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2ew-gK-oAb" userLabel="EMAIL">
+                                                <rect key="frame" x="20" y="350" width="320" height="100"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="frf-h8-Rpp" userLabel="horizontal bar">
+                                                        <rect key="frame" x="0.0" y="15" width="320" height="1"/>
+                                                        <color key="backgroundColor" red="0.99607843139999996" green="0.67843137249999996" blue="0.69803921570000005" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </view>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="SEND THIS HAIRFIE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BWO-UH-lNd">
+                                                        <rect key="frame" x="80" y="5" width="160" height="21"/>
+                                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="17"/>
+                                                        <color key="textColor" red="0.99607843139999996" green="0.67843137249999996" blue="0.69803921570000005" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TQz-sW-Whk" userLabel="Email Bttn">
+                                                        <rect key="frame" x="0.0" y="40" width="320" height="50"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZyS-LM-vZF" userLabel="EMAIL">
+                                                                <rect key="frame" x="10" y="0.0" width="300" height="40"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="40" id="Kid-Ae-sOo"/>
+                                                                    <constraint firstAttribute="width" constant="300" id="jE3-4K-AEf"/>
+                                                                </constraints>
+                                                                <state key="normal" image="send-email-button.png">
+                                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                                </state>
+                                                                <connections>
+                                                                    <action selector="setHairfieEmail:" destination="60g-nd-hW0" eventType="touchUpInside" id="7e9-rY-SCJ"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="centerX" secondItem="ZyS-LM-vZF" secondAttribute="centerX" id="q3N-7G-mrw"/>
+                                                        </constraints>
+                                                    </view>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="frf-h8-Rpp" firstAttribute="leading" secondItem="2ew-gK-oAb" secondAttribute="leading" constant="10" id="2iQ-qn-I9T"/>
+                                                    <constraint firstItem="TQz-sW-Whk" firstAttribute="top" secondItem="BWO-UH-lNd" secondAttribute="bottom" constant="15" id="BqY-yL-59h"/>
+                                                    <constraint firstItem="frf-h8-Rpp" firstAttribute="centerX" secondItem="BWO-UH-lNd" secondAttribute="centerX" id="IWh-Da-cd5"/>
+                                                    <constraint firstAttribute="trailing" secondItem="frf-h8-Rpp" secondAttribute="trailing" constant="10" id="OyL-5o-lnd"/>
+                                                    <constraint firstAttribute="centerX" secondItem="frf-h8-Rpp" secondAttribute="centerX" id="SIo-Nx-nwa"/>
+                                                    <constraint firstAttribute="centerY" secondItem="frf-h8-Rpp" secondAttribute="centerY" constant="34.5" id="qW0-oZ-nXM"/>
+                                                </constraints>
+                                            </view>
                                             <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vCq-Ny-suf" userLabel="SHARE">
-                                                <rect key="frame" x="20" y="340" width="320" height="100"/>
+                                                <rect key="frame" x="20" y="440" width="320" height="100"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kWo-Wz-VZI" userLabel="horizontal bar">
                                                         <rect key="frame" x="0.0" y="15" width="320" height="1"/>
@@ -1309,7 +1330,6 @@
                     <connections>
                         <outlet property="dataChoice" destination="HkZ-R9-OZp" id="iGK-vn-EE3"/>
                         <outlet property="descView" destination="Vjl-H2-Nzu" id="tcX-p5-bhu"/>
-                        <outlet property="emailSubview" destination="ihB-lj-Iee" id="GF1-u9-Lrg"/>
                         <outlet property="fbShareButton" destination="Yet-bx-XB9" id="WOj-PD-h9K"/>
                         <outlet property="hairdresserSubview" destination="xSZ-Hu-sLy" id="NMc-NR-H2v"/>
                         <outlet property="hairfieDesc" destination="gFo-ft-JjF" id="12p-0m-f8C"/>
@@ -1323,6 +1343,7 @@
                         <segue destination="8ER-eF-RXx" kind="push" identifier="choseSalonType" id="KDo-Hs-2DW"/>
                         <segue destination="eci-2w-4CQ" kind="push" identifier="toHome" id="N5w-ND-ZjU"/>
                         <segue destination="5Jc-DC-T4C" kind="push" identifier="addTagsToHairfie" id="vMC-hw-Qfr"/>
+                        <segue destination="FwV-ZX-CxH" kind="push" identifier="postHairfieEmail" id="fWJ-fG-jUa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lcd-wd-fUu" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1458,6 +1479,73 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="puL-1O-nxO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="437" y="-3612"/>
+        </scene>
+        <!--Post Hairfie Email View Controller-->
+        <scene sceneID="b7R-gX-bP2">
+            <objects>
+                <viewController id="FwV-ZX-CxH" customClass="PostHairfieEmailViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="xE7-2x-wD7"/>
+                        <viewControllerLayoutGuide type="bottom" id="wcj-dx-UJ7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="FjK-XX-W3I">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zg1-6o-sZk">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DnL-9M-xlp">
+                                        <rect key="frame" x="249" y="25" width="63" height="30"/>
+                                        <color key="backgroundColor" red="0.98039215690000003" green="0.25882352939999997" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="14"/>
+                                        <state key="normal" title="Validate">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="doSearch:" destination="8ER-eF-RXx" eventType="touchUpInside" id="Fpt-17-K4X"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Post Hairfie" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1U6-ui-TsA">
+                                        <rect key="frame" x="105" y="28" width="111" height="23"/>
+                                        <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="18"/>
+                                        <color key="textColor" red="0.41176470590000003" green="0.4431372549" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gpv-AA-bcv">
+                                        <rect key="frame" x="8" y="20" width="40" height="40"/>
+                                        <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                        <state key="normal" image="arrow-nav.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="goBack:" destination="8ER-eF-RXx" eventType="touchUpInside" id="77Q-xG-5J6"/>
+                                            <action selector="goBack:" destination="FwV-ZX-CxH" eventType="touchUpInside" id="a3q-bv-ihU"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email address" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eRJ-x3-Jb2">
+                                <rect key="frame" x="16" y="77" width="288" height="30"/>
+                                <color key="textColor" red="0.52941176469999995" green="0.5568627451" blue="0.59215686270000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="15"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="done"/>
+                                <connections>
+                                    <outlet property="delegate" destination="FwV-ZX-CxH" id="zIr-ML-uzi"/>
+                                </connections>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="3yF-M9-7hd"/>
+                    <connections>
+                        <outlet property="headerTitle" destination="1U6-ui-TsA" id="JZE-6n-fyP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="R8S-iz-3Rl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="436" y="-2989"/>
         </scene>
         <!--Hairfie Detail View Controller-->
         <scene sceneID="dLB-PY-NHH">
@@ -1664,7 +1752,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hv8-dL-qIH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="515" y="-803"/>
+            <point key="canvasLocation" x="1778" y="-473"/>
         </scene>
         <!--Comment View Controller-->
         <scene sceneID="Lfa-xW-VeP">
@@ -1941,6 +2029,70 @@
             </objects>
             <point key="canvasLocation" x="1887" y="-1621"/>
         </scene>
+        <!--Salon Map View Controller-->
+        <scene sceneID="ROs-dQ-bql">
+            <objects>
+                <viewController id="kpQ-3P-4rI" customClass="SalonMapViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="t3q-fd-RTa"/>
+                        <viewControllerLayoutGuide type="bottom" id="UOG-8C-QT0"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="0jx-49-W8K">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UTj-OK-H5n" userLabel="Top Bar View">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Map" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YDV-Vy-xcB">
+                                        <rect key="frame" x="92" y="28" width="136" height="23"/>
+                                        <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="18"/>
+                                        <color key="textColor" red="0.41176470590000003" green="0.4431372549" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dPa-KV-Ljc" userLabel="Go Back">
+                                        <rect key="frame" x="8" y="20" width="40" height="40"/>
+                                        <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                        <state key="normal" image="arrow-nav.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="goBack:" destination="oWk-He-lbw" eventType="touchUpInside" id="cZS-Yi-flu"/>
+                                            <action selector="goBack:" destination="kpQ-3P-4rI" eventType="touchUpInside" id="pxP-fF-e3f"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hni-Sv-Z5h" userLabel="Menu">
+                                        <rect key="frame" x="277" y="22" width="35" height="35"/>
+                                        <inset key="contentEdgeInsets" minX="8" minY="15" maxX="8" maxY="15"/>
+                                        <state key="normal" image="picto-menu-point-dark.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="showMenuActionSheet:" destination="kpQ-3P-4rI" eventType="touchUpInside" id="ata-QD-CZi"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ef6-Ko-JEW">
+                                <rect key="frame" x="0.0" y="60" width="320" height="508"/>
+                                <connections>
+                                    <outlet property="delegate" destination="kpQ-3P-4rI" id="IKm-Wr-aN1"/>
+                                </connections>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="fhg-cC-qSc"/>
+                    <connections>
+                        <outlet property="headerTitle" destination="YDV-Vy-xcB" id="60a-EI-GOk"/>
+                        <outlet property="mapView" destination="ef6-Ko-JEW" id="s2C-lB-c0O"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sqq-UN-8gE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2683" y="-2036"/>
+        </scene>
         <!--Salon Detail View Controller-->
         <scene sceneID="ikO-8j-QFY">
             <objects>
@@ -1950,7 +2102,7 @@
                         <viewControllerLayoutGuide type="bottom" id="EAd-rH-izx"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="AEr-xc-owd">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="1300"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Lw-Ud-rlB">
@@ -1975,7 +2127,6 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I2R-pl-TuI" userLabel="Separator 1">
-                                                        <rect key="frame" x="0.0" y="63" width="320" height="1"/>
                                                         <color key="backgroundColor" red="0.92549019607843142" green="0.92549019607843142" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
                                                     </view>
                                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="gAx-Ib-aqZ">
@@ -2021,7 +2172,6 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AWi-1P-vd0" userLabel="Separator 1">
-                                                        <rect key="frame" x="10" y="28" width="67" height="1"/>
                                                         <color key="backgroundColor" red="0.85490196080000003" green="0.85490196080000003" blue="0.87058823529999996" alpha="1" colorSpace="calibratedRGB"/>
                                                     </view>
                                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Jy6-8W-MKS">
@@ -2097,11 +2247,9 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sod-v8-kvA" userLabel="Separator 1">
-                                                                <rect key="frame" x="10" y="69" width="300" height="1"/>
                                                                 <color key="backgroundColor" red="0.85490196080000003" green="0.85490196080000003" blue="0.87058823529999996" alpha="1" colorSpace="calibratedRGB"/>
                                                             </view>
                                                             <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sWj-Ma-gq4" userLabel="Separator 4">
-                                                                <rect key="frame" x="10" y="213" width="180" height="1"/>
                                                                 <color key="backgroundColor" red="0.85490196080000003" green="0.85490196080000003" blue="0.87058823529999996" alpha="1" colorSpace="calibratedRGB"/>
                                                             </view>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="picto-list-phone.png" translatesAutoresizingMaskIntoConstraints="NO" id="ONJ-ou-2AS">
@@ -2125,7 +2273,6 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z1i-KZ-pp2" userLabel="Separator 2">
-                                                                <rect key="frame" x="10" y="118" width="300" height="1"/>
                                                                 <color key="backgroundColor" red="0.85490196080000003" green="0.85490196080000003" blue="0.87058823529999996" alpha="1" colorSpace="calibratedRGB"/>
                                                             </view>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="picto-clock-black.png" translatesAutoresizingMaskIntoConstraints="NO" id="a0o-5H-PFd">
@@ -2164,7 +2311,6 @@
                                                                 </constraints>
                                                             </imageView>
                                                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ru1-3Q-E4m" userLabel="Separator 3">
-                                                                <rect key="frame" x="10" y="173" width="300" height="1"/>
                                                                 <color key="backgroundColor" red="0.85490196080000003" green="0.85490196080000003" blue="0.87058823529999996" alpha="1" colorSpace="calibratedRGB"/>
                                                             </view>
                                                             <imageView hidden="YES" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" image="picto-list-resume.png" translatesAutoresizingMaskIntoConstraints="NO" id="CEM-y2-XUg">
@@ -2207,12 +2353,27 @@
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tg1-Ua-4sM" customClass="RatingView">
-                                                                        <rect key="frame" x="60" y="35" width="180" height="20"/>
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                     </view>
                                                                 </subviews>
                                                                 <color key="backgroundColor" red="0.2627450980392157" green="0.53725490196078429" blue="0.67843137254901964" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             </view>
+                                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c21-50-JvE">
+                                                                <rect key="frame" x="33" y="12" width="279" height="50"/>
+                                                                <state key="normal">
+                                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                                </state>
+                                                                <connections>
+                                                                    <action selector="showMapFromSalon:" destination="pDa-if-Gwb" eventType="touchUpInside" id="tdm-yV-14h"/>
+                                                                </connections>
+                                                            </button>
+                                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" image="nav-disclosure.png" translatesAutoresizingMaskIntoConstraints="NO" id="L2c-DS-et2">
+                                                                <rect key="frame" x="296" y="27" width="8" height="13"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="13" id="2WY-e0-sNJ"/>
+                                                                    <constraint firstAttribute="width" constant="8" id="Adg-Rh-Cua"/>
+                                                                </constraints>
+                                                            </imageView>
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </view>
@@ -2260,11 +2421,9 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LJq-b6-9Kh" userLabel="Similar Separator">
-                                                                <rect key="frame" x="10" y="20" width="150" height="1"/>
                                                                 <color key="backgroundColor" red="0.81176470590000005" green="0.81176470590000005" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
                                                             </view>
                                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="wW3-x4-wkc" userLabel="Similar Table View">
-                                                                <rect key="frame" x="0.0" y="29" width="320" height="332"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <prototypes>
                                                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="2tL-0L-iF3">
@@ -2422,7 +2581,7 @@
                                     </label>
                                 </subviews>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0TP-lk-MOz" userLabel="Call Salon">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0TP-lk-MOz" userLabel="Call Salon">
                                 <rect key="frame" x="0.0" y="528" width="320" height="40"/>
                                 <color key="backgroundColor" red="0.98039215686274506" green="0.25882352941176473" blue="0.2627450980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -2456,8 +2615,6 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="KGy-rj-yyt"/>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="320" height="1300"/>
                     <connections>
                         <outlet property="addReviewBttn" destination="9aj-2o-ahb" id="SVY-eW-lJx"/>
                         <outlet property="addReviewButtonXpos" destination="ziS-79-KGB" id="flz-UG-4Mf"/>
@@ -2500,6 +2657,7 @@
                         <segue destination="d1b-g5-JaB" kind="modal" identifier="reportError" id="D36-jL-7ke"/>
                         <segue destination="C0A-PA-Dfl" kind="push" identifier="postHairfie" id="2ml-IS-A8f"/>
                         <segue destination="Q3n-aX-0gT" kind="modal" identifier="suggestHairdresser" id="y6n-25-QD0"/>
+                        <segue destination="kpQ-3P-4rI" kind="push" identifier="showMapFromSalon" id="aSr-t1-wzi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TsP-dW-B6k" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2516,7 +2674,7 @@
                         <viewControllerLayoutGuide type="bottom" id="po1-aP-Age"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="bhM-gL-HHz">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="1300"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OHl-hv-ouR" userLabel="Top Bar View">
@@ -2570,7 +2728,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mzm-Wd-W0R" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2760" y="-1632"/>
+            <point key="canvasLocation" x="3032" y="-1662"/>
         </scene>
         <!--Reviews View Controller-->
         <scene sceneID="NP7-7N-F2k">
@@ -2581,7 +2739,7 @@
                         <viewControllerLayoutGuide type="bottom" id="WIZ-TA-wce"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="SAn-a2-ZHJ">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="1300"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wk5-N2-iL6" userLabel="Top Bar View">
@@ -5019,7 +5177,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0no-5H-Ij8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="437" y="-2990"/>
+            <point key="canvasLocation" x="809" y="-3612"/>
         </scene>
     </scenes>
     <resources>
@@ -5054,6 +5212,7 @@
         <image name="picto-home-black.png" width="30" height="32"/>
         <image name="picto-list-phone.png" width="32" height="31"/>
         <image name="picto-list-resume.png" width="22" height="32"/>
+        <image name="picto-menu-point-dark.png" width="36" height="9"/>
         <image name="picto-menu-point.png" width="36" height="9"/>
         <image name="picto-phone-white.png" width="32" height="31"/>
         <image name="picto-take-picture.png" width="59" height="45"/>
@@ -5061,7 +5220,7 @@
         <image name="search-advance-field-location2.png" width="602" height="56"/>
         <image name="search-advance-field-name2.png" width="602" height="56"/>
         <image name="search-bar.png" width="491" height="54"/>
-        <image name="send-email-client-button.png" width="599" height="79"/>
+        <image name="send-email-button.png" width="598" height="79"/>
         <image name="sepia.jpeg" width="640" height="640"/>
         <image name="tab-business-hairdressers.png" width="80" height="55"/>
         <image name="tab-business-hairfies.png" width="80" height="55"/>
@@ -5076,9 +5235,9 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="LOg-O4-mCP"/>
-        <segue reference="9tp-c4-Wfy"/>
-        <segue reference="cG7-he-Xw7"/>
+        <segue reference="PSz-m0-val"/>
         <segue reference="ssq-cN-qLV"/>
+        <segue reference="cG7-he-Xw7"/>
         <segue reference="2ml-IS-A8f"/>
         <segue reference="N5w-ND-ZjU"/>
         <segue reference="uEN-by-6gW"/>

@@ -365,6 +365,10 @@
     }
 }
 
+-(IBAction)setHairfieEmail:(id)sender
+{
+    [self performSegueWithIdentifier:@"postHairfieEmail" sender:self];
+}
 -(void)checkFbSessionWithSuccess:(void(^)())aSuccessHandler
                          failure:(void(^)(NSError *error))aFailureHandler {
     if (FBSession.activeSession.state == FBSessionStateOpen
@@ -386,6 +390,8 @@
         
     }
 }
+
+
 
 @end
 

@@ -233,6 +233,9 @@
 		B3A12821198AA1B1004D90BD /* custom-map-pin.png in Resources */ = {isa = PBXBuildFile; fileRef = B3A12820198AA1B1004D90BD /* custom-map-pin.png */; };
 		B3A2F48D19F4FEF000BD9354 /* ClaimServiceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B3A2F48B19F4FEF000BD9354 /* ClaimServiceTableViewCell.m */; };
 		B3A2F48E19F4FEF000BD9354 /* ClaimServiceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3A2F48C19F4FEF000BD9354 /* ClaimServiceTableViewCell.xib */; };
+		B3A2FE9B1A07DA94000B839F /* SalonMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3A2FE9A1A07DA94000B839F /* SalonMapViewController.m */; };
+		B3A2FE9D1A07EC2B000B839F /* send-email-button.png in Resources */ = {isa = PBXBuildFile; fileRef = B3A2FE9C1A07EC2B000B839F /* send-email-button.png */; };
+		B3A2FEA01A07EF61000B839F /* PostHairfieEmailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3A2FE9F1A07EF61000B839F /* PostHairfieEmailViewController.m */; };
 		B3AD59B7198B9A3700909ADE /* SalonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B3AD59B5198B9A3700909ADE /* SalonTableViewCell.m */; };
 		B3AD59B8198B9A3700909ADE /* SalonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3AD59B6198B9A3700909ADE /* SalonTableViewCell.xib */; };
 		B3AD59BF198B9D3500909ADE /* picto-list-resume.png in Resources */ = {isa = PBXBuildFile; fileRef = B3AD59BA198B9D3500909ADE /* picto-list-resume.png */; };
@@ -728,6 +731,11 @@
 		B3A2F48A19F4FEF000BD9354 /* ClaimServiceTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClaimServiceTableViewCell.h; sourceTree = "<group>"; };
 		B3A2F48B19F4FEF000BD9354 /* ClaimServiceTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClaimServiceTableViewCell.m; sourceTree = "<group>"; };
 		B3A2F48C19F4FEF000BD9354 /* ClaimServiceTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClaimServiceTableViewCell.xib; sourceTree = "<group>"; };
+		B3A2FE991A07DA94000B839F /* SalonMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SalonMapViewController.h; sourceTree = "<group>"; };
+		B3A2FE9A1A07DA94000B839F /* SalonMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SalonMapViewController.m; sourceTree = "<group>"; };
+		B3A2FE9C1A07EC2B000B839F /* send-email-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "send-email-button.png"; sourceTree = "<group>"; };
+		B3A2FE9E1A07EF61000B839F /* PostHairfieEmailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostHairfieEmailViewController.h; sourceTree = "<group>"; };
+		B3A2FE9F1A07EF61000B839F /* PostHairfieEmailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostHairfieEmailViewController.m; sourceTree = "<group>"; };
 		B3AD59B4198B9A3700909ADE /* SalonTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SalonTableViewCell.h; sourceTree = "<group>"; };
 		B3AD59B5198B9A3700909ADE /* SalonTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SalonTableViewCell.m; sourceTree = "<group>"; };
 		B3AD59B6198B9A3700909ADE /* SalonTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SalonTableViewCell.xib; sourceTree = "<group>"; };
@@ -1355,6 +1363,8 @@
 				B3844E3C19FE83A20083CE0D /* TagsTableViewCell.xib */,
 				B3844E3519FE65E40083CE0D /* AddTagsToHairfieViewController.h */,
 				B3844E3619FE65E40083CE0D /* AddTagsToHairfieViewController.m */,
+				B3A2FE9E1A07EF61000B839F /* PostHairfieEmailViewController.h */,
+				B3A2FE9F1A07EF61000B839F /* PostHairfieEmailViewController.m */,
 			);
 			name = "Post Hairfie";
 			sourceTree = "<group>";
@@ -1387,6 +1397,8 @@
 				711FB93A19D9911E0023CAD4 /* BusinessErrorReportViewController.m */,
 				B3F6B70519F69A3900EF4B5C /* SuggestHairdresserViewController.h */,
 				B3F6B70619F69A3900EF4B5C /* SuggestHairdresserViewController.m */,
+				B3A2FE991A07DA94000B839F /* SalonMapViewController.h */,
+				B3A2FE9A1A07DA94000B839F /* SalonMapViewController.m */,
 			);
 			name = "Salon Detail";
 			sourceTree = "<group>";
@@ -1690,6 +1702,7 @@
 		B3EDF8991987C43500431B70 /* Ressources */ = {
 			isa = PBXGroup;
 			children = (
+				B3A2FE9C1A07EC2B000B839F /* send-email-button.png */,
 				B3844E3819FE67B60083CE0D /* add-tags-button.png */,
 				B34582FE19F7DB2A00A91F5A /* userprofile-filter-button.png */,
 				719C207719ED5016008E0B17 /* tab-business-hairdressers-active.png */,
@@ -1989,6 +2002,7 @@
 				B3F6623B1987D52A0041F298 /* SourceSansPro-Bold.ttf in Resources */,
 				15B8D63719C83A3700C889CF /* LoadingCollectionViewCell.xib in Resources */,
 				153B08BB19E43834002E915A /* BusinessSearch.strings in Resources */,
+				B3A2FE9D1A07EC2B000B839F /* send-email-button.png in Resources */,
 				B3DD7A8119911245007B1621 /* ReviewTableViewCell.xib in Resources */,
 				1543C07419E59670008718E6 /* curve.jpeg in Resources */,
 				B3320B2019A4F34100855BBB /* default-picture.jpg in Resources */,
@@ -2219,6 +2233,7 @@
 				71026D1E19CAF1BE00994831 /* HairfieLikeRepository.m in Sources */,
 				B35A82A819A62F40003B1321 /* PricesTableViewCell.m in Sources */,
 				15B4972F19DC021B00917B83 /* TutoContainerViewController.m in Sources */,
+				B3A2FEA01A07EF61000B839F /* PostHairfieEmailViewController.m in Sources */,
 				B345BAE819951A7E007BB61A /* OLEContainerScrollView+Swizzling.m in Sources */,
 				718A98B019C1EF46003CD34B /* GeoPoint.m in Sources */,
 				B345BAEB19951A7E007BB61A /* OLESwizzling.m in Sources */,
@@ -2307,6 +2322,7 @@
 				B3F5522219BF313E0033230E /* HairfiePostDetailsViewController.m in Sources */,
 				B36AC50E19DC31C600B8AC13 /* HairdresserTableViewCell.m in Sources */,
 				B3DD7A851991288F007B1621 /* SimilarTableViewCell.m in Sources */,
+				B3A2FE9B1A07DA94000B839F /* SalonMapViewController.m in Sources */,
 				B362754A19D00F3F00CAA414 /* VerificationClaimViewController.m in Sources */,
 				B3423217198924290058866B /* AFURLResponseSerialization.m in Sources */,
 				B367DC4019C9C54300A0452A /* FinalStepClaimDayViewController.m in Sources */,

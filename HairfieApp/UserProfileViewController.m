@@ -47,7 +47,7 @@
     
     self.hairfiesCollection.delegate = self;
     self.hairfiesCollection.dataSource = self;
-
+   
     [self.hairfiesCollection registerNib:[UINib nibWithNibName:@"CustomCollectionViewCell" bundle:nil]forCellWithReuseIdentifier:HAIRFIE_CELL];
     [self.hairfiesCollection registerNib:[UINib nibWithNibName:@"LoadingCollectionViewCell" bundle:nil]
           forCellWithReuseIdentifier:LOADING_CELL];
@@ -134,6 +134,11 @@
     self.reviewLbl.text = NSLocalizedStringFromTable(@"Reviews", @"UserProfile", nil);
 }
 
+-(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+  
+}
+
 -(IBAction)changeTab:(id)sender
 {
     [self setButtonSelected:sender];
@@ -144,15 +149,15 @@
     self.hairfieView.hidden = YES;
     self.reviewView.hidden = YES;
     UIView *bottomBorder = [[UIView alloc] init];
-                            
+    
     if (aButton == self.hairfieBttn) {
         self.hairfieView.hidden = NO;
         [bottomBorder setFrame:CGRectMake(0, aButton.frame.size.height, aButton.frame.size.width - 1, 3)];
         
         if (userHairfies.count % 2 == 1)
-            self.mainViewHeight.constant = ((userHairfies.count / 2 + 1) * 220)+ 274 + 58;
+            self.mainViewHeight.constant = ((userHairfies.count / 2 + 1) * 220)+ 274 + 68;
         else
-            self.mainViewHeight.constant = ((userHairfies.count / 2) * 220)+ 274 + 58;
+            self.mainViewHeight.constant = ((userHairfies.count / 2) * 220)+ 274 + 68;
     }
     if (aButton == self.reviewBttn)
     {
@@ -229,11 +234,6 @@
     CustomCollectionViewCell *cell = [self.hairfiesCollection dequeueReusableCellWithReuseIdentifier:HAIRFIE_CELL
         forIndexPath:indexPath];
     
-//    if (cell == nil) {
-//        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"CustomCollectionViewCell" owner:self options:nil];
-//        cell = [nib objectAtIndex:0];
-//    }
-    
     
     Hairfie *hairfie = (Hairfie *)[userHairfies objectAtIndex:indexPath.item];
     [cell setHairfie:hairfie];
@@ -267,8 +267,7 @@
 -(void)loadHairfies
 {
     if (endOfScroll || loadingNext) return;
-    
-    NSLog(@"Loading next hairfies");
+
     
     NSDate *until = nil;
     if (userHairfies.count > 0) {
@@ -282,10 +281,8 @@
                             limit:[NSNumber numberWithInt:HAIRFIES_PAGE_SIZE]
                              skip:[NSNumber numberWithLong:userHairfies.count]
                           success:^(NSArray *results) {
-                              NSLog(@"Got hairfies");
                               
                               if (results.count < HAIRFIES_PAGE_SIZE) {
-                                  NSLog(@"End of hairfies detected");
                                   endOfScroll = YES;
                                   
                               }
@@ -293,12 +290,16 @@
                               for (Hairfie *result in results) {
                                   if (![userHairfies containsObject:result]) {
                                       [userHairfies addObject:result];
-                                    [self.hairfiesCollection reloadData];
                                   }
                               }
-                              [self updateHairfieView];
+                             
+                            
+                             [self updateHairfieView];
                          
-                              
+                              if (results.count < HAIRFIES_PAGE_SIZE) {
+                                  NSLog(@"Got %@ harfies instead of %@ asked, we reached the end.", [NSNumber numberWithLong:results.count], [NSNumber numberWithInt:HAIRFIES_PAGE_SIZE]);
+                                  endOfScroll = YES;
+                              }
                               
                               loadingNext = NO;
                           }
@@ -312,11 +313,11 @@
 -(void)updateHairfieView
 {
     if (userHairfies.count % 2 == 1)
-        self.mainViewHeight.constant = (((userHairfies.count / 2) + 1) * 220)+ 274 + 58;
+        self.mainViewHeight.constant = (((userHairfies.count / 2) + 1) * 220)+ 274 + 68;
     else
-        self.mainViewHeight.constant = ((userHairfies.count / 2) * 220)+ 274 + 58;
+        self.mainViewHeight.constant = ((userHairfies.count / 2) * 220)+ 274 + 68;
     
-    self.collectionViewHeight.constant = (((userHairfies.count / 2 ) + 1) * 220) + 58;
+   self.collectionViewHeight.constant = (((userHairfies.count / 2 ) + 1) * 220) + 168;
     
     [self.hairfiesCollection reloadData];
 

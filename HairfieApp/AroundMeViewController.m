@@ -47,6 +47,7 @@
 {
     [super viewDidLoad];
 
+    self.mapView.showsPointsOfInterest = NO;
     aroundMe = NSLocalizedStringFromTable(@"Around Me", @"Around_Me", nil);
 
     self.delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];

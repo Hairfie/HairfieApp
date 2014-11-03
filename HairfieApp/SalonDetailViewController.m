@@ -25,6 +25,7 @@
 #import "NSString+PhoneFormatter.h"
 #import "CameraOverlayViewController.h"
 #import "HairfiePost.h"
+#import "SalonMapViewController.h"
 
 @interface SalonDetailViewController ()
 
@@ -442,7 +443,7 @@
     }
     
     _address.text = business.address.street;
-    _city.text = business.address.city;
+    _city.text = [business.address displayCityAndZipCode];
 }
 
 -(void)setupCrossSell
@@ -567,6 +568,10 @@
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"telprompt://%@", self.business.phoneNumber]]];
 }
 
+-(IBAction)showMapFromSalon:(id)sender
+{
+    [self performSegueWithIdentifier:@"showMapFromSalon" sender:self];
+}
 
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -593,6 +598,12 @@
     } else if ([segue.identifier isEqualToString:@"postHairfie"]) {
         CameraOverlayViewController *controller = [segue destinationViewController];
         controller.hairfiePost = [[HairfiePost alloc] initWithBusiness:_business];
+    }
+    else if ([segue.identifier isEqualToString:@"showMapFromSalon"])
+    {
+        SalonMapViewController *salonMap = [segue destinationViewController];
+        
+        salonMap.business = self.business;
     }
 }
 
