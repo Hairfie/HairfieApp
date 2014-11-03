@@ -204,12 +204,80 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" canCancelContentTouches="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AuL-fd-aW6">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AuL-fd-aW6">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rlZ-kC-r9M" userLabel="MAIN VIEW CONTAINER">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                         <subviews>
+                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nO9-La-hKl" userLabel="REVIEW VIEW">
+                                                <rect key="frame" x="0.0" y="274" width="320" height="294"/>
+                                                <subviews>
+                                                    <tableView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" bounces="NO" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="RzC-CX-MyT">
+                                                        <rect key="frame" x="0.0" y="0.0" width="320" height="294"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="294" id="Hub-hf-PEN"/>
+                                                            <constraint firstAttribute="width" constant="320" id="hrz-px-CDl"/>
+                                                        </constraints>
+                                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                        <connections>
+                                                            <outlet property="dataSource" destination="T79-5J-2Oj" id="QGN-Ag-1ad"/>
+                                                            <outlet property="delegate" destination="T79-5J-2Oj" id="c7o-EM-ofb"/>
+                                                        </connections>
+                                                    </tableView>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="chj-Tc-vYD" userLabel="HAIRFIE VIEW">
+                                                <rect key="frame" x="0.0" y="274" width="320" height="600"/>
+                                                <subviews>
+                                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="GS7-wy-0ge">
+                                                        <rect key="frame" x="0.0" y="10" width="320" height="955"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="320" id="Nlf-D7-Ppd"/>
+                                                            <constraint firstAttribute="height" constant="955" id="k5C-eZ-opz"/>
+                                                        </constraints>
+                                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="wbA-cR-NPF">
+                                                            <size key="itemSize" width="145" height="210"/>
+                                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                            <inset key="sectionInset" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
+                                                        </collectionViewFlowLayout>
+                                                        <cells>
+                                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="tnp-gY-XVH">
+                                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                                <autoresizingMask key="autoresizingMask"/>
+                                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="145" height="210"/>
+                                                                    <autoresizingMask key="autoresizingMask"/>
+                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                                </view>
+                                                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <connections>
+                                                                    <segue destination="wuV-Ro-JC1" kind="push" identifier="hairfieDetailtest" id="9tp-c4-Wfy"/>
+                                                                </connections>
+                                                            </collectionViewCell>
+                                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="3gd-XY-xf5">
+                                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                                <autoresizingMask key="autoresizingMask"/>
+                                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="145" height="210"/>
+                                                                    <autoresizingMask key="autoresizingMask"/>
+                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                                </view>
+                                                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                            </collectionViewCell>
+                                                        </cells>
+                                                        <connections>
+                                                            <outlet property="dataSource" destination="T79-5J-2Oj" id="iG2-gA-7hk"/>
+                                                            <outlet property="delegate" destination="T79-5J-2Oj" id="dK8-nU-iGf"/>
+                                                        </connections>
+                                                    </collectionView>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </view>
                                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nwq-3q-qNC" userLabel="TOP VIEW">
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="274"/>
                                                 <subviews>
@@ -273,69 +341,6 @@
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </view>
-                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nO9-La-hKl" userLabel="REVIEW VIEW">
-                                                <rect key="frame" x="0.0" y="274" width="320" height="294"/>
-                                                <subviews>
-                                                    <tableView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" bounces="NO" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="RzC-CX-MyT">
-                                                        <rect key="frame" x="0.0" y="0.0" width="320" height="294"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="294" id="Hub-hf-PEN"/>
-                                                            <constraint firstAttribute="width" constant="320" id="hrz-px-CDl"/>
-                                                        </constraints>
-                                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                        <connections>
-                                                            <outlet property="dataSource" destination="T79-5J-2Oj" id="QGN-Ag-1ad"/>
-                                                            <outlet property="delegate" destination="T79-5J-2Oj" id="c7o-EM-ofb"/>
-                                                        </connections>
-                                                    </tableView>
-                                                </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            </view>
-                                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="chj-Tc-vYD" userLabel="HAIRFIE VIEW">
-                                                <rect key="frame" x="0.0" y="274" width="320" height="294"/>
-                                                <subviews>
-                                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="hTw-wS-fXv">
-                                                        <rect key="frame" x="0.0" y="10" width="320" height="284"/>
-                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="294" id="LfM-zb-Zn5"/>
-                                                            <constraint firstAttribute="width" constant="320" id="yP6-gJ-ZGH"/>
-                                                        </constraints>
-                                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Nwa-io-Y8D">
-                                                            <size key="itemSize" width="145" height="210"/>
-                                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                                            <inset key="sectionInset" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
-                                                        </collectionViewFlowLayout>
-                                                        <cells>
-                                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="hairfieCell" id="nD7-VI-29g">
-                                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                                                <autoresizingMask key="autoresizingMask"/>
-                                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="145" height="210"/>
-                                                                    <autoresizingMask key="autoresizingMask"/>
-                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                                </view>
-                                                                <color key="backgroundColor" red="0.52941176469999995" green="0.5568627451" blue="0.59215686270000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                <size key="customSize" width="145" height="210"/>
-                                                                <connections>
-                                                                    <segue destination="wuV-Ro-JC1" kind="push" identifier="hairfieDetail" id="wSP-ER-x1w"/>
-                                                                </connections>
-                                                            </collectionViewCell>
-                                                        </cells>
-                                                        <connections>
-                                                            <outlet property="dataSource" destination="T79-5J-2Oj" id="XPj-1U-eHg"/>
-                                                            <outlet property="delegate" destination="T79-5J-2Oj" id="8fE-PY-Ede"/>
-                                                        </connections>
-                                                    </collectionView>
-                                                </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="294" id="FVp-Ko-lLc"/>
-                                                    <constraint firstAttribute="width" constant="320" id="jp0-EB-MXQ"/>
-                                                </constraints>
-                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -350,6 +355,9 @@
                                     <constraint firstItem="rlZ-kC-r9M" firstAttribute="leading" secondItem="AuL-fd-aW6" secondAttribute="leading" id="j8T-sr-bCc"/>
                                     <constraint firstAttribute="bottom" secondItem="rlZ-kC-r9M" secondAttribute="bottom" id="nxH-BD-iHQ"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="T79-5J-2Oj" id="QR6-6x-Y7L"/>
+                                </connections>
                             </scrollView>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3BH-pE-AnX" userLabel="HEADER VIEW">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
@@ -399,11 +407,12 @@
                     <connections>
                         <outlet property="backgroundProfilePicture" destination="qk7-i7-gpL" id="fvH-vb-huZ"/>
                         <outlet property="bottomMenuBttn" destination="Q7p-Ph-fMp" id="OXl-5n-Z2t"/>
-                        <outlet property="collectionViewHeight" destination="LfM-zb-Zn5" id="AMH-sw-SHE"/>
+                        <outlet property="collectionViewHeight" destination="k5C-eZ-opz" id="zbn-UC-Ewe"/>
                         <outlet property="hairfieBttn" destination="ZSW-dA-vOn" id="kWo-9K-U2o"/>
                         <outlet property="hairfieView" destination="chj-Tc-vYD" id="7Yg-FC-eF4"/>
-                        <outlet property="hairfiesCollection" destination="hTw-wS-fXv" id="782-7M-UvZ"/>
+                        <outlet property="hairfiesCollection" destination="GS7-wy-0ge" id="HqW-h6-UrD"/>
                         <outlet property="leftMenuBttn" destination="cfb-iE-QR5" id="Yjp-dK-mmd"/>
+                        <outlet property="mainScrollView" destination="AuL-fd-aW6" id="smo-Wk-yHu"/>
                         <outlet property="mainViewHeight" destination="glV-WM-LeP" id="YbR-ff-nkh"/>
                         <outlet property="navBttn" destination="fUS-Tu-iRq" id="ZL4-or-wky"/>
                         <outlet property="reviewBttn" destination="Atl-Od-EZd" id="KDO-7m-Ae2"/>
@@ -1655,7 +1664,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hv8-dL-qIH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1855" y="-339"/>
+            <point key="canvasLocation" x="515" y="-803"/>
         </scene>
         <!--Comment View Controller-->
         <scene sceneID="Lfa-xW-VeP">
@@ -5066,10 +5075,10 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="ssq-cN-qLV"/>
-        <segue reference="wSP-ER-x1w"/>
-        <segue reference="cG7-he-Xw7"/>
         <segue reference="LOg-O4-mCP"/>
+        <segue reference="9tp-c4-Wfy"/>
+        <segue reference="cG7-he-Xw7"/>
+        <segue reference="ssq-cN-qLV"/>
         <segue reference="2ml-IS-A8f"/>
         <segue reference="N5w-ND-ZjU"/>
         <segue reference="uEN-by-6gW"/>

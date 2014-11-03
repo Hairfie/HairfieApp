@@ -271,7 +271,6 @@
             } else {
                 [hairfies addObject:models[i]];
             }
-            //[hairfies addObject:models[i]];
         }
         [self customReloadData];
     };

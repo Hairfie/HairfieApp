@@ -648,8 +648,9 @@
     } else if (indexPath.row < (hairfies.count + 1)) {
         if (indexPath.row >= (hairfies.count - HAIRFIES_PAGE_SIZE +1)) {
            // NSLog(@"Gimme more!");
+            
             [self loadNextHairfies];
-        }
+        } NSLog(@"Hairfie %zd", indexPath.row);
 
         return [self collectionView:cv hairfieCellForItemAtIndexPath:indexPath];
     } else {
