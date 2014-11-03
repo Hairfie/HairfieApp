@@ -134,6 +134,7 @@
     [self.reviewBttn setTitle:[NSString stringWithFormat:@"%@", self.user.numBusinessReviews] forState:UIControlStateNormal];
 
     self.reviewLbl.text = NSLocalizedStringFromTable(@"Reviews", @"UserProfile", nil);
+    [self loadNextHairfieLikes];
 }
 
 -(IBAction)changeTab:(id)sender
@@ -204,7 +205,7 @@
         if (indexPath.row == userHairfies.count - HAIRFIES_PAGE_SIZE + 1) {
             [self loadNextHairfieLikes];
         }
-
+        NSLog(@"Hairfie %zd", indexPath.row);
         return [self hairfieCellAtIndexPath:indexPath];
     }
     return [self loadingCellAtIndexPath:indexPath];
@@ -213,10 +214,8 @@
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"clicked");
-    
-    if (collectionView == self.hairfiesCollection) {
-        [self performSegueWithIdentifier:@"hairfieDetail" sender:userHairfies[indexPath.row]];
-    }
+  
+    [self performSegueWithIdentifier:@"hairfieDetail" sender:userHairfies[indexPath.row]];
 }
 
 -(UICollectionViewCell *)hairfieCellAtIndexPath:(NSIndexPath *)indexPath
