@@ -118,18 +118,18 @@
 }
 
 
-+(void)getReviewsByAuthor:(NSString *)userId
-                   success:(void(^)(NSArray *reviews))aSuccessHandler
-                   failure:(void(^)(NSError *error))aFailureHandler
++(void)listLatestByAuthor:(NSString *)userId
+                  success:(void(^)(NSArray *reviews))aSuccessHandler
+                  failure:(void(^)(NSError *error))aFailureHandler
 {
     NSMutableDictionary *where = [[NSMutableDictionary alloc] initWithDictionary:@{@"authorId": userId}];
     
-    
     NSDictionary *parameters = @{
-                                 @"filter": @{
-                                         @"where":where,
-                                         }
-                                 };
+        @"filter": @{
+            @"where": where,
+            @"order": @"createdAt DESC"
+        }
+    };
     
     [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/businessReviews" verb:@"GET"]
                                         forMethod:@"businessReviews.find"];

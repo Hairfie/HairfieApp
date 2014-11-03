@@ -107,6 +107,8 @@
 		71C0D40B19C1DC040037CBF4 /* Picture.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C0D40A19C1DC040037CBF4 /* Picture.m */; };
 		71DA85F219E28982001193D4 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71DA85F119E28982001193D4 /* Crashlytics.framework */; };
 		71DA85F519E2CBA9001193D4 /* BusinessSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 71DA85F419E2CBA9001193D4 /* BusinessSearch.m */; };
+		71E08E5D19FF9A2700A56FBB /* SalonDetailHeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E08E5C19FF9A2700A56FBB /* SalonDetailHeaderViewController.swift */; };
+		71E08E5F19FF9A6600A56FBB /* SalonDetailHeaderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 71E08E5E19FF9A6600A56FBB /* SalonDetailHeaderViewController.xib */; };
 		7D10889D4045404FAF307C78 /* libPods-HairfieApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 33C90A5A8A0E44DCA71D5A3A /* libPods-HairfieApp.a */; };
 		B303B954199B9403008F6BAA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B303B953199B9403008F6BAA /* Images.xcassets */; };
 		B308700C198782AF0080E6D2 /* FavoriteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B308700B198782AF0080E6D2 /* FavoriteViewController.m */; };
@@ -527,6 +529,9 @@
 		71DA85F119E28982001193D4 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		71DA85F319E2CBA9001193D4 /* BusinessSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessSearch.h; sourceTree = "<group>"; };
 		71DA85F419E2CBA9001193D4 /* BusinessSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessSearch.m; sourceTree = "<group>"; };
+		71E08E5C19FF9A2700A56FBB /* SalonDetailHeaderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SalonDetailHeaderViewController.swift; sourceTree = "<group>"; };
+		71E08E5E19FF9A6600A56FBB /* SalonDetailHeaderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SalonDetailHeaderViewController.xib; sourceTree = "<group>"; };
+		71E08E6119FFC7E300A56FBB /* HairfieApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HairfieApp-Bridging-Header.h"; sourceTree = "<group>"; };
 		7A069E1CB258BE0CB4F47B24 /* Pods-HairfieAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HairfieAppTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HairfieAppTests/Pods-HairfieAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		8C7AC5EB5C33A39E8CB183AE /* libPods-HairfieApp-cal.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HairfieApp-cal.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6DB14BC5D0FF868CC1541B5 /* Pods-HairfieAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HairfieAppTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-HairfieAppTests/Pods-HairfieAppTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -924,6 +929,7 @@
 				15CE407019B0E7670088FEA7 /* Authentication */,
 				B3C45BD3199A49F0000E6C8E /* Camera Overlay View */,
 				B3EDF88C198794C900431B70 /* Main.storyboard */,
+				71E08E6119FFC7E300A56FBB /* HairfieApp-Bridging-Header.h */,
 				15E3D2D319D07AB10065A07E /* Main.strings */,
 				151151921982B7A8001157A2 /* AppDelegate.h */,
 				151151931982B7A8001157A2 /* AppDelegate.m */,
@@ -1370,6 +1376,8 @@
 			children = (
 				B36731D5198F939A00E11C56 /* SalonDetailViewController.h */,
 				B36731D6198F939A00E11C56 /* SalonDetailViewController.m */,
+				71E08E5C19FF9A2700A56FBB /* SalonDetailHeaderViewController.swift */,
+				71E08E5E19FF9A6600A56FBB /* SalonDetailHeaderViewController.xib */,
 				B30B4F3C19A5E9F500D3F54D /* Custom Cells */,
 				B337B6FB19A252B7003B0EA5 /* ReviewsViewController.h */,
 				B337B6FC19A252B7003B0EA5 /* ReviewsViewController.m */,
@@ -2021,6 +2029,7 @@
 				153B08B919E43834002E915A /* Authentication.strings in Resources */,
 				B3FB10B719B09DA600CADCFD /* woman-picto.png in Resources */,
 				718B6B7A19C8339000F2F8EF /* picto-hairfie-detail-liked.png in Resources */,
+				71E08E5F19FF9A6600A56FBB /* SalonDetailHeaderViewController.xib in Resources */,
 				B3901CFE19AB443600A8C52D /* search-advance-field-name.png in Resources */,
 				B3CCE7831998BF7400067DB9 /* picto-hairfie-detail-employee.png in Resources */,
 				153B08BE19E43834002E915A /* Main.strings in Resources */,
@@ -2266,6 +2275,7 @@
 				B3E0B15A19ACC14800C3EACE /* SignUpViewController.m in Sources */,
 				B3E0B15619ACB6ED00C3EACE /* LoginViewController.m in Sources */,
 				B319B5CE19C8609E007F79B0 /* SecondStepViewController.m in Sources */,
+				71E08E5D19FF9A2700A56FBB /* SalonDetailHeaderViewController.swift in Sources */,
 				158FCA9119FA9B870001F86C /* FBAuthenticator.m in Sources */,
 				B39BA17E19AF535400A48BD5 /* KeychainItemWrapper.m in Sources */,
 				B3AE0D3F19C05EE900149C2B /* PostSalonTableViewCell.m in Sources */,
@@ -2628,6 +2638,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "";
 			};
 			name = Debug;
 		};
@@ -2666,6 +2677,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -2686,6 +2698,11 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = HairfieApp/HairfiePrefixHeader.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+					DEV,
+				);
 				INFOPLIST_FILE = HairfieApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -2743,6 +2760,11 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = HairfieApp/HairfiePrefixHeader.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+					RELEASE,
+				);
 				INFOPLIST_FILE = HairfieApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -2855,6 +2877,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Adhoc;
@@ -2876,6 +2899,11 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = HairfieApp/HairfiePrefixHeader.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+					ADHOC,
+				);
 				INFOPLIST_FILE = HairfieApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

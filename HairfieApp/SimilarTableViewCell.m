@@ -81,13 +81,19 @@
         self.statusLabel.text = [NSString stringWithFormat:NSLocalizedStringFromTable(@"- %@ reviews", @"BusinessTableCell", nil), self.business.numReviews];
     }
     
-    if (nil == self.locationForDistance) {
-        self.location.hidden = YES;
+    if ([self.business.kind isEqualToString:KIND_ATHOME]) {
         self.locationPinImage.hidden = YES;
+        self.location.hidden = FALSE;
+        self.location.text = [NSLocalizedStringFromTable(@"At home", @"BusinessTableCell", nil) uppercaseString];
     } else {
-        self.location.text = [NSString stringWithFormat:@"%.1f km", [[self.business distanceTo:self.locationForDistance] floatValue] / 1000];
-        self.location.hidden = NO;
-        self.locationPinImage.hidden = NO;
+        if (nil == self.locationForDistance) {
+            self.location.hidden = YES;
+            self.locationPinImage.hidden = YES;
+        } else {
+            self.location.text = [NSString stringWithFormat:@"%.1f km", [[self.business distanceTo:self.locationForDistance] floatValue] / 1000];
+            self.location.hidden = NO;
+            self.locationPinImage.hidden = NO;
+        }
     }
 }
 

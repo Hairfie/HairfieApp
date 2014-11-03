@@ -21,7 +21,8 @@
 @property (strong, nonatomic) NSString *gender;
 @property (strong, nonatomic) Picture  *picture;
 @property (strong, nonatomic) NSString *email;
-@property (strong, nonatomic) NSString *numHairfies;
+@property (strong, nonatomic) NSNumber *numHairfies;
+@property (strong, nonatomic) NSNumber *numBusinessReviews;
 @property (strong, nonatomic) NSString *phoneNumber;
 @property (strong, nonatomic) NSString *language;
 @property (strong, nonatomic) NSArray *managedBusinesses;
@@ -33,6 +34,8 @@
 -(NSString *)pictureUrlwithWidth:(NSNumber *)width andHeight:(NSNumber *)height;
 -(NSString *)pictureUrl;
 -(NSString *)thumbUrl;
+
++(NSString *)EVENT_CHANGED;
 
 -(BOOL)hasClaimedBusinesses;
 

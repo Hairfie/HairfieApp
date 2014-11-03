@@ -9,7 +9,6 @@
     <customFonts key="customFonts">
         <mutableArray key="SourceSansPro-Bold.ttf">
             <string>SourceSansPro-Bold</string>
-            <string>SourceSansPro-Bold</string>
         </mutableArray>
         <mutableArray key="SourceSansPro-Light.ttf">
             <string>SourceSansPro-Light</string>
@@ -116,9 +115,6 @@
             <string>SourceSansPro-Light</string>
         </mutableArray>
         <mutableArray key="SourceSansPro-Regular.ttf">
-            <string>SourceSansPro-Regular</string>
-            <string>SourceSansPro-Regular</string>
-            <string>SourceSansPro-Regular</string>
             <string>SourceSansPro-Regular</string>
             <string>SourceSansPro-Regular</string>
             <string>SourceSansPro-Regular</string>
@@ -413,7 +409,7 @@
                         <outlet property="tableViewHeight" destination="Hub-hf-PEN" id="K5j-KG-GQ4"/>
                         <outlet property="topView" destination="Nwq-3q-qNC" id="1Gh-D3-iUV"/>
                         <outlet property="userName" destination="J0Z-zy-xpw" id="SO7-n9-jLp"/>
-                        <segue destination="wuV-Ro-JC1" kind="push" identifier="showHairfieDetailFromProfile" id="uNK-I6-Jse"/>
+					 <segue destination="wuV-Ro-JC1" kind="push" identifier="hairfieDetail" id="Dne-Y9-xJd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NLd-1X-2fU" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -820,7 +816,7 @@
                         <viewControllerLayoutGuide type="bottom" id="SHl-eq-JF1"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="iev-fr-inl">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="1300"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="tintColor" red="0.36078431370000003" green="0.67450980390000004" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
@@ -843,7 +839,7 @@
                         <viewControllerLayoutGuide type="bottom" id="j1p-Ri-5Sm"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="nui-gI-JXj">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="1300"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BYw-ul-o7V">
@@ -1116,7 +1112,7 @@
                                                     </textField>
                                                 </subviews>
                                             </view>
-                                            <view contentMode="scaleToFill" verticalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xSZ-Hu-sLy" userLabel="WHO CONTAINER">
+                                            <view contentMode="scaleToFill" verticalCompressionResistancePriority="250" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xSZ-Hu-sLy" userLabel="WHO CONTAINER">
                                                 <rect key="frame" x="20" y="233" width="320" height="55"/>
                                                 <subviews>
                                                     <imageView hidden="YES" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" image="hairdresser-where-hairfie-post.png" translatesAutoresizingMaskIntoConstraints="NO" id="l1R-V1-aKa">
@@ -1249,9 +1245,6 @@
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="HkZ-R9-OZp">
                                                 <rect key="frame" x="30" y="225" width="300" height="200"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="200" id="8M2-fm-fgM"/>
-                                                </constraints>
                                                 <color key="separatorColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <connections>
@@ -1261,6 +1254,9 @@
                                             </tableView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="HkZ-R9-OZp" firstAttribute="bottom" secondItem="xSZ-Hu-sLy" secondAttribute="bottom" constant="137" id="n6e-Zk-dtk"/>
+                                        </constraints>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -1310,7 +1306,6 @@
                         <outlet property="priceLabelButton" destination="4aW-yv-yzw" id="NkC-m5-eWV"/>
                         <outlet property="priceTextField" destination="9jn-WQ-rGO" id="ugm-w6-LWA"/>
                         <outlet property="salonLabelButton" destination="2o9-JL-3ON" id="xcr-Y9-xP4"/>
-                        <outlet property="tableViewHeight" destination="8M2-fm-fgM" id="ZUf-iY-eke"/>
                         <outlet property="topView" destination="TQK-UT-z3v" id="Nu4-Nq-Vxi"/>
                         <outlet property="whoTextField" destination="Svn-cu-8nV" id="Y6n-Hn-abj"/>
                         <segue destination="8ER-eF-RXx" kind="push" identifier="choseSalonType" id="KDo-Hs-2DW"/>
@@ -2137,8 +2132,8 @@
                                                                     <action selector="showTimeTable:" destination="pDa-if-Gwb" eventType="touchUpInside" id="2Z3-XT-gZF"/>
                                                                 </connections>
                                                             </button>
-                                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Open Today" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="116" translatesAutoresizingMaskIntoConstraints="NO" id="QXv-0J-1yO" userLabel="Is Opened">
-                                                                <rect key="frame" x="34" y="131" width="116" height="20"/>
+                                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Ne travaille pas aujourd'hui" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="116" translatesAutoresizingMaskIntoConstraints="NO" id="QXv-0J-1yO" userLabel="Is Opened">
+                                                                <rect key="frame" x="34" y="131" width="180" height="20"/>
                                                                 <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="14"/>
                                                                 <color key="textColor" red="0.51764705879999995" green="0.5450980392" blue="0.58431372550000005" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -2291,70 +2286,8 @@
                                                     <constraint firstItem="9aj-2o-ahb" firstAttribute="leading" secondItem="8hf-8q-hqK" secondAttribute="leading" constant="80" id="ziS-79-KGB"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="POI-R8-aQS" userLabel="Page Control View">
+                                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="POI-R8-aQS" userLabel="Header Container View">
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="220"/>
-                                                <subviews>
-                                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xU8-Oy-bEu" userLabel="Image Slider">
-                                                        <rect key="frame" x="0.0" y="0.0" width="320" height="220"/>
-                                                        <connections>
-                                                            <outlet property="delegate" destination="pDa-if-Gwb" id="YN6-4H-Vm7"/>
-                                                        </connections>
-                                                    </scrollView>
-                                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bfN-jq-J5c" userLabel="Salon Rating" customClass="RatingView">
-                                                        <rect key="frame" x="85" y="172" width="91" height="21"/>
-                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                    </view>
-                                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9OD-9V-Y8a" userLabel="Name">
-                                                        <rect key="frame" x="15" y="150" width="285" height="21"/>
-                                                        <fontDescription key="fontDescription" name="SourceSansPro-Bold" family="Source Sans Pro" pointSize="17"/>
-                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="- 35 reviews" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NJ0-DF-4Gn" userLabel="Rating Number">
-                                                        <rect key="frame" x="179" y="176" width="83" height="12"/>
-                                                        <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="11"/>
-                                                        <color key="textColor" red="0.72549019609999998" green="0.72549019609999998" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q9x-d1-6Qd" userLabel="Prices">
-                                                        <rect key="frame" x="100" y="192" width="120" height="21"/>
-                                                        <subviews>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="picto-man-white.png" translatesAutoresizingMaskIntoConstraints="NO" id="b0g-nP-meX">
-                                                                <rect key="frame" x="62" y="4" width="12" height="13"/>
-                                                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                            </imageView>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="picto-woman-white.png" translatesAutoresizingMaskIntoConstraints="NO" id="q6w-dD-xlq">
-                                                                <rect key="frame" x="15" y="4" width="11" height="13"/>
-                                                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                            </imageView>
-                                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.69999998807907104" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="$ 30" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vpu-ko-4aC" userLabel="Man">
-                                                                <rect key="frame" x="79" y="0.0" width="39" height="21"/>
-                                                                <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="12"/>
-                                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.69999998807907104" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="$ 150" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7L9-mB-SBz" userLabel="Wowan">
-                                                                <rect key="frame" x="29" y="0.0" width="31" height="21"/>
-                                                                <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="12"/>
-                                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                        </subviews>
-                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                    </view>
-                                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DZp-pd-5EL">
-                                                        <rect key="frame" x="15" y="15" width="35" height="35"/>
-                                                        <state key="normal" image="button-add-favorite.png">
-                                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                        </state>
-                                                    </button>
-                                                    <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="5" translatesAutoresizingMaskIntoConstraints="NO" id="wUc-zk-Z94">
-                                                        <rect key="frame" x="180" y="190" width="132" height="37"/>
-                                                        <connections>
-                                                            <action selector="changePage:" destination="pDa-if-Gwb" eventType="touchUpInside" id="bZT-47-IDv"/>
-                                                        </connections>
-                                                    </pageControl>
-                                                </subviews>
                                                 <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                             </view>
                                             <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="F1e-I3-z9r" userLabel="Tab Bar View">
@@ -2362,18 +2295,20 @@
                                                 <subviews>
                                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1fN-Tc-Gwu" userLabel="Background Blue View">
                                                         <rect key="frame" x="0.0" y="1" width="320" height="58"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9fU-aU-imO" userLabel="Info">
+                                                                <rect key="frame" x="0.0" y="0.0" width="80" height="55"/>
+                                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                <inset key="contentEdgeInsets" minX="20" minY="14" maxX="20" maxY="14"/>
+                                                                <state key="normal" image="tab-business-infos.png"/>
+                                                                <connections>
+                                                                    <action selector="changeTab:" destination="pDa-if-Gwb" eventType="touchUpInside" id="WEF-lo-bWc"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
                                                         <color key="backgroundColor" red="0.99607843137254903" green="0.67843137254901964" blue="0.69803921568627447" alpha="1" colorSpace="calibratedRGB"/>
                                                     </view>
-                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9fU-aU-imO" userLabel="Info">
-                                                        <rect key="frame" x="0.0" y="0.0" width="80" height="55"/>
-                                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <inset key="contentEdgeInsets" minX="20" minY="14" maxX="20" maxY="14"/>
-                                                        <state key="normal" image="tab-business-infos.png"/>
-                                                        <connections>
-                                                            <action selector="changeTab:" destination="pDa-if-Gwb" eventType="touchUpInside" id="WEF-lo-bWc"/>
-                                                        </connections>
-                                                    </button>
                                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C6D-1X-n7l" userLabel="Hairdresser">
                                                         <rect key="frame" x="160" y="0.0" width="80" height="55"/>
                                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -2529,7 +2464,7 @@
                         <outlet property="hairfieCollection" destination="Jy6-8W-MKS" id="v1z-jF-cDg"/>
                         <outlet property="hairfieCollectionHeight" destination="yf3-fd-pp6" id="K5J-Mc-EeT"/>
                         <outlet property="hairfieView" destination="g2N-rX-8kI" id="8GK-8z-dVy"/>
-                        <outlet property="imageSliderView" destination="xU8-Oy-bEu" id="UM6-vG-hqW"/>
+                        <outlet property="headerContainerView" destination="POI-R8-aQS" id="Wqv-XA-BXZ"/>
                         <outlet property="infoBttn" destination="9fU-aU-imO" id="LEU-Z4-Xs2"/>
                         <outlet property="infoView" destination="8hf-8q-hqK" id="CFb-8b-RD9"/>
                         <outlet property="isOpenImage" destination="a0o-5H-PFd" id="Sha-xz-aWf"/>
@@ -2537,25 +2472,18 @@
                         <outlet property="isOpenLabel" destination="QXv-0J-1yO" id="vrP-Q4-FNB"/>
                         <outlet property="isOpenLabelDetail" destination="mxf-SU-fU8" id="1yq-eH-55J"/>
                         <outlet property="mainViewHeight" destination="iPD-6f-Gsc" id="i9P-xc-Ckg"/>
-                        <outlet property="manPrice" destination="Vpu-ko-4aC" id="WTd-7J-pbW"/>
                         <outlet property="menuBttn" destination="QZJ-9f-2GT" id="3wk-vc-6v1"/>
                         <outlet property="moreReviewBttn" destination="VBB-fJ-v6H" id="ogl-4e-YVP"/>
-                        <outlet property="name" destination="9OD-9V-Y8a" id="8Zc-F2-lPN"/>
-                        <outlet property="nbReviews" destination="NJ0-DF-4Gn" id="IXt-xg-vNr"/>
-                        <outlet property="pageControl" destination="wUc-zk-Z94" id="lYs-tK-Uh0"/>
                         <outlet property="priceAndSaleBttn" destination="8xZ-En-Y9u" id="rKd-xf-9IK"/>
                         <outlet property="priceAndSaleView" destination="Fjc-1f-saH" id="H0I-7V-Q7a"/>
                         <outlet property="pricesTableView" destination="gAx-Ib-aqZ" id="6AS-x7-vwY"/>
                         <outlet property="pricesTableViewHeight" destination="k64-72-RvG" id="K1G-1e-Yus"/>
-                        <outlet property="pricesView" destination="Q9x-d1-6Qd" id="Vnw-v6-07u"/>
                         <outlet property="reviewRating" destination="tg1-Ua-4sM" id="co7-Jk-taq"/>
                         <outlet property="reviewTableView" destination="cCd-OE-JmK" id="avp-oe-rgc"/>
-                        <outlet property="salonRating" destination="bfN-jq-J5c" id="5uY-T6-5NV"/>
                         <outlet property="similarTableView" destination="wW3-x4-wkc" id="ZRo-FV-eJm"/>
                         <outlet property="telephone" destination="HKB-Hy-iot" id="pN8-F8-9H2"/>
                         <outlet property="telephoneBgView" destination="RrZ-5c-jUF" id="aV2-Oo-lTl"/>
                         <outlet property="telephoneLabelWidth" destination="8X2-ll-edA" id="baC-99-BsI"/>
-                        <outlet property="womanPrice" destination="7L9-mB-SBz" id="DK4-qS-2Us"/>
                         <segue destination="oWk-He-lbw" kind="push" identifier="showTimetable" id="aqA-eY-dNj"/>
                         <segue destination="d1b-g5-JaB" kind="modal" identifier="reportError" id="D36-jL-7ke"/>
                         <segue destination="C0A-PA-Dfl" kind="push" identifier="postHairfie" id="2ml-IS-A8f"/>
@@ -2576,7 +2504,7 @@
                         <viewControllerLayoutGuide type="bottom" id="po1-aP-Age"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="bhM-gL-HHz">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="1300"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OHl-hv-ouR" userLabel="Top Bar View">
@@ -2641,7 +2569,7 @@
                         <viewControllerLayoutGuide type="bottom" id="WIZ-TA-wce"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="SAn-a2-ZHJ">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="1300"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wk5-N2-iL6" userLabel="Top Bar View">
@@ -5089,7 +5017,6 @@
         <image name="arrow-dropdown.png" width="37" height="22"/>
         <image name="arrow-nav-white.png" width="40" height="40"/>
         <image name="arrow-nav.png" width="40" height="40"/>
-        <image name="button-add-favorite.png" width="54" height="52"/>
         <image name="cancel-white.png" width="93" height="93"/>
         <image name="cancel.png" width="32" height="32"/>
         <image name="checkbox-true.png" width="46" height="46"/>
@@ -5115,11 +5042,9 @@
         <image name="picto-home-black.png" width="30" height="32"/>
         <image name="picto-list-phone.png" width="32" height="31"/>
         <image name="picto-list-resume.png" width="22" height="32"/>
-        <image name="picto-man-white.png" width="24" height="25"/>
         <image name="picto-menu-point.png" width="36" height="9"/>
         <image name="picto-phone-white.png" width="32" height="31"/>
         <image name="picto-take-picture.png" width="59" height="45"/>
-        <image name="picto-woman-white.png" width="21" height="25"/>
         <image name="pin-salon.png" width="46" height="64"/>
         <image name="search-advance-field-location2.png" width="602" height="56"/>
         <image name="search-advance-field-name2.png" width="602" height="56"/>
@@ -5142,6 +5067,13 @@
         <segue reference="VGS-VM-Pwy"/>
         <segue reference="6S8-Dh-Oyu"/>
         <segue reference="2ml-IS-A8f"/>
+        <segue reference="vAT-vQ-WuX"/>
+        <segue reference="VGS-VM-Pwy"/>
+        <segue reference="LOg-O4-mCP"/>
+        <segue reference="Dne-Y9-xJd"/>
+        <segue reference="cG7-he-Xw7"/>
+        <segue reference="ssq-cN-qLV"/>
+        <segue reference="dg2-Ph-4Hs"/>
         <segue reference="N5w-ND-ZjU"/>
         <segue reference="uEN-by-6gW"/>
         <segue reference="uNK-I6-Jse"/>

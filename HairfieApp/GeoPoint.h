@@ -32,6 +32,7 @@
 
 -(NSString *)asApiString;
 -(NSDictionary*)toDictionary;
+-(BOOL)isNotValid;
 
 +(id)fromSetterValue:(id)aValue;
 

@@ -11,6 +11,27 @@
 
 @implementation FBUtils
 
++(BOOL)activeSessionHasPermissions:(NSArray *)permissions
+{
+    __block BOOL hasPermissions = YES;
+    for (NSString *permission in permissions)
+    {
+        NSInteger index = [[FBSession activeSession].permissions indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+            if ([obj isEqualToString:permission])
+            {
+                *stop = YES;
+            }
+            return *stop;
+        }];
+        
+        if (index == NSNotFound)
+        {
+            hasPermissions = NO;
+        }
+    }
+    return hasPermissions;
+}
+
 +(void)getPermissions:(NSArray *)permissionsNeeded success:(void (^)())aSuccessHandler failure:(void (^)(NSError *))aFailureHandler {
     [FBRequestConnection startWithGraphPath:@"/me/permissions"
                           completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
@@ -37,8 +58,13 @@
                                                                             defaultAudience:FBSessionDefaultAudienceFriends
                                                                           completionHandler:^(FBSession *session, NSError *error) {
                                                                               if (!error) {
-                                                                                  NSLog(@"Share is OK !");
-                                                                                  aSuccessHandler();
+                                                                                  if([[self class] activeSessionHasPermissions:requestPermissions]){
+                                                                                      NSLog(@"Share is OK !");
+                                                                                      aSuccessHandler();
+                                                                                  } else {
+                                                                                      NSLog(@"Skip button has been pressed");
+                                                                                      aFailureHandler(nil);
+                                                                                  }
                                                                               } else {
                                                                                   NSLog(@"%@", error.description);
                                                                                   aFailureHandler(error);

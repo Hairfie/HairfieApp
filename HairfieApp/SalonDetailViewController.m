@@ -31,9 +31,6 @@
 @end
 
 @implementation SalonDetailViewController {
-    // Variables de test (vu qu'il y a pas de backend)
-    NSArray *coiffeurArray;
-    
     NSMutableArray *hairfies;
     BOOL endOfHairfies;
     BOOL loadingHairfies;
@@ -43,11 +40,9 @@
 
     NSArray *latestReviews;
     BOOL loadingLastestReviews;
+    
+    SalonDetailHeaderViewController *headerViewController;
 }
-
-@synthesize imageSliderView =_imageSliderView, pageControl = _pageControl,hairfieView = _hairfieView, hairdresserView = _hairdresserView, priceAndSaleView = _priceAndSaleView, infoBttn = _infoBttn, hairfieBttn = _hairfieBttn, hairdresserBttn = _hairdresserBttn, priceAndSaleBttn = _priceAndSaleBttn, reviewRating = _reviewRating, reviewTableView = _reviewTableView, addReviewBttn = _addReviewBttn, moreReviewBttn = _moreReviewBttn, similarTableView = _similarTableView, business = _business, name = _name , womanPrice = _womanPrice, manPrice = _manPrice, salonRating = _salonRating, address = _address, city = _city, salonAvailability = _salonAvailability, nbReviews = _nbReviews, previewMap = _previewMap, isOpenLabel = _isOpenLabel, isOpenLabelDetail = _isOpenLabelDetail, isOpenImage = _isOpenImage, isOpenImageDetail = _isOpenImageDetail, callBttn = _callBttn, telephoneBgView = _telephoneBgView, detailedContainerView = _detailedContainerView;
-
-
 
 -(void)viewDidLoad
 {
@@ -57,7 +52,6 @@
     delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
     _infoView.hidden = NO;
-    _imageSliderView.canCancelContentTouches = NO;
     _hairfieCollection.scrollEnabled = NO;
     
     _reviewTableView.delegate = self;
@@ -105,50 +99,12 @@
     menuActions = @[
         @{@"label": NSLocalizedStringFromTable(@"Report an error", @"Salon_Detail",nil), @"segue": @"reportError"}
     ];
-}
-
--(void) setupGallery:(NSArray*) pictures
-{
-    if ([pictures count] == 1) {
-        _pageControl.hidden = YES;
-    }
-
-    if ([pictures count] == 0)
-    {
-        _pageControl.numberOfPages = 1;
-        _pageControl.hidden = YES;
-        CGRect frame;
-        frame.origin.x = 0;
-        frame.origin.y = 0;
-        frame.size = _imageSliderView.frame.size;
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:frame];
-        imageView.image = [UIImage imageNamed:@"default-picture.jpg"];
-        imageView.contentMode = UIViewContentModeScaleToFill;
-        [_imageSliderView addSubview:imageView];
-    } else {
-        _pageControl.numberOfPages = [pictures count];
-        for (int i = 0; i < [pictures count]; i++) {
-            CGRect frame;
-            frame.origin.x = _imageSliderView.frame.size.width * i;
-            frame.origin.y = 0;
-            frame.size = _imageSliderView.frame.size;
-            UIImageView *imageView = [[UIImageView alloc] initWithFrame:frame];
-            [SDWebImageDownloader.sharedDownloader downloadImageWithURL:[NSURL URLWithString:[pictures[i] urlWithWidth:@640
-                                                                                                                height:@360]]
-                                                                options:0
-                                                               progress:^(NSInteger receivedSize, NSInteger expectedSize) { }
-                                                              completed:^(UIImage *image, NSData *d, NSError *e, BOOL finished) {
-                                                                  if (finished && image) {
-                                                                      imageView.image = image;
-                                                                  }
-                                                              }];
-
-            imageView.contentMode = UIViewContentModeScaleToFill;
-            [_imageSliderView addSubview:imageView];
-        }
-    }
-    _imageSliderView.pagingEnabled = YES;
-    _imageSliderView.contentSize = CGSizeMake(_imageSliderView.frame.size.width * [pictures count], _imageSliderView.frame.size.height);
+    
+    headerViewController = [[SalonDetailHeaderViewController alloc] initWithNibName:@"SalonDetailHeaderViewController" bundle:nil];
+    [headerViewController.view setFrame:self.headerContainerView.frame];
+    [self addChildViewController:headerViewController];
+    [self.headerContainerView addSubview:headerViewController.view];
+    [headerViewController didMoveToParentViewController:self];
 }
 
 -(IBAction)showTimeTable:(id)sender
@@ -187,7 +143,6 @@
                                              selector:@selector(businessChanged:)
                                                  name:[Business EVENT_CHANGED]
                                                object:nil];
-    
 }
 
 -(void)rateView:(RatingView *)rateView ratingDidChange:(float)rating
@@ -219,17 +174,6 @@
         [self initKnownData:changedBusiness];
     }
 }
-
--(void) scrollViewDidEndDecelerating:(UIScrollView *)scrollview
-{
-    if (scrollview == _imageSliderView) {
-        // Update the page when more than 50% of the previous/next page is visible
-        CGFloat pageWidth = scrollview.frame.size.width;
-        int page = floor((scrollview.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
-        _pageControl.currentPage = page;
-    }
-}
-
 
 -(IBAction)changeTab:(id)sender
 {
@@ -294,13 +238,6 @@
     bottomBorder.backgroundColor = [UIColor salonDetailTab];
     bottomBorder.tag = 1;
     [aButton addSubview:bottomBorder];
-}
-
--(IBAction)changePage:(id)sender
-{
-    UIPageControl *pager = sender;
-    CGPoint offset = CGPointMake(pager.currentPage * _imageSliderView.frame.size.width, 0);
-    [_imageSliderView setContentOffset:offset animated:YES];
 }
 
 -(IBAction)goBack:(id)sender
@@ -433,12 +370,10 @@
 - (void) initKnownData:(Business*)business
 {
     [self setupCrossSell];
-    
     [self setupHairfies];
-    
-    [self setupGallery:business.pictures];
-
     [self setupLastReviews];
+    
+    headerViewController.business = business;
     
     if (nil == business.timetable) {
         _isOpenImageDetail.hidden = YES;
@@ -446,14 +381,22 @@
         _isOpenLabel.text = NSLocalizedStringFromTable(@"No information", @"Salon_Detail", nil);
     } else {
         if (business.timetable.isOpenToday) {
-            _isOpenLabel.text = NSLocalizedStringFromTable(@"Open today", @"Salon_Detail", nil);
+            if ([business.kind isEqualToString:KIND_ATHOME]) {
+                _isOpenLabel.text = NSLocalizedStringFromTable(@"Works today", @"Salon_Detail", nil);
+            } else {
+                _isOpenLabel.text = NSLocalizedStringFromTable(@"Open today", @"Salon_Detail", nil);
+            }
             _isOpenLabel.textColor = [UIColor greenHairfie];
             
             _isOpenImage.image = [_isOpenImage.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
             [_isOpenImage setTintColor:[UIColor greenHairfie]];
         }
         else {
-            _isOpenLabel.text = NSLocalizedStringFromTable(@"Closed today", @"Salon_Detail", nil);
+            if ([business.kind isEqualToString:KIND_ATHOME]) {
+                _isOpenLabel.text = NSLocalizedStringFromTable(@"Does not work today", @"Salon_Detail", nil);
+            } else {
+                _isOpenLabel.text = NSLocalizedStringFromTable(@"Closed today", @"Salon_Detail", nil);
+            }
         }
     }
 
@@ -466,8 +409,7 @@
         [self addPhoneNumbersToView];
         
     }
-    _name.text = business.name;
-    
+
     _pricesView.hidden = YES;
     
     _salonRating.notSelectedImage = [UIImage imageNamed:@"not_selected_star.png"];
@@ -498,23 +440,10 @@
         [_moreReviewBttn setTitle:[NSString stringWithFormat:NSLocalizedStringFromTable(@"more (%@)", @"Salon_Detail", nil), business.numReviews]
                          forState:UIControlStateNormal];
     }
-
-    if ([business.numReviews isEqualToNumber:@0] || [business.numReviews isEqualToNumber:@1]) {
-        _nbReviews.text = [NSString stringWithFormat:NSLocalizedStringFromTable(@"%@ review", @"Salon_Detail", nil), business.numReviews];
-    } else {
-        _nbReviews.text =[NSString stringWithFormat:NSLocalizedStringFromTable(@"%@ reviews", @"Salon_Detail", nil), business.numReviews];
-    }
     
     _address.text = business.address.street;
-    _zipCode.text = business.address.zipCode;
     _city.text = business.address.city;
-    
-    // MapView Setup
-    _haidresserLat = [NSString stringWithFormat:@"%@", business.gps.lat];
-    _haidresserLng = [NSString stringWithFormat:@"%@", business.gps.lng];
-
 }
-
 
 -(void)setupCrossSell
 {
@@ -648,7 +577,6 @@
             review.isReviewing = YES;
         review.business = _business;
         review.addReviewButton.hidden = NO;
-        
     } else if ([segue.identifier isEqualToString:@"showTimetable"]) {
         HorairesViewController *horaires = [segue destinationViewController];
         horaires.timetable = _business.timetable;
@@ -659,13 +587,9 @@
         SalonDetailViewController *controller = [segue destinationViewController];
         controller.business = sender;
     } else if ([segue.identifier isEqualToString:@"reportError"]) {
-        
         [[segue destinationViewController] setBusiness:self.business];
-        
     } else if ([segue.identifier isEqualToString:@"suggestHairdresser"]) {
-        
         [[segue destinationViewController] setBusiness:self.business];
-        
     } else if ([segue.identifier isEqualToString:@"postHairfie"]) {
         CameraOverlayViewController *controller = [segue destinationViewController];
         controller.hairfiePost = [[HairfiePost alloc] initWithBusiness:_business];
@@ -684,14 +608,10 @@
     phoneBtn.layer.cornerRadius = 5;
     phoneBtn.layer.masksToBounds = YES;
 
-    
     NSString *phoneBttnTitle = [[NSString alloc] init];
 
-    
     phoneBttnTitle = [phoneBttnTitle formatPhoneNumber:self.business.phoneNumber];
-    
-    
-     
+
     [phoneBtn setTitle:phoneBttnTitle forState:UIControlStateNormal];
     [phoneBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [phoneBtn.titleLabel setTextAlignment: NSTextAlignmentCenter];
@@ -730,7 +650,7 @@
            // NSLog(@"Gimme more!");
             [self loadNextHairfies];
         }
-        
+
         return [self collectionView:cv hairfieCellForItemAtIndexPath:indexPath];
     } else {
         return [self collectionView:cv loadingCellForItemAtIndexPath:indexPath];
@@ -740,9 +660,9 @@
 -(CustomCollectionViewCell *)collectionView:(UICollectionView *)cv newHairfieCellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     CustomCollectionViewCell *cell = [cv dequeueReusableCellWithReuseIdentifier:@"hairfieCell" forIndexPath:indexPath];
-    
+
     [cell setAsNewHairfieButton];
-    
+
     return cell;
 }
 
@@ -784,19 +704,18 @@
                                                     cancelButtonTitle:NSLocalizedStringFromTable(@"Cancel", @"Salon_Detail", nil)
                                                destructiveButtonTitle:nil
                                                     otherButtonTitles:nil];
-    
+
     for (NSDictionary *menuAction in menuActions) {
         [actionSheet addButtonWithTitle:NSLocalizedStringFromTable([menuAction objectForKey:@"label"], @"Salon_Detail", nil)];
     }
-    
+
     [actionSheet showInView:self.view];
 }
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (0 == buttonIndex) return; // it's the cancel button
-    
-    
+
     [self performSegueWithIdentifier:[menuActions[buttonIndex - 1] objectForKey:@"segue"] sender:self];
 }
 

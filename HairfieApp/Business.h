@@ -19,6 +19,7 @@
 
 @property (strong, nonatomic) NSString *id;
 @property (strong, nonatomic) User *owner;
+@property (strong, nonatomic) NSString *kind;
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) GeoPoint *gps;
 @property (strong, nonatomic) NSString *phoneNumber;

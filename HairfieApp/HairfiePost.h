@@ -26,6 +26,8 @@
 @property (strong, nonatomic) Money *price;
 @property (strong, nonatomic) Business *business;
 @property (strong, nonatomic) NSArray *tags;
+@property (nonatomic)         BOOL selfmade;
+
 
 -(id)initWithDictionary:(NSDictionary *)data;
 -(id)initWithBusiness:(Business *)aBusiness;

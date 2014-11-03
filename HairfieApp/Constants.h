@@ -9,7 +9,14 @@
 #ifndef HairfieApp_constants_h
 #define HairfieApp_constants_h
 
-#define BASE_URL @"http://staging.hairfie.com/"
+#ifdef DEV
+    #define BASE_URL @"http://staging.hairfie.com/"
+#elif ADHOC
+    #define BASE_URL @"http://staging.hairfie.com/"
+#elif RELEASE
+    #define BASE_URL @"http://www.hairfie.com/"
+#endif
+
 
 #define API_URL (BASE_URL @"api/")
 #define API_DATE_FORMAT @"yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"

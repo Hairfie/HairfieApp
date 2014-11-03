@@ -122,7 +122,7 @@ static LBRESTAdapter * _lbAdaptater = nil;
 
 -(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
     UIAlertView *errorAlert = [[UIAlertView alloc]initWithTitle:@"Error" message:@"There was an error retrieving your location" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-    [errorAlert show];
+    //[errorAlert show];
     NSLog(@"Error: %@",error.description);
 }
 

@@ -75,6 +75,14 @@
     return [[NSDictionary alloc] initWithObjectsAndKeys:self.lng, @"lng", self.lat, @"lat",nil];
 }
 
+-(BOOL)isNotValid {
+    if(!self.lat || !self.lng) {
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
 +(id)fromSetterValue:(id)aValue
 {
     return [SetterUtils getInstanceOf:[self class] fromSetterValue:aValue];

@@ -63,7 +63,6 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-
 -(void)refreshHairfieList
 {
     // (re)initialize hairfies list
@@ -74,15 +73,9 @@
     [self loadNextHairfieLikes];
 }
 
-
 -(void)viewWillAppear:(BOOL)animated
 {
     [self initKnownData];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 -(void) initKnownData
@@ -136,8 +129,11 @@
     [self.userName profileUserNameStyle];
     self.userName.text = self.user.name;
     [self.hairfieBttn profileTabStyle];
+    [self.hairfieBttn setTitle:[NSString stringWithFormat:@"%@", self.user.numHairfies] forState:UIControlStateNormal];
+
     [self.reviewBttn profileTabStyle];
-    
+    [self.reviewBttn setTitle:[NSString stringWithFormat:@"%@", self.user.numBusinessReviews] forState:UIControlStateNormal];
+
     self.reviewLbl.text = NSLocalizedStringFromTable(@"Reviews", @"UserProfile", nil);
 }
 
@@ -145,6 +141,7 @@
 {
     [self setButtonSelected:sender];
 }
+
 -(void)setButtonSelected:(UIButton*)aButton
 {
     self.hairfieView.hidden = YES;
@@ -214,6 +211,15 @@
     return [self loadingCellAtIndexPath:indexPath];
 }
 
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"clicked");
+    
+    if (collectionView == self.hairfiesCollection) {
+        [self performSegueWithIdentifier:@"hairfieDetail" sender:userHairfies[indexPath.row]];
+    }
+}
+
 -(UICollectionViewCell *)hairfieCellAtIndexPath:(NSIndexPath *)indexPath
 {
     CustomCollectionViewCell *cell = [self.hairfiesCollection dequeueReusableCellWithReuseIdentifier:HAIRFIE_CELL
@@ -271,8 +277,8 @@
             self.mainViewHeight.constant = ((userHairfies.count / 2) * 220)+ 274 + 58;
         
         self.collectionViewHeight.constant = ((userHairfies.count / 2 + 1) * 220) + 58;
-        
-          [self.hairfieBttn setTitle:[NSString stringWithFormat:@"%zd", userHairfies.count] forState:UIControlStateNormal];
+
+        [self.hairfieBttn setTitle:[NSString stringWithFormat:@"%zd", userHairfies.count] forState:UIControlStateNormal];
         [self.hairfiesCollection reloadData];
         
         // did we reach the end of scroll?
@@ -314,7 +320,7 @@
         NSLog(@"Failed to get user's reviews");
     };
     
-    [BusinessReview getReviewsByAuthor:self.user.id success:successHandler failure:failureHandler];
+    [BusinessReview listLatestByAuthor:self.user.id success:successHandler failure:failureHandler];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -352,12 +358,9 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    
-    if ([segue.identifier isEqualToString:@"showHairfieDetailFromProfile"])
-    {
-        HairfieDetailViewController *hairfieDetail = [segue destinationViewController];
-        hairfieDetail.hairfie = (Hairfie*)[userHairfies objectAtIndex:hairfieRow];
-        
+    if ([segue.identifier isEqualToString:@"hairfieDetail"]) {
+        HairfieDetailViewController *vc = (HairfieDetailViewController *)segue.destinationViewController;
+        vc.hairfie = sender;
     }
 }
 

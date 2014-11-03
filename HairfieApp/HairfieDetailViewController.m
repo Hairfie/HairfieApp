@@ -308,7 +308,7 @@
     if (self.hairfie.business) {
         [tempDisplayedInfoNames addObject:@"business"];
     }
-    if (![self.hairfie.price isEqual:[NSNull null]]) {
+    if (nil != self.hairfie.price) {
         [tempDisplayedInfoNames addObject:@"price"];
     }
     displayedInfoNames = [[NSArray alloc] initWithArray:tempDisplayedInfoNames];

@@ -29,6 +29,8 @@
 @property (strong, nonatomic) Business *business;
 @property (strong, nonatomic) NSArray *tags;
 
++(NSString *)EVENT_SAVED;
+
 -(id)initWithDictionary:(NSDictionary *)data;
 
 -(NSString *)pictureUrl;

@@ -22,8 +22,9 @@
 
 #import <SDWebImage/UIImageView+WebCache.h>
 
-
 #import "LoginViewController.h"
+
+#define ERROR_VIEW_TAG 99
 
 @interface AroundMeViewController ()
 
@@ -39,6 +40,7 @@
     UIRefreshControl *refreshControl;
     UIGestureRecognizer *dismiss;
     NSString *aroundMe;
+    UIView *errorView;
 }
 
 -(void)viewDidLoad
@@ -209,8 +211,11 @@
         [refreshControl endRefreshing];
         _isSearching = NO;
         _isRefreshing = NO;
+        
+        [self addErrorView];
     };
     void (^loadSuccessBlock)(NSArray *) = ^(NSArray *results){
+        [self removeErrorView];
         businesses = results;
         _hairdresserTableView.hidden = NO;
         [self refreshMap];
@@ -237,6 +242,34 @@
                        limit:@10
                      success:loadSuccessBlock
                      failure:loadErrorBlock];
+    }
+}
+
+-(void)addErrorView {
+    UIView *errorViewContainer = [[UIView alloc] initWithFrame:CGRectMake(0, _hairdresserTableView.frame.size.height/2 - 25, _hairdresserTableView.frame.size.width, 150)];
+    errorViewContainer.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    //create the uilabel for the text
+    UILabel *errorLabel = [[UILabel alloc] initWithFrame:CGRectMake(_hairdresserTableView.frame.size.width/2-120, 0, 240, 150)];
+    errorLabel.backgroundColor = [UIColor clearColor];
+    errorLabel.font = [UIFont systemFontOfSize:12];
+    errorLabel.numberOfLines = 7;
+    errorLabel.text = NSLocalizedStringFromTable(@"There has been an error retrieving your location. \n If you do not want to share your location, you can use the top bar to directly choose a city. \n Otherwise, try again :-)", @"Around_Me", nil);;
+    errorLabel.font = [UIFont fontWithName:@"SourceSansPro-Light" size:16];
+    [errorLabel setTextColor:[UIColor blackColor]];
+    [errorLabel setTextAlignment:NSTextAlignmentCenter];
+    [errorLabel setLineBreakMode:NSLineBreakByWordWrapping];
+
+    errorLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin;
+    [errorViewContainer addSubview:errorLabel];
+    errorView = errorViewContainer;
+    errorView.tag = ERROR_VIEW_TAG;
+    
+    [self.view addSubview:errorView];
+}
+
+-(void)removeErrorView {
+    for (UIView *subView in self.view.subviews) {
+        if (subView.tag == ERROR_VIEW_TAG) [subView removeFromSuperview];
     }
 }
 

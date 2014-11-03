@@ -17,6 +17,11 @@
 
 @synthesize description = _description;
 
++(NSString *)EVENT_SAVED
+{
+    return @"Hairfie.saved";
+}
+
 -(id)initWithDictionary:(NSDictionary *)data
 {
     return (Hairfie*)[[Hairfie repository] modelWithDictionary:data];
