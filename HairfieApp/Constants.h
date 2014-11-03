@@ -10,7 +10,7 @@
 #define HairfieApp_constants_h
 
 #ifdef DEV
-    #define BASE_URL @"http://localhost:3000/"
+    #define BASE_URL @"http://staging.hairfie.com/"
 #elif ADHOC
     #define BASE_URL @"http://staging.hairfie.com/"
 #elif RELEASE
