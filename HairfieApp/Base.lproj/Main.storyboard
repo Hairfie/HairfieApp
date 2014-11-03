@@ -413,6 +413,7 @@
                         <outlet property="tableViewHeight" destination="Hub-hf-PEN" id="K5j-KG-GQ4"/>
                         <outlet property="topView" destination="Nwq-3q-qNC" id="1Gh-D3-iUV"/>
                         <outlet property="userName" destination="J0Z-zy-xpw" id="SO7-n9-jLp"/>
+                        <segue destination="wuV-Ro-JC1" kind="push" identifier="showHairfieDetailFromProfile" id="uNK-I6-Jse"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NLd-1X-2fU" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -5137,14 +5138,14 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="VGS-VM-Pwy"/>
         <segue reference="WYb-zG-qo5"/>
+        <segue reference="VGS-VM-Pwy"/>
         <segue reference="6S8-Dh-Oyu"/>
-        <segue reference="PSz-m0-val"/>
         <segue reference="2ml-IS-A8f"/>
-        <segue reference="DYR-eo-mJz"/>
-        <segue reference="cG7-he-Xw7"/>
         <segue reference="N5w-ND-ZjU"/>
         <segue reference="uEN-by-6gW"/>
+        <segue reference="uNK-I6-Jse"/>
+        <segue reference="cG7-he-Xw7"/>
+        <segue reference="DYR-eo-mJz"/>
     </inferredMetricsTieBreakers>
 </document>

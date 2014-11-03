@@ -19,6 +19,7 @@
 #import "CustomCollectionViewCell.h"
 #import "LoadingCollectionViewCell.h"
 #import "ReviewTableViewCell.h"
+#import "HairfieDetailViewController.h"
 
 #define HAIRFIE_CELL @"hairfieCell"
 #define LOADING_CELL @"loadingCell"
@@ -35,6 +36,7 @@
     NSMutableArray *userReviews;
     BOOL loadingNext;
     BOOL endOfScroll;
+    NSInteger hairfieRow;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -241,6 +243,14 @@
     return cell;
 }
 
+-(void) collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    hairfieRow = indexPath.row;
+   
+    [self performSegueWithIdentifier:@"showHairfieDetailFromProfile" sender:self];
+    
+}
+
 -(void)loadNextHairfieLikes
 {
     if (loadingNext || endOfScroll) {
@@ -262,7 +272,7 @@
         
         self.collectionViewHeight.constant = ((userHairfies.count / 2 + 1) * 220) + 58;
         
-          [self.hairfieBttn setTitle:[NSString stringWithFormat:@"%ld", userHairfies.count] forState:UIControlStateNormal];
+          [self.hairfieBttn setTitle:[NSString stringWithFormat:@"%zd", userHairfies.count] forState:UIControlStateNormal];
         [self.hairfiesCollection reloadData];
         
         // did we reach the end of scroll?
@@ -296,7 +306,7 @@
         userReviews = [NSMutableArray arrayWithArray:results];
         self.mainViewHeight.constant = (userReviews.count * 130) + 274;
         self.tableViewHeight.constant = (userReviews.count * 130);
-        [self.reviewBttn setTitle:[NSString stringWithFormat:@"%ld", userReviews.count] forState:UIControlStateNormal];
+        [self.reviewBttn setTitle:[NSString stringWithFormat:@"%zd", userReviews.count] forState:UIControlStateNormal];
         [self.reviewTableView reloadData];
     };
     
@@ -340,5 +350,15 @@
     return cell;
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    
+    if ([segue.identifier isEqualToString:@"showHairfieDetailFromProfile"])
+    {
+        HairfieDetailViewController *hairfieDetail = [segue destinationViewController];
+        hairfieDetail.hairfie = (Hairfie*)[userHairfies objectAtIndex:hairfieRow];
+        
+    }
+}
 
 @end
