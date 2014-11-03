@@ -14,7 +14,7 @@
 #elif ADHOC
     #define BASE_URL @"http://staging.hairfie.com/"
 #elif RELEASE
-    #define BASE_URL @"http://www.hairfie.com/"
+    #define BASE_URL @"http://hairfie.herokuapp.com/"
 #endif
 
 
