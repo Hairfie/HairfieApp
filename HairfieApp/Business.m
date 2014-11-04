@@ -185,6 +185,13 @@
     }
 }
 
+
+-(NSString *)displayBusinessNameForQuery
+{
+    return [self.name stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+}
+
+
 -(NSString *)thumbUrl
 {
     return [self.thumbnail urlWithWidth:@100 height:@100];

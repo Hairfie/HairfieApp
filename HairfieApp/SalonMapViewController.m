@@ -19,10 +19,14 @@
     AppDelegate *appDelegate;
      NSArray *menuActions;
     MyAnnotation *annotObj;
+    CLLocationCoordinate2D loc;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
+    loc = [[self.business.gps location]coordinate];
     appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [appDelegate startTrackingLocation:YES];
     self.mapView.showsPointsOfInterest = NO;
@@ -124,7 +128,7 @@
     
     
     [actionSheet addButtonWithTitle:NSLocalizedStringFromTable(@"Navigate", @"Salon_Detail", nil)];
-
+    [actionSheet addButtonWithTitle:@"Google"];
     
     [actionSheet showInView:self.view];
 }
@@ -132,12 +136,32 @@
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (0 == buttonIndex) return; // it's the cancel button
-    
-    [self navigateToSalon];
+    if (1 == buttonIndex)
+        [self navigateToSalon];
+    else
+        [self googleMaps];
 }
 
--(void)navigateToSalon
-{
+
+-(void)googleMaps {
+    
+    
+    
+    NSString *stringUrl = [NSString stringWithFormat:@"comgooglemaps://?q=%@&center=%f,%f",[self.business.address displayQueryAddress], loc.latitude, loc.longitude];
+   
+    NSLog(@"URL %@", stringUrl);
+    // comgooglemaps://?saddr=2025+Garcia+Ave,+Mountain+View,+CA,+USA&daddr=Google,+1600+Amphitheatre+Parkway,+Mountain+View,+CA,+United+States&center=37.423725,-122.0877&directionsmode=walking&zoom=17
+    if ([[UIApplication sharedApplication] canOpenURL:
+         [NSURL URLWithString:@"comgooglemaps://"]]) {
+        [[UIApplication sharedApplication] openURL:
+         [NSURL URLWithString:stringUrl]];
+    } else {
+        NSLog(@"Can't use comgooglemaps://");
+    }
+    
+}
+-(void)navigateToSalon {
+    
     Class mapItemClass = [MKMapItem class];
     if (mapItemClass && [mapItemClass respondsToSelector:@selector(openMapsWithItems:launchOptions:)])
     {
@@ -156,6 +180,8 @@
         [mapItem openInMapsWithLaunchOptions:nil];
     }
 }
+
+
 
 /*
 #pragma mark - Navigation

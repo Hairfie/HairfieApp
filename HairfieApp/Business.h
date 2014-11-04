@@ -47,6 +47,8 @@
 
 -(NSNumber *)distanceTo:(GeoPoint *)aGeoPoint;
 
+-(NSString *)displayBusinessNameForQuery;
+
 -(id)initWithDictionary:(NSDictionary *)data;
 
 -(NSNumber *)ratingBetween:(NSNumber *)aMin

@@ -45,6 +45,13 @@
     return [NSString stringWithFormat:@"%@ %@ %@", self.street, self.zipCode, self.city];
 }
 
+-(NSString *)displayQueryAddress
+{
+    
+    NSString *streetForquery = [self.street stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+    return [NSString stringWithFormat:@"%@,+%@,+%@", streetForquery, self.zipCode, self.city];
+}
+
 -(NSString*)displayCityAndZipCode
 {
     return [NSString stringWithFormat:@"%@ %@", self.zipCode, self.city];
