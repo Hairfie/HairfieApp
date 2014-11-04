@@ -26,6 +26,9 @@
 
 #define ERROR_VIEW_TAG 99
 
+#define NUM_SEARCH_RESULTS @100
+#define NUM_MAP_PINS 20
+
 @interface AroundMeViewController ()
 
 @end
@@ -118,8 +121,8 @@
         return;
     }
     
-   // self.searchInProgress.text = [self.businessSearch display];
-   // self.searchDesc.text = [self.businessSearch display];
+    // self.searchInProgress.text = [self.businessSearch display];
+    // self.searchDesc.text = [self.businessSearch display];
     self.isSearching = YES;
     
     [self getBusinesses];
@@ -157,7 +160,8 @@
 
     // add business pins to the map
     NSMutableArray *annotations = [[NSMutableArray alloc] init];
-    for (Business *business in businesses) {
+    NSRange range = {0, NUM_MAP_PINS};
+    for (Business *business in [businesses subarrayWithRange:range]) {
         [annotations addObject:[self annotationForBusiness:business]];
     }
     [self.mapView addAnnotations:annotations];
@@ -240,7 +244,7 @@
         
         [Business listNearby:self.businessSearch.whereGeoPoint
                        query:self.businessSearch.query
-                       limit:@10
+                       limit:NUM_SEARCH_RESULTS
                      success:loadSuccessBlock
                      failure:loadErrorBlock];
     }
