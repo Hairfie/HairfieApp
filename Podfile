@@ -18,6 +18,7 @@ target "HairfieApp" do
   pod 'ECSlidingViewController', '~> 2.0.3'
   pod 'libPhoneNumber-iOS', '~> 0.7'
   pod 'Underscore.m'
+  pod 'NSDate+TimeAgo'
 end
 
 target "HairfieAppTests" do

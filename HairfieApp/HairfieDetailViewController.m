@@ -12,7 +12,6 @@
 #import "CommentTableViewCell.h"
 #import "CustomCollectionViewCell.h"
 #import "UserProfileViewController.h"
-//#import "HairfieDetailCollectionReusableView.h"
 #import "CommentViewController.h"
 #import <LoopBack/LoopBack.h>
 #import "Hairfie.h"
