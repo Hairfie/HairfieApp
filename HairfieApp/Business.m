@@ -173,7 +173,7 @@
 
 -(NSString *)displayNameAndAddress
 {
-    return [NSString stringWithFormat:@"%@ - %@", self.name, self.address.displayAddress];
+    return [NSString stringWithFormat:@"%@ - %@", self.address.displayCityAndZipCode, self.name];
 }
 
 -(NSString *)displayNumHairfies

@@ -20,5 +20,4 @@
 @property (nonatomic) IBOutlet UIButton *takePictureButton;
 @property (nonatomic) IBOutlet UIImage *imageTaken;
 
-
 @end

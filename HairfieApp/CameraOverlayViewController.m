@@ -225,6 +225,7 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     [self SetImageTakenForSegue:info];
+
     [self performSegueWithIdentifier:@"cameraFilters" sender:self];
     [picker dismissViewControllerAnimated:NO completion:nil];
 

@@ -17,6 +17,7 @@
 #import "Hairfie.h"
 #import "AppDelegate.h"
 #import "NotLoggedAlert.h"
+#import "UIRoundImageView.h"
 
 
 @interface HairfieDetailViewController ()
@@ -242,27 +243,26 @@
 
     // HAIRFIE DETAIL
 
-    hairfieDetailView = [[UIView alloc] initWithFrame:CGRectMake(0, 334, 320, 100)];
+    hairfieDetailView = [[UIView alloc] initWithFrame:CGRectMake(0, 333, 320, 100)];
 
-    UIImageView *profilePicture = [[UIImageView alloc] initWithFrame:CGRectMake(20, 10, 40, 40)];
+    UIRoundImageView *borderProfile = [[UIRoundImageView alloc]initWithFrame:CGRectMake(10, 0, 44, 44)];
+    [borderProfile setBackgroundColor:[[UIColor blackHairfie] colorWithAlphaComponent:0.2]];
+    UIRoundImageView *profilePicture = [[UIRoundImageView alloc] initWithFrame:CGRectMake(12, 2, 40, 40)];
     [profilePicture sd_setImageWithURL:[NSURL URLWithString:self.hairfie.author.thumbUrl] placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
-    profilePicture.layer.cornerRadius = profilePicture.frame.size.height / 2;
-    profilePicture.clipsToBounds = YES;
-    profilePicture.layer.borderWidth = 2.0f;
-    profilePicture.layer.borderColor = [[UIColor blackHairfie] colorWithAlphaComponent:0.1].CGColor;
+   
 
     
     
-    UIButton *usernameButton = [[UIButton alloc] initWithFrame:CGRectMake(-10, 8, 232, 21)];
+    UIButton *usernameButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 0, 160, 30)];
     [usernameButton addTarget:self action:@selector(showProfile:) forControlEvents:UIControlEventTouchUpInside];
-    usernameButton.titleLabel.textAlignment = NSTextAlignmentLeft;
+    usernameButton.titleLabel.textAlignment = NSTextAlignmentRight;
     [usernameButton setTitle:self.hairfie.author.displayName forState:UIControlStateNormal];
     [usernameButton setTitleColor:[[UIColor blackHairfie] colorWithAlphaComponent:0.4] forState:UIControlStateNormal];
     usernameButton.titleLabel.font = [UIFont fontWithName:@"SourceSansPro-Light" size:18];
    // usernameButton.titleLabel.adjustsFontSizeToFitWidth = YES;
 
     
-    UILabel *nbHairfies = [[UILabel alloc]initWithFrame:CGRectMake(68, 30, 92, 21)];
+    UILabel *nbHairfies = [[UILabel alloc]initWithFrame:CGRectMake(60, 30, 92, 21)];
     nbHairfies.text = self.hairfie.author.displayHairfies;
     nbHairfies.font = [UIFont fontWithName:@"SourceSansPro-Light" size:13];
     nbHairfies.textColor = [[UIColor blackHairfie]colorWithAlphaComponent:0.8];
@@ -282,6 +282,7 @@
 //    descLabel.font = [UIFont fontWithName:@"SourceSansPro-Light" size:12];
 //    descLabel.textColor = [[UIColor blackHairfie] colorWithAlphaComponent:0.8];
 
+    [hairfieDetailView addSubview:borderProfile];
     [hairfieDetailView addSubview:profilePicture];
     [hairfieDetailView addSubview:usernameButton];
     [hairfieDetailView addSubview:nbHairfies];

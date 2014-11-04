@@ -43,7 +43,7 @@
     [super viewDidLoad];
     
     self.mainScrollView.delegate = self;
-    self.bottomMenuBttn.hidden = YES;
+   // self.bottomMenuBttn.hidden = YES;
     
     self.hairfiesCollection.delegate = self;
     self.hairfiesCollection.dataSource = self;
@@ -138,6 +138,38 @@
 {
   
 }
+
+-(IBAction)showMenuActionSheet:(id)sender
+{
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                             delegate:self
+                                                    cancelButtonTitle:NSLocalizedStringFromTable(@"Cancel", @"Salon_Detail", nil)
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:nil];
+    
+    
+    
+    [actionSheet addButtonWithTitle:NSLocalizedStringFromTable(@"change picture", @"User_Profile", nil)];
+  
+    
+    [actionSheet showInView:self.view];
+}
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (0 == buttonIndex) return; // it's the cancel button
+    else
+        [self addPicture];
+}
+
+-(void)addPicture
+{
+    UIAlertView*    chooseCameraType = [[UIAlertView alloc] initWithTitle:NSLocalizedStringFromTable(@"Choose camera type", @"Login_Sign_Up", nil) message:NSLocalizedStringFromTable(@"Take picture or pick one from the saved photos", @"Login_Sign_Up", nil) delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:NSLocalizedStringFromTable(@"Camera", @"Login_Sign_Up", nil), NSLocalizedStringFromTable(@"Library", @"Login_Sign_Up", nil),nil];
+        chooseCameraType.delegate = self;
+        [chooseCameraType show];
+}
+
+
 
 -(IBAction)changeTab:(id)sender
 {

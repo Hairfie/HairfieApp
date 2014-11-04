@@ -12,6 +12,7 @@
 #import "UserAuthenticator.h"
 #import "Picture.h"
 #import "MRProgress.h"
+#import "CameraOverlayViewController.h"
 
 @interface SignUpViewController ()
 
@@ -269,7 +270,6 @@ numberOfRowsInComponent:(NSInteger)component
     chooseCameraType = [[UIAlertView alloc] initWithTitle:NSLocalizedStringFromTable(@"Choose camera type", @"Login_Sign_Up", nil) message:NSLocalizedStringFromTable(@"Take picture or pick one from the saved photos", @"Login_Sign_Up", nil) delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:NSLocalizedStringFromTable(@"Camera", @"Login_Sign_Up", nil), NSLocalizedStringFromTable(@"Library", @"Login_Sign_Up", nil),nil];
     chooseCameraType.delegate = self;
     [chooseCameraType show];
-    
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -303,15 +303,10 @@ numberOfRowsInComponent:(NSInteger)component
 
 -(void) initOverlayView
 {
-    
     UIView *overlayView = [[UIView alloc] init];
-    
     overlayView.frame =  imagePicker.cameraOverlayView.frame;
-    
     UIView *navigationView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 60)];
-    navigationView.backgroundColor = [UIColor blackHairfie];
-    
-    
+    navigationView.backgroundColor = [[UIColor blackHairfie] colorWithAlphaComponent:0.5];
     UIImage *goBackImg = [UIImage imageNamed:@"arrow-nav.png"];
     UIButton *goBackButton = [UIButton
                               buttonWithType:UIButtonTypeCustom];
@@ -405,6 +400,5 @@ numberOfRowsInComponent:(NSInteger)component
     [_mainScrollView addSubview:profilePicture];
 
 }
-
 
 @end
