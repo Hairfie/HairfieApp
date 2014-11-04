@@ -11,7 +11,9 @@
 #import "BusinessRepository.h"
 #import "AppDelegate.h"
 #import "SetterUtils.h"
+#import "DateUtils.h"
 #import "Tag.h"
+#import "NSDate+TimeAgo.h"
 
 @implementation Hairfie
 
@@ -55,6 +57,16 @@
 -(void)setPrice:(id)aPrice
 {
     _price = [Money fromSetterValue:aPrice];
+}
+
+-(void)setCreatedAt:(id)aDate
+{
+    _createdAt = [DateUtils dateFromSetterValue:aDate];
+}
+
+-(void)setUpdatedAt:(id)aDate
+{
+    _updatedAt = [DateUtils dateFromSetterValue:aDate];
 }
 
 -(void)setTags:(id)someTags
@@ -101,6 +113,19 @@
 
 -(NSString *)displayNumComments {
     return [NSString stringWithFormat:@"%@", _numComments];
+}
+
+-(NSString *)displayShortDate {
+    
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:DISPLAY_DATE_FORMAT];
+    NSString *stringFromDate = [dateFormat stringFromDate:_createdAt];
+
+    return stringFromDate;
+}
+
+-(NSString*)displayTimeAgo {
+    return [_createdAt timeAgo];
 }
 
 -(NSAttributedString *)displayDescAndTags {

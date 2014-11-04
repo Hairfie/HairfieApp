@@ -40,6 +40,8 @@
 -(NSString *)displayNumLikes;
 -(NSString *)displayNumComments;
 -(NSAttributedString *)displayDescAndTags;
+-(NSString *)displayShortDate;
+-(NSString*)displayTimeAgo;
 
 +(void)listLatest:(NSNumber *)limit
              skip:(NSNumber *)skip

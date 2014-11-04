@@ -19,6 +19,7 @@
 #import "AppDelegate.h"
 #import "NotLoggedAlert.h"
 
+
 @interface HairfieDetailViewController ()
 
 @end
@@ -267,6 +268,14 @@
     nbHairfies.font = [UIFont fontWithName:@"SourceSansPro-Light" size:13];
     nbHairfies.textColor = [[UIColor blackHairfie]colorWithAlphaComponent:0.8];
 
+
+    UILabel *createdAt = [[UILabel alloc] initWithFrame:CGRectMake(110, 0, 200, 30)];
+    createdAt.text = [self.hairfie displayTimeAgo];
+    createdAt.textAlignment = NSTextAlignmentRight;
+    createdAt.font = [UIFont fontWithName:@"SourceSansPro-Light" size:15];
+    createdAt.textColor = [[UIColor blackHairfie]colorWithAlphaComponent:0.8];
+    
+    
     UILabel *descLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, 43, 280, 54)];
     descLabel.numberOfLines = 2;
     descLabel.attributedText = self.hairfie.displayDescAndTags;
@@ -277,6 +286,7 @@
     [hairfieDetailView addSubview:profilePicture];
     [hairfieDetailView addSubview:usernameButton];
     [hairfieDetailView addSubview:nbHairfies];
+    [hairfieDetailView addSubview:createdAt];
     [hairfieDetailView addSubview:descLabel];
 
     // RESTE

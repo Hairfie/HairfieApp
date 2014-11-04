@@ -18,7 +18,7 @@
 #import "FBAuthenticator.h"
 #import "UIView+Borders.h"
 #import "AddTagsToHairfieViewController.h"
-
+#import "PostHairfieEmailViewController.h"
 #import <LoopBack/LoopBack.h>
 
 #define OVERLAY_TAG 99
@@ -70,6 +70,23 @@
 
 -(void)viewWillAppear:(BOOL)animated {
 
+  /*
+    if (self.emailSubview.hidden == YES)
+        self.shareViewYPos.constant = 87;
+    else
+        self.shareViewYPos.constant = 177;
+  */  
+    if (self.hairfiePost.customerEmail.length != 0)
+    {
+        NSLog(@"AHAHAHAHAHA %@", self.hairfiePost.customerEmail);
+        [self.emailLabel setText:self.hairfiePost.customerEmail ];
+    }
+    else
+    {
+        [self.emailLabel setText:NSLocalizedStringFromTable(@"add email hairfie", @"Post_Hairfie", nil)];
+        
+        NSLog(@"TESt");
+    }
     
     if (self.hairfiePost.tags.count != 0)
     {
@@ -369,6 +386,7 @@
 {
     [self performSegueWithIdentifier:@"postHairfieEmail" sender:self];
 }
+
 -(void)checkFbSessionWithSuccess:(void(^)())aSuccessHandler
                          failure:(void(^)(NSError *error))aFailureHandler {
     if (FBSession.activeSession.state == FBSessionStateOpen
@@ -388,6 +406,12 @@
         
         addTagsVc.hairfiePost = self.hairfiePost;
         
+    }
+    if ([segue.identifier isEqualToString:@"postHairfieEmail"])
+    {
+        PostHairfieEmailViewController *postEmail = [segue destinationViewController];
+    
+        [postEmail setHairfiePost:self.hairfiePost];
     }
 }
 

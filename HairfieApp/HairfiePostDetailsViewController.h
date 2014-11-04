@@ -30,7 +30,7 @@
 @property (nonatomic) IBOutlet NSLayoutConstraint *whoSubviewConstraint;
 @property (nonatomic) IBOutlet UIView *emailSubview;
 @property (nonatomic) IBOutlet UIButton *fbShareButton;
-
+@property (nonatomic) IBOutlet UILabel *emailLabel;
 -(IBAction)fbShare:(id)sender;
 
 
@@ -43,6 +43,7 @@
 
 @property (nonatomic) IBOutlet NSLayoutConstraint *tableViewHeight;
 @property (nonatomic) IBOutlet NSLayoutConstraint *tableViewYPos;
+@property (nonatomic) IBOutlet NSLayoutConstraint *shareViewYPos;
 
 @property (nonatomic) Business *salonChosen;
 

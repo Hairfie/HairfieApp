@@ -236,6 +236,11 @@
 		B3A2FE9B1A07DA94000B839F /* SalonMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3A2FE9A1A07DA94000B839F /* SalonMapViewController.m */; };
 		B3A2FE9D1A07EC2B000B839F /* send-email-button.png in Resources */ = {isa = PBXBuildFile; fileRef = B3A2FE9C1A07EC2B000B839F /* send-email-button.png */; };
 		B3A2FEA01A07EF61000B839F /* PostHairfieEmailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3A2FE9F1A07EF61000B839F /* PostHairfieEmailViewController.m */; };
+		B3A2FEA81A08FAAC000B839F /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = B3A2FEA21A08FAAC000B839F /* LICENSE */; };
+		B3A2FEA91A08FAAC000B839F /* NSDate+TimeAgo.m in Sources */ = {isa = PBXBuildFile; fileRef = B3A2FEA41A08FAAC000B839F /* NSDate+TimeAgo.m */; };
+		B3A2FEAA1A08FAAC000B839F /* NSDate+TimeAgo.podspec in Resources */ = {isa = PBXBuildFile; fileRef = B3A2FEA51A08FAAC000B839F /* NSDate+TimeAgo.podspec */; };
+		B3A2FEAB1A08FAAC000B839F /* NSDateTimeAgo.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B3A2FEA61A08FAAC000B839F /* NSDateTimeAgo.bundle */; };
+		B3A2FEAC1A08FAAC000B839F /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = B3A2FEA71A08FAAC000B839F /* README.md */; };
 		B3AD59B7198B9A3700909ADE /* SalonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B3AD59B5198B9A3700909ADE /* SalonTableViewCell.m */; };
 		B3AD59B8198B9A3700909ADE /* SalonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3AD59B6198B9A3700909ADE /* SalonTableViewCell.xib */; };
 		B3AD59BF198B9D3500909ADE /* picto-list-resume.png in Resources */ = {isa = PBXBuildFile; fileRef = B3AD59BA198B9D3500909ADE /* picto-list-resume.png */; };
@@ -736,6 +741,12 @@
 		B3A2FE9C1A07EC2B000B839F /* send-email-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "send-email-button.png"; sourceTree = "<group>"; };
 		B3A2FE9E1A07EF61000B839F /* PostHairfieEmailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostHairfieEmailViewController.h; sourceTree = "<group>"; };
 		B3A2FE9F1A07EF61000B839F /* PostHairfieEmailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostHairfieEmailViewController.m; sourceTree = "<group>"; };
+		B3A2FEA21A08FAAC000B839F /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		B3A2FEA31A08FAAC000B839F /* NSDate+TimeAgo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+TimeAgo.h"; sourceTree = "<group>"; };
+		B3A2FEA41A08FAAC000B839F /* NSDate+TimeAgo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+TimeAgo.m"; sourceTree = "<group>"; };
+		B3A2FEA51A08FAAC000B839F /* NSDate+TimeAgo.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "NSDate+TimeAgo.podspec"; sourceTree = "<group>"; };
+		B3A2FEA61A08FAAC000B839F /* NSDateTimeAgo.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = NSDateTimeAgo.bundle; sourceTree = "<group>"; };
+		B3A2FEA71A08FAAC000B839F /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		B3AD59B4198B9A3700909ADE /* SalonTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SalonTableViewCell.h; sourceTree = "<group>"; };
 		B3AD59B5198B9A3700909ADE /* SalonTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SalonTableViewCell.m; sourceTree = "<group>"; };
 		B3AD59B6198B9A3700909ADE /* SalonTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SalonTableViewCell.xib; sourceTree = "<group>"; };
@@ -1289,6 +1300,7 @@
 		B3423219198924330058866B /* External Librairies */ = {
 			isa = PBXGroup;
 			children = (
+				B3A2FEA11A08FAAC000B839F /* NSDate-TimeAgo-master */,
 				B330408719BDA64600BA6211 /* ELFixSecureTextFieldFont */,
 				B39BA17B19AF533E00A48BD5 /* KeyChain */,
 				B3615B2F19AF1CB300F1141D /* TPKeyboardAvoiding */,
@@ -1563,6 +1575,19 @@
 				B3A1281B198A8609004D90BD /* CustomPinView.xib */,
 			);
 			name = "MapKit Config";
+			sourceTree = "<group>";
+		};
+		B3A2FEA11A08FAAC000B839F /* NSDate-TimeAgo-master */ = {
+			isa = PBXGroup;
+			children = (
+				B3A2FEA21A08FAAC000B839F /* LICENSE */,
+				B3A2FEA31A08FAAC000B839F /* NSDate+TimeAgo.h */,
+				B3A2FEA41A08FAAC000B839F /* NSDate+TimeAgo.m */,
+				B3A2FEA51A08FAAC000B839F /* NSDate+TimeAgo.podspec */,
+				B3A2FEA61A08FAAC000B839F /* NSDateTimeAgo.bundle */,
+				B3A2FEA71A08FAAC000B839F /* README.md */,
+			);
+			path = "NSDate-TimeAgo-master";
 			sourceTree = "<group>";
 		};
 		B3AD59B9198B9D2600909ADE /* List  */ = {
@@ -1963,6 +1988,7 @@
 				B3EBE754199BACFD0073B844 /* bg-book-no-info.png in Resources */,
 				153B08BF19E43834002E915A /* tuto.strings in Resources */,
 				B3EC30B819E52854006A604C /* picto-home.png in Resources */,
+				B3A2FEAB1A08FAAC000B839F /* NSDateTimeAgo.bundle in Resources */,
 				B3EC30B719E52854006A604C /* picto-like.png in Resources */,
 				B3B29D4719EE796200C293C6 /* half_selected_review.png in Resources */,
 				B3CCE7821998BF7400067DB9 /* picto-hairfie-detail-price.png in Resources */,
@@ -2024,6 +2050,7 @@
 				1543C07619E59670008718E6 /* original.jpeg in Resources */,
 				B3F662401987D52A0041F298 /* SourceSansPro-Light.ttf in Resources */,
 				1559631019E30DE000F84BFA /* search-advance-field-location2.png in Resources */,
+				B3A2FEAA1A08FAAC000B839F /* NSDate+TimeAgo.podspec in Resources */,
 				B345BAD9199502A3007BB61A /* CustomCollectionViewCell.xib in Resources */,
 				B3C45BD2199A4670000E6C8E /* take-picture-button.png in Resources */,
 				B3AD59BF198B9D3500909ADE /* picto-list-resume.png in Resources */,
@@ -2060,6 +2087,7 @@
 				15C89EAD19D3567600E91171 /* take-hairfie.png in Resources */,
 				1543C07519E59670008718E6 /* sepia.jpeg in Resources */,
 				B38A8D471993B8E300239BC1 /* map_pin.png in Resources */,
+				B3A2FEA81A08FAAC000B839F /* LICENSE in Resources */,
 				B3AD59C3198B9D3500909ADE /* picto-list-woman.png in Resources */,
 				1559631419E32BE000F84BFA /* cancel-white.png in Resources */,
 				B37F9A57198F910B00881071 /* picto-info.png in Resources */,
@@ -2224,6 +2252,7 @@
 				B337B6FA19A25116003B0EA5 /* HorairesViewController.m in Sources */,
 				B367DC4319C9E40800A0452A /* FinalStepAddressViewController.m in Sources */,
 				B367DC3119C98DC400A0452A /* ThirdStepMapViewController.m in Sources */,
+				B3A2FEA91A08FAAC000B839F /* NSDate+TimeAgo.m in Sources */,
 				71C0D3FF19C1D7600037CBF4 /* Address.m in Sources */,
 				B3AE0D3819C0510200149C2B /* HairfiePostSalonTypeViewController.m in Sources */,
 				15481A8D19E3EBDB00C9D7A7 /* PopUpViewController.swift in Sources */,
@@ -2280,6 +2309,7 @@
 				B3F0B22619EC1DC700E0E6EE /* NSString+PhoneFormatter.m in Sources */,
 				B345BAE919951A7E007BB61A /* OLEContainerScrollView.m in Sources */,
 				B367DC3719C9BFCA00A0452A /* FinalStepTimetableViewController.m in Sources */,
+				B3A2FEAC1A08FAAC000B839F /* README.md in Sources */,
 				B308700C198782AF0080E6D2 /* FavoriteViewController.m in Sources */,
 				711FB93E19D998730023CAD4 /* BusinessErrorReport.m in Sources */,
 				B330409519BDB21200BA6211 /* HairfieRepository.m in Sources */,

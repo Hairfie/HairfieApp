@@ -27,6 +27,7 @@
 @property (strong, nonatomic) Business *business;
 @property (strong, nonatomic) NSArray *tags;
 @property (nonatomic)         BOOL selfmade;
+@property (nonatomic)         NSString *customerEmail;
 
 
 -(id)initWithDictionary:(NSDictionary *)data;
