@@ -27,6 +27,7 @@
 @implementation HairfiePostDetailsViewController
 {
     NSMutableArray *salonTypes;
+    NSMutableArray *salonHairdressers;
     Picture *uploadedPicture;
     BOOL uploadInProgress;
     BOOL isFbShareActivated;
@@ -55,13 +56,23 @@
     _dataChoice.layer.borderColor = [UIColor lightGreyHairfie].CGColor;
     [_dataChoice setSeparatorInset:UIEdgeInsetsZero];
 
+    
+    _hairdresserTableView.hidden = YES;
+    _hairdresserTableView.layer.borderWidth = 1;
+    _hairdresserTableView.layer.borderColor = [UIColor lightGreyHairfie].CGColor;
+    [_hairdresserTableView setSeparatorInset:UIEdgeInsetsZero];
+    
     _isSalon = NO;
     _isHairdresser = NO;
     _hairdresserSubview.hidden = YES;
     _emailSubview.hidden = YES;
 
+    
+    _tagsButton.layer.cornerRadius = 5;
+    _tagsButton.layer.masksToBounds = YES;
     salonTypes = [[NSMutableArray alloc] initWithObjects:NSLocalizedStringFromTable(@"I did it", @"Post_Hairfie", nil), NSLocalizedStringFromTable(@"Hairdresser in a Salon", @"Post_Hairfie", nil), nil];
-    _tableViewHeight.constant = [salonTypes count] * _dataChoice.rowHeight;
+    _salonTableViewHeight.constant = [salonTypes count] * _dataChoice.rowHeight;
+    
     [_priceTextField textFieldWithPhoneKeyboard];
     [_descView addBottomBorderWithHeight:5 andColor:[UIColor salonDetailTab]];
      [_topView addBottomBorderWithHeight:1 andColor:[UIColor lightGrey]];
@@ -80,20 +91,21 @@
    
     if (self.hairfiePost.customerEmail.length != 0)
     {
-        NSLog(@"AHAHAHAHAHA %@", self.hairfiePost.customerEmail);
         [self.emailLabel setText:self.hairfiePost.customerEmail ];
     }
     else
     {
         [self.emailLabel setText:NSLocalizedStringFromTable(@"add email hairfie", @"Post_Hairfie", nil)];
-        
-        NSLog(@"TESt");
     }
     
     if (self.hairfiePost.tags.count != 0)
     {
-        NSLog(@"HAIRFIE TO POST TAGS %@", self.hairfiePost.tags);
+        self.tagsButton.hidden = NO;
+        NSString *tagLabel = [NSString stringWithFormat:@"(%zd) tags", self.hairfiePost.tags.count];
+        [self.tagsButton setTitle:tagLabel forState:UIControlStateNormal];
     }
+    else
+        self.tagsButton.hidden = YES;
     
     if (appDelegate.currentUser.managedBusinesses.count != 0)
     {
@@ -103,7 +115,7 @@
                 [salonTypes insertObject:business atIndex:1];
             }
         }
-        _tableViewHeight.constant = salonTypes.count * _dataChoice.rowHeight;
+        _salonTableViewHeight.constant = salonTypes.count * _dataChoice.rowHeight;
     }
     if(_salonChosen != nil) {
         _hairfiePost.business = _salonChosen;
@@ -111,9 +123,26 @@
 
     if (_hairfiePost.business != nil) {
         [_salonLabelButton setTitle:_hairfiePost.business.name forState:UIControlStateNormal];
+        if ([_hairfiePost.business.activeHairdressers count] != 0)
+            [self loadHairdressers];
+         [_hairdresserLabelButton setTitle:NSLocalizedStringFromTable(@"Who did this?", @"Post_Hairfie", nil) forState:UIControlStateNormal];
         _hairdresserSubview.hidden = NO;
     }
     [ARAnalytics pageView:@"AR - Post Hairfie step #3 - Post Detail"];
+}
+
+-(void)loadHairdressers
+{
+    salonHairdressers = [[NSMutableArray alloc] init];
+   
+    for (Hairdresser *hairdresser in _hairfiePost.business.activeHairdressers)
+    {
+        [salonHairdressers addObject:hairdresser];
+    }
+    _hairdresserTableViewHeight.constant = [salonHairdressers count] * _hairdresserTableView.rowHeight;
+    _isHairdresser = NO;
+    
+    [_hairdresserTableView reloadData];
 }
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
@@ -141,26 +170,27 @@
         _dataChoice.hidden = YES;
         _isSalon = NO;
     } else {
-        _salonOrHairdresser = YES;
         [_dataChoice reloadData];
         _dataChoice.hidden = NO;
+        _isHairdresser = NO;
+        _hairdresserTableView.hidden = YES;
         _isSalon = YES;
     }
 }
 
 -(IBAction)showHairdresserChoices:(id)sender
 {
-    [_hairfieDesc resignFirstResponder];
     if (_isHairdresser == YES) {
-        _dataChoice.hidden = YES;
+        _hairdresserTableView.hidden = YES;
         _isHairdresser = NO;
     } else {
-        _tableViewYPos.constant = 268;
-        _salonOrHairdresser = NO;
-        [_dataChoice reloadData];
-        _dataChoice.hidden = NO;
+        [_hairdresserTableView reloadData];
+        _dataChoice.hidden = YES;
+        _isSalon = NO;
+        _hairdresserTableView.hidden = NO;
         _isHairdresser = YES;
     }
+     
 }
 
 -(void)textViewDidBeginEditing:(UITextView *)textView
@@ -186,7 +216,12 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return salonTypes.count;
+    if (tableView == _dataChoice)
+        return salonTypes.count;
+    if (tableView == _hairdresserTableView)
+        return salonHairdressers.count;
+    
+    return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -198,9 +233,18 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-
-    if (_salonOrHairdresser == YES)
+    cell.textLabel.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:16];
+    cell.textLabel.textColor =
+    [UIColor colorWithRed:191/255.0f green:194/255.0f blue:199/255.0f alpha:1];
+  
+    if (tableView == self.hairdresserTableView)
     {
+        
+        Hairdresser *hairdresser = [salonHairdressers objectAtIndex:indexPath.row];
+        cell.textLabel.text = [hairdresser displayFullName];
+    }
+    else {
+   
         if (indexPath.row == salonTypes.count - 1)
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
@@ -211,19 +255,18 @@
         }
         else
             cell.textLabel.text = [salonTypes objectAtIndex:indexPath.row];
-        cell.textLabel.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:16];
-        cell.textLabel.textColor =
+            cell.textLabel.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:16];
+            cell.textLabel.textColor =
             [UIColor colorWithRed:191/255.0f green:194/255.0f blue:199/255.0f alpha:1];
-    }
-    else
-    {
-        cell.textLabel.text = [NSString stringWithFormat:@"Hairdresser %ld", indexPath.row];
+    
     }
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (tableView == _dataChoice)
+    {
     if (indexPath.row == salonTypes.count - 1)
     {
         [self performSegueWithIdentifier:@"choseSalonType" sender:self];
@@ -234,6 +277,7 @@
     {
         [_salonLabelButton setTitle:NSLocalizedStringFromTable(@"I did it", @"Post_Hairfie", nil) forState:UIControlStateNormal];
         [self showSalonsChoices:self];
+        _hairdresserSubview.hidden = YES;
         _hairfiePost.selfmade = YES;
     }
     else
@@ -241,8 +285,27 @@
         Business *business = [salonTypes objectAtIndex:indexPath.row];
          [_salonLabelButton setTitle:business.name forState:UIControlStateNormal];
         _salonChosen = business;
+        _hairfiePost.business = _salonChosen;
+        if (business.activeHairdressers.count != 0) {
+            [self loadHairdressers];
+            [_hairdresserLabelButton setTitle:NSLocalizedStringFromTable(@"Who did this?", @"Post_Hairfie", nil) forState:UIControlStateNormal];
+        }
+        else {
+            [_hairdresserLabelButton setTitle:NSLocalizedStringFromTable(@"No Hairdresser in this salon", @"Post_Hairfie", nil) forState:UIControlStateNormal];
+            _hairdresserTableViewHeight.constant = 0;
+        }
+        _hairdresserSubview.hidden = NO;
         [self showSalonsChoices:self];
         _hairfiePost.selfmade = nil;
+    }
+    }
+    else
+    {
+        Hairdresser *hairdresser = [salonHairdressers objectAtIndex:indexPath.row];
+        [_hairdresserLabelButton setTitle:[hairdresser displayFullName] forState:UIControlStateNormal];
+        _hairfiePost.hairdresser = hairdresser;
+        
+        [self showHairdresserChoices:self];
     }
 }
 
@@ -277,7 +340,6 @@
         }
         
         _hairfiePost.description = self.hairfieDesc.text;
-        _hairfiePost.hairdresserName = self.whoTextField.text;
         
         if (![self.priceTextField.text isEqualToString:@""]) {
             Money *price = [[Money alloc] initWithAmount:[NSNumber numberWithDouble:[self.priceTextField.text doubleValue]]

@@ -82,14 +82,16 @@
     if(self.description != nil) {
         [parameters setObject:self.description forKey:@"description"];
     }
-    if(self.hairdresserName != nil) {
-        [parameters setObject:self.hairdresserName forKey:@"hairdresserName"];
-    }
+  
     if(self.business != nil) {
         [parameters setObject:self.business.id forKey:@"businessId"];
     }
     if(self.selfmade == YES) {
         [parameters setObject:@true forKey:@"selfmade"];
+    }
+    if (self.hairdresser != nil)
+    {
+        [parameters setObject:self.hairdresser.id forKey:@"hairdresserId"];
     }
 
     if (self.tags != nil) {
