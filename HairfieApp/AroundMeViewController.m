@@ -11,6 +11,7 @@
 #import "CustomPinView.h"
 #import "AppDelegate.h"
 
+#import "CameraOverlayViewController.h"
 
 #import "SalonTableViewCell.h"
 #import "SalonDetailViewController.h"
@@ -321,6 +322,12 @@
     if ([segue.identifier isEqualToString:@"salonDetail"]) {
         SalonDetailViewController *salonDetail = [segue destinationViewController];
         [salonDetail setBusiness:[businesses objectAtIndex:rowSelected]];
+    }
+    if ([segue.identifier isEqualToString:@"cameraOverlay"])
+    {
+        CameraOverlayViewController *cameraOverlay= [segue destinationViewController];
+        
+        cameraOverlay.isHairfie = YES;
     }
 }
 

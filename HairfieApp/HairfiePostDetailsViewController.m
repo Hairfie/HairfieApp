@@ -75,7 +75,9 @@
         self.shareViewYPos.constant = 87;
     else
         self.shareViewYPos.constant = 177;
-  */  
+  */
+    
+   
     if (self.hairfiePost.customerEmail.length != 0)
     {
         NSLog(@"AHAHAHAHAHA %@", self.hairfiePost.customerEmail);

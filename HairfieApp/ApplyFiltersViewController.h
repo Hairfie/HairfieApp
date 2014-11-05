@@ -21,6 +21,8 @@
 
 @property (nonatomic) IBOutlet UIButton *nextBttn;
 
+@property (nonatomic) UIImage *userPicture;
+
 -(IBAction)sepia:(id)sender;
 -(IBAction)newFilter:(id)sender;
 -(IBAction)original:(id)sender;
@@ -28,6 +30,8 @@
 @property (nonatomic) IBOutlet UIButton *originalBttn;
 @property (nonatomic) IBOutlet UIButton *sepiaBttn;
 @property (nonatomic) IBOutlet UIButton *curveBttn;
+
+@property (nonatomic) BOOL isHairfie;
 
 
 @end

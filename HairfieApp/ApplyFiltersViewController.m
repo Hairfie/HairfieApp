@@ -7,6 +7,7 @@
 //
 
 #import "ApplyFiltersViewController.h"
+#import "SignUpViewController.h"
 #import "HairfiePostDetailsViewController.h"
 #import "UIImage+Filters.h"
 #import "UIButton+Style.h"
@@ -25,8 +26,13 @@
 
 -(void)viewDidLoad
 {
-    original = [self squareCropImage:_hairfiePost.picture.image ToSideLength:320];
+    
+    if(self.isHairfie == YES)
+        original = [self squareCropImage:self.hairfiePost.picture.image ToSideLength:320];
+    else
+        original = [self squareCropImage:self.userPicture ToSideLength:320];
     imageView.image = original;
+  
     output = original;
     _nextBttn.layer.cornerRadius = 5;
     NSData *imgData = [[NSData alloc] initWithData:UIImageJPEGRepresentation((original), 0.5)];
@@ -56,8 +62,19 @@
     {
         HairfiePostDetailsViewController *details = [segue destinationViewController];
         [_hairfiePost setPictureWithImage:output andContainer:@"hairfies"];
-        details.hairfiePost = _hairfiePost;
+        [details setHairfiePost:_hairfiePost];
         
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            UIImageWriteToSavedPhotosAlbum(output, nil, nil, nil);
+        });
+    }
+    if ([segue.identifier isEqualToString:@"backToSignUp"]){
+        SignUpViewController *signUp = [segue destinationViewController];
+        
+    
+        [signUp setImageFromSegue:output];
+        NSLog(@"image %@", signUp.imageFromSegue);
+       // signUp.imageFromSegue = output;
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             UIImageWriteToSavedPhotosAlbum(output, nil, nil, nil);
         });
@@ -131,6 +148,11 @@
 -(IBAction)original:(id)sender {
     imageView.image = original;
     output = original;
+}
+
+-(IBAction)backToSignUp:(id)sender
+{
+    [self performSegueWithIdentifier:@"backToSignUp" sender:self];
 }
 
 

@@ -16,6 +16,7 @@
 #import "ApplyFiltersViewController.h"
 #import "UserRepository.h"
 #import "LoginViewController.h"
+#import "CameraOverlayViewController.h"
 
 #define CUSTOM_CELL_IDENTIFIER @"hairfieCell"
 #define LOADING_CELL_IDENTIFIER @"LoadingItemCell"
@@ -114,6 +115,10 @@
     [_popViewController showInView:self.view withTitle:NSLocalizedStringFromTable(@"You just claimed your business!", @"Claim", nil) withMessage:NSLocalizedStringFromTable(@"If you want to modify it, go into the menu and select your business", @"Claim", nil) withButton:NSLocalizedStringFromTable(@"Ok", @"Claim", nil) animated:YES];
 }
 
+-(IBAction)takeHairfie:(id)sender
+{
+    [self performSegueWithIdentifier:@"cameraOverlay" sender:self];
+}
 
 -(void)viewWillDisappear:(BOOL)animated
 {
@@ -344,6 +349,13 @@
         hairfieDetail.hairfie = (Hairfie*)[hairfies objectAtIndex:hairfieRow];
 
     }
+    if ([segue.identifier isEqualToString:@"cameraOverlay"])
+    {
+        CameraOverlayViewController *cameraOverlay= [segue destinationViewController];
+    
+        cameraOverlay.isHairfie = YES;
+    }
+    
 }
 
 @end

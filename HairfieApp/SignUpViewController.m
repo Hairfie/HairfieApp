@@ -48,7 +48,7 @@
     addPictureBttn.layer.borderColor = [UIColor colorWithRed:206/255.0f green:208/255.0f blue:210/255.0f alpha:1].CGColor;
     addPictureBttn.backgroundColor = [UIColor clearColor];
     [addPictureBttn addTarget:self
-                 action:@selector(chooseCameraType)
+                 action:@selector(takePicture)
        forControlEvents:UIControlEventTouchUpInside];
     
     UILabel *addPictureLabel = [[UILabel alloc] initWithFrame:CGRectMake(130, 15, 60, 50)];
@@ -71,6 +71,9 @@
 
 -(void) viewWillAppear:(BOOL)animated {
     [ARAnalytics pageView:@"AR - Sign up"];
+    if (self.imageFromSegue != nil) {
+        [self setProfilePicture:self.imageFromSegue];
+    }
 }
 
 -(void) setUserTitle
@@ -264,129 +267,14 @@ numberOfRowsInComponent:(NSInteger)component
     [_passwordField resignFirstResponder];
 }
 
--(void)chooseCameraType
+-(void)takePicture
 {
-   
-    chooseCameraType = [[UIAlertView alloc] initWithTitle:NSLocalizedStringFromTable(@"Choose camera type", @"Login_Sign_Up", nil) message:NSLocalizedStringFromTable(@"Take picture or pick one from the saved photos", @"Login_Sign_Up", nil) delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:NSLocalizedStringFromTable(@"Camera", @"Login_Sign_Up", nil), NSLocalizedStringFromTable(@"Library", @"Login_Sign_Up", nil),nil];
-    chooseCameraType.delegate = self;
-    [chooseCameraType show];
-}
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    
-    imagePicker = [[UIImagePickerController alloc]init];
-     [imagePicker setDelegate:self];
-    if (buttonIndex == 2) {
-        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeSavedPhotosAlbum]) {
-            //_camera.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
-            imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-            imagePicker.allowsEditing = YES;
-           
-            [self presentViewController:imagePicker animated:YES completion:nil];
-        }
-    } if (buttonIndex == 1) {
-        if ([UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera]) {
-            imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-            imagePicker.cameraDevice = UIImagePickerControllerCameraDeviceRear;
-            imagePicker.showsCameraControls = NO;
-            imagePicker.allowsEditing = YES;
-            
-            imagePicker.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
-            [self initOverlayView];
-            
-            [self presentViewController:imagePicker animated:YES completion:nil];
-        }
-    }
+    [self performSegueWithIdentifier:@"cameraOverlay" sender:self];
 }
 
 
--(void) initOverlayView
+-(void)setProfilePicture:(UIImage*)image
 {
-    UIView *overlayView = [[UIView alloc] init];
-    overlayView.frame =  imagePicker.cameraOverlayView.frame;
-    UIView *navigationView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 60)];
-    navigationView.backgroundColor = [[UIColor blackHairfie] colorWithAlphaComponent:0.5];
-    UIImage *goBackImg = [UIImage imageNamed:@"arrow-nav.png"];
-    UIButton *goBackButton = [UIButton
-                              buttonWithType:UIButtonTypeCustom];
-    [goBackButton setImage:goBackImg forState:UIControlStateNormal];
-    [goBackButton addTarget:self action:@selector(cancelTakePicture) forControlEvents:UIControlEventTouchUpInside];
-    [goBackButton setFrame:CGRectMake(10, 22, 20, 20)];
-    
-    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(67, 20, 186, 23)];
-    titleLabel.text = NSLocalizedStringFromTable(@"Take a profile picture", @"Login_Sign_Up", nil);
-    titleLabel.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:18];
-    titleLabel.textAlignment = NSTextAlignmentCenter;
-    titleLabel.textColor = [UIColor whiteColor];
-    [navigationView addSubview:titleLabel];
-    [navigationView addSubview:goBackButton];
-    [overlayView addSubview:navigationView];
-    
-    
-    UIImage *takePictureImg = [UIImage imageNamed:@"take-picture-button.png"];
-    
-    UIButton *takePictureButton = [UIButton
-                                   buttonWithType:UIButtonTypeCustom];
-    [takePictureButton setImage:takePictureImg forState:UIControlStateNormal];
-    [takePictureButton addTarget:self action:@selector(snapPicture) forControlEvents:UIControlEventTouchUpInside];
-    [takePictureButton setFrame:CGRectMake(122, 401, 77, 77)];
-    
-    takePictureButton.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin;
-    UIImage *switchCameraImg = [UIImage imageNamed:@"switch-camera-button.png"];
-    
-    UIButton *switchCameraButton = [UIButton
-                                    buttonWithType:UIButtonTypeCustom];
-    [switchCameraButton setImage:switchCameraImg forState:UIControlStateNormal];
-    [switchCameraButton addTarget:self action:@selector(switchCamera) forControlEvents:UIControlEventTouchUpInside];
-    [switchCameraButton setFrame:CGRectMake(268, 75, 32, 32)];
-    
-    [overlayView addSubview:switchCameraButton];
-    [overlayView addSubview:takePictureButton];
-    
-    imagePicker.cameraOverlayView = overlayView;
-}
-
-
-- (void)switchCamera
-{
-    if (imagePicker.cameraDevice == UIImagePickerControllerCameraDeviceRear)
-    {
-        imagePicker.cameraDevice = UIImagePickerControllerCameraDeviceFront;
-    }
-    else
-    {
-        imagePicker.cameraDevice = UIImagePickerControllerCameraDeviceRear;
-    }
-}
-
--(void)snapPicture
-{
-    [imagePicker takePicture];
-}
-
--(void) cancelTakePicture
-{
-    [imagePicker dismissViewControllerAnimated:YES completion:nil];
-    
-}
-
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
-{
-    [self setProfilePicture:info];
-    [picker dismissViewControllerAnimated:YES completion:nil];
-    
-}
-
--(void)setProfilePicture:(NSDictionary*) info
-{
-    UIImage *image;
-    if([info valueForKey:UIImagePickerControllerEditedImage]) {
-        image = [info valueForKey:UIImagePickerControllerEditedImage];
-    } else {
-        image = [info valueForKey:UIImagePickerControllerOriginalImage];
-    }
-    
     [self uploadProfileImage:image];
     
     UIImageView *profilePicture = [[UIImageView alloc] initWithFrame:CGRectMake(127, 10, 66, 66)];
@@ -396,9 +284,24 @@ numberOfRowsInComponent:(NSInteger)component
     profilePicture.layer.borderWidth = 1.0f;
     profilePicture.layer.borderColor = [UIColor whiteColor].CGColor;
     profilePicture.image = image;
+   
     
     [_mainScrollView addSubview:profilePicture];
 
+}
+
+
+
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if ([segue.identifier isEqualToString:@"cameraOverlay"])
+    {
+        CameraOverlayViewController *cameraOverlay = [segue destinationViewController];
+        cameraOverlay.isHairfie = NO;
+    }
+    
+    
 }
 
 @end

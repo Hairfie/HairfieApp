@@ -216,8 +216,8 @@
 
 -(void) cancelTakePicture
 {
-    [_imagePicker dismissViewControllerAnimated:YES completion:nil];
     [self.navigationController popViewControllerAnimated:YES];
+     [_imagePicker dismissViewControllerAnimated:YES completion:nil];
 }
 
 
@@ -225,15 +225,20 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     [self SetImageTakenForSegue:info];
-
-    [self performSegueWithIdentifier:@"cameraFilters" sender:self];
+ 
+    if (self.isHairfie == YES)
+        [self performSegueWithIdentifier:@"cameraFilters" sender:self];
+    else
+        [self performSegueWithIdentifier:@"validatePicture" sender:self];
+   
     [picker dismissViewControllerAnimated:NO completion:nil];
-
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    
     [picker dismissViewControllerAnimated:NO completion:nil];
     [self.navigationController popViewControllerAnimated:YES];
+
 }
 
 
@@ -258,11 +263,19 @@
     if ([segue.identifier isEqualToString:@"cameraFilters"])
     {
         ApplyFiltersViewController *filters = [segue destinationViewController];
-
         [_hairfiePost setPictureWithImage:imageTaken andContainer:@"hairfies"];
         filters.hairfiePost = _hairfiePost;
+        filters.isHairfie = YES;
         
     }
+    if ([segue.identifier isEqualToString:@"validatePicture"])
+    {
+        ApplyFiltersViewController *filters = [segue destinationViewController];
+        
+        [filters setUserPicture:imageTaken];
+        filters.isHairfie = NO;
+    }
+    
 }
 
 @end

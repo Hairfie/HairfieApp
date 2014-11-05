@@ -32,6 +32,7 @@
 @property (nonatomic) UITapGestureRecognizer *dismiss;
 @property (nonatomic) CameraOverlayView *camera;
 @property (nonatomic) IBOutlet UIPickerView *userTitle;
+@property (nonatomic) UIImage *imageFromSegue;
 
 -(IBAction)goBack:(id)sender;
 -(IBAction)checkBox:(id)sender;

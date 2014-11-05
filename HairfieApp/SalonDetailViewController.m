@@ -597,7 +597,9 @@
         [[segue destinationViewController] setBusiness:self.business];
     } else if ([segue.identifier isEqualToString:@"postHairfie"]) {
         CameraOverlayViewController *controller = [segue destinationViewController];
+        controller.isHairfie = YES;
         controller.hairfiePost = [[HairfiePost alloc] initWithBusiness:_business];
+       
     }
     else if ([segue.identifier isEqualToString:@"showMapFromSalon"])
     {

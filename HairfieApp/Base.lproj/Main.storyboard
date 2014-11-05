@@ -675,7 +675,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <segue destination="C0A-PA-Dfl" kind="push" identifier="cameraOverlay" id="dg2-Ph-4Hs"/>
+                                            <action selector="takeHairfie:" destination="eci-2w-4CQ" eventType="touchUpInside" id="4Hf-ng-ohZ"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -774,7 +774,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="C0A-PA-Dfl" kind="push" id="V8d-QS-Qes"/>
+                                    <action selector="takeHairfie:" destination="eci-2w-4CQ" eventType="touchUpInside" id="o8R-AG-ktv"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -808,6 +808,7 @@
                         <outlet property="searchView" destination="UlN-Ro-o4h" id="Gfv-cA-ACV"/>
                         <outlet property="topBarView" destination="N5w-u2-R23" id="LGK-6x-IIn"/>
                         <segue destination="5vw-Wx-iMq" kind="push" identifier="searchFromFeed" id="4Cm-qL-flu"/>
+                        <segue destination="C0A-PA-Dfl" kind="push" identifier="cameraOverlay" id="MlL-bZ-CKF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tyk-UX-pm7" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1039,7 +1040,9 @@
                                                             <outlet property="delegate" destination="60g-nd-hW0" id="54s-39-mhm"/>
                                                         </connections>
                                                     </textView>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GIY-2G-FaB"/>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GIY-2G-FaB">
+                                                        <rect key="frame" x="197" y="15" width="114" height="109"/>
+                                                    </imageView>
                                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1DC-Gq-b8R">
                                                         <rect key="frame" x="12" y="45" width="172" height="50"/>
                                                         <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="16"/>
@@ -1901,7 +1904,7 @@
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xfm-gp-qXV">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="71"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ES7-vA-bDw">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ES7-vA-bDw" userLabel="BACK">
                                         <rect key="frame" x="0.0" y="21" width="40" height="40"/>
                                         <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                         <state key="normal" image="arrow-nav.png">
@@ -1922,14 +1925,14 @@
                                             <outlet property="delegate" destination="5vw-Wx-iMq" id="kQa-g1-mTf"/>
                                         </connections>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T84-uD-hx7">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T84-uD-hx7" userLabel="CAMERA">
                                         <rect key="frame" x="275" y="29" width="45" height="23"/>
                                         <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="15" maxY="0.0"/>
                                         <state key="normal" image="picto-take-picture.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <segue destination="C0A-PA-Dfl" kind="push" identifier="CameraOverlay" id="K9z-px-huR"/>
+                                            <segue destination="C0A-PA-Dfl" kind="push" identifier="cameraOverlay" id="K9z-px-huR"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -5244,14 +5247,14 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="7yU-V8-5Z9"/>
-        <segue reference="N5w-ND-ZjU"/>
-        <segue reference="dg2-Ph-4Hs"/>
+        <segue reference="XXf-5V-koX"/>
         <segue reference="uEN-by-6gW"/>
-        <segue reference="cG7-he-Xw7"/>
+        <segue reference="N5w-ND-ZjU"/>
+        <segue reference="K9z-px-huR"/>
+        <segue reference="7yU-V8-5Z9"/>
         <segue reference="ssq-cN-qLV"/>
+        <segue reference="cG7-he-Xw7"/>
         <segue reference="vAT-vQ-WuX"/>
-        <segue reference="6S8-Dh-Oyu"/>
         <segue reference="VGS-VM-Pwy"/>
     </inferredMetricsTieBreakers>
 </document>
