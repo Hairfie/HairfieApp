@@ -85,6 +85,8 @@
 		711FB93B19D9911E0023CAD4 /* BusinessErrorReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 711FB93A19D9911E0023CAD4 /* BusinessErrorReportViewController.m */; };
 		711FB93E19D998730023CAD4 /* BusinessErrorReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 711FB93D19D998730023CAD4 /* BusinessErrorReport.m */; };
 		712667EB19C6E67500298FF0 /* UIRoundImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 712667EA19C6E67500298FF0 /* UIRoundImageView.m */; };
+		713C8A211A0A67CB00B7B94C /* HairfieDetailBusinessTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 713C8A1F1A0A67CB00B7B94C /* HairfieDetailBusinessTableViewCell.m */; };
+		713C8A221A0A67CB00B7B94C /* HairfieDetailBusinessTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 713C8A201A0A67CB00B7B94C /* HairfieDetailBusinessTableViewCell.xib */; };
 		715290DD19FE477900C93950 /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 715290DA19FE477900C93950 /* Tag.m */; };
 		715290DE19FE477900C93950 /* TagCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 715290DC19FE477900C93950 /* TagCategory.m */; };
 		718A98B019C1EF46003CD34B /* GeoPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 718A98AF19C1EF46003CD34B /* GeoPoint.m */; };
@@ -499,6 +501,9 @@
 		711FB93D19D998730023CAD4 /* BusinessErrorReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessErrorReport.m; sourceTree = "<group>"; };
 		712667E919C6E67500298FF0 /* UIRoundImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIRoundImageView.h; sourceTree = "<group>"; };
 		712667EA19C6E67500298FF0 /* UIRoundImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIRoundImageView.m; sourceTree = "<group>"; };
+		713C8A1E1A0A67CB00B7B94C /* HairfieDetailBusinessTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HairfieDetailBusinessTableViewCell.h; sourceTree = "<group>"; };
+		713C8A1F1A0A67CB00B7B94C /* HairfieDetailBusinessTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HairfieDetailBusinessTableViewCell.m; sourceTree = "<group>"; };
+		713C8A201A0A67CB00B7B94C /* HairfieDetailBusinessTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HairfieDetailBusinessTableViewCell.xib; sourceTree = "<group>"; };
 		715290D919FE477900C93950 /* Tag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag.h; sourceTree = "<group>"; };
 		715290DA19FE477900C93950 /* Tag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tag.m; sourceTree = "<group>"; };
 		715290DB19FE477900C93950 /* TagCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagCategory.h; sourceTree = "<group>"; };
@@ -1618,6 +1623,9 @@
 				B34231651988ECF50058866B /* FriendViewController.h */,
 				B337B6F319A22B11003B0EA5 /* HairfieDetailCollectionReusableView.h */,
 				B337B6F419A22B11003B0EA5 /* HairfieDetailCollectionReusableView.m */,
+				713C8A1E1A0A67CB00B7B94C /* HairfieDetailBusinessTableViewCell.h */,
+				713C8A1F1A0A67CB00B7B94C /* HairfieDetailBusinessTableViewCell.m */,
+				713C8A201A0A67CB00B7B94C /* HairfieDetailBusinessTableViewCell.xib */,
 			);
 			name = "Hairfie Detail";
 			sourceTree = "<group>";
@@ -2103,6 +2111,7 @@
 				B342316C1988EFD20058866B /* aroundme-bttn.png in Resources */,
 				15B4972519DBEFBB00917B83 /* add-a-hairfie.jpg in Resources */,
 				15E3D2C619D075CC0065A07E /* Localizable.strings in Resources */,
+				713C8A221A0A67CB00B7B94C /* HairfieDetailBusinessTableViewCell.xib in Resources */,
 				B3923188198B9F8000E0817D /* line-separator.png in Resources */,
 				15E3D2C219D075CC0065A07E /* Around_Me.strings in Resources */,
 				B35A82A919A62F40003B1321 /* PricesTableViewCell.xib in Resources */,
@@ -2239,6 +2248,7 @@
 				B345BAEB19951A7E007BB61A /* OLESwizzling.m in Sources */,
 				B3FA620519F7AE64002D8B6F /* UILabel+Style.m in Sources */,
 				B35D112519BEFB5C00486050 /* ApplyFiltersViewController.m in Sources */,
+				713C8A211A0A67CB00B7B94C /* HairfieDetailBusinessTableViewCell.m in Sources */,
 				B36731D7198F939A00E11C56 /* SalonDetailViewController.m in Sources */,
 				B3423214198924290058866B /* AFSecurityPolicy.m in Sources */,
 				71026D1B19CAE34200994831 /* HairfieLike.m in Sources */,

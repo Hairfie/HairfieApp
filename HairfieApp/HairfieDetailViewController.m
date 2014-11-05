@@ -18,6 +18,7 @@
 #import "AppDelegate.h"
 #import "NotLoggedAlert.h"
 #import "UIRoundImageView.h"
+#import "HairfieDetailBusinessTableViewCell.h"
 
 
 @interface HairfieDetailViewController ()
@@ -50,6 +51,8 @@
 
     // Hotfix, should be better organized
     nbLike = [[UILabel alloc] init];
+
+    detailsTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     [self reloadData];
 
@@ -102,6 +105,11 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSString *infoName = displayedInfoNames[indexPath.row];
+    if ([infoName isEqualToString:@"business"]) {
+        return 100;
+    }
+
     return 43;
 }
 
@@ -129,54 +137,64 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (tableView == detailsTableView) {
-        static NSString *CellIdentifier = @"infoCell";
-        HairfieDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-
-        if (cell == nil) {
-            NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"HairfieDetailTableViewCell" owner:self options:nil];
-            cell = [nib objectAtIndex:0];
+        UITableViewCell *cell;
+        
+        NSString *infoName = displayedInfoNames[indexPath.row];
+        if ([infoName isEqualToString:@"business"]) {
+            cell = [self businessCellForTableView:tableView];
+        } else {
+            cell = [self info:infoName cellForTableView:tableView];
         }
 
-        detailsTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-
-        UIView *separatorView = [[UIView alloc] initWithFrame:CGRectMake(0, 43, 1024, 1)];
+        UIView *separatorView = [[UIView alloc] initWithFrame:CGRectMake(0, cell.frame.size.height, 1024, 1)];
         separatorView.layer.borderColor = [UIColor colorWithRed:236/255.0f green:237/255.0f  blue:237/255.0f  alpha:1].CGColor;
         separatorView.layer.borderWidth = 1.0;
         [cell.contentView addSubview:separatorView];
-
-        NSString *infoName = displayedInfoNames[indexPath.row];
-
-        if ([infoName isEqualToString:@"business"]) {
-            cell.pictoView.image = [UIImage imageNamed:@"picto-hairfie-detail-hairdresser.png"];
-            cell.contentLabel.text = self.hairfie.business.displayNameAndAddress;
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        } else if ([infoName isEqualToString:@"price"]) {
-            cell.pictoView.image = [UIImage imageNamed:@"picto-hairfie-detail-price.png"];
-            cell.userInteractionEnabled = false;
-            cell.contentLabel.text = self.hairfie.displayPrice;
-            cell.accessoryType = UITableViewCellAccessoryNone;
-        } else if ([infoName isEqualToString:@"hairdresser"]) {
-            // TODO: complete me
-        } else if ([infoName isEqualToString:@"selfMade"]) {
-            cell.pictoView.image = [UIImage imageNamed:@"picto-hairfie-detail-hairdresser.png"];
-            cell.contentLabel.text = NSLocalizedStringFromTable(@"I did it", @"Hairfie_Detail", nil);
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        }
-
-        return cell;
-    } else {
-        static NSString *CellIdentifier = @"commentCell";
-        CommentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-
-        if (cell == nil) {
-            NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"CommentTableViewCell" owner:self options:nil];
-            cell = [nib objectAtIndex:0];
-        }
+        
         return cell;
     }
     
     return nil;
+}
+
+-(UITableViewCell *)info:(NSString *)infoName cellForTableView:(UITableView *)tableView
+{
+    static NSString *CellIdentifier = @"infoCell";
+    HairfieDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    if (cell == nil) {
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"HairfieDetailTableViewCell" owner:self options:nil];
+        cell = [nib objectAtIndex:0];
+    }
+    
+    if ([infoName isEqualToString:@"price"]) {
+        cell.pictoView.image = [UIImage imageNamed:@"picto-hairfie-detail-price.png"];
+        cell.userInteractionEnabled = false;
+        cell.contentLabel.text = self.hairfie.displayPrice;
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    } else if ([infoName isEqualToString:@"hairdresser"]) {
+        // TODO: complete me
+    } else if ([infoName isEqualToString:@"selfMade"]) {
+        cell.pictoView.image = [UIImage imageNamed:@"picto-hairfie-detail-hairdresser.png"];
+        cell.contentLabel.text = NSLocalizedStringFromTable(@"I did it", @"Hairfie_Detail", nil);
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
+    
+    return cell;
+}
+
+-(UITableViewCell *)businessCellForTableView:(UITableView *)tableView
+{
+    HairfieDetailBusinessTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"businessCell"];
+    if (nil == cell) {
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"HairfieDetailBusinessTableViewCell" owner:self options:nil];
+        cell = nib[0];
+    }
+    
+    [cell setBusiness:self.hairfie.business];
+    
+    return cell;
 }
 
 // header view size
@@ -184,7 +202,17 @@
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
 {
-    float height = MAX((323 + 100 + displayedInfoNames.count * 50), (self.view.frame.size.height - _topBarView.frame.size.height + 10));
+    // TODO: find a better way to get height
+    int detailsTableHeight = 0;
+    for (NSString *infoName in displayedInfoNames) {
+        if ([infoName isEqualToString:@"business"]) {
+            detailsTableHeight = detailsTableHeight + 100;
+        } else {
+            detailsTableHeight = detailsTableHeight + 43;
+        }
+    }
+    
+    float height = MAX((330 + 100 + detailsTableHeight), (self.view.frame.size.height - _topBarView.frame.size.height + 10));
 
 
     return CGSizeMake(320, height);
