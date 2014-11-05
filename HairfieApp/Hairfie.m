@@ -26,7 +26,11 @@
 
 -(id)initWithDictionary:(NSDictionary *)data
 {
-    return (Hairfie*)[[Hairfie repository] modelWithDictionary:data];
+    self = (Hairfie*)[[Hairfie repository] modelWithDictionary:data];
+    if (self) {
+        self.selfMade = [[data objectForKey:@"selfMade"] isEqualToNumber:@1];
+    }
+    return self;
 }
 
 -(void)setDescription:(NSString *)aDescription

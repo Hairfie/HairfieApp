@@ -26,7 +26,7 @@
 @property (strong, nonatomic) Money *price;
 @property (strong, nonatomic) Business *business;
 @property (strong, nonatomic) NSArray *tags;
-@property (nonatomic)         BOOL selfmade;
+@property (nonatomic)         BOOL selfMade;
 @property (nonatomic)         NSString *customerEmail;
 
 

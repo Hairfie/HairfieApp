@@ -228,13 +228,13 @@
     {
         [self performSegueWithIdentifier:@"choseSalonType" sender:self];
         [self showSalonsChoices:self];
-        _hairfiePost.selfmade = NO;
+        _hairfiePost.selfMade = NO;
     }
     else if (indexPath.row == 0)
     {
         [_salonLabelButton setTitle:NSLocalizedStringFromTable(@"I did it", @"Post_Hairfie", nil) forState:UIControlStateNormal];
         [self showSalonsChoices:self];
-        _hairfiePost.selfmade = YES;
+        _hairfiePost.selfMade = YES;
     }
     else
     {
@@ -242,7 +242,7 @@
          [_salonLabelButton setTitle:business.name forState:UIControlStateNormal];
         _salonChosen = business;
         [self showSalonsChoices:self];
-        _hairfiePost.selfmade = nil;
+        _hairfiePost.selfMade = nil;
     }
 }
 

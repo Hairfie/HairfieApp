@@ -88,8 +88,8 @@
     if(self.business != nil) {
         [parameters setObject:self.business.id forKey:@"businessId"];
     }
-    if(self.selfmade == YES) {
-        [parameters setObject:@true forKey:@"selfmade"];
+    if(self.selfMade == YES) {
+        [parameters setObject:@true forKey:@"selfMade"];
     }
 
     if (self.tags != nil) {
