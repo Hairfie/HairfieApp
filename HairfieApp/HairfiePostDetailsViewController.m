@@ -271,7 +271,7 @@
     {
         [self performSegueWithIdentifier:@"choseSalonType" sender:self];
         [self showSalonsChoices:self];
-        _hairfiePost.selfmade = NO;
+        _hairfiePost.selfMade = NO;
     }
     else if (indexPath.row == 0)
     {
@@ -296,7 +296,7 @@
         }
         _hairdresserSubview.hidden = NO;
         [self showSalonsChoices:self];
-        _hairfiePost.selfmade = nil;
+        _hairfiePost.selfMade = nil;
     }
     }
     else

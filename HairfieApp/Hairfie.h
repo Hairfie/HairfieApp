@@ -29,6 +29,7 @@
 @property (strong, nonatomic) User *author;
 @property (strong, nonatomic) Business *business;
 @property (strong, nonatomic) NSArray *tags;
+@property (nonatomic) BOOL selfMade;
 
 +(NSString *)EVENT_SAVED;
 

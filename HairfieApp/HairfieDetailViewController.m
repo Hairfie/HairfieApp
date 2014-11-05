@@ -120,6 +120,8 @@
                       failure:^(NSError *error) {
                           NSLog(@"Failed to retrieve complete business: %@", error.localizedDescription);
                       }];
+        } else if ([infoName isEqualToString:@"selfMade"]) {
+            [self performSegueWithIdentifier:@"showUserProfile" sender:self];
         }
     }
 }
@@ -155,6 +157,11 @@
             cell.accessoryType = UITableViewCellAccessoryNone;
         } else if ([infoName isEqualToString:@"hairdresser"]) {
             // TODO: complete me
+        } else if ([infoName isEqualToString:@"selfMade"]) {
+            cell.pictoView.image = [UIImage imageNamed:@"picto-hairfie-detail-hairdresser.png"];
+            cell.contentLabel.text = NSLocalizedStringFromTable(@"I did it", @"Hairfie_Detail", nil);
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
 
         return cell;
@@ -318,6 +325,9 @@
     if (self.hairfie.business) {
         [tempDisplayedInfoNames addObject:@"business"];
     }
+    if (self.hairfie.selfMade) {
+        [tempDisplayedInfoNames addObject:@"selfMade"];
+    }
     if (nil != self.hairfie.price) {
         [tempDisplayedInfoNames addObject:@"price"];
     }
@@ -398,12 +408,12 @@
 {
     static NSString *CellIdentifier = @"hairfieRelated";
     CustomCollectionViewCell *cell = [cv dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
-
+    
     if (cell == nil) {
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"CustomCollectionViewCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
-
+    
     cell.name.text = NSLocalizedStringFromTable(@"Kimi Smith", @"Hairfie_Detail", nil);
     cell.hairfieView.image = [UIImage imageNamed:@"hairfie.jpg"];
     cell.layer.borderColor = [UIColor colorWithRed:234/255.0f green:236/255.0f blue:238/255.0f alpha:1].CGColor;
@@ -419,15 +429,10 @@
     } else if ([segue.identifier isEqualToString:@"businessDetail"]) {
         SalonDetailViewController *controller = [segue destinationViewController];
         controller.business = sender;
-    }
-    if ([segue.identifier isEqualToString:@"showUserProfile"])
-    {
-        
+    } else if ([segue.identifier isEqualToString:@"showUserProfile"]) {
         UserProfileViewController *userProfile = [segue destinationViewController];
-        
         [userProfile setUser:self.hairfie.author];
         userProfile.isCurrentUser = NO;
-
     }
 }
 
