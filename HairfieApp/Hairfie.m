@@ -53,6 +53,11 @@
     _business = [Business fromSetterValue:aBusiness];
 }
 
+-(void)setHairdresser:(Hairdresser *)anHairdresser
+{
+    _hairdresser = [Hairdresser fromSetterValue:anHairdresser];
+}
+
 -(void)setPicture:(id)aPicture
 {
     _picture = [Picture fromSetterValue:aPicture];

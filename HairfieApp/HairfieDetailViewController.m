@@ -71,6 +71,9 @@
     if (self.hairfie.business) {
         [tempDisplayedInfoNames addObject:@"business"];
     }
+    if (self.hairfie.hairdresser) {
+        [tempDisplayedInfoNames addObject:@"hairdresser"];
+    }
     if (self.hairfie.selfMade) {
         [tempDisplayedInfoNames addObject:@"selfMade"];
     }
@@ -229,9 +232,12 @@
         cell.contentLabel.text = self.hairfie.displayPrice;
         cell.accessoryType = UITableViewCellAccessoryNone;
     } else if ([infoName isEqualToString:@"hairdresser"]) {
-        // TODO: complete me
-    } else if ([infoName isEqualToString:@"selfMade"]) {
         cell.pictoView.image = [UIImage imageNamed:@"picto-hairfie-detail-hairdresser.png"];
+        cell.userInteractionEnabled = false;
+        cell.contentLabel.text = self.hairfie.hairdresser.displayFullName;
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    } else if ([infoName isEqualToString:@"selfMade"]) {
+        cell.pictoView.image = [UIImage imageNamed:@"picto-hairfie-detail-business.png"];
         cell.contentLabel.text = NSLocalizedStringFromTable(@"I did it", @"Hairfie_Detail", nil);
 
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
