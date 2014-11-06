@@ -9,12 +9,9 @@
 #import "HairfieDetailViewController.h"
 #import "SalonDetailViewController.h"
 #import "HairfieDetailTableViewCell.h"
-#import "CommentTableViewCell.h"
 #import "CustomCollectionViewCell.h"
 #import "UserProfileViewController.h"
 #import "CommentViewController.h"
-#import <LoopBack/LoopBack.h>
-#import "Hairfie.h"
 #import "AppDelegate.h"
 #import "NotLoggedAlert.h"
 #import "UIRoundImageView.h"
@@ -41,18 +38,16 @@
 {
     [super viewDidLoad];
 
-    _hairfieCollection.delegate = self;
-    _hairfieCollection.dataSource = self;
+    self.hairfieCollection.delegate = self;
+    self.hairfieCollection.dataSource = self;
 
-    [_hairfieCollection registerNib:[UINib nibWithNibName:@"CustomCollectionViewCell" bundle:nil]forCellWithReuseIdentifier:@"hairfieRelated"];
-   // [_hairfieCollection registerNib:[UINib nibWithNibName:@"HairfieDetailCollectionReusableView" bundle:nil]forCellWithReuseIdentifier:@"headerCollection"];
+    [self.hairfieCollection registerNib:[UINib nibWithNibName:@"CustomCollectionViewCell" bundle:nil]
+             forCellWithReuseIdentifier:@"hairfieRelated"];
 
     [_hairfieCollection registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView"];
 
     // Hotfix, should be better organized
     nbLike = [[UILabel alloc] init];
-
-    detailsTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     [self reloadData];
 
@@ -185,9 +180,28 @@
         } else {
             cell = [self info:infoName cellForTableView:tableView];
         }
-
-        UIView *separatorView = [[UIView alloc] initWithFrame:CGRectMake(0, cell.frame.size.height, 1024, 1)];
-        separatorView.layer.borderColor = [UIColor colorWithRed:236/255.0f green:237/255.0f  blue:237/255.0f  alpha:1].CGColor;
+        
+        BOOL first = indexPath.row == 0;
+        BOOL last = indexPath.row + 1 == displayedInfoNames.count;
+        
+        CGColorRef borderColor = [UIColor colorWithRed:236/255.0f green:237/255.0f  blue:237/255.0f  alpha:1].CGColor;
+        
+        if (first) {
+            // add top border to the first item
+            CGRect topBorderFrame = CGRectMake(0, 1, 1024, 1);
+            UIView *topBorderView = [[UIView alloc] initWithFrame:topBorderFrame];
+            topBorderView.layer.borderColor = borderColor;
+            topBorderView.layer.borderWidth = 1.0;
+            [cell.contentView addSubview:topBorderView];
+        }
+        
+        // add separator
+        CGRect separatorFrame = CGRectMake(40, cell.frame.size.height - 1, 1024, 1);
+        if (last) {
+            separatorFrame.origin.x = 0;
+        }
+        UIView *separatorView = [[UIView alloc] initWithFrame:separatorFrame];
+        separatorView.layer.borderColor = borderColor;
         separatorView.layer.borderWidth = 1.0;
         [cell.contentView addSubview:separatorView];
         
@@ -217,8 +231,13 @@
     } else if ([infoName isEqualToString:@"selfMade"]) {
         cell.pictoView.image = [UIImage imageNamed:@"picto-hairfie-detail-hairdresser.png"];
         cell.contentLabel.text = NSLocalizedStringFromTable(@"I did it", @"Hairfie_Detail", nil);
+
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+
+        // same background color for accessory  
+        UIView *backgroundView = [[UIView alloc] initWithFrame:cell.frame];
+        backgroundView.backgroundColor = cell.contentView.backgroundColor;
+        cell.backgroundView = backgroundView;
     }
     
     return cell;
@@ -233,7 +252,7 @@
     }
     
     [cell setBusiness:self.hairfie.business];
-    
+
     return cell;
 }
 
@@ -242,7 +261,7 @@
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
 {
-    float height = MAX((330 + 100 + [self infosTableHeight]), (self.view.frame.size.height - _topBarView.frame.size.height + 10));
+    float height = MAX((350 + 100 + [self infosTableHeight]), (self.view.frame.size.height - _topBarView.frame.size.height + 10));
 
     return CGSizeMake(320, height);
 }
@@ -313,19 +332,16 @@
     [borderProfile setBackgroundColor:[[UIColor blackHairfie] colorWithAlphaComponent:0.2]];
     UIRoundImageView *profilePicture = [[UIRoundImageView alloc] initWithFrame:CGRectMake(12, 2, 40, 40)];
     [profilePicture sd_setImageWithURL:[NSURL URLWithString:self.hairfie.author.thumbUrl] placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
-   
 
-    
-    
-    UIButton *usernameButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 0, 160, 30)];
+
+    UIButton *usernameButton = [[UIButton alloc] initWithFrame:CGRectMake(18, 0, 160, 30)];
     [usernameButton addTarget:self action:@selector(showProfile:) forControlEvents:UIControlEventTouchUpInside];
-    usernameButton.titleLabel.textAlignment = NSTextAlignmentRight;
     [usernameButton setTitle:self.hairfie.author.displayName forState:UIControlStateNormal];
     [usernameButton setTitleColor:[[UIColor blackHairfie] colorWithAlphaComponent:0.4] forState:UIControlStateNormal];
     usernameButton.titleLabel.font = [UIFont fontWithName:@"SourceSansPro-Light" size:18];
    // usernameButton.titleLabel.adjustsFontSizeToFitWidth = YES;
 
-    
+
     UILabel *nbHairfies = [[UILabel alloc]initWithFrame:CGRectMake(60, 30, 92, 21)];
     nbHairfies.text = self.hairfie.author.displayHairfies;
     nbHairfies.font = [UIFont fontWithName:@"SourceSansPro-Light" size:13];
@@ -360,6 +376,7 @@
     detailsTableView.delegate = self;
     detailsTableView.backgroundColor = [UIColor clearColor];
     detailsTableView.scrollEnabled = NO;
+    detailsTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 
     [collectionHeaderView addSubview:hairfieView];
     [collectionHeaderView addSubview:hairfieDetailView];
