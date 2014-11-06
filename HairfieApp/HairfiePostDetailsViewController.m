@@ -278,8 +278,7 @@
         [_salonLabelButton setTitle:NSLocalizedStringFromTable(@"I did it", @"Post_Hairfie", nil) forState:UIControlStateNormal];
         [self showSalonsChoices:self];
         _hairdresserSubview.hidden = YES;
-        _hairfiePost.selfMadecd cd
-        = YES;
+        _hairfiePost.selfMade = YES;
     }
     else
     {
