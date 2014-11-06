@@ -296,7 +296,7 @@
         }
         _hairdresserSubview.hidden = NO;
         [self showSalonsChoices:self];
-        _hairfiePost.selfMade = nil;
+        _hairfiePost.selfMade = NO;
     }
     }
     else
