@@ -204,7 +204,9 @@
         separatorView.layer.borderColor = borderColor;
         separatorView.layer.borderWidth = 1.0;
         [cell.contentView addSubview:separatorView];
-        
+
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
         return cell;
     }
     
