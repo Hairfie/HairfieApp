@@ -58,9 +58,33 @@
 
     self.headerTitleLabel.text = [NSString stringWithFormat:@"%@'s Hairfie", self.hairfie.author.firstName];
      [_topBarView addBottomBorderWithHeight:1.0 andColor:[UIColor lightGrey]];
+
     menuActions = @[
-                    @{@"label": NSLocalizedStringFromTable(@"Report content", @"Hairfie_Detail",nil), @"segue": @"reportContent"}
-                    ];
+        @{
+            @"label": NSLocalizedStringFromTable(@"Report content", @"Hairfie_Detail",nil),
+            @"segue": @"reportContent"
+        }
+    ];
+}
+
+-(void)reloadData
+{
+    nbLike.text = [self.hairfie displayNumLikes];
+    
+    // calculate infos to be displayed
+    NSMutableArray *tempDisplayedInfoNames = [[NSMutableArray alloc] init];
+    if (self.hairfie.business) {
+        [tempDisplayedInfoNames addObject:@"business"];
+    }
+    if (self.hairfie.selfMade) {
+        [tempDisplayedInfoNames addObject:@"selfMade"];
+    }
+    if (nil != self.hairfie.price) {
+        [tempDisplayedInfoNames addObject:@"price"];
+    }
+    displayedInfoNames = [[NSArray alloc] initWithArray:tempDisplayedInfoNames];
+    
+    detailsTableView.hidden = (0 == displayedInfoNames.count);
 }
 
 -(IBAction)showMenuActionSheet:(id)sender
@@ -106,11 +130,27 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *infoName = displayedInfoNames[indexPath.row];
+    
+    return [self heightForRowWithInfo:infoName];
+}
+
+-(CGFloat)heightForRowWithInfo:(NSString *)infoName
+{
     if ([infoName isEqualToString:@"business"]) {
         return 100;
     }
-
+    
     return 43;
+}
+
+-(CGFloat)infosTableHeight
+{
+    CGFloat height = 0;
+    for (NSString *infoName in displayedInfoNames) {
+        height = height + [self heightForRowWithInfo:infoName];
+    }
+    
+    return height;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -202,18 +242,7 @@
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
 {
-    // TODO: find a better way to get height
-    int detailsTableHeight = 0;
-    for (NSString *infoName in displayedInfoNames) {
-        if ([infoName isEqualToString:@"business"]) {
-            detailsTableHeight = detailsTableHeight + 100;
-        } else {
-            detailsTableHeight = detailsTableHeight + 43;
-        }
-    }
-    
-    float height = MAX((330 + 100 + detailsTableHeight), (self.view.frame.size.height - _topBarView.frame.size.height + 10));
-
+    float height = MAX((330 + 100 + [self infosTableHeight]), (self.view.frame.size.height - _topBarView.frame.size.height + 10));
 
     return CGSizeMake(320, height);
 }
@@ -342,26 +371,6 @@
 -(IBAction)showProfile:(id)sender
 {
     [self performSegueWithIdentifier:@"showUserProfile" sender:self];
-}
-
--(void)reloadData
-{
-    nbLike.text = [self.hairfie displayNumLikes];
-
-    // calculate infos to be displayed
-    NSMutableArray *tempDisplayedInfoNames = [[NSMutableArray alloc] init];
-    if (self.hairfie.business) {
-        [tempDisplayedInfoNames addObject:@"business"];
-    }
-    if (self.hairfie.selfMade) {
-        [tempDisplayedInfoNames addObject:@"selfMade"];
-    }
-    if (nil != self.hairfie.price) {
-        [tempDisplayedInfoNames addObject:@"price"];
-    }
-    displayedInfoNames = [[NSArray alloc] initWithArray:tempDisplayedInfoNames];
-
-    detailsTableView.hidden = (0 == displayedInfoNames.count);
 }
 
 -(void)likeButtonHandler:(id)sender
