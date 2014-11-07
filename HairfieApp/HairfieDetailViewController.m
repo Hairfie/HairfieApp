@@ -17,6 +17,7 @@
 #import "UIRoundImageView.h"
 #import "HairfieDetailBusinessTableViewCell.h"
 #import "InstagramSharer.h"
+#import <Social/Social.h>
 
 @interface HairfieDetailViewController ()
 
@@ -56,6 +57,14 @@
      [_topBarView addBottomBorderWithHeight:1.0 andColor:[UIColor lightGrey]];
 
     menuActions = @[
+        @{
+            @"label": NSLocalizedStringFromTable(@"Tweet", @"Hairfie_Detail", nil),
+            @"share": @"twitter"
+        },
+        @{
+            @"label": NSLocalizedStringFromTable(@"Share on Facebook", @"Hairfie_Detail", nil),
+            @"share": @"facebook"
+        },
         @{
             @"label": NSLocalizedStringFromTable(@"Post on Instagram", @"Hairfie_Detail", nil),
             @"share": @"instagram"
@@ -117,6 +126,10 @@
         [self performSegueWithIdentifier:[menuActions[buttonIndex - 1] objectForKey:@"segue"] sender:self];
     } else if ([shareName isEqualToString:@"instagram"]) {
         [self shareOnInstagram];
+    } else if ([shareName isEqualToString:@"twitter"]) {
+        [self shareOnTwitter];
+    } else if ([shareName isEqualToString:@"facebook"]) {
+        [self shareOnFacebook];
     }
 }
 
@@ -135,6 +148,32 @@
                                                   failure:^(NSError *error) {
                                                       NSLog(@"Failed to share on Instagram: %@", error.localizedDescription);
                                                   }];
+}
+
+-(void)shareOnTwitter
+{
+    if (![SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]) {
+        NSLog(@"Twitter social service not available");
+        return;
+    }
+    
+    SLComposeViewController *vc = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
+    [vc addURL:self.hairfie.landingPageUrl];
+
+    [self presentViewController:vc animated:YES completion:nil];
+}
+
+-(void)shareOnFacebook
+{
+    if (![SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]) {
+        NSLog(@"Facebook social service not available");
+        return;
+    }
+    
+    SLComposeViewController *vc = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
+    [vc addURL:self.hairfie.landingPageUrl];
+    
+    [self presentViewController:vc animated:YES completion:nil];
 }
 
 -(UIViewController *)documentInteractionControllerViewControllerForPreview:(UIDocumentInteractionController *)controller

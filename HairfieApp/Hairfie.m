@@ -12,6 +12,7 @@
 #import "AppDelegate.h"
 #import "SetterUtils.h"
 #import "DateUtils.h"
+#import "URLUtils.h"
 #import "Tag.h"
 #import "NSDate+TimeAgo.h"
 
@@ -66,6 +67,11 @@
 -(void)setPrice:(id)aPrice
 {
     _price = [Money fromSetterValue:aPrice];
+}
+
+-(void)setLandingPageUrl:(id)landingPageUrl
+{
+    _landingPageUrl = [URLUtils URLFromSetterValue:landingPageUrl];
 }
 
 -(void)setCreatedAt:(id)aDate

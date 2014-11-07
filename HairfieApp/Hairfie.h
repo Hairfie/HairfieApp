@@ -30,6 +30,7 @@
 @property (strong, nonatomic) Business *business;
 @property (strong, nonatomic) NSArray *tags;
 @property (nonatomic) BOOL selfMade;
+@property (strong, nonatomic) NSURL *landingPageUrl;
 
 +(NSString *)EVENT_SAVED;
 
@@ -43,7 +44,7 @@
 -(NSString *)displayNumComments;
 -(NSAttributedString *)displayDescAndTags;
 -(NSString *)displayShortDate;
--(NSString*)displayTimeAgo;
+-(NSString *)displayTimeAgo;
 
 +(void)listLatest:(NSNumber *)limit
              skip:(NSNumber *)skip

@@ -90,6 +90,7 @@
 		715290DD19FE477900C93950 /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 715290DA19FE477900C93950 /* Tag.m */; };
 		715290DE19FE477900C93950 /* TagCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 715290DC19FE477900C93950 /* TagCategory.m */; };
 		7164B56A1A0D1D4B002B68E5 /* InstagramSharer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7164B5691A0D1D4B002B68E5 /* InstagramSharer.m */; };
+		7164B56D1A0D380F002B68E5 /* URLUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 7164B56C1A0D380F002B68E5 /* URLUtils.m */; };
 		718A98B019C1EF46003CD34B /* GeoPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 718A98AF19C1EF46003CD34B /* GeoPoint.m */; };
 		718B6B7819C831E200F2F8EF /* picto-hairfie-liked.png in Resources */ = {isa = PBXBuildFile; fileRef = 718B6B7719C831E200F2F8EF /* picto-hairfie-liked.png */; };
 		718B6B7A19C8339000F2F8EF /* picto-hairfie-detail-liked.png in Resources */ = {isa = PBXBuildFile; fileRef = 718B6B7919C8339000F2F8EF /* picto-hairfie-detail-liked.png */; };
@@ -511,6 +512,8 @@
 		715290DC19FE477900C93950 /* TagCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagCategory.m; sourceTree = "<group>"; };
 		7164B5681A0D1D4B002B68E5 /* InstagramSharer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstagramSharer.h; sourceTree = "<group>"; };
 		7164B5691A0D1D4B002B68E5 /* InstagramSharer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstagramSharer.m; sourceTree = "<group>"; };
+		7164B56B1A0D380F002B68E5 /* URLUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLUtils.h; sourceTree = "<group>"; };
+		7164B56C1A0D380F002B68E5 /* URLUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URLUtils.m; sourceTree = "<group>"; };
 		718A98AE19C1EF46003CD34B /* GeoPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeoPoint.h; sourceTree = "<group>"; };
 		718A98AF19C1EF46003CD34B /* GeoPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeoPoint.m; sourceTree = "<group>"; };
 		718B6B7719C831E200F2F8EF /* picto-hairfie-liked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "picto-hairfie-liked.png"; sourceTree = "<group>"; };
@@ -1095,6 +1098,8 @@
 				158FCA8219FA3DCF0001F86C /* SetterUtils.m */,
 				158FCA7E19FA3DA10001F86C /* DateUtils.h */,
 				158FCA7F19FA3DA10001F86C /* DateUtils.m */,
+				7164B56B1A0D380F002B68E5 /* URLUtils.h */,
+				7164B56C1A0D380F002B68E5 /* URLUtils.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -2307,6 +2312,7 @@
 				B308700C198782AF0080E6D2 /* FavoriteViewController.m in Sources */,
 				711FB93E19D998730023CAD4 /* BusinessErrorReport.m in Sources */,
 				B330409519BDB21200BA6211 /* HairfieRepository.m in Sources */,
+				7164B56D1A0D380F002B68E5 /* URLUtils.m in Sources */,
 				71A0AC3D19CC2CEA00BC1ABB /* Timetable.m in Sources */,
 				B3844E3719FE65E40083CE0D /* AddTagsToHairfieViewController.m in Sources */,
 				B36AC50A19DC27B000B8AC13 /* Hairdresser.m in Sources */,
