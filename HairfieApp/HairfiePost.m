@@ -89,6 +89,9 @@
     if(self.selfMade == YES) {
         [parameters setObject:@true forKey:@"selfMade"];
     }
+    if(self.customerEmail != nil) {
+        [parameters setObject:self.customerEmail forKey:@"customerEmail"];
+    }
     if (self.hairdresser != nil)
     {
         [parameters setObject:self.hairdresser.id forKey:@"hairdresserId"];
