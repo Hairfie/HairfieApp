@@ -1765,6 +1765,16 @@
                                         <color key="textColor" red="0.41176470590000003" green="0.4431372549" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2EN-Fn-XdJ" userLabel="Menu">
+                                        <rect key="frame" x="277" y="20" width="35" height="35"/>
+                                        <inset key="contentEdgeInsets" minX="8" minY="15" maxX="8" maxY="15"/>
+                                        <state key="normal" image="picto-menu-point-dark.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="showMenuActionSheet:" destination="wuV-Ro-JC1" eventType="touchDown" id="fQn-rM-dNY"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
@@ -5270,14 +5280,14 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="K9z-px-huR"/>
-        <segue reference="uEN-by-6gW"/>
-        <segue reference="N5w-ND-ZjU"/>
-        <segue reference="7yU-V8-5Z9"/>
-        <segue reference="LOg-O4-mCP"/>
-        <segue reference="cG7-he-Xw7"/>
-        <segue reference="ssq-cN-qLV"/>
         <segue reference="vAT-vQ-WuX"/>
         <segue reference="VGS-VM-Pwy"/>
+        <segue reference="2ml-IS-A8f"/>
+        <segue reference="LOg-O4-mCP"/>
+        <segue reference="PSz-m0-val"/>
+        <segue reference="ssq-cN-qLV"/>
+        <segue reference="cG7-he-Xw7"/>
+        <segue reference="N5w-ND-ZjU"/>
+        <segue reference="uEN-by-6gW"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -10,7 +10,7 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "Hairfie.h"
 
-@interface HairfieDetailViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate>
+@interface HairfieDetailViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, UIDocumentInteractionControllerDelegate>
 
 @property (nonatomic) IBOutlet UILabel *headerTitleLabel;
 @property (nonatomic) IBOutlet UICollectionView *hairfieCollection;
