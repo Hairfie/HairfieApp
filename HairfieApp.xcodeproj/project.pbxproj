@@ -89,6 +89,7 @@
 		713C8A221A0A67CB00B7B94C /* HairfieDetailBusinessTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 713C8A201A0A67CB00B7B94C /* HairfieDetailBusinessTableViewCell.xib */; };
 		715290DD19FE477900C93950 /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 715290DA19FE477900C93950 /* Tag.m */; };
 		715290DE19FE477900C93950 /* TagCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 715290DC19FE477900C93950 /* TagCategory.m */; };
+		7164B56A1A0D1D4B002B68E5 /* InstagramSharer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7164B5691A0D1D4B002B68E5 /* InstagramSharer.m */; };
 		718A98B019C1EF46003CD34B /* GeoPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 718A98AF19C1EF46003CD34B /* GeoPoint.m */; };
 		718B6B7819C831E200F2F8EF /* picto-hairfie-liked.png in Resources */ = {isa = PBXBuildFile; fileRef = 718B6B7719C831E200F2F8EF /* picto-hairfie-liked.png */; };
 		718B6B7A19C8339000F2F8EF /* picto-hairfie-detail-liked.png in Resources */ = {isa = PBXBuildFile; fileRef = 718B6B7919C8339000F2F8EF /* picto-hairfie-detail-liked.png */; };
@@ -508,6 +509,8 @@
 		715290DA19FE477900C93950 /* Tag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tag.m; sourceTree = "<group>"; };
 		715290DB19FE477900C93950 /* TagCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagCategory.h; sourceTree = "<group>"; };
 		715290DC19FE477900C93950 /* TagCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagCategory.m; sourceTree = "<group>"; };
+		7164B5681A0D1D4B002B68E5 /* InstagramSharer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstagramSharer.h; sourceTree = "<group>"; };
+		7164B5691A0D1D4B002B68E5 /* InstagramSharer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstagramSharer.m; sourceTree = "<group>"; };
 		718A98AE19C1EF46003CD34B /* GeoPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeoPoint.h; sourceTree = "<group>"; };
 		718A98AF19C1EF46003CD34B /* GeoPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeoPoint.m; sourceTree = "<group>"; };
 		718B6B7719C831E200F2F8EF /* picto-hairfie-liked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "picto-hairfie-liked.png"; sourceTree = "<group>"; };
@@ -938,6 +941,7 @@
 		1511518D1982B7A8001157A2 /* HairfieApp */ = {
 			isa = PBXGroup;
 			children = (
+				7164B5621A0D0EF2002B68E5 /* Share */,
 				153E1FB119B4A97600DEC95D /* Repositories */,
 				15CE407019B0E7670088FEA7 /* Authentication */,
 				B3C45BD3199A49F0000E6C8E /* Camera Overlay View */,
@@ -1184,6 +1188,15 @@
 				A6DB14BC5D0FF868CC1541B5 /* Pods-HairfieAppTests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		7164B5621A0D0EF2002B68E5 /* Share */ = {
+			isa = PBXGroup;
+			children = (
+				7164B5681A0D1D4B002B68E5 /* InstagramSharer.h */,
+				7164B5691A0D1D4B002B68E5 /* InstagramSharer.m */,
+			);
+			name = Share;
 			sourceTree = "<group>";
 		};
 		B3087010198782CF0080E6D2 /* Pages */ = {
@@ -2277,6 +2290,7 @@
 				B3CCE7781998B6CA00067DB9 /* HairfieDetailViewController.m in Sources */,
 				B3615B3219AF1CC800F1141D /* TPKeyboardAvoidingScrollView.m in Sources */,
 				B367DC3A19C9C42600A0452A /* FinalStepViewController.m in Sources */,
+				7164B56A1A0D1D4B002B68E5 /* InstagramSharer.m in Sources */,
 				151151941982B7A8001157A2 /* AppDelegate.m in Sources */,
 				15A50D9D19CC6FAC0043BFB4 /* NotLoggedAlert.m in Sources */,
 				B3AD59B7198B9A3700909ADE /* SalonTableViewCell.m in Sources */,

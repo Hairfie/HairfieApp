@@ -16,7 +16,7 @@
 #import "NotLoggedAlert.h"
 #import "UIRoundImageView.h"
 #import "HairfieDetailBusinessTableViewCell.h"
-
+#import "InstagramSharer.h"
 
 @interface HairfieDetailViewController ()
 
@@ -32,6 +32,7 @@
     UIImageView *likeView;
     NSArray *displayedInfoNames;
     NSArray *menuActions;
+    UIDocumentInteractionController *documentController;
 }
 
 - (void)viewDidLoad
@@ -56,9 +57,13 @@
 
     menuActions = @[
         @{
+            @"label": NSLocalizedStringFromTable(@"Post on Instagram", @"Hairfie_Detail", nil),
+            @"share": @"instagram"
+        }/*,
+        @{
             @"label": NSLocalizedStringFromTable(@"Report content", @"Hairfie_Detail",nil),
             @"segue": @"reportContent"
-        }
+        }*/
     ];
 }
 
@@ -98,6 +103,43 @@
     }
     
     [actionSheet showInView:self.view];
+}
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (0 == buttonIndex) return; // it's the cancel button
+
+    NSDictionary *action = menuActions[buttonIndex - 1];
+    NSString *segueName = [action objectForKey:@"segue"];
+    NSString *shareName = [action objectForKey:@"share"];
+
+    if (nil != segueName) {
+        [self performSegueWithIdentifier:[menuActions[buttonIndex - 1] objectForKey:@"segue"] sender:self];
+    } else if ([shareName isEqualToString:@"instagram"]) {
+        [self shareOnInstagram];
+    }
+}
+
+-(void)shareOnInstagram
+{
+    NSURL *imageURL = [NSURL URLWithString:[self.hairfie.picture urlWithWidth:@620 height:@620]];
+
+    [InstagramSharer interactionControllerForImageWithURL:imageURL
+                                                  success:^(UIDocumentInteractionController *dic) {
+                                                      // we need to store it as instance variable to retain it
+                                                      documentController = dic;
+                                                      [documentController presentOpenInMenuFromRect:CGRectMake(0, 0, 0, 0)
+                                                                                             inView:self.view
+                                                                                           animated:YES];
+                                                  }
+                                                  failure:^(NSError *error) {
+                                                      NSLog(@"Failed to share on Instagram: %@", error.localizedDescription);
+                                                  }];
+}
+
+-(UIViewController *)documentInteractionControllerViewControllerForPreview:(UIDocumentInteractionController *)controller
+{
+    return self;
 }
 
 -(void)viewWillAppear:(BOOL)animated
