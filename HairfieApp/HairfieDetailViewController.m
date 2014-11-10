@@ -153,27 +153,39 @@
 -(void)shareOnTwitter
 {
     if (![SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]) {
-        NSLog(@"Twitter social service not available");
-        return;
-    }
-    
-    SLComposeViewController *vc = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
-    [vc addURL:self.hairfie.landingPageUrl];
+        NSString *message = NSLocalizedStringFromTable(@"It seems that we cannot talk to Twitter at the moment or you have not yet added your Twitter account to this device.", @"Hairfie_Detail", nil);
+        
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Oops"
+                                                            message:message
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"Ok"
+                                                  otherButtonTitles:nil];
+        [alertView show];
+    } else {
+        SLComposeViewController *vc = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
+        [vc addURL:self.hairfie.landingPageUrl];
 
-    [self presentViewController:vc animated:YES completion:nil];
+        [self presentViewController:vc animated:YES completion:nil];
+    }
 }
 
 -(void)shareOnFacebook
 {
     if (![SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]) {
-        NSLog(@"Facebook social service not available");
-        return;
+        NSString *message = NSLocalizedStringFromTable(@"It seems that we cannot talk to Facebook at the moment or you have not yet added your Facebook account to this device.", @"Hairfie_Detail", nil);
+        
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Oops"
+                                                            message:message
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"Ok"
+                                                  otherButtonTitles:nil];
+        [alertView show];
+    } else {
+        SLComposeViewController *vc = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
+        [vc addURL:self.hairfie.landingPageUrl];
+    
+        [self presentViewController:vc animated:YES completion:nil];
     }
-    
-    SLComposeViewController *vc = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
-    [vc addURL:self.hairfie.landingPageUrl];
-    
-    [self presentViewController:vc animated:YES completion:nil];
 }
 
 -(UIViewController *)documentInteractionControllerViewControllerForPreview:(UIDocumentInteractionController *)controller

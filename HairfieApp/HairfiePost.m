@@ -49,7 +49,7 @@
     [self.picture uploadWithSuccess:aSuccessHandler failure:aFailureHandler];
 }
 
--(void)saveWithSuccess:(void(^)())aSuccessHandler
+-(void)saveWithSuccess:(void(^)(Hairfie *hairfie))aSuccessHandler
                failure:(void(^)(NSError *error))aFailureHandler
 {
     // TODO: move hairfie save to Hairfie class
@@ -62,13 +62,13 @@
         if(self.shareOnFB) {
             Hairfie *newHairfie = [[Hairfie alloc] initWithDictionary:result];
             [HairfieShare shareHairfie:newHairfie.id success:^{
-                aSuccessHandler();
+                aSuccessHandler(hairfie);
             } failure:^(NSError *error) {
                 NSLog(@"Error : %@", error.description);
-                aSuccessHandler();
+                aSuccessHandler(hairfie);
             }];
         } else {
-            aSuccessHandler();
+            aSuccessHandler(hairfie);
         }
     };
     
