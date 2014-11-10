@@ -34,6 +34,7 @@
     NSArray *displayedInfoNames;
     NSArray *menuActions;
     UIDocumentInteractionController *documentController;
+    UILabel *priceLabel;
 }
 
 - (void)viewDidLoad
@@ -79,8 +80,7 @@
 -(void)reloadData
 {
     nbLike.text = [self.hairfie displayNumLikes];
-    
-    // calculate infos to be displayed
+      // calculate infos to be displayed
     NSMutableArray *tempDisplayedInfoNames = [[NSMutableArray alloc] init];
     if (self.hairfie.business) {
         [tempDisplayedInfoNames addObject:@"business"];
@@ -387,6 +387,20 @@
     [likeButton setImage:[UIImage imageNamed:@"picto-hairfie-detail-like.png"] forState:UIControlStateNormal];
     [likeButton addTarget:self action:@selector(likeButtonHandler:) forControlEvents:UIControlEventTouchUpInside];
     
+    UIView *priceBg =[[UIView alloc] initWithFrame:CGRectMake(10, 10, 40, 40)];
+    priceBg.layer.cornerRadius = priceBg.frame.size.height / 2;
+    priceBg.clipsToBounds = YES;
+    priceBg.backgroundColor = [UIColor salonDetailTab];
+    
+    priceLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 15, 40, 30)];
+    priceLabel.font = [UIFont fontWithName:@"SourceSansPro-Light" size:18];
+    priceLabel.textColor = [UIColor whiteColor];
+    priceLabel.textAlignment = NSTextAlignmentCenter;
+   
+    priceLabel.minimumScaleFactor = 0.5;
+    priceLabel.adjustsFontSizeToFitWidth = YES;
+    priceLabel.text = [self.hairfie displayPrice];
+
     hairfieImageView.userInteractionEnabled = YES;
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleTap:)];
     tapGesture.numberOfTapsRequired = 2;
@@ -412,7 +426,10 @@
     [hairfieView addSubview:hairfieImageView];
     [hairfieView addSubview:likeButton];
     [hairfieView addSubview:nbLike];
-
+    
+    if (self.hairfie.price != nil)
+        [hairfieView addSubview:priceBg];
+        [hairfieView addSubview:priceLabel];
     // HAIRFIE DETAIL
 
     hairfieDetailView = [[UIView alloc] initWithFrame:CGRectMake(0, 333, 320, 100)];

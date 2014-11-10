@@ -427,9 +427,9 @@
 
 
 -(IBAction)fbShare:(id)sender {
+    
     if(isFbShareActivated) {
         [sender setImage:[UIImage imageNamed:@"fb-share-off.png"] forState:UIControlStateNormal];
-
         isFbShareActivated = NO;
         _hairfiePost.shareOnFB = NO;
     } else {
