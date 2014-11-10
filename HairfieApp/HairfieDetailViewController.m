@@ -404,7 +404,7 @@
     priceBg.clipsToBounds = YES;
     priceBg.backgroundColor = [UIColor salonDetailTab];
     
-    priceLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 15, 40, 30)];
+    priceLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 15, 30, 30)];
     priceLabel.font = [UIFont fontWithName:@"SourceSansPro-Light" size:18];
     priceLabel.textColor = [UIColor whiteColor];
     priceLabel.textAlignment = NSTextAlignmentCenter;
@@ -442,6 +442,7 @@
     if (self.hairfie.price != nil)
         [hairfieView addSubview:priceBg];
         [hairfieView addSubview:priceLabel];
+   
     // HAIRFIE DETAIL
 
     hairfieDetailView = [[UIView alloc] initWithFrame:CGRectMake(0, 333, 320, 100)];
