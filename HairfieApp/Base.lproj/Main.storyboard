@@ -1257,10 +1257,10 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rSe-a6-aw5" userLabel="Share buttons">
-                                                        <rect key="frame" x="80" y="50" width="160" height="30"/>
+                                                        <rect key="frame" x="120" y="50" width="70" height="30"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yet-bx-XB9" userLabel="FB">
-                                                                <rect key="frame" x="65" y="0.0" width="30" height="30"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="30" id="AjV-pQ-mki"/>
                                                                     <constraint firstAttribute="width" constant="30" id="H6a-jz-UoI"/>
@@ -1272,11 +1272,21 @@
                                                                     <action selector="fbShare:" destination="60g-nd-hW0" eventType="touchUpInside" id="kJ0-3d-olU"/>
                                                                 </connections>
                                                             </button>
+                                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lod-Pe-9Wu" userLabel="Twitter">
+                                                                <rect key="frame" x="40" y="0.0" width="115" height="60"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="30" id="KT2-sz-Yv8"/>
+                                                                    <constraint firstAttribute="width" constant="30" id="NZo-xq-dKE"/>
+                                                                </constraints>
+                                                                <state key="normal" title="Button" image="twitter-share-off.png">
+                                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                                </state>
+                                                                <connections>
+                                                                    <action selector="twitterShare:" destination="60g-nd-hW0" eventType="touchUpInside" id="CXJ-DD-a7R"/>
+                                                                </connections>
+                                                            </button>
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="centerX" secondItem="Yet-bx-XB9" secondAttribute="centerX" id="5IJ-4D-mO0"/>
-                                                        </constraints>
                                                     </view>
                                                 </subviews>
                                                 <constraints>
@@ -1284,6 +1294,7 @@
                                                     <constraint firstAttribute="trailing" secondItem="kWo-Wz-VZI" secondAttribute="trailing" constant="10" id="NtR-om-04u"/>
                                                     <constraint firstItem="rSe-a6-aw5" firstAttribute="top" secondItem="oyF-yb-8ea" secondAttribute="bottom" constant="15" id="fr9-Yt-i43"/>
                                                     <constraint firstAttribute="centerX" secondItem="kWo-Wz-VZI" secondAttribute="centerX" id="pJ9-Hh-frd"/>
+                                                    <constraint firstAttribute="centerX" secondItem="rSe-a6-aw5" secondAttribute="centerX" constant="5" id="s9Z-ia-dmu"/>
                                                     <constraint firstItem="kWo-Wz-VZI" firstAttribute="centerX" secondItem="oyF-yb-8ea" secondAttribute="centerX" id="tgs-ab-kn7"/>
                                                     <constraint firstItem="kWo-Wz-VZI" firstAttribute="leading" secondItem="vCq-Ny-suf" secondAttribute="leading" constant="10" id="vLi-Em-YNd"/>
                                                 </constraints>
@@ -1377,6 +1388,7 @@
                         <outlet property="salonTableViewHeight" destination="zBQ-hH-hcB" id="Ir5-v8-5Rs"/>
                         <outlet property="tagsButton" destination="cSR-b8-POc" id="Ydx-BM-VbT"/>
                         <outlet property="topView" destination="TQK-UT-z3v" id="Nu4-Nq-Vxi"/>
+                        <outlet property="twitterShareButton" destination="Lod-Pe-9Wu" id="wQJ-Sl-YtX"/>
                         <segue destination="8ER-eF-RXx" kind="push" identifier="choseSalonType" id="KDo-Hs-2DW"/>
                         <segue destination="eci-2w-4CQ" kind="push" identifier="toHome" id="N5w-ND-ZjU"/>
                         <segue destination="5Jc-DC-T4C" kind="push" identifier="addTagsToHairfie" id="vMC-hw-Qfr"/>
@@ -5277,6 +5289,7 @@
         <image name="tab-business-infos.png" width="80" height="55"/>
         <image name="tab-business-prices.png" width="80" height="55"/>
         <image name="take-picture-button.png" width="153" height="153"/>
+        <image name="twitter-share-off.png" width="60" height="60"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

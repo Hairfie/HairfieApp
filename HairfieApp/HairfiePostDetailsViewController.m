@@ -20,6 +20,7 @@
 #import "AddTagsToHairfieViewController.h"
 #import "PostHairfieEmailViewController.h"
 #import <LoopBack/LoopBack.h>
+#import <Social/Social.h>"
 
 #define OVERLAY_TAG 99
 
@@ -133,6 +134,9 @@
          [_hairdresserLabelButton setTitle:NSLocalizedStringFromTable(@"Who did this?", @"Post_Hairfie", nil) forState:UIControlStateNormal];
         _hairdresserSubview.hidden = NO;
     }
+
+    [self refreshTwitterShareButton];
+
     [ARAnalytics pageView:@"AR - Post Hairfie step #3 - Post Detail"];
 }
 
@@ -365,11 +369,22 @@
             [self showUploadFailedAlertView];
 
         };
-        void (^loadSuccessBlock)(void) = ^(void){
+        void (^loadSuccessBlock)(Hairfie *) = ^(Hairfie *hairfie){
             NSLog(@"Hairfie Posté");
             [self removeSpinnerAndOverlay];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"currentUser" object:self];
-            [self performSegueWithIdentifier:@"toHome" sender:self];
+
+            if (self.hairfiePost.shareOnTwitter) {
+                SLComposeViewController *vc = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
+                [vc addURL:hairfie.landingPageUrl];
+                vc.completionHandler = ^(SLComposeViewControllerResult result) {
+                    [self performSegueWithIdentifier:@"toHome" sender:self];
+                };
+
+                [self presentViewController:vc animated:YES completion:nil];
+            } else {
+                [self performSegueWithIdentifier:@"toHome" sender:self];
+            }
         };
         [_hairfiePost saveWithSuccess:loadSuccessBlock failure:loadErrorBlock];
     } else {
@@ -447,6 +462,37 @@
             NSLog(@"Sharing failed !");
         }];
 
+    }
+}
+
+-(IBAction)twitterShare:(id)sender
+{
+    if (!self.hairfiePost.shareOnTwitter) {
+        if (![SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]) {
+            NSString *message = NSLocalizedStringFromTable(@"It seems that we cannot talk to Facebook at the moment or you have not yet added your Facebook account to this device.", @"Hairfie_Detail", nil);
+            
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Oops"
+                                                                message:message
+                                                               delegate:nil
+                                                      cancelButtonTitle:@"Ok"
+                                                      otherButtonTitles:nil];
+            [alertView show];
+        } else {
+            self.hairfiePost.shareOnTwitter = YES;
+        }
+    } else {
+        self.hairfiePost.shareOnTwitter = NO;
+    }
+
+    [self refreshTwitterShareButton];
+}
+
+-(void)refreshTwitterShareButton
+{
+    if (self.hairfiePost.shareOnTwitter) {
+        [self.twitterShareButton setImage:[UIImage imageNamed:@"twitter-share-on"] forState:UIControlStateNormal];
+    } else {
+        [self.twitterShareButton setImage:[UIImage imageNamed:@"twitter-share-off"] forState:UIControlStateNormal];
     }
 }
 

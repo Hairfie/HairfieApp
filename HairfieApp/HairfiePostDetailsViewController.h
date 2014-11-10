@@ -33,6 +33,7 @@
 @property (nonatomic) IBOutlet NSLayoutConstraint *whoSubviewConstraint;
 @property (nonatomic) IBOutlet UIView *emailSubview;
 @property (nonatomic) IBOutlet UIButton *fbShareButton;
+@property (nonatomic) IBOutlet UIButton *twitterShareButton;
 @property (nonatomic) IBOutlet UILabel *emailLabel;
 @property (nonatomic) IBOutlet UIButton *tagsButton;
 -(IBAction)fbShare:(id)sender;

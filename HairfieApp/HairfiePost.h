@@ -24,6 +24,7 @@
 @property (strong, nonatomic) Hairdresser *hairdresser;
 @property (strong, nonatomic) NSString *description;
 @property (nonatomic)         BOOL shareOnFB;
+@property (nonatomic)         BOOL shareOnTwitter;
 @property (strong, nonatomic) Money *price;
 @property (strong, nonatomic) Business *business;
 @property (strong, nonatomic) NSArray *tags;
