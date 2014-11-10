@@ -38,6 +38,8 @@
 @property (nonatomic) UIImage *backgroundProfileImage;
 @property (nonatomic) UIImage *profileImage;
 
+@property (nonatomic) UIImage *imageFromSegue;
+
 @property (nonatomic) IBOutlet NSLayoutConstraint *collectionViewHeight;
 @property (nonatomic) IBOutlet NSLayoutConstraint *mainViewHeight;
 @property (nonatomic) IBOutlet NSLayoutConstraint *tableViewHeight;

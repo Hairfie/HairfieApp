@@ -363,6 +363,7 @@
                                         </state>
                                         <connections>
                                             <action selector="showMenuActionSheet:" destination="pDa-if-Gwb" eventType="touchDown" id="Q7C-wF-grw"/>
+                                            <action selector="showMenuActionSheet:" destination="T79-5J-2Oj" eventType="touchUpInside" id="fcj-Cx-bSS"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cfb-iE-QR5" userLabel="Left Menu">
@@ -415,6 +416,7 @@
                         <outlet property="tableViewHeight" destination="Hub-hf-PEN" id="K5j-KG-GQ4"/>
                         <outlet property="topView" destination="Nwq-3q-qNC" id="1Gh-D3-iUV"/>
                         <outlet property="userName" destination="J0Z-zy-xpw" id="SO7-n9-jLp"/>
+                        <segue destination="C0A-PA-Dfl" kind="push" identifier="cameraOverlaytest" id="PR8-f7-uP1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NLd-1X-2fU" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -875,7 +877,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <segue destination="60g-nd-hW0" kind="push" identifier="setupHairfie" id="FTu-b2-mDf"/>
+                                            <action selector="validatePic:" destination="QW8-eh-zsD" eventType="touchUpInside" id="NuU-NM-PVc"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kac-Bc-Fb0">
@@ -978,6 +980,8 @@
                         <outlet property="nextBttn" destination="pzU-kk-VzB" id="TJM-fw-lTB"/>
                         <outlet property="originalBttn" destination="txc-Qj-wYU" id="10p-bp-5ip"/>
                         <outlet property="sepiaBttn" destination="p28-Lo-Kzd" id="sC6-bx-Ucy"/>
+                        <segue destination="60g-nd-hW0" kind="push" identifier="setupHairfie" id="SUy-VH-B9D"/>
+                        <segue destination="T79-5J-2Oj" kind="push" identifier="saveUserPicture" id="ydX-2o-h63"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ndA-pC-BXu" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -5299,12 +5303,12 @@
     <inferredMetricsTieBreakers>
         <segue reference="vAT-vQ-WuX"/>
         <segue reference="VGS-VM-Pwy"/>
-        <segue reference="PSz-m0-val"/>
-        <segue reference="LOg-O4-mCP"/>
-        <segue reference="2ml-IS-A8f"/>
+        <segue reference="9tp-c4-Wfy"/>
+        <segue reference="ydX-2o-h63"/>
+        <segue reference="PR8-f7-uP1"/>
         <segue reference="N5w-ND-ZjU"/>
         <segue reference="uEN-by-6gW"/>
-        <segue reference="cG7-he-Xw7"/>
+        <segue reference="LOg-O4-mCP"/>
         <segue reference="ssq-cN-qLV"/>
     </inferredMetricsTieBreakers>
 </document>

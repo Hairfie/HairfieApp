@@ -226,7 +226,7 @@
 {
     [self SetImageTakenForSegue:info];
  
-    if (self.isHairfie == YES)
+    if (self.isHairfie == YES || self.isProfile == YES)
         [self performSegueWithIdentifier:@"cameraFilters" sender:self];
     else
         [self performSegueWithIdentifier:@"validatePicture" sender:self];
@@ -266,6 +266,10 @@
         [_hairfiePost setPictureWithImage:imageTaken andContainer:@"hairfies"];
         filters.hairfiePost = _hairfiePost;
         filters.isHairfie = YES;
+        if (self.isProfile == YES) {
+            filters.isProfile = YES;
+            filters.user = self.user;
+        }
         
     }
     if ([segue.identifier isEqualToString:@"validatePicture"])
@@ -274,6 +278,7 @@
         
         [filters setUserPicture:imageTaken];
         filters.isHairfie = NO;
+        
     }
     
 }

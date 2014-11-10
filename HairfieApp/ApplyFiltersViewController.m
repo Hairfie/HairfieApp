@@ -9,6 +9,7 @@
 #import "ApplyFiltersViewController.h"
 #import "SignUpViewController.h"
 #import "HairfiePostDetailsViewController.h"
+#import "UserProfileViewController.h"
 #import "UIImage+Filters.h"
 #import "UIButton+Style.h"
 
@@ -78,6 +79,14 @@
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             UIImageWriteToSavedPhotosAlbum(output, nil, nil, nil);
         });
+    }
+   if ([segue.identifier isEqualToString:@"saveUserPicture"])
+    {
+        UserProfileViewController *userProfile = [segue destinationViewController];
+        
+        userProfile.imageFromSegue = output;
+        userProfile.user = self.user;
+        userProfile.isCurrentUser = YES;
     }
 }
 
@@ -155,5 +164,14 @@
     [self performSegueWithIdentifier:@"backToSignUp" sender:self];
 }
 
+-(IBAction)validatePic:(id)sender
+{
+    if (self.isProfile == YES) {
+        [self performSegueWithIdentifier:@"saveUserPicture" sender:self];
+       // [[NSNotificationCenter defaultCenter] postNotificationName:@"currentUser" object:self];
+    }
+    else
+    [self performSegueWithIdentifier:@"setupHairfie" sender:self];
+}
 
 @end

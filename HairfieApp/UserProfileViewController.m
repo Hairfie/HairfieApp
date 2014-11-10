@@ -20,6 +20,7 @@
 #import "LoadingCollectionViewCell.h"
 #import "ReviewTableViewCell.h"
 #import "HairfieDetailViewController.h"
+#import "CameraOverlayViewController.h"
 
 #define HAIRFIE_CELL @"hairfieCell"
 #define LOADING_CELL @"loadingCell"
@@ -38,6 +39,8 @@
     BOOL endOfScroll;
     NSNumber *currentPage;
     NSInteger hairfieRow;
+    Picture *uploadedPicture;
+    BOOL uploadInProgress;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -59,11 +62,65 @@
     
     if (nil != self.user) {
         [self setupHairfies];
-    }
+          }
 
     [self initKnownData];
+
     // Do any additional setup after loading the view.
 }
+
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    
+  // CHANGED PIC //
+    
+   // if (self.imageFromSegue != nil)
+    //    [self uploadProfileImage:self.imageFromSegue];
+}
+
+// Changed pic = > upload and then modify current user with new picture object
+
+-(void) uploadProfileImage:(UIImage *)image
+{
+    uploadInProgress = YES;
+    Picture *imagePost = [[Picture alloc] initWithImage:image andContainer:@"user-profile-pictures"];
+    
+    void (^loadErrorBlock)(NSError *) = ^(NSError *error){
+        uploadInProgress = NO;
+        NSLog(@"Error : %@", error.description);
+    };
+    void (^loadSuccessBlock)(NSDictionary*) = ^(NSDictionary* result){
+       
+        
+        // modify user.picture to new Picture* object
+        
+        self.user.picture = imagePost;
+        
+        //
+        
+        uploadInProgress = NO;
+        
+        void (^loadErrorBlock)(NSError *) = ^(NSError *error){
+            NSLog(@"Error : %@", error.description);
+        };
+        void (^loadSuccessBlock)(void) = ^(void){
+       
+            // Setup header pictures (profile + bg)
+            
+         [self setupHeaderPictures];
+            NSLog(@"ici");
+        };
+        
+        [self.user saveWithSuccess:loadSuccessBlock failure:loadErrorBlock];
+       
+    };
+    
+    [imagePost uploadWithSuccess:loadSuccessBlock failure:loadErrorBlock];
+}
+
+
+
 
 -(IBAction)goBack:(id)sender
 {
@@ -71,26 +128,10 @@
 }
 
 
--(void) initKnownData
+-(void)setupHeaderPictures
 {
     
-    [self setupHairfies];
-    
-      [self updateHairfieView];
-    if (self.isCurrentUser == YES) {
-        self.navBttn.hidden = YES;
-        self.leftMenuBttn.hidden = NO;
-    } else {
-        self.navBttn.hidden = NO;
-        self.leftMenuBttn.hidden = YES;
-    }
-    
-    userReviews= [[NSMutableArray alloc] init];
-    [self getReviews];
-    
-    [self.followUserBttn setTitle:NSLocalizedStringFromTable(@"Follow", @"UserProfile", nil) forState:UIControlStateNormal];
-    [self.followUserBttn profileFollowStyle];
-    
+    NSLog(@"user pic %@", self.user.picture.url);
     SDWebImageManager *manager = [SDWebImageManager sharedManager];
     
     
@@ -122,6 +163,32 @@
     
     [self.topView addSubview:profileBorder];
     [self.topView addSubview:userProfilePicture];
+}
+
+
+
+
+-(void) initKnownData
+{
+    
+    [self setupHairfies];
+    [self setupHeaderPictures];
+    [self updateHairfieView];
+    
+    if (self.isCurrentUser == YES) {
+        self.navBttn.hidden = YES;
+        self.leftMenuBttn.hidden = NO;
+    } else {
+        self.navBttn.hidden = NO;
+        self.leftMenuBttn.hidden = YES;
+    }
+    
+    userReviews= [[NSMutableArray alloc] init];
+    [self getReviews];
+    
+    [self.followUserBttn setTitle:NSLocalizedStringFromTable(@"Follow", @"UserProfile", nil) forState:UIControlStateNormal];
+    [self.followUserBttn profileFollowStyle];
+   
     
     [self.userName profileUserNameStyle];
     self.userName.text = self.user.name;
@@ -164,9 +231,7 @@
 
 -(void)addPicture
 {
-    UIAlertView*    chooseCameraType = [[UIAlertView alloc] initWithTitle:NSLocalizedStringFromTable(@"Choose camera type", @"Login_Sign_Up", nil) message:NSLocalizedStringFromTable(@"Take picture or pick one from the saved photos", @"Login_Sign_Up", nil) delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:NSLocalizedStringFromTable(@"Camera", @"Login_Sign_Up", nil), NSLocalizedStringFromTable(@"Library", @"Login_Sign_Up", nil),nil];
-        chooseCameraType.delegate = self;
-        [chooseCameraType show];
+    [self performSegueWithIdentifier:@"cameraOverlaytest" sender:self];
 }
 
 
@@ -406,11 +471,19 @@
 }
 
 
+
+
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"hairfieDetailtest"]) {
         HairfieDetailViewController *vc = (HairfieDetailViewController *)segue.destinationViewController;
         vc.hairfie = (Hairfie*)[userHairfies objectAtIndex:hairfieRow];
+    }
+    if ([segue.identifier isEqualToString:@"cameraOverlaytest"])
+    {
+        CameraOverlayViewController *camera = [segue destinationViewController];
+        camera.isProfile = YES;
+        camera.user = self.user;
     }
 }
 

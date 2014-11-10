@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "UIImage+Filters.h"
 #import "HairfiePost.h"
+#import "User.h"
 
 @interface ApplyFiltersViewController : UIViewController <UINavigationControllerDelegate>
 
@@ -32,6 +33,10 @@
 @property (nonatomic) IBOutlet UIButton *curveBttn;
 
 @property (nonatomic) BOOL isHairfie;
+
+// change profile pic
+@property (nonatomic) User *user;
+@property (nonatomic) BOOL isProfile;
 
 
 @end

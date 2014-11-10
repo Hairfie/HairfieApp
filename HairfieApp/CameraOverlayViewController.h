@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "User.h"
 #import "HairfiePost.h"
 
 @interface CameraOverlayViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate> {
@@ -21,5 +22,9 @@
 @property (nonatomic) IBOutlet UIImage *imageTaken;
 
 @property (nonatomic) BOOL isHairfie;
+
+// change profile pic
+@property (nonatomic) BOOL isProfile;
+@property (nonatomic) User *user;
 
 @end
