@@ -12,6 +12,7 @@
 
 @property (strong, nonatomic) NSString *id;
 @property (strong, nonatomic) NSString *name;
+@property (strong, nonatomic) NSNumber *position;
 
 -(id)initWithDictionary:(NSDictionary *)aDictionary;
 

@@ -79,16 +79,15 @@
     [self uploadHairfiePicture];
 }
 
--(void)viewWillAppear:(BOOL)animated {
-
+-(void)viewWillAppear:(BOOL)animated
+{
   /*
     if (self.emailSubview.hidden == YES)
         self.shareViewYPos.constant = 87;
     else
         self.shareViewYPos.constant = 177;
   */
-    
-   
+
     if (self.hairfiePost.customerEmail.length != 0)
     {
         [self.emailLabel setText:self.hairfiePost.customerEmail ];
@@ -104,8 +103,9 @@
         NSString *tagLabel = [NSString stringWithFormat:@"(%zd) tags", self.hairfiePost.tags.count];
         [self.tagsButton setTitle:tagLabel forState:UIControlStateNormal];
     }
-    else
+    else {
         self.tagsButton.hidden = YES;
+    }
     
     if (appDelegate.currentUser.managedBusinesses.count != 0)
     {
@@ -295,7 +295,7 @@
         }
         _hairdresserSubview.hidden = NO;
         [self showSalonsChoices:self];
-        _hairfiePost.selfMade = nil;
+        _hairfiePost.selfMade = NO;
     }
     }
     else

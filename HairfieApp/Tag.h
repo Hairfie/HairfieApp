@@ -13,6 +13,7 @@
 
 @property (strong, nonatomic) NSString *id;
 @property (strong, nonatomic) NSString *name;
+@property (strong, nonatomic) NSNumber *position;
 @property (strong, nonatomic) TagCategory *category;
 
 -(id)initWithDictionary:(NSDictionary *)aDictionary;

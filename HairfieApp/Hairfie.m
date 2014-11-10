@@ -12,6 +12,7 @@
 #import "AppDelegate.h"
 #import "SetterUtils.h"
 #import "DateUtils.h"
+#import "URLUtils.h"
 #import "Tag.h"
 #import "NSDate+TimeAgo.h"
 
@@ -53,6 +54,11 @@
     _business = [Business fromSetterValue:aBusiness];
 }
 
+-(void)setHairdresser:(Hairdresser *)anHairdresser
+{
+    _hairdresser = [Hairdresser fromSetterValue:anHairdresser];
+}
+
 -(void)setPicture:(id)aPicture
 {
     _picture = [Picture fromSetterValue:aPicture];
@@ -61,6 +67,11 @@
 -(void)setPrice:(id)aPrice
 {
     _price = [Money fromSetterValue:aPrice];
+}
+
+-(void)setLandingPageUrl:(id)landingPageUrl
+{
+    _landingPageUrl = [URLUtils URLFromSetterValue:landingPageUrl];
 }
 
 -(void)setCreatedAt:(id)aDate

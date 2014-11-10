@@ -50,7 +50,6 @@
             }
 
             // add tag to its category's group
-            
             NSArray *group = [temp objectForKey:tag.category.id];
             
             if (nil == group) {
@@ -59,12 +58,24 @@
             }
             [group[1] addObject:tag];
         }
-    
-        aSuccessHandler([temp allValues]);
-      
-    };
-    
+        
+        NSMutableArray *tuples = [[NSMutableArray alloc] initWithArray:temp.allValues];
 
+        // sort each category tags by position
+        for (NSArray *tuple in tuples) {
+            [tuple[1] sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"position" ascending:YES]]];
+        }
+        
+        // sort categories by position
+        [tuples sortUsingComparator:^NSComparisonResult(id a, id b) {
+            TagCategory *aCategory = a[0];
+            TagCategory *bCategory = b[0];
+            
+            return [aCategory.position compare:bCategory.position];
+        }];
+    
+        aSuccessHandler([[NSArray alloc] initWithArray:tuples]);
+    };
     
     [[self repository] invokeStaticMethod:@"find" parameters:@{} success:loadSuccessBlock failure:aFailureHandler];
 }
