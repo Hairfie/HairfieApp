@@ -405,11 +405,11 @@
     priceBg.backgroundColor = [UIColor salonDetailTab];
     
     priceLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 15, 30, 30)];
-    priceLabel.font = [UIFont fontWithName:@"SourceSansPro-Light" size:18];
+    priceLabel.font = [UIFont fontWithName:@"SourceSansPro-Light" size:17];
     priceLabel.textColor = [UIColor whiteColor];
     priceLabel.textAlignment = NSTextAlignmentCenter;
    
-    priceLabel.minimumScaleFactor = 0.5;
+    priceLabel.minimumScaleFactor = 0.6;
     priceLabel.adjustsFontSizeToFitWidth = YES;
     priceLabel.text = [self.hairfie displayPrice];
 
