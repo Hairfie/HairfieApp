@@ -240,7 +240,7 @@
     for (NSString *infoName in displayedInfoNames) {
         height = height + [self heightForRowWithInfo:infoName];
     }
-    
+
     return height;
 }
 
@@ -490,7 +490,7 @@
 
     // RESTE
 
-    detailsTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 432, 320, 154)];
+    detailsTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 432, 320, [self infosTableHeight])];
     detailsTableView.dataSource = self;
     detailsTableView.delegate = self;
     detailsTableView.backgroundColor = [UIColor clearColor];
