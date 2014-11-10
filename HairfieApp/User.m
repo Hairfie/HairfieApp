@@ -116,6 +116,7 @@
                   success:^(User *user) {
                       // TODO: complete updated properties
                       self.numHairfies = user.numHairfies;
+                      self.picture = user.picture;
                       [[NSNotificationCenter defaultCenter] postNotificationName:[[self class] EVENT_CHANGED]
                                                                           object:self];
                   }
@@ -146,11 +147,16 @@
     if (self.phoneNumber != nil) {
         [parameters setObject:self.phoneNumber forKey:@"phoneNumber"];
     }
+    if (self.picture != nil)
+    {
+        [parameters setObject:[self.picture toApiValue] forKey:@"picture"];
+    }
     
     void (^onSuccess)(NSDictionary *) = ^(NSDictionary *result) {
         if (nil == self.id) {
             self.id = [result objectForKey:@"id"];
         }
+        NSLog(@"result user %@", result);
         aSuccessHandler();
     };
     

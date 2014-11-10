@@ -73,16 +73,17 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     
-  // CHANGED PIC //
+  // CHANGED PIC//
     
-   // if (self.imageFromSegue != nil)
-    //    [self uploadProfileImage:self.imageFromSegue];
+    if (self.imageFromSegue != nil)
+       [self uploadProfileImage:self.imageFromSegue];
 }
 
 // Changed pic = > upload and then modify current user with new picture object
 
 -(void) uploadProfileImage:(UIImage *)image
 {
+    
     uploadInProgress = YES;
     Picture *imagePost = [[Picture alloc] initWithImage:image andContainer:@"user-profile-pictures"];
     
@@ -90,29 +91,26 @@
         uploadInProgress = NO;
         NSLog(@"Error : %@", error.description);
     };
-    void (^loadSuccessBlock)(NSDictionary*) = ^(NSDictionary* result){
+    void (^loadSuccessBlock)(void) = ^(void){
        
         
         // modify user.picture to new Picture* object
         
         self.user.picture = imagePost;
         
-        //
-        
-        uploadInProgress = NO;
-        
-        void (^loadErrorBlock)(NSError *) = ^(NSError *error){
+        void (^loadErrorFunc)(NSError *) = ^(NSError *error){
+            uploadInProgress = NO;
             NSLog(@"Error : %@", error.description);
         };
-        void (^loadSuccessBlock)(void) = ^(void){
-       
-            // Setup header pictures (profile + bg)
-            
-         [self setupHeaderPictures];
-            NSLog(@"ici");
+        void (^loadSuccessFunc)(void) = ^(void){
+            [self.user refresh];
+            [self setupHeaderPictures];
         };
+            [self.user saveWithSuccess:loadSuccessFunc failure:loadErrorFunc];
+        //[self setupHeaderPictures];
+
+        uploadInProgress = NO;
         
-        [self.user saveWithSuccess:loadSuccessBlock failure:loadErrorBlock];
        
     };
     
@@ -131,7 +129,7 @@
 -(void)setupHeaderPictures
 {
     
-    NSLog(@"user pic %@", self.user.picture.url);
+    NSLog(@"test user picture %@", self.user.picture.url);
     SDWebImageManager *manager = [SDWebImageManager sharedManager];
     
     
@@ -172,9 +170,8 @@
 {
     
     [self setupHairfies];
-    [self setupHeaderPictures];
     [self updateHairfieView];
-    
+    [self setupHeaderPictures];
     if (self.isCurrentUser == YES) {
         self.navBttn.hidden = YES;
         self.leftMenuBttn.hidden = NO;
@@ -321,7 +318,7 @@
 }
 -(BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"should clicked at index :%d", indexPath.item);
+    NSLog(@"should clicked at index :%zd", indexPath.item);
     return YES;
 }
 

@@ -51,6 +51,8 @@
 
 -(NSString *)toApiValue
 {
+    
+    NSLog(@"self URL %@, SELF NAME %@", self.url, self.name);
     if ([self.name length] == 0) {
         return self.url;
     } else {
@@ -104,7 +106,7 @@
         NSDictionary *uploadedFile = [[[results objectForKey:@"result"] objectForKey:@"files"] objectForKey:@"uploadfiles"];
         self.name = [uploadedFile objectForKey:@"name"];
         self.container = [uploadedFile objectForKey:@"container"];
-        
+        self.url = [uploadedFile objectForKey:@"url"];
         aSuccessHandler();
     };
     

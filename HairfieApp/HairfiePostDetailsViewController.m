@@ -41,7 +41,8 @@
     //// TAGS = NO DESCRIPTION
     _hairfieDesc.hidden = YES;
     ////
-
+    
+   
 
     UIColor *placeholder = [[UIColor whiteColor] colorWithAlphaComponent:0.6];
     appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];

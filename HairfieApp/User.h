@@ -72,5 +72,6 @@
                                  failure:(void (^)(NSError *))aFailureHandler;
 
 +(id)fromSetterValue:(id)aValue;
+-(void)refresh;
 
 @end
