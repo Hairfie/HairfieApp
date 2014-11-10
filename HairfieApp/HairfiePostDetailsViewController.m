@@ -165,7 +165,6 @@
 
 -(IBAction)showSalonsChoices:(id)sender
 {
-    [_hairfieDesc resignFirstResponder];
     if (_isSalon == YES) {
         _dataChoice.hidden = YES;
         _isSalon = NO;
@@ -278,7 +277,7 @@
         [_salonLabelButton setTitle:NSLocalizedStringFromTable(@"I did it", @"Post_Hairfie", nil) forState:UIControlStateNormal];
         [self showSalonsChoices:self];
         _hairdresserSubview.hidden = YES;
-        _hairfiePost.selfmade = YES;
+        _hairfiePost.selfMade = YES;
     }
     else
     {
