@@ -469,7 +469,7 @@
 {
     if (!self.hairfiePost.shareOnTwitter) {
         if (![SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]) {
-            NSString *message = NSLocalizedStringFromTable(@"It seems that we cannot talk to Facebook at the moment or you have not yet added your Facebook account to this device.", @"Hairfie_Detail", nil);
+            NSString *message = NSLocalizedStringFromTable(@"It seems that we cannot talk to Twitter at the moment or you have not yet added your Twitter account to this device.", @"Hairfie_Detail", nil);
             
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Oops"
                                                                 message:message
