@@ -71,8 +71,9 @@
     _tagsButton.layer.cornerRadius = 5;
     _tagsButton.layer.masksToBounds = YES;
     salonTypes = [[NSMutableArray alloc] initWithObjects:NSLocalizedStringFromTable(@"I did it", @"Post_Hairfie", nil), NSLocalizedStringFromTable(@"Hairdresser in a Salon", @"Post_Hairfie", nil), nil];
-    _salonTableViewHeight.constant = [salonTypes count] * _dataChoice.rowHeight;
-    
+
+   
+
     [_priceTextField textFieldWithPhoneKeyboard];
     [_descView addBottomBorderWithHeight:5 andColor:[UIColor salonDetailTab]];
      [_topView addBottomBorderWithHeight:1 andColor:[UIColor lightGrey]];
@@ -115,7 +116,11 @@
                 [salonTypes insertObject:business atIndex:1];
             }
         }
-        _salonTableViewHeight.constant = salonTypes.count * _dataChoice.rowHeight;
+        
+        UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
+        int height = cell.frame.size.height ;
+        _salonTableViewHeight.constant = salonTypes.count * height;
+       
     }
     if(_salonChosen != nil) {
         _hairfiePost.business = _salonChosen;
@@ -139,9 +144,9 @@
     {
         [salonHairdressers addObject:hairdresser];
     }
-    _hairdresserTableViewHeight.constant = [salonHairdressers count] * _hairdresserTableView.rowHeight;
+    _hairdresserTableViewHeight.constant = [salonHairdressers count] * 41;
     _isHairdresser = NO;
-    
+     NSLog(@"TABLE VIEW HEIGHT %f", _hairdresserTableViewHeight.constant);
     [_hairdresserTableView reloadData];
 }
 
@@ -169,6 +174,7 @@
         _dataChoice.hidden = YES;
         _isSalon = NO;
     } else {
+    
         [_dataChoice reloadData];
         _dataChoice.hidden = NO;
         _isHairdresser = NO;
@@ -184,7 +190,6 @@
         _isHairdresser = NO;
     } else {
         [_hairdresserTableView reloadData];
-        _dataChoice.hidden = YES;
         _isSalon = NO;
         _hairdresserTableView.hidden = NO;
         _isHairdresser = YES;
