@@ -46,7 +46,7 @@
     [super viewDidLoad];
     
     self.mainScrollView.delegate = self;
-   // self.bottomMenuBttn.hidden = YES;
+    self.bottomMenuBttn.hidden = YES;
     
     self.hairfiesCollection.delegate = self;
     self.hairfiesCollection.dataSource = self;
@@ -65,7 +65,10 @@
           }
 
     [self initKnownData];
-
+    
+    UITapGestureRecognizer *singleTap =  [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addPicture:)];
+    [singleTap setNumberOfTapsRequired:1];
+    [self.topView addGestureRecognizer:singleTap];
     // Do any additional setup after loading the view.
 }
 
@@ -128,12 +131,10 @@
 
 -(void)setupHeaderPictures
 {
-    
-    NSLog(@"test user picture %@", self.user.picture.url);
     SDWebImageManager *manager = [SDWebImageManager sharedManager];
     
     
-    [manager downloadImageWithURL:[NSURL URLWithString:self.user.picture.url]
+    [manager downloadImageWithURL:[NSURL URLWithString:[self.user pictureUrlwithWidth:@50 andHeight:@50]]
                           options:0
                          progress:^(NSInteger receivedSize, NSInteger expectedSize)
      {
@@ -213,20 +214,12 @@
     
     
     
-    [actionSheet addButtonWithTitle:NSLocalizedStringFromTable(@"change picture", @"User_Profile", nil)];
-  
-    
     [actionSheet showInView:self.view];
 }
 
--(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (0 == buttonIndex) return; // it's the cancel button
-    else
-        [self addPicture];
-}
 
--(void)addPicture
+
+-(void)addPicture:(UIGestureRecognizer*)gesture
 {
     [self performSegueWithIdentifier:@"cameraOverlaytest" sender:self];
 }

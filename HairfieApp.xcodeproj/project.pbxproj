@@ -21,7 +21,6 @@
 		153B08BD19E43834002E915A /* Horaires.strings in Resources */ = {isa = PBXBuildFile; fileRef = 153B08B319E43834002E915A /* Horaires.strings */; };
 		153B08BE19E43834002E915A /* Main.strings in Resources */ = {isa = PBXBuildFile; fileRef = 153B08B519E43834002E915A /* Main.strings */; };
 		153B08BF19E43834002E915A /* tuto.strings in Resources */ = {isa = PBXBuildFile; fileRef = 153B08B719E43834002E915A /* tuto.strings */; };
-		153B370C19D04F14006C82EC /* CameraOverlay.xib in Resources */ = {isa = PBXBuildFile; fileRef = 153B370E19D04F14006C82EC /* CameraOverlay.xib */; };
 		153E1FB019B4A79B00DEC95D /* UserRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 153E1FAF19B4A79B00DEC95D /* UserRepository.m */; };
 		153E1FB419B4AA8200DEC95D /* UserAuthenticator.m in Sources */ = {isa = PBXBuildFile; fileRef = 153E1FB319B4AA8200DEC95D /* UserAuthenticator.m */; };
 		1540150119D030030094DB5E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1540150319D030030094DB5E /* InfoPlist.strings */; };
@@ -270,7 +269,6 @@
 		B3BD86B0198BE0DF00BD8591 /* picto-list-nav.png in Resources */ = {isa = PBXBuildFile; fileRef = B3BD86AF198BE0DF00BD8591 /* picto-list-nav.png */; };
 		B3C45BD1199A4670000E6C8E /* switch-camera-button.png in Resources */ = {isa = PBXBuildFile; fileRef = B3C45BCF199A4670000E6C8E /* switch-camera-button.png */; };
 		B3C45BD2199A4670000E6C8E /* take-picture-button.png in Resources */ = {isa = PBXBuildFile; fileRef = B3C45BD0199A4670000E6C8E /* take-picture-button.png */; };
-		B3C45BD6199A4A1B000E6C8E /* CameraOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = B3C45BD5199A4A1B000E6C8E /* CameraOverlayView.m */; };
 		B3CCE7781998B6CA00067DB9 /* HairfieDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3CCE7771998B6CA00067DB9 /* HairfieDetailViewController.m */; };
 		B3CCE77A1998BB1B00067DB9 /* picto-hairfie-comment.png in Resources */ = {isa = PBXBuildFile; fileRef = B3CCE7791998BB1B00067DB9 /* picto-hairfie-comment.png */; };
 		B3CCE77E1998BCA400067DB9 /* picto-hairfie-detail-like.png in Resources */ = {isa = PBXBuildFile; fileRef = B3CCE77D1998BCA400067DB9 /* picto-hairfie-detail-like.png */; };
@@ -391,8 +389,6 @@
 		153B08CD19E4391C002E915A /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/tuto.strings; sourceTree = "<group>"; };
 		153B08CF19E43DB2002E915A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		153B08D119E43DBD002E915A /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
-		153B370D19D04F14006C82EC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CameraOverlay.xib; sourceTree = "<group>"; };
-		153B371019D04F1A006C82EC /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/CameraOverlay.strings; sourceTree = "<group>"; };
 		153E1FAE19B4A79B00DEC95D /* UserRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserRepository.h; sourceTree = "<group>"; };
 		153E1FAF19B4A79B00DEC95D /* UserRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserRepository.m; sourceTree = "<group>"; };
 		153E1FB219B4AA8200DEC95D /* UserAuthenticator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAuthenticator.h; sourceTree = "<group>"; };
@@ -784,8 +780,6 @@
 		B3BD86AF198BE0DF00BD8591 /* picto-list-nav.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "picto-list-nav.png"; sourceTree = "<group>"; };
 		B3C45BCF199A4670000E6C8E /* switch-camera-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "switch-camera-button.png"; sourceTree = "<group>"; };
 		B3C45BD0199A4670000E6C8E /* take-picture-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "take-picture-button.png"; sourceTree = "<group>"; };
-		B3C45BD4199A4A1B000E6C8E /* CameraOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraOverlayView.h; sourceTree = "<group>"; };
-		B3C45BD5199A4A1B000E6C8E /* CameraOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraOverlayView.m; sourceTree = "<group>"; };
 		B3CCE7761998B6CA00067DB9 /* HairfieDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HairfieDetailViewController.h; sourceTree = "<group>"; };
 		B3CCE7771998B6CA00067DB9 /* HairfieDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HairfieDetailViewController.m; sourceTree = "<group>"; };
 		B3CCE7791998BB1B00067DB9 /* picto-hairfie-comment.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "picto-hairfie-comment.png"; sourceTree = "<group>"; };
@@ -951,7 +945,6 @@
 				7164B5621A0D0EF2002B68E5 /* Share */,
 				153E1FB119B4A97600DEC95D /* Repositories */,
 				15CE407019B0E7670088FEA7 /* Authentication */,
-				B3C45BD3199A49F0000E6C8E /* Camera Overlay View */,
 				B3EDF88C198794C900431B70 /* Main.storyboard */,
 				71E08E6119FFC7E300A56FBB /* HairfieApp-Bridging-Header.h */,
 				15E3D2D319D07AB10065A07E /* Main.strings */,
@@ -1020,14 +1013,14 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		1536598919DEFF570002D5ED /* Tuto + Sign Up */ = {
+		1536598919DEFF570002D5ED /* Tuto + Login + Sign Up */ = {
 			isa = PBXGroup;
 			children = (
 				1538A39F19E53AFD00F09628 /* Tuto.storyboard */,
 				15B4972719DBFC4500917B83 /* Tuto */,
 				B3E0B15719ACC13800C3EACE /* Login + Sign UP */,
 			);
-			name = "Tuto + Sign Up";
+			name = "Tuto + Login + Sign Up";
 			sourceTree = "<group>";
 		};
 		1538A3A619E53F9800F09628 /* UIView Subclasses */ = {
@@ -1212,7 +1205,7 @@
 			isa = PBXGroup;
 			children = (
 				B3FA61FF19F79E43002D8B6F /* User Profile */,
-				1536598919DEFF570002D5ED /* Tuto + Sign Up */,
+				1536598919DEFF570002D5ED /* Tuto + Login + Sign Up */,
 				B319B5C819C85E1C007F79B0 /* CLAIM */,
 				B35D112219BEFB3C00486050 /* Post Hairfie */,
 				B36731D8198F93A500E11C56 /* Salon Detail */,
@@ -1617,16 +1610,6 @@
 				B3BD86AD198BDDB700BD8591 /* statusLabelView.png */,
 			);
 			name = "star rating";
-			sourceTree = "<group>";
-		};
-		B3C45BD3199A49F0000E6C8E /* Camera Overlay View */ = {
-			isa = PBXGroup;
-			children = (
-				B3C45BD4199A4A1B000E6C8E /* CameraOverlayView.h */,
-				B3C45BD5199A4A1B000E6C8E /* CameraOverlayView.m */,
-				153B370E19D04F14006C82EC /* CameraOverlay.xib */,
-			);
-			name = "Camera Overlay View";
 			sourceTree = "<group>";
 		};
 		B3CCE7751998B6AB00067DB9 /* Hairfie Detail */ = {
@@ -2154,7 +2137,6 @@
 				B3F0B22E19ED7CD900E0E6EE /* checkbox-true.png in Resources */,
 				15E3D2CA19D075CC0065A07E /* Salon_Detail.strings in Resources */,
 				B345BA981994D4C2007BB61A /* button-add-favorite.png in Resources */,
-				153B370C19D04F14006C82EC /* CameraOverlay.xib in Resources */,
 				B3AE0D4319C060DA00149C2B /* salon-cell-separator.png in Resources */,
 				719C208619ED5016008E0B17 /* tab-business-prices.png in Resources */,
 				B3E0B14F19ACAA5400C3EACE /* login-form.png in Resources */,
@@ -2262,7 +2244,6 @@
 				71C0D3FF19C1D7600037CBF4 /* Address.m in Sources */,
 				B3AE0D3819C0510200149C2B /* HairfiePostSalonTypeViewController.m in Sources */,
 				15481A8D19E3EBDB00C9D7A7 /* PopUpViewController.swift in Sources */,
-				B3C45BD6199A4A1B000E6C8E /* CameraOverlayView.m in Sources */,
 				B3F95FE119B5E5BA00798D57 /* AdvanceSearch.m in Sources */,
 				B3CCE78A1998CDAC00067DB9 /* HairfieDetailTableViewCell.m in Sources */,
 				71026D1E19CAF1BE00994831 /* HairfieLikeRepository.m in Sources */,
@@ -2490,15 +2471,6 @@
 				153B08CD19E4391C002E915A /* fr */,
 			);
 			name = tuto.strings;
-			sourceTree = "<group>";
-		};
-		153B370E19D04F14006C82EC /* CameraOverlay.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				153B370D19D04F14006C82EC /* en */,
-				153B371019D04F1A006C82EC /* fr */,
-			);
-			name = CameraOverlay.xib;
 			sourceTree = "<group>";
 		};
 		1540150319D030030094DB5E /* InfoPlist.strings */ = {

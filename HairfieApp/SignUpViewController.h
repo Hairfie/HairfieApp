@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CameraOverlayView.h"
 #import <CPPickerView.h>
 
 
@@ -30,7 +29,6 @@
 @property (nonatomic) IBOutlet UITextField *passwordField;
 @property (nonatomic) IBOutlet UITextField *titleField;
 @property (nonatomic) UITapGestureRecognizer *dismiss;
-@property (nonatomic) CameraOverlayView *camera;
 @property (nonatomic) IBOutlet UIPickerView *userTitle;
 @property (nonatomic) UIImage *imageFromSegue;
 
