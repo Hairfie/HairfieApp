@@ -64,7 +64,6 @@
 
 @property (nonatomic) IBOutlet UIView *detailedContainerView;
 
-@property (nonatomic) IBOutlet UIButton *addReviewBttn;
 @property (nonatomic) IBOutlet UIButton *moreReviewBttn;
 
 @property (strong, nonatomic) Business *business;
@@ -93,6 +92,7 @@
 @property (nonatomic) IBOutlet NSLayoutConstraint *addReviewButtonXpos;
 @property (nonatomic) IBOutlet NSLayoutConstraint *moreReviewButtonYpos;
 @property (nonatomic) IBOutlet NSLayoutConstraint *mainViewHeight;
+@property (nonatomic) IBOutlet NSLayoutConstraint *similarViewYPos;
 
 
 @property (nonatomic) BOOL didClaim;

@@ -66,9 +66,6 @@
     _similarTableView.userInteractionEnabled = YES;
     _similarTableView.scrollEnabled = NO;
     _similarTableView.backgroundColor = [UIColor clearColor];
-
-    _addReviewBttn.layer.cornerRadius = 5;
-    _addReviewBttn.layer.masksToBounds = YES;
     
     _moreReviewBttn.layer.cornerRadius = 5;
     _moreReviewBttn.layer.masksToBounds = YES;
@@ -358,15 +355,14 @@
         [self performSegueWithIdentifier:@"similarBusiness" sender:self.similarBusinesses[indexPath.row]];
     }
     
-    if (tableView == _hairdresserTableView)
-    {
-        if ([_business.activeHairdressers count] == 0)
-        {
+    if (tableView == _hairdresserTableView) {
+        if ([_business.activeHairdressers count] == 0) {
+   
             [self performSegueWithIdentifier:@"suggestHairdresser" sender:self];
-            [_hairdresserTableView deselectRowAtIndexPath:indexPath animated:NO];
         }
+        [_hairdresserTableView deselectRowAtIndexPath:indexPath animated:NO];
     }
-   }
+}
 
 - (void) initKnownData:(Business*)business
 {
@@ -424,20 +420,17 @@
     if ([business.numReviews isEqualToNumber:@0]) {
         // hide reviews list
         _reviewTableView.hidden = YES;
-        _moreReviewBttn.hidden = YES;
-        _moreReviewBttn.enabled = NO;
         _mainViewHeight.constant = 1000;
-        _addReviewButtonYpos.constant = 288;
-        _addReviewButtonXpos.constant = 200;
+        _moreReviewBttn.hidden = YES;
+        _similarViewYPos.constant = 40;
+
     } else {
+        
         NSInteger tes = MIN(2, [_business.numReviews integerValue]);
-    
         _reviewTableView.hidden = NO;
-        _moreReviewBttn.hidden = NO;
-        _moreReviewBttn.enabled = YES;
-        _addReviewButtonXpos.constant = 80;
-        _addReviewButtonYpos.constant = 288 + (130 * tes);
-        _moreReviewButtonYpos.constant = 288 + (130 * tes);
+        _moreReviewButtonYpos.constant = 278 + (130 * tes);
+         _mainViewHeight.constant = 1260;
+        _similarViewYPos.constant = _moreReviewButtonYpos.constant + 30;
         [_moreReviewBttn setTitle:[NSString stringWithFormat:NSLocalizedStringFromTable(@"more (%@)", @"Salon_Detail", nil), business.numReviews]
                          forState:UIControlStateNormal];
     }

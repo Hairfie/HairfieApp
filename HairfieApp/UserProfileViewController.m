@@ -300,18 +300,13 @@
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"clicked at index :%d", indexPath.item);
     hairfieRow = indexPath.item;
     [self performSegueWithIdentifier:@"hairfieDetailtest" sender:self];
 }
 
--(void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSLog(@"DESELECT HAIRFIE");
-}
+
 -(BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"should clicked at index :%zd", indexPath.item);
     return YES;
 }
 

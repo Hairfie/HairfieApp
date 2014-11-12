@@ -47,7 +47,9 @@ static LBRESTAdapter * _lbAdaptater = nil;
     _manager = [[CLLocationManager alloc] init];
     _credentialStore = [[CredentialStore alloc] init];
     userAuthenticator = [[UserAuthenticator alloc] init];
-
+    
+    
+    
     NSLog(@"LOGIN STATUS : %d", [_credentialStore isLoggedIn]);
     NSLog(@"USER ID : %@", [_credentialStore userId]);
 
@@ -71,8 +73,45 @@ static LBRESTAdapter * _lbAdaptater = nil;
                                              selector:@selector(saveUserLanguage:)
                                                  name:@"currentUser"
                                                object:nil];
+    
+    
+    
+    UILocalNotification *notification = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
+    
+    if (notification) {
+        [self showAlarm:notification.alertBody];
+        NSLog(@"AppDelegate didFinishLaunchingWithOptions");
+        application.applicationIconBadgeNumber = 0;
+    }
+  
+
+    [self setupLocalNotifications];
+
 
     return YES;
+}
+
+- (void)setupLocalNotifications {
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+    
+    UILocalNotification *localNotification = [[UILocalNotification alloc] init];
+    
+    // current time plus 10 secs
+    NSDate *now = [NSDate date];
+    NSDate *dateToFire = [now dateByAddingTimeInterval:5];
+    
+    NSLog(@"now time: %@", now);
+    NSLog(@"fire time: %@", dateToFire);
+    
+    localNotification.fireDate = dateToFire;
+    localNotification.alertBody = @"Time to get up!";
+    localNotification.soundName = UILocalNotificationDefaultSoundName;
+    localNotification.applicationIconBadgeNumber = 1; // increment
+    
+    NSDictionary *infoDict = [NSDictionary dictionaryWithObjectsAndKeys:@"Object 1", @"Key 1", @"Object 2", @"Key 2", nil];
+    localNotification.userInfo = infoDict;
+    
+    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
 }
 
 - (BOOL)application:(UIApplication *)application
@@ -93,6 +132,7 @@ static LBRESTAdapter * _lbAdaptater = nil;
     UINavigationController *theInitialViewController = [storyBoard instantiateInitialViewController];
     NSLog(@"root : %@", [self.window.rootViewController class]);
 
+    
     [self.window setRootViewController:theInitialViewController];
 }
 
@@ -153,6 +193,7 @@ static LBRESTAdapter * _lbAdaptater = nil;
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    NSLog(@"BACKGROUND");
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
@@ -166,6 +207,21 @@ static LBRESTAdapter * _lbAdaptater = nil;
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+-(void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
+{
+    [self showAlarm:notification.alertBody];
+    application.applicationIconBadgeNumber = 0;
+    NSLog(@"AppDelegate didReceiveLocalNotification %@", notification.userInfo);
+}
+
+- (void)showAlarm:(NSString *)text {
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Alarm"
+                                                        message:text delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+    [alertView show];
 }
 
 @end
