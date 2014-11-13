@@ -604,17 +604,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V4h-pU-qp6" userLabel="Top Bar View">
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V4h-pU-qp6" userLabel="Top Bar View">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                                 <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Forgotten password" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KbD-zb-SmL">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Forgotten password" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KbD-zb-SmL">
                                         <rect key="frame" x="92" y="27" width="151" height="23"/>
                                         <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="18"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.41176470588235292" green="0.44313725490196076" blue="0.4823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nf5-54-tOV">
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nf5-54-tOV">
                                         <rect key="frame" x="8" y="19" width="40" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="bBd-q4-NnX"/>
+                                            <constraint firstAttribute="width" constant="40" id="lhG-l4-1yw"/>
+                                        </constraints>
                                         <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                         <state key="normal" image="arrow-nav.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -625,8 +629,15 @@
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.92549019610000005" green="0.92549019610000005" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="KbD-zb-SmL" firstAttribute="centerY" secondItem="nf5-54-tOV" secondAttribute="centerY" constant="-0.5" id="KV5-DU-Kqu"/>
+                                    <constraint firstItem="nf5-54-tOV" firstAttribute="top" secondItem="V4h-pU-qp6" secondAttribute="top" constant="19" id="Vyi-I4-Zem"/>
+                                    <constraint firstAttribute="centerX" secondItem="KbD-zb-SmL" secondAttribute="centerX" constant="-7.5" id="cz1-Ex-tin"/>
+                                    <constraint firstItem="nf5-54-tOV" firstAttribute="leading" secondItem="V4h-pU-qp6" secondAttribute="leading" constant="8" id="eVV-Td-3wY"/>
+                                    <constraint firstAttribute="height" constant="64" id="lgy-Km-kxp"/>
+                                </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kTm-CF-9PJ">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kTm-CF-9PJ">
                                 <rect key="frame" x="16" y="175" width="288" height="30"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.67450980390000004" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="15"/>
@@ -644,7 +655,7 @@
                                 <color key="textColor" red="0.1960784314" green="0.26274509800000001" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="name@domain.com" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qFp-iT-lTN">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="name@domain.com" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qFp-iT-lTN">
                                 <rect key="frame" x="16" y="122" width="288" height="30"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -655,6 +666,13 @@
                             </textField>
                         </subviews>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="V4h-pU-qp6" secondAttribute="width" id="2g3-LS-jz3"/>
+                            <constraint firstItem="qFp-iT-lTN" firstAttribute="leading" secondItem="3EI-di-llL" secondAttribute="leadingMargin" id="DDY-35-A96"/>
+                            <constraint firstItem="kTm-CF-9PJ" firstAttribute="trailing" secondItem="3EI-di-llL" secondAttribute="trailingMargin" id="HhE-bs-yc0"/>
+                            <constraint firstItem="kTm-CF-9PJ" firstAttribute="leading" secondItem="3EI-di-llL" secondAttribute="leadingMargin" id="IeI-AO-7bo"/>
+                            <constraint firstItem="qFp-iT-lTN" firstAttribute="trailing" secondItem="3EI-di-llL" secondAttribute="trailingMargin" id="stL-RQ-Uc9"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="VQP-JU-oZX"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
@@ -710,7 +728,7 @@
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="SIGN UP" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iTK-fy-uRn">
                                         <rect key="frame" x="92" y="30" width="136" height="23"/>
                                         <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="18"/>
-                                        <color key="textColor" red="0.41176470590000003" green="0.4431372549" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.41176470588235292" green="0.44313725490196076" blue="0.4823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -1202,7 +1220,7 @@
         <image name="sepia.jpeg" width="640" height="640"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="D94-cf-nhS"/>
         <segue reference="f7H-tx-8dc"/>
+        <segue reference="DUF-Tz-akN"/>
     </inferredMetricsTieBreakers>
 </document>
