@@ -22,6 +22,9 @@
 @property (nonatomic) IBOutlet UIScrollView *mainScrollView;
 @property (nonatomic) IBOutlet UIButton *checkBoxButton;
 @property (nonatomic) BOOL isNewsletterChecked;
+@property (nonatomic) IBOutlet UIButton *addPictureButton;
+@property (nonatomic) IBOutlet UILabel *addPictureLabel;
+@property (nonatomic) IBOutlet UIImageView *profilePicture;
 
 @property (nonatomic) IBOutlet UITextField *firstNameField;
 @property (nonatomic) IBOutlet UITextField *lastNameField;

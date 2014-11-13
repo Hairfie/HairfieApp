@@ -41,30 +41,27 @@
     _isNewsletterChecked = NO;
     _dismiss = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
     title = [NSArray arrayWithObjects:NSLocalizedStringFromTable(@"Woman", @"Login_Sign_Up", nil), NSLocalizedStringFromTable(@"Man", @"Login_Sign_Up", nil), nil];
-    UIButton *addPictureBttn = [[UIButton alloc] initWithFrame:CGRectMake(127, 10, 66, 66)];
-    addPictureBttn.layer.cornerRadius = addPictureBttn.frame.size.height / 2;
-    addPictureBttn.clipsToBounds = YES;
-    addPictureBttn.layer.borderWidth = 1.0f;
-    addPictureBttn.layer.borderColor = [UIColor colorWithRed:206/255.0f green:208/255.0f blue:210/255.0f alpha:1].CGColor;
-    addPictureBttn.backgroundColor = [UIColor clearColor];
-    [addPictureBttn addTarget:self
+    
+    self.addPictureButton.layer.cornerRadius = self.addPictureButton.frame.size.height / 2;
+    self.addPictureButton.clipsToBounds = YES;
+    self.addPictureButton.layer.borderWidth = 1.0f;
+    self.addPictureButton.layer.borderColor = [UIColor colorWithRed:206/255.0f green:208/255.0f blue:210/255.0f alpha:1].CGColor;
+    self.addPictureButton.backgroundColor = [UIColor clearColor];
+    [self.addPictureButton addTarget:self
                  action:@selector(takePicture)
        forControlEvents:UIControlEventTouchUpInside];
     
-    UILabel *addPictureLabel = [[UILabel alloc] initWithFrame:CGRectMake(130, 15, 60, 50)];
-    addPictureLabel.font = [UIFont fontWithName:@"SourceSansPro-Light" size:14];
-    addPictureLabel.textColor = [UIColor colorWithRed:148/255.0f green:154/255.0f blue:162/255.0f alpha:1];
-    addPictureLabel.text = NSLocalizedStringFromTable(@"Add Photo", @"Login_Sign_Up", nil);
-    addPictureLabel.textAlignment = NSTextAlignmentCenter;
-    addPictureLabel.numberOfLines = 3;
-    addPictureLabel.minimumScaleFactor = 0.2;
+    self.addPictureLabel.font = [UIFont fontWithName:@"SourceSansPro-Light" size:14];
+    self.addPictureLabel.textColor = [UIColor colorWithRed:148/255.0f green:154/255.0f blue:162/255.0f alpha:1];
+    self.addPictureLabel.text = NSLocalizedStringFromTable(@"Add Photo", @"Login_Sign_Up", nil);
+    self.addPictureLabel.textAlignment = NSTextAlignmentCenter;
+    self.addPictureLabel.numberOfLines = 3;
+    self.addPictureLabel.minimumScaleFactor = 0.2;
+
      _userTitleLabel.text = NSLocalizedStringFromTable(@"Woman", @"Login_Sign_Up", nil);
     _titleView.hidden = YES;
     
     userAuthenticator = [[UserAuthenticator alloc] init];
-
-    [_mainScrollView addSubview:addPictureBttn];
-    [_mainScrollView addSubview:addPictureLabel];
 
     // Do any additional setup after loading the view.
 }
@@ -72,7 +69,7 @@
 -(void) viewWillAppear:(BOOL)animated {
     [ARAnalytics pageView:@"AR - Sign up"];
     if (self.imageFromSegue != nil) {
-        [self setProfilePicture:self.imageFromSegue];
+        [self defineProfilePicture:self.imageFromSegue];
     }
 }
 
@@ -273,35 +270,25 @@ numberOfRowsInComponent:(NSInteger)component
 }
 
 
--(void)setProfilePicture:(UIImage*)image
+-(void)defineProfilePicture:(UIImage*)image
 {
     [self uploadProfileImage:image];
     
-    UIImageView *profilePicture = [[UIImageView alloc] initWithFrame:CGRectMake(127, 10, 66, 66)];
-    profilePicture.contentMode = UIViewContentModeScaleAspectFill;
-    profilePicture.layer.cornerRadius = profilePicture.frame.size.height / 2;
-    profilePicture.clipsToBounds = YES;
-    profilePicture.layer.borderWidth = 1.0f;
-    profilePicture.layer.borderColor = [UIColor whiteColor].CGColor;
-    profilePicture.image = image;
-   
-    
-    [_mainScrollView addSubview:profilePicture];
-
+    self.profilePicture.hidden = NO;
+    self.profilePicture.contentMode = UIViewContentModeScaleAspectFill;
+    self.profilePicture.layer.cornerRadius = self.profilePicture.frame.size.height / 2;
+    self.profilePicture.clipsToBounds = YES;
+    self.profilePicture.layer.borderWidth = 1.0f;
+    self.profilePicture.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.profilePicture.image = image;
 }
 
-
-
-
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    
-    if ([segue.identifier isEqualToString:@"cameraOverlay"])
-    {
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"cameraOverlay"]) {
         CameraOverlayViewController *cameraOverlay = [segue destinationViewController];
         cameraOverlay.isHairfie = NO;
     }
-    
-    
 }
 
 @end
