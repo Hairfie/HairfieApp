@@ -19,6 +19,7 @@ target "HairfieApp" do
   pod 'libPhoneNumber-iOS', '~> 0.7'
   pod 'Underscore.m'
   pod 'NSDate+TimeAgo'
+  pod 'Pinterest-iOS'
 end
 
 target "HairfieAppTests" do
