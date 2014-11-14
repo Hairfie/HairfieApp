@@ -18,6 +18,7 @@
 #import "HairfieDetailBusinessTableViewCell.h"
 #import "InstagramSharer.h"
 #import <Social/Social.h>
+#import <Pinterest/Pinterest.h>
 
 @interface HairfieDetailViewController ()
 
@@ -69,6 +70,10 @@
         @{
             @"label": NSLocalizedStringFromTable(@"Post on Instagram", @"Hairfie_Detail", nil),
             @"share": @"instagram"
+        },
+        @{
+            @"label": NSLocalizedStringFromTable(@"Pin on Pinterest", @"Hairfie_Detail", nil),
+            @"share": @"pinterest"
         }/*,
         @{
             @"label": NSLocalizedStringFromTable(@"Report content", @"Hairfie_Detail",nil),
@@ -130,6 +135,8 @@
         [self shareOnTwitter];
     } else if ([shareName isEqualToString:@"facebook"]) {
         [self shareOnFacebook];
+    } else if ([shareName isEqualToString:@"pinterest"]) {
+        [self shareOnPinterest];
     }
 }
 
@@ -189,6 +196,26 @@
                                                    parameters:@{@"link": params.link.absoluteString}
                                                       handler:nil];
         }
+    }
+}
+
+-(void)shareOnPinterest
+{
+    NSString *pinterestClientId = [[[NSBundle mainBundle] infoDictionary] valueForKey:@"PinterestClientId"];
+    Pinterest *pinterest = [[Pinterest alloc] initWithClientId:pinterestClientId];
+
+    if ([pinterest canPinWithSDK]) {
+        [pinterest createPinWithImageURL:self.hairfie.picture.url
+                               sourceURL:self.hairfie.landingPageUrl
+                             description:nil];
+    } else {
+        NSString *message = NSLocalizedStringFromTable(@"It seems that Pinterest is not installed on this device.", @"Hairfie_Detail", nil);
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Oops"
+                                                            message:message
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"Ok"
+                                                  otherButtonTitles:nil];
+        [alertView show];
     }
 }
 
