@@ -171,20 +171,24 @@
 
 -(void)shareOnFacebook
 {
-    if (![SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]) {
-        NSString *message = NSLocalizedStringFromTable(@"It seems that we cannot talk to Facebook at the moment or you have not yet added your Facebook account to this device.", @"Hairfie_Detail", nil);
-        
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Oops"
-                                                            message:message
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"Ok"
-                                                  otherButtonTitles:nil];
-        [alertView show];
-    } else {
+    // try to share using the iOS social framework
+    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]) {
         SLComposeViewController *vc = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
         [vc addURL:self.hairfie.landingPageUrl];
-    
         [self presentViewController:vc animated:YES completion:nil];
+    } else {
+        // try to share using Facebook's SDK
+        FBLinkShareParams *params = [[FBLinkShareParams alloc] init];
+        params.link = self.hairfie.landingPageUrl;
+
+        if ([FBDialogs canPresentShareDialogWithParams:params]) {
+            [FBDialogs presentShareDialogWithLink:params.link handler:nil];
+        } else {
+            // fallback using Facebook's website
+            [FBWebDialogs presentFeedDialogModallyWithSession:nil
+                                                   parameters:@{@"link": params.link.absoluteString}
+                                                      handler:nil];
+        }
     }
 }
 
