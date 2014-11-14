@@ -64,14 +64,23 @@
                 height:(NSNumber *)anHeight
 {
     NSURLComponents *components = [NSURLComponents componentsWithURL:self.url resolvingAgainstBaseURL:NO];
-    NSMutableArray *queryItems = [[NSMutableArray alloc] initWithArray:components.queryItems];
+
+    NSMutableArray *queryParts = [[NSMutableArray alloc] init];
+    if ([components.query length] > 0) {
+        [queryParts addObject:components.query];
+    }
     if (aWidth) {
-        [queryItems addObject:[NSURLQueryItem queryItemWithName:@"width" value:[aWidth stringValue]]];
+        [queryParts addObject:[NSString stringWithFormat:@"width=%@", aWidth]];
     }
     if (anHeight) {
-        [queryItems addObject:[NSURLQueryItem queryItemWithName:@"height" value:[anHeight stringValue]]];
+        [queryParts addObject:[NSString stringWithFormat:@"height=%@", anHeight]];
     }
-    components.queryItems = [[NSArray alloc] initWithArray:queryItems]; // TODO: is it necessary to copy again?
+
+    if (0 == queryParts.count) {
+        components.query = nil;
+    } else {
+        components.query = [queryParts componentsJoinedByString:@"&"];
+    }
 
     return components.URL;
 }
