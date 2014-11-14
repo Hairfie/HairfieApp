@@ -39,8 +39,6 @@
 
 -(void)reviewSaved:(NSNotification *)notification;
 
--(NSString *)thumbUrl;
-
 -(NSString *)displayNameAndAddress;
 
 -(NSString *)displayNumHairfies;

@@ -114,7 +114,7 @@
     }
     
     cell.name.text = business.name;
-    [cell.salonPicture sd_setImageWithURL:[NSURL URLWithString:business.thumbUrl]
+    [cell.salonPicture sd_setImageWithURL:[business.thumbnail urlWithWidth:@100 height:@100]
                        placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
     
    

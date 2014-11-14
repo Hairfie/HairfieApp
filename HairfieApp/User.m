@@ -44,19 +44,14 @@
     }
 }
 
--(NSString *)pictureUrlwithWidth:(NSNumber *)width andHeight:(NSNumber *)height
+-(NSURL *)pictureUrlwithWidth:(NSNumber *)width andHeight:(NSNumber *)height
 {
     return [self.picture urlWithWidth:width height:height];
 }
 
--(NSString *)pictureUrl
+-(NSURL *)pictureUrl
 {
     return [self pictureUrlwithWidth:nil andHeight:nil];
-}
-
--(NSString *)thumbUrl
-{
-    return [self pictureUrlwithWidth:@100 andHeight:@100];
 }
 
 -(void)setupEventListeners

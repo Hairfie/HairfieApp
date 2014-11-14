@@ -113,7 +113,7 @@
     SDWebImageManager *manager = [SDWebImageManager sharedManager];
 
 
-    [manager downloadImageWithURL:[NSURL URLWithString:[appDelegate.currentUser pictureUrlwithWidth:@50 andHeight:@50]]
+    [manager downloadImageWithURL:[appDelegate.currentUser pictureUrlwithWidth:@50 andHeight:@50]
                      options:0
                     progress:^(NSInteger receivedSize, NSInteger expectedSize)
      {
@@ -137,7 +137,7 @@
     border.clipsToBounds = YES;
     border.backgroundColor = [UIColor colorWithWhite:1 alpha:0.5];
 
-    [profilePicture sd_setImageWithURL:[NSURL URLWithString:[appDelegate.currentUser pictureUrlwithWidth:@200 andHeight:@200]]
+    [profilePicture sd_setImageWithURL:[appDelegate.currentUser pictureUrlwithWidth:@200 andHeight:@200]
                       placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
   
     [_profileView addSubview:border];
@@ -266,7 +266,7 @@
             
             NSNumber *sideLength = [NSNumber numberWithInt:cell.menuPicto.frame.size.height * 2];
             
-            [businessPic sd_setImageWithURL:[NSURL URLWithString:[pic urlWithWidth:sideLength height:sideLength]]
+            [businessPic sd_setImageWithURL:[pic urlWithWidth:sideLength height:sideLength]
                                 placeholderImage:[UIColor imageWithColor:[UIColor salonDetailTab]]];
            
             cell.menuPicto.layer.cornerRadius = cell.menuPicto.frame.size.height / 2;

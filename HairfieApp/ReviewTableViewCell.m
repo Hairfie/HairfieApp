@@ -54,7 +54,7 @@
     _statusLabel.text = [[review ratingBetween:@0 and:@5] stringValue];
     _nameLabel.text = review.author.displayName;
 
-    [profilePicture sd_setImageWithURL:[NSURL URLWithString:review.author.thumbUrl]
+    [profilePicture sd_setImageWithURL:[review.author pictureUrlwithWidth:@100 andHeight:@100]
                       placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
 }
 

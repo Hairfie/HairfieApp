@@ -191,12 +191,6 @@
     return [self.name stringByReplacingOccurrencesOfString:@" " withString:@"+"];
 }
 
-
--(NSString *)thumbUrl
-{
-    return [self.thumbnail urlWithWidth:@100 height:@100];
-}
-
 -(NSNumber *)ratingBetween:(NSNumber *)theMin // TODO: scale from the min
                        and:(NSNumber *)theMax
 {

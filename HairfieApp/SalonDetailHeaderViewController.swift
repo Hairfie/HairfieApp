@@ -82,7 +82,7 @@ import QuartzCore
             var frame = hairdresserPictureView.frame;
             var background = UIImageView(frame: getFrameForPictureAtIndex(0));
             background.contentMode = UIViewContentMode.ScaleAspectFill;
-            var pictureUrl = NSURL(string:business.owner.picture.urlWithWidth(frame.width * 2, height: frame.height * 2))
+            var pictureUrl = business.owner.picture.urlWithWidth(frame.width * 2, height: frame.height * 2);
             
             downloadImage(pictureUrl!, callback:{ (image, error) -> Void in
                 if (nil != image) {
@@ -91,7 +91,7 @@ import QuartzCore
             })
             
             // background image, smaller for better blur effect
-            downloadImage(NSURL(string:business.owner.picture.urlWithWidth(50, height: 50))!, callback:{ (image, error) -> Void in
+            downloadImage(business.owner.picture.urlWithWidth(50, height: 50)!, callback:{ (image, error) -> Void in
                 if (nil != image) {
                     background.image = image!.applyLightEffect();
                 }
@@ -114,7 +114,7 @@ import QuartzCore
                 var picture: Picture = business.pictures[index] as Picture
                 var pictureView = UIImageView(frame: frame)
                 pictureView.contentMode = UIViewContentMode.ScaleAspectFill;
-                var pictureUrl = NSURL(string:picture.urlWithWidth(frame.width * 2, height: frame.height * 2))
+                var pictureUrl = picture.urlWithWidth(frame.width * 2, height: frame.height * 2)
                 downloadImage(pictureUrl!, callback: { (image, error) -> Void in
                     if (nil != image) {
                         pictureView.image = image

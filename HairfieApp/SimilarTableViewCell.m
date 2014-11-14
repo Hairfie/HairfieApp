@@ -60,7 +60,7 @@
 
 -(void)refresh
 {
-    [SDWebImageDownloader.sharedDownloader downloadImageWithURL:[NSURL URLWithString:self.business.thumbUrl]
+    [SDWebImageDownloader.sharedDownloader downloadImageWithURL:[self.business.thumbnail urlWithWidth:@100 height:@100]
                                                         options:0
                                                        progress:^(NSInteger receivedSize, NSInteger expectedSize) { }
                                                       completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {

@@ -36,9 +36,7 @@
 
 -(id)initWithDictionary:(NSDictionary *)data;
 
--(NSString *)pictureUrl;
--(NSString *)hairfieCellUrl;
--(NSString *)hairfieDetailUrl;
+-(NSURL *)pictureUrl;
 -(NSString *)displayPrice;
 -(NSString *)displayNumLikes;
 -(NSString *)displayNumComments;

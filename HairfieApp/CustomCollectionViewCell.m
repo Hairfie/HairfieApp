@@ -32,10 +32,11 @@
     self.profilePicture.layer.borderWidth = 1.0f;
     self.profilePicture.layer.borderColor = [UIColor whiteColor].CGColor;
     [self.profilePicture setBackgroundColor:[UIColor lightGreyHairfie]];
-    [self.profilePicture sd_setImageWithURL:[NSURL URLWithString:hairfie.author.thumbUrl]
+    [self.profilePicture sd_setImageWithURL:[hairfie.author pictureUrlwithWidth:
+                                             @100 andHeight:@100]
                            placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
 
-    [self.hairfieView sd_setImageWithURL:[NSURL URLWithString:hairfie.hairfieCellUrl]
+    [self.hairfieView sd_setImageWithURL:[hairfie.picture urlWithWidth:@300 height:@420]
                         placeholderImage:[UIColor imageWithColor:[UIColor colorWithRed:234/255.0f
                                                                                  green:236/255.0f
                                                                                   blue:238/255.0f

@@ -18,17 +18,17 @@
 {
     return [self initWithName:[aDictionary objectForKey:@"name"]
                     container:[aDictionary objectForKey:@"container"]
-                          url:[aDictionary objectForKey:@"url"]];
+                          url:[NSURL URLWithString:[aDictionary objectForKey:@"url"]]];
 }
 
--(id)initWithUrl:(NSString *)anUrl
+-(id)initWithUrl:(NSURL *)anUrl
 {
     return [self initWithName:nil container:nil url:anUrl];
 }
 
 -(id)initWithName:(NSString *)aName
         container:(NSString *)aContainer
-              url:(NSString *)anUrl
+              url:(NSURL *)anUrl
 {
     self = [super init];
     if (self) {
@@ -54,28 +54,26 @@
     
     NSLog(@"self URL %@, SELF NAME %@", self.url, self.name);
     if ([self.name length] == 0) {
-        return self.url;
+        return self.url.absoluteString;
     } else {
         return self.name;
     }
 }
 
--(NSString *)urlWithWidth:(NSNumber *)aWidth
-                   height:(NSNumber *)anHeight
-{    
-    if (aWidth && anHeight) {
-        return [NSString stringWithFormat:@"%@?width=%@&height=%@", self.url, aWidth, anHeight];
-    }
-    
+-(NSURL *)urlWithWidth:(NSNumber *)aWidth
+                height:(NSNumber *)anHeight
+{
+    NSURLComponents *components = [NSURLComponents componentsWithURL:self.url resolvingAgainstBaseURL:NO];
+    NSMutableArray *queryItems = [[NSMutableArray alloc] initWithArray:components.queryItems];
     if (aWidth) {
-        return [NSString stringWithFormat:@"%@?width=%@", self.url, aWidth];
+        [queryItems addObject:[NSURLQueryItem queryItemWithName:@"width" value:[aWidth stringValue]]];
     }
-    
     if (anHeight) {
-        return [NSString stringWithFormat:@"%@?height=%@", self.url, anHeight];
+        [queryItems addObject:[NSURLQueryItem queryItemWithName:@"height" value:[anHeight stringValue]]];
     }
-    
-    return self.url;
+    components.queryItems = [[NSArray alloc] initWithArray:queryItems]; // TODO: is it necessary to copy again?
+
+    return components.URL;
 }
 
 -(void) uploadWithSuccess:(void(^)())aSuccessHandler

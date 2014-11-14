@@ -95,24 +95,14 @@
     _tags = [[NSArray alloc] initWithArray:temp];
 }
 
--(NSString *)pictureUrlwithWidth:(NSNumber *)width andHeight:(NSNumber *)height
+-(NSURL *)pictureUrlwithWidth:(NSNumber *)width andHeight:(NSNumber *)height
 {
     return [self.picture urlWithWidth:width height:height];
 }
 
--(NSString *)pictureUrl
+-(NSURL *)pictureUrl
 {
     return [self pictureUrlwithWidth:nil andHeight:nil];
-}
-
--(NSString *)hairfieCellUrl
-{
-    return [self pictureUrlwithWidth:@300 andHeight:@420];
-}
-
--(NSString *)hairfieDetailUrl
-{
-    return [self pictureUrlwithWidth:@640 andHeight:@640];
 }
 
 -(NSString *)displayPrice

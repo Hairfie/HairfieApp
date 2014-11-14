@@ -135,7 +135,7 @@
 
 -(void)shareOnInstagram
 {
-    NSURL *imageURL = [NSURL URLWithString:[self.hairfie.picture urlWithWidth:@620 height:@620]];
+    NSURL *imageURL = [self.hairfie.picture urlWithWidth:@620 height:@620];
 
     [InstagramSharer interactionControllerForImageWithURL:imageURL
                                                   success:^(UIDocumentInteractionController *dic) {
@@ -387,7 +387,7 @@
     [hairfieView.layer addSublayer:bottomBorder];
     
     UIImageView *hairfieImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 320)];
-    [hairfieImageView sd_setImageWithURL:[NSURL URLWithString:self.hairfie.hairfieDetailUrl]
+    [hairfieImageView sd_setImageWithURL:[self.hairfie.picture urlWithWidth:@640 height:@640]
                       placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
 
     hairfieImageView.contentMode = UIViewContentModeScaleAspectFit;
@@ -454,7 +454,7 @@
     UIRoundImageView *borderProfile = [[UIRoundImageView alloc]initWithFrame:CGRectMake(10, 0, 44, 44)];
     [borderProfile setBackgroundColor:[[UIColor blackHairfie] colorWithAlphaComponent:0.2]];
     UIRoundImageView *profilePicture = [[UIRoundImageView alloc] initWithFrame:CGRectMake(12, 2, 40, 40)];
-    [profilePicture sd_setImageWithURL:[NSURL URLWithString:self.hairfie.author.thumbUrl] placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
+    [profilePicture sd_setImageWithURL:[self.hairfie.author pictureUrlwithWidth:@100 andHeight:@100] placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
 
 
     UIButton *usernameButton = [[UIButton alloc] initWithFrame:CGRectMake(18, 0, 160, 30)];

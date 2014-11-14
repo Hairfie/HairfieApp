@@ -13,22 +13,22 @@
 
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSString *container;
-@property (strong, nonatomic) NSString *url;
+@property (strong, nonatomic) NSURL *url;
 @property (strong, nonatomic) UIImage *image;
 
 
 -(id)initWithDictionary:(NSDictionary *)aDictionary;
 
--(id)initWithUrl:(NSString *)anUrl;
+-(id)initWithUrl:(NSURL *)anUrl;
 
 -(id)initWithName:(NSString *)aName
         container:(NSString *)aContainer
-              url:(NSString *)anUrl;
+              url:(NSURL *)anUrl;
 
 -(NSString *)toApiValue;
 
--(NSString *)urlWithWidth:(NSNumber *)aWidth
-                   height:(NSNumber *)anHeight;
+-(NSURL *)urlWithWidth:(NSNumber *)aWidth
+                height:(NSNumber *)anHeight;
 
 
 - initWithImage:(UIImage *)image andContainer:(NSString *)container;
