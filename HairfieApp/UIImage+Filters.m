@@ -33,7 +33,6 @@
 }
 
 
-
 - (UIImage*)saturateImage:(float)saturationAmount withContrast:(float)contrastAmount{
     UIImage *sourceImage = self;
     
@@ -54,20 +53,16 @@
 }
 
 
-- (UIImage*)vignetteWithRadius:(float)inputRadius andIntensity:(float)inputIntensity{
+- (UIImage*)CIPhotoEffectProcess{
     
     
     CIContext *context = [CIContext contextWithOptions:nil];
     
-    CIFilter *filter= [CIFilter filterWithName:@"CIVignette"];
+    CIFilter *filter= [CIFilter filterWithName:@"CIPhotoEffectProcess"];
     
     CIImage *inputImage = [[CIImage alloc] initWithImage:self];
     
     [filter setValue:inputImage forKey:@"inputImage"];
-    
-    [filter setValue:[NSNumber numberWithFloat:inputIntensity] forKey:@"inputIntensity"];
-    [filter setValue:[NSNumber numberWithFloat:inputRadius] forKey:@"inputRadius"];
-    
     return [self imageFromContext:context withFilter:filter];
 }
 
@@ -144,6 +139,35 @@
     
     return [self imageFromContext:context withFilter:filter];
 }
+
+
+- (UIImage *)CIPhotoEffectInstant {
+    CIImage *inputImage =[[CIImage alloc] initWithImage:self];
+    CIContext *context = [CIContext contextWithOptions:nil];
+    
+    CIFilter *filter = [CIFilter filterWithName:@"CIPhotoEffectInstant" keysAndValues:kCIInputImageKey, inputImage, nil];
+    
+    [filter setDefaults];
+    
+    [filter setValue:inputImage forKey:kCIInputImageKey];
+    
+    return [self imageFromContext:context withFilter:filter];
+}
+
+
+
+- (UIImage *)CIPhotoEffectNoir {
+    CIImage *inputImage =[[CIImage alloc] initWithImage:self];
+    CIContext *context = [CIContext contextWithOptions:nil];
+    
+    CIFilter *filter = [CIFilter filterWithName:@"CIPhotoEffectNoir" keysAndValues:kCIInputImageKey, inputImage, nil];
+    
+    [filter setDefaults];
+    
+    return [self imageFromContext:context withFilter:filter];
+}
+
+
 
 
 - (UIImage *)curveFilter {

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B17" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="m6Z-pY-ich">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="m6Z-pY-ich">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
@@ -905,10 +905,10 @@
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gb0-mG-PMw">
-                                <rect key="frame" x="0.0" y="1222" width="320" height="78"/>
+                                <rect key="frame" x="0.0" y="490" width="320" height="78"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="txc-Qj-wYU">
-                                        <rect key="frame" x="8" y="8" width="60" height="60"/>
+                                        <rect key="frame" x="8" y="9" width="60" height="60"/>
                                         <color key="backgroundColor" red="0.41176470590000003" green="0.4431372549" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="60" id="t7q-iZ-UEh"/>
@@ -923,7 +923,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p28-Lo-Kzd">
-                                        <rect key="frame" x="130" y="8" width="60" height="60"/>
+                                        <rect key="frame" x="88" y="9" width="60" height="60"/>
                                         <color key="backgroundColor" red="0.41176470590000003" green="0.4431372549" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="60" id="S1m-D7-KMR"/>
@@ -937,8 +937,23 @@
                                             <action selector="sepia:" destination="QW8-eh-zsD" eventType="touchUpInside" id="KhM-nL-Rfa"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hXj-SX-cVj" userLabel="Transfer">
+                                        <rect key="frame" x="168" y="9" width="60" height="60"/>
+                                        <color key="backgroundColor" red="0.41176470590000003" green="0.4431372549" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="hXj-SX-cVj" secondAttribute="height" multiplier="1:1" id="4Th-Bc-OKf"/>
+                                            <constraint firstAttribute="width" constant="60" id="Hh9-ST-jxw"/>
+                                        </constraints>
+                                        <state key="normal" title="Sepia" image="sepia.jpeg">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="transfer:" destination="QW8-eh-zsD" eventType="touchUpInside" id="drM-b3-Cgo"/>
+                                        </connections>
+                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Frd-Ai-5ht">
-                                        <rect key="frame" x="252" y="8" width="60" height="60"/>
+                                        <rect key="frame" x="248" y="9" width="60" height="60"/>
                                         <color key="backgroundColor" red="0.41176470590000003" green="0.4431372549" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="Frd-Ai-5ht" secondAttribute="height" multiplier="1:1" id="fKb-90-CdF"/>
@@ -952,14 +967,60 @@
                                             <action selector="newFilter:" destination="QW8-eh-zsD" eventType="touchUpInside" id="lVJ-Nt-Eem"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1RR-dd-tNG" userLabel="Instant">
+                                        <rect key="frame" x="328" y="9" width="60" height="60"/>
+                                        <color key="backgroundColor" red="0.41176470590000003" green="0.4431372549" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="60" id="Fl1-J5-qMh"/>
+                                        </constraints>
+                                        <state key="normal" title="Curve">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="instant:" destination="QW8-eh-zsD" eventType="touchUpInside" id="1dD-26-YFE"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hq9-iB-Lbq" userLabel="Process">
+                                        <rect key="frame" x="408" y="9" width="60" height="60"/>
+                                        <color key="backgroundColor" red="0.41176470590000003" green="0.4431372549" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="60" id="kzv-R0-qlK"/>
+                                        </constraints>
+                                        <state key="normal" title="Curve">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="process:" destination="QW8-eh-zsD" eventType="touchUpInside" id="Lg6-By-ZH7"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="80k-oc-h3c" userLabel="Noir">
+                                        <rect key="frame" x="488" y="9" width="60" height="60"/>
+                                        <color key="backgroundColor" red="0.41176470590000003" green="0.4431372549" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="60" id="OuV-D0-cnO"/>
+                                        </constraints>
+                                        <state key="normal" title="Curve">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="photoEffectNoir:" destination="QW8-eh-zsD" eventType="touchUpInside" id="3hZ-6u-Tro"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="Frd-Ai-5ht" firstAttribute="leading" secondItem="p28-Lo-Kzd" secondAttribute="trailing" constant="25" id="ZrL-Vf-UTa"/>
-                                    <constraint firstItem="p28-Lo-Kzd" firstAttribute="leading" secondItem="txc-Qj-wYU" secondAttribute="trailing" constant="25" id="bBP-bo-JDK"/>
+                                    <constraint firstItem="hXj-SX-cVj" firstAttribute="leading" secondItem="p28-Lo-Kzd" secondAttribute="trailing" constant="20" id="2sG-BO-Y8s"/>
+                                    <constraint firstItem="80k-oc-h3c" firstAttribute="leading" secondItem="hq9-iB-Lbq" secondAttribute="trailing" constant="20" id="DTQ-S0-hqJ"/>
+                                    <constraint firstItem="1RR-dd-tNG" firstAttribute="leading" secondItem="Frd-Ai-5ht" secondAttribute="trailing" constant="20" id="LTL-up-8s8"/>
+                                    <constraint firstItem="hq9-iB-Lbq" firstAttribute="leading" secondItem="1RR-dd-tNG" secondAttribute="trailing" constant="20" id="RSu-8O-f7w"/>
+                                    <constraint firstItem="p28-Lo-Kzd" firstAttribute="leading" secondItem="txc-Qj-wYU" secondAttribute="trailing" constant="20" id="UCT-tW-e7r"/>
+                                    <constraint firstItem="80k-oc-h3c" firstAttribute="width" secondItem="80k-oc-h3c" secondAttribute="height" multiplier="1:1" id="bEO-UF-yur"/>
+                                    <constraint firstItem="1RR-dd-tNG" firstAttribute="width" secondItem="1RR-dd-tNG" secondAttribute="height" multiplier="1:1" id="cIF-zj-YAl"/>
                                     <constraint firstAttribute="height" constant="78" id="fh7-W6-fko"/>
-                                    <constraint firstAttribute="centerX" secondItem="p28-Lo-Kzd" secondAttribute="centerX" id="fkH-Oj-mZQ"/>
-                                    <constraint firstItem="p28-Lo-Kzd" firstAttribute="centerY" secondItem="txc-Qj-wYU" secondAttribute="centerY" id="pLp-Tr-ryg"/>
-                                    <constraint firstItem="Frd-Ai-5ht" firstAttribute="centerY" secondItem="txc-Qj-wYU" secondAttribute="centerY" id="qBc-Um-xmZ"/>
+                                    <constraint firstItem="hq9-iB-Lbq" firstAttribute="width" secondItem="hq9-iB-Lbq" secondAttribute="height" multiplier="1:1" id="luf-LU-372"/>
+                                    <constraint firstItem="Frd-Ai-5ht" firstAttribute="leading" secondItem="hXj-SX-cVj" secondAttribute="trailing" constant="20" id="mKJ-Wi-qaY"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
@@ -972,13 +1033,19 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="tko-RM-suj"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="curveBttn" destination="Frd-Ai-5ht" id="Sfo-bi-e1X"/>
                         <outlet property="filtersView" destination="xOx-8O-8sU" id="pWA-7f-o5K"/>
                         <outlet property="imageView" destination="BYw-ul-o7V" id="LRT-qH-D9j"/>
+                        <outlet property="instantBttn" destination="1RR-dd-tNG" id="BmG-Fc-lwr"/>
                         <outlet property="nextBttn" destination="pzU-kk-VzB" id="TJM-fw-lTB"/>
                         <outlet property="originalBttn" destination="txc-Qj-wYU" id="10p-bp-5ip"/>
+                        <outlet property="photoEffectNoirBttn" destination="80k-oc-h3c" id="NzU-z0-vZk"/>
+                        <outlet property="processBttn" destination="hq9-iB-Lbq" id="lMY-KZ-94M"/>
+                        <outlet property="scrollView" destination="gb0-mG-PMw" id="PGh-SQ-Snf"/>
                         <outlet property="sepiaBttn" destination="p28-Lo-Kzd" id="sC6-bx-Ucy"/>
+                        <outlet property="transferBttn" destination="hXj-SX-cVj" id="hta-eU-kBj"/>
                         <segue destination="60g-nd-hW0" kind="push" identifier="setupHairfie" id="SUy-VH-B9D"/>
                         <segue destination="T79-5J-2Oj" kind="push" identifier="saveUserPicture" id="ydX-2o-h63"/>
                     </connections>
@@ -5325,14 +5392,14 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="LOg-O4-mCP"/>
-        <segue reference="7yU-V8-5Z9"/>
-        <segue reference="N5w-ND-ZjU"/>
-        <segue reference="MlL-bZ-CKF"/>
-        <segue reference="ydX-2o-h63"/>
-        <segue reference="uEN-by-6gW"/>
-        <segue reference="ssq-cN-qLV"/>
         <segue reference="vAT-vQ-WuX"/>
         <segue reference="VGS-VM-Pwy"/>
+        <segue reference="7yU-V8-5Z9"/>
+        <segue reference="N5w-ND-ZjU"/>
+        <segue reference="K9z-px-huR"/>
+        <segue reference="uEN-by-6gW"/>
+        <segue reference="ydX-2o-h63"/>
+        <segue reference="LOg-O4-mCP"/>
+        <segue reference="ssq-cN-qLV"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -19,6 +19,10 @@
     UIImage *output;
     UIImage *sepia;
     UIImage *newFilter;
+    UIImage *transfer;
+    UIImage *instant;
+    UIImage *photoEffectNoir;
+    UIImage *process;
     BOOL frontCamera;
 }
 
@@ -27,6 +31,13 @@
 
 -(void)viewDidLoad
 {
+    
+    NSArray *supportedFilters = [CIFilter filterNamesInCategory:kCICategoryBuiltIn];
+    for (CIFilter *filter in supportedFilters) {
+        NSString *string = [NSString stringWithFormat:@"%@",[[CIFilter filterWithName:(NSString *)filter] inputKeys]];
+        NSLog(@"%@ %@", filter, string);
+    }
+    [_scrollView setContentSize:CGSizeMake(560, 78)];
     
     if(self.isHairfie == YES)
         original = [self squareCropImage:self.hairfiePost.picture.image ToSideLength:320];
@@ -43,11 +54,31 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         sepia = [original toSepia];
         newFilter = [original curveFilter];
+        transfer = [original CIPhotoEffectTransfer];
+        instant = [original CIPhotoEffectInstant];
+        photoEffectNoir = [original CIPhotoEffectNoir];
+        process = [original CIPhotoEffectProcess];
     });
     
+    UIImage *instantImg = [UIImage imageNamed:@"original.jpeg"];
+   
+    
+    [_instantBttn setImage:[instantImg CIPhotoEffectInstant] forState:UIControlStateNormal];
+    
+    
+    UIImage *img = [UIImage imageNamed:@"original.jpeg"];
+    [_transferBttn setImage:[img CIPhotoEffectTransfer] forState:UIControlStateNormal];
+    [_processBttn setImage:[img CIPhotoEffectProcess] forState:UIControlStateNormal];
+    [_photoEffectNoirBttn setImage:[img CIPhotoEffectNoir] forState:UIControlStateNormal];
+    
+    
+    [_processBttn roundStyle];
+    [_photoEffectNoirBttn roundStyle];
     [_sepiaBttn roundStyle];
+    [_transferBttn roundStyle];
     [_originalBttn roundStyle];
     [_curveBttn roundStyle];
+    [_instantBttn roundStyle];
     
 }
 
@@ -148,6 +179,12 @@
     output = sepia;
 }
 
+-(IBAction)transfer:(id)sender
+{
+    imageView.image = transfer;
+    imageView.contentMode = UIViewContentModeScaleAspectFill;
+    output = transfer;
+}
 -(IBAction)newFilter:(id)sender {
     imageView.image = newFilter;
     imageView.contentMode = UIViewContentModeScaleAspectFill;
@@ -157,6 +194,23 @@
 -(IBAction)original:(id)sender {
     imageView.image = original;
     output = original;
+}
+-(IBAction)instant:(id)sender {
+    imageView.image = instant;
+    imageView.contentMode = UIViewContentModeScaleAspectFill;
+    output = instant;
+}
+
+-(IBAction)process:(id)sender {
+    imageView.image = process;
+    imageView.contentMode = UIViewContentModeScaleAspectFill;
+    output = process;
+}
+
+-(IBAction)photoEffectNoir:(id)sender {
+    imageView.image = photoEffectNoir;
+    imageView.contentMode = UIViewContentModeScaleAspectFill;
+    output = photoEffectNoir;
 }
 
 -(IBAction)backToSignUp:(id)sender

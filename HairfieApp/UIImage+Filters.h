@@ -19,6 +19,13 @@
 - (UIImage *) blendMode:(NSString *)blendMode withImageNamed:(NSString *) imageName;
 - (UIImage *) curveFilter;
 - (UIImage *) applyLightEffect;
+
+- (UIImage *)CIVignette;
+- (UIImage *)CIPhotoEffectInstant;
+- (UIImage *)CIPhotoEffectTransfer;
+- (UIImage *)CIColorCube;
+- (UIImage *)CIPhotoEffectNoir;
+- (UIImage *)CIPhotoEffectProcess;
 @end
 
 
