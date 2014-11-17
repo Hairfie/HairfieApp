@@ -104,6 +104,8 @@
 		719C208619ED5016008E0B17 /* tab-business-prices.png in Resources */ = {isa = PBXBuildFile; fileRef = 719C207E19ED5016008E0B17 /* tab-business-prices.png */; };
 		71A0AC3D19CC2CEA00BC1ABB /* Timetable.m in Sources */ = {isa = PBXBuildFile; fileRef = 71A0AC3C19CC2CEA00BC1ABB /* Timetable.m */; };
 		71A0AC4019CC2DA000BC1ABB /* TimeWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 71A0AC3F19CC2DA000BC1ABB /* TimeWindow.m */; };
+		71A564E61A1A38CC00398C7B /* field-icon-magnifier.png in Resources */ = {isa = PBXBuildFile; fileRef = 71A564E51A1A38CC00398C7B /* field-icon-magnifier.png */; };
+		71A564E91A1A3A9100398C7B /* CALayer+XibConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 71A564E81A1A3A9100398C7B /* CALayer+XibConfiguration.m */; };
 		71AAB62A19D005170000552D /* Money.m in Sources */ = {isa = PBXBuildFile; fileRef = 71AAB62919D005170000552D /* Money.m */; };
 		71C0D3FF19C1D7600037CBF4 /* Address.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C0D3FE19C1D7600037CBF4 /* Address.m */; };
 		71C0D40219C1D9190037CBF4 /* BusinessReview.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C0D40119C1D9190037CBF4 /* BusinessReview.m */; };
@@ -530,6 +532,9 @@
 		71A0AC3C19CC2CEA00BC1ABB /* Timetable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Timetable.m; sourceTree = "<group>"; };
 		71A0AC3E19CC2DA000BC1ABB /* TimeWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeWindow.h; sourceTree = "<group>"; };
 		71A0AC3F19CC2DA000BC1ABB /* TimeWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeWindow.m; sourceTree = "<group>"; };
+		71A564E51A1A38CC00398C7B /* field-icon-magnifier.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "field-icon-magnifier.png"; sourceTree = "<group>"; };
+		71A564E71A1A3A9100398C7B /* CALayer+XibConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+XibConfiguration.h"; sourceTree = "<group>"; };
+		71A564E81A1A3A9100398C7B /* CALayer+XibConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+XibConfiguration.m"; sourceTree = "<group>"; };
 		71AAB62819D005170000552D /* Money.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Money.h; sourceTree = "<group>"; };
 		71AAB62919D005170000552D /* Money.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Money.m; sourceTree = "<group>"; };
 		71C0D3FB19C1D65A0037CBF4 /* Address.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Address.h; sourceTree = "<group>"; };
@@ -965,6 +970,7 @@
 			children = (
 				15E9526B19FEABA500699CBE /* Week */,
 				B382114219EEB6F40020C25E /* UILabel Subclasses */,
+				71A564EA1A1A3C6500398C7B /* CALayer Subclasses */,
 				158FCA8419FA3DD70001F86C /* Utils */,
 				B3F0B22319EC1D9F00E0E6EE /* NSString Subclasses */,
 				B3F0B21719EBC19E00E0E6EE /* UITextField Subclasses */,
@@ -1199,6 +1205,15 @@
 				7164B5691A0D1D4B002B68E5 /* InstagramSharer.m */,
 			);
 			name = Share;
+			sourceTree = "<group>";
+		};
+		71A564EA1A1A3C6500398C7B /* CALayer Subclasses */ = {
+			isa = PBXGroup;
+			children = (
+				71A564E71A1A3A9100398C7B /* CALayer+XibConfiguration.h */,
+				71A564E81A1A3A9100398C7B /* CALayer+XibConfiguration.m */,
+			);
+			name = "CALayer Subclasses";
 			sourceTree = "<group>";
 		};
 		B3087010198782CF0080E6D2 /* Pages */ = {
@@ -1715,6 +1730,7 @@
 		B3EDF8991987C43500431B70 /* Ressources */ = {
 			isa = PBXGroup;
 			children = (
+				71A564E51A1A38CC00398C7B /* field-icon-magnifier.png */,
 				71E01BBB1A10D0DC003B2C2D /* twitter-share-off.png */,
 				71E01BBC1A10D0DC003B2C2D /* twitter-share-on.png */,
 				B3A2FE9C1A07EC2B000B839F /* send-email-button.png */,
@@ -2083,6 +2099,7 @@
 				B37F9A4D198F8F5E00881071 /* page-salon-bttn-bg.png in Resources */,
 				B3EDF89E1987C57200431B70 /* menu-bttn.png in Resources */,
 				1559630519E2F31500F84BFA /* arrow-nav-white.png in Resources */,
+				71A564E61A1A38CC00398C7B /* field-icon-magnifier.png in Resources */,
 				1550721819DC55B9008F2EAD /* tuto-page-2.png in Resources */,
 				B3E4B5981992530100CBBDC8 /* nav-disclosure.png in Resources */,
 				15A91EB219DADD97000539C9 /* hairdresser-who-string-hairfie-post.png in Resources */,
@@ -2369,6 +2386,7 @@
 				B3F6B70719F69A3900EF4B5C /* SuggestHairdresserViewController.m in Sources */,
 				B3615B3819AF242800F1141D /* User.m in Sources */,
 				15697B31199BB03800DA83FE /* UIImage+Resize.m in Sources */,
+				71A564E91A1A3A9100398C7B /* CALayer+XibConfiguration.m in Sources */,
 				B36AC50519DAB47E00B8AC13 /* STCollapseTableView.m in Sources */,
 				B308701719878C030080E6D2 /* SettingsViewController.m in Sources */,
 				B3A1281A198A85D8004D90BD /* CustomPinView.m in Sources */,

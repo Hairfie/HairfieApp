@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="14A379b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14B23" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="SourceSansPro-Light.ttf">
@@ -18,11 +19,19 @@
                 <rect key="frame" x="0.0" y="0.0" width="300" height="58"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Pxf-Kp-QqX">
+                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Pxf-Kp-QqX">
                         <rect key="frame" x="140" y="19" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="Div-EN-apa"/>
+                            <constraint firstAttribute="width" constant="20" id="dlp-RX-4GN"/>
+                        </constraints>
                     </activityIndicatorView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sadly, you reached the end :-(" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dFC-uJ-5eh">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sadly, you reached the end :-(" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dFC-uJ-5eh">
                         <rect key="frame" x="52" y="18" width="196" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="196" id="0Kr-LB-jft"/>
+                            <constraint firstAttribute="height" constant="21" id="kd8-OC-Qbb"/>
+                        </constraints>
                         <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="15"/>
                         <color key="textColor" red="0.1764705882" green="0.22352941179999999" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -30,6 +39,12 @@
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
+            <constraints>
+                <constraint firstAttribute="centerX" secondItem="Pxf-Kp-QqX" secondAttribute="centerX" id="0Qo-hF-nuZ"/>
+                <constraint firstAttribute="centerX" secondItem="dFC-uJ-5eh" secondAttribute="centerX" id="FJC-kp-kZx"/>
+                <constraint firstAttribute="centerY" secondItem="Pxf-Kp-QqX" secondAttribute="centerY" id="IFp-ma-Iqo"/>
+                <constraint firstAttribute="centerY" secondItem="dFC-uJ-5eh" secondAttribute="centerY" constant="0.5" id="cI1-CX-jpP"/>
+            </constraints>
             <size key="customSize" width="226" height="58"/>
             <connections>
                 <outlet property="endOfScroll" destination="dFC-uJ-5eh" id="R3k-ex-SOQ"/>

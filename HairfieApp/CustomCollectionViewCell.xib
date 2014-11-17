@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14B17" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14B23" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
@@ -19,30 +19,48 @@
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="150" height="210"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mL7-Ta-Le1">
-                        <rect key="frame" x="0.0" y="0.0" width="150" height="210"/>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mL7-Ta-Le1">
+                        <rect key="frame" x="0.0" y="0.0" width="150" height="180"/>
                     </imageView>
-                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x1y-Lf-DUK">
+                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x1y-Lf-DUK" userLabel="Caption">
                         <rect key="frame" x="0.0" y="180" width="150" height="30"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="George A." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="bBf-sf-nz4">
-                                <rect key="frame" x="50" y="3" width="100" height="21"/>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WFI-kj-zoh" userLabel="Top Border View">
+                                <rect key="frame" x="0.0" y="0.0" width="150" height="2"/>
+                                <color key="backgroundColor" red="0.78535583939999998" green="0.19215686269999999" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="2" id="WDI-Rp-GGg"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="2" id="rK1-qb-qnz"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="George A." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="bBf-sf-nz4">
+                                <rect key="frame" x="0.0" y="0.0" width="150" height="30"/>
                                 <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="16"/>
                                 <color key="textColor" red="0.41176470590000003" green="0.4431372549" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="0.95686274510000002" green="0.92941176469999998" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="O5L-RY-fbv"/>
+                            <constraint firstAttribute="width" secondItem="WFI-kj-zoh" secondAttribute="width" id="amA-XF-2su"/>
+                            <constraint firstItem="WFI-kj-zoh" firstAttribute="top" secondItem="x1y-Lf-DUK" secondAttribute="top" id="d4h-Jg-uQb"/>
+                            <constraint firstItem="WFI-kj-zoh" firstAttribute="leading" secondItem="x1y-Lf-DUK" secondAttribute="leading" id="zZy-ff-Jn6"/>
+                        </constraints>
                     </view>
-                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WFI-kj-zoh">
-                        <rect key="frame" x="0.0" y="178" width="320" height="2"/>
-                        <color key="backgroundColor" red="0.78535583939999998" green="0.19215686269999999" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
-                    </view>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="picto-hairfie-like.png" translatesAutoresizingMaskIntoConstraints="NO" id="hPb-2R-DdA">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="picto-hairfie-like.png" translatesAutoresizingMaskIntoConstraints="NO" id="hPb-2R-DdA" userLabel="Likes Picto Image">
                         <rect key="frame" x="107" y="155" width="16" height="15"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="15" id="2Ie-ol-rF0"/>
+                            <constraint firstAttribute="width" constant="16" id="3XV-Yi-pSs"/>
+                        </constraints>
                     </imageView>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="13" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6CO-0M-BpI">
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6CO-0M-BpI" userLabel="Likes Count Label">
                         <rect key="frame" x="124" y="151" width="20" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="DBJ-5e-SRT"/>
+                            <constraint firstAttribute="width" constant="20" id="P5Z-uK-jxf"/>
+                        </constraints>
                         <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="13"/>
                         <color key="textColor" red="0.93725490196078431" green="0.94117647058823528" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -50,7 +68,19 @@
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
-            <color key="backgroundColor" red="0.78535583941605824" green="0.19215686274509769" blue="0.22352941176470553" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="mL7-Ta-Le1" secondAttribute="bottom" constant="30" id="BOu-Tt-Se9"/>
+                <constraint firstItem="hPb-2R-DdA" firstAttribute="centerY" secondItem="6CO-0M-BpI" secondAttribute="centerY" constant="1" id="N6F-VK-2Xl"/>
+                <constraint firstAttribute="bottom" secondItem="x1y-Lf-DUK" secondAttribute="bottom" id="R8X-VL-j5u"/>
+                <constraint firstItem="mL7-Ta-Le1" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="WQx-Ox-1Jj"/>
+                <constraint firstItem="hPb-2R-DdA" firstAttribute="trailing" secondItem="mL7-Ta-Le1" secondAttribute="trailing" constant="-27" id="WgS-kO-sIg"/>
+                <constraint firstItem="mL7-Ta-Le1" firstAttribute="width" secondItem="x1y-Lf-DUK" secondAttribute="width" id="XM2-Su-yxH"/>
+                <constraint firstItem="mL7-Ta-Le1" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="XxY-IG-xpN"/>
+                <constraint firstItem="hPb-2R-DdA" firstAttribute="bottom" secondItem="mL7-Ta-Le1" secondAttribute="bottom" constant="-10" id="acG-3Z-0rW"/>
+                <constraint firstItem="6CO-0M-BpI" firstAttribute="leading" secondItem="hPb-2R-DdA" secondAttribute="trailing" constant="1" id="hCK-ld-1gF"/>
+                <constraint firstItem="x1y-Lf-DUK" firstAttribute="top" secondItem="mL7-Ta-Le1" secondAttribute="bottom" id="jC0-YM-SuZ"/>
+                <constraint firstAttribute="trailing" secondItem="mL7-Ta-Le1" secondAttribute="trailing" id="rNR-Qc-snp"/>
+            </constraints>
             <size key="customSize" width="69" height="119"/>
             <connections>
                 <outlet property="hairfieView" destination="mL7-Ta-Le1" id="dlX-RK-5tg"/>
@@ -58,7 +88,7 @@
                 <outlet property="name" destination="bBf-sf-nz4" id="jRx-Uz-qfP"/>
                 <outlet property="nbLikes" destination="6CO-0M-BpI" id="GSU-9J-bnB"/>
             </connections>
-            <point key="canvasLocation" x="222" y="170"/>
+            <point key="canvasLocation" x="305" y="188"/>
         </collectionViewCell>
     </objects>
     <resources>

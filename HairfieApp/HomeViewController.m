@@ -166,11 +166,12 @@
     return CGSizeMake(320, 200);
 }
 
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
     if (indexPath.row < [hairfies count]) {
-        return CGSizeMake(145, 210);
+        return CGSizeMake((collectionView.frame.size.width - 30) / 2, 210);
     } else {
-        return CGSizeMake(300, 58);
+        return CGSizeMake(collectionView.frame.size.width, 58);
     }
 }
 
