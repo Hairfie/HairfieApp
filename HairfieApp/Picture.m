@@ -81,7 +81,6 @@
     } else {
         components.query = [queryParts componentsJoinedByString:@"&"];
     }
-
     return components.URL;
 }
 
@@ -114,7 +113,7 @@
         self.name = [uploadedFile objectForKey:@"name"];
         self.container = [uploadedFile objectForKey:@"container"];
         self.url = [uploadedFile objectForKey:@"url"];
-        aSuccessHandler();
+       aSuccessHandler();
     };
     
     [file invokeMethod:@"upload"

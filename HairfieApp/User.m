@@ -114,6 +114,8 @@
                       self.picture = user.picture;
                       [[NSNotificationCenter defaultCenter] postNotificationName:[[self class] EVENT_CHANGED]
                                                                           object:self];
+                      [[NSNotificationCenter defaultCenter] postNotificationName:@"pictureUploaded" object:self];
+                      
                   }
                   failure:^(NSError *error) {
                       NSLog(@"Failed to refresh user: %@", error.localizedDescription);

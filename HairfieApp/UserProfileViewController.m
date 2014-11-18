@@ -55,6 +55,11 @@
     [self.hairfiesCollection registerNib:[UINib nibWithNibName:@"LoadingCollectionViewCell" bundle:nil]
           forCellWithReuseIdentifier:LOADING_CELL];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(refreshHeader:)
+                                                 name:@"pictureUploaded"
+                                               object:nil];
+
     appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [self setButtonSelected:self.hairfieBttn];
 
@@ -73,6 +78,14 @@
 }
 
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    
+    UITableViewCell *cell = [[self.reviewTableView visibleCells] lastObject];
+    NSLog(@" last cell no :%d",cell.tag +1);
+    
+}
+
 -(void)viewWillAppear:(BOOL)animated
 {
     
@@ -83,6 +96,13 @@
 }
 
 // Changed pic = > upload and then modify current user with new picture object
+
+-(void)refreshHeader:(NSNotification*)notification
+{
+    [self setupHeaderPictures];
+    
+    NSLog(@"HERE AFTER NOTIFICTATIN");
+}
 
 -(void) uploadProfileImage:(UIImage *)image
 {
@@ -107,11 +127,9 @@
         };
         void (^loadSuccessFunc)(void) = ^(void){
             [self.user refresh];
-            [self setupHeaderPictures];
         };
             [self.user saveWithSuccess:loadSuccessFunc failure:loadErrorFunc];
-        //[self setupHeaderPictures];
-
+       
         uploadInProgress = NO;
         
        
@@ -131,8 +149,8 @@
 
 -(void)setupHeaderPictures
 {
-    SDWebImageManager *manager = [SDWebImageManager sharedManager];
     
+    SDWebImageManager *manager = [SDWebImageManager sharedManager];
     
     [manager downloadImageWithURL:[self.user pictureUrlwithWidth:@50 andHeight:@50]
                           options:0
@@ -199,10 +217,7 @@
     self.reviewLbl.text = NSLocalizedStringFromTable(@"Reviews", @"UserProfile", nil);
 }
 
--(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-{
-  
-}
+
 
 -(IBAction)showMenuActionSheet:(id)sender
 {
@@ -239,8 +254,9 @@
     
     if (aButton == self.hairfieBttn) {
         self.hairfieView.hidden = NO;
+         [aButton setBackgroundColor:[UIColor lightGreyHairfie]];
         [bottomBorder setFrame:CGRectMake(0, aButton.frame.size.height, aButton.frame.size.width - 1, 3)];
-        
+        [self.reviewBttn setBackgroundColor:[UIColor clearColor]];
         if (userHairfies.count % 2 == 1)
             self.mainViewHeight.constant = ((userHairfies.count / 2 + 1) * 220)+ 274 + 68;
         else
@@ -248,7 +264,9 @@
     }
     if (aButton == self.reviewBttn)
     {
-         [bottomBorder setFrame:CGRectMake(1, aButton.frame.size.height, aButton.frame.size.width, 3)];
+        [aButton setBackgroundColor:[UIColor lightGreyHairfie]];
+        [self.hairfieBttn setBackgroundColor:[UIColor clearColor]];
+        [bottomBorder setFrame:CGRectMake(1, aButton.frame.size.height, aButton.frame.size.width, 3)];
         self.reviewView.hidden = NO;
         self.mainViewHeight.constant = (userReviews.count * 130) + 274;
     }
@@ -258,7 +276,7 @@
             if (subView.tag == 1) [subView removeFromSuperview];
         }
     }
-    
+   
     bottomBorder.backgroundColor = [UIColor salonDetailTab];
     bottomBorder.tag = 1;
     [aButton addSubview:bottomBorder];
@@ -451,11 +469,14 @@
    
     if (tableView == self.reviewTableView)
         [cell setReview:review];
-    
+    cell.tag = indexPath.row;
     return cell;
 }
 
-
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"TOAST %zd", indexPath.row);
+}
 
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

@@ -75,43 +75,7 @@ static LBRESTAdapter * _lbAdaptater = nil;
                                                object:nil];
     
     
-    
-    UILocalNotification *notification = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
-    
-    if (notification) {
-        [self showAlarm:notification.alertBody];
-        NSLog(@"AppDelegate didFinishLaunchingWithOptions");
-        application.applicationIconBadgeNumber = 0;
-    }
-  
-
-    [self setupLocalNotifications];
-
-
     return YES;
-}
-
-- (void)setupLocalNotifications {
-    [[UIApplication sharedApplication] cancelAllLocalNotifications];
-    
-    UILocalNotification *localNotification = [[UILocalNotification alloc] init];
-    
-    // current time plus 10 secs
-    NSDate *now = [NSDate date];
-    NSDate *dateToFire = [now dateByAddingTimeInterval:5];
-    
-    NSLog(@"now time: %@", now);
-    NSLog(@"fire time: %@", dateToFire);
-    
-    localNotification.fireDate = dateToFire;
-    localNotification.alertBody = @"Time to get up!";
-    localNotification.soundName = UILocalNotificationDefaultSoundName;
-    localNotification.applicationIconBadgeNumber = 1; // increment
-    
-    NSDictionary *infoDict = [NSDictionary dictionaryWithObjectsAndKeys:@"Object 1", @"Key 1", @"Object 2", @"Key 2", nil];
-    localNotification.userInfo = infoDict;
-    
-    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
 }
 
 - (BOOL)application:(UIApplication *)application
