@@ -137,7 +137,6 @@
     
     CIFilter *filter= [CIFilter filterWithName:blendMode];
     
-    NSLog(@"SIZES %f, %f ", self.size.height, [UIImage imageNamed:imageName].size.height);
     // inputBackgroundImage most be the same size as the inputImage
     
     [filter setValue:inputImage forKey:@"inputBackgroundImage"];
@@ -193,24 +192,20 @@
 
 - (UIImage *)curveFilter {
     
-    
     CIImage *inputImage =[[CIImage alloc] initWithImage:self];
-    
     CIContext *context = [CIContext contextWithOptions:nil];
-    
     CIFilter *filter = [CIFilter filterWithName:@"CIToneCurve"];
     
     [filter setDefaults];
     [filter setValue:inputImage forKey:kCIInputImageKey];
-    [filter setValue:[CIVector vectorWithX:0.0  Y:0.0] forKey:@"inputPoint0"]; // default
+    [filter setValue:[CIVector vectorWithX:0.0  Y:0.0] forKey:@"inputPoint0"];
     [filter setValue:[CIVector vectorWithX:0.25 Y:0.15] forKey:@"inputPoint1"];
     [filter setValue:[CIVector vectorWithX:0.5  Y:0.5] forKey:@"inputPoint2"];
     [filter setValue:[CIVector vectorWithX:0.75  Y:0.85] forKey:@"inputPoint3"];
-    [filter setValue:[CIVector vectorWithX:1.0  Y:1.0] forKey:@"inputPoint4"]; // default
+    [filter setValue:[CIVector vectorWithX:1.0  Y:1.0] forKey:@"inputPoint4"];
     
     return [self imageFromContext:context withFilter:filter];
 }
-
 
 - (UIImage*)imageFromContext:(CIContext*)context withFilter:(CIFilter*)filter
 {
@@ -218,13 +213,14 @@
     CGImageRef imageRef = [context createCGImage:[filter outputImage] fromRect:filter.outputImage.extent];
     UIImage *image = [UIImage imageWithCGImage:imageRef scale:self.scale orientation:self.imageOrientation];
     CGImageRelease(imageRef);
-    return image;
     
+    return image;
 }
 
 - (UIImage *)applyLightEffect
 {
     UIColor *tintColor = [UIColor colorWithWhite:1.0 alpha:0.3];
+    
     return [self applyBlurWithRadius:1 tintColor:tintColor saturationDeltaFactor:1.8 maskImage:nil];
 }
 
