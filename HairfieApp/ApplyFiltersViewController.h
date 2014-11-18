@@ -36,6 +36,7 @@
 @property (nonatomic) IBOutlet UIButton *instantBttn;
 @property (nonatomic) IBOutlet UIButton *processBttn;
 @property (nonatomic) IBOutlet UIButton *photoEffectNoirBttn;
+@property (nonatomic) IBOutlet UIButton *vignetteBttn;
 
 @property (nonatomic) BOOL isHairfie;
 

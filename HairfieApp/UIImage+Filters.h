@@ -14,16 +14,14 @@
 
 - (UIImage *) toSepia;
 - (UIImage *) saturateImage:(float)saturationAmount withContrast:(float)contrastAmount;
-- (UIImage *) vignetteWithRadius:(float)inputRadius andIntensity:(float)inputIntensity;
 - (UIImage *) worn;
 - (UIImage *) blendMode:(NSString *)blendMode withImageNamed:(NSString *) imageName;
 - (UIImage *) curveFilter;
 - (UIImage *) applyLightEffect;
+- (UIImage*)vignetteWithRadius:(float)inputRadius andIntensity:(float)inputIntensity;
 
-- (UIImage *)CIVignette;
 - (UIImage *)CIPhotoEffectInstant;
 - (UIImage *)CIPhotoEffectTransfer;
-- (UIImage *)CIColorCube;
 - (UIImage *)CIPhotoEffectNoir;
 - (UIImage *)CIPhotoEffectProcess;
 @end

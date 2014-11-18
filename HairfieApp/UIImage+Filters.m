@@ -33,6 +33,22 @@
 }
 
 
+- (UIImage*)vignetteWithRadius:(float)inputRadius andIntensity:(float)inputIntensity{
+    
+    CIContext *context = [CIContext contextWithOptions:nil];
+    
+    CIFilter *filter= [CIFilter filterWithName:@"CIVignette"];
+    
+    CIImage *inputImage = [[CIImage alloc] initWithImage:self];
+    
+    [filter setValue:inputImage forKey:@"inputImage"];
+    
+    [filter setValue:[NSNumber numberWithFloat:inputIntensity] forKey:@"inputIntensity"];
+    [filter setValue:[NSNumber numberWithFloat:inputRadius] forKey:@"inputRadius"];
+    
+    return [self imageFromContext:context withFilter:filter];
+}
+
 - (UIImage*)saturateImage:(float)saturationAmount withContrast:(float)contrastAmount{
     UIImage *sourceImage = self;
     
@@ -65,6 +81,8 @@
     [filter setValue:inputImage forKey:@"inputImage"];
     return [self imageFromContext:context withFilter:filter];
 }
+
+
 
 -(UIImage*)worn{
     CIImage *beginImage = [[CIImage alloc] initWithImage:self];

@@ -23,6 +23,7 @@
     UIImage *instant;
     UIImage *photoEffectNoir;
     UIImage *process;
+    UIImage *vignette;
     BOOL frontCamera;
 }
 
@@ -37,7 +38,7 @@
         NSString *string = [NSString stringWithFormat:@"%@",[[CIFilter filterWithName:(NSString *)filter] inputKeys]];
         NSLog(@"%@ %@", filter, string);
     }
-    [_scrollView setContentSize:CGSizeMake(560, 78)];
+    [_scrollView setContentSize:CGSizeMake(640, 78)];
     
     if(self.isHairfie == YES)
         original = [self squareCropImage:self.hairfiePost.picture.image ToSideLength:320];
@@ -58,6 +59,7 @@
         instant = [original CIPhotoEffectInstant];
         photoEffectNoir = [original CIPhotoEffectNoir];
         process = [original CIPhotoEffectProcess];
+        vignette = [original vignetteWithRadius:0 andIntensity:18];
     });
     
     UIImage *instantImg = [UIImage imageNamed:@"original.jpeg"];
@@ -70,8 +72,9 @@
     [_transferBttn setImage:[img CIPhotoEffectTransfer] forState:UIControlStateNormal];
     [_processBttn setImage:[img CIPhotoEffectProcess] forState:UIControlStateNormal];
     [_photoEffectNoirBttn setImage:[img CIPhotoEffectNoir] forState:UIControlStateNormal];
+    [_vignetteBttn setImage:[img vignetteWithRadius:0 andIntensity:18] forState:UIControlStateNormal];
     
-    
+    [_vignetteBttn roundStyle];
     [_processBttn roundStyle];
     [_photoEffectNoirBttn roundStyle];
     [_sepiaBttn roundStyle];
@@ -213,6 +216,12 @@
     output = photoEffectNoir;
 }
 
+-(IBAction)vignette:(id)sender
+{
+    imageView.image = vignette;
+    imageView.contentMode = UIViewContentModeScaleAspectFill;
+    output = vignette;
+}
 -(IBAction)backToSignUp:(id)sender
 {
     [self performSegueWithIdentifier:@"backToSignUp" sender:self];

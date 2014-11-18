@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B23" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="m6Z-pY-ich">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="m6Z-pY-ich">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
@@ -1155,15 +1155,32 @@
                                             <action selector="photoEffectNoir:" destination="QW8-eh-zsD" eventType="touchUpInside" id="3hZ-6u-Tro"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wzn-3g-qNl" userLabel="Vignette">
+                                        <rect key="frame" x="568" y="9" width="60" height="60"/>
+                                        <color key="backgroundColor" red="0.41176470590000003" green="0.4431372549" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="60" id="Lan-RQ-gSu"/>
+                                        </constraints>
+                                        <state key="normal" title="Curve">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="photoEffectNoir:" destination="QW8-eh-zsD" eventType="touchUpInside" id="g1y-gJ-bX0"/>
+                                            <action selector="vignette:" destination="QW8-eh-zsD" eventType="touchUpInside" id="1dD-DS-Vu8"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="hXj-SX-cVj" firstAttribute="leading" secondItem="p28-Lo-Kzd" secondAttribute="trailing" constant="20" id="2sG-BO-Y8s"/>
                                     <constraint firstItem="80k-oc-h3c" firstAttribute="leading" secondItem="hq9-iB-Lbq" secondAttribute="trailing" constant="20" id="DTQ-S0-hqJ"/>
+                                    <constraint firstItem="wzn-3g-qNl" firstAttribute="leading" secondItem="80k-oc-h3c" secondAttribute="trailing" constant="20" id="DxA-PD-1AW"/>
                                     <constraint firstItem="1RR-dd-tNG" firstAttribute="leading" secondItem="Frd-Ai-5ht" secondAttribute="trailing" constant="20" id="LTL-up-8s8"/>
                                     <constraint firstItem="hq9-iB-Lbq" firstAttribute="leading" secondItem="1RR-dd-tNG" secondAttribute="trailing" constant="20" id="RSu-8O-f7w"/>
                                     <constraint firstItem="p28-Lo-Kzd" firstAttribute="leading" secondItem="txc-Qj-wYU" secondAttribute="trailing" constant="20" id="UCT-tW-e7r"/>
                                     <constraint firstItem="80k-oc-h3c" firstAttribute="width" secondItem="80k-oc-h3c" secondAttribute="height" multiplier="1:1" id="bEO-UF-yur"/>
                                     <constraint firstItem="1RR-dd-tNG" firstAttribute="width" secondItem="1RR-dd-tNG" secondAttribute="height" multiplier="1:1" id="cIF-zj-YAl"/>
+                                    <constraint firstItem="wzn-3g-qNl" firstAttribute="width" secondItem="wzn-3g-qNl" secondAttribute="height" multiplier="1:1" id="ejs-vk-h3s"/>
                                     <constraint firstAttribute="height" constant="78" id="fh7-W6-fko"/>
                                     <constraint firstItem="hq9-iB-Lbq" firstAttribute="width" secondItem="hq9-iB-Lbq" secondAttribute="height" multiplier="1:1" id="luf-LU-372"/>
                                     <constraint firstItem="Frd-Ai-5ht" firstAttribute="leading" secondItem="hXj-SX-cVj" secondAttribute="trailing" constant="20" id="mKJ-Wi-qaY"/>
@@ -1192,6 +1209,7 @@
                         <outlet property="scrollView" destination="gb0-mG-PMw" id="PGh-SQ-Snf"/>
                         <outlet property="sepiaBttn" destination="p28-Lo-Kzd" id="sC6-bx-Ucy"/>
                         <outlet property="transferBttn" destination="hXj-SX-cVj" id="hta-eU-kBj"/>
+                        <outlet property="vignetteBttn" destination="wzn-3g-qNl" id="PXy-Y3-nDV"/>
                         <segue destination="60g-nd-hW0" kind="push" identifier="setupHairfie" id="SUy-VH-B9D"/>
                         <segue destination="T79-5J-2Oj" kind="push" identifier="saveUserPicture" id="ydX-2o-h63"/>
                     </connections>
@@ -2425,7 +2443,7 @@
                                             <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5ZR-VD-wlu" userLabel="HAIRDRESSER VIEW">
                                                 <rect key="frame" x="0.0" y="278" width="320" height="615"/>
                                                 <subviews>
-                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="FpJ-1K-79p">
+                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="FpJ-1K-79p">
                                                         <rect key="frame" x="0.0" y="0.0" width="320" height="615"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
