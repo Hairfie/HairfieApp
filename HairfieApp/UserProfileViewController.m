@@ -78,14 +78,6 @@
 }
 
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    
-    UITableViewCell *cell = [[self.reviewTableView visibleCells] lastObject];
-    NSLog(@" last cell no :%d",cell.tag +1);
-    
-}
-
 -(void)viewWillAppear:(BOOL)animated
 {
     
