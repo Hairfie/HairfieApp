@@ -188,6 +188,7 @@
 		B35A82A419A629DF003B1321 /* HairdressersTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B35A82A219A629DF003B1321 /* HairdressersTableViewCell.xib */; };
 		B35A82A819A62F40003B1321 /* PricesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B35A82A619A62F40003B1321 /* PricesTableViewCell.m */; };
 		B35A82A919A62F40003B1321 /* PricesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B35A82A719A62F40003B1321 /* PricesTableViewCell.xib */; };
+		B35CB82A1A1B48BF00ADD12A /* paper.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B35CB8291A1B48BF00ADD12A /* paper.jpg */; };
 		B35D112519BEFB5C00486050 /* ApplyFiltersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B35D112419BEFB5C00486050 /* ApplyFiltersViewController.m */; };
 		B3615B3219AF1CC800F1141D /* TPKeyboardAvoidingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = B3615B3119AF1CC800F1141D /* TPKeyboardAvoidingScrollView.m */; };
 		B3615B3519AF1D0600F1141D /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = B3615B3419AF1D0600F1141D /* UIScrollView+TPKeyboardAvoidingAdditions.m */; };
@@ -670,6 +671,7 @@
 		B35A82A519A62F40003B1321 /* PricesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PricesTableViewCell.h; sourceTree = "<group>"; };
 		B35A82A619A62F40003B1321 /* PricesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PricesTableViewCell.m; sourceTree = "<group>"; };
 		B35A82A719A62F40003B1321 /* PricesTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PricesTableViewCell.xib; sourceTree = "<group>"; };
+		B35CB8291A1B48BF00ADD12A /* paper.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = paper.jpg; sourceTree = "<group>"; };
 		B35D112319BEFB5C00486050 /* ApplyFiltersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplyFiltersViewController.h; sourceTree = "<group>"; };
 		B35D112419BEFB5C00486050 /* ApplyFiltersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplyFiltersViewController.m; sourceTree = "<group>"; };
 		B3615B3019AF1CC800F1141D /* TPKeyboardAvoidingScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPKeyboardAvoidingScrollView.h; sourceTree = "<group>"; };
@@ -968,6 +970,7 @@
 		1511518E1982B7A8001157A2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B35CB8221A1B42B900ADD12A /* Filters Resources */,
 				15E9526B19FEABA500699CBE /* Week */,
 				B382114219EEB6F40020C25E /* UILabel Subclasses */,
 				71A564EA1A1A3C6500398C7B /* CALayer Subclasses */,
@@ -1377,6 +1380,14 @@
 				B345BAE719951A7E007BB61A /* OLESwizzling.m */,
 			);
 			path = OLEContainerScrollView;
+			sourceTree = "<group>";
+		};
+		B35CB8221A1B42B900ADD12A /* Filters Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B35CB8291A1B48BF00ADD12A /* paper.jpg */,
+			);
+			name = "Filters Resources";
 			sourceTree = "<group>";
 		};
 		B35D112219BEFB3C00486050 /* Post Hairfie */ = {
@@ -1979,6 +1990,7 @@
 			files = (
 				B345BACF1994F9FA007BB61A /* picto-take-picture.png in Resources */,
 				15E3D2C819D075CC0065A07E /* Menu.strings in Resources */,
+				B35CB82A1A1B48BF00ADD12A /* paper.jpg in Resources */,
 				B3AE0D4119C05F0000149C2B /* PostSalonTableViewCell.xib in Resources */,
 				B3DD7A731990C8DD007B1621 /* picto-clock-black.png in Resources */,
 				B3EDF87419878F6C00431B70 /* Localizable.strings in Resources */,

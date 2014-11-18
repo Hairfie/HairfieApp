@@ -137,7 +137,7 @@
     
     CIFilter *filter= [CIFilter filterWithName:blendMode];
     
-    
+    NSLog(@"SIZES %f, %f ", self.size.height, [UIImage imageNamed:imageName].size.height);
     // inputBackgroundImage most be the same size as the inputImage
     
     [filter setValue:inputImage forKey:@"inputBackgroundImage"];
@@ -185,7 +185,10 @@
     return [self imageFromContext:context withFilter:filter];
 }
 
-
+-(UIImage*)vintageFilter
+{
+    return [self blendMode:@"CISoftLightBlendMode" withImageNamed:@"paper.jpg"];
+}
 
 
 - (UIImage *)curveFilter {

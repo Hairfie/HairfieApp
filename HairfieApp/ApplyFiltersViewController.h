@@ -25,9 +25,6 @@
 @property (nonatomic) UIImage *userPicture;
 @property (nonatomic) IBOutlet UIScrollView *scrollView;
 
--(IBAction)sepia:(id)sender;
--(IBAction)newFilter:(id)sender;
--(IBAction)original:(id)sender;
 
 @property (nonatomic) IBOutlet UIButton *originalBttn;
 @property (nonatomic) IBOutlet UIButton *sepiaBttn;
@@ -37,6 +34,7 @@
 @property (nonatomic) IBOutlet UIButton *processBttn;
 @property (nonatomic) IBOutlet UIButton *photoEffectNoirBttn;
 @property (nonatomic) IBOutlet UIButton *vignetteBttn;
+@property (nonatomic) IBOutlet UIButton *vintageBttn;
 
 @property (nonatomic) BOOL isHairfie;
 

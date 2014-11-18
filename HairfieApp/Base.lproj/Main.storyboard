@@ -1110,7 +1110,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="newFilter:" destination="QW8-eh-zsD" eventType="touchUpInside" id="lVJ-Nt-Eem"/>
+                                            <action selector="curve:" destination="QW8-eh-zsD" eventType="touchUpInside" id="dNM-vm-FXy"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1RR-dd-tNG" userLabel="Instant">
@@ -1166,8 +1166,21 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="photoEffectNoir:" destination="QW8-eh-zsD" eventType="touchUpInside" id="g1y-gJ-bX0"/>
                                             <action selector="vignette:" destination="QW8-eh-zsD" eventType="touchUpInside" id="1dD-DS-Vu8"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M8E-JK-jlb" userLabel="Vintage">
+                                        <rect key="frame" x="648" y="9" width="60" height="60"/>
+                                        <color key="backgroundColor" red="0.41176470590000003" green="0.4431372549" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="60" id="gh1-sW-4vO"/>
+                                        </constraints>
+                                        <state key="normal" title="Curve">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="vintage:" destination="QW8-eh-zsD" eventType="touchUpInside" id="xIQ-nQ-jOr"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -1176,6 +1189,7 @@
                                     <constraint firstItem="80k-oc-h3c" firstAttribute="leading" secondItem="hq9-iB-Lbq" secondAttribute="trailing" constant="20" id="DTQ-S0-hqJ"/>
                                     <constraint firstItem="wzn-3g-qNl" firstAttribute="leading" secondItem="80k-oc-h3c" secondAttribute="trailing" constant="20" id="DxA-PD-1AW"/>
                                     <constraint firstItem="1RR-dd-tNG" firstAttribute="leading" secondItem="Frd-Ai-5ht" secondAttribute="trailing" constant="20" id="LTL-up-8s8"/>
+                                    <constraint firstItem="M8E-JK-jlb" firstAttribute="width" secondItem="M8E-JK-jlb" secondAttribute="height" multiplier="1:1" id="QCf-as-JvF"/>
                                     <constraint firstItem="hq9-iB-Lbq" firstAttribute="leading" secondItem="1RR-dd-tNG" secondAttribute="trailing" constant="20" id="RSu-8O-f7w"/>
                                     <constraint firstItem="p28-Lo-Kzd" firstAttribute="leading" secondItem="txc-Qj-wYU" secondAttribute="trailing" constant="20" id="UCT-tW-e7r"/>
                                     <constraint firstItem="80k-oc-h3c" firstAttribute="width" secondItem="80k-oc-h3c" secondAttribute="height" multiplier="1:1" id="bEO-UF-yur"/>
@@ -1210,6 +1224,7 @@
                         <outlet property="sepiaBttn" destination="p28-Lo-Kzd" id="sC6-bx-Ucy"/>
                         <outlet property="transferBttn" destination="hXj-SX-cVj" id="hta-eU-kBj"/>
                         <outlet property="vignetteBttn" destination="wzn-3g-qNl" id="PXy-Y3-nDV"/>
+                        <outlet property="vintageBttn" destination="M8E-JK-jlb" id="wuV-n7-zSe"/>
                         <segue destination="60g-nd-hW0" kind="push" identifier="setupHairfie" id="SUy-VH-B9D"/>
                         <segue destination="T79-5J-2Oj" kind="push" identifier="saveUserPicture" id="ydX-2o-h63"/>
                     </connections>

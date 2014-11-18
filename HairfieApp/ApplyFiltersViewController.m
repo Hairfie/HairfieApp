@@ -18,12 +18,13 @@
     UIImage *original;
     UIImage *output;
     UIImage *sepia;
-    UIImage *newFilter;
+    UIImage *curve;
     UIImage *transfer;
     UIImage *instant;
     UIImage *photoEffectNoir;
     UIImage *process;
     UIImage *vignette;
+    UIImage *vintage;
     BOOL frontCamera;
 }
 
@@ -32,13 +33,11 @@
 
 -(void)viewDidLoad
 {
+    /// SCROLL VIEW SIZE
+    [_scrollView setContentSize:CGSizeMake(720, 78)];
+    ///
     
-    NSArray *supportedFilters = [CIFilter filterNamesInCategory:kCICategoryBuiltIn];
-    for (CIFilter *filter in supportedFilters) {
-        NSString *string = [NSString stringWithFormat:@"%@",[[CIFilter filterWithName:(NSString *)filter] inputKeys]];
-        NSLog(@"%@ %@", filter, string);
-    }
-    [_scrollView setContentSize:CGSizeMake(640, 78)];
+   
     
     if(self.isHairfie == YES)
         original = [self squareCropImage:self.hairfiePost.picture.image ToSideLength:320];
@@ -54,12 +53,13 @@
     _filtersView.hidden = NO;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         sepia = [original toSepia];
-        newFilter = [original curveFilter];
+        curve = [original curveFilter];
         transfer = [original CIPhotoEffectTransfer];
         instant = [original CIPhotoEffectInstant];
         photoEffectNoir = [original CIPhotoEffectNoir];
         process = [original CIPhotoEffectProcess];
-        vignette = [original vignetteWithRadius:0 andIntensity:18];
+        vignette = [original vignetteWithRadius:0 andIntensity:16];
+        vintage = [original vintageFilter];
     });
     
     UIImage *instantImg = [UIImage imageNamed:@"original.jpeg"];
@@ -73,7 +73,9 @@
     [_processBttn setImage:[img CIPhotoEffectProcess] forState:UIControlStateNormal];
     [_photoEffectNoirBttn setImage:[img CIPhotoEffectNoir] forState:UIControlStateNormal];
     [_vignetteBttn setImage:[img vignetteWithRadius:0 andIntensity:18] forState:UIControlStateNormal];
+    [_vintageBttn setImage:[img vintageFilter] forState:UIControlStateNormal];
     
+    [_vintageBttn roundStyle];
     [_vignetteBttn roundStyle];
     [_processBttn roundStyle];
     [_photoEffectNoirBttn roundStyle];
@@ -188,10 +190,10 @@
     imageView.contentMode = UIViewContentModeScaleAspectFill;
     output = transfer;
 }
--(IBAction)newFilter:(id)sender {
-    imageView.image = newFilter;
+-(IBAction)curve:(id)sender {
+    imageView.image = curve;
     imageView.contentMode = UIViewContentModeScaleAspectFill;
-    output = newFilter;
+    output = curve;
 }
 
 -(IBAction)original:(id)sender {
@@ -222,6 +224,14 @@
     imageView.contentMode = UIViewContentModeScaleAspectFill;
     output = vignette;
 }
+
+- (IBAction)vintage:(id)sender {
+
+    imageView.image = vintage;
+    imageView.contentMode = UIViewContentModeScaleAspectFill;
+    output = vintage;
+}
+
 -(IBAction)backToSignUp:(id)sender
 {
     [self performSegueWithIdentifier:@"backToSignUp" sender:self];

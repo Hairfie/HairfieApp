@@ -20,6 +20,7 @@
 - (UIImage *) applyLightEffect;
 - (UIImage*)vignetteWithRadius:(float)inputRadius andIntensity:(float)inputIntensity;
 
+-(UIImage*)vintageFilter;
 - (UIImage *)CIPhotoEffectInstant;
 - (UIImage *)CIPhotoEffectTransfer;
 - (UIImage *)CIPhotoEffectNoir;
