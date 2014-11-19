@@ -146,9 +146,10 @@
     }
     if (self.picture != nil)
     {
-        [parameters setObject:[self.picture toApiValue] forKey:@"picture"];
+       [parameters setObject:[self.picture toApiValue] forKey:@"picture"];
     }
     
+   
     void (^onSuccess)(NSDictionary *) = ^(NSDictionary *result) {
         if (nil == self.id) {
             self.id = [result objectForKey:@"id"];
@@ -161,6 +162,7 @@
         [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/users"
                                                                                      verb:@"POST"]
                                             forMethod:@"users.create"];
+        NSLog(@"Parameters %@", parameters);
 
         [[self repository] invokeStaticMethod:@"create"
                                    parameters:parameters
@@ -173,9 +175,11 @@
         
       
         LBModelRepository *repository = (LBModelRepository *)[[self class] repository];
+        NSLog(@"Parameters %@", parameters);
+
         [repository invokeStaticMethod:@"update"
                                    parameters:parameters
-                                      success:aSuccessHandler
+                                      success:onSuccess
                                       failure:aFailureHandler];
     }
 }

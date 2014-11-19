@@ -51,8 +51,6 @@
 
 -(NSString *)toApiValue
 {
-    
-    NSLog(@"self URL %@, SELF NAME %@", self.url, self.name);
     if ([self.name length] == 0) {
         return self.url.absoluteString;
     } else {
@@ -63,6 +61,8 @@
 -(NSURL *)urlWithWidth:(NSNumber *)aWidth
                 height:(NSNumber *)anHeight
 {
+    
+    NSLog(@"URL %@", self.url);
     NSURLComponents *components = [NSURLComponents componentsWithURL:self.url resolvingAgainstBaseURL:NO];
 
     NSMutableArray *queryParts = [[NSMutableArray alloc] init];
@@ -108,8 +108,8 @@
         aFailureHandler(error);
     };
     void (^loadSuccessBlock)(NSDictionary *) = ^(NSDictionary *results){
-        NSLog(@"File upload results: %@", results);
         NSDictionary *uploadedFile = [[[results objectForKey:@"result"] objectForKey:@"files"] objectForKey:@"uploadfiles"];
+        
         self.name = [uploadedFile objectForKey:@"name"];
         self.container = [uploadedFile objectForKey:@"container"];
         self.url = [uploadedFile objectForKey:@"url"];

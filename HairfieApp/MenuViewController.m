@@ -19,7 +19,7 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import "UIRoundImageView.h"
 #import "UIImage+Filters.h"
-#import "UserProfileViewController.h"
+#import "TestUserProfileViewController.h"
 
 @implementation MenuViewController
 {
@@ -418,12 +418,12 @@
     {
         
         UINavigationController *navController = (UINavigationController*)[segue destinationViewController];
-        UserProfileViewController *userProfile = [navController.viewControllers objectAtIndex:0];
+        TestUserProfileViewController *userProfile = [navController.viewControllers objectAtIndex:0];
         
         [userProfile setUser:appDelegate.currentUser];
         userProfile.isCurrentUser = YES;
-        userProfile.backgroundProfileImage = _profileImageView.image;
-        userProfile.profileImage = profilePicture.image;
+      //  userProfile.backgroundProfileImage = _profileImageView.image;
+      //  userProfile.profileImage = profilePicture.image;
     }
 }
 

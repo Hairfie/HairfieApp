@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="SourceSansPro-Italic.ttf">
+            <string>SourceSansPro-It</string>
+        </mutableArray>
+        <mutableArray key="SourceSansPro-Regular.ttf">
+            <string>SourceSansPro-Regular</string>
+            <string>SourceSansPro-Regular</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="reviewCell" id="gTV-IL-0wX" customClass="ReviewsCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="127"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="127"/>
+                <subviews>
+                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WFa-1H-40A">
+                        <rect key="frame" x="0.0" y="126" width="320" height="1"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="-  Juillet 2014" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YhX-dy-Mt0">
+                        <rect key="frame" x="156" y="43" width="95" height="22"/>
+                        <fontDescription key="fontDescription" name="SourceSansPro-It" family="Source Sans Pro" pointSize="12"/>
+                        <color key="textColor" red="0.6588235294" green="0.66666666669999997" blue="0.67843137249999996" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Caroline.F" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sw6-Hj-KL1">
+                        <rect key="frame" x="62" y="9" width="226" height="25"/>
+                        <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="18"/>
+                        <color key="textColor" red="0.5450980392" green="0.5568627451" blue="0.57254901960000004" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rtf-Oa-m4Z" customClass="RatingView">
+                        <rect key="frame" x="62" y="40" width="91" height="29"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="242" translatesAutoresizingMaskIntoConstraints="NO" id="NLp-0q-LgR">
+                        <rect key="frame" x="62" y="70" width="242" height="51"/>
+                        <string key="text">Lorem ipsum dolor sitnesciunt. Neque porro 
+quisquam est, qui dolorem ipsum quia dolor sit 
+amet :) </string>
+                        <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="13"/>
+                        <color key="textColor" red="0.48627450979999998" green="0.50588235290000005" blue="0.52549019610000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view alpha="0.20000000298023224" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5pM-mq-0RI">
+                        <rect key="frame" x="62" y="38" width="150" height="1"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <size key="customSize" width="324" height="117"/>
+            <connections>
+                <outlet property="contentLabel" destination="NLp-0q-LgR" id="WDg-CR-rhS"/>
+                <outlet property="nameLabel" destination="Sw6-Hj-KL1" id="urW-QO-8Jn"/>
+                <outlet property="postDate" destination="YhX-dy-Mt0" id="eRH-sZ-6Jn"/>
+                <outlet property="ratingView" destination="rtf-Oa-m4Z" id="pB6-kO-UgD"/>
+            </connections>
+            <point key="canvasLocation" x="92" y="192.5"/>
+        </collectionViewCell>
+    </objects>
+</document>

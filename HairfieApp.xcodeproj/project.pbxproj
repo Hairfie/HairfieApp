@@ -267,6 +267,10 @@
 		B3B29D4E19EE8E7D00C293C6 /* selected_star.png in Resources */ = {isa = PBXBuildFile; fileRef = B3B29D4B19EE8E7D00C293C6 /* selected_star.png */; };
 		B3BAA85D1A014240009F0274 /* SuggestHairdresserReport.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BAA85C1A014240009F0274 /* SuggestHairdresserReport.m */; };
 		B3BB4820199B983800F8CD5B /* arrow-nav.png in Resources */ = {isa = PBXBuildFile; fileRef = B3BB481F199B983800F8CD5B /* arrow-nav.png */; };
+		B3BB63A11A1C99570087AB27 /* TestUserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BB63A01A1C99560087AB27 /* TestUserProfileViewController.m */; };
+		B3BB63A41A1C9B2A0087AB27 /* UserProfileReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BB63A31A1C9B2A0087AB27 /* UserProfileReusableView.m */; };
+		B3BB63A81A1CA5F40087AB27 /* ReviewsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BB63A61A1CA5F40087AB27 /* ReviewsCollectionViewCell.m */; };
+		B3BB63A91A1CA5F40087AB27 /* ReviewsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3BB63A71A1CA5F40087AB27 /* ReviewsCollectionViewCell.xib */; };
 		B3BD869F198BCFE500BD8591 /* RatingView.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BD869E198BCFE500BD8591 /* RatingView.m */; };
 		B3BD86AE198BDDB700BD8591 /* statusLabelView.png in Resources */ = {isa = PBXBuildFile; fileRef = B3BD86AD198BDDB700BD8591 /* statusLabelView.png */; };
 		B3BD86B0198BE0DF00BD8591 /* picto-list-nav.png in Resources */ = {isa = PBXBuildFile; fileRef = B3BD86AF198BE0DF00BD8591 /* picto-list-nav.png */; };
@@ -781,6 +785,13 @@
 		B3BAA85B1A014240009F0274 /* SuggestHairdresserReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuggestHairdresserReport.h; sourceTree = "<group>"; };
 		B3BAA85C1A014240009F0274 /* SuggestHairdresserReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuggestHairdresserReport.m; sourceTree = "<group>"; };
 		B3BB481F199B983800F8CD5B /* arrow-nav.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow-nav.png"; sourceTree = "<group>"; };
+		B3BB639F1A1C99560087AB27 /* TestUserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestUserProfileViewController.h; sourceTree = "<group>"; };
+		B3BB63A01A1C99560087AB27 /* TestUserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestUserProfileViewController.m; sourceTree = "<group>"; };
+		B3BB63A21A1C9B2A0087AB27 /* UserProfileReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileReusableView.h; sourceTree = "<group>"; };
+		B3BB63A31A1C9B2A0087AB27 /* UserProfileReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileReusableView.m; sourceTree = "<group>"; };
+		B3BB63A51A1CA5F40087AB27 /* ReviewsCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewsCollectionViewCell.h; sourceTree = "<group>"; };
+		B3BB63A61A1CA5F40087AB27 /* ReviewsCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewsCollectionViewCell.m; sourceTree = "<group>"; };
+		B3BB63A71A1CA5F40087AB27 /* ReviewsCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReviewsCollectionViewCell.xib; sourceTree = "<group>"; };
 		B3BD869D198BCFE500BD8591 /* RatingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RatingView.h; sourceTree = "<group>"; };
 		B3BD869E198BCFE500BD8591 /* RatingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RatingView.m; sourceTree = "<group>"; };
 		B3BD86AD198BDDB700BD8591 /* statusLabelView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = statusLabelView.png; sourceTree = "<group>"; };
@@ -1889,6 +1900,13 @@
 			children = (
 				B3FA620019F79E57002D8B6F /* UserProfileViewController.h */,
 				B3FA620119F79E57002D8B6F /* UserProfileViewController.m */,
+				B3BB639F1A1C99560087AB27 /* TestUserProfileViewController.h */,
+				B3BB63A01A1C99560087AB27 /* TestUserProfileViewController.m */,
+				B3BB63A21A1C9B2A0087AB27 /* UserProfileReusableView.h */,
+				B3BB63A31A1C9B2A0087AB27 /* UserProfileReusableView.m */,
+				B3BB63A51A1CA5F40087AB27 /* ReviewsCollectionViewCell.h */,
+				B3BB63A61A1CA5F40087AB27 /* ReviewsCollectionViewCell.m */,
+				B3BB63A71A1CA5F40087AB27 /* ReviewsCollectionViewCell.xib */,
 			);
 			name = "User Profile";
 			sourceTree = "<group>";
@@ -2142,6 +2160,7 @@
 				B33E4C4D19A4CA0B0024F5F7 /* picto-aroundme-salon.png in Resources */,
 				158FCA9419FE54110001F86C /* fb-share-off.png in Resources */,
 				B3F662421987D52A0041F298 /* SourceSansPro-Regular.ttf in Resources */,
+				B3BB63A91A1CA5F40087AB27 /* ReviewsCollectionViewCell.xib in Resources */,
 				B3BD86AE198BDDB700BD8591 /* statusLabelView.png in Resources */,
 				719C208219ED5016008E0B17 /* tab-business-hairfies.png in Resources */,
 				B34231641988E60D0058866B /* SourceSansPro-ExtraLightItalic.ttf in Resources */,
@@ -2319,6 +2338,7 @@
 				B3AD59B7198B9A3700909ADE /* SalonTableViewCell.m in Sources */,
 				B342316F1988F8D70058866B /* AroundMeViewController.m in Sources */,
 				715290DD19FE477900C93950 /* Tag.m in Sources */,
+				B3BB63A41A1C9B2A0087AB27 /* UserProfileReusableView.m in Sources */,
 				15481A8A19E3E5F600C9D7A7 /* TermsViewController.m in Sources */,
 				151151911982B7A8001157A2 /* main.m in Sources */,
 				15B4973219DC2EB000917B83 /* AOLinkedStoryboardSegue.m in Sources */,
@@ -2340,6 +2360,7 @@
 				B319B5CE19C8609E007F79B0 /* SecondStepViewController.m in Sources */,
 				71E08E5D19FF9A2700A56FBB /* SalonDetailHeaderViewController.swift in Sources */,
 				158FCA9119FA9B870001F86C /* FBAuthenticator.m in Sources */,
+				B3BB63A11A1C99570087AB27 /* TestUserProfileViewController.m in Sources */,
 				B39BA17E19AF535400A48BD5 /* KeychainItemWrapper.m in Sources */,
 				B3AE0D3F19C05EE900149C2B /* PostSalonTableViewCell.m in Sources */,
 				15B777A119EECCE100C49DFE /* HairfiePost.m in Sources */,
@@ -2357,6 +2378,7 @@
 				71AAB62A19D005170000552D /* Money.m in Sources */,
 				1538A3A919E53FB600F09628 /* UIView+Borders.m in Sources */,
 				B319B5CB19C85E2E007F79B0 /* FirstStepViewController.m in Sources */,
+				B3BB63A81A1CA5F40087AB27 /* ReviewsCollectionViewCell.m in Sources */,
 				B33D4C5919D1A655009DE6DD /* BusinessClaimRepository.m in Sources */,
 				B3844E4119FE978D0083CE0D /* TagRepository.m in Sources */,
 				B3423216198924290058866B /* AFURLRequestSerialization.m in Sources */,

@@ -42,9 +42,12 @@
     Picture *uploadedPicture;
     BOOL uploadInProgress;
 }
+
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+   
     self.mainScrollView.delegate = self;
     self.bottomMenuBttn.hidden = YES;
     
@@ -80,20 +83,13 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    
-  // CHANGED PIC//
-    
     if (self.imageFromSegue != nil)
        [self uploadProfileImage:self.imageFromSegue];
 }
 
-// Changed pic = > upload and then modify current user with new picture object
-
 -(void)refreshHeader:(NSNotification*)notification
 {
     [self setupHeaderPictures];
-    
-    NSLog(@"HERE AFTER NOTIFICTATIN");
 }
 
 -(void) uploadProfileImage:(UIImage *)image
@@ -211,6 +207,8 @@
 
 
 
+
+
 -(IBAction)showMenuActionSheet:(id)sender
 {
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
@@ -253,6 +251,7 @@
             self.mainViewHeight.constant = ((userHairfies.count / 2 + 1) * 220)+ 274 + 68;
         else
             self.mainViewHeight.constant = ((userHairfies.count / 2) * 220)+ 274 + 68;
+        
     }
     if (aButton == self.reviewBttn)
     {
