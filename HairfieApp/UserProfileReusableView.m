@@ -17,6 +17,7 @@
 {
     UIImageView *userProfilePicture;
     BOOL isSetup;
+    NSURL *savedUrl;
 }
 /*
 // Only override drawRect: if you perform custom drawing.
@@ -32,6 +33,7 @@
     [self setupData];
     [self setupHeaderPictures];
     if (!isSetup) {
+        
         UIView *bottomBorder =  [[UIView alloc] init];
         [bottomBorder setFrame:CGRectMake(0, self.hairfieBttn.frame.size.height, self.hairfieBttn.frame.size.width - 1, 3)];
         bottomBorder.tag = 1;
@@ -39,8 +41,9 @@
         [self.hairfieBttn addSubview:bottomBorder];
         [self.hairfieBttn setBackgroundColor:[UIColor lightGreyHairfie]];
         isSetup = YES;
-
+        
     }
+
 
 }
 
@@ -59,6 +62,7 @@
     self.reviewLbl.text = NSLocalizedStringFromTable(@"Reviews", @"UserProfile", nil);
    
 }
+
 
 -(void)setupHeaderPictures
 {

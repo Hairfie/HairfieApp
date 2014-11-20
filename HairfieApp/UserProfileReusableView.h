@@ -21,5 +21,6 @@
 -(void)setButtonSelected:(UIButton*)aButton;
 -(void)setupView;
 -(void)setupHeaderPictures;
+-(void)setupData;
 
 @end

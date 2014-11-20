@@ -104,7 +104,8 @@
 
 -(void)refreshHeader:(NSNotification*)notification
 {
-   [self.collectionView reloadData];
+    NSLog(@"REFRESH HEADER ////////");
+
 }
 
 -(void)addPicture:(UIGestureRecognizer*)gesture
@@ -207,7 +208,9 @@
 
 -(UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
-   
+    
+    NSLog(@"REFRESH HEADER VIEW COLLECTION////////");
+    
     
     UICollectionReusableView *headerView = nil;
     

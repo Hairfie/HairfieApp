@@ -62,9 +62,13 @@
                 height:(NSNumber *)anHeight
 {
     
-    NSLog(@"URL %@", self.url);
+    
+    
     NSURLComponents *components = [NSURLComponents componentsWithURL:self.url resolvingAgainstBaseURL:NO];
 
+    
+   
+    
     NSMutableArray *queryParts = [[NSMutableArray alloc] init];
     if ([components.query length] > 0) {
         [queryParts addObject:components.query];
@@ -81,6 +85,7 @@
     } else {
         components.query = [queryParts componentsJoinedByString:@"&"];
     }
+
     return components.URL;
 }
 
@@ -112,7 +117,7 @@
         
         self.name = [uploadedFile objectForKey:@"name"];
         self.container = [uploadedFile objectForKey:@"container"];
-        self.url = [uploadedFile objectForKey:@"url"];
+        self.url = [NSURL URLWithString:[uploadedFile objectForKey:@"url"]];
        aSuccessHandler();
     };
     
