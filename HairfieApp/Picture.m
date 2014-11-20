@@ -62,13 +62,8 @@
                 height:(NSNumber *)anHeight
 {
     
-    
-    
     NSURLComponents *components = [NSURLComponents componentsWithURL:self.url resolvingAgainstBaseURL:NO];
 
-    
-   
-    
     NSMutableArray *queryParts = [[NSMutableArray alloc] init];
     if ([components.query length] > 0) {
         [queryParts addObject:components.query];
