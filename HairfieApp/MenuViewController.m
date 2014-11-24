@@ -135,7 +135,7 @@
     UIView *border =[[UIView alloc] initWithFrame:CGRectMake(85, 25, 102, 102)];
     border.layer.cornerRadius = border.frame.size.height / 2;
     border.clipsToBounds = YES;
-    border.backgroundColor = [UIColor colorWithWhite:1 alpha:0.5];
+    border.backgroundColor = [UIColor colorWithWhite:1 alpha:0.2];
 
     [profilePicture sd_setImageWithURL:[appDelegate.currentUser pictureUrlwithWidth:@200 andHeight:@200]
                       placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];

@@ -104,8 +104,7 @@
 
 -(void)refreshHeader:(NSNotification*)notification
 {
-    NSLog(@"REFRESH HEADER ////////");
-
+    [self.collectionView reloadData];
 }
 
 -(void)addPicture:(UIGestureRecognizer*)gesture
@@ -208,10 +207,6 @@
 
 -(UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
-    
-    NSLog(@"REFRESH HEADER VIEW COLLECTION////////");
-    
-    
     UICollectionReusableView *headerView = nil;
     
     UserProfileReusableView *userHeader = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"profileHeaderView" forIndexPath:indexPath];

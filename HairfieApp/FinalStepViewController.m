@@ -29,7 +29,6 @@
 
 @implementation FinalStepViewController
 {
-    UIAlertView *chooseCameraType;
     UIImagePickerController *imagePicker;
     Hairdresser *hairdresserForEditing;
     Service *serviceForEditing;
@@ -52,6 +51,7 @@
                                              selector:@selector(clearService:)
                                                  name:@"clearService"
                                                object:nil];
+
 
     [self setupGallery:nil];
   
@@ -151,7 +151,7 @@
             frame.origin.y = 0;
             frame.size = _imageSliderView.frame.size;
             UIImageView *imageView = [[UIImageView alloc] initWithFrame:frame];
-            [imageView sd_setImageWithURL:[NSURL URLWithString:pic.url]
+            [imageView sd_setImageWithURL:pic.url
                                 placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
             
             imageView.contentMode = UIViewContentModeScaleToFill;
@@ -359,8 +359,8 @@
 -(void)chooseCameraType
 {
     
-    chooseCameraType = [[UIAlertView alloc] initWithTitle:NSLocalizedStringFromTable(@"Choose camera type", @"Login_Sign_Up", nil) message:NSLocalizedStringFromTable(@"Take picture or pick one from the saved photos", @"Login_Sign_Up", nil) delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:NSLocalizedStringFromTable(@"Camera", @"Login_Sign_Up", nil), NSLocalizedStringFromTable(@"Library", @"Login_Sign_Up", nil),nil];
-    chooseCameraType.delegate = nil;
+    UIAlertView *chooseCameraType = [[UIAlertView alloc] initWithTitle:NSLocalizedStringFromTable(@"Choose camera type", @"Login_Sign_Up", nil) message:NSLocalizedStringFromTable(@"Take picture or pick one from the saved photos", @"Login_Sign_Up", nil) delegate:self cancelButtonTitle:@"CancOl" otherButtonTitles:NSLocalizedStringFromTable(@"Camera", @"Login_Sign_Up", nil), NSLocalizedStringFromTable(@"Library", @"Login_Sign_Up", nil),nil];
+   // chooseCameraType.delegate = self;
     [chooseCameraType show];
     
 }
@@ -503,6 +503,7 @@
     } else {
         image = [info valueForKey:UIImagePickerControllerOriginalImage];
     }
+    
     
     
     [self uploadSalonImage:image];
