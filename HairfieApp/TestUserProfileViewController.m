@@ -59,7 +59,7 @@
     isHairfiesTab = YES;
     [self.collectionView registerNib:[UINib nibWithNibName:@"CustomCollectionViewCell" bundle:nil]forCellWithReuseIdentifier:HAIRFIE_CELL];
     [self.collectionView registerNib:[UINib nibWithNibName:@"LoadingCollectionViewCell" bundle:nil]
-              forCellWithReuseIdentifier:LOADING_CELL];
+          forCellWithReuseIdentifier:LOADING_CELL];
     [self.collectionView registerNib:[UINib nibWithNibName:@"ReviewsCollectionViewCell" bundle:nil]
           forCellWithReuseIdentifier:REVIEW_CELL];
 

@@ -15,6 +15,7 @@
 
 #import "SalonTableViewCell.h"
 #import "SalonDetailViewController.h"
+#import "BusinessViewController.h"
 #import "SimilarTableViewCell.h"
 
 #import "AFHTTPRequestOperation.h"
@@ -313,7 +314,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     rowSelected = indexPath.row;
-    [self performSegueWithIdentifier:@"salonDetail" sender:self];
+    [self performSegueWithIdentifier:@"businessDetailtest" sender:self];
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
@@ -322,6 +323,10 @@
     if ([segue.identifier isEqualToString:@"salonDetail"]) {
         SalonDetailViewController *salonDetail = [segue destinationViewController];
         [salonDetail setBusiness:[businesses objectAtIndex:rowSelected]];
+    }
+    if ([segue.identifier isEqualToString:@"businessDetailtest"]) {
+        BusinessViewController *business = [segue destinationViewController];
+        [business setBusiness:[businesses objectAtIndex:rowSelected]];
     }
     if ([segue.identifier isEqualToString:@"cameraOverlay"])
     {

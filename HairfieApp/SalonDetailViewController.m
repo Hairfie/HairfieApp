@@ -145,7 +145,9 @@
 
 -(void)rateView:(RatingView *)rateView ratingDidChange:(float)rating
 {
+          NSLog(@"HERE");
     if(delegate.currentUser) {
+        NSLog(@"HERE AFTER");
         [self performSegueWithIdentifier:@"addReview" sender:self];
     } else {
         [self showNotLoggedAlertWithDelegate:nil andTitle:nil andMessage:nil];
@@ -558,6 +560,7 @@
 
 -(IBAction)callPhone:(id)sender {
     
+    NSLog(@"CALL");
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"telprompt://%@", self.business.phoneNumber]]];
 }
 
@@ -653,11 +656,11 @@
         return [self collectionView:cv newHairfieCellForItemAtIndexPath:indexPath];
     } else if (indexPath.row < (hairfies.count + 1)) {
         if (indexPath.row >= (hairfies.count - HAIRFIES_PAGE_SIZE +1)) {
-           // NSLog(@"Gimme more!");
+            // NSLog(@"Gimme more!");
             
             [self loadNextHairfies];
         } NSLog(@"Hairfie %zd", indexPath.row);
-
+        
         return [self collectionView:cv hairfieCellForItemAtIndexPath:indexPath];
     } else {
         return [self collectionView:cv loadingCellForItemAtIndexPath:indexPath];

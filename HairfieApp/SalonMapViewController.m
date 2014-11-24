@@ -31,6 +31,8 @@
     [appDelegate startTrackingLocation:YES];
     self.mapView.showsPointsOfInterest = NO;
     
+    
+    NSLog(@"self.business %@", self.business);
      self.headerTitle.text = self.business.name;
     [self refreshMap];
     [self.mapView selectAnnotation:annotObj animated:NO];
@@ -170,9 +172,9 @@
        //CLLocationDegrees
         
         
-        CLLocationCoordinate2D loc = [[self.business.gps location]coordinate];
+        CLLocationCoordinate2D loc2 = [[self.business.gps location]coordinate];
         
-        MKPlacemark *placemark = [[MKPlacemark alloc] initWithCoordinate:loc addressDictionary:nil];
+        MKPlacemark *placemark = [[MKPlacemark alloc] initWithCoordinate:loc2 addressDictionary:nil];
         
             MKMapItem *mapItem = [[MKMapItem alloc] initWithPlacemark:placemark];
         [mapItem setName:self.business.name];

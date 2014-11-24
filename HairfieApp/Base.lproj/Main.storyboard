@@ -169,6 +169,7 @@
             <string>SourceSansPro-Regular</string>
             <string>SourceSansPro-Regular</string>
             <string>SourceSansPro-Regular</string>
+            <string>SourceSansPro-Regular</string>
         </mutableArray>
         <mutableArray key="SourceSansPro-Semibold.ttf">
             <string>SourceSansPro-Semibold</string>
@@ -2102,6 +2103,160 @@
             </objects>
             <point key="canvasLocation" x="2284" y="-339"/>
         </scene>
+        <!--Business View Controller-->
+        <scene sceneID="F7G-iw-176">
+            <objects>
+                <viewController id="m2a-HQ-iZ5" customClass="BusinessViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Ywg-h3-Fms"/>
+                        <viewControllerLayoutGuide type="bottom" id="wD6-q4-Oww"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Wo5-mI-kis">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="q17-aw-HaG">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ktn-k1-GR9">
+                                    <size key="itemSize" width="150" height="210"/>
+                                    <size key="headerReferenceSize" width="320" height="280"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Qb9-tg-QiJ">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="150" height="210"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <color key="backgroundColor" red="0.26274509800000001" green="0.53725490200000003" blue="0.67843137249999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </collectionViewCell>
+                                </cells>
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="businessHeaderView" id="DI6-9t-fDv" customClass="BusinessReusableView">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="enR-hh-avr" userLabel="Tab Bar View">
+                                            <rect key="frame" x="0.0" y="220" width="320" height="568"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SFN-xs-qnc" userLabel="Background Blue View">
+                                                    <rect key="frame" x="0.0" y="1" width="320" height="58"/>
+                                                    <color key="backgroundColor" red="0.99607843139999996" green="0.67843137249999996" blue="0.69803921570000005" alpha="1" colorSpace="calibratedRGB"/>
+                                                </view>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6e5-le-EfQ" userLabel="Detail">
+                                                    <rect key="frame" x="0.0" y="0.0" width="80" height="55"/>
+                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <inset key="contentEdgeInsets" minX="20" minY="14" maxX="20" maxY="14"/>
+                                                    <state key="normal" image="tab-business-infos.png"/>
+                                                    <connections>
+                                                        <action selector="changeTab:" destination="DI6-9t-fDv" eventType="touchUpInside" id="9z4-Xp-Nl3"/>
+                                                        <action selector="changeTab:" destination="pDa-if-Gwb" eventType="touchUpInside" id="LHP-Pr-tAt"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mfw-pg-QWY" userLabel="Hairdresser">
+                                                    <rect key="frame" x="160" y="0.0" width="80" height="55"/>
+                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <inset key="contentEdgeInsets" minX="20" minY="14" maxX="20" maxY="14"/>
+                                                    <state key="normal" image="tab-business-hairdressers.png"/>
+                                                    <connections>
+                                                        <action selector="changeTab:" destination="DI6-9t-fDv" eventType="touchUpInside" id="2td-6d-59D"/>
+                                                        <action selector="changeTab:" destination="pDa-if-Gwb" eventType="touchUpInside" id="kQY-eF-gr6"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dPx-ds-LgS" userLabel="Sales">
+                                                    <rect key="frame" x="240" y="0.0" width="80" height="55"/>
+                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <inset key="contentEdgeInsets" minX="20" minY="14" maxX="20" maxY="14"/>
+                                                    <state key="normal" image="tab-business-prices.png"/>
+                                                    <connections>
+                                                        <action selector="changeTab:" destination="pDa-if-Gwb" eventType="touchUpInside" id="ULs-CX-NHK"/>
+                                                        <action selector="changeTab:" destination="DI6-9t-fDv" eventType="touchUpInside" id="ZFr-cw-t1f"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4cP-FH-o46" userLabel="Hairfie">
+                                                    <rect key="frame" x="80" y="0.0" width="80" height="55"/>
+                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <inset key="contentEdgeInsets" minX="20" minY="14" maxX="20" maxY="14"/>
+                                                    <state key="normal" image="tab-business-hairfies.png"/>
+                                                    <connections>
+                                                        <action selector="changeTab:" destination="pDa-if-Gwb" eventType="touchUpInside" id="IoI-HG-TXx"/>
+                                                        <action selector="changeTab:" destination="DI6-9t-fDv" eventType="touchUpInside" id="ZTK-m6-diP"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </view>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.42745098040000001" green="0.46274509800000002" blue="0.51372549020000002" alpha="0.14000000000000001" colorSpace="calibratedRGB"/>
+                                    <connections>
+                                        <outlet property="detailsBttn" destination="6e5-le-EfQ" id="qoz-dv-kJe"/>
+                                        <outlet property="hairdressersBttn" destination="Mfw-pg-QWY" id="7og-jb-BSM"/>
+                                        <outlet property="hairfiesBttn" destination="4cP-FH-o46" id="MRc-4M-ydA"/>
+                                        <outlet property="servicesBttn" destination="dPx-ds-LgS" id="6IT-by-032"/>
+                                    </connections>
+                                </collectionReusableView>
+                                <connections>
+                                    <outlet property="dataSource" destination="m2a-HQ-iZ5" id="Jy3-d0-rHa"/>
+                                    <outlet property="delegate" destination="m2a-HQ-iZ5" id="ErL-bK-aXd"/>
+                                </connections>
+                            </collectionView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jHV-Tu-r33" userLabel="Top Bar View">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yal-DU-KI5" userLabel="Left Menu">
+                                        <rect key="frame" x="0.0" y="24" width="71" height="32"/>
+                                        <inset key="contentEdgeInsets" minX="10" minY="10" maxX="40" maxY="10"/>
+                                        <state key="normal" image="menu-bttn.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fiT-Fs-OQU" userLabel="Go Back">
+                                        <rect key="frame" x="0.0" y="20" width="60" height="40"/>
+                                        <inset key="contentEdgeInsets" minX="10" minY="10" maxX="30" maxY="10"/>
+                                        <state key="normal" image="arrow-nav-white.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="goBack:" destination="m2a-HQ-iZ5" eventType="touchUpInside" id="S54-RS-CUB"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="32S-Ka-D0n" userLabel="Bottom Menu">
+                                        <rect key="frame" x="273" y="22" width="35" height="35"/>
+                                        <inset key="contentEdgeInsets" minX="8" minY="15" maxX="8" maxY="15"/>
+                                        <state key="normal" image="picto-menu-point.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Hair Salon" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A6e-OE-dLo">
+                                        <rect key="frame" x="92" y="27" width="136" height="23"/>
+                                        <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="18"/>
+                                        <color key="textColor" red="0.41176470590000003" green="0.4431372549" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="INj-Jb-7Xp"/>
+                    <connections>
+                        <outlet property="bottomMenuBttn" destination="32S-Ka-D0n" id="lzX-f7-2W3"/>
+                        <outlet property="collectionView" destination="q17-aw-HaG" id="FVb-cZ-z31"/>
+                        <outlet property="leftMenuBttn" destination="Yal-DU-KI5" id="DxK-hM-ffZ"/>
+                        <outlet property="navBttn" destination="fiT-Fs-OQU" id="PBe-Tc-4DP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rJo-33-XCW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2319" y="-2254"/>
+        </scene>
         <!--Around Me View Controller-->
         <scene sceneID="MKB-OL-5Kh">
             <objects>
@@ -2150,7 +2305,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="pDa-if-Gwb" kind="push" identifier="salonDetail" id="XXf-5V-koX"/>
+                                            <segue destination="m2a-HQ-iZ5" kind="push" identifier="businessDetailtest" id="17m-hw-CE8"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -2304,7 +2459,7 @@
                         <viewControllerLayoutGuide type="bottom" id="UOG-8C-QT0"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="0jx-49-W8K">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="1200"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UTj-OK-H5n" userLabel="Top Bar View">
@@ -2367,7 +2522,7 @@
                         <viewControllerLayoutGuide type="bottom" id="EAd-rH-izx"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="AEr-xc-owd">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="1200"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Lw-Ud-rlB">
@@ -2732,7 +2887,7 @@
                                                 <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                             </view>
                                             <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="F1e-I3-z9r" userLabel="Tab Bar View">
-                                                <rect key="frame" x="0.0" y="220" width="320" height="59"/>
+                                                <rect key="frame" x="0.0" y="220" width="320" height="60"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1fN-Tc-Gwu" userLabel="Background Blue View">
                                                         <rect key="frame" x="0.0" y="1" width="320" height="58"/>
@@ -2852,7 +3007,7 @@
                                 </subviews>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0TP-lk-MOz" userLabel="Call Salon">
-                                <rect key="frame" x="0.0" y="1160" width="320" height="40"/>
+                                <rect key="frame" x="0.0" y="528" width="320" height="40"/>
                                 <color key="backgroundColor" red="0.98039215686274506" green="0.25882352941176473" blue="0.2627450980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="USe-X9-0rp"/>
@@ -2868,7 +3023,7 @@
                                 </connections>
                             </button>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" image="picto-phone-white.png" translatesAutoresizingMaskIntoConstraints="NO" id="B5X-uI-8rT">
-                                <rect key="frame" x="120" y="1172" width="16" height="16"/>
+                                <rect key="frame" x="120" y="540" width="16" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="16" id="2xq-bc-uqi"/>
                                     <constraint firstAttribute="height" constant="16" id="Fsy-kC-0FQ"/>
@@ -2885,8 +3040,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="KGy-rj-yyt"/>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="320" height="1200"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="address" destination="5iT-Mx-8vK" id="uWz-El-obZ"/>
                         <outlet property="city" destination="3VZ-B5-oF7" id="bCx-gT-mCp"/>
@@ -2934,7 +3088,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TsP-dW-B6k" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="a86-yp-v45" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2311" y="-1642"/>
+            <point key="canvasLocation" x="2488" y="-1632"/>
         </scene>
         <!--Horaires View Controller-->
         <scene sceneID="HfR-7M-bBW">
@@ -2945,7 +3099,7 @@
                         <viewControllerLayoutGuide type="bottom" id="po1-aP-Age"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="bhM-gL-HHz">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="1200"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OHl-hv-ouR" userLabel="Top Bar View">
@@ -3010,7 +3164,7 @@
                         <viewControllerLayoutGuide type="bottom" id="WIZ-TA-wce"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="SAn-a2-ZHJ">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="1200"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wk5-N2-iL6" userLabel="Top Bar View">
@@ -3046,7 +3200,7 @@
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="wuf-TE-yeF" userLabel="Review Table View">
-                                <rect key="frame" x="0.0" y="782" width="320" height="418"/>
+                                <rect key="frame" x="0.0" y="150" width="320" height="418"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="320" id="SfR-zF-Y0F"/>
@@ -3102,7 +3256,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IUZ-36-pVl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3064" y="-1565"/>
+            <point key="canvasLocation" x="3023" y="-1277"/>
         </scene>
         <!--Business Error Report View Controller-->
         <scene sceneID="tWC-SF-dNg">
@@ -5528,11 +5682,11 @@
     <inferredMetricsTieBreakers>
         <segue reference="vAT-vQ-WuX"/>
         <segue reference="VGS-VM-Pwy"/>
-        <segue reference="6S8-Dh-Oyu"/>
         <segue reference="ssq-cN-qLV"/>
-        <segue reference="18q-AN-mc0"/>
+        <segue reference="PSz-m0-val"/>
+        <segue reference="LOg-O4-mCP"/>
+        <segue reference="2ml-IS-A8f"/>
         <segue reference="ike-pA-JY1"/>
-        <segue reference="BMp-kN-6Xv"/>
         <segue reference="N5w-ND-ZjU"/>
         <segue reference="uEN-by-6gW"/>
     </inferredMetricsTieBreakers>
