@@ -42,6 +42,9 @@
     
     if(_ratingValue > 0) {
         self.addReviewButton.hidden = NO;
+        [self.reviewTextView becomeFirstResponder];
+        [self.reviewTableView reloadData];
+        
     } else {
         self.addReviewButton.hidden = YES;
     }
@@ -222,10 +225,11 @@
     frontView.layer.cornerRadius = 5;
     frontView.layer.masksToBounds = YES;
 
-    [_bgView addSubview:frontView];
-
     [frontView addSubview:self.reviewTextView];
 
+    [_bgView addSubview:frontView];
+
+  
 }
 
 
@@ -240,7 +244,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    if (_isReviewing)
+    if (_isReviewing == YES)
         return 210;
     return 0;
 }

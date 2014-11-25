@@ -145,9 +145,8 @@
 
 -(void)rateView:(RatingView *)rateView ratingDidChange:(float)rating
 {
-          NSLog(@"HERE");
+    NSLog(@"He/y");
     if(delegate.currentUser) {
-        NSLog(@"HERE AFTER");
         [self performSegueWithIdentifier:@"addReview" sender:self];
     } else {
         [self showNotLoggedAlertWithDelegate:nil andTitle:nil andMessage:nil];

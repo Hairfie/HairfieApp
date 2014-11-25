@@ -6,11 +6,13 @@
 //  Copyright (c) 2014 Hairfie. All rights reserved.
 //
 
+#import "AppDelegate.h"
 #import "BusinessDetailCollectionViewCell.h"
 #import "NSString+PhoneFormatter.h"
 #import "ReviewTableViewCell.h"
 #import "SimilarTableViewCell.h"
 #import "BusinessReview.h"
+
 
 @implementation BusinessDetailCollectionViewCell
 {
@@ -18,6 +20,7 @@
     NSArray *latestReviews;
     NSArray *similarBusinesses;
     Business *business;
+    AppDelegate *appDelegate;
 }
 - (void)awakeFromNib {
     // Initialization code
@@ -27,7 +30,7 @@
 -(void)setupDetails:(Business*)aBusiness
 {
     business = aBusiness;
-    
+    appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     self.reviewTableView.delegate = self;
     self.reviewTableView.dataSource = self;
     self.similarTableView.delegate = self;
@@ -93,25 +96,23 @@
         NSInteger tes = MIN(2, [business.numReviews integerValue]);
         self.reviewTableView.hidden = NO;
         self.moreReviewButtonYpos.constant = 308 + (130 * tes);
-       // self.similarViewYPos.constant = self.moreReviewButtonYpos.constant + 30;
         [_moreReviewBttn setTitle:[NSString stringWithFormat:NSLocalizedStringFromTable(@"more (%@)", @"Salon_Detail", nil), business.numReviews]
                          forState:UIControlStateNormal];
     }
-
-    
-    
-//    self.pricesView.hidden = YES;
-//    
-//    self.salonRating.notSelectedImage = [UIImage imageNamed:@"not_selected_star.png"];
-//    _salonRating.halfSelectedImage = [UIImage imageNamed:@"half_selected_star.png"];
-//    _salonRating.fullSelectedImage = [UIImage imageNamed:@"selected_star.png"];
-//    _salonRating.editable = NO;
-//    _salonRating.maxRating = 5;
-//    _salonRating.delegate = self;
-//    _salonRating.rating = [[business ratingBetween:@0 and: @5] floatValue];
-//    
-   //
   }
+
+-(IBAction)showTimeTable:(id)sender
+{
+    if (self.isOpenLabelDetail.hidden == NO) {
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"showTimetable" object:nil];
+    }
+}
+
+-(IBAction)showMapFromSalon:(id)sender
+{
+ [[NSNotificationCenter defaultCenter] postNotificationName:@"showBusinessMap" object:nil];
+}
 
 -(void)setupRecentReviews
 {
@@ -157,7 +158,18 @@
 
 -(void)rateView:(RatingView *)rateView ratingDidChange:(float)rating
 {
-
+   
+    
+    if (appDelegate.currentUser){
+        NSDictionary* userInfo = @{@"reviewRating": @(self.addRatingView.rating)};
+        NSNotificationCenter* nc = [NSNotificationCenter defaultCenter];
+        [nc postNotificationName:@"addReview" object:self userInfo:userInfo];
+        
+    } else {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"NoUserConnected" object:self];
+     self.addRatingView.rating = 0;
+    }
+    
 }
 
 -(void)addPhoneNumbersToView
@@ -184,9 +196,18 @@
 
 -(IBAction)didClickOnCallButton:(id)sender
 {
-    NSLog(@"CALL");
+   [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"telprompt://%@", business.phoneNumber]]];
 }
 
+-(IBAction)showReviews:(id)sender
+{
+    self.addRatingView.rating = 0;
+    
+    if (appDelegate.currentUser)
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"showReviews" object:self];
+    else
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"NoUserConnected" object:self];
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -247,9 +268,13 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (tableView == self.similarTableView) {
-        //[self performSegueWithIdentifier:@"similarBusiness" sender:self.similarBusinesses[indexPath.row]];
+        
+        NSDictionary* userInfo = @{@"similarPicked": similarBusinesses[indexPath.row]};
+        NSNotificationCenter* nc = [NSNotificationCenter defaultCenter];
+        [nc postNotificationName:@"similarBusinessPicked" object:self userInfo:userInfo];
+        
+        [self.similarTableView deselectRowAtIndexPath:indexPath animated:YES];
     }
-    
 }
 
 @end

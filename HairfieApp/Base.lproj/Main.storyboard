@@ -910,6 +910,7 @@
                         <color key="tintColor" red="0.36078431370000003" green="0.67450980390000004" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="7d6-Uh-w2k"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <segue destination="QW8-eh-zsD" kind="push" identifier="cameraFilters" id="Uce-Bn-1pO"/>
                     </connections>
@@ -2013,8 +2014,8 @@
                         <outlet property="hairfieCollection" destination="KAR-xV-XBM" id="jKF-L5-rJc"/>
                         <outlet property="headerTitleLabel" destination="ZWR-sP-OId" id="F9a-H0-2b2"/>
                         <outlet property="topBarView" destination="jZA-oj-8Vd" id="ib0-Cg-NZs"/>
-                        <segue destination="pDa-if-Gwb" kind="push" identifier="businessDetail" id="LOg-O4-mCP"/>
                         <segue destination="7uP-yg-Ah1" kind="push" identifier="showUserProfile" id="XyP-UR-YzB"/>
+                        <segue destination="m2a-HQ-iZ5" kind="push" identifier="businessDetail" id="ryT-yY-w9K"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hv8-dL-qIH" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2106,7 +2107,7 @@
         <!--Business View Controller-->
         <scene sceneID="F7G-iw-176">
             <objects>
-                <viewController id="m2a-HQ-iZ5" customClass="BusinessViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BusinessDetail" id="m2a-HQ-iZ5" customClass="BusinessViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ywg-h3-Fms"/>
                         <viewControllerLayoutGuide type="bottom" id="wD6-q4-Oww"/>
@@ -2116,7 +2117,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="q17-aw-HaG">
-                                <rect key="frame" x="0.0" y="-20" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="-20" width="320" height="588"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ktn-k1-GR9">
                                     <size key="itemSize" width="150" height="210"/>
@@ -2137,7 +2138,7 @@
                                     </collectionViewCell>
                                 </cells>
                                 <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="businessHeaderView" id="DI6-9t-fDv" customClass="BusinessReusableView">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="280"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="enR-hh-avr" userLabel="Tab Bar View">
@@ -2233,6 +2234,9 @@
                                         <state key="normal" image="picto-menu-point.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="showMenuActionSheet:" destination="m2a-HQ-iZ5" eventType="touchUpInside" id="8dN-PU-eNi"/>
+                                        </connections>
                                     </button>
                                     <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Hair Salon" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A6e-OE-dLo">
                                         <rect key="frame" x="92" y="27" width="136" height="23"/>
@@ -2251,6 +2255,13 @@
                         <outlet property="collectionView" destination="q17-aw-HaG" id="FVb-cZ-z31"/>
                         <outlet property="leftMenuBttn" destination="Yal-DU-KI5" id="DxK-hM-ffZ"/>
                         <outlet property="navBttn" destination="fiT-Fs-OQU" id="PBe-Tc-4DP"/>
+                        <segue destination="d1b-g5-JaB" kind="modal" identifier="reportError" id="F1s-SJ-qLd"/>
+                        <segue destination="Q3n-aX-0gT" kind="modal" identifier="suggestHairdresser" id="k5V-Vb-bKY"/>
+                        <segue destination="oWk-He-lbw" kind="push" identifier="showTimetable" id="G63-zI-4NT"/>
+                        <segue destination="kpQ-3P-4rI" kind="push" identifier="showMapFromSalon" id="mvh-9D-U6J"/>
+                        <segue destination="kE9-13-80o" kind="push" identifier="showReviews" id="6kX-O6-xoM"/>
+                        <segue destination="C0A-PA-Dfl" kind="push" identifier="postHairfie" id="YMQ-jo-wz1"/>
+                        <segue destination="wuV-Ro-JC1" kind="push" identifier="hairfieDetail" id="ljj-N5-0Sy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rJo-33-XCW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2496,6 +2507,7 @@
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ef6-Ko-JEW">
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                                 <connections>
                                     <outlet property="delegate" destination="kpQ-3P-4rI" id="IKm-Wr-aN1"/>
                                 </connections>
@@ -2504,6 +2516,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="fhg-cC-qSc"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="headerTitle" destination="YDV-Vy-xcB" id="60a-EI-GOk"/>
                         <outlet property="mapView" destination="ef6-Ko-JEW" id="s2C-lB-c0O"/>
@@ -2511,7 +2524,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sqq-UN-8gE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2683" y="-2036"/>
+            <point key="canvasLocation" x="3407" y="-2744"/>
         </scene>
         <!--Salon Detail View Controller-->
         <scene sceneID="ikO-8j-QFY">
@@ -2522,7 +2535,7 @@
                         <viewControllerLayoutGuide type="bottom" id="EAd-rH-izx"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="AEr-xc-owd">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="1500"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="1568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Lw-Ud-rlB">
@@ -2567,7 +2580,7 @@
                                             <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5ZR-VD-wlu" userLabel="HAIRDRESSER VIEW">
                                                 <rect key="frame" x="0.0" y="278" width="320" height="615"/>
                                                 <subviews>
-                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="FpJ-1K-79p">
+                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="FpJ-1K-79p">
                                                         <rect key="frame" x="0.0" y="0.0" width="320" height="615"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
@@ -2617,9 +2630,6 @@
                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                 </view>
                                                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <connections>
-                                                                    <segue destination="wuV-Ro-JC1" kind="push" identifier="hairfieDetail" id="PSz-m0-val"/>
-                                                                </connections>
                                                             </collectionViewCell>
                                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="u9y-8N-hkr">
                                                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -2816,9 +2826,6 @@
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
-                                                        <connections>
-                                                            <segue destination="kE9-13-80o" kind="push" identifier="addReview" id="FlJ-yN-A4P"/>
-                                                        </connections>
                                                     </button>
                                                     <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aTG-pn-ebO" userLabel="Similar Container View">
                                                         <rect key="frame" x="0.0" y="581" width="320" height="363"/>
@@ -3007,7 +3014,7 @@
                                 </subviews>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0TP-lk-MOz" userLabel="Call Salon">
-                                <rect key="frame" x="0.0" y="1460" width="320" height="40"/>
+                                <rect key="frame" x="0.0" y="1528" width="320" height="40"/>
                                 <color key="backgroundColor" red="0.98039215686274506" green="0.25882352941176473" blue="0.2627450980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="USe-X9-0rp"/>
@@ -3023,7 +3030,7 @@
                                 </connections>
                             </button>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" image="picto-phone-white.png" translatesAutoresizingMaskIntoConstraints="NO" id="B5X-uI-8rT">
-                                <rect key="frame" x="120" y="1472" width="16" height="16"/>
+                                <rect key="frame" x="120" y="1540" width="16" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="16" id="2xq-bc-uqi"/>
                                     <constraint firstAttribute="height" constant="16" id="Fsy-kC-0FQ"/>
@@ -3041,7 +3048,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="KGy-rj-yyt"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="320" height="1500"/>
+                    <size key="freeformSize" width="320" height="1568"/>
                     <connections>
                         <outlet property="address" destination="5iT-Mx-8vK" id="uWz-El-obZ"/>
                         <outlet property="city" destination="3VZ-B5-oF7" id="bCx-gT-mCp"/>
@@ -3079,17 +3086,12 @@
                         <outlet property="telephone" destination="HKB-Hy-iot" id="pN8-F8-9H2"/>
                         <outlet property="telephoneBgView" destination="RrZ-5c-jUF" id="aV2-Oo-lTl"/>
                         <outlet property="telephoneLabelWidth" destination="8X2-ll-edA" id="baC-99-BsI"/>
-                        <segue destination="oWk-He-lbw" kind="push" identifier="showTimetable" id="aqA-eY-dNj"/>
-                        <segue destination="d1b-g5-JaB" kind="modal" identifier="reportError" id="D36-jL-7ke"/>
-                        <segue destination="C0A-PA-Dfl" kind="push" identifier="postHairfie" id="2ml-IS-A8f"/>
-                        <segue destination="Q3n-aX-0gT" kind="modal" identifier="suggestHairdresser" id="y6n-25-QD0"/>
-                        <segue destination="kpQ-3P-4rI" kind="push" identifier="showMapFromSalon" id="aSr-t1-wzi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TsP-dW-B6k" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="a86-yp-v45" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2488" y="-1632"/>
+            <point key="canvasLocation" x="4216" y="-1171"/>
         </scene>
         <!--Horaires View Controller-->
         <scene sceneID="HfR-7M-bBW">
@@ -3147,6 +3149,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="5fN-Ew-9pR"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="horaireTableView" destination="31z-nZ-yDm" id="iVn-6u-JBp"/>
                         <outlet property="tableViewHeight" destination="FnS-ui-jmW" id="a6S-u1-nkU"/>
@@ -3154,11 +3157,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mzm-Wd-W0R" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3032" y="-1662"/>
+            <point key="canvasLocation" x="2852" y="-2248"/>
         </scene>
         <!--Reviews View Controller-->
         <scene sceneID="NP7-7N-F2k">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IUZ-36-pVl" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="kE9-13-80o" customClass="ReviewsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="c73-Mf-jHi"/>
@@ -3248,6 +3252,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="XQ0-mw-ZR8"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="addReviewButton" destination="25n-DB-i7U" id="tJj-NR-Fci"/>
                         <outlet property="containerReview" destination="qJq-4u-TRW" id="5gZ-jD-d9Q"/>
@@ -3255,9 +3260,8 @@
                         <outlet property="reviewTableView" destination="wuf-TE-yeF" id="YsI-IJ-BmA"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="IUZ-36-pVl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3023" y="-1277"/>
+            <point key="canvasLocation" x="3373" y="-2060"/>
         </scene>
         <!--Business Error Report View Controller-->
         <scene sceneID="tWC-SF-dNg">
@@ -3326,6 +3330,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Ovm-md-e53"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="bodyText" destination="jLO-Ht-rmD" id="bOl-TB-D39"/>
                         <outlet property="headerSubmitButton" destination="nyP-ov-ar8" id="KeJ-lU-B8u"/>
@@ -3334,7 +3339,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9gz-KA-mWQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3611" y="-1632"/>
+            <point key="canvasLocation" x="2779" y="-2939"/>
         </scene>
         <!--Favorites-->
         <scene sceneID="pSr-Pn-kI9">
@@ -4916,7 +4921,7 @@
                         <segue destination="QDs-5V-jNB" kind="push" identifier="claimTimetable" id="gaM-xQ-0j1"/>
                         <segue destination="vfu-7w-ucu" kind="push" identifier="claimHairdresser" id="5Qy-oY-xGh"/>
                         <segue destination="iwq-rU-PkG" kind="push" identifier="claimService" id="K4m-SQ-rIk"/>
-                        <segue destination="pDa-if-Gwb" kind="push" identifier="toSalonDetail" id="6S8-Dh-Oyu"/>
+                        <segue destination="m2a-HQ-iZ5" kind="push" identifier="toSalonDetail" id="OXf-FI-oBV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kgs-18-rHr" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -5555,7 +5560,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ROd-PT-yOV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3767" y="-1024"/>
+            <point key="canvasLocation" x="2991" y="-1544"/>
         </scene>
         <!--Add Tags To Hairfie View Controller-->
         <scene sceneID="rso-yf-Omf">
@@ -5683,10 +5688,10 @@
     <inferredMetricsTieBreakers>
         <segue reference="vAT-vQ-WuX"/>
         <segue reference="VGS-VM-Pwy"/>
+        <segue reference="YMQ-jo-wz1"/>
+        <segue reference="ryT-yY-w9K"/>
+        <segue reference="ljj-N5-0Sy"/>
         <segue reference="ssq-cN-qLV"/>
-        <segue reference="PSz-m0-val"/>
-        <segue reference="LOg-O4-mCP"/>
-        <segue reference="2ml-IS-A8f"/>
         <segue reference="ike-pA-JY1"/>
         <segue reference="N5w-ND-ZjU"/>
         <segue reference="uEN-by-6gW"/>

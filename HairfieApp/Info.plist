@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>PinterestClientId</key>
-	<string>$(PINTEREST_CLIENT_ID)</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -65,6 +63,8 @@
 	<true/>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>We use your location to show you the best hairdressers around you.</string>
+	<key>PinterestClientId</key>
+	<string>$(PINTEREST_CLIENT_ID)</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>SourceSansPro-ExtraLightItalic.ttf</string>
@@ -74,8 +74,6 @@
 		<string>SourceSansPro-Semibold.ttf</string>
 		<string>SourceSansPro-Bold.ttf</string>
 	</array>
-	<key>UILaunchStoryboardName</key>
-	<string>Main</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>

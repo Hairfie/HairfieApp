@@ -31,8 +31,6 @@
     [appDelegate startTrackingLocation:YES];
     self.mapView.showsPointsOfInterest = NO;
     
-    
-    NSLog(@"self.business %@", self.business);
      self.headerTitle.text = self.business.name;
     [self refreshMap];
     [self.mapView selectAnnotation:annotObj animated:NO];
@@ -129,8 +127,8 @@
     
     
     
-    [actionSheet addButtonWithTitle:NSLocalizedStringFromTable(@"Navigate", @"Salon_Detail", nil)];
-    [actionSheet addButtonWithTitle:@"Google"];
+    [actionSheet addButtonWithTitle:NSLocalizedStringFromTable(@"Navigate via Apple Maps", @"Salon_Detail", nil)];
+    [actionSheet addButtonWithTitle:NSLocalizedStringFromTable(@"Navigate via Google Maps", @"Salon_Detail", nil)];
     
     [actionSheet showInView:self.view];
 }

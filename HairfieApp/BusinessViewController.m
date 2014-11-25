@@ -11,6 +11,10 @@
 #import "Service.h"
 #import "Hairdresser.h"
 
+#import "HairfieDetailViewController.h"
+#import "ReviewsViewController.h"
+#import "SalonMapViewController.h"
+#import "HorairesViewController.h"
 
 #import "LoadingCollectionViewCell.h"
 #import "CustomCollectionViewCell.h"
@@ -19,6 +23,7 @@
 #import "BusinessServicesCollectionViewCell.h"
 
 #import "BusinessReusableView.h"
+#import "NotLoggedAlert.h"
 
 @interface BusinessViewController ()
 
@@ -35,8 +40,12 @@
 
     BOOL endOfHairfies;
     BOOL loadingHairfies;
-    
+    Business *similarBusiness;
+    Hairfie *hairfie;
     BOOL isSetup;
+    BOOL isReviewing;
+    NSNumber *ratingForReview;
+    NSArray *menuActions;
     SalonDetailHeaderViewController *headerViewController;
 }
 
@@ -49,10 +58,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
     isDetailsTab = YES;
     self.leftMenuBttn.hidden = YES;
-    
+    self.collectionView.allowsMultipleSelection = NO;
+    menuActions = @[
+                    @{@"label": NSLocalizedStringFromTable(@"Report an error", @"Salon_Detail",nil), @"segue": @"reportError"}
+                    ];
+
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(showBusinessDetails:)
                                                  name:@"businessDetails"
@@ -69,6 +81,34 @@
                                              selector:@selector(showBusinessServices:)
                                                  name:@"businessServices"
                                                object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(showSimilarBusiness:)
+                                                 name:@"similarBusinessPicked"
+                                               object:nil];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(showMoreReviews:)
+                                                 name:@"showReviews"
+                                               object:nil];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(addAReview:)
+                                                 name:@"addReview"
+                                               object:nil];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(showNotLoggedIn:)
+                                                 name:@"NoUserConnected"
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(showBusinessMap:)
+                                                 name:@"showBusinessMap"
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(showTimetable:)
+                                                 name:@"showTimetable"
+                                               object:nil];
+
     
     
     [self.collectionView registerNib:[UINib nibWithNibName:@"CustomCollectionViewCell" bundle:nil]forCellWithReuseIdentifier:HAIRFIE_CELL];
@@ -83,14 +123,88 @@
     
     
     [self initData];
+    NSLog(@"BUSINESS HAIRFIES COUNT %zd", businessHairfies.count);
+    
     // Do any additional setup after loading the view.
 }
 
 -(void)initData
 {
+    [UIView setAnimationsEnabled:YES];
     [self setupHairfies];
 }
 
+-(IBAction)showMenuActionSheet:(id)sender
+{
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                             delegate:self
+                                                    cancelButtonTitle:NSLocalizedStringFromTable(@"Cancel", @"Salon_Detail", nil)
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:nil];
+    
+    for (NSDictionary *menuAction in menuActions) {
+        [actionSheet addButtonWithTitle:NSLocalizedStringFromTable([menuAction objectForKey:@"label"], @"Salon_Detail", nil)];
+    }
+    
+    [actionSheet showInView:self.view];
+}
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (0 == buttonIndex) return; // it's the cancel button
+    
+    [self performSegueWithIdentifier:[menuActions[buttonIndex - 1] objectForKey:@"segue"] sender:self];
+}
+
+
+
+-(void)showBusinessMap:(NSNotification*)notification {
+
+    [self performSegueWithIdentifier:@"showMapFromSalon" sender:self];
+}
+
+-(void)showTimetable:(NSNotification*)notification {
+    
+    [self performSegueWithIdentifier:@"showTimetable" sender:self];
+}
+
+
+-(void)showNotLoggedIn:(NSNotification*)notification {
+    
+    [self showNotLoggedAlertWithDelegate:nil andTitle:nil andMessage:nil];
+}
+
+-(void)showMoreReviews:(NSNotification*)notification {
+
+    [self performSegueWithIdentifier:@"showReviews" sender:self];
+    isReviewing = NO;
+}
+
+-(void)addAReview:(NSNotification*)notification {
+    
+    
+    NSDictionary* userInfo = notification.userInfo;
+    
+    ratingForReview = [userInfo objectForKey:@"reviewRating"];
+    NSLog(@"rating %@", ratingForReview);
+    [self performSegueWithIdentifier:@"showReviews" sender:self];
+    isReviewing = YES;
+}
+
+
+
+-(void)showSimilarBusiness:(NSNotification*)notification {
+
+     NSDictionary* userInfo = notification.userInfo;
+    
+    similarBusiness = [userInfo objectForKey:@"similarPicked"];
+
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+    BusinessViewController *similarVC = [storyboard instantiateViewControllerWithIdentifier:@"BusinessDetail"];
+    similarVC.business = similarBusiness;
+    [self.navigationController pushViewController:similarVC animated:YES];
+    
+}
 
 -(void)showBusinessDetails:(NSNotification*)notification {
     isDetailsTab = YES;
@@ -147,7 +261,6 @@
 
 -(void)loadHairfies
 {
-    NSLog(@"LOAD HAIRFIES");
     if (endOfHairfies || loadingHairfies) return;
     
     NSLog(@"Loading next hairfies");
@@ -274,7 +387,7 @@
         }
         else if (indexPath.row < (businessHairfies.count + 1)) {
             if (indexPath.row >= (businessHairfies.count - HAIRFIES_PAGE_SIZE + 1)) {
-               // [self loadHairfies];
+                [self loadHairfies];
             }
             return [self hairfieCellAtIndexPath:indexPath];
         } else {
@@ -353,8 +466,63 @@
     return cell;
 }
 
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (isHairfiesTab == YES)
+    {
+        if (indexPath.row == 0)
+        {
+            [self performSegueWithIdentifier:@"postHairfie" sender:nil];
+           // _isAddingHairfie = YES;
+        }
+        else {
+        hairfie = [businessHairfies objectAtIndex:(indexPath.row - 1)];
+        NSLog(@"business HAIRFIES %@", hairfie.numLikes);
+        [self.collectionView deselectItemAtIndexPath:indexPath animated:YES];
+        [self performSegueWithIdentifier:@"hairfieDetail" sender:self];
+        }
+    }
+}
 
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"similarBusiness"])
+    {
+        BusinessViewController *bus = segue.destinationViewController;
+        
+        bus.business = similarBusiness;
+    }
+    
+    if ([segue.identifier isEqualToString:@"hairfieDetail"])
+    {
+        HairfieDetailViewController *hairfieDetail = segue.destinationViewController;
+        
+     
+        hairfieDetail.hairfie = hairfie;
+    }
+    
+    if ([segue.identifier isEqualToString:@"showReviews"]) {
+        ReviewsViewController *review = [segue destinationViewController];
+        review.ratingValue = [ratingForReview floatValue];
+        if (isReviewing == YES)
+            review.isReviewing = YES;
+     
+        review.business = _business;
+        review.addReviewButton.hidden = NO;
+    }
+    if ([segue.identifier isEqualToString:@"showMapFromSalon"])
+    {
+        SalonMapViewController *salonMap = [segue destinationViewController];
+        
+        salonMap.business = self.business;
+    }
+    if ([segue.identifier isEqualToString:@"showTimetable"]) {
+        HorairesViewController *horaires = [segue destinationViewController];
+        horaires.timetable = self.business.timetable;
+    }
+
+}
 
 
 /*
