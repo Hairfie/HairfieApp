@@ -253,6 +253,11 @@
 		B3AA0CAA1A23728A00FAEC01 /* BusinessHairdressersCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3AA0CA81A23728A00FAEC01 /* BusinessHairdressersCollectionViewCell.xib */; };
 		B3AA0CAE1A237A3700FAEC01 /* BusinessServicesCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B3AA0CAC1A237A3700FAEC01 /* BusinessServicesCollectionViewCell.m */; };
 		B3AA0CAF1A237A3700FAEC01 /* BusinessServicesCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3AA0CAD1A237A3700FAEC01 /* BusinessServicesCollectionViewCell.xib */; };
+		B3AA0CB31A24C59600FAEC01 /* HairdresserDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3AA0CB21A24C59600FAEC01 /* HairdresserDetailViewController.m */; };
+		B3AA0CB61A24CAAF00FAEC01 /* HairdresserReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B3AA0CB51A24CAAF00FAEC01 /* HairdresserReusableView.m */; };
+		B3AA0CBF1A24D4D900FAEC01 /* DetailsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B3AA0CBD1A24D4D900FAEC01 /* DetailsCollectionViewCell.m */; };
+		B3AA0CC01A24D4D900FAEC01 /* DetailsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3AA0CBE1A24D4D900FAEC01 /* DetailsCollectionViewCell.xib */; };
+		B3AA0CC21A24D92A00FAEC01 /* ciseaux-picto.png in Resources */ = {isa = PBXBuildFile; fileRef = B3AA0CC11A24D92A00FAEC01 /* ciseaux-picto.png */; };
 		B3AD59B7198B9A3700909ADE /* SalonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B3AD59B5198B9A3700909ADE /* SalonTableViewCell.m */; };
 		B3AD59B8198B9A3700909ADE /* SalonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3AD59B6198B9A3700909ADE /* SalonTableViewCell.xib */; };
 		B3AD59BF198B9D3500909ADE /* picto-list-resume.png in Resources */ = {isa = PBXBuildFile; fileRef = B3AD59BA198B9D3500909ADE /* picto-list-resume.png */; };
@@ -780,6 +785,14 @@
 		B3AA0CAB1A237A3700FAEC01 /* BusinessServicesCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessServicesCollectionViewCell.h; sourceTree = "<group>"; };
 		B3AA0CAC1A237A3700FAEC01 /* BusinessServicesCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessServicesCollectionViewCell.m; sourceTree = "<group>"; };
 		B3AA0CAD1A237A3700FAEC01 /* BusinessServicesCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BusinessServicesCollectionViewCell.xib; sourceTree = "<group>"; };
+		B3AA0CB11A24C59600FAEC01 /* HairdresserDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HairdresserDetailViewController.h; sourceTree = "<group>"; };
+		B3AA0CB21A24C59600FAEC01 /* HairdresserDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HairdresserDetailViewController.m; sourceTree = "<group>"; };
+		B3AA0CB41A24CAAF00FAEC01 /* HairdresserReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HairdresserReusableView.h; sourceTree = "<group>"; };
+		B3AA0CB51A24CAAF00FAEC01 /* HairdresserReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HairdresserReusableView.m; sourceTree = "<group>"; };
+		B3AA0CBC1A24D4D900FAEC01 /* DetailsCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsCollectionViewCell.h; sourceTree = "<group>"; };
+		B3AA0CBD1A24D4D900FAEC01 /* DetailsCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsCollectionViewCell.m; sourceTree = "<group>"; };
+		B3AA0CBE1A24D4D900FAEC01 /* DetailsCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailsCollectionViewCell.xib; sourceTree = "<group>"; };
+		B3AA0CC11A24D92A00FAEC01 /* ciseaux-picto.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ciseaux-picto.png"; sourceTree = "<group>"; };
 		B3AD59B4198B9A3700909ADE /* SalonTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SalonTableViewCell.h; sourceTree = "<group>"; };
 		B3AD59B5198B9A3700909ADE /* SalonTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SalonTableViewCell.m; sourceTree = "<group>"; };
 		B3AD59B6198B9A3700909ADE /* SalonTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SalonTableViewCell.xib; sourceTree = "<group>"; };
@@ -1002,6 +1015,7 @@
 		1511518E1982B7A8001157A2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B3AA0CB71A24D10100FAEC01 /* HAIRDRESSER DETAIL TMP RESOURCES */,
 				B35CB8221A1B42B900ADD12A /* Filters Resources */,
 				15E9526B19FEABA500699CBE /* Week */,
 				B382114219EEB6F40020C25E /* UILabel Subclasses */,
@@ -1254,6 +1268,7 @@
 		B3087010198782CF0080E6D2 /* Pages */ = {
 			isa = PBXGroup;
 			children = (
+				B3AA0CB01A24C57800FAEC01 /* Hairdresser Detail */,
 				B3FA61FF19F79E43002D8B6F /* User Profile */,
 				1536598919DEFF570002D5ED /* Tuto + Login + Sign Up */,
 				B319B5C819C85E1C007F79B0 /* CLAIM */,
@@ -1664,6 +1679,28 @@
 			name = "NEW SALON";
 			sourceTree = "<group>";
 		};
+		B3AA0CB01A24C57800FAEC01 /* Hairdresser Detail */ = {
+			isa = PBXGroup;
+			children = (
+				B3AA0CB11A24C59600FAEC01 /* HairdresserDetailViewController.h */,
+				B3AA0CB21A24C59600FAEC01 /* HairdresserDetailViewController.m */,
+				B3AA0CB41A24CAAF00FAEC01 /* HairdresserReusableView.h */,
+				B3AA0CB51A24CAAF00FAEC01 /* HairdresserReusableView.m */,
+				B3AA0CBC1A24D4D900FAEC01 /* DetailsCollectionViewCell.h */,
+				B3AA0CBD1A24D4D900FAEC01 /* DetailsCollectionViewCell.m */,
+				B3AA0CBE1A24D4D900FAEC01 /* DetailsCollectionViewCell.xib */,
+			);
+			name = "Hairdresser Detail";
+			sourceTree = "<group>";
+		};
+		B3AA0CB71A24D10100FAEC01 /* HAIRDRESSER DETAIL TMP RESOURCES */ = {
+			isa = PBXGroup;
+			children = (
+				B3AA0CC11A24D92A00FAEC01 /* ciseaux-picto.png */,
+			);
+			name = "HAIRDRESSER DETAIL TMP RESOURCES";
+			sourceTree = "<group>";
+		};
 		B3AD59B9198B9D2600909ADE /* List  */ = {
 			isa = PBXGroup;
 			children = (
@@ -2065,6 +2102,7 @@
 				B3F5521619BF047F0033230E /* cancel-hairfie.png in Resources */,
 				B3BB4820199B983800F8CD5B /* arrow-nav.png in Resources */,
 				B3EBE754199BACFD0073B844 /* bg-book-no-info.png in Resources */,
+				B3AA0CC01A24D4D900FAEC01 /* DetailsCollectionViewCell.xib in Resources */,
 				153B08BF19E43834002E915A /* tuto.strings in Resources */,
 				B3EC30B819E52854006A604C /* picto-home.png in Resources */,
 				B3EC30B719E52854006A604C /* picto-like.png in Resources */,
@@ -2120,6 +2158,7 @@
 				B3E65FD51986A9E500AF0C15 /* selected-cell.jpg in Resources */,
 				B3A12821198AA1B1004D90BD /* custom-map-pin.png in Resources */,
 				15E3D2D519D07AB10065A07E /* Main.strings in Resources */,
+				B3AA0CC21A24D92A00FAEC01 /* ciseaux-picto.png in Resources */,
 				15481A8F19E3EC2300C9D7A7 /* PopUpViewController.xib in Resources */,
 				B3AD59B8198B9A3700909ADE /* SalonTableViewCell.xib in Resources */,
 				B36731E3198FB17800E11C56 /* picto-woman-white.png in Resources */,
@@ -2368,6 +2407,7 @@
 				B33D4C5619D1A46D009DE6DD /* Service.m in Sources */,
 				153E1FB019B4A79B00DEC95D /* UserRepository.m in Sources */,
 				1564959519AF6292008DC070 /* HairfieColors.m in Sources */,
+				B3AA0CBF1A24D4D900FAEC01 /* DetailsCollectionViewCell.m in Sources */,
 				B3FA620219F79E57002D8B6F /* UserProfileViewController.m in Sources */,
 				B3423210198924290058866B /* AFHTTPRequestOperation.m in Sources */,
 				1515448219C301ED00FBC07D /* CameraOverlayViewController.m in Sources */,
@@ -2437,6 +2477,7 @@
 				B33E4C4319A48FE70024F5F7 /* HoraireTableViewCell.m in Sources */,
 				B3AA0C9D1A2345A900FAEC01 /* BusinessViewController.m in Sources */,
 				B3423218198924290058866B /* AFURLSessionManager.m in Sources */,
+				B3AA0CB31A24C59600FAEC01 /* HairdresserDetailViewController.m in Sources */,
 				158FCA8019FA3DA10001F86C /* DateUtils.m in Sources */,
 				15B8ADE319C09A3E009846AA /* BusinessRepository.m in Sources */,
 				B3F5522219BF313E0033230E /* HairfiePostDetailsViewController.m in Sources */,
@@ -2473,6 +2514,7 @@
 				71A564E91A1A3A9100398C7B /* CALayer+XibConfiguration.m in Sources */,
 				B36AC50519DAB47E00B8AC13 /* STCollapseTableView.m in Sources */,
 				B308701719878C030080E6D2 /* SettingsViewController.m in Sources */,
+				B3AA0CB61A24CAAF00FAEC01 /* HairdresserReusableView.m in Sources */,
 				B3A1281A198A85D8004D90BD /* CustomPinView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

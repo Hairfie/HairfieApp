@@ -15,6 +15,7 @@
 #import "ReviewsViewController.h"
 #import "SalonMapViewController.h"
 #import "HorairesViewController.h"
+#import "HairdresserDetailViewController.h"
 
 #import "LoadingCollectionViewCell.h"
 #import "CustomCollectionViewCell.h"
@@ -42,6 +43,7 @@
     BOOL loadingHairfies;
     Business *similarBusiness;
     Hairfie *hairfie;
+    Hairdresser *hairdresserPicked;
     BOOL isSetup;
     BOOL isReviewing;
     NSNumber *ratingForReview;
@@ -482,6 +484,12 @@
         [self performSegueWithIdentifier:@"hairfieDetail" sender:self];
         }
     }
+    if (isHairdressersTab == YES)
+    {
+        
+        hairdresserPicked = [self.business.activeHairdressers objectAtIndex:indexPath.row];
+        [self performSegueWithIdentifier:@"showHairdresserDetail" sender:self];
+    }
 }
 
 
@@ -521,7 +529,15 @@
         HorairesViewController *horaires = [segue destinationViewController];
         horaires.timetable = self.business.timetable;
     }
-
+    
+    if ([segue.identifier isEqualToString:@"showHairdresserDetail"]) {
+        HairdresserDetailViewController *hairdresserDetail = [segue destinationViewController];
+        
+        hairdresserDetail.hairdresser = hairdresserPicked;
+        
+        hairdresserDetail.business = self.business;
+    }
+    
 }
 
 

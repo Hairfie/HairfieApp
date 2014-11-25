@@ -273,6 +273,7 @@
     [aButton addSubview:bottomBorder];
     
 }
+
 -(NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section
 {
     return userHairfies.count + 1;
