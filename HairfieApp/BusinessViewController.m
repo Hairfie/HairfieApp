@@ -290,8 +290,6 @@
 {
     BusinessServicesCollectionViewCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:@"businessServiceCell" forIndexPath:indexPath];
     
-    
-    NSLog(@"services %zd", self.business.services.count);
     if (self.business.services.count == 0)
     {
         [cell initWithoutData];
