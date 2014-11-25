@@ -248,6 +248,7 @@
                     success:(void(^)(NSArray *hairfies))aSuccessHandler
                     failure:(void(^)(NSError *error))aFailureHandler
 {
+
     NSMutableDictionary *where = [[NSMutableDictionary alloc] initWithDictionary:@{@"businessId": businessId}];
     
     if (nil != until) {
@@ -271,6 +272,7 @@
     [repository invokeStaticMethod:@"find"
                         parameters:parameters
                            success:^(NSArray *results) {
+                               NSLog(@"SUCCESS");
                                NSMutableArray *hairfies = [[NSMutableArray alloc] init];
                                 for (NSDictionary *result in results) {
                                     [hairfies addObject:[repository modelWithDictionary:result]];

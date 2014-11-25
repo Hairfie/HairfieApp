@@ -372,8 +372,7 @@
     [self setupHairfies];
     [self setupLastReviews];
     
-    headerViewController.business = business;
-    
+        
     if (nil == business.timetable) {
         _isOpenImageDetail.hidden = YES;
         _isOpenLabelDetail.hidden = YES;

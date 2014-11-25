@@ -18,6 +18,17 @@
 {
     [self.serviceName setText:service.label];
     [self.servicePrice setText:[service.price formatted]];
+    self.serviceName.hidden = NO;
+    self.servicePrice.hidden = NO;
+    self.noServiceLabel.hidden = YES;
+}
+
+-(void)initWithoutData
+{
+    self.serviceName.hidden = YES;
+    self.servicePrice.hidden = YES;
+    self.noServiceLabel.text = NSLocalizedStringFromTable(@"No service", @"Salon_Detail", nil);
+    self.noServiceLabel.hidden = NO;
 }
 
 @end

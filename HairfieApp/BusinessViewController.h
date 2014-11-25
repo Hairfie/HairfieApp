@@ -18,4 +18,6 @@
 @property (nonatomic) IBOutlet UIButton *navBttn;
 @property (nonatomic) IBOutlet UIButton *bottomMenuBttn;
 
+
+
 @end

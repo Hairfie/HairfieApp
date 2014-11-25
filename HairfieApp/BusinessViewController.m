@@ -11,6 +11,7 @@
 #import "Service.h"
 #import "Hairdresser.h"
 
+
 #import "LoadingCollectionViewCell.h"
 #import "CustomCollectionViewCell.h"
 #import "BusinessDetailCollectionViewCell.h"
@@ -34,7 +35,9 @@
 
     BOOL endOfHairfies;
     BOOL loadingHairfies;
-
+    
+    BOOL isSetup;
+    SalonDetailHeaderViewController *headerViewController;
 }
 
 #define HAIRFIE_CELL @"hairfieCell"
@@ -46,8 +49,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
     isDetailsTab = YES;
     self.leftMenuBttn.hidden = YES;
+    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(showBusinessDetails:)
                                                  name:@"businessDetails"
@@ -65,6 +70,7 @@
                                                  name:@"businessServices"
                                                object:nil];
     
+    
     [self.collectionView registerNib:[UINib nibWithNibName:@"CustomCollectionViewCell" bundle:nil]forCellWithReuseIdentifier:HAIRFIE_CELL];
     [self.collectionView registerNib:[UINib nibWithNibName:@"LoadingCollectionViewCell" bundle:nil]
           forCellWithReuseIdentifier:LOADING_CELL];
@@ -74,6 +80,7 @@
           forCellWithReuseIdentifier:HAIRDRESSERS_CELL];
     [self.collectionView registerNib:[UINib nibWithNibName:@"BusinessServicesCollectionViewCell" bundle:nil]
           forCellWithReuseIdentifier:SERVICES_CELL];
+    
     
     [self initData];
     // Do any additional setup after loading the view.
@@ -117,10 +124,13 @@
     [self.collectionView reloadData];
 }
 
+
 -(IBAction)goBack:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -137,6 +147,7 @@
 
 -(void)loadHairfies
 {
+    NSLog(@"LOAD HAIRFIES");
     if (endOfHairfies || loadingHairfies) return;
     
     NSLog(@"Loading next hairfies");
@@ -209,6 +220,14 @@
     
     BusinessReusableView *userHeader = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"businessHeaderView" forIndexPath:indexPath];
     
+    headerViewController = [[SalonDetailHeaderViewController alloc] initWithNibName:@"SalonDetailHeaderViewController" bundle:nil];
+  
+    if (!isSetup) {
+    headerViewController.business = self.business;
+    [userHeader addSubview:headerViewController.view];
+        isSetup = YES;
+    }
+    
     [userHeader setupView];
     headerView = userHeader;
     return headerView;
@@ -224,7 +243,7 @@
     if (isServicesTab == YES)
         return CGSizeMake(320, 45);
     if (isDetailsTab == YES)
-        return CGSizeMake(320, 297);
+        return CGSizeMake(320, 964);
     if (isHairfiesTab == YES) {
         if (indexPath.row < (businessHairfies.count + 1)) {
             return CGSizeMake(145, 210);
@@ -255,7 +274,7 @@
         }
         else if (indexPath.row < (businessHairfies.count + 1)) {
             if (indexPath.row >= (businessHairfies.count - HAIRFIES_PAGE_SIZE + 1)) {
-                [self loadHairfies];
+               // [self loadHairfies];
             }
             return [self hairfieCellAtIndexPath:indexPath];
         } else {
@@ -271,9 +290,17 @@
 {
     BusinessServicesCollectionViewCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:@"businessServiceCell" forIndexPath:indexPath];
     
+    
+    NSLog(@"services %zd", self.business.services.count);
+    if (self.business.services.count == 0)
+    {
+        [cell initWithoutData];
+    } else {
+    
     Service *service = [self.business.services objectAtIndex:indexPath.row];
    
     [cell setService:service];
+    }
     
     return cell;
 }
@@ -301,6 +328,8 @@
 {
     BusinessDetailCollectionViewCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:DETAILS_CELL forIndexPath:indexPath];
     
+    [cell setupDetails:self.business];
+    
     return cell;
 }
 -(UICollectionViewCell *)loadingCellAtIndexPath:(NSIndexPath *)indexPath
@@ -325,6 +354,9 @@
     
     return cell;
 }
+
+
+
 
 
 /*

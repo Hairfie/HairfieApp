@@ -13,7 +13,8 @@
 
 @property (nonatomic) IBOutlet UILabel *serviceName;
 @property (nonatomic) IBOutlet UILabel *servicePrice;
+@property (nonatomic) IBOutlet UILabel *noServiceLabel;
 
 -(void)setService:(Service*)service;
-
+-(void)initWithoutData;
 @end
