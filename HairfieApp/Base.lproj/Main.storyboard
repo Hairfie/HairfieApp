@@ -356,6 +356,7 @@
                         <outlet property="navBttn" destination="dzI-gh-TLG" id="IkK-kI-Jd0"/>
                         <segue destination="wuV-Ro-JC1" kind="push" identifier="showHairfieDetail" id="18q-AN-mc0"/>
                         <segue destination="C0A-PA-Dfl" kind="push" identifier="changeUserPicture" id="BMp-kN-6Xv"/>
+                        <segue destination="m2a-HQ-iZ5" kind="push" identifier="showBusinessFromReview" id="csi-dT-fBw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d8F-Z1-oNi" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2614,7 +2615,7 @@
                                             <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5ZR-VD-wlu" userLabel="HAIRDRESSER VIEW">
                                                 <rect key="frame" x="0.0" y="278" width="320" height="615"/>
                                                 <subviews>
-                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="FpJ-1K-79p">
+                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="FpJ-1K-79p">
                                                         <rect key="frame" x="0.0" y="0.0" width="320" height="615"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
@@ -5879,13 +5880,13 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="ryT-yY-w9K"/>
-        <segue reference="ljj-N5-0Sy"/>
-        <segue reference="YaZ-tZ-kVO"/>
-        <segue reference="YMQ-jo-wz1"/>
+        <segue reference="csi-dT-fBw"/>
         <segue reference="ike-pA-JY1"/>
+        <segue reference="BMp-kN-6Xv"/>
         <segue reference="N5w-ND-ZjU"/>
         <segue reference="uEN-by-6gW"/>
+        <segue reference="18q-AN-mc0"/>
+        <segue reference="YaZ-tZ-kVO"/>
         <segue reference="vAT-vQ-WuX"/>
         <segue reference="VGS-VM-Pwy"/>
     </inferredMetricsTieBreakers>

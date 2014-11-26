@@ -14,7 +14,9 @@
 
 - (void)awakeFromNib {
   
+    self.businessDetailBttn.layer.cornerRadius = 5;
     
+    [self.businessDetailBttn setTitle:NSLocalizedStringFromTable(@"see detail", @"UserProfile", nil) forState:UIControlStateNormal];
     profilePicture = [[UIRoundImageView alloc] initWithFrame:CGRectMake(10, 9, 41, 41)];
     profilePicture.layer.cornerRadius = profilePicture.frame.size.height / 2;
     profilePicture.clipsToBounds = YES;
@@ -29,24 +31,20 @@
     _ratingView.editable = NO;
     _ratingView.maxRating = 5;
     _ratingView.delegate = self;
-    _statusLabel.text = [NSString stringWithFormat:@"3"];
 }
 
 - (void)rateView:(RatingView *)rateView ratingDidChange:(float)rating {
     //   _statusLabel.text = [NSString stringWithFormat:@"%.f", rating];
 }
 
+//-(IBAction)<#selector#>:(id)sender
 
 -(void)setReview:(BusinessReview*)review
 {
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc ]init];
-    [dateFormatter setDateFormat:@"MMMM yyyy"];
-    _postDate.text = [dateFormatter stringFromDate:review.createdAt];
     _contentLabel.text = review.comment;
     _ratingView.rating = [[review ratingBetween:@0 and:@5] floatValue];
-    _statusLabel.text = [[review ratingBetween:@0 and:@5] stringValue];
     _nameLabel.text = review.author.displayName;
-    
+    _businessName.text = review.business.name;
     [profilePicture sd_setImageWithURL:[review.author pictureUrlwithWidth:@100 andHeight:@100]
                       placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
 }

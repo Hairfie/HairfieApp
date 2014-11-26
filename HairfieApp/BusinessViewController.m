@@ -60,6 +60,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    NSLog(@"BIZ %@", self.business);
+    
     isDetailsTab = YES;
     [self.callBttn setTitle:NSLocalizedStringFromTable(@"book", @"Salon_Detail", nil) forState:UIControlStateNormal];
     self.leftMenuBttn.hidden = YES;

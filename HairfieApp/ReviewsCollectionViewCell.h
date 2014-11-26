@@ -17,8 +17,8 @@
 @property (weak, nonatomic) IBOutlet RatingView *ratingView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
-@property (weak, nonatomic) IBOutlet UILabel *statusLabel;
-@property (weak, nonatomic) IBOutlet UILabel *postDate;
+@property (weak, nonatomic) IBOutlet UILabel *businessName;
+@property (weak, nonatomic) IBOutlet UIButton *businessDetailBttn;
 
 -(void)setReview:(BusinessReview*)review;
 

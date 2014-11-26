@@ -15,6 +15,7 @@
 #import "UserProfileReusableView.h"
 #import "HairfieDetailViewController.h"
 #import "CameraOverlayViewController.h"
+#import "BusinessViewController.h"
 #import "Hairfie.h"
 #import "Picture.h"
 
@@ -37,6 +38,7 @@
     AppDelegate *appDelegate;
     NSInteger hairfieRow;
     BOOL uploadInProgress;
+    Business *businessPicked;
 }
 
 - (void)viewDidLoad {
@@ -240,7 +242,7 @@
         }
     }
     else
-        return CGSizeMake(320, 127);
+        return CGSizeMake(320, 138);
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -300,7 +302,20 @@
     if (isHairfiesTab == YES)
         [self performSegueWithIdentifier:@"showHairfieDetail" sender:self];
     else
-        [self.collectionView deselectItemAtIndexPath:indexPath animated:YES];
+    {
+        
+        BusinessReview *businessReview = [userReviews objectAtIndex:indexPath.item];
+        [Business getById:businessReview.business.id
+              withSuccess:^(Business *business) {
+                  businessPicked = business;
+                  [self performSegueWithIdentifier:@"showBusinessFromReview" sender:self];
+              }
+                  failure:^(NSError *error) {
+                      NSLog(@"Failed to retrieve complete business: %@", error.localizedDescription);
+                  }];
+    }
+    [self.collectionView deselectItemAtIndexPath:indexPath animated:YES];
+    
 }
 
 
@@ -371,6 +386,10 @@
     if ([segue.identifier isEqualToString:@"showHairfieDetail"]) {
         HairfieDetailViewController *vc = (HairfieDetailViewController *)segue.destinationViewController;
         vc.hairfie = (Hairfie*)[userHairfies objectAtIndex:hairfieRow];
+    }
+    if ([segue.identifier isEqualToString:@"showBusinessFromReview"]) {
+        BusinessViewController *vc = (BusinessViewController*)segue.destinationViewController;
+        vc.business = businessPicked;
     }
     if ([segue.identifier isEqualToString:@"changeUserPicture"])
     {
