@@ -49,6 +49,12 @@
           success:(void(^)(NSArray *hairfies))aSuccessHandler
           failure:(void(^)(NSError *error))aFailureHandler;
 
++ (void) listLatestByHairdresser:(NSString*)hairdresserId
+                           limit:(NSNumber *)limit
+                            skip:(NSNumber *)skip
+                         success:(void (^)(NSArray *))aSuccessHandler
+                         failure:(void (^)(NSError *))aFailureHandler;
+
 +(void)listLatestPerPage:(NSNumber *)page
                  success:(void(^)(NSArray *hairfies))aSuccessHandler
                  failure:(void(^)(NSError *error))aFailureHandler;

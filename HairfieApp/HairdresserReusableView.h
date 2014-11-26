@@ -19,6 +19,7 @@
 @property (nonatomic) IBOutlet UILabel *detailsLbl;
 @property (nonatomic) Hairdresser *hairdresser;
 @property (nonatomic) Business *business;
+@property (nonatomic) NSInteger hairfiesCount;
 
 -(void)setupView;
 @end

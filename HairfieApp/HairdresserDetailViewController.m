@@ -12,6 +12,7 @@
 #import "LoadingCollectionViewCell.h"
 #import "CustomCollectionViewCell.h"
 #import "DetailsCollectionViewCell.h"
+#import "HairfieDetailViewController.h"
 
 #import "Hairfie.h"
 
@@ -29,9 +30,24 @@
     BOOL loadingNext;
     BOOL endOfScroll;
     NSMutableArray *hairdresserHairfies;
+    Hairfie *hairfiePicked;
+    NSInteger hairfiesCount;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(showDetails:)
+                                                 name:@"detailsTab"
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(showHairfies:)
+                                                 name:@"hairfiesTab"
+                                               object:nil];
+
+    
     [self.collectionView registerNib:[UINib nibWithNibName:@"CustomCollectionViewCell" bundle:nil]forCellWithReuseIdentifier:HAIRFIE_CELL];
     [self.collectionView registerNib:[UINib nibWithNibName:@"LoadingCollectionViewCell" bundle:nil]
           forCellWithReuseIdentifier:LOADING_CELL];
@@ -43,6 +59,18 @@
     // Do any additional setup after loading the view.
 }
 
+-(void)showDetails:(NSNotification*)notification
+{
+    isHairfiesTab = NO;
+    [self.collectionView reloadData];
+}
+
+
+-(void)showHairfies:(NSNotification*)notification
+{
+    isHairfiesTab = YES;
+    [self.collectionView reloadData];
+}
 
 -(IBAction)goBack:(id)sender
 {
@@ -67,9 +95,11 @@
     
     loadingNext = YES;
     
-    [Hairfie getHairfiesByAuthor:self.hairdresser.id
-                           until:until
-                           limit:[NSNumber numberWithInt:HAIRFIES_PAGE_SIZE]
+    
+    
+    
+    [Hairfie listLatestByHairdresser:self.hairdresser.id
+                            limit:[NSNumber numberWithInt:HAIRFIES_PAGE_SIZE]
                             skip:[NSNumber numberWithLong:hairdresserHairfies.count]
                          success:^(NSArray *results) {
                              
@@ -83,8 +113,9 @@
                                      [hairdresserHairfies addObject:result];
                                  }
                              }
-                             
-                             
+                           
+                             NSLog(@"count %zd", hairdresserHairfies.count);
+                             hairfiesCount = hairdresserHairfies.count;
                              [self.collectionView reloadData];
                              
                              if (results.count < HAIRFIES_PAGE_SIZE) {
@@ -128,7 +159,10 @@
     HairdresserReusableView *hairdresserHeader = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"hairdresserReusableView" forIndexPath:indexPath];
     
     
+    hairdresserHeader.hairdresser = self.hairdresser;
     hairdresserHeader.business = self.business;
+    hairdresserHeader.hairfiesCount = hairfiesCount;
+  
     [hairdresserHeader setupView];
     
     
@@ -152,7 +186,7 @@
         }
     }
     else
-        return CGSizeMake(320, 234);
+        return CGSizeMake(320, 134);
 }
 
 
@@ -205,6 +239,7 @@
     CustomCollectionViewCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:HAIRFIE_CELL
                                                                                     forIndexPath:indexPath];
     Hairfie *hairfie = (Hairfie *)[hairdresserHairfies objectAtIndex:indexPath.item];
+    
     [cell setHairfie:hairfie];
     
     return cell;
@@ -212,17 +247,31 @@
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-   
+   if (isHairfiesTab == YES)
+   {
+       hairfiePicked = [hairdresserHairfies objectAtIndex:indexPath.item];
+       [self performSegueWithIdentifier:@"showHairfieDetail" sender:self];
+   }
 }
 
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
 {
     
-    return CGSizeMake(320, 275);
+    return CGSizeMake(320, 324);
 }
 
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"showHairfieDetail"])
+    {
+        HairfieDetailViewController *hairfieDetail = segue.destinationViewController;
+        
+        
+        hairfieDetail.hairfie = hairfiePicked;
+    }
+}
 
 /*
 #pragma mark - Navigation

@@ -134,7 +134,6 @@
 }
 
 -(NSAttributedString *)displayDescAndTags {
-    NSLog(@"DESCRIPTION %@ \n TAGS %@", self.description, self.tags);
     NSDictionary *descAttributes = @{
                                NSFontAttributeName : [UIFont fontWithName:@"SourceSansPro-Light" size:15],
                                NSForegroundColorAttributeName : [[UIColor blackHairfie] colorWithAlphaComponent:0.8]
@@ -196,6 +195,42 @@
                            }
                            failure:aFailureHandler];
 }
+
+
++ (void) listLatestByHairdresser:(NSString*)hairdresserId
+                limit:(NSNumber *)limit
+               skip:(NSNumber *)skip
+            success:(void (^)(NSArray *))aSuccessHandler
+            failure:(void (^)(NSError *))aFailureHandler {
+    
+    NSMutableDictionary *where = [[NSMutableDictionary alloc] initWithDictionary:@{@"hairdresserId": hairdresserId}];
+    NSDictionary *parameters = @{
+                                 @"filter": @{
+                                         @"where":where,
+                                         @"limit": limit,
+                                         @"skip": skip,
+                                         @"order": @"createdAt DESC"
+                                         }
+                                 };
+    
+    [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/hairfies" verb:@"GET"]
+                                        forMethod:@"hairfies.find"];
+    
+    LBModelRepository *repository = [self repository];
+    
+    [repository invokeStaticMethod:@"find"
+                        parameters:parameters
+                           success:^(NSArray *results) {
+                               NSMutableArray *hairfies = [[NSMutableArray alloc] init];
+                               for (NSDictionary *result in results) {
+                                   [hairfies addObject:[[[self class] alloc] initWithDictionary:result]];
+                               }
+                               aSuccessHandler([[NSArray alloc] initWithArray:hairfies]);
+                           }
+                           failure:aFailureHandler];
+}
+
+
 
 + (void) listLatest:(NSNumber *)limit
                skip:(NSNumber *)skip

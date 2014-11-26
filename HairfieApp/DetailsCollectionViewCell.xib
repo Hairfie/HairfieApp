@@ -30,6 +30,13 @@
                         <color key="textColor" red="0.14901960784313725" green="0.21176470588235294" blue="0.24313725490196078" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n1L-w9-slW">
+                        <rect key="frame" x="10" y="64" width="50" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="50" id="aKa-xg-JG0"/>
+                            <constraint firstAttribute="height" constant="50" id="sF4-xi-F4f"/>
+                        </constraints>
+                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S0g-kz-gVR">
                         <rect key="frame" x="67" y="64" width="200" height="21"/>
                         <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="16"/>
@@ -42,9 +49,6 @@
                         <color key="textColor" red="0.51764705879999995" green="0.5450980392" blue="0.58431372550000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view alpha="0.34999999999999964" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sP5-IL-FwT" userLabel="SEPARATOR">
-                        <color key="backgroundColor" red="0.51764705879999995" green="0.5450980392" blue="0.58431372550000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </view>
                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.80000001192092896" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Informations sur le coiffeur" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FPE-bf-Zwa">
                         <rect key="frame" x="10" y="135" width="256" height="34"/>
                         <fontDescription key="fontDescription" name="SourceSansPro-Semibold" family="Source Sans Pro" pointSize="17"/>
@@ -64,13 +68,10 @@
                         <color key="textColor" red="0.51764705879999995" green="0.5450980392" blue="0.58431372550000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n1L-w9-slW">
-                        <rect key="frame" x="10" y="64" width="50" height="50"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="50" id="aKa-xg-JG0"/>
-                            <constraint firstAttribute="height" constant="50" id="sF4-xi-F4f"/>
-                        </constraints>
-                    </imageView>
+                    <view alpha="0.34999999999999964" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sP5-IL-FwT" userLabel="SEPARATOR">
+                        <rect key="frame" x="20" y="122" width="300" height="1"/>
+                        <color key="backgroundColor" red="0.92549019607843142" green="0.92549019607843142" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
@@ -82,6 +83,7 @@
                 <outlet property="businessAddress" destination="JGV-xV-J3L" id="KDm-Hy-fqg"/>
                 <outlet property="businessName" destination="S0g-kz-gVR" id="FuR-w8-c6Z"/>
                 <outlet property="businessPicture" destination="n1L-w9-slW" id="Mer-Bu-czC"/>
+                <outlet property="workPlaceLbl" destination="yMm-AQ-n6d" id="12s-fq-4sf"/>
             </connections>
             <point key="canvasLocation" x="301" y="219"/>
         </collectionViewCell>

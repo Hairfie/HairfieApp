@@ -10,6 +10,7 @@
 #import "UIRoundImageView.h"
 #import "UIImage+Filters.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "UIButton+Style.h"
 
 @implementation HairdresserReusableView
 {
@@ -20,9 +21,9 @@
 
 -(void)setupView
 {
-    [self setupHeaderPictures];
     [self setupData];
-    
+    [self setupHeaderPictures];
+ 
     if (!isSetup) {
         
         UIView *bottomBorder =  [[UIView alloc] init];
@@ -30,8 +31,12 @@
         bottomBorder.tag = 1;
         bottomBorder.backgroundColor = [UIColor salonDetailTab];
         [self.detailsBttn addSubview:bottomBorder];
-        [self.detailsBttn setBackgroundColor:[UIColor lightGreyHairfie]];
+       // [self.detailsBttn setBackgroundColor:[UIColor lightGreyHairfie]];
         isSetup = YES;
+        
+        self.nameLabel.text = [self.hairdresser displayFullName];
+      
+
         
     }
 }
@@ -53,25 +58,25 @@
          }
      }];
     
-    hairdresserPicture = [[UIRoundImageView alloc] initWithFrame:CGRectMake(118, 48, 84, 84)];
+    hairdresserPicture = [[UIRoundImageView alloc] initWithFrame:CGRectMake(118, 68, 84, 84)];
     hairdresserPicture.clipsToBounds = YES;
     hairdresserPicture.contentMode = UIViewContentModeScaleAspectFit;
     
     [hairdresserPicture sd_setImageWithURL:[self.business.owner pictureUrlwithWidth:@200 andHeight:@200]
                           placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
     
-    UIView *profileBorder =[[UIView alloc] initWithFrame:CGRectMake(113, 43, 94, 94)];
+    UIView *profileBorder =[[UIView alloc] initWithFrame:CGRectMake(113, 63, 94, 94)];
     profileBorder.layer.cornerRadius = profileBorder.frame.size.height / 2;
     profileBorder.clipsToBounds = YES;
-    profileBorder.backgroundColor = [UIColor colorWithWhite:1 alpha:0.1];
+    profileBorder.backgroundColor = [UIColor colorWithWhite:1 alpha:0.3];
     
-    UILabel *proLbl = [[UILabel alloc] initWithFrame:CGRectMake(82, 70, 42, 30)];
+    UILabel *proLbl = [[UILabel alloc] initWithFrame:CGRectMake(80, 95, 42, 30)];
     proLbl.text = @"PRO";
     proLbl.textColor = [UIColor whiteColor];
     proLbl.font = [UIFont fontWithName:@"SourceSansPro-Light" size:17];
     proLbl.textAlignment = NSTextAlignmentCenter;
     proLbl.backgroundColor = [UIColor salonDetailTab];
-    proLbl.layer.cornerRadius = 5;
+    proLbl.layer.cornerRadius = 2.5;
     proLbl.layer.masksToBounds = YES;
     
     [self addSubview:profileBorder];
@@ -81,7 +86,9 @@
 
 -(void)setupData
 {
-    self.nameLabel.text = [self.hairdresser displayFullName];
+    [self.hairfieBttn profileTabStyle];
+    [self.detailsBttn setTitle:@"Info" forState:UIControlStateNormal];
+    [self.hairfieBttn setTitle:[NSString stringWithFormat:@"%zd", self.hairfiesCount] forState:UIControlStateNormal];
 }
 
 -(IBAction)changeTab:(id)sender
@@ -95,18 +102,18 @@
     
     if (aButton == self.detailsBttn) {
         
-        [aButton setBackgroundColor:[UIColor lightGreyHairfie]];
+      //  [aButton setBackgroundColor:[UIColor lightGreyHairfie]];
         [bottomBorder setFrame:CGRectMake(0, aButton.frame.size.height, aButton.frame.size.width, 4)];
-        [self.detailsBttn setBackgroundColor:[UIColor clearColor]];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"hairfiesTab" object:self];
+        [self.hairfieBttn setBackgroundColor:[UIColor clearColor]];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"detailsTab" object:self];
         
     }
     if (aButton == self.hairfieBttn)
     {
-        [aButton setBackgroundColor:[UIColor lightGreyHairfie]];
-        [self.hairfieBttn setBackgroundColor:[UIColor clearColor]];
-        [bottomBorder setFrame:CGRectMake(1, aButton.frame.size.height, aButton.frame.size.width, 4)];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"reviewsTab" object:self];
+        //[aButton setBackgroundColor:[UIColor lightGreyHairfie]];
+        [self.detailsBttn setBackgroundColor:[UIColor clearColor]];
+        [bottomBorder setFrame:CGRectMake(0, aButton.frame.size.height, aButton.frame.size.width, 4)];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"hairfiesTab" object:self];
         
     }
     

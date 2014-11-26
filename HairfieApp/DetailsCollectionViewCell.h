@@ -14,6 +14,7 @@
 @property (nonatomic) IBOutlet UILabel *businessName;
 @property (nonatomic) IBOutlet UILabel *businessAddress;
 @property (nonatomic) IBOutlet UIImageView *businessPicture;
+@property (nonatomic) IBOutlet UILabel *workPlaceLbl;
 
 -(void)setupCell:(Business*)business;
 

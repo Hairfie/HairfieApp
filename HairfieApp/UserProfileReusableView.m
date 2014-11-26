@@ -50,7 +50,7 @@
 -(void)setupData
 {
    
-    [self.nameLabel profileUserNameStyle];
+    //[self.nameLabel profileUserNameStyle];
     
     self.nameLabel.text = self.user.name;
     [self.hairfieBttn profileTabStyle];
@@ -82,14 +82,14 @@
          }
      }];
     
-    userProfilePicture = [[UIRoundImageView alloc] initWithFrame:CGRectMake(118, 48, 84, 84)];
+    userProfilePicture = [[UIRoundImageView alloc] initWithFrame:CGRectMake(118, 68, 84, 84)];
     userProfilePicture.clipsToBounds = YES;
     userProfilePicture.contentMode = UIViewContentModeScaleAspectFit;
     
     [userProfilePicture sd_setImageWithURL:[self.user pictureUrlwithWidth:@200 andHeight:@200]
                           placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
     
-    UIView *profileBorder =[[UIView alloc] initWithFrame:CGRectMake(113, 43, 94, 94)];
+    UIView *profileBorder =[[UIView alloc] initWithFrame:CGRectMake(113, 63, 94, 94)];
     profileBorder.layer.cornerRadius = profileBorder.frame.size.height / 2;
     profileBorder.clipsToBounds = YES;
     profileBorder.backgroundColor = [UIColor colorWithWhite:1 alpha:0.1];

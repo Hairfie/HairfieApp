@@ -172,9 +172,9 @@
             <string>SourceSansPro-Regular</string>
             <string>SourceSansPro-Regular</string>
             <string>SourceSansPro-Regular</string>
+            <string>SourceSansPro-Regular</string>
         </mutableArray>
         <mutableArray key="SourceSansPro-Semibold.ttf">
-            <string>SourceSansPro-Semibold</string>
             <string>SourceSansPro-Semibold</string>
             <string>SourceSansPro-Semibold</string>
             <string>SourceSansPro-Semibold</string>
@@ -219,7 +219,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="5Vp-ri-CXc">
                                     <size key="itemSize" width="143" height="192"/>
-                                    <size key="headerReferenceSize" width="50" height="274"/>
+                                    <size key="headerReferenceSize" width="50" height="324"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
@@ -242,13 +242,13 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="274"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZWZ-6Q-4g3">
-                                            <rect key="frame" x="77" y="163" width="167" height="21"/>
+                                            <rect key="frame" x="77" y="172" width="167" height="21"/>
                                             <fontDescription key="fontDescription" name="SourceSansPro-Semibold" family="Source Sans Pro" pointSize="18"/>
-                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="textColor" red="0.87301450280000004" green="0.87301450280000004" blue="0.87301450280000004" alpha="0.79000000000000004" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mw2-bg-V34" userLabel="Tab Bar View">
-                                            <rect key="frame" x="0.0" y="222" width="320" height="568"/>
+                                            <rect key="frame" x="0.0" y="272" width="320" height="52"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Y5N-bv-EQZ" userLabel="Background Blue View">
                                                     <rect key="frame" x="0.0" y="48" width="320" height="4"/>
@@ -3180,15 +3180,6 @@
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wk5-N2-iL6" userLabel="Top Bar View">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jP3-Hk-o13" userLabel="Go Back">
-                                        <rect key="frame" x="8" y="30" width="20" height="20"/>
-                                        <state key="normal" image="arrow-nav.png">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="goBack:" destination="kE9-13-80o" eventType="touchUpInside" id="VQO-ek-jOo"/>
-                                        </connections>
-                                    </button>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Reviews" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AXt-rm-MQ8">
                                         <rect key="frame" x="92" y="28" width="136" height="23"/>
                                         <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="18"/>
@@ -3204,6 +3195,16 @@
                                         </state>
                                         <connections>
                                             <action selector="addReview:" destination="kE9-13-80o" eventType="touchUpInside" id="4K4-It-Ud9"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4py-8X-dgd" userLabel="Go Back">
+                                        <rect key="frame" x="8" y="20" width="40" height="40"/>
+                                        <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                        <state key="normal" image="arrow-nav.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="goBack:" destination="kE9-13-80o" eventType="touchUpInside" id="Vjk-Zo-voC"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -3286,7 +3287,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="mEQ-U5-Okh">
                                     <size key="itemSize" width="123" height="201"/>
-                                    <size key="headerReferenceSize" width="50" height="275"/>
+                                    <size key="headerReferenceSize" width="50" height="324"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
@@ -3303,20 +3304,20 @@
                                     </collectionViewCell>
                                 </cells>
                                 <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="hairdresserReusableView" id="Xwi-t2-q8v" customClass="HairdresserReusableView">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="275"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pp9-Eq-iVN">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="274"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2yk-P0-WaK">
-                                            <rect key="frame" x="77" y="163" width="167" height="21"/>
+                                            <rect key="frame" x="77" y="172" width="167" height="21"/>
                                             <fontDescription key="fontDescription" name="SourceSansPro-Semibold" family="Source Sans Pro" pointSize="18"/>
-                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="textColor" red="0.87301450280000004" green="0.87301450280000004" blue="0.87301450280000004" alpha="0.79000000000000004" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4IG-ee-BeX" userLabel="Tab Bar View">
-                                            <rect key="frame" x="0.0" y="222" width="320" height="52"/>
+                                            <rect key="frame" x="0.0" y="272" width="320" height="52"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4TS-Mv-ExY" userLabel="Background Blue View">
                                                     <rect key="frame" x="0.0" y="48" width="320" height="4"/>
@@ -3330,9 +3331,9 @@
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4is-wV-9vT" userLabel="Details BTTN">
                                                     <rect key="frame" x="0.0" y="0.0" width="160" height="48"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                    <fontDescription key="fontDescription" name="SourceSansPro-Semibold" family="Source Sans Pro" pointSize="18"/>
+                                                    <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="18"/>
                                                     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="20" maxY="14"/>
+                                                    <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
                                                     <connections>
                                                         <action selector="changeTab:" destination="Xwi-t2-q8v" eventType="touchUpInside" id="sAt-D9-0Qv"/>
                                                     </connections>
@@ -3347,11 +3348,12 @@
                                                         <action selector="changeTab:" destination="Xwi-t2-q8v" eventType="touchUpInside" id="sBC-Tq-jFM"/>
                                                     </connections>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xGx-oh-R9Y" userLabel="Details LBL">
+                                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Infos" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xGx-oh-R9Y" userLabel="Details LBL">
                                                     <rect key="frame" x="0.0" y="26" width="160" height="21"/>
                                                     <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="14"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
+                                                    <size key="shadowOffset" width="0.0" height="0.0"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Hairfies" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="elU-S7-77I" userLabel="Hairfies LBL">
                                                     <rect key="frame" x="160" y="26" width="160" height="21"/>
@@ -3360,7 +3362,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" red="0.42745098040000001" green="0.46274509800000002" blue="0.51372549020000002" alpha="0.10000000000000001" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" red="0.74117647058823533" green="0.71372549019607845" blue="0.66666666666666663" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
                                         </view>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -3407,6 +3409,7 @@
                     <navigationItem key="navigationItem" id="53H-kY-eAz"/>
                     <connections>
                         <outlet property="collectionView" destination="sfO-bt-d8t" id="cfI-Me-8bE"/>
+                        <segue destination="wuV-Ro-JC1" kind="push" identifier="showHairfieDetail" id="ZYG-tz-TFe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tpd-Rb-H90" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -5836,14 +5839,14 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="ike-pA-JY1"/>
-        <segue reference="BMp-kN-6Xv"/>
-        <segue reference="N5w-ND-ZjU"/>
-        <segue reference="uEN-by-6gW"/>
-        <segue reference="18q-AN-mc0"/>
-        <segue reference="ssq-cN-qLV"/>
         <segue reference="ryT-yY-w9K"/>
+        <segue reference="ZYG-tz-TFe"/>
+        <segue reference="YaZ-tZ-kVO"/>
         <segue reference="vAT-vQ-WuX"/>
         <segue reference="VGS-VM-Pwy"/>
+        <segue reference="BMp-kN-6Xv"/>
+        <segue reference="ike-pA-JY1"/>
+        <segue reference="N5w-ND-ZjU"/>
+        <segue reference="uEN-by-6gW"/>
     </inferredMetricsTieBreakers>
 </document>
