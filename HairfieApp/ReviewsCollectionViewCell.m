@@ -37,7 +37,10 @@
     //   _statusLabel.text = [NSString stringWithFormat:@"%.f", rating];
 }
 
-//-(IBAction)<#selector#>:(id)sender
+-(IBAction)showBusinessDetail:(id)sender
+{
+     [[NSNotificationCenter defaultCenter] postNotificationName:@"showBusinessDetail" object:self];
+}
 
 -(void)setReview:(BusinessReview*)review
 {
