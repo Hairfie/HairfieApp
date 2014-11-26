@@ -74,7 +74,11 @@
         @{
             @"label": NSLocalizedStringFromTable(@"Pin on Pinterest", @"Hairfie_Detail", nil),
             @"share": @"pinterest"
-        }/*,
+        },
+        @{
+            @"label": NSLocalizedStringFromTable(@"Copy Hairfie", @"Hairfie_Detail", nil),
+            @"share": @"saveHairfie"
+            }/*,
         @{
             @"label": NSLocalizedStringFromTable(@"Report content", @"Hairfie_Detail",nil),
             @"segue": @"reportContent"
@@ -137,6 +141,9 @@
         [self shareOnFacebook];
     } else if ([shareName isEqualToString:@"pinterest"]) {
         [self shareOnPinterest];
+    } else if ([shareName isEqualToString:@"saveHairfie"]) {
+        UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+        pasteboard.string = self.hairfie.landingPageUrl.absoluteString;
     }
 }
 
