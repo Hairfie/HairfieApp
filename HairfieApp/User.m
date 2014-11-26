@@ -122,6 +122,75 @@
                   }];
 }
 
+
++(void)addHairdresserToFavorite:(NSString *)hairdresserId
+            asUser:(NSString *)userId
+           success:(void (^)())aSuccessHandler
+           failure:(void (^)(NSError *))aFailureHandler
+{
+    [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/users/:userId/favorite-hairdressers/:hairdresserId"
+                                                                                 verb:@"PUT"]
+                                        forMethod:@"users.favoriteHairdresser"];
+    
+    [[User repository] invokeStaticMethod:@"favoriteHairdresser"
+                               parameters:@{@"userId": userId, @"hairdresserId": hairdresserId}
+                                  success:^(id value) {
+                                      aSuccessHandler();
+                                  }
+                                  failure:aFailureHandler];
+}
+
++(void)removeHairdresserFromFavorite:(NSString *)hairdresserId
+              asUser:(NSString *)userId
+             success:(void (^)())aSuccessHandler
+             failure:(void (^)(NSError *))aFailureHandler
+{
+    [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/users/:userId/favorite-hairdressers/:hairdresserId"
+                                                                                 verb:@"DELETE"]
+                                        forMethod:@"users.unfavoriteHairdresser"];
+    
+    [[User repository] invokeStaticMethod:@"unfavoriteHairdresser"
+                               parameters:@{@"userId": userId, @"hairdresserId": hairdresserId}
+                                  success:^(id value) {
+                                      aSuccessHandler();
+                                  }
+                                  failure:aFailureHandler];
+}
+
+
++(void)isHairdresser:(NSString *)hairdresserId
+     favoritedByUser:(NSString *)userId
+         success:(void(^)(BOOL isLiked))aSuccessHandler
+         failure:(void(^)(NSError *))aFailureHandler
+{
+    [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/users/:userId/favorite-hairdressers/:hairdresserId"
+                                                                                 verb:@"HEAD"]
+                                        forMethod:@"users.isFavoritedHairdresser"];
+    
+    [[User repository] invokeStaticMethod:@"isFavoritedHairdresser"
+                               parameters:@{@"userId": userId, @"hairdresserId": hairdresserId}
+                                  success:^(id value) {
+                                      aSuccessHandler(YES);
+                                  }
+                                  failure:^(NSError *error) {
+                                      NSString *httpString = [[error userInfo] objectForKey:@"NSLocalizedRecoverySuggestion"];
+                                      NSDictionary *httpDic = [NSJSONSerialization
+                                                               JSONObjectWithData: [httpString dataUsingEncoding:NSUTF8StringEncoding]
+                                                               options: NSJSONReadingMutableContainers
+                                                               error: &error];
+                                      int statusCode = (int)[[[httpDic objectForKey:@"error"] objectForKey:@"statusCode"] integerValue];
+                                      
+                                      if (statusCode == 404) {
+                                          // 404 means the like doesn't exist
+                                          return aSuccessHandler(NO);
+                                      }
+                                      
+                                      aFailureHandler(error);
+                                  }];
+}
+
+
+
 -(void)saveWithSuccess:(void(^)())aSuccessHandler
                failure:(void(^)(NSError *error))aFailureHandler
 {

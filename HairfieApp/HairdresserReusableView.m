@@ -7,6 +7,7 @@
 //
 
 #import "HairdresserReusableView.h"
+#import "AppDelegate.h"
 #import "UIRoundImageView.h"
 #import "UIImage+Filters.h"
 #import <SDWebImage/UIImageView+WebCache.h>
@@ -16,6 +17,8 @@
 {
     UIImageView *hairdresserPicture;
     BOOL isSetup;
+    BOOL isFavorited;
+    AppDelegate *appDelegate;
 }
 
 
@@ -23,8 +26,10 @@
 {
     [self setupData];
     [self setupHeaderPictures];
- 
+    
     if (!isSetup) {
+        appDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
+        [self getHairdresserFavoriteStatus];
         
         UIView *bottomBorder =  [[UIView alloc] init];
         [bottomBorder setFrame:CGRectMake(0, self.detailsBttn.frame.size.height, self.detailsBttn.frame.size.width, 4)];
@@ -34,11 +39,21 @@
        // [self.detailsBttn setBackgroundColor:[UIColor lightGreyHairfie]];
         isSetup = YES;
         
+        [self.favoriteBttn setImage:[UIImage imageNamed:@"picto-fav-hairdresser-selected.png"] forState:UIControlStateSelected];
+        [self.favoriteBttn setImage:[UIImage imageNamed:@"picto-fav-hairdresser.png"] forState:UIControlStateNormal];
         self.nameLabel.text = [self.hairdresser displayFullName];
-      
-
-        
     }
+}
+
+-(void)getHairdresserFavoriteStatus
+{
+    [User isHairdresser:self.hairdresser.id favoritedByUser:appDelegate.currentUser.id success:^(BOOL liked) {
+        [self.favoriteBttn setSelected:liked];
+        isFavorited = liked;
+    }
+                failure:^(NSError *error) {
+                    NSLog(@"Failed to get favorite status: %@", error.localizedDescription);
+                }];
 }
 -(void)setupHeaderPictures
 {
@@ -134,6 +149,24 @@
     
 }
 
-
+-(IBAction)addToFavorite:(id)sender
+{
+   
+    if (isFavorited == NO)
+    {
+        [self.favoriteBttn setSelected:YES];
+        
+       // [self.favoriteBttn setImage:[UIImage imageNamed:@"picto-fav-hairdresser-selected.png"] forState:UIControlStateNormal];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"addFavorite" object:self];
+        isFavorited = YES;
+    }
+    else
+    {
+        [self.favoriteBttn setSelected:NO];
+     //   [self.favoriteBttn setImage:[UIImage imageNamed:@"picto-fav-hairdresser.png"] forState:UIControlStateNormal];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"removeFavorite" object:self];
+        isFavorited = NO;
+    }
+}
 
 @end

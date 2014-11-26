@@ -17,6 +17,7 @@
 @property (nonatomic, strong) IBOutlet UIButton *detailsBttn;
 @property (nonatomic) IBOutlet UIImageView *backgroundProfilePicture;
 @property (nonatomic) IBOutlet UILabel *detailsLbl;
+@property (nonatomic) IBOutlet UIButton *favoriteBttn;
 @property (nonatomic) Hairdresser *hairdresser;
 @property (nonatomic) Business *business;
 @property (nonatomic) NSInteger hairfiesCount;

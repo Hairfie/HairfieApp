@@ -13,8 +13,9 @@
 #import "CustomCollectionViewCell.h"
 #import "DetailsCollectionViewCell.h"
 #import "HairfieDetailViewController.h"
-
+#import "AppDelegate.h"
 #import "Hairfie.h"
+#import "NotLoggedAlert.h"
 
 @interface HairdresserDetailViewController ()
 
@@ -37,6 +38,8 @@
     [super viewDidLoad];
     
     
+    
+    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(showDetails:)
                                                  name:@"detailsTab"
@@ -47,6 +50,14 @@
                                                  name:@"hairfiesTab"
                                                object:nil];
 
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(addToFavorite:)
+                                                 name:@"addFavorite"
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(removeFromFavorite:)
+                                                 name:@"removeFavorite"
+                                               object:nil];
     
     [self.collectionView registerNib:[UINib nibWithNibName:@"CustomCollectionViewCell" bundle:nil]forCellWithReuseIdentifier:HAIRFIE_CELL];
     [self.collectionView registerNib:[UINib nibWithNibName:@"LoadingCollectionViewCell" bundle:nil]
@@ -57,6 +68,60 @@
     
     [self getHairdresserHairfies];
     // Do any additional setup after loading the view.
+}
+
+
+
+-(void)addToFavorite:(NSNotification*)notification
+{
+  
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    User *currentUser = delegate.currentUser;
+    
+    if([delegate.credentialStore isLoggedIn]) {
+        
+        [User addHairdresserToFavorite:self.hairdresser.id
+                                asUser:currentUser.id
+                               success:^(){
+                               
+                               
+                               }
+                               failure: ^(NSError *error) {
+                                   
+                                   NSLog(@"Failed to add to favorites: %@", error.localizedDescription);
+
+                               }];
+        
+         
+    } else {
+        [self showNotLoggedAlertWithDelegate:nil andTitle:nil andMessage:nil];
+    }
+}
+
+-(void)removeFromFavorite:(NSNotification*)notification
+{
+    
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    User *currentUser = delegate.currentUser;
+    
+    NSLog(@"USER ID %@, HAIRDRESSER ID %@", currentUser.id, self.hairdresser.id);
+   if([delegate.credentialStore isLoggedIn]) {
+       
+       [User removeHairdresserFromFavorite:self.hairdresser.id
+                               asUser:currentUser.id
+                              success:^(){
+                                  
+                                  
+                              }
+                              failure: ^(NSError *error) {
+                                   NSLog(@"Failed to remove from favorites: %@", error.localizedDescription);
+                                  
+                              }];
+
+   } else {
+       [self showNotLoggedAlertWithDelegate:nil andTitle:nil andMessage:nil];
+   }
+
 }
 
 -(void)showDetails:(NSNotification*)notification

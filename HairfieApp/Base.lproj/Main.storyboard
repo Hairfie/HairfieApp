@@ -2586,7 +2586,7 @@
                                             <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5ZR-VD-wlu" userLabel="HAIRDRESSER VIEW">
                                                 <rect key="frame" x="0.0" y="278" width="320" height="615"/>
                                                 <subviews>
-                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="FpJ-1K-79p">
+                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="FpJ-1K-79p">
                                                         <rect key="frame" x="0.0" y="0.0" width="320" height="615"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
@@ -3364,12 +3364,23 @@
                                             </subviews>
                                             <color key="backgroundColor" red="0.74117647058823533" green="0.71372549019607845" blue="0.66666666666666663" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
                                         </view>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0yi-tp-qf4">
+                                            <rect key="frame" x="137" y="206" width="46" height="46"/>
+                                            <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                            <state key="normal" image="picto-fav-hairdresser.png">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="addToFavorite:" destination="Xwi-t2-q8v" eventType="touchUpInside" id="dZD-Xh-lkv"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <connections>
                                         <outlet property="backgroundProfilePicture" destination="Pp9-Eq-iVN" id="aIF-IF-Jxc"/>
                                         <outlet property="detailsBttn" destination="4is-wV-9vT" id="0BB-mX-F9c"/>
                                         <outlet property="detailsLbl" destination="xGx-oh-R9Y" id="jwy-N6-VuW"/>
+                                        <outlet property="favoriteBttn" destination="0yi-tp-qf4" id="wSP-e2-GWq"/>
                                         <outlet property="hairfieBttn" destination="881-vr-DAa" id="y39-7u-WEm"/>
                                         <outlet property="nameLabel" destination="2yk-P0-WaK" id="8IN-NW-TWb"/>
                                     </connections>
@@ -3392,7 +3403,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yOv-hX-iV3" userLabel="Go Back">
                                         <rect key="frame" x="8" y="20" width="40" height="40"/>
                                         <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
-                                        <state key="normal" image="arrow-nav-white.png">
+                                        <state key="normal" image="arrow-nav.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -5810,6 +5821,7 @@
         <image name="next-white.png" width="92" height="93"/>
         <image name="original.jpeg" width="640" height="640"/>
         <image name="picto-clock-black.png" width="32" height="32"/>
+        <image name="picto-fav-hairdresser.png" width="52" height="52"/>
         <image name="picto-hairfie-comment.png" width="52" height="40"/>
         <image name="picto-hairfie-detail-like.png" width="50" height="40"/>
         <image name="picto-hairfie-detail-liked.png" width="50" height="40"/>
