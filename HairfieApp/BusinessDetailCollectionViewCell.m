@@ -116,6 +116,7 @@
 
 -(void)setupRecentReviews
 {
+    NSLog(@"test");
     if ([business.numReviews isEqualToNumber:@0]) {
         loadingLastestReviews = NO;
         return;
@@ -167,8 +168,9 @@
         
     } else {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"NoUserConnected" object:self];
-     self.addRatingView.rating = 0;
+    
     }
+     self.addRatingView.rating = 0;
     
 }
 

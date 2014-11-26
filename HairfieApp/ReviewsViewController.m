@@ -41,9 +41,12 @@
     self.containerReview.layer.masksToBounds = YES;
     
     if(_ratingValue > 0) {
+        NSLog(@"RATIN > 0");
+        self.isReviewing = YES;
         self.addReviewButton.hidden = NO;
-        [self.reviewTextView becomeFirstResponder];
         [self.reviewTableView reloadData];
+        [self.reviewTextView becomeFirstResponder];
+       
         
     } else {
         self.addReviewButton.hidden = YES;
@@ -82,8 +85,6 @@
 
 - (void)rateView:(RatingView *)rateView ratingDidChange:(float)rating
 {
-//    if ([_reviewTextView.text isEqualToString:NSLocalizedStringFromTable(@"Ajoutez votre review...", @"Salon_Detail", nil)])
-//        _reviewTextView.text = @"";
     if (![_reviewTextView isFirstResponder]) {
         NSLog(@"test");
         [_reviewTextView becomeFirstResponder];

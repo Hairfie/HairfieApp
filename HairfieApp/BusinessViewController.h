@@ -17,6 +17,7 @@
 @property (nonatomic) IBOutlet UIButton *leftMenuBttn;
 @property (nonatomic) IBOutlet UIButton *navBttn;
 @property (nonatomic) IBOutlet UIButton *bottomMenuBttn;
+@property (nonatomic) IBOutlet UIButton *callBttn;
 
 
 

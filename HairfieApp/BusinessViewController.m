@@ -61,6 +61,7 @@
     [super viewDidLoad];
     
     isDetailsTab = YES;
+    [self.callBttn setTitle:NSLocalizedStringFromTable(@"book", @"Salon_Detail", nil) forState:UIControlStateNormal];
     self.leftMenuBttn.hidden = YES;
     self.collectionView.allowsMultipleSelection = NO;
     menuActions = @[
@@ -130,10 +131,19 @@
     // Do any additional setup after loading the view.
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self.collectionView reloadData];
+}
+
 -(void)initData
 {
     [UIView setAnimationsEnabled:YES];
     [self setupHairfies];
+}
+
+-(IBAction)callBusiness:(id)sender {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"telprompt://%@", self.business.phoneNumber]]];
 }
 
 -(IBAction)showMenuActionSheet:(id)sender
@@ -150,6 +160,8 @@
     
     [actionSheet showInView:self.view];
 }
+
+
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
