@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14B23" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <customFonts key="customFonts">
+        <mutableArray key="SourceSansPro-Light.ttf">
+            <string>SourceSansPro-Light</string>
+        </mutableArray>
         <mutableArray key="SourceSansPro-Regular.ttf">
             <string>SourceSansPro-Regular</string>
             <string>SourceSansPro-Regular</string>
@@ -65,6 +68,19 @@
                         <color key="textColor" red="0.93725490196078431" green="0.94117647058823528" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="X2x-Pg-Tg6" customClass="UIRoundImageView">
+                        <rect key="frame" x="10" y="170" width="30" height="30"/>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="P1H-Sm-YKH" customClass="UIRoundImageView">
+                        <rect key="frame" x="5" y="5" width="30" height="30"/>
+                        <color key="backgroundColor" red="0.98039215690000003" green="0.25882352939999997" blue="0.26274509800000001" alpha="1" colorSpace="calibratedRGB"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="25 e" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.60000000000000009" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zdf-2L-aV1">
+                        <rect key="frame" x="9" y="7" width="23" height="25"/>
+                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="13"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
@@ -87,6 +103,9 @@
                 <outlet property="likes" destination="hPb-2R-DdA" id="JDy-uQ-k9y"/>
                 <outlet property="name" destination="bBf-sf-nz4" id="jRx-Uz-qfP"/>
                 <outlet property="nbLikes" destination="6CO-0M-BpI" id="GSU-9J-bnB"/>
+                <outlet property="priceLabel" destination="zdf-2L-aV1" id="4de-EA-6Cn"/>
+                <outlet property="priceView" destination="P1H-Sm-YKH" id="7y5-mz-V6F"/>
+                <outlet property="profilePicture" destination="X2x-Pg-Tg6" id="M1e-RQ-Ysp"/>
             </connections>
             <point key="canvasLocation" x="305" y="188"/>
         </collectionViewCell>

@@ -24,25 +24,37 @@
 
 -(void)setHairfie:(Hairfie *)hairfie
 {
+    
     self.name.text = hairfie.author.displayName;
 
     self.nbLikes.text = hairfie.displayNumLikes;
+    
+    
+    
 
-    self.profilePicture = [[UIRoundImageView alloc] initWithFrame:CGRectMake(10, 170, 30, 30)];
+    self.priceLabel.text = [hairfie displayPrice];
+
+
     self.profilePicture.layer.borderWidth = 1.0f;
     self.profilePicture.layer.borderColor = [UIColor whiteColor].CGColor;
-    [self.profilePicture setBackgroundColor:[UIColor lightGreyHairfie]];
+    [self.profilePicture setBackgroundColor:[UIColor salonDetailTab]];
     [self.profilePicture sd_setImageWithURL:[hairfie.author pictureUrlwithWidth:
                                              @100 andHeight:@100]
                            placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
 
     [self.hairfieView sd_setImageWithURL:[hairfie.picture urlWithWidth:@300 height:@420]
-                        placeholderImage:[UIColor imageWithColor:[UIColor colorWithRed:234/255.0f
-                                                                                 green:236/255.0f
-                                                                                  blue:238/255.0f
-                                                                                 alpha:1]]];
-
-    [self addSubview:self.profilePicture];
+                        placeholderImage:[UIColor imageWithColor:[UIColor colorWithRed:234/255.0f green:236/255.0f blue:238/255.0f alpha:1]]];
+   
+    
+    if (hairfie.price.amount == nil) {
+    
+        self.priceView.hidden = YES;
+        self.priceLabel.hidden = YES;
+    }
+    else {
+        self.priceView.hidden = NO;
+        self.priceLabel.hidden = NO;
+    }
 }
 
 -(void)setAsNewHairfieButton {

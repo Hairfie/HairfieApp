@@ -19,7 +19,10 @@
 @property (nonatomic, strong) IBOutlet UIImageView *likes;
 
 
-@property (nonatomic) UIImageView *profilePicture;
+@property (nonatomic) IBOutlet UIImageView *profilePicture;
+@property (nonatomic) IBOutlet UIImageView *priceView;
+@property (nonatomic) IBOutlet UILabel *priceLabel;
+
 
 -(void)setHairfie:(Hairfie *)hairfie;
 -(void)setAsNewHairfieButton;
