@@ -18,6 +18,8 @@
 @property (nonatomic) IBOutlet UILabel *reviewLbl;
 @property (nonatomic) User * user;
 
+@property (nonatomic) IBOutlet UIButton *editPictureBttn;
+
 -(void)setButtonSelected:(UIButton*)aButton;
 -(void)setupView;
 -(void)setupHeaderPictures;

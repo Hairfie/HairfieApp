@@ -44,6 +44,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(showReviews:)
                                                  name:@"reviewsTab"
@@ -79,7 +80,8 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated {
-    if (self.imageFromSegue != nil)
+    
+if (self.imageFromSegue != nil)
         [self uploadProfileImage:self.imageFromSegue];
 }
 
@@ -111,7 +113,8 @@
 
 -(void)addPicture:(UIGestureRecognizer*)gesture
 {
-    [self performSegueWithIdentifier:@"changeUse rPicture" sender:self];
+    if ([self.user.id isEqualToString:appDelegate.currentUser.id])
+        [self performSegueWithIdentifier:@"changeUserPicture" sender:self];
 }
 
 -(void) uploadProfileImage:(UIImage *)image
@@ -218,11 +221,11 @@
     
     [userHeader setupView];
 
-    headerView = userHeader;
+    
     UITapGestureRecognizer *singleTap =  [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addPicture:)];
     [singleTap setNumberOfTapsRequired:1];
-    [headerView addGestureRecognizer:singleTap];
-    
+    [userHeader.editPictureBttn addGestureRecognizer:singleTap];
+    headerView = userHeader;
     return headerView;
     
 }
@@ -314,13 +317,10 @@
                   }];
     }
     [self.collectionView deselectItemAtIndexPath:indexPath animated:YES];
-    
 }
-
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
 {
-   
     return CGSizeMake(320, 324);
 }
 

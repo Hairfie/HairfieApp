@@ -215,7 +215,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="lcm-ff-b5p">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="-20" width="320" height="588"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="5Vp-ri-CXc">
                                     <size key="itemSize" width="143" height="192"/>
@@ -294,10 +294,18 @@
                                             </subviews>
                                             <color key="backgroundColor" red="0.42745098040000001" green="0.46274509800000002" blue="0.51372549020000002" alpha="0.10000000000000001" colorSpace="calibratedRGB"/>
                                         </view>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ak6-V2-MX1">
+                                            <rect key="frame" x="269" y="51" width="40" height="40"/>
+                                            <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="20"/>
+                                            <state key="normal" title="Button" image="edit-button.png">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <connections>
                                         <outlet property="backgroundProfilePicture" destination="dsm-Dk-RAL" id="u85-TQ-uPx"/>
+                                        <outlet property="editPictureBttn" destination="Ak6-V2-MX1" id="oDT-9S-LwL"/>
                                         <outlet property="hairfieBttn" destination="taL-sH-3Th" id="5P1-UG-RWs"/>
                                         <outlet property="nameLabel" destination="ZWZ-6Q-4g3" id="J2a-wl-C6a"/>
                                         <outlet property="reviewBttn" destination="BoH-3t-EY8" id="IXH-3n-Nrc"/>
@@ -5838,6 +5846,7 @@
         <image name="cancel.png" width="32" height="32"/>
         <image name="checkbox-true.png" width="46" height="46"/>
         <image name="curve.jpeg" width="640" height="640"/>
+        <image name="edit-button.png" width="792" height="792"/>
         <image name="fb-share-off.png" width="61" height="60"/>
         <image name="field-icon-magnifier.png" width="32" height="32"/>
         <image name="hairdresser-price-hairfie-post.png" width="599" height="79"/>
@@ -5885,13 +5894,13 @@
     <inferredMetricsTieBreakers>
         <segue reference="vAT-vQ-WuX"/>
         <segue reference="VGS-VM-Pwy"/>
-        <segue reference="BMp-kN-6Xv"/>
-        <segue reference="ike-pA-JY1"/>
-        <segue reference="csi-dT-fBw"/>
-        <segue reference="18q-AN-mc0"/>
-        <segue reference="9F8-Wo-5DF"/>
-        <segue reference="YaZ-tZ-kVO"/>
         <segue reference="N5w-ND-ZjU"/>
+        <segue reference="BMp-kN-6Xv"/>
+        <segue reference="XyP-UR-YzB"/>
+        <segue reference="18q-AN-mc0"/>
+        <segue reference="YaZ-tZ-kVO"/>
+        <segue reference="csi-dT-fBw"/>
+        <segue reference="9F8-Wo-5DF"/>
         <segue reference="uEN-by-6gW"/>
     </inferredMetricsTieBreakers>
 </document>

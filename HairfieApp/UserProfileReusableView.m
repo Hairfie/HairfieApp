@@ -8,6 +8,7 @@
 
 #import "UserProfileReusableView.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "AppDelegate.h"
 #import "UIRoundImageView.h"
 #import "UIImage+Filters.h"
 #import "UIButton+Style.h"
@@ -32,7 +33,13 @@
     
     [self setupData];
     [self setupHeaderPictures];
+   
+
     if (!isSetup) {
+        AppDelegate* appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+        
+        if (![self.user.id isEqualToString:appDelegate.currentUser.id])
+            self.editPictureBttn.hidden = YES;
         
         UIView *bottomBorder =  [[UIView alloc] init];
         [bottomBorder setFrame:CGRectMake(0, self.hairfieBttn.frame.size.height, self.hairfieBttn.frame.size.width - 1, 3)];
