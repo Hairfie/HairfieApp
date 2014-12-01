@@ -107,6 +107,7 @@
                     failure:(void(^)(NSError *error))aFailureHandler {
     if (!error && state == FBSessionStateOpen){
         NSLog(@"Session opened");
+        
         FBAccessTokenData *accessTokenData = [session accessTokenData];
         NSString *fbAuthToken = [accessTokenData accessToken];
         delegate.fbSession = session;

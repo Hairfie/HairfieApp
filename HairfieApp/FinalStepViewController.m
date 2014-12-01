@@ -19,7 +19,7 @@
 #import "ClaimAddHairdresserViewController.h"
 #import "ClaimAddPricesSalesViewController.h"
 #import "HomeViewController.h"
-#import "SalonDetailViewController.h"
+#import "BusinessViewController.h"
 #import "AppDelegate.h"
 
 
@@ -359,13 +359,12 @@
 -(void)chooseCameraType
 {
     
-    UIAlertView *chooseCameraType = [[UIAlertView alloc] initWithTitle:NSLocalizedStringFromTable(@"Choose camera type", @"Login_Sign_Up", nil) message:NSLocalizedStringFromTable(@"Take picture or pick one from the saved photos", @"Login_Sign_Up", nil) delegate:self cancelButtonTitle:@"CancOl" otherButtonTitles:NSLocalizedStringFromTable(@"Camera", @"Login_Sign_Up", nil), NSLocalizedStringFromTable(@"Library", @"Login_Sign_Up", nil),nil];
-   // chooseCameraType.delegate = self;
+    UIAlertView *chooseCameraType = [[UIAlertView alloc] initWithTitle:NSLocalizedStringFromTable(@"Choose camera type", @"Login_Sign_Up", nil) message:NSLocalizedStringFromTable(@"Take picture or pick one from the saved photos", @"Login_Sign_Up", nil) delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:NSLocalizedStringFromTable(@"Camera", @"Login_Sign_Up", nil), NSLocalizedStringFromTable(@"Library", @"Login_Sign_Up", nil),nil];
     [chooseCameraType show];
     
 }
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
     
     imagePicker = [[UIImagePickerController alloc] init];
@@ -389,10 +388,6 @@
             [self presentViewController:imagePicker animated:YES completion:nil];
         }
     }
-}
-
-- (void)alertViewCancel:(UIAlertView *)alertView {
-    
 }
 
 -(void) initOverlayView
@@ -608,9 +603,9 @@
     }
     
     if ([segue.identifier isEqualToString:@"toSalonDetail"]) {
-        SalonDetailViewController *salonDetail = [segue destinationViewController];
-        salonDetail.didClaim = YES;
-        salonDetail.business = _businessToManage;
+        BusinessViewController *businessDetail = [segue destinationViewController];
+        businessDetail.didClaim = YES;
+        businessDetail.business = _businessToManage;
     }
 }
 

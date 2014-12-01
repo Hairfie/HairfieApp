@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIViewController(Transitions)
+@interface UIViewController(Transitions) <UIAlertViewDelegate>
 
 -(void) showNotLoggedAlertWithDelegate:(id)delegate andTitle:(NSString *)title andMessage:(NSString *)message;
 

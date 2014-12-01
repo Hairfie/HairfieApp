@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14B23" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
@@ -26,13 +26,13 @@
                             <constraint firstAttribute="width" constant="20" id="dlp-RX-4GN"/>
                         </constraints>
                     </activityIndicatorView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sadly, you reached the end :-(" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dFC-uJ-5eh">
-                        <rect key="frame" x="52" y="18" width="196" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Join the community and post new hairfies" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dFC-uJ-5eh">
+                        <rect key="frame" x="21" y="18" width="271" height="21"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="196" id="0Kr-LB-jft"/>
+                            <constraint firstAttribute="width" constant="271" id="0Kr-LB-jft"/>
                             <constraint firstAttribute="height" constant="21" id="kd8-OC-Qbb"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="15"/>
+                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="14"/>
                         <color key="textColor" red="0.1764705882" green="0.22352941179999999" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -41,7 +41,7 @@
             </view>
             <constraints>
                 <constraint firstAttribute="centerX" secondItem="Pxf-Kp-QqX" secondAttribute="centerX" id="0Qo-hF-nuZ"/>
-                <constraint firstAttribute="centerX" secondItem="dFC-uJ-5eh" secondAttribute="centerX" id="FJC-kp-kZx"/>
+                <constraint firstAttribute="centerX" secondItem="dFC-uJ-5eh" secondAttribute="centerX" constant="-6.5" id="FJC-kp-kZx"/>
                 <constraint firstAttribute="centerY" secondItem="Pxf-Kp-QqX" secondAttribute="centerY" id="IFp-ma-Iqo"/>
                 <constraint firstAttribute="centerY" secondItem="dFC-uJ-5eh" secondAttribute="centerY" constant="0.5" id="cI1-CX-jpP"/>
             </constraints>

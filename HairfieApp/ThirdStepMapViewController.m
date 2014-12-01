@@ -40,8 +40,6 @@
    
     _mapHeight.constant = self.view.frame.size.height - 64;
     _pinYPos.constant = self.view.center.y - 64;
-    NSLog(@"_containerView height %f for map height %f", _pinYPos.constant, _mapHeight.constant);
-    
     // Do any additional setup after loading the view.
 }
 
@@ -49,14 +47,11 @@
 
 -(IBAction)goBack:(id)sender
 {
-    NSLog(@"test");
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
 {
-    NSLog(@"drag to %f,%f", _businessMapView.centerCoordinate.longitude, _businessMapView.centerCoordinate.latitude);
-    
     newLocation = [[CLLocation alloc] initWithLatitude:_businessMapView.centerCoordinate.latitude longitude: _businessMapView.centerCoordinate.longitude];
     [self reverseGeocodeGps:newLocation];
 }

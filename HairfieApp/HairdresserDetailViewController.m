@@ -179,7 +179,6 @@
                                  }
                              }
                            
-                             NSLog(@"count %zd", hairdresserHairfies.count);
                              hairfiesCount = hairdresserHairfies.count;
                              [self.collectionView reloadData];
                              

@@ -14,11 +14,11 @@
     NSString *messageToDisplay = (message == nil) ? NSLocalizedStringFromTable(@"You need to login or to sign up to do this action", @"Authentication", nil) : message;
     NSString *titleToDisplay = (title == nil) ? NSLocalizedStringFromTable(@"Connected users only", @"Authentication", nil) : title;
 
-    id _delegate = ( delegate == nil) ? self : delegate;
+//    id _delegate = ( delegate == nil) ? self : delegate;
     UIAlertView *alert = [[UIAlertView alloc]
                           initWithTitle: titleToDisplay
                           message: messageToDisplay
-                          delegate:_delegate
+                          delegate:self
                           cancelButtonTitle:nil
                           otherButtonTitles: NSLocalizedStringFromTable(@"Login / Sign Up", @"Authentication", nil),NSLocalizedStringFromTable(@"Cancel", @"Authentication", nil), nil];
     [alert setTag:0];

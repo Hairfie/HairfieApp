@@ -60,11 +60,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSLog(@"BIZ %@", self.business);
-    
     isDetailsTab = YES;
     [self.callBttn setTitle:NSLocalizedStringFromTable(@"book", @"Salon_Detail", nil) forState:UIControlStateNormal];
-    self.leftMenuBttn.hidden = YES;
     self.collectionView.allowsMultipleSelection = NO;
     menuActions = @[
                     @{@"label": NSLocalizedStringFromTable(@"Report an error", @"Salon_Detail",nil), @"segue": @"reportError"}
@@ -135,6 +132,12 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    
+    if(_didClaim) {
+        [self.navBttn setHidden:YES];
+    } else {
+        [self.leftMenuBttn setHidden:YES];
+    }
     [self.collectionView reloadData];
 }
 
@@ -306,8 +309,7 @@
                                   }
                               }
                               
-                              NSLog(@"COUNT %zd", businessHairfies.count);
-                              [self.collectionView reloadData];
+                            [self.collectionView reloadData];
                               
                               loadingHairfies = NO;
                           }

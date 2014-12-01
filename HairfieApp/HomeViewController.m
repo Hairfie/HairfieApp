@@ -221,7 +221,6 @@
         cell.hairfieView.image = [UIImage imageNamed:@"hairfie.jpg"];
     }
     else {
-        NSLog(@"HAIRFIE PRICE %@" , hairfie.price.amount);
         [cell setHairfie:hairfie];
     }
 

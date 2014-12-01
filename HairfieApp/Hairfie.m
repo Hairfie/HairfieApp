@@ -29,6 +29,13 @@
 {
     self = (Hairfie*)[[Hairfie repository] modelWithDictionary:data];
     if (self) {
+        
+        if ([[data objectForKey:@"displayBusiness"] isEqualToNumber:@1]) {
+            self.displayBusiness = YES;
+        } else {
+            self.displayBusiness = NO;
+        }
+
         self.selfMade = [[data objectForKey:@"selfMade"] isEqualToNumber:@1];
     }
     return self;
@@ -43,6 +50,7 @@
     else
         _description = aDescription;
 }
+
 
 -(void)setAuthor:(id)aUser
 {
@@ -224,7 +232,7 @@
                                NSMutableArray *hairfies = [[NSMutableArray alloc] init];
                                for (NSDictionary *result in results) {
                                    [hairfies addObject:[[[self class] alloc] initWithDictionary:result]];
-                               }
+                            }
                                aSuccessHandler([[NSArray alloc] initWithArray:hairfies]);
                            }
                            failure:aFailureHandler];

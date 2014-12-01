@@ -32,6 +32,9 @@
 @property (nonatomic) BOOL selfMade;
 @property (strong, nonatomic) NSURL *landingPageUrl;
 
+
+@property (nonatomic) BOOL displayBusiness;
+
 +(NSString *)EVENT_SAVED;
 
 -(id)initWithDictionary:(NSDictionary *)data;

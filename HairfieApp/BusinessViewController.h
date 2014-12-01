@@ -19,6 +19,6 @@
 @property (nonatomic) IBOutlet UIButton *bottomMenuBttn;
 @property (nonatomic) IBOutlet UIButton *callBttn;
 
-
+@property (nonatomic) BOOL didClaim;
 
 @end

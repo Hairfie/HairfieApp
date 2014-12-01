@@ -132,11 +132,7 @@
         _isAddingHairfie = NO;
     }
     
-    if(_didClaim) {
-        [_goBackBttn setHidden:YES];
-    } else {
-        [_menuBttn setHidden:YES];
-    }
+
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(businessChanged:)
                                                  name:[Business EVENT_CHANGED]
