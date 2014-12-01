@@ -235,7 +235,7 @@
                                     </collectionViewCell>
                                 </cells>
                                 <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="profileHeaderView" id="LHg-KR-vt9" customClass="UserProfileReusableView">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="274"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="324"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dsm-Dk-RAL">
@@ -2022,6 +2022,7 @@
                         <outlet property="topBarView" destination="jZA-oj-8Vd" id="ib0-Cg-NZs"/>
                         <segue destination="7uP-yg-Ah1" kind="push" identifier="showUserProfile" id="XyP-UR-YzB"/>
                         <segue destination="m2a-HQ-iZ5" kind="push" identifier="businessDetail" id="ryT-yY-w9K"/>
+                        <segue destination="Uin-U7-dKF" kind="push" identifier="showHairdresserProfile" id="cUj-YN-hJW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hv8-dL-qIH" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2615,7 +2616,7 @@
                                             <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5ZR-VD-wlu" userLabel="HAIRDRESSER VIEW">
                                                 <rect key="frame" x="0.0" y="278" width="320" height="615"/>
                                                 <subviews>
-                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="FpJ-1K-79p">
+                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="FpJ-1K-79p">
                                                         <rect key="frame" x="0.0" y="0.0" width="320" height="615"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
@@ -3333,7 +3334,7 @@
                                     </collectionViewCell>
                                 </cells>
                                 <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="hairdresserReusableView" id="Xwi-t2-q8v" customClass="HairdresserReusableView">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="275"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="324"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pp9-Eq-iVN">
@@ -5880,14 +5881,15 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="csi-dT-fBw"/>
-        <segue reference="ike-pA-JY1"/>
-        <segue reference="BMp-kN-6Xv"/>
-        <segue reference="N5w-ND-ZjU"/>
-        <segue reference="uEN-by-6gW"/>
-        <segue reference="18q-AN-mc0"/>
-        <segue reference="YaZ-tZ-kVO"/>
         <segue reference="vAT-vQ-WuX"/>
         <segue reference="VGS-VM-Pwy"/>
+        <segue reference="BMp-kN-6Xv"/>
+        <segue reference="ike-pA-JY1"/>
+        <segue reference="csi-dT-fBw"/>
+        <segue reference="18q-AN-mc0"/>
+        <segue reference="cUj-YN-hJW"/>
+        <segue reference="YaZ-tZ-kVO"/>
+        <segue reference="N5w-ND-ZjU"/>
+        <segue reference="uEN-by-6gW"/>
     </inferredMetricsTieBreakers>
 </document>

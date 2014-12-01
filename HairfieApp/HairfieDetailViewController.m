@@ -15,6 +15,7 @@
 #import "AppDelegate.h"
 #import "NotLoggedAlert.h"
 #import "UIRoundImageView.h"
+#import "HairdresserDetailViewController.h"
 #import "HairfieDetailBusinessTableViewCell.h"
 #import "InstagramSharer.h"
 #import <Social/Social.h>
@@ -36,6 +37,8 @@
     NSArray *menuActions;
     UIDocumentInteractionController *documentController;
     UILabel *priceLabel;
+    Hairdresser *hairfieHairdresser;
+    Business *hairdresserBusiness;
 }
 
 - (void)viewDidLoad
@@ -287,6 +290,7 @@
     if (tableView == detailsTableView) {
         NSString *infoName = displayedInfoNames[indexPath.row];
         if ([infoName isEqualToString:@"business"]) {
+            NSLog(@"testANCE");
             // the current hairfie's business property contains a
             // partial business object, so we need to fetch the
             // complete version prior to show details
@@ -299,6 +303,22 @@
                       }];
         } else if ([infoName isEqualToString:@"selfMade"]) {
             [self performSegueWithIdentifier:@"showUserProfile" sender:self];
+        }
+        else if ([infoName isEqualToString:@"hairdresser"])
+        {
+            
+            NSLog(@"TEST");
+            [Business getById:self.hairfie.business.id
+                  withSuccess:^(Business *business) {
+                      hairdresserBusiness = business;
+                       [self performSegueWithIdentifier:@"showHairdresserProfile" sender:self];
+                  }
+                      failure:^(NSError *error) {
+                          NSLog(@"Failed to retrieve complete business: %@", error.localizedDescription);
+                      }];
+
+          
+           
         }
     }
 }
@@ -364,9 +384,11 @@
         cell.accessoryType = UITableViewCellAccessoryNone;
     } else if ([infoName isEqualToString:@"hairdresser"]) {
         cell.pictoView.image = [UIImage imageNamed:@"picto-hairfie-detail-hairdresser.png"];
-        cell.userInteractionEnabled = false;
         cell.contentLabel.text = self.hairfie.hairdresser.displayFullName;
-        cell.accessoryType = UITableViewCellAccessoryNone;
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        UIView *backgroundView = [[UIView alloc] initWithFrame:cell.frame];
+        backgroundView.backgroundColor = cell.contentView.backgroundColor;
+        cell.backgroundView = backgroundView;
     } else if ([infoName isEqualToString:@"selfMade"]) {
         cell.pictoView.image = [UIImage imageNamed:@"picto-hairfie-detail-business.png"];
         cell.contentLabel.text = NSLocalizedStringFromTable(@"I did it", @"Hairfie_Detail", nil);
@@ -644,6 +666,14 @@
         UserProfileViewController *userProfile = [segue destinationViewController];
         [userProfile setUser:self.hairfie.author];
         userProfile.isCurrentUser = NO;
+    }
+    else if ([segue.identifier isEqualToString:@"showHairdresserProfile"])
+    {
+        HairdresserDetailViewController *hairdresserProfile = [segue destinationViewController];
+    
+        hairdresserProfile.hairdresser = self.hairfie.hairdresser;
+        hairdresserProfile.business = hairdresserBusiness;
+        
     }
 }
 

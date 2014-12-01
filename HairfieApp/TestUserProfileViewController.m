@@ -111,7 +111,7 @@
 
 -(void)addPicture:(UIGestureRecognizer*)gesture
 {
-    [self performSegueWithIdentifier:@"changeUserPicture" sender:self];
+    [self performSegueWithIdentifier:@"changeUse rPicture" sender:self];
 }
 
 -(void) uploadProfileImage:(UIImage *)image
@@ -217,7 +217,6 @@
    
     
     [userHeader setupView];
-    
 
     headerView = userHeader;
     UITapGestureRecognizer *singleTap =  [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addPicture:)];
