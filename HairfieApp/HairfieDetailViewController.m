@@ -63,23 +63,18 @@
 
     menuActions = @[
         @{
-            @"label": NSLocalizedStringFromTable(@"Tweet", @"Hairfie_Detail", nil),
             @"share": @"twitter"
         },
         @{
-            @"label": NSLocalizedStringFromTable(@"Share on Facebook", @"Hairfie_Detail", nil),
             @"share": @"facebook"
         },
         @{
-            @"label": NSLocalizedStringFromTable(@"Post on Instagram", @"Hairfie_Detail", nil),
             @"share": @"instagram"
         },
         @{
-            @"label": NSLocalizedStringFromTable(@"Pin on Pinterest", @"Hairfie_Detail", nil),
             @"share": @"pinterest"
         },
         @{
-            @"label": NSLocalizedStringFromTable(@"Copy Hairfie", @"Hairfie_Detail", nil),
             @"share": @"saveHairfie"
             }/*,
         @{
@@ -117,26 +112,25 @@
                                                              delegate:self
                                                     cancelButtonTitle:NSLocalizedStringFromTable(@"Cancel", @"Salon_Detail", nil)
                                                destructiveButtonTitle:nil
-                                                    otherButtonTitles:nil];
-    
-    for (NSDictionary *menuAction in menuActions) {
-        [actionSheet addButtonWithTitle:NSLocalizedStringFromTable([menuAction objectForKey:@"label"], @"Hairfie_Detail", nil)];
-    }
-    
-    [actionSheet showInView:self.view];
+                                                    otherButtonTitles:NSLocalizedStringFromTable(@"Tweet", @"Hairfie_Detail", nil),NSLocalizedStringFromTable(@"Share on Facebook", @"Hairfie_Detail", nil),NSLocalizedStringFromTable(@"Post on Instagram", @"Hairfie_Detail", nil),NSLocalizedStringFromTable(@"Pin on Pinterest", @"Hairfie_Detail", nil),NSLocalizedStringFromTable(@"Copy Hairfie", @"Hairfie_Detail", nil),nil];
+        [actionSheet showInView:self.view];
 }
+
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (0 == buttonIndex) return; // it's the cancel button
+    if (5 == buttonIndex) return; // it's the cancel button
 
-    NSDictionary *action = menuActions[buttonIndex - 1];
-    NSString *segueName = [action objectForKey:@"segue"];
+    NSDictionary *action = menuActions[buttonIndex];
     NSString *shareName = [action objectForKey:@"share"];
-
+    NSString *segueName = [action objectForKey:@"segue"];
+    
     if (nil != segueName) {
         [self performSegueWithIdentifier:[menuActions[buttonIndex - 1] objectForKey:@"segue"] sender:self];
-    } else if ([shareName isEqualToString:@"instagram"]) {
+    }
+    
+    
+    if ([shareName isEqualToString:@"instagram"]) {
         [self shareOnInstagram];
     } else if ([shareName isEqualToString:@"twitter"]) {
         [self shareOnTwitter];

@@ -119,24 +119,22 @@
 
 -(IBAction)showMenuActionSheet:(id)sender
 {
+    
+    
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
                                                              delegate:self
                                                     cancelButtonTitle:NSLocalizedStringFromTable(@"Cancel", @"Salon_Detail", nil)
                                                destructiveButtonTitle:nil
-                                                    otherButtonTitles:nil];
+                                                    otherButtonTitles:NSLocalizedStringFromTable(@"Navigate via Apple Maps", @"Salon_Detail", nil),NSLocalizedStringFromTable(@"Navigate via Google Maps", @"Salon_Detail", nil),nil];
     
-    
-    
-    [actionSheet addButtonWithTitle:NSLocalizedStringFromTable(@"Navigate via Apple Maps", @"Salon_Detail", nil)];
-    [actionSheet addButtonWithTitle:NSLocalizedStringFromTable(@"Navigate via Google Maps", @"Salon_Detail", nil)];
     
     [actionSheet showInView:self.view];
 }
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (0 == buttonIndex) return; // it's the cancel button
-    if (1 == buttonIndex)
+    if (2 == buttonIndex) return; // it's the cancel button
+    if (0 == buttonIndex)
         [self navigateToSalon];
     else
         [self googleMaps];

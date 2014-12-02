@@ -157,11 +157,7 @@
                                                              delegate:self
                                                     cancelButtonTitle:NSLocalizedStringFromTable(@"Cancel", @"Salon_Detail", nil)
                                                destructiveButtonTitle:nil
-                                                    otherButtonTitles:nil];
-    
-    for (NSDictionary *menuAction in menuActions) {
-        [actionSheet addButtonWithTitle:NSLocalizedStringFromTable([menuAction objectForKey:@"label"], @"Salon_Detail", nil)];
-    }
+                                                    otherButtonTitles: NSLocalizedStringFromTable(@"Report an error", @"Salon_Detail",nil),nil];
     
     [actionSheet showInView:self.view];
 }
@@ -170,9 +166,9 @@
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (0 == buttonIndex) return; // it's the cancel button
+    if (1 == buttonIndex) return; // it's the cancel button
     
-    [self performSegueWithIdentifier:[menuActions[buttonIndex - 1] objectForKey:@"segue"] sender:self];
+    [self performSegueWithIdentifier:[menuActions[buttonIndex] objectForKey:@"segue"] sender:self];
 }
 
 

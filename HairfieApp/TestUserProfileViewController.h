@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "User.h"
 
-@interface TestUserProfileViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate>
+@interface TestUserProfileViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UIActionSheetDelegate>
 
 @property (nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic) User * user;

@@ -42,7 +42,7 @@
             self.editPictureBttn.hidden = YES;
         
         UIView *bottomBorder =  [[UIView alloc] init];
-        [bottomBorder setFrame:CGRectMake(0, self.hairfieBttn.frame.size.height, self.hairfieBttn.frame.size.width - 1, 3)];
+        [bottomBorder setFrame:CGRectMake(0, self.hairfieBttn.frame.size.height, self.hairfieBttn.frame.size.width, 3)];
         bottomBorder.tag = 1;
         bottomBorder.backgroundColor = [UIColor salonDetailTab];
         [self.hairfieBttn addSubview:bottomBorder];
@@ -58,7 +58,6 @@
 {
    
     //[self.nameLabel profileUserNameStyle];
-    
     self.nameLabel.text = self.user.name;
     [self.hairfieBttn profileTabStyle];
     [self.hairfieBttn setTitle:[NSString stringWithFormat:@"%@", self.user.numHairfies] forState:UIControlStateNormal];
@@ -117,7 +116,7 @@
     if (aButton == self.hairfieBttn) {
        
         [aButton setBackgroundColor:[UIColor lightGreyHairfie]];
-        [bottomBorder setFrame:CGRectMake(0, aButton.frame.size.height, aButton.frame.size.width - 1, 3)];
+        [bottomBorder setFrame:CGRectMake(0, aButton.frame.size.height, aButton.frame.size.width, 3)];
         [self.reviewBttn setBackgroundColor:[UIColor clearColor]];
          [[NSNotificationCenter defaultCenter] postNotificationName:@"hairfiesTab" object:self];
         
@@ -126,7 +125,7 @@
     {
         [aButton setBackgroundColor:[UIColor lightGreyHairfie]];
         [self.hairfieBttn setBackgroundColor:[UIColor clearColor]];
-        [bottomBorder setFrame:CGRectMake(1, aButton.frame.size.height, aButton.frame.size.width, 3)];
+        [bottomBorder setFrame:CGRectMake(0, aButton.frame.size.height, aButton.frame.size.width, 3)];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"reviewsTab" object:self];
       
     }

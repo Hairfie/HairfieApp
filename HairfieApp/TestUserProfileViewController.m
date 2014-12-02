@@ -58,7 +58,7 @@
                                              selector:@selector(refreshHeader:)
                                                  name:@"pictureUploaded"
                                                object:nil];
-
+    
     isHairfiesTab = YES;
     [self.collectionView registerNib:[UINib nibWithNibName:@"CustomCollectionViewCell" bundle:nil]forCellWithReuseIdentifier:HAIRFIE_CELL];
     [self.collectionView registerNib:[UINib nibWithNibName:@"LoadingCollectionViewCell" bundle:nil]
@@ -77,6 +77,28 @@
     [self initKnownData];
     
     // Do any additional setup after loading the view.
+}
+
+
+-(IBAction)addPicture:(id)sender
+{
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                             delegate:self
+                                                    cancelButtonTitle:NSLocalizedStringFromTable(@"Cancel", @"Salon_Detail", nil)
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:NSLocalizedStringFromTable(@"Change picture", @"UserProfile", nil),nil];
+    
+    
+
+   
+    
+    [actionSheet showInView:self.view];
+}
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (0 == buttonIndex) [self performSegueWithIdentifier:@"changeUserPicture" sender:self];
+    if (1 == buttonIndex) return; // it's the cancel button
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -111,11 +133,6 @@ if (self.imageFromSegue != nil)
     [self.collectionView reloadData];
 }
 
--(void)addPicture:(UIGestureRecognizer*)gesture
-{
-    if ([self.user.id isEqualToString:appDelegate.currentUser.id])
-        [self performSegueWithIdentifier:@"changeUserPicture" sender:self];
-}
 
 -(void) uploadProfileImage:(UIImage *)image
 {
@@ -222,10 +239,8 @@ if (self.imageFromSegue != nil)
     [userHeader setupView];
 
     
-    UITapGestureRecognizer *singleTap =  [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addPicture:)];
-    [singleTap setNumberOfTapsRequired:1];
-    [userHeader.editPictureBttn addGestureRecognizer:singleTap];
     headerView = userHeader;
+    
     return headerView;
     
 }
