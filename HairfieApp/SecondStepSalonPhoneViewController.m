@@ -73,7 +73,7 @@
             isPhoneValid = [textField.text checkPhoneValidity:textField.text];
             if (isPhoneValid == YES) {
                 [self.navigationController popViewControllerAnimated:YES];
-                claim.phoneTextField.text = [textField.text formatPhoneNumber:textField.text];
+                claim.phoneTextField.text = textField.text;
                 claim.isPhoneSet = YES;
             }
         }
@@ -93,7 +93,7 @@
                 isPhoneValid = [textField.text checkPhoneValidity:textField.text];
                 if (isPhoneValid == YES) {
                     [self.navigationController popViewControllerAnimated:YES];
-                    finalStep.businessToManage.phoneNumber = [textField.text formatPhoneNumber:textField.text];
+                    finalStep.businessToManage.phoneNumber = textField.text;
                 }
             } else {
                 finalStep.businessToManage.name = textField.text;
@@ -105,7 +105,7 @@
                
                 if (isPhoneValid == YES) {
                     [self.navigationController popViewControllerAnimated:YES];
-                    finalStep.claim.phoneNumber = [textField.text formatPhoneNumber:textField.text];
+                    finalStep.claim.phoneNumber = textField.text;
                 }
             } else {
                 finalStep.claim.name = textField.text;

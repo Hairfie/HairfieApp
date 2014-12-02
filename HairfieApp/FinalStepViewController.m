@@ -21,6 +21,7 @@
 #import "HomeViewController.h"
 #import "BusinessViewController.h"
 #import "AppDelegate.h"
+#import "NSString+PhoneFormatter.h"
 
 
 @interface FinalStepViewController ()
@@ -186,7 +187,7 @@
         }
         [_validateBttn setTitle:NSLocalizedStringFromTable(@"Update",@"Claim", nil) forState:UIControlStateNormal];
        
-        _phoneLabel.text = _businessToManage.phoneNumber;
+        _phoneLabel.text = [_businessToManage.phoneNumber formatPhoneNumber:_businessToManage.phoneNumber];
          _addressLabel.text = [_businessToManage.address displayAddress];
         _nameLabel.text = _businessToManage.name;
         [self setupGallery:_businessToManage.pictures];

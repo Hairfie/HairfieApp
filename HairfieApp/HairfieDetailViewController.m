@@ -507,11 +507,12 @@
     [profilePicture sd_setImageWithURL:[self.hairfie.author pictureUrlwithWidth:@100 andHeight:@100] placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
 
 
-    UIButton *usernameButton = [[UIButton alloc] initWithFrame:CGRectMake(18, 0, 160, 30)];
+    UIButton *usernameButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 0, 160, 30)];
     [usernameButton addTarget:self action:@selector(showProfile:) forControlEvents:UIControlEventTouchUpInside];
     [usernameButton setTitle:self.hairfie.author.displayName forState:UIControlStateNormal];
     [usernameButton setTitleColor:[[UIColor blackHairfie] colorWithAlphaComponent:0.4] forState:UIControlStateNormal];
     usernameButton.titleLabel.font = [UIFont fontWithName:@"SourceSansPro-Light" size:18];
+    usernameButton.titleLabel.textAlignment = NSTextAlignmentLeft;
    // usernameButton.titleLabel.adjustsFontSizeToFitWidth = YES;
 
 

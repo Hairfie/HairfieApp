@@ -116,7 +116,7 @@
 
 -(void)setupRecentReviews
 {
-    NSLog(@"test");
+    
     if ([business.numReviews isEqualToNumber:@0]) {
         loadingLastestReviews = NO;
         return;

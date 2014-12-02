@@ -59,8 +59,6 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    if (![_phoneTextField.text isEqual:[NSNull null]])
-        _phoneTextField.text = [_phoneTextField.text formatPhoneNumber:_phoneTextField.text];
 }
 
 - (void)didReceiveMemoryWarning {
