@@ -32,7 +32,6 @@
 
 @property (nonatomic) IBOutlet UIView *pageControlView;
 
-@property (nonatomic) BusinessClaim *claim;
 @property (nonatomic) IBOutlet UIButton *navButton;
 @property (nonatomic) IBOutlet UIButton *menuButton;
 

@@ -99,21 +99,10 @@
                 finalStep.businessToManage.name = textField.text;
                 [self.navigationController popViewControllerAnimated:YES];
             }
-        } else {
-            if (_isSalon == NO) {
-                isPhoneValid = [textField.text checkPhoneValidity:textField.text];
-               
-                if (isPhoneValid == YES) {
-                    [self.navigationController popViewControllerAnimated:YES];
-                    finalStep.claim.phoneNumber = textField.text;
-                }
-            } else {
-                finalStep.claim.name = textField.text;
-                [self.navigationController popViewControllerAnimated:YES];
-            }
         }
-    }
+        }
 }
+
 
 -(IBAction)doneClicked:(id)sender
 {

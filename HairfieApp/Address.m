@@ -59,7 +59,13 @@
 
 -(NSDictionary*)toDictionary
 {
-    return [[NSDictionary alloc] initWithObjectsAndKeys:self.country, @"country", self.zipCode, @"zipCode", self.city, @"city", self.street, @"street", nil];
+    return @{
+             @"street" :self.street,
+             @"zipCode":self.zipCode,
+             @"city":self.city,
+             };
+    
+   // return [[NSDictionary alloc] initWithObjectsAndKeys:self.country, @"country", self.zipCode, @"zipCode", self.city, @"city", self.street, @"street", nil];
 }
 
 +(id)fromSetterValue:(id)aValue

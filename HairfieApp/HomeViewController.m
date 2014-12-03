@@ -17,6 +17,7 @@
 #import "UserRepository.h"
 #import "LoginViewController.h"
 #import "CameraOverlayViewController.h"
+#import <AssetsLibrary/AssetsLibrary.h>
 
 #define CUSTOM_CELL_IDENTIFIER @"hairfieCell"
 #define LOADING_CELL_IDENTIFIER @"LoadingItemCell"
@@ -117,8 +118,31 @@
 
 -(IBAction)takeHairfie:(id)sender
 {
-    [self performSegueWithIdentifier:@"cameraOverlay" sender:self];
+    [self checkIfCameraDisabled];
+    
 }
+
+-(void)checkIfCameraDisabled
+{
+    __block BOOL isChecked = NO;
+    ALAssetsLibrary *lib = [[ALAssetsLibrary alloc] init];
+    
+    [lib enumerateGroupsWithTypes:ALAssetsGroupSavedPhotos usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
+        if (isChecked == NO) {
+       [self performSegueWithIdentifier:@"cameraOverlay" sender:self];
+            isChecked = YES;
+        }
+    } failureBlock:^(NSError *error) {
+        if (error.code == ALAssetsLibraryAccessUserDeniedError) {
+            NSLog(@"user denied access : %@",error.description);
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedStringFromTable(@"Warning",@"Claim", nil) message:NSLocalizedStringFromTable(@"authorized access to camera", @"Post_Hairfie", nil) delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+            [alertView show];
+        }else{
+            NSLog(@"Other error code: %zi",error.code);
+        }
+    }];
+}
+
 
 -(void)viewWillDisappear:(BOOL)animated
 {
@@ -332,13 +356,6 @@
 
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"camera"])
-    {
-        UIImagePickerController *pickerController = [segue destinationViewController];
-        pickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
-        pickerController.delegate = self;
-    
-    }
     if ([segue.identifier isEqualToString:@"searchFromFeed"])
     {
         AroundMeViewController *controller = [segue destinationViewController];

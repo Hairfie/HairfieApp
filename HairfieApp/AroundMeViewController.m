@@ -23,6 +23,7 @@
 #import "AFHTTPSessionManager.h"
 
 #import <SDWebImage/UIImageView+WebCache.h>
+#import <AssetsLibrary/AssetsLibrary.h>
 
 #import "LoginViewController.h"
 
@@ -335,6 +336,33 @@
         cameraOverlay.isHairfie = YES;
     }
 }
+
+-(IBAction)takeHairfie:(id)sender
+{
+    [self checkIfCameraDisabled];
+}
+
+-(void)checkIfCameraDisabled
+{
+    __block BOOL isChecked = NO;
+    ALAssetsLibrary *lib = [[ALAssetsLibrary alloc] init];
+    
+    [lib enumerateGroupsWithTypes:ALAssetsGroupSavedPhotos usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
+        if (isChecked == NO) {
+        [self performSegueWithIdentifier:@"cameraOverlay" sender:self];
+            isChecked = YES;
+        }
+    } failureBlock:^(NSError *error) {
+        if (error.code == ALAssetsLibraryAccessUserDeniedError) {
+            NSLog(@"user denied access : %@",error.description);
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedStringFromTable(@"Warning",@"Claim", nil) message:NSLocalizedStringFromTable(@"authorized access to camera", @"Post_Hairfie", nil) delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+            [alertView show];
+        }else{
+            NSLog(@"Other error code: %zi",error.code);
+        }
+    }];
+}
+
 
 -(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id)annotation
 {

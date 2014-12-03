@@ -63,13 +63,7 @@
     if(![_businessToManage.timetable isKindOfClass:[Timetable class]]) {
        _businessToManage.timetable = [[Timetable alloc] initEmpty];
     }
-    _claim.pictures = [[NSMutableArray alloc] init];
-    _phoneLabel.text = _claim.phoneNumber;
-
-    _addressLabel.text = [_claim.address displayAddress];
-    _nameLabel.text = _claim.name;
     
-   
     _validateBttn.layer.cornerRadius = 5;
     _validateBttn.layer.masksToBounds = YES;
     _addHairfiesBttn.layer.cornerRadius = 5;
@@ -187,6 +181,7 @@
         }
         [_validateBttn setTitle:NSLocalizedStringFromTable(@"Update",@"Claim", nil) forState:UIControlStateNormal];
        
+        
         _phoneLabel.text = [_businessToManage.phoneNumber formatPhoneNumber:_businessToManage.phoneNumber];
          _addressLabel.text = [_businessToManage.address displayAddress];
         _nameLabel.text = _businessToManage.name;
@@ -205,28 +200,6 @@
         _addHairfiesLbl.text = NSLocalizedStringFromTable(@"hairfie claim update", @"Claim", nil);
         [_serviceTableView reloadData];
         [_hairdresserTableView reloadData];
-    }
-    else
-    {
-        [self setupGallery:_claim.pictures];
-        _phoneLabel.text = _claim.phoneNumber;
-        _addressLabel.text = [_claim.address displayAddress];
-        _nameLabel.text = _claim.name;
-        _menuButton.hidden = YES;
-        if ([_claim.hairdressers count] == 0)
-            _hairdresserTableView.hidden = YES;
-        else
-            _hairdresserTableView.hidden = NO;
-        
-        if ([_claim.services count] == 0)
-            _serviceTableView.hidden = YES;
-        else
-            _serviceTableView.hidden = NO;
-        
-        _addHairfiesLbl.text = NSLocalizedStringFromTable(@"hairfie claim new", @"Claim", nil);
-        [_serviceTableView reloadData];
-        [_hairdresserTableView reloadData];
-        
     }
 }
 
@@ -457,10 +430,6 @@
             [_businessToManage.pictures addObject:imagePost];
             NSLog(@"test %@", imagePost.url);
         }
-        else {
-            [_claim.pictures addObject:imagePost];
-        }
-        
         [imagePicker dismissViewControllerAnimated:YES completion:nil];
     };
     
@@ -521,8 +490,7 @@
         salon.textFieldPlaceHolder = NSLocalizedStringFromTable(@"Salon's name", @"Claim", nil);
         if (_businessToManage != nil)
             salon.textFieldFromSegue = _businessToManage.name;
-        else
-            salon.textFieldFromSegue = _claim.name;
+
         
     }
     
@@ -537,8 +505,6 @@
         phone.textFieldPlaceHolder = NSLocalizedStringFromTable(@"Phone number", @"Claim", nil);
         if (_businessToManage != nil)
             phone.textFieldFromSegue = _businessToManage.phoneNumber;
-        else
-        phone.textFieldFromSegue = _claim.phoneNumber;
         
     }
     if ([segue.identifier isEqualToString:@"claimAddress"])
@@ -546,8 +512,6 @@
         FinalStepAddressViewController *claimAddress = [segue destinationViewController];
         if (_businessToManage != nil)
             claimAddress.address = _businessToManage.address;
-        else
-            claimAddress.address = _claim.address;
     
     }
     
@@ -556,8 +520,6 @@
         FinalStepTimetableViewController *claimTimetable = [segue destinationViewController];
         if (_businessToManage != nil)
             claimTimetable.timeTable = _businessToManage.timetable;
-        else
-            claimTimetable.timeTable = _claim.timetable;
         
     }
     if ([segue.identifier isEqualToString:@"claimHairdresser"])
@@ -575,8 +537,6 @@
     
                 claimHairdresser.hairdressersClaimed = [[NSMutableArray alloc] init];
         }
-        else
-            claimHairdresser.hairdressersClaimed = _claim.hairdressers;
         
         if (_isEditingHairdresser == YES)
             claimHairdresser.hairdresserFromSegue = hairdresserForEditing;
@@ -594,8 +554,6 @@
         else
             claimService.serviceClaimed = [[NSMutableArray alloc] init];
         }
-        else
-            claimService.serviceClaimed = _claim.services;
         if (_isEditingService == YES)
             claimService.serviceFromSegue = serviceForEditing;
         _isEditingService = NO;
@@ -638,8 +596,6 @@
         {
             hairdresser = [_businessToManage.activeHairdressers objectAtIndex:indexPath.row];
         }
-        else
-            hairdresser = [_claim.hairdressers objectAtIndex:indexPath.row];
         
 
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -663,8 +619,6 @@
         {
            service =[_businessToManage.services objectAtIndex:indexPath.row];
         }
-        else
-            service = [_claim.services objectAtIndex:indexPath.row];
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.serviceName.text = service.label;
@@ -684,16 +638,11 @@
     {
     if (_businessToManage.activeHairdressers != (id)[NSNull null])
         return [_businessToManage.activeHairdressers count];
-    else
-        return [_claim.hairdressers count];
     }
-    
     if (tableView == _serviceTableView)
     {
         if (_businessToManage.services != (id)[NSNull null])
             return [_businessToManage.services count];
-        else
-            return [_claim.services count];
     }
     return 1;
 }
@@ -704,8 +653,6 @@
     {
     if (_businessToManage != nil)
         hairdresserForEditing = [_businessToManage.activeHairdressers objectAtIndex:indexPath.row];
-    else
-        hairdresserForEditing = [_claim.hairdressers objectAtIndex:indexPath.row];
     _isEditingHairdresser = YES;
    
     [self performSegueWithIdentifier:@"claimHairdresser" sender:self];
@@ -714,8 +661,6 @@
     {
         if (_businessToManage != nil)
             serviceForEditing = [_businessToManage.services objectAtIndex:indexPath.row];
-        else
-            serviceForEditing = [_claim.services objectAtIndex:indexPath.row];
         _isEditingService = YES;
         serviceIndex = indexPath.row;
         [self performSegueWithIdentifier:@"claimService" sender:self];

@@ -107,11 +107,6 @@
         finalStep.businessToManage.address = address;
         finalStep.businessToManage.gps = gps;
     }
-    else
-    {
-        finalStep.claim.address = address;
-        finalStep.claim.gps = gps;
-    }
     [self goBack:self];
 }
 

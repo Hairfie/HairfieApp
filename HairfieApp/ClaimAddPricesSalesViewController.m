@@ -74,8 +74,6 @@
 
     if (finalStep.businessToManage != nil)
         finalStep.businessToManage.services = services;
-    else
-        finalStep.claim.services = services;
     
    NSLog(@"service %@", finalStep.businessToManage.services);
     

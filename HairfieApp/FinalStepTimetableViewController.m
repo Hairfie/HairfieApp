@@ -65,8 +65,6 @@
     
     if (finalStep.businessToManage != nil)
         finalStep.businessToManage.timetable = _timeTable;
-    else
-        finalStep.claim.timetable = _timeTable;
     
     [self goBack:self];
 }

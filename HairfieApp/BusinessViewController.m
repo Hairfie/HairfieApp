@@ -16,6 +16,7 @@
 #import "SalonMapViewController.h"
 #import "HorairesViewController.h"
 #import "HairdresserDetailViewController.h"
+#import "CameraOverlayViewController.h"
 
 #import "LoadingCollectionViewCell.h"
 #import "CustomCollectionViewCell.h"
@@ -25,6 +26,8 @@
 
 #import "BusinessReusableView.h"
 #import "NotLoggedAlert.h"
+
+#import <AssetsLibrary/AssetsLibrary.h>
 
 @interface BusinessViewController ()
 
@@ -486,8 +489,7 @@
     {
         if (indexPath.row == 0)
         {
-            [self performSegueWithIdentifier:@"postHairfie" sender:nil];
-           // _isAddingHairfie = YES;
+            [self checkIfCameraDisabled];
         }
         else {
         hairfie = [businessHairfies objectAtIndex:(indexPath.row - 1)];
@@ -503,6 +505,30 @@
         [self performSegueWithIdentifier:@"showHairdresserDetail" sender:self];
     }
 }
+
+
+-(void)checkIfCameraDisabled
+{
+    __block BOOL isChecked = NO;
+    ALAssetsLibrary *lib = [[ALAssetsLibrary alloc] init];
+    
+    [lib enumerateGroupsWithTypes:ALAssetsGroupSavedPhotos usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
+        if (isChecked == NO) {
+        [self performSegueWithIdentifier:@"postHairfie" sender:self];
+            isChecked = YES;
+        }
+    } failureBlock:^(NSError *error) {
+        if (error.code == ALAssetsLibraryAccessUserDeniedError) {
+            NSLog(@"user denied access : %@",error.description);
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedStringFromTable(@"Warning",@"Claim", nil) message:NSLocalizedStringFromTable(@"authorized access to camera", @"Post_Hairfie", nil) delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+            [alertView show];
+        }else{
+            NSLog(@"Other error code: %zi",error.code);
+        }
+    }];
+}
+
+
 
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -544,10 +570,12 @@
     
     if ([segue.identifier isEqualToString:@"showHairdresserDetail"]) {
         HairdresserDetailViewController *hairdresserDetail = [segue destinationViewController];
-        
         hairdresserDetail.hairdresser = hairdresserPicked;
-        
         hairdresserDetail.business = self.business;
+    }
+    if ([segue.identifier isEqualToString:@"postHairfie"]) {
+        CameraOverlayViewController *camera = [segue destinationViewController];
+        camera.isHairfie = YES;
     }
     
 }

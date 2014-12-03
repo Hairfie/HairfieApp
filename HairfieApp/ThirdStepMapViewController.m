@@ -83,6 +83,8 @@
                            newCity = city;
                            newZipCode = zip;
                            newCountry = country;
+                           
+                           NSLog(@"HERE %@ %@ %@ %@", newStreet,newCity,newZipCode, newCountry);
                        }
                        
                    }];
@@ -97,12 +99,12 @@
    
     _claim.gps = gps;
     _claim.address = address;
-  
+    NSLog(@"ADRESS %@", [_claim.address displayAddress]);
     void (^loadErrorBlock)(NSError *) = ^(NSError *error){
         NSLog(@"Error : %@", error.description);
     };
     void (^loadSuccessBlock)(NSDictionary *) = ^(NSDictionary *results) {
-        
+        NSLog(@"RESULTS %@", results);
         businessClaimed = [[Business alloc] initWithDictionary:results];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"currentUser" object:self];
         [self performSegueWithIdentifier:@"claimOtherInfos" sender:self];

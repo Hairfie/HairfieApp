@@ -39,6 +39,8 @@
 }
 
 -(void) setupImagePicker {
+    
+
     if(!_imagePicker) {
         _imagePicker = [[UIImagePickerController alloc]init];
         [_imagePicker setDelegate:self];
@@ -63,6 +65,7 @@
         [self presentViewController:_imagePicker animated:NO completion:nil];
     }
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -216,6 +219,7 @@
 
 -(void) cancelTakePicture
 {
+    NSLog(@"CANCEL");
     [self.navigationController popViewControllerAnimated:YES];
      [_imagePicker dismissViewControllerAnimated:YES completion:nil];
 }
@@ -235,7 +239,6 @@
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
-    
     [picker dismissViewControllerAnimated:NO completion:nil];
     [self.navigationController popViewControllerAnimated:YES];
 

@@ -294,14 +294,11 @@
          [_salonLabelButton setTitle:business.name forState:UIControlStateNormal];
         _salonChosen = business;
         _hairfiePost.business = _salonChosen;
-        NSLog(@"count coiffeur %zd", business.activeHairdressers.count);
         if (business.activeHairdressers.count != 0) {
-            NSLog(@"OCO");
             [self loadHairdressers];
             [_hairdresserLabelButton setTitle:NSLocalizedStringFromTable(@"Who did this?", @"Post_Hairfie", nil) forState:UIControlStateNormal];
         }
         else {
-            NSLog(@"ICI");
             [_hairdresserLabelButton setTitle:NSLocalizedStringFromTable(@"No Hairdresser in this salon", @"Post_Hairfie", nil) forState:UIControlStateNormal];
             _hairdresserTableViewHeight.constant = 0;
         }
@@ -315,7 +312,6 @@
         Hairdresser *hairdresser = [salonHairdressers objectAtIndex:indexPath.row];
         [_hairdresserLabelButton setTitle:[hairdresser displayFullName] forState:UIControlStateNormal];
         _hairfiePost.hairdresser = hairdresser;
-        
         [self showHairdresserChoices:self];
     }
 }

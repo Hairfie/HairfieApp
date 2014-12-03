@@ -95,9 +95,6 @@
         hairdresser.id = _hairdresserFromSegue.id;
     }
     
-    
-    
-   
     [hairdressers addObject:hairdresser];
     NSLog(@"hairdressers %@", hairdresser);
     [hairdresser saveWithSuccess:^() { NSLog(@"Hairdresser saved"); }
@@ -115,10 +112,7 @@
 
     if (finalStep.businessToManage != nil) {
         finalStep.businessToManage.activeHairdressers = hairdressers;
-    } else {
-        finalStep.claim.hairdressers = hairdressers;
     }
-
     [self goBack:self];
 }
 

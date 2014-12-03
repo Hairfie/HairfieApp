@@ -23,10 +23,8 @@
 @implementation ThirdStepViewController
 {
     CLLocation *_location;
-    CLLocation *_newLocation;
     AppDelegate *delegate;
     NSString *_country;
-    BOOL isLocationClaimed;
 }
 
  
@@ -34,18 +32,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSLog(@"3RD STEP CLAIM %@", _claim);
-    isLocationClaimed = NO;
     delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(updatedLocation:)
                                                  name:@"newLocationNotif"
                                                object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(nextStepClaim:)
-                                                 name:@"locationClaimed"
-                                               object:nil];
+
     
     UIView *addressPadding = [[UIView alloc] initWithFrame:CGRectMake(0, 0,20, 46)];
     UIView *postalPadding = [[UIView alloc] initWithFrame:CGRectMake(0, 0,20, 46)];
@@ -93,14 +86,6 @@
 }
 
 
--(void)nextStepClaim:(NSNotification*)notification
-{
-    if (isLocationClaimed == YES)
-    {
-        [self performSegueWithIdentifier:@"claimBusinessMapLocation" sender:self];
-    }
-}
-
 
 -(void)reverseGeocodeGps:(CLLocation*)myLocation
 {
@@ -143,11 +128,9 @@
             {
                 // Process the placemark.
                 
-                _newLocation =  aPlacemark.location;
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"locationClaimed" object:nil];
+                _location =  aPlacemark.location;
                 
-                
-                
+                NSLog(@"newlocation %f,%f", _location.coordinate.latitude, _location.coordinate.longitude);
             }
         }];
 }
@@ -158,14 +141,13 @@
     NSInteger nextTag = textField.tag + 1;
     // Try to find next responder
     UIResponder* nextResponder = [textField.superview viewWithTag:nextTag];
-     NSString *address = [NSString stringWithFormat:@"%@ %@ %@", _address.text, _city.text, _postalCode.text];
+    NSString *address = [NSString stringWithFormat:@"%@ %@ %@", _address.text, _city.text, _postalCode.text];
     if (nextResponder) {
         // Found next responder, so set it.
-        [self geocodeAddress:address];
         [nextResponder becomeFirstResponder];
     } else {
+        [self geocodeAddress:address];
         [textField resignFirstResponder];
-        [self claimSalonLocation:self];
     }
     [self geocodeAddress:address];
     return YES;
@@ -174,7 +156,6 @@
 -(IBAction)setAddressByLocation:(id)sender
 {
     [self reverseGeocodeGps:_location];
-    _newLocation = _location;
     [_address resignFirstResponder];
     [_city resignFirstResponder];
     [_postalCode resignFirstResponder];
@@ -197,21 +178,23 @@
     } else {
         Address *address = [[Address alloc] initWithStreet:_address.text city:_city.text zipCode:_postalCode.text country:_country];
         
+        
         [self geocodeAddress:[address displayAddress]];
         
-        GeoPoint *gps = [[GeoPoint alloc] initWithLocation:_newLocation];
+        GeoPoint *gps = [[GeoPoint alloc] initWithLocation:_location];
         
-        NSLog(@"gps location %@ %@", gps.lat, gps.lng );
         _claim.address = address;
         _claim.gps = gps;
         
+        
+        NSLog(@"_CLAIM ADRESS %@", [_claim.address displayAddress]);
         void (^loadErrorBlock)(NSError *) = ^(NSError *error){
             NSLog(@"Error : %@", error.description);
         };
         void (^loadSuccessBlock)(NSDictionary *) = ^(NSDictionary *results){
             //NSLog(@"results %@", results);
             _claim.id = [results objectForKey:@"id"];
-            isLocationClaimed = YES;
+            [self performSegueWithIdentifier:@"claimBusinessMapLocation" sender:self];
         };
         
         [_claim claimWithSuccess:loadSuccessBlock failure:loadErrorBlock];
@@ -224,7 +207,7 @@
     if ([segue.identifier isEqualToString:@"claimBusinessMapLocation"])
     {
         ThirdStepMapViewController *businessMap = [segue destinationViewController];
-        businessMap.businessLocation = _newLocation;
+        businessMap.businessLocation = _location;
         businessMap.claim = [[BusinessClaim alloc] init];
         businessMap.claim = _claim;
     }

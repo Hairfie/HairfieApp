@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "BusinessReview.h"
+#import <AssetsLibrary/AssetsLibrary.h>
 #import "TestUserProfileViewController.h"
 #import "LoadingCollectionViewCell.h"
 #import "CustomCollectionViewCell.h"
@@ -97,9 +98,32 @@
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (0 == buttonIndex) [self performSegueWithIdentifier:@"changeUserPicture" sender:self];
+    if (0 == buttonIndex) [self checkIfCameraDisabled];
     if (1 == buttonIndex) return; // it's the cancel button
 }
+
+-(void)checkIfCameraDisabled
+{
+    __block BOOL isChecked = NO;
+    ALAssetsLibrary *lib = [[ALAssetsLibrary alloc] init];
+    
+    [lib enumerateGroupsWithTypes:ALAssetsGroupSavedPhotos usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
+        NSLog(stop ? @"Yes" : @"No");
+        if (isChecked == NO) {
+            [self performSegueWithIdentifier:@"changeUserPicture" sender:self];
+            isChecked = YES;
+        }
+    } failureBlock:^(NSError *error) {
+        if (error.code == ALAssetsLibraryAccessUserDeniedError) {
+            NSLog(@"user denied access : %@",error.description);
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedStringFromTable(@"Warning",@"Claim", nil) message:NSLocalizedStringFromTable(@"authorized access to camera", @"Post_Hairfie", nil) delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+            [alertView show];
+        }else{
+            NSLog(@"Other error code: %zi",error.code);
+        }
+    }];
+}
+
 
 -(void)viewWillAppear:(BOOL)animated {
     
@@ -412,7 +436,6 @@ if (self.imageFromSegue != nil)
         camera.user = self.user;
     }
 }
-
 
 /*
 #pragma mark - Navigation
