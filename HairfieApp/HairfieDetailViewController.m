@@ -230,6 +230,7 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    NSLog(@"HAIRFIE TO DISPLAY %@", [self.hairfie toDictionary]);
     [ARAnalytics pageView:@"AR - Hairfie Detail"];
     [ARAnalytics event:@"AR - Hairfie Detail" withProperties:@{@"Hairfie ID": self.hairfie.id, @"Author": self.hairfie.author.name}];
 }

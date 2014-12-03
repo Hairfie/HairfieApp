@@ -161,7 +161,6 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    
     if (_businessToManage != nil)
     {
         NSString * language = [[NSLocale preferredLanguages] objectAtIndex:0];
