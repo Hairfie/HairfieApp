@@ -52,7 +52,11 @@
 
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
 {
-    newLocation = [[CLLocation alloc] initWithLatitude:_businessMapView.centerCoordinate.latitude longitude: _businessMapView.centerCoordinate.longitude];
+    
+    NSLog(@"COORDS %@", businessClaimed);
+    CLLocationDegrees latitude = [businessClaimed.gps.lat doubleValue];
+    CLLocationDegrees longitude = [businessClaimed.gps.lng doubleValue];
+    newLocation = [[CLLocation alloc] initWithLatitude:latitude longitude:longitude];
     [self reverseGeocodeGps:newLocation];
 }
 

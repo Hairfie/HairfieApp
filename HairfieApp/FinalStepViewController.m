@@ -701,7 +701,7 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"currentUser" object:self];
         [self performSegueWithIdentifier:@"toSalonDetail" sender:self];
     };
-    
+
     [_businessToManage updateWithSuccess:loadSuccessBlock failure:loadErrorBlock];
 }
 

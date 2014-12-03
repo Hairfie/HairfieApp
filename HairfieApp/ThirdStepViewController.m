@@ -25,6 +25,7 @@
     CLLocation *_location;
     AppDelegate *delegate;
     NSString *_country;
+    BOOL isClaimed;
 }
 
  
@@ -39,7 +40,15 @@
                                                  name:@"newLocationNotif"
                                                object:nil];
 
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(nextStepClaim:)
+                                                 name:@"locationUpdated"
+                                               object:nil];
     
+
+    
+    
+    isClaimed = NO;
     UIView *addressPadding = [[UIView alloc] initWithFrame:CGRectMake(0, 0,20, 46)];
     UIView *postalPadding = [[UIView alloc] initWithFrame:CGRectMake(0, 0,20, 46)];
     UIView *cityPadding = [[UIView alloc] initWithFrame:CGRectMake(0, 0,20, 46)];
@@ -74,6 +83,14 @@
 
 -(void) updatedLocation:(NSNotification*)notif {
     _location = (CLLocation*)[[notif userInfo] valueForKey:@"newLocationResult"];
+}
+
+-(void)nextStepClaim:(NSNotification*)notif {
+    
+    NSLog(@"HERE");
+    if (isClaimed == YES)
+        [self performSegueWithIdentifier:@"claimBusinessMapLocation" sender:self];
+
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -129,6 +146,7 @@
                 // Process the placemark.
                 
                 _location =  aPlacemark.location;
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"locationUpdated" object:nil];
                 
                 NSLog(@"newlocation %f,%f", _location.coordinate.latitude, _location.coordinate.longitude);
             }
@@ -176,7 +194,7 @@
         UIAlertView *errorAlert = [[UIAlertView alloc]initWithTitle:NSLocalizedStringFromTable(@"Warning", @"Claim", nil) message:NSLocalizedStringFromTable(@"Please fill in your address !", @"Claim", nil)delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [errorAlert show];
     } else {
-        Address *address = [[Address alloc] initWithStreet:_address.text city:_city.text zipCode:_postalCode.text country:_country];
+        Address *address = [[Address alloc] initWithStreet:_address.text city:_city.text zipCode:_postalCode.text country:@"France"];
         
         
         [self geocodeAddress:[address displayAddress]];
@@ -194,7 +212,7 @@
         void (^loadSuccessBlock)(NSDictionary *) = ^(NSDictionary *results){
             //NSLog(@"results %@", results);
             _claim.id = [results objectForKey:@"id"];
-            [self performSegueWithIdentifier:@"claimBusinessMapLocation" sender:self];
+            isClaimed = YES;
         };
         
         [_claim claimWithSuccess:loadSuccessBlock failure:loadErrorBlock];
