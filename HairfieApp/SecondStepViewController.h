@@ -25,6 +25,10 @@
 @property (nonatomic) BOOL isSalonSet;
 @property (nonatomic) BOOL isPhoneSet;
 
+@property (nonatomic) IBOutlet UILabel *manLbl;
+@property (nonatomic) IBOutlet UILabel *womanLbl;
+@property (nonatomic) IBOutlet UILabel *kidLbl;
+
 -(IBAction)goBack:(id)sender;
 
 @end

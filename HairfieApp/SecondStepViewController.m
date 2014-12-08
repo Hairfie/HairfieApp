@@ -38,7 +38,9 @@
     man = YES;
     woman = YES;
     kids = YES;
-    
+    [self.manLbl setText:NSLocalizedStringFromTable(@"Man", @"Claim", nil)];
+    [self.womanLbl setText:NSLocalizedStringFromTable(@"Woman", @"Claim", nil)];
+    [self.kidLbl setText:NSLocalizedStringFromTable(@"Kid", @"Claim", nil)];
     _phoneBttn.layer.cornerRadius =5;
     _phoneBttn.layer.borderColor = [UIColor lightGreyHairfie].CGColor;
     _phoneBttn.layer.borderWidth = 1;
