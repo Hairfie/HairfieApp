@@ -193,7 +193,6 @@ numberOfRowsInComponent:(NSInteger)component
       inComponent:(NSInteger)component
 {
     _civilityLabel.text = [title objectAtIndex:row];
-    [_firstNameField becomeFirstResponder];
     _titleView.hidden = YES;
     if (row == 0){
         delegate.currentUser.gender = GENDER_FEMALE;
