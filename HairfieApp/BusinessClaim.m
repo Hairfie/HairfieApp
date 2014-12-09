@@ -92,6 +92,13 @@
     
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     NSLog(@"%@", self.id);
+    
+    if (self.gps != nil)
+        [parameters setObject:[self.gps toDictionary] forKey:@"gps"];
+
+    if (self.address != nil)
+        [parameters setObject:[self.address toDictionary]  forKey:@"address"];
+    
     [parameters setObject:self.id forKey:@"businessClaimId"];
     [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/businessClaims/:businessClaimId/submit"
                                                                                  verb:@"POST"]

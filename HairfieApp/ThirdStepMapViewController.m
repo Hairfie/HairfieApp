@@ -52,10 +52,12 @@
 
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
 {
+    newLocation = [[CLLocation alloc] initWithLatitude:self.businessMapView.centerCoordinate.latitude longitude:self.businessMapView.centerCoordinate.longitude];
     
-    CLLocationDegrees latitude = [_claim.gps.lat doubleValue];
-    CLLocationDegrees longitude = [_claim.gps.lng doubleValue];
-    newLocation = [[CLLocation alloc] initWithLatitude:latitude longitude:longitude];
+    GeoPoint *gps = [[GeoPoint alloc] initWithLocation:newLocation];
+    
+    [_claim setGps:gps];
+    
     [self reverseGeocodeGps:newLocation];
 }
 
@@ -86,6 +88,10 @@
                            newCity = city;
                            newZipCode = zip;
                            newCountry = country;
+                        
+                           Address *claimAddress = [[Address alloc] initWithStreet:newStreet city:newCity zipCode:newZipCode country:newCountry];
+                           
+                            [_claim setAddress:claimAddress];
                            
                            NSLog(@"HERE %@ %@ %@ %@", newStreet,newCity,newZipCode, newCountry);
                        }
@@ -97,11 +103,8 @@
 -(IBAction)claimOtherInfos:(id)sender
 {
     
-    GeoPoint *gps = [[GeoPoint alloc] initWithLocation:newLocation];
-    Address *address = [[Address alloc] initWithStreet:newStreet city:newCity zipCode:newZipCode country:newCountry];
+  
    
-    _claim.gps = gps;
-    _claim.address = address;
     NSLog(@"ADRESS %@", [_claim.address displayAddress]);
     void (^loadErrorBlock)(NSError *) = ^(NSError *error){
         NSLog(@"Error : %@", error.description);
