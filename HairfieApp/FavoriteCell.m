@@ -12,6 +12,7 @@
 @implementation FavoriteCell
 {
     Business *hairdressersBusiness;
+    Hairdresser *currentHairdresser;
     UIImageView *hairdresserPicture;
 }
 
@@ -27,9 +28,7 @@
 
 -(void)setupCell:(Hairdresser*)hairdresser
 {
-    
     [self getBusiness:hairdresser];
-    
     [self.hairdresserName setTitle:[hairdresser displayFullName] forState:UIControlStateNormal];
     [self.hairdresserBusiness setTitle:hairdresser.business.name forState:UIControlStateNormal];
     self.hairdresserBusiness.layer.cornerRadius = 5;
@@ -44,6 +43,7 @@
     
    
     [Business getById:hairdresser.business.id withSuccess:^(Business *business) {
+        hairdressersBusiness = business;
         hairdresserPicture = [[UIRoundImageView alloc] initWithFrame:CGRectMake(10, 10, 50, 50)];
         [hairdresserPicture sd_setImageWithURL:[business.owner pictureUrlwithWidth:@100 andHeight:@100]
                                    placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
@@ -61,12 +61,4 @@
 
 }
 
-
--(IBAction)goToBusiness:(id)sender{
-    NSLog(@"BUSINESS");
-}
-
--(IBAction)goToHairdresser:(id)sender{
-    NSLog(@"HAIRDRESSER");
-}
 @end

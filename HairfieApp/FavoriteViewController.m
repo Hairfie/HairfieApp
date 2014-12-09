@@ -11,6 +11,8 @@
 #import "UIViewController+ECSlidingViewController.h"
 #import "FavoriteCell.h"
 #import "Hairdresser.h"
+#import "BusinessViewController.h"
+#import "HairdresserDetailViewController.h"
 
 @interface FavoriteViewController ()
 
@@ -21,6 +23,9 @@
     NSArray *favoriteHairdressers;
     AppDelegate *appDelegate;
     
+    Business *selectedBusiness;
+    Hairdresser *selectedHairdresser;
+    
 }
 
 - (void)viewDidLoad {
@@ -28,11 +33,14 @@
     [self.view addGestureRecognizer:self.slidingViewController.panGesture];
     appDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     
+    
+       
     [self getFavoriteHairdressers];
     
     [self.topView addBottomBorderWithHeight:1.0 andColor:[UIColor lightGrey]];
     // Do any additional setup after loading the view.
 }
+
 
 -(void)getFavoriteHairdressers {
     
@@ -66,6 +74,8 @@
     }
     cell.indentationWidth = 0;
     Hairdresser *hairdresser = [[Hairdresser alloc] initWithDictionary:[[favoriteHairdressers objectAtIndex:indexPath.row]objectForKey:@"hairdresser"]];
+    
+    
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     [cell setupCell:hairdresser];
   
@@ -81,6 +91,37 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 100;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    selectedHairdresser = [[Hairdresser alloc] initWithDictionary:[[favoriteHairdressers objectAtIndex:indexPath.row]objectForKey:@"hairdresser"]];
+    [self getBusiness:selectedHairdresser];
+}
+
+
+-(void)getBusiness:(Hairdresser*)hairdresser{
+    
+    
+    [Business getById:hairdresser.business.id withSuccess:^(Business *business) {
+        selectedBusiness = business;
+        
+        [self performSegueWithIdentifier:@"showHairdresser" sender:self];
+        
+    }
+              failure:^(NSError *error) {
+                  NSLog(@"Failed to retrieve complete business: %@", error.localizedDescription);
+              }];
+    
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"showHairdresser"]){
+        HairdresserDetailViewController *hairdresserVc = [segue destinationViewController];
+        hairdresserVc.hairdresser = selectedHairdresser;
+        hairdresserVc.business = selectedBusiness;
+    }
 }
 
 

@@ -51,8 +51,8 @@
     _closingTimeView.layer.borderWidth = 1;
  
     
-    _closingTime = @"18h30";
-    _openingTime = @"9h00";
+    _closingTime = @"18:30";
+    _openingTime = @"9:00";
     
 }
 
@@ -102,13 +102,13 @@ numberOfRowsInComponent:(NSInteger)component
     if (pickerView == _openingTimePicker)
     {
         NSString *minutes = [halfHour objectAtIndex:[pickerView selectedRowInComponent:1]];
-        _openingTime = [NSString stringWithFormat:@"%ldh%@", [pickerView selectedRowInComponent:0], minutes];
+        _openingTime = [NSString stringWithFormat:@"%zd:%@", [pickerView selectedRowInComponent:0], minutes];
         NSLog(@"Opening Time %@", _openingTime);
     }
     if (pickerView == _closingTimePicker)
     {
         NSString *minutes = [halfHour objectAtIndex:[pickerView selectedRowInComponent:1]];
-        _closingTime = [NSString stringWithFormat:@"%ldh%@", [pickerView selectedRowInComponent:0], minutes];
+        _closingTime = [NSString stringWithFormat:@"%zd:%@", [pickerView selectedRowInComponent:0], minutes];
         NSLog(@"Closing Time %@", _closingTime);
     }
 }
