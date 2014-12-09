@@ -33,6 +33,7 @@
     BOOL uploadInProgress;
     BOOL isFbShareActivated;
     AppDelegate *appDelegate;
+    BOOL isLoaded;
 }
 
 -(void)viewDidLoad
@@ -43,7 +44,7 @@
     ////
     
    
-
+    isLoaded = NO;
     UIColor *placeholder = [[UIColor whiteColor] colorWithAlphaComponent:0.6];
     appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [_emailTextField setValue:placeholder
@@ -117,23 +118,22 @@
         int height = cell.frame.size.height ;
         _salonTableViewHeight.constant = salonTypes.count * height;
         
-        
+        if (isLoaded == NO) {
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:1 inSection:0];
         [self.dataChoice selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
         _isSalon = YES;
         [self tableView:self.dataChoice didSelectRowAtIndexPath:indexPath];
+            isLoaded = YES;
+        }
     }
     if(_salonChosen != nil) {
+        NSLog(@"salon chosen");
         _hairfiePost.business = _salonChosen;
+        if ([_hairfiePost.business.activeHairdressers count] != 0)
+            [self loadHairdressers];
+        _isSalon = YES;
+        [_salonLabelButton setTitle:_hairfiePost.business.name forState:UIControlStateNormal];
     }
-
-//    if (_hairfiePost.business != nil) {
-//        [_salonLabelButton setTitle:_hairfiePost.business.name forState:UIControlStateNormal];
-//        if ([_hairfiePost.business.activeHairdressers count] != 0)
-//            [self loadHairdressers];
-//         [_hairdresserLabelButton setTitle:NSLocalizedStringFromTable(@"Who did this?", @"Post_Hairfie", nil) forState:UIControlStateNormal];
-//        _hairdresserSubview.hidden = NO;
-//    }
 
     [self refreshTwitterShareButton];
 
@@ -292,8 +292,8 @@
     {
         Business *business = [salonTypes objectAtIndex:indexPath.row];
          [_salonLabelButton setTitle:business.name forState:UIControlStateNormal];
-        _salonChosen = business;
-        _hairfiePost.business = _salonChosen;
+       // _salonChosen = business;
+        _hairfiePost.business = business;
         if (business.activeHairdressers.count != 0) {
             [self loadHairdressers];
             [_hairdresserLabelButton setTitle:NSLocalizedStringFromTable(@"Who did this?", @"Post_Hairfie", nil) forState:UIControlStateNormal];

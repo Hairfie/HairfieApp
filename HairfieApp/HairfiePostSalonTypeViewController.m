@@ -228,7 +228,7 @@
     };
     void (^loadSuccessBlock)(NSArray *) = ^(NSArray *models){
         businesses = models;
-        NSLog(@"Businesses : %ld", [businesses count]);
+        NSLog(@"Businesses : %zd", [businesses count]);
         _tableView.hidden = NO;
         
         _tableViewHeight.constant = [businesses count] * 110;
