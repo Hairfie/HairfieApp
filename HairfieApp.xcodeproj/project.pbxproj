@@ -121,6 +121,9 @@
 		B308700C198782AF0080E6D2 /* FavoriteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B308700B198782AF0080E6D2 /* FavoriteViewController.m */; };
 		B308700F198782BC0080E6D2 /* LikeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B308700E198782BC0080E6D2 /* LikeViewController.m */; };
 		B308701719878C030080E6D2 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B308701619878C030080E6D2 /* SettingsViewController.m */; };
+		B315568B1A3725550061FD1E /* picto-fav.png in Resources */ = {isa = PBXBuildFile; fileRef = B315568A1A3725550061FD1E /* picto-fav.png */; };
+		B31556901A372DE30061FD1E /* FavoriteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B315568E1A372DE30061FD1E /* FavoriteCell.m */; };
+		B31556911A372DE30061FD1E /* FavoriteCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B315568F1A372DE30061FD1E /* FavoriteCell.xib */; };
 		B319B5C719C6E77D007F79B0 /* BusinessReviewRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = B319B5C619C6E77D007F79B0 /* BusinessReviewRepository.m */; };
 		B319B5CB19C85E2E007F79B0 /* FirstStepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B319B5CA19C85E2E007F79B0 /* FirstStepViewController.m */; };
 		B319B5CE19C8609E007F79B0 /* SecondStepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B319B5CD19C8609E007F79B0 /* SecondStepViewController.m */; };
@@ -583,6 +586,10 @@
 		B308700E198782BC0080E6D2 /* LikeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LikeViewController.m; sourceTree = "<group>"; };
 		B308701519878C030080E6D2 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		B308701619878C030080E6D2 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		B315568A1A3725550061FD1E /* picto-fav.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "picto-fav.png"; sourceTree = "<group>"; };
+		B315568D1A372DE30061FD1E /* FavoriteCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoriteCell.h; sourceTree = "<group>"; };
+		B315568E1A372DE30061FD1E /* FavoriteCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoriteCell.m; sourceTree = "<group>"; };
+		B315568F1A372DE30061FD1E /* FavoriteCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FavoriteCell.xib; sourceTree = "<group>"; };
 		B3170E761989AC7E00F41EAD /* HairfieApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HairfieApp-Bridging-Header.h"; sourceTree = "<group>"; };
 		B319B5C519C6E77D007F79B0 /* BusinessReviewRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessReviewRepository.h; sourceTree = "<group>"; };
 		B319B5C619C6E77D007F79B0 /* BusinessReviewRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessReviewRepository.m; sourceTree = "<group>"; };
@@ -1290,8 +1297,7 @@
 				B3A12817198A8577004D90BD /* MapKit Config */,
 				B345BAD41995027A007BB61A /* Feed */,
 				B3CCE7751998B6AB00067DB9 /* Hairfie Detail */,
-				B308700A198782AF0080E6D2 /* FavoriteViewController.h */,
-				B308700B198782AF0080E6D2 /* FavoriteViewController.m */,
+				B315568C1A372DBB0061FD1E /* Favorites */,
 				B308700D198782BC0080E6D2 /* LikeViewController.h */,
 				B308700E198782BC0080E6D2 /* LikeViewController.m */,
 				B308701519878C030080E6D2 /* SettingsViewController.h */,
@@ -1322,6 +1328,18 @@
 				B35A82A719A62F40003B1321 /* PricesTableViewCell.xib */,
 			);
 			name = "Custom Cells";
+			sourceTree = "<group>";
+		};
+		B315568C1A372DBB0061FD1E /* Favorites */ = {
+			isa = PBXGroup;
+			children = (
+				B308700A198782AF0080E6D2 /* FavoriteViewController.h */,
+				B308700B198782AF0080E6D2 /* FavoriteViewController.m */,
+				B315568D1A372DE30061FD1E /* FavoriteCell.h */,
+				B315568E1A372DE30061FD1E /* FavoriteCell.m */,
+				B315568F1A372DE30061FD1E /* FavoriteCell.xib */,
+			);
+			name = Favorites;
 			sourceTree = "<group>";
 		};
 		B319B5C819C85E1C007F79B0 /* CLAIM */ = {
@@ -1974,6 +1992,7 @@
 			children = (
 				B3EC30B319E52854006A604C /* picto-add.png */,
 				B3EC30B419E52854006A604C /* picto-like.png */,
+				B315568A1A3725550061FD1E /* picto-fav.png */,
 				B3EC30B519E52854006A604C /* picto-home.png */,
 				B36AC50619DAD22400B8AC13 /* addBusiness-picto.png */,
 				B39BA17719AF46CD00A48BD5 /* picto-logout.png */,
@@ -2132,6 +2151,7 @@
 				B3FB10B619B09DA600CADCFD /* man-picto.png in Resources */,
 				B34582FF19F7DB2A00A91F5A /* userprofile-filter-button.png in Resources */,
 				B3A2F48E19F4FEF000BD9354 /* ClaimServiceTableViewCell.xib in Resources */,
+				B315568B1A3725550061FD1E /* picto-fav.png in Resources */,
 				15E3D2C919D075CC0065A07E /* Post_Hairfie.strings in Resources */,
 				158FCA9519FE54110001F86C /* fb-share-on.png in Resources */,
 				B3AD59C2198B9D3500909ADE /* picto-list-man.png in Resources */,
@@ -2247,6 +2267,7 @@
 				B3B29D4E19EE8E7D00C293C6 /* selected_star.png in Resources */,
 				B342315D1988E1DC0058866B /* settings-picto.png in Resources */,
 				B3844E3E19FE83A20083CE0D /* TagsTableViewCell.xib in Resources */,
+				B31556911A372DE30061FD1E /* FavoriteCell.xib in Resources */,
 				1576492919C9B8BA00DDC141 /* help-hairfie.png in Resources */,
 				B3FA620819F7B4B7002D8B6F /* UserProfile.strings in Resources */,
 				15E3D2C719D075CC0065A07E /* Login_Sign_Up.strings in Resources */,
@@ -2529,6 +2550,7 @@
 				B3F6B70719F69A3900EF4B5C /* SuggestHairdresserViewController.m in Sources */,
 				B3615B3819AF242800F1141D /* User.m in Sources */,
 				15697B31199BB03800DA83FE /* UIImage+Resize.m in Sources */,
+				B31556901A372DE30061FD1E /* FavoriteCell.m in Sources */,
 				71A564E91A1A3A9100398C7B /* CALayer+XibConfiguration.m in Sources */,
 				B36AC50519DAB47E00B8AC13 /* STCollapseTableView.m in Sources */,
 				B308701719878C030080E6D2 /* SettingsViewController.m in Sources */,

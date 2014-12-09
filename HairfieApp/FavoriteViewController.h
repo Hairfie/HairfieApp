@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FavoriteViewController : UIViewController <UINavigationControllerDelegate>
+@interface FavoriteViewController : UIViewController <UINavigationControllerDelegate, UITableViewDataSource, UITableViewDelegate>
+
+@property (nonatomic) IBOutlet UIView *topView;
+@property (nonatomic) IBOutlet UITableView *tableView;
+
+@property (nonatomic) IBOutlet NSLayoutConstraint *tableViewHeight;
 
 @end

@@ -70,7 +70,9 @@
     else
         [temp setObject:@false forKey:@"active"];
     
-
+    if (nil != self.numHairfies){
+        [temp setObject:self.numHairfies forKey:@"numHairfies"];
+    }
     return [[NSDictionary alloc] initWithDictionary:temp];
 }
 

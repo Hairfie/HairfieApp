@@ -178,17 +178,18 @@
 - (void)setupMenu
 {
     _menuItems = [[NSMutableArray alloc] init];
-    _menuItems = [NSMutableArray arrayWithObjects: NSLocalizedStringFromTable(@"Home", @"Menu", nil), NSLocalizedStringFromTable(@"Likes", @"Menu", nil), nil];
+    _menuItems = [NSMutableArray arrayWithObjects: NSLocalizedStringFromTable(@"Home", @"Menu", nil), NSLocalizedStringFromTable(@"Likes", @"Menu", nil), NSLocalizedStringFromTable(@"Favorites", @"Menu", nil), nil];
     _menuPictos = [[NSMutableArray alloc] init];
     [_menuPictos addObject:@"picto-home.png"];
     [_menuPictos addObject:@"picto-like.png"];
+    [_menuPictos addObject:@"picto-fav.png"];
     data = [[NSMutableArray alloc] init];
     for (int i = 0 ; i < 3 ; i++)
     {
         NSMutableArray* section = [[NSMutableArray alloc] init];
         if (i == 0)
         {
-            for (int j = 0 ; j < 2 ; j++)
+            for (int j = 0 ; j < 3 ; j++)
             {
                 [section addObject:[NSString stringWithFormat:@"%@", [_menuItems objectAtIndex:j]]];
             }
@@ -242,7 +243,6 @@
     if (indexPath.section == 0)
     {
         cell.menuItem.text = [_menuItems objectAtIndex:indexPath.row];
-      
         [cell.menuPicto setImage:[UIImage imageNamed:[_menuPictos objectAtIndex:indexPath.row]]];
            cell.indentationWidth = 0;
     }
@@ -305,7 +305,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section == 0)
-        return 2;
+        return 3;
     if (section == 1)
         return 1 + [managedBusinesses count];
     else
@@ -353,6 +353,10 @@
         if (indexPath.row == 1)
         {
             [self performSegueWithIdentifier:@"LikeSegue" sender:self];
+        }
+        if (indexPath.row == 2)
+        {
+            [self performSegueWithIdentifier:@"FavoriteSegue" sender:self];
         }
     }
     if (indexPath.section == 1)

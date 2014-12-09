@@ -253,6 +253,21 @@
     }
 }
 
++(void)getFavoriteHairdressers:(NSString *)anId
+                       success:(void (^)(NSArray *result))aSuccessHandler
+                       failure:(void (^)(NSError *error))aFailureHandler
+{
+    [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/users/:id/favorite-hairdressers"
+                                                                                 verb:@"GET"]
+                                        forMethod:@"users.get"];
+    
+    [[[self class] repository] invokeStaticMethod:@"get"
+                                       parameters:@{@"id":anId}
+                                          success:aSuccessHandler
+                                          failure:aFailureHandler];
+
+}
+
 +(void)getById:(NSString *)anId
      success:(void (^)(User *user))aSuccessHandler
      failure:(void (^)(NSError *error))aFailureHandler
