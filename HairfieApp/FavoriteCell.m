@@ -61,4 +61,10 @@
 
 }
 
+-(IBAction)goToBusiness:(id)sender
+{
+    NSDictionary *notificationDic = @{@"businessId":hairdressersBusiness.id};
+    NSNotificationCenter* nc = [NSNotificationCenter defaultCenter];
+    [nc postNotificationName:@"goToBusiness" object:self userInfo:notificationDic];
+}
 @end

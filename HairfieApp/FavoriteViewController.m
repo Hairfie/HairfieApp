@@ -25,6 +25,7 @@
     
     Business *selectedBusiness;
     Hairdresser *selectedHairdresser;
+    BOOL isBusiness;
     
 }
 
@@ -33,15 +34,23 @@
     [self.view addGestureRecognizer:self.slidingViewController.panGesture];
     appDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     
-    
-       
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(segueToBusiness:) name:@"goToBusiness" object:nil];
+     
     [self getFavoriteHairdressers];
     
     [self.topView addBottomBorderWithHeight:1.0 andColor:[UIColor lightGrey]];
     // Do any additional setup after loading the view.
 }
 
-
+-(void)segueToBusiness:(NSNotification*)notification
+{
+    NSDictionary *notificationInfo = notification.userInfo;
+    NSString *businessId = [notificationInfo objectForKey:@"businessId"];
+    isBusiness = YES;
+    [self getBusiness:businessId];
+    
+}
+     
 -(void)getFavoriteHairdressers {
     
     
@@ -95,18 +104,22 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSLog(@"test %zd", indexPath.row);
     selectedHairdresser = [[Hairdresser alloc] initWithDictionary:[[favoriteHairdressers objectAtIndex:indexPath.row]objectForKey:@"hairdresser"]];
-    [self getBusiness:selectedHairdresser];
+    isBusiness = NO;
+    [self getBusiness:selectedHairdresser.business.id];
 }
 
 
--(void)getBusiness:(Hairdresser*)hairdresser{
+-(void)getBusiness:(NSString*)businessId{
     
     
-    [Business getById:hairdresser.business.id withSuccess:^(Business *business) {
+    [Business getById:businessId withSuccess:^(Business *business) {
         selectedBusiness = business;
-        
-        [self performSegueWithIdentifier:@"showHairdresser" sender:self];
+        if (isBusiness == YES)
+            [self performSegueWithIdentifier:@"showBusiness" sender:self];
+        else
+            [self performSegueWithIdentifier:@"showHairdresser" sender:self];
         
     }
               failure:^(NSError *error) {
@@ -121,6 +134,11 @@
         HairdresserDetailViewController *hairdresserVc = [segue destinationViewController];
         hairdresserVc.hairdresser = selectedHairdresser;
         hairdresserVc.business = selectedBusiness;
+    }
+    if ([segue.identifier isEqualToString:@"showBusiness"]) {
+        BusinessViewController *businessVc = [segue destinationViewController];
+        
+        businessVc.business = selectedBusiness;
     }
 }
 
