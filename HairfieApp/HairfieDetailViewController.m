@@ -39,6 +39,7 @@
     UILabel *priceLabel;
     Hairdresser *hairfieHairdresser;
     Business *hairdresserBusiness;
+    BOOL didLikeWithDoubleTap;
 }
 
 - (void)viewDidLoad
@@ -230,7 +231,6 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    NSLog(@"HAIRFIE TO DISPLAY %@", [self.hairfie toDictionary]);
     [ARAnalytics pageView:@"AR - Hairfie Detail"];
     [ARAnalytics event:@"AR - Hairfie Detail" withProperties:@{@"Hairfie ID": self.hairfie.id, @"Author": self.hairfie.author.name}];
 }
@@ -613,8 +613,10 @@
 
 -(void)doubleTap:(UITapGestureRecognizer *)sender
 {
+    if (likeButton.selected == NO) {
     if (sender.state == UIGestureRecognizerStateRecognized) {
         [self likeButtonHandler:nil];
+    }
     }
 }
 
