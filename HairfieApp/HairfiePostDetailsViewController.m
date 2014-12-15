@@ -78,7 +78,7 @@
    
 
     [_priceTextField textFieldWithPhoneKeyboard];
-    [_descView addBottomBorderWithHeight:5 andColor:[UIColor salonDetailTab]];
+    [_descView addBottomBorderWithHeight:3 andColor:[UIColor salonDetailTab]];
      [_topView addBottomBorderWithHeight:1 andColor:[UIColor lightGrey]];
     [self uploadHairfiePicture];
 }

@@ -244,7 +244,7 @@
     
     if (aButton == self.hairfieBttn) {
         self.hairfieView.hidden = NO;
-         [aButton setBackgroundColor:[UIColor lightGreyHairfie]];
+        [aButton setBackgroundColor:[UIColor lightGreyHairfie]];
         [bottomBorder setFrame:CGRectMake(0, aButton.frame.size.height, aButton.frame.size.width - 1, 3)];
         [self.reviewBttn setBackgroundColor:[UIColor clearColor]];
         if (userHairfies.count % 2 == 1)

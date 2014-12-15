@@ -82,8 +82,13 @@
 }
 
 +(UIColor *)salonDetailTab {
-    return [UIColor colorWithRed:254/255.0f green:91/255.0f blue:95/255.0f alpha:1];
+    return [UIColor colorWithRed:250/255.0f green:93/255.0f blue:100/255.0f alpha:1];
 }
+
++(UIColor *)lightBlackTab {
+    return [UIColor colorWithRed:0/255.0f green:0/255.0f blue:0/255.0f alpha:0.3];
+}
+
 
 + (UIImage *)imageWithColor:(UIColor *)color
 {

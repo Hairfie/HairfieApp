@@ -351,13 +351,16 @@
     BusinessReusableView *userHeader = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"businessHeaderView" forIndexPath:indexPath];
     
     headerViewController = [[SalonDetailHeaderViewController alloc] initWithNibName:@"SalonDetailHeaderViewController" bundle:nil];
-  
-    if (!isSetup) {
     headerViewController.business = self.business;
-    [userHeader addSubview:headerViewController.view];
+
+    
+    
+    if (!isSetup) {
+        NSLog(@"SETUP HEADER");
+        [userHeader addSubview:headerViewController.view];
         isSetup = YES;
     }
-    
+   
     [userHeader setupView];
     headerView = userHeader;
     return headerView;
@@ -367,7 +370,6 @@
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     if (isHairdressersTab == YES)
         return CGSizeMake(320, 45);
     if (isServicesTab == YES)
@@ -384,7 +386,6 @@
     }
     else
         return CGSizeMake(320, 127);
-   
 }
 
 

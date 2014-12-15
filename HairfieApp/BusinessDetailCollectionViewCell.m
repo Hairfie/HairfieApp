@@ -181,7 +181,7 @@
     UIButton *phoneBtn=[UIButton buttonWithType:UIButtonTypeRoundedRect];
     
     phoneBtn.frame= CGRectMake(35, 85, 135, 20);
-    phoneBtn.backgroundColor = [UIColor colorWithRed:250/255.0f green:66/255.0f blue:77/255.0f alpha:1];
+    phoneBtn.backgroundColor = [UIColor colorWithRed:250/255.0f green:93/255.0f blue:100/255.0f alpha:1];
     phoneBtn.layer.cornerRadius = 5;
     phoneBtn.layer.masksToBounds = YES;
     

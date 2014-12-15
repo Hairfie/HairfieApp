@@ -155,6 +155,7 @@
     CustomCollectionViewCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:@"hairfieCell"
                                                                                     forIndexPath:indexPath];
 
+    NSLog(@"INDEX %zd", indexPath.row);
     [cell setHairfie:[hairfieLikes[indexPath.row] hairfie]];
 
     return cell;

@@ -24,9 +24,6 @@
 
 -(void)setHairfie:(Hairfie *)hairfie
 {
-
-    
-    
     self.profilePicture.layer.borderWidth = 1.0f;
     self.profilePicture.layer.borderColor = [UIColor whiteColor].CGColor;
     [self.profilePicture setBackgroundColor:[UIColor salonDetailTab]];

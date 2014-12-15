@@ -51,7 +51,6 @@ import QuartzCore
         var superFrame = self.view.frame;
         
         nameLabel.text = business.name;
-        
         if (Int(business.numReviews) > 0) {
             ratingView.rating = Float(business.ratingBetween(0, and: 5))
         } else {

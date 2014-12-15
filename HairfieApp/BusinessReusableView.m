@@ -25,6 +25,16 @@
     
     if (!isSetup) {
         
+        self.hairdressersBttn.layer.borderWidth = 1;
+        self.detailsBttn.layer.borderWidth = 1;
+        self.hairfiesBttn.layer.borderWidth = 1;
+        self.servicesBttn.layer.borderWidth = 1;
+       
+        self.hairdressersBttn.layer.borderColor = [UIColor lightGreyHairfie].CGColor;
+        self.detailsBttn.layer.borderColor = [UIColor lightGreyHairfie].CGColor;
+        self.hairfiesBttn.layer.borderColor = [UIColor lightGreyHairfie].CGColor;
+        self.servicesBttn.layer.borderColor = [UIColor lightGreyHairfie].CGColor;
+        
         UIView *bottomBorder = [[UIView alloc] initWithFrame:CGRectMake(0, self.detailsBttn.frame.size.height, self.detailsBttn.frame.size.width, 4)];
         bottomBorder.backgroundColor = [UIColor salonDetailTab];
         bottomBorder.tag = 1;
@@ -45,10 +55,12 @@
     NSString *imageName;
     if (isActive) {
         imageName = [NSString stringWithFormat:@"tab-business-%@-active", anImage];
+        [aButton setBackgroundColor:[UIColor colorWithRed:246/255.0f green:247/255.0f blue:249/255.0f alpha:1]];
     } else {
         imageName = [NSString stringWithFormat:@"tab-business-%@", anImage];
+         [aButton setBackgroundColor:[UIColor whiteColor]];
     }
-    
+   
     [aButton setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
 }
 

@@ -20,6 +20,7 @@
 +(UIColor *)greenHairfie;
 +(UIColor *)whiteHairfie;
 +(UIColor *)lightGreyHairfie;
++(UIColor *)lightBlackTab;
 
 // nouvelle charte
 
