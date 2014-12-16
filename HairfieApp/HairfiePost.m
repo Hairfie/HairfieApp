@@ -37,6 +37,11 @@
               andContainer:(NSString *)container
 {
     _picture = [[Picture alloc] initWithImage:image andContainer:container];
+    
+    if (self.pictures.count == 0)
+        self.pictures = [[NSMutableArray alloc] init];
+    [self.pictures addObject:_picture];
+    
 }
 
 -(void)setPrice:(id)aPrice
@@ -49,7 +54,7 @@
     [self.picture uploadWithSuccess:aSuccessHandler failure:aFailureHandler];
 }
 
--(void)saveWithSuccess:(void(^)(Hairfie *hairfie))aSuccessHandler
+-(void)saveWithSuccess:(void(^)())aSuccessHandler
                failure:(void(^)(NSError *error))aFailureHandler
 {
     // TODO: move hairfie save to Hairfie class

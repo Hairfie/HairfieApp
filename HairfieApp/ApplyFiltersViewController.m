@@ -8,6 +8,7 @@
 
 #import "ApplyFiltersViewController.h"
 #import "SignUpViewController.h"
+#import "CameraOverlayViewController.h"
 #import "HairfiePostDetailsViewController.h"
 #import "UserProfileViewController.h"
 #import "UIImage+Filters.h"
@@ -16,6 +17,7 @@
 @implementation ApplyFiltersViewController
 {
     UIImage *original;
+    UIImage *original2;
     UIImage *output;
     UIImage *sepia;
     UIImage *curve;
@@ -25,42 +27,52 @@
     UIImage *process;
     UIImage *vignette;
     UIImage *vintage;
+
     BOOL frontCamera;
 }
 
-@synthesize imageView;
+@synthesize imageView, hairfiePics;
 
 
 -(void)viewDidLoad
 {
-    /// SCROLL VIEW SIZE
+    /// FILTERS SCROLL VIEW SIZE
     [_scrollView setContentSize:CGSizeMake(720, 78)];
     ///
-    
-   
-    
-    if(self.isHairfie == YES)
-        original = [self squareCropImage:self.hairfiePost.picture.image ToSideLength:320];
+      hairfiePics = [[NSMutableArray alloc] init];
+
+    if(self.isHairfie == YES){
+        
+        
+       
+        Picture *firstPic = self.hairfiePost.picture;
+        original = [self squareCropImage:firstPic.image ToSideLength:320];
+      
+       
+        self.firstImageView.image = original;
+        self.firstImageView.layer.cornerRadius = 2;
+        self.firstImageView.layer.masksToBounds = YES;
+        [hairfiePics addObject:firstPic];
+        
+        NSLog(@"INIT FILTERS %@", hairfiePics);
+
+    }
     else
         original = [self squareCropImage:self.userPicture ToSideLength:320];
+   
     imageView.image = original;
   
+    
+    self.cancelBttn.layer.cornerRadius = 5;
+    self.cancelBttn.layer.masksToBounds = YES;
+    
     output = original;
     _nextBttn.layer.cornerRadius = 5;
     NSData *imgData = [[NSData alloc] initWithData:UIImageJPEGRepresentation((original), 0.5)];
     //int imageSize   = imgData.length;
     NSLog(@"size of image in KB: %f ", imgData.length/1024.0);
     _filtersView.hidden = NO;
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        sepia = [original toSepia];
-        curve = [original curveFilter];
-        transfer = [original CIPhotoEffectTransfer];
-        instant = [original CIPhotoEffectInstant];
-        photoEffectNoir = [original CIPhotoEffectNoir];
-        process = [original CIPhotoEffectProcess];
-        vignette = [original vignetteWithRadius:0 andIntensity:16];
-        vintage = [original vintageFilter];
-    });
+    [self setupFilters];
     
     UIImage *instantImg = [UIImage imageNamed:@"original.jpeg"];
    
@@ -87,10 +99,128 @@
     
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    if (self.isSecondHairfie == YES)
+    {
+        Picture *secondPic = self.hairfiePost.picture;
+        
+       
+        original = [self squareCropImage:secondPic.image ToSideLength:320];
+        
+        self.secondImageView.image = original;
+        self.secondImageView.layer.cornerRadius = 2;
+        self.secondImageView.layer.masksToBounds = YES;
+        imageView.image = original;
+        output = original;
+        if (hairfiePics.count == 1)
+            [hairfiePics addObject:secondPic];
+        else {
+            [hairfiePics removeObjectAtIndex:1];
+            [hairfiePics insertObject:secondPic atIndex:1];
+        }
+    }
+    
+    [self setupFilters];
+
+    
+}
+
 -(IBAction)goBack:(id)sender
 {
     [[self.navigationController.viewControllers objectAtIndex:[self.navigationController.viewControllers count]-2] viewWillAppear:YES];;
+    NSLog(@"nav controllers %@", self.navigationController.viewControllers);
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(IBAction)addSecondPicture:(id)sender
+{
+    if (self.isSecondHairfie == NO)
+        [self performSegueWithIdentifier:@"addSecondPicture" sender:self];
+    else
+    {
+        Picture *picture = [hairfiePics objectAtIndex:1];
+        original = [self squareCropImage:picture.image ToSideLength:320];
+        imageView.image = original;
+        output = original;
+        self.isSecondHairfie = YES;
+        self.isHairfie = NO;
+        [self setupFilters];
+    }
+}
+
+-(IBAction)modifyFirstPicture:(id)sender {
+    Picture *picture = [hairfiePics objectAtIndex:0];
+    original = [self squareCropImage:picture.image ToSideLength:320];
+    imageView.image = original;
+    output = original;
+    self.isHairfie = YES;
+    self.isSecondHairfie = NO;
+    [self setupFilters];
+}
+
+-(void)setupFilters{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        sepia = [original toSepia];
+        curve = [original curveFilter];
+        transfer = [original CIPhotoEffectTransfer];
+        instant = [original CIPhotoEffectInstant];
+        photoEffectNoir = [original CIPhotoEffectNoir];
+        process = [original CIPhotoEffectProcess];
+        vignette = [original vignetteWithRadius:0 andIntensity:16];
+        vintage = [original vintageFilter];
+    });
+}
+
+
+
+-(IBAction)showMenuActionSheet:(id)sender
+{
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                             delegate:self
+                                                    cancelButtonTitle:NSLocalizedStringFromTable(@"Cancel", @"Salon_Detail", nil)
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles: NSLocalizedStringFromTable(@"Delete", @"Post_Hairfie",nil),nil];
+    
+    [actionSheet showInView:self.view];
+}
+
+
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (1 == buttonIndex) return; // it's the cancel button
+    
+    else
+    {
+        [self deletePicture];
+    }
+}
+
+
+-(void)deletePicture{
+    if (hairfiePics.count == 2)
+    {
+     
+        if (self.isSecondHairfie == YES)
+        {
+            [hairfiePics removeObjectAtIndex:1];
+            [self.secondImageView setImage:[UIImage imageNamed:@"add-second-picture.png"]];
+           
+        }
+        
+        if (self.isHairfie == YES)
+            
+        {
+            Picture *picture = [hairfiePics objectAtIndex:1];
+            
+            [hairfiePics removeAllObjects];
+            [hairfiePics addObject:picture];
+            [self.firstImageView setImage:picture.image];
+            [self.secondImageView setImage:[UIImage imageNamed:@"add-second-picture.png"]];
+        }
+         [self modifyFirstPicture:self];
+    }
 }
 
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -110,8 +240,6 @@
         
     
         [signUp setImageFromSegue:output];
-        NSLog(@"image %@", signUp.imageFromSegue);
-       // signUp.imageFromSegue = output;
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             UIImageWriteToSavedPhotosAlbum(output, nil, nil, nil);
         });
@@ -124,7 +252,14 @@
         userProfile.user = self.user;
         userProfile.isCurrentUser = YES;
     }
+    if ([segue.identifier isEqualToString:@"addSecondPicture"])
+    {
+        CameraOverlayViewController *cameraVc = [segue destinationViewController];
+        
+        cameraVc.isSecondHairfie = YES;
+    }
 }
+
 
 
 

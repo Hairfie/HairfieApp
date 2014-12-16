@@ -35,6 +35,7 @@
 
 -(void) viewWillAppear:(BOOL)animated {
     [ARAnalytics pageView:@"AR - Post Hairfie step #1 - Camera Overlay"];
+        NSLog(@"nav controller %@", self.navigationController.viewControllers);
     [self setupImagePicker];
 }
 
@@ -135,9 +136,6 @@
     _imagePicker.cameraOverlayView = overlayView;
 }
 
-
-
-
 -(void) addLastPictureFromLibrary {
     ALAssetsLibrary *assetsLibrary = [[ALAssetsLibrary alloc] init];
     [assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupSavedPhotos
@@ -230,16 +228,30 @@
 {
     [self SetImageTakenForSegue:info];
  
-    if (self.isHairfie == YES || self.isProfile == YES)
+    if (self.isSecondHairfie == YES)
+    {
+        ApplyFiltersViewController *filtersVc = [self.navigationController.viewControllers objectAtIndex:[self.navigationController.viewControllers count]-2];
+
+        filtersVc.isSecondHairfie = YES;
+        filtersVc.isHairfie = NO;
+        [filtersVc.hairfiePost setPictureWithImage:imageTaken andContainer:@"hairfies"];
+        
+
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    else if (self.isHairfie == YES || self.isProfile == YES)
         [self performSegueWithIdentifier:@"cameraFilters" sender:self];
-    else
+    else if (self.isHairfie == NO)
         [self performSegueWithIdentifier:@"validatePicture" sender:self];
    
     [picker dismissViewControllerAnimated:NO completion:nil];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    NSLog(@"Cancel did ");
     [picker dismissViewControllerAnimated:NO completion:nil];
+
+    [self.navigationController popViewControllerAnimated:YES];
     [self.navigationController popViewControllerAnimated:YES];
 
 }
@@ -269,6 +281,10 @@
         [_hairfiePost setPictureWithImage:imageTaken andContainer:@"hairfies"];
         filters.hairfiePost = _hairfiePost;
         filters.isHairfie = YES;
+        if(self.isSecondHairfie == YES) {
+            filters.isSecondHairfie = YES;
+            filters.isHairfie = NO;
+        }
         if (self.isProfile == YES) {
             filters.isProfile = YES;
             filters.user = self.user;

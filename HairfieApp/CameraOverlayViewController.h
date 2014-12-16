@@ -22,6 +22,7 @@
 @property (nonatomic) IBOutlet UIImage *imageTaken;
 
 @property (nonatomic) BOOL isHairfie;
+@property (nonatomic) BOOL isSecondHairfie;
 
 // change profile pic
 @property (nonatomic) BOOL isProfile;
