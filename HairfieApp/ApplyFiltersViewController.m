@@ -27,7 +27,7 @@
     UIImage *process;
     UIImage *vignette;
     UIImage *vintage;
-
+    NSMutableDictionary *filteredHairfies;
     BOOL frontCamera;
 }
 
@@ -39,8 +39,9 @@
     /// FILTERS SCROLL VIEW SIZE
     [_scrollView setContentSize:CGSizeMake(720, 78)];
     ///
-      hairfiePics = [[NSMutableArray alloc] init];
-
+    hairfiePics = [[NSMutableArray alloc] init];
+    filteredHairfies = [[NSMutableDictionary alloc] init];
+    
     if(self.isHairfie == YES){
         
         
@@ -50,12 +51,10 @@
       
        
         self.firstImageView.image = original;
+        [self.firstImageView setContentMode:UIViewContentModeScaleAspectFill];
         self.firstImageView.layer.cornerRadius = 2;
         self.firstImageView.layer.masksToBounds = YES;
         [hairfiePics addObject:firstPic];
-        
-        NSLog(@"INIT FILTERS %@", hairfiePics);
-
     }
     else
         original = [self squareCropImage:self.userPicture ToSideLength:320];
@@ -63,16 +62,17 @@
     imageView.image = original;
   
     
-    self.cancelBttn.layer.cornerRadius = 5;
-    self.cancelBttn.layer.masksToBounds = YES;
-    
     output = original;
-    _nextBttn.layer.cornerRadius = 5;
+  
+    [filteredHairfies setObject:@"original" forKey:@"filter1"];
+
+    _nextBttn.layer.cornerRadius = 2;
+    self.editBttn.layer.cornerRadius = self.editBttn.frame.size.height / 2;;
+    self.editBttn.layer.masksToBounds = YES;
     NSData *imgData = [[NSData alloc] initWithData:UIImageJPEGRepresentation((original), 0.5)];
     //int imageSize   = imgData.length;
     NSLog(@"size of image in KB: %f ", imgData.length/1024.0);
     _filtersView.hidden = NO;
-    [self setupFilters];
     
     UIImage *instantImg = [UIImage imageNamed:@"original.jpeg"];
    
@@ -113,15 +113,18 @@
         self.secondImageView.layer.masksToBounds = YES;
         imageView.image = original;
         output = original;
-        if (hairfiePics.count == 1)
+        if (hairfiePics.count == 1) {
             [hairfiePics addObject:secondPic];
-        else {
+        }else {
             [hairfiePics removeObjectAtIndex:1];
             [hairfiePics insertObject:secondPic atIndex:1];
+            self.isHairfie = NO;
+            
         }
+        [filteredHairfies setObject:@"original" forKey:@"filter2"];
     }
     
-    [self setupFilters];
+  //  [self setupFilters];
 
     
 }
@@ -135,44 +138,59 @@
 
 -(IBAction)addSecondPicture:(id)sender
 {
-    if (self.isSecondHairfie == NO)
+    if (self.hairfiePics.count == 1)
         [self performSegueWithIdentifier:@"addSecondPicture" sender:self];
     else
     {
         Picture *picture = [hairfiePics objectAtIndex:1];
         original = [self squareCropImage:picture.image ToSideLength:320];
-        imageView.image = original;
+        imageView.image = [self setImage:picture.image WithFilter:[filteredHairfies objectForKey:@"filter2"]];
         output = original;
-        self.isSecondHairfie = YES;
-        self.isHairfie = NO;
-        [self setupFilters];
+        if (self.isSecondHairfie == NO) {
+            self.isSecondHairfie = YES;
+            self.isHairfie = NO;
+        }
     }
 }
 
 -(IBAction)modifyFirstPicture:(id)sender {
+    
     Picture *picture = [hairfiePics objectAtIndex:0];
-    original = [self squareCropImage:picture.image ToSideLength:320];
-    imageView.image = original;
+    original =[self squareCropImage:picture.image ToSideLength:320];
+    imageView.image = [self setImage:imageView.image WithFilter:[filteredHairfies objectForKey:@"filter1"]];
     output = original;
-    self.isHairfie = YES;
-    self.isSecondHairfie = NO;
-    [self setupFilters];
+
+    if (self.isHairfie == NO) {
+        self.isHairfie = YES;
+        self.isSecondHairfie = NO;
+    }
+    
 }
 
--(void)setupFilters{
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        sepia = [original toSepia];
-        curve = [original curveFilter];
-        transfer = [original CIPhotoEffectTransfer];
-        instant = [original CIPhotoEffectInstant];
-        photoEffectNoir = [original CIPhotoEffectNoir];
-        process = [original CIPhotoEffectProcess];
-        vignette = [original vignetteWithRadius:0 andIntensity:16];
-        vintage = [original vintageFilter];
-    });
+-(UIImage*)setImage:(UIImage*)image WithFilter:(NSString*)filterName
+{
+    if ([filterName isEqualToString:@"original"])
+        image = original;
+    else if ([filterName isEqualToString:@"sepia"])
+        image = [original toSepia];
+    else if ([filterName isEqualToString:@"transfer"])
+        image = [original CIPhotoEffectTransfer];
+    else if ([filterName isEqualToString:@"curve"])
+        image = [original curveFilter];
+    else if ([filterName isEqualToString:@"instant"])
+        image = [original CIPhotoEffectInstant];
+    else if ([filterName isEqualToString:@"process"])
+        image = [original CIPhotoEffectProcess];
+    else if ([filterName isEqualToString:@"bw"])
+        image = [original CIPhotoEffectNoir];
+    else if ([filterName isEqualToString:@"vignette"])
+        image = [original vignetteWithRadius:0 andIntensity:16];
+    else if ([filterName isEqualToString:@"vintage"])
+        image = [original vintageFilter];
+    
+    return image;
+    
 }
-
-
 
 -(IBAction)showMenuActionSheet:(id)sender
 {
@@ -199,27 +217,32 @@
 
 
 -(void)deletePicture{
-    if (hairfiePics.count == 2)
-    {
+    if (hairfiePics.count == 2) {
      
-        if (self.isSecondHairfie == YES)
-        {
+        if (self.isSecondHairfie == YES) {
+         
             [hairfiePics removeObjectAtIndex:1];
             [self.secondImageView setImage:[UIImage imageNamed:@"add-second-picture.png"]];
-           
-        }
-        
-        if (self.isHairfie == YES)
+            self.isSecondHairfie = NO;
+            [filteredHairfies removeObjectForKey:@"filter2"];
+            [self modifyFirstPicture:self];
+        } else {
             
-        {
             Picture *picture = [hairfiePics objectAtIndex:1];
-            
+            NSString *filter = [filteredHairfies objectForKey:@"filter2"];
+            [filteredHairfies removeAllObjects];
             [hairfiePics removeAllObjects];
             [hairfiePics addObject:picture];
-            [self.firstImageView setImage:picture.image];
+            [filteredHairfies setObject:filter forKey:@"filter1"];
+            self.firstImageView.image = picture.image;
             [self.secondImageView setImage:[UIImage imageNamed:@"add-second-picture.png"]];
+            [self modifyFirstPicture:self];
+            
+           
         }
-         [self modifyFirstPicture:self];
+    } else {
+        [[self.navigationController.viewControllers objectAtIndex:[self.navigationController.viewControllers count]-2] viewWillAppear:YES];
+        [self.navigationController popViewControllerAnimated:YES];
     }
 }
 
@@ -228,8 +251,29 @@
     if ([segue.identifier isEqualToString:@"setupHairfie"])
     {
         HairfiePostDetailsViewController *details = [segue destinationViewController];
+        
+        if (hairfiePics.count == 2)
+        {
+            Picture *first = [hairfiePics objectAtIndex:0];
+            Picture *second = [hairfiePics objectAtIndex:1];
+            
+            UIImage *firstOutput = [self setImage:first.image WithFilter:[filteredHairfies objectForKey:@"filter1"]];
+            UIImage *secondOutput =[self setImage:second.image WithFilter:[filteredHairfies objectForKey:@"filter2"]];
+            NSArray *hairfiePictures = [[NSArray alloc] initWithObjects:firstOutput,secondOutput, nil];
+            _hairfiePost.pictures = hairfiePictures;
+            
+        }
+        else {
+            Picture *first = [hairfiePics objectAtIndex:0];
+            UIImage *firstOutput = [self setImage:first.image WithFilter:[filteredHairfies objectForKey:@"filter1"]];
+            NSArray *hairfiePictures = [[NSArray alloc] initWithObjects:firstOutput, nil];
+            _hairfiePost.pictures = hairfiePictures;
+
+        }
+            
         [_hairfiePost setPictureWithImage:output andContainer:@"hairfies"];
         [details setHairfiePost:_hairfiePost];
+        
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             UIImageWriteToSavedPhotosAlbum(output, nil, nil, nil);
@@ -314,57 +358,130 @@
 }
 
 -(IBAction)sepia:(id)sender {
-    imageView.image = sepia;
+    
+    imageView.image = [original toSepia];
+    //imageView.image = sepia;
     imageView.contentMode = UIViewContentModeScaleAspectFill;
     output = sepia;
+    
+    if (self.isSecondHairfie)
+    {
+        [filteredHairfies setObject:@"sepia" forKey:@"filter2"];
+    }
+    else
+        [filteredHairfies setObject:@"sepia" forKey:@"filter1"];
 }
 
 -(IBAction)transfer:(id)sender
 {
-    imageView.image = transfer;
+    
+    imageView.image = [original CIPhotoEffectTransfer];
+   // imageView.image = transfer;
     imageView.contentMode = UIViewContentModeScaleAspectFill;
     output = transfer;
+    
+    if (self.isSecondHairfie)
+    {
+        [filteredHairfies setObject:@"transfer" forKey:@"filter2"];
+    }
+    else
+        [filteredHairfies setObject:@"transfer" forKey:@"filter1"];
+    
+
 }
 -(IBAction)curve:(id)sender {
-    imageView.image = curve;
+    
+    
+    imageView.image = [original curveFilter];
+    // imageView.image = curve;
     imageView.contentMode = UIViewContentModeScaleAspectFill;
     output = curve;
+    if (self.isSecondHairfie)
+    {
+        [filteredHairfies setObject:@"curve" forKey:@"filter2"];
+    }
+    else
+        [filteredHairfies setObject:@"curve" forKey:@"filter1"];
 }
 
 -(IBAction)original:(id)sender {
     imageView.image = original;
     output = original;
+    if (self.isSecondHairfie)
+    {
+        [filteredHairfies setObject:@"original" forKey:@"filter2"];
+    }
+    else
+        [filteredHairfies setObject:@"original" forKey:@"filter1"];
 }
 -(IBAction)instant:(id)sender {
-    imageView.image = instant;
+    
+    imageView.image = [original CIPhotoEffectInstant];
+    //imageView.image = instant;
     imageView.contentMode = UIViewContentModeScaleAspectFill;
     output = instant;
+    if (self.isSecondHairfie)
+    {
+        [filteredHairfies setObject:@"instant" forKey:@"filter2"];
+    }
+    else
+        [filteredHairfies setObject:@"instant" forKey:@"filter1"];
 }
 
 -(IBAction)process:(id)sender {
-    imageView.image = process;
+  
+    imageView.image = [original CIPhotoEffectProcess];
+    //imageView.image = process;
     imageView.contentMode = UIViewContentModeScaleAspectFill;
     output = process;
+    if (self.isSecondHairfie)
+    {
+        [filteredHairfies setObject:@"process" forKey:@"filter2"];
+    }
+    else
+        [filteredHairfies setObject:@"process" forKey:@"filter1"];
 }
 
 -(IBAction)photoEffectNoir:(id)sender {
-    imageView.image = photoEffectNoir;
+   
+    imageView.image = [original CIPhotoEffectNoir];
+    //imageView.image = photoEffectNoir;
     imageView.contentMode = UIViewContentModeScaleAspectFill;
     output = photoEffectNoir;
+    if (self.isSecondHairfie)
+    {
+        [filteredHairfies setObject:@"bw" forKey:@"filter2"];
+    }
+    else
+        [filteredHairfies setObject:@"bw" forKey:@"filter1"];
 }
 
 -(IBAction)vignette:(id)sender
 {
-    imageView.image = vignette;
+    imageView.image = [original vignetteWithRadius:0 andIntensity:16];
+ //   imageView.image = vignette;
     imageView.contentMode = UIViewContentModeScaleAspectFill;
     output = vignette;
+    if (self.isSecondHairfie)
+    {
+        [filteredHairfies setObject:@"vignette" forKey:@"filter2"];
+    }
+    else
+        [filteredHairfies setObject:@"vignette" forKey:@"filter1"];
 }
 
 - (IBAction)vintage:(id)sender {
 
-    imageView.image = vintage;
+    imageView.image = [original vintageFilter];
+   // imageView.image = vintage;
     imageView.contentMode = UIViewContentModeScaleAspectFill;
     output = vintage;
+    if (self.isSecondHairfie)
+    {
+        [filteredHairfies setObject:@"vintage" forKey:@"filter2"];
+    }
+    else
+        [filteredHairfies setObject:@"vintage" forKey:@"filter1"];
 }
 
 -(IBAction)backToSignUp:(id)sender
@@ -379,7 +496,7 @@
        // [[NSNotificationCenter defaultCenter] postNotificationName:@"currentUser" object:self];
     }
     else
-    [self performSegueWithIdentifier:@"setupHairfie" sender:self];
+        [self performSegueWithIdentifier:@"setupHairfie" sender:self];
 }
 
 @end

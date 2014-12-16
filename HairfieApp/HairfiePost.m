@@ -38,10 +38,6 @@
 {
     _picture = [[Picture alloc] initWithImage:image andContainer:container];
     
-    if (self.pictures.count == 0)
-        self.pictures = [[NSMutableArray alloc] init];
-    [self.pictures addObject:_picture];
-    
 }
 
 -(void)setPrice:(id)aPrice

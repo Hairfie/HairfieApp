@@ -30,7 +30,7 @@
 @property (strong, nonatomic) NSArray *tags;
 @property (nonatomic)         BOOL selfMade;
 @property (nonatomic)         NSString *customerEmail;
-@property (nonatomic)         NSMutableArray *pictures;
+@property (nonatomic)         NSArray *pictures;
 
 
 -(id)initWithDictionary:(NSDictionary *)data;

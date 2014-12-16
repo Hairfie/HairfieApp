@@ -23,7 +23,7 @@
 
 
 @property (nonatomic) IBOutlet UIButton *nextBttn;
-@property (nonatomic) IBOutlet UIButton *cancelBttn;
+@property (nonatomic) IBOutlet UIButton *editBttn;
 
 
 @property (nonatomic) UIImage *userPicture;
