@@ -20,7 +20,7 @@
 #import "AddTagsToHairfieViewController.h"
 #import "PostHairfieEmailViewController.h"
 #import <LoopBack/LoopBack.h>
-#import <Social/Social.h>"
+#import <Social/Social.h>
 
 #define OVERLAY_TAG 99
 
@@ -39,17 +39,21 @@
 -(void)viewDidLoad
 {
 
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeUploadStatus:) name:@"firstPicUploaded" object:nil];
     //// TAGS = NO DESCRIPTION
     _hairfieDesc.hidden = YES;
     ////
     
-   
     isLoaded = NO;
     UIColor *placeholder = [[UIColor whiteColor] colorWithAlphaComponent:0.6];
     appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [_emailTextField setValue:placeholder
                     forKeyPath:@"_placeholderLabel.textColor"];
-    _hairfieImageView.image = _hairfiePost.picture.image;
+    
+    Picture *hairfiePic  = [self.hairfiePost.pictures objectAtIndex:0];
+    
+    _hairfieImageView.image = hairfiePic.image;
 
     _hairfieDesc.alpha = 0.5;
     _hairfieDesc.placeholder = NSLocalizedStringFromTable(@"Add a description", @"Post_Hairfie", nil);
@@ -67,7 +71,7 @@
     
     _isSalon = NO;
     _isHairdresser = NO;
-    _hairdresserSubview.hidden = YES;
+  //  _hairdresserSubview.hidden = YES;
     _emailSubview.hidden = YES;
 
     
@@ -75,17 +79,14 @@
     _tagsButton.layer.masksToBounds = YES;
     salonTypes = [[NSMutableArray alloc] initWithObjects:NSLocalizedStringFromTable(@"I did it", @"Post_Hairfie", nil), NSLocalizedStringFromTable(@"Hairdresser in a Salon", @"Post_Hairfie", nil), nil];
 
-   
-
     [_priceTextField textFieldWithPhoneKeyboard];
     [_descView addBottomBorderWithHeight:3 andColor:[UIColor salonDetailTab]];
-     [_topView addBottomBorderWithHeight:1 andColor:[UIColor lightGrey]];
-    [self uploadHairfiePicture];
+    [_topView addBottomBorderWithHeight:1 andColor:[UIColor lightGrey]];
+    [self uploadHairfiePictures];
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
-
     if (self.hairfiePost.customerEmail.length != 0)
     {
         [self.emailLabel setText:self.hairfiePost.customerEmail ];
@@ -94,7 +95,6 @@
     {
         [self.emailLabel setText:NSLocalizedStringFromTable(@"add email hairfie", @"Post_Hairfie", nil)];
     }
-    
     if (self.hairfiePost.tags.count != 0)
     {
         self.tagsButton.hidden = NO;
@@ -127,7 +127,6 @@
         }
     }
     if(_salonChosen != nil) {
-        NSLog(@"salon chosen");
         _hairfiePost.business = _salonChosen;
         if ([_hairfiePost.business.activeHairdressers count] != 0)
             [self loadHairdressers];
@@ -150,7 +149,6 @@
     }
     _hairdresserTableViewHeight.constant = [salonHairdressers count] * 41;
     _isHairdresser = NO;
-     NSLog(@"TABLE VIEW HEIGHT %f", _hairdresserTableViewHeight.constant);
     [_hairdresserTableView reloadData];
 }
 
@@ -164,11 +162,13 @@
 
 -(IBAction)goBack:(id)sender
 {
+    NSLog(@"BACK");
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(IBAction)addTags:(id)sender
 {
+    NSLog(@"TAGS");
     [self performSegueWithIdentifier:@"addTagsToHairfie" sender:self];
 }
 
@@ -292,7 +292,6 @@
     {
         Business *business = [salonTypes objectAtIndex:indexPath.row];
          [_salonLabelButton setTitle:business.name forState:UIControlStateNormal];
-       // _salonChosen = business;
         _hairfiePost.business = business;
         if (business.activeHairdressers.count != 0) {
             [self loadHairdressers];
@@ -340,6 +339,7 @@
             [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
         }
 
+        NSLog(@"isuploaded %c", [_hairfiePost pictureIsUploaded]);
         if(![_hairfiePost pictureIsUploaded]) {
             [self removeSpinnerAndOverlay];
             [self showUploadFailedAlertView];
@@ -417,7 +417,12 @@
     [[_mainView viewWithTag:OVERLAY_TAG] removeFromSuperview];
 }
 
--(void) uploadHairfiePicture {
+-(void)changeUploadStatus:(NSNotification*)notification
+{
+    uploadInProgress = NO;
+}
+
+-(void) uploadHairfiePictures {
     uploadInProgress = YES;
 
     [_hairfiePost uploadPictureWithSuccess:^{
@@ -425,7 +430,7 @@
         uploadInProgress = NO;
     } failure:^(NSError *error) {
         uploadInProgress = NO;
-        NSLog(@"Error : %@", error.description);
+        NSLog(@"Error HAIRFIE: %@", error.description);
     }];
 }
 
@@ -436,7 +441,7 @@
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    [self uploadHairfiePicture];
+    [self uploadHairfiePictures];
 }
 
 
@@ -460,7 +465,6 @@
         } failure:^(NSError *error) {
             NSLog(@"Sharing failed !");
         }];
-
     }
 }
 

@@ -47,7 +47,17 @@
 
 -(void)uploadPictureWithSuccess:(void(^)())aSuccessHandler
              failure:(void(^)(NSError *error))aFailureHandler {
-    [self.picture uploadWithSuccess:aSuccessHandler failure:aFailureHandler];
+    
+    
+    Picture *firstPic = [self.pictures objectAtIndex:0];
+    [firstPic uploadWithSuccess:^{
+        NSLog(@"Uploaded 1st pic");
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"firstPicUploaded" object:self];
+        if (self.pictures.count == 2) {
+        Picture *secondPic = [self.pictures objectAtIndex:1];
+            [secondPic uploadWithSuccess:aSuccessHandler failure:aFailureHandler];
+        }
+    }failure:aFailureHandler];
 }
 
 -(void)saveWithSuccess:(void(^)())aSuccessHandler
@@ -75,7 +85,21 @@
     
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     
-    [parameters setObject:[self.picture toApiValue] forKey:@"picture"];
+    
+    if (self.pictures.count != 0)
+    {
+        NSMutableArray *picturesApi = [[NSMutableArray alloc] init];
+        Picture *firstPic = [self.pictures objectAtIndex:0];
+        NSString *firstImg = [firstPic toApiValue];
+        [picturesApi addObject:firstImg];
+        if (self.pictures.count == 2)
+        {
+            Picture *secondPic = [self.pictures objectAtIndex:1];
+            NSString *secondImg = [secondPic toApiValue];
+            [picturesApi addObject:secondImg];
+        }
+        [parameters setObject:picturesApi forKey:@"pictures"];
+    }
     
     if(self.price != nil) {
         [parameters setObject:self.price.toDictionary forKey:@"price"];
@@ -118,7 +142,11 @@
 
 -(BOOL)pictureIsUploaded
 {
-    BOOL result = self.picture.name ? YES : NO;
+    
+    Picture *firstPic = [self.pictures objectAtIndex:0];
+    
+    BOOL result = firstPic.name ? YES : NO;
+    
     return result;
 }
 

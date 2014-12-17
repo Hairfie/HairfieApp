@@ -38,7 +38,7 @@ static LBRESTAdapter * _lbAdaptater = nil;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [NewRelicAgent startWithApplicationToken:NEWRELIC_APP_TOKEN];
-    //[Crashlytics startWithAPIKey:CRASHLYTICS_API_KEY];
+    [Crashlytics startWithAPIKey:CRASHLYTICS_API_KEY];
 
     [ARAnalytics setupWithAnalytics:@{
                                       ARGoogleAnalyticsID : GOOGLE_ANALYTICS_TOKEN

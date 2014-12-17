@@ -288,6 +288,8 @@
         if (self.isProfile == YES) {
             filters.isProfile = YES;
             filters.user = self.user;
+            
+            filters.isHairfie = NO;
         }
         
     }
