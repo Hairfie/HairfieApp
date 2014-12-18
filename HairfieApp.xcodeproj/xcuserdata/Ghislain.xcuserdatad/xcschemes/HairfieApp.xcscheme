@@ -5,6 +5,25 @@
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
+      <PreActions>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
+               title = "Run Script"
+               scriptText = "imagesnap ~/Pictures/BuildPhotos/$(date +%y%m%d%H%M%S).png -w 1"
+               shellToInvoke = "/bin/zsh">
+               <EnvironmentBuildable>
+                  <BuildableReference
+                     BuildableIdentifier = "primary"
+                     BlueprintIdentifier = "1511518A1982B7A8001157A2"
+                     BuildableName = "HairfieApp.app"
+                     BlueprintName = "HairfieApp"
+                     ReferencedContainer = "container:HairfieApp.xcodeproj">
+                  </BuildableReference>
+               </EnvironmentBuildable>
+            </ActionContent>
+         </ExecutionAction>
+      </PreActions>
       <BuildActionEntries>
          <BuildActionEntry
             buildForTesting = "YES"
