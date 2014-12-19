@@ -211,7 +211,7 @@
             success:(void (^)(NSArray *))aSuccessHandler
             failure:(void (^)(NSError *))aFailureHandler {
     
-    NSMutableDictionary *where = [[NSMutableDictionary alloc] initWithDictionary:@{@"hairdresserId": hairdresserId}];
+    NSMutableDictionary *where = [[NSMutableDictionary alloc] initWithDictionary:@{@"businessMemberId": hairdresserId}];
     NSDictionary *parameters = @{
                                  @"filter": @{
                                          @"where":where,

@@ -13,6 +13,7 @@
 #import "Hairdresser.h"
 #import "BusinessViewController.h"
 #import "HairdresserDetailViewController.h"
+#import "BusinessMemberFavorite.h"
 
 @interface FavoriteViewController ()
 
@@ -64,7 +65,10 @@
             self.tableViewHeight.constant = self.view.bounds.size.height - 64;
         [self.tableView reloadData];
     };
-    [User getFavoriteHairdressers:appDelegate.currentUser.id success:loadSuccessBlock failure:loadErrorBlock];
+
+    [BusinessMemberFavorite getBusinessMemberFavoritesByUser:appDelegate.currentUser.id
+                                                 withSuccess:loadSuccessBlock
+                                                     failure:loadErrorBlock];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -82,10 +86,9 @@
         cell = [nib objectAtIndex:0];
     }
     cell.indentationWidth = 0;
-    Hairdresser *hairdresser = [[Hairdresser alloc] initWithDictionary:[[favoriteHairdressers objectAtIndex:indexPath.row]objectForKey:@"hairdresser"]];
-    
-    
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
+    Hairdresser *hairdresser = [[favoriteHairdressers objectAtIndex:indexPath.row] businessMember];
     [cell setupCell:hairdresser];
   
     return cell;
@@ -104,8 +107,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"test %zd", indexPath.row);
-    selectedHairdresser = [[Hairdresser alloc] initWithDictionary:[[favoriteHairdressers objectAtIndex:indexPath.row]objectForKey:@"hairdresser"]];
+    selectedHairdresser = [favoriteHairdressers[indexPath.row] businessMember];
     isBusiness = NO;
     [self getBusiness:selectedHairdresser.business.id];
 }

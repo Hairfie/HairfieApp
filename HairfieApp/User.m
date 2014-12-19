@@ -128,7 +128,7 @@
            success:(void (^)())aSuccessHandler
            failure:(void (^)(NSError *))aFailureHandler
 {
-    [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/users/:userId/favorite-hairdressers/:hairdresserId"
+    [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/users/:userId/favorite-business-members/:hairdresserId"
                                                                                  verb:@"PUT"]
                                         forMethod:@"users.favoriteHairdresser"];
     
@@ -145,7 +145,7 @@
              success:(void (^)())aSuccessHandler
              failure:(void (^)(NSError *))aFailureHandler
 {
-    [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/users/:userId/favorite-hairdressers/:hairdresserId"
+    [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/users/:userId/favorite-business-members/:hairdresserId"
                                                                                  verb:@"DELETE"]
                                         forMethod:@"users.unfavoriteHairdresser"];
     
@@ -163,7 +163,7 @@
          success:(void(^)(BOOL isLiked))aSuccessHandler
          failure:(void(^)(NSError *))aFailureHandler
 {
-    [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/users/:userId/favorite-hairdressers/:hairdresserId"
+    [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/users/:userId/favorite-business-members/:hairdresserId"
                                                                                  verb:@"HEAD"]
                                         forMethod:@"users.isFavoritedHairdresser"];
     
@@ -251,21 +251,6 @@
                                       success:onSuccess
                                       failure:aFailureHandler];
     }
-}
-
-+(void)getFavoriteHairdressers:(NSString *)anId
-                       success:(void (^)(NSArray *result))aSuccessHandler
-                       failure:(void (^)(NSError *error))aFailureHandler
-{
-    [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/users/:id/favorite-hairdressers"
-                                                                                 verb:@"GET"]
-                                        forMethod:@"users.get"];
-    
-    [[[self class] repository] invokeStaticMethod:@"get"
-                                       parameters:@{@"id":anId}
-                                          success:aSuccessHandler
-                                          failure:aFailureHandler];
-
 }
 
 +(void)getById:(NSString *)anId
