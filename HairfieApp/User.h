@@ -78,10 +78,6 @@
                         success:(void (^)())aSuccessHandler
                         failure:(void (^)(NSError *))aFailureHandler;
 
-+(void)getFavoriteHairdressers:(NSString *)anId
-                       success:(void (^)(NSArray *result))aSuccessHandler
-                       failure:(void (^)(NSError *error))aFailureHandler;
-
 +(void)isHairdresser:(NSString *)hairdresserId
      favoritedByUser:(NSString *)userId
              success:(void(^)(BOOL isLiked))aSuccessHandler

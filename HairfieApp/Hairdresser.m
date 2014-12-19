@@ -69,7 +69,9 @@
         [temp setObject:@true forKey:@"active"];
     else
         [temp setObject:@false forKey:@"active"];
-    
+
+    [temp setObject:@false forKey:@"hidden"];
+
     if (nil != self.numHairfies){
         [temp setObject:self.numHairfies forKey:@"numHairfies"];
     }
@@ -88,7 +90,7 @@
     
     if (nil == self.id) {
        
-        [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/hairdressers"
+        [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/businessMembers"
                                                                                      verb:@"POST"]
                                             forMethod:@"hairdressers.create"];
 
@@ -97,7 +99,7 @@
                                               success:onSuccess
                                               failure:aFailureHandler];
     } else {
-        [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/hairdressers/:id"
+        [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/businessMembers/:id"
                                                                                      verb:@"PUT"]
                                             forMethod:@"hairdressers.update"];
 

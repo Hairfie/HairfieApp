@@ -88,6 +88,8 @@
 		713C8A221A0A67CB00B7B94C /* HairfieDetailBusinessTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 713C8A201A0A67CB00B7B94C /* HairfieDetailBusinessTableViewCell.xib */; };
 		715290DD19FE477900C93950 /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 715290DA19FE477900C93950 /* Tag.m */; };
 		715290DE19FE477900C93950 /* TagCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 715290DC19FE477900C93950 /* TagCategory.m */; };
+		71537CAF1A4430C200519C1B /* BusinessMemberFavorite.m in Sources */ = {isa = PBXBuildFile; fileRef = 71537CAE1A4430C200519C1B /* BusinessMemberFavorite.m */; };
+		71537CB21A44329300519C1B /* BusinessMemberFavoriteRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 71537CB11A44329300519C1B /* BusinessMemberFavoriteRepository.m */; };
 		7164B56A1A0D1D4B002B68E5 /* InstagramSharer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7164B5691A0D1D4B002B68E5 /* InstagramSharer.m */; };
 		7164B56D1A0D380F002B68E5 /* URLUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 7164B56C1A0D380F002B68E5 /* URLUtils.m */; };
 		718A98B019C1EF46003CD34B /* GeoPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 718A98AF19C1EF46003CD34B /* GeoPoint.m */; };
@@ -535,6 +537,10 @@
 		715290DA19FE477900C93950 /* Tag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tag.m; sourceTree = "<group>"; };
 		715290DB19FE477900C93950 /* TagCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagCategory.h; sourceTree = "<group>"; };
 		715290DC19FE477900C93950 /* TagCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagCategory.m; sourceTree = "<group>"; };
+		71537CAD1A4430C200519C1B /* BusinessMemberFavorite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessMemberFavorite.h; sourceTree = "<group>"; };
+		71537CAE1A4430C200519C1B /* BusinessMemberFavorite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessMemberFavorite.m; sourceTree = "<group>"; };
+		71537CB01A44329300519C1B /* BusinessMemberFavoriteRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessMemberFavoriteRepository.h; sourceTree = "<group>"; };
+		71537CB11A44329300519C1B /* BusinessMemberFavoriteRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessMemberFavoriteRepository.m; sourceTree = "<group>"; };
 		7164B5681A0D1D4B002B68E5 /* InstagramSharer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstagramSharer.h; sourceTree = "<group>"; };
 		7164B5691A0D1D4B002B68E5 /* InstagramSharer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstagramSharer.m; sourceTree = "<group>"; };
 		7164B56B1A0D380F002B68E5 /* URLUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLUtils.h; sourceTree = "<group>"; };
@@ -1126,6 +1132,8 @@
 				B3844E4019FE978D0083CE0D /* TagRepository.m */,
 				B3844E4219FE98570083CE0D /* TagCategoryRepository.h */,
 				B3844E4319FE98570083CE0D /* TagCategoryRepository.m */,
+				71537CB01A44329300519C1B /* BusinessMemberFavoriteRepository.h */,
+				71537CB11A44329300519C1B /* BusinessMemberFavoriteRepository.m */,
 			);
 			name = Repositories;
 			sourceTree = "<group>";
@@ -1856,6 +1864,8 @@
 				715290DA19FE477900C93950 /* Tag.m */,
 				715290DB19FE477900C93950 /* TagCategory.h */,
 				715290DC19FE477900C93950 /* TagCategory.m */,
+				71537CAD1A4430C200519C1B /* BusinessMemberFavorite.h */,
+				71537CAE1A4430C200519C1B /* BusinessMemberFavorite.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -2489,6 +2499,7 @@
 				71E08E5D19FF9A2700A56FBB /* SalonDetailHeaderViewController.swift in Sources */,
 				158FCA9119FA9B870001F86C /* FBAuthenticator.m in Sources */,
 				B3BB63A11A1C99570087AB27 /* TestUserProfileViewController.m in Sources */,
+				71537CB21A44329300519C1B /* BusinessMemberFavoriteRepository.m in Sources */,
 				B39BA17E19AF535400A48BD5 /* KeychainItemWrapper.m in Sources */,
 				B3AE0D3F19C05EE900149C2B /* PostSalonTableViewCell.m in Sources */,
 				15B777A119EECCE100C49DFE /* HairfiePost.m in Sources */,
@@ -2556,6 +2567,7 @@
 				B308701719878C030080E6D2 /* SettingsViewController.m in Sources */,
 				B3AA0CB61A24CAAF00FAEC01 /* HairdresserReusableView.m in Sources */,
 				B3A1281A198A85D8004D90BD /* CustomPinView.m in Sources */,
+				71537CAF1A4430C200519C1B /* BusinessMemberFavorite.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

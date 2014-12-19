@@ -16,5 +16,4 @@
     return [self repositoryWithClassName:@"tagCategories"];
 }
 
-
 @end
