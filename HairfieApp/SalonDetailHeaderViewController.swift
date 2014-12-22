@@ -113,7 +113,7 @@ import QuartzCore
                 var picture: Picture = business.pictures[index] as Picture
                 var pictureView = UIImageView(frame: frame)
                 pictureView.contentMode = UIViewContentMode.ScaleAspectFill;
-                var pictureUrl = picture.urlWithWidth(frame.width * 2, height: frame.height * 2)
+                var pictureUrl = picture.urlWithWidth(frame.width, height: frame.height)
                 downloadImage(pictureUrl!, callback: { (image, error) -> Void in
                     if (nil != image) {
                         pictureView.image = image
@@ -131,6 +131,7 @@ import QuartzCore
             progress: nil,
             completed: { (image, data, error, finished) -> Void in
                 if (nil != image) {
+                    println("test");
                     callback(image, error:error);
                 } else {
                     callback(nil, error:error);
