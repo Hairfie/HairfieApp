@@ -72,6 +72,8 @@
     _picture = [Picture fromSetterValue:aPicture];
 }
 
+
+
 -(void)setPrice:(id)aPrice
 {
     _price = [Money fromSetterValue:aPrice];
@@ -92,6 +94,18 @@
     _updatedAt = [DateUtils dateFromSetterValue:aDate];
 }
 
+-(void)setPictures:(id)somePictures
+{
+    NSMutableArray *temp = [[NSMutableArray alloc] init];
+    if (![somePictures isEqual:[NSNull null]]) {
+        for (id aPicture in somePictures) {
+            [temp addObject:[Picture fromSetterValue:aPicture]];
+        }
+    }
+    _pictures = [[NSArray alloc] initWithArray:temp];
+}
+
+
 -(void)setTags:(id)someTags
 {
     NSMutableArray *temp = [[NSMutableArray alloc] init];
@@ -102,6 +116,7 @@
     }
     _tags = [[NSArray alloc] initWithArray:temp];
 }
+
 
 -(NSURL *)pictureUrlwithWidth:(NSNumber *)width andHeight:(NSNumber *)height
 {

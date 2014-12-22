@@ -24,6 +24,7 @@
 
 @property (nonatomic) IBOutlet UIButton *nextBttn;
 @property (nonatomic) IBOutlet UIButton *editBttn;
+@property (nonatomic) IBOutlet UIButton *secondImgBttn;
 
 
 @property (nonatomic) UIImage *userPicture;

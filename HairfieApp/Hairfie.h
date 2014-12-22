@@ -31,6 +31,7 @@
 @property (strong, nonatomic) NSArray *tags;
 @property (nonatomic) BOOL selfMade;
 @property (strong, nonatomic) NSURL *landingPageUrl;
+@property (strong, nonatomic) NSArray *pictures;
 
 
 @property (nonatomic) BOOL displayBusiness;

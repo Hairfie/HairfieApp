@@ -55,6 +55,11 @@
     
     _hairfieImageView.image = hairfiePic.image;
 
+    if (self.hairfiePost.pictures.count == 2)
+    {
+        Picture *secondHairfiePic  = (Picture*)[self.hairfiePost.pictures objectAtIndex:1];
+        _secondHairfieImageView.image = secondHairfiePic.image;
+    }
     _hairfieDesc.alpha = 0.5;
     _hairfieDesc.placeholder = NSLocalizedStringFromTable(@"Add a description", @"Post_Hairfie", nil);
 
@@ -168,7 +173,8 @@
 -(IBAction)addTags:(id)sender
 {
     NSLog(@"TAGS");
-    [self performSegueWithIdentifier:@"addTagsToHairfie" sender:self];
+    [self.navigationController popViewControllerAnimated:YES];
+   // [self performSegueWithIdentifier:@"addTagsToHairfie" sender:self];
 }
 
 -(IBAction)showSalonsChoices:(id)sender

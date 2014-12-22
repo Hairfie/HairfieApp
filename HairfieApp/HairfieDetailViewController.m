@@ -37,6 +37,8 @@
     NSArray *menuActions;
     UIDocumentInteractionController *documentController;
     UILabel *priceLabel;
+    UIScrollView *hairfieScroller;
+    UIPageControl *pageControl;
     Hairdresser *hairfieHairdresser;
     Business *hairdresserBusiness;
     BOOL didLikeWithDoubleTap;
@@ -231,6 +233,7 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    
     [ARAnalytics pageView:@"AR - Hairfie Detail"];
     [ARAnalytics event:@"AR - Hairfie Detail" withProperties:@{@"Hairfie ID": self.hairfie.id, @"Author": self.hairfie.author.name}];
 }
@@ -424,6 +427,15 @@
 
 // header view data source
 
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    if (scrollView == hairfieScroller)
+    {
+        CGFloat pageWidth = scrollView.frame.size.width;
+        int page = floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
+        pageControl.currentPage = page;
+    }
+}
+
 -(UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
     UICollectionReusableView *collectionHeaderView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView" forIndexPath:indexPath];
@@ -432,21 +444,61 @@
 
     hairfieView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 323)];
     hairfieView.backgroundColor = [UIColor lightGreyHairfie];
+    hairfieView.userInteractionEnabled = YES;
     CALayer *bottomBorder = [CALayer layer];
     bottomBorder.frame = CGRectMake(0.0, 320, 320, 3.0f);
     bottomBorder.backgroundColor = [UIColor pinkHairfie].CGColor;
     [hairfieView.layer addSublayer:bottomBorder];
     
-    UIImageView *hairfieImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 320)];
-    [hairfieImageView sd_setImageWithURL:[self.hairfie.picture urlWithWidth:@640 height:@640]
-                      placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
+    
+    hairfieScroller = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, 320)];
+    hairfieScroller.userInteractionEnabled = YES;
+    hairfieScroller.scrollEnabled = YES;
+    hairfieScroller.pagingEnabled = YES;
+    hairfieScroller.delegate = self;
+    [hairfieScroller setShowsHorizontalScrollIndicator:NO];
+    if (self.hairfie.pictures.count == 2) {
+        pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(141, 283, 40, 40)];
+        pageControl.numberOfPages = 2;
+        pageControl.currentPage = 0;
+        
+        UIImageView *hairfieImageView1 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 320)];
+        Picture *hairfie1 = (Picture*)[self.hairfie.pictures objectAtIndex:0];
+        UIImageView *hairfieImageView2 = [[UIImageView alloc] initWithFrame:CGRectMake(320, 0, 320, 320)];
+        Picture *hairfie2 = (Picture*)[self.hairfie.pictures objectAtIndex:1];
+        
+        [hairfieImageView1 sd_setImageWithURL:[hairfie1 urlWithWidth:@640 height:@640]
+                             placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
+        [hairfieImageView2 sd_setImageWithURL:[hairfie2 urlWithWidth:@640 height:@640]
+                             placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
+        
+        hairfieImageView1.contentMode = UIViewContentModeScaleAspectFit;
+        hairfieImageView1.clipsToBounds = YES;
+        
+        hairfieImageView2.contentMode = UIViewContentModeScaleAspectFit;
+        hairfieImageView2.clipsToBounds = YES;
+        [hairfieScroller addSubview:hairfieImageView1];
+        [hairfieScroller addSubview:hairfieImageView2];
+    }
+    else {
+        hairfieScroller = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, 320)];
+        UIImageView *hairfieImageView1 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 320)];
+        Picture *hairfie1 = (Picture*)[self.hairfie.pictures objectAtIndex:0];
+        
+        [hairfieImageView1 sd_setImageWithURL:[hairfie1 urlWithWidth:@640 height:@640]
+                             placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
 
-    hairfieImageView.contentMode = UIViewContentModeScaleAspectFit;
-    hairfieImageView.clipsToBounds = YES;
+        
+        hairfieImageView1.contentMode = UIViewContentModeScaleAspectFit;
+        hairfieImageView1.clipsToBounds = YES;
+        [hairfieScroller addSubview:hairfieImageView1];
+
+
+    }
     
     likeView = [[UIImageView alloc] initWithFrame:CGRectMake(130, 130, 60, 60)];
     [likeView setImage:[UIImage imageNamed:@"likes-picto.png"]];
-    [hairfieImageView addSubview:likeView];
+   
     [likeView setHidden:YES];
 
     likeButton = [[UIButton alloc] initWithFrame:CGRectMake(262, 290, 25, 20)];
@@ -468,10 +520,9 @@
     priceLabel.adjustsFontSizeToFitWidth = YES;
     priceLabel.text = [self.hairfie displayPrice];
 
-    hairfieImageView.userInteractionEnabled = YES;
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleTap:)];
     tapGesture.numberOfTapsRequired = 2;
-    [hairfieImageView addGestureRecognizer:tapGesture];
+    [hairfieScroller addGestureRecognizer:tapGesture];
 
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     User *currentUser = delegate.currentUser;
@@ -490,9 +541,13 @@
     nbLike.textColor = [UIColor whiteColor];
     nbLike.font = [UIFont fontWithName:@"SourceSansPro-SemiBold" size:18];
 
-    [hairfieView addSubview:hairfieImageView];
+    
+    hairfieScroller.contentSize = CGSizeMake(320 * self.hairfie.pictures.count, 320);
+    [hairfieView addSubview:hairfieScroller];
+    [hairfieView addSubview:pageControl];
     [hairfieView addSubview:likeButton];
     [hairfieView addSubview:nbLike];
+    [hairfieView addSubview:likeView];
     
     if (self.hairfie.price != nil)
         [hairfieView addSubview:priceBg];
@@ -613,10 +668,11 @@
 
 -(void)doubleTap:(UITapGestureRecognizer *)sender
 {
+    NSLog(@"TEST");
     if (likeButton.selected == NO) {
-    if (sender.state == UIGestureRecognizerStateRecognized) {
+   // if (sender.state == UIGestureRecognizerStateRecognized) {
         [self likeButtonHandler:nil];
-    }
+   // }
     }
 }
 

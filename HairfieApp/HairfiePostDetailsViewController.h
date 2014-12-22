@@ -21,6 +21,7 @@
 @property (nonatomic) IBOutlet UIButton *priceLabelButton;
 @property (nonatomic) IBOutlet SAMTextView *hairfieDesc;
 @property (nonatomic) IBOutlet UIImageView *hairfieImageView;
+@property (nonatomic) IBOutlet UIImageView *secondHairfieImageView;
 
 @property (nonatomic) IBOutlet UITextField *emailTextField;
 @property (nonatomic) IBOutlet UITextField *whoTextField;

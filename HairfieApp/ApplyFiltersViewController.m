@@ -65,6 +65,9 @@
     [filteredHairfies setObject:@"original" forKey:@"filter1"];
 
     _nextBttn.layer.cornerRadius = 2;
+    
+    self.secondImgBttn.layer.cornerRadius = 2;
+    self.secondImgBttn.layer.masksToBounds = YES;
     self.editBttn.layer.cornerRadius = self.editBttn.frame.size.height / 2;;
     self.editBttn.layer.masksToBounds = YES;
     self.editBttn.layer.borderColor  = [UIColor whiteColor].CGColor;
@@ -105,6 +108,9 @@
 {
     if (self.isSecondHairfie == YES)
     {
+        self.secondImgBttn.backgroundColor = [UIColor clearColor];
+        [self.secondImgBttn setTitle:@"" forState:UIControlStateNormal];
+             [self.secondImgBttn setTitle:@"" forState:UIControlStateHighlighted];
         Picture *secondPic = self.hairfiePost.picture;
         
        
@@ -165,7 +171,6 @@
     
     Picture *picture = [hairfiePics objectAtIndex:0];
    
-    NSLog(@"picture %@ ", hairfiePics);
     original = [self squareCropImage:picture.image ToSideLength:320];
     imageView.image = [self setImage:original WithFilter:[filteredHairfies objectForKey:@"filter1"]];
 
@@ -234,7 +239,10 @@
         if (self.isSecondHairfie == YES) {
          
             [hairfiePics removeObjectAtIndex:1];
-            [self.secondImageView setImage:[UIImage imageNamed:@"add-second-picture.png"]];
+            
+            self.secondImgBttn.backgroundColor = [UIColor lightGreyHairfie];
+            [self.secondImgBttn setTitle:@"+" forState:UIControlStateNormal];
+
             self.isSecondHairfie = NO;
             [filteredHairfies removeObjectForKey:@"filter2"];
             [self modifyFirstPicture:self];
@@ -247,7 +255,10 @@
             [hairfiePics addObject:picture];
             [filteredHairfies setObject:filter forKey:@"filter1"];
             self.firstImageView.image = picture.image;
-            [self.secondImageView setImage:[UIImage imageNamed:@"add-second-picture.png"]];
+          
+            self.secondImgBttn.backgroundColor = [UIColor lightGreyHairfie];
+            [self.secondImgBttn setTitle:@"+" forState:UIControlStateNormal];
+
             [self modifyFirstPicture:self];
             
            
