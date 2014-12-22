@@ -288,6 +288,7 @@ numberOfRowsInComponent:(NSInteger)component
     if ([segue.identifier isEqualToString:@"cameraOverlay"]) {
         CameraOverlayViewController *cameraOverlay = [segue destinationViewController];
         cameraOverlay.isHairfie = NO;
+        
     }
 }
 

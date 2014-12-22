@@ -109,7 +109,6 @@
     };
     void (^loadSuccessBlock)(NSDictionary *) = ^(NSDictionary *results){
         NSDictionary *uploadedFile = [[[results objectForKey:@"result"] objectForKey:@"files"] objectForKey:@"uploadfiles"];
-        
         self.name = [uploadedFile objectForKey:@"name"];
         self.container = [uploadedFile objectForKey:@"container"];
         self.url = [NSURL URLWithString:[uploadedFile objectForKey:@"url"]];

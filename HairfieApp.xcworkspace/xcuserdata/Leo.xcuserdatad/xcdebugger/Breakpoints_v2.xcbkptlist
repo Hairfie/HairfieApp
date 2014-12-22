@@ -97,5 +97,23 @@
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "Yes"
+            scope = "0"
+            stopOnStyle = "0">
+            <Actions>
+               <BreakpointActionProxy
+                  ActionExtensionID = "Xcode.BreakpointAction.AppleScript">
+                  <ActionContent
+                     script = "set photoPath to &quot;~/Pictures/IOS-Crash/$(date +%y%m%d%H%M%S).png&quot;  &#10;do shell script &quot;/usr/local/bin/imagesnap -w 1.0 &quot; &amp; photoPath">
+                  </ActionContent>
+               </BreakpointActionProxy>
+            </Actions>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>
