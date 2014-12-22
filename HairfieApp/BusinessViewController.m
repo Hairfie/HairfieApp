@@ -354,9 +354,7 @@
     headerViewController.business = self.business;
 
     
-    
     if (!isSetup) {
-        NSLog(@"SETUP HEADER");
         [userHeader addSubview:headerViewController.view];
         isSetup = YES;
     }

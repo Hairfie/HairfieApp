@@ -563,12 +563,23 @@
     [profilePicture sd_setImageWithURL:[self.hairfie.author pictureUrlwithWidth:@100 andHeight:@100] placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
 
 
-    UIButton *usernameButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 0, 160, 30)];
-    [usernameButton addTarget:self action:@selector(showProfile:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    
+    
+    UIButton *usernameButton = [[UIButton alloc] init];
     [usernameButton setTitle:self.hairfie.author.displayName forState:UIControlStateNormal];
-    [usernameButton setTitleColor:[[UIColor blackHairfie] colorWithAlphaComponent:0.4] forState:UIControlStateNormal];
     usernameButton.titleLabel.font = [UIFont fontWithName:@"SourceSansPro-Light" size:18];
-    usernameButton.titleLabel.textAlignment = NSTextAlignmentLeft;
+    
+    CGSize sizeusername = [[usernameButton.titleLabel text]sizeWithAttributes:@{NSFontAttributeName:[usernameButton.titleLabel font]}];
+    
+    [usernameButton setFrame:CGRectMake(64, 0, sizeusername.width, 30)];
+    
+    [usernameButton addTarget:self action:@selector(showProfile:) forControlEvents:UIControlEventTouchUpInside];
+  
+    [usernameButton setTitleColor:[[UIColor blackHairfie] colorWithAlphaComponent:0.4] forState:UIControlStateNormal];
+   
+    usernameButton.titleLabel.textAlignment = NSTextAlignmentRight;
    // usernameButton.titleLabel.adjustsFontSizeToFitWidth = YES;
 
 
