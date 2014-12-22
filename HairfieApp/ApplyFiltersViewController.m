@@ -67,6 +67,8 @@
     _nextBttn.layer.cornerRadius = 2;
     self.editBttn.layer.cornerRadius = self.editBttn.frame.size.height / 2;;
     self.editBttn.layer.masksToBounds = YES;
+    self.editBttn.layer.borderColor  = [UIColor whiteColor].CGColor;
+    self.editBttn.layer.borderWidth = 2;
     NSData *imgData = [[NSData alloc] initWithData:UIImageJPEGRepresentation((original), 0.5)];
     //int imageSize   = imgData.length;
     NSLog(@"size of image in KB: %f ", imgData.length/1024.0);

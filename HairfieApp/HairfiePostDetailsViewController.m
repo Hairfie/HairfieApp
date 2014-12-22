@@ -71,8 +71,7 @@
     
     _isSalon = NO;
     _isHairdresser = NO;
-  //  _hairdresserSubview.hidden = YES;
-    _emailSubview.hidden = YES;
+     _emailSubview.hidden = YES;
 
     
     _tagsButton.layer.cornerRadius = 5;
