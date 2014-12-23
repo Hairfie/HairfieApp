@@ -525,6 +525,8 @@
     priceBg.layer.cornerRadius = priceBg.frame.size.height / 2;
     priceBg.clipsToBounds = YES;
     priceBg.backgroundColor = [UIColor salonDetailTab];
+    priceBg.layer.borderColor = [UIColor whiteColor].CGColor;
+    priceBg.layer.borderWidth = 1;
     
     priceLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 15, 30, 30)];
     priceLabel.font = [UIFont fontWithName:@"SourceSansPro-Light" size:17];

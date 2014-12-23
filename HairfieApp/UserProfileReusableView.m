@@ -88,14 +88,14 @@
          }
      }];
     
-    userProfilePicture = [[UIRoundImageView alloc] initWithFrame:CGRectMake(118, 68, 84, 84)];
+    userProfilePicture = [[UIRoundImageView alloc] initWithFrame:CGRectMake(self.bounds.size.width / 2 - 58, 68, 116, 116)];
     userProfilePicture.clipsToBounds = YES;
     userProfilePicture.contentMode = UIViewContentModeScaleAspectFit;
     
     [userProfilePicture sd_setImageWithURL:[self.user pictureUrlwithWidth:@200 andHeight:@200]
                           placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
     
-    UIView *profileBorder =[[UIView alloc] initWithFrame:CGRectMake(113, 63, 94, 94)];
+    UIView *profileBorder =[[UIView alloc] initWithFrame:CGRectMake(self.bounds.size.width / 2 - 63, 63, 126, 126)];
     profileBorder.layer.cornerRadius = profileBorder.frame.size.height / 2;
     profileBorder.clipsToBounds = YES;
     profileBorder.backgroundColor = [UIColor colorWithWhite:1 alpha:0.1];
