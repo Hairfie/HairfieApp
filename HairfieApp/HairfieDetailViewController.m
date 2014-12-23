@@ -587,7 +587,7 @@
    // usernameButton.titleLabel.adjustsFontSizeToFitWidth = YES;
 
 
-    UILabel *nbHairfies = [[UILabel alloc]initWithFrame:CGRectMake(62, 30, 92, 21)];
+    UILabel *nbHairfies = [[UILabel alloc]initWithFrame:CGRectMake(62, 22, 92, 21)];
     nbHairfies.text = self.hairfie.author.displayHairfies;
     nbHairfies.font = [UIFont fontWithName:@"SourceSansPro-Light" size:13];
     nbHairfies.textColor = [[UIColor blackHairfie]colorWithAlphaComponent:0.8];
