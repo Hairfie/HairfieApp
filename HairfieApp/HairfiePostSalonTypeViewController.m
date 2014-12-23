@@ -129,9 +129,9 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    // TODO: pass the hairfiePost model to the controller
     HairfiePostDetailsViewController *details = [self.navigationController.viewControllers objectAtIndex:[self.navigationController.viewControllers count]-2];
-    details.salonChosen = businesses[indexPath.row];
-   
+    details.hairfiePost.business = businesses[indexPath.row];
     
     [self.navigationController popViewControllerAnimated:YES];
 }
