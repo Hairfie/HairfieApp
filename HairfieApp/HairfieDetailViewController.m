@@ -237,7 +237,9 @@
 {
     
     [ARAnalytics pageView:@"AR - Hairfie Detail"];
-    [ARAnalytics event:@"AR - Hairfie Detail" withProperties:@{@"Hairfie ID": self.hairfie.id, @"Author": self.hairfie.author.name}];
+    if(self.hairfie) {
+         [ARAnalytics event:@"AR - Hairfie Detail" withProperties:@{@"Hairfie ID": self.hairfie.id, @"Author": self.hairfie.author.name}];   
+    }
 }
 
 -(IBAction)goBack:(id)sender
