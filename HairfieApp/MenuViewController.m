@@ -45,6 +45,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+   
     newBusiness = NO;
     didInsert = NO;
     self.slidingViewController.topViewAnchoredGesture = ECSlidingViewControllerAnchoredGesturePanning | ECSlidingViewControllerAnchoredGestureTapping;

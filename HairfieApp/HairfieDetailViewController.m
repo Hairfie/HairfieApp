@@ -63,8 +63,19 @@
     
     [self reloadData];
 
-    self.headerTitleLabel.text = [NSString stringWithFormat:@"%@'s Hairfie", self.hairfie.author.firstName];
-     [_topBarView addBottomBorderWithHeight:1.0 andColor:[UIColor lightGrey]];
+    
+    NSString *language = [[NSLocale preferredLanguages] objectAtIndex:0];
+    if ([language isEqualToString:@"fr"]) {
+        
+        self.headerTitleLabel.text = [NSString stringWithFormat:@"Hairfie de %@", self.hairfie.author.firstName];
+
+    }
+    else {
+        self.headerTitleLabel.text = [NSString stringWithFormat:@"%@'s Hairfie", self.hairfie.author.firstName];
+           }
+    
+    
+         [_topBarView addBottomBorderWithHeight:1.0 andColor:[UIColor lightGrey]];
 
     menuActions = @[
         @{

@@ -204,7 +204,6 @@
     NSDictionary* userInfo = notification.userInfo;
     
     ratingForReview = [userInfo objectForKey:@"reviewRating"];
-    NSLog(@"rating %@", ratingForReview);
     [self performSegueWithIdentifier:@"showReviews" sender:self];
     isReviewing = YES;
 }
@@ -438,9 +437,14 @@
 {
     BusinessHairdressersCollectionViewCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:@"businessHairdresserCell" forIndexPath:indexPath];
     
+    
+    NSLog(@"business hairdressers count %zd", self.business.activeHairdressers.count);
+    if (self.business.activeHairdressers.count == 0)
+        cell.hairdresserName.text = NSLocalizedStringFromTable(@"No Hairdresser", @"Salon_Detail", nil);
+    else {
     Hairdresser *hairdresser = [self.business.activeHairdressers objectAtIndex:indexPath.row];
     [cell setHairdresser:hairdresser];
-    
+    }
     return cell;
 }
 -(UICollectionViewCell *)newHairfieCellForItemAtIndexPath:(NSIndexPath *)indexPath

@@ -186,7 +186,7 @@
                         <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <sections/>
                     </tableView>
-                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bbo-XB-I4p" userLabel="Similar Container View">
+                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bbo-XB-I4p" userLabel="Similar Container View">
                         <rect key="frame" x="0.0" y="601" width="320" height="363"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="SIMILAR SALONS" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DkZ-3B-yzq">
@@ -198,7 +198,7 @@
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y22-JG-wDq" userLabel="Similar Separator">
                                 <color key="backgroundColor" red="0.81176470590000005" green="0.81176470590000005" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="nXQ-3u-cD5" userLabel="Similar Table View">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="nXQ-3u-cD5" userLabel="Similar Table View">
                                 <rect key="frame" x="0.0" y="40" width="320" height="323"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -238,6 +238,7 @@
             <connections>
                 <outlet property="addRatingSuperView" destination="CEO-l8-dgH" id="CHE-b8-nKZ"/>
                 <outlet property="addRatingView" destination="0g5-vN-b0L" id="2SV-S7-i8E"/>
+                <outlet property="addReviewLbl" destination="boq-kx-19O" id="N8k-ln-AMi"/>
                 <outlet property="address" destination="0SB-zz-uRQ" id="JjI-DH-9GM"/>
                 <outlet property="city" destination="kYT-yn-AYb" id="XcS-vU-Akh"/>
                 <outlet property="isOpenImage" destination="bUB-5W-Mak" id="oHu-dY-G6Y"/>
@@ -247,6 +248,8 @@
                 <outlet property="moreReviewBttn" destination="gRG-Ol-DjI" id="0OR-oc-r8G"/>
                 <outlet property="moreReviewButtonYpos" destination="rZx-ik-Veh" id="PLd-cn-dac"/>
                 <outlet property="reviewTableView" destination="NB6-0y-Tlm" id="iuS-19-Psh"/>
+                <outlet property="seeDetailsLbl" destination="tDP-aM-0V1" id="tSO-Hn-clG"/>
+                <outlet property="similarBusinessesLbl" destination="DkZ-3B-yzq" id="oMJ-uN-CwG"/>
                 <outlet property="similarContainerView" destination="Bbo-XB-I4p" id="EUD-fR-T87"/>
                 <outlet property="similarTableView" destination="nXQ-3u-cD5" id="q3P-gT-KKn"/>
                 <outlet property="telephone" destination="Iia-bf-GFv" id="2gw-5d-aQ9"/>

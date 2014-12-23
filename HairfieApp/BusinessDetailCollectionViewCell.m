@@ -36,6 +36,9 @@
     self.similarTableView.delegate = self;
     self.similarTableView.dataSource = self;
     self.moreReviewBttn.layer.cornerRadius = 5;
+    self.addReviewLbl.text = NSLocalizedStringFromTable(@"addReview", @"Salon_Detail", nil);
+    self.seeDetailsLbl.text = NSLocalizedStringFromTable(@"seeDetails", @"Salon_Detail", nil);
+    self.similarBusinessesLbl.text = NSLocalizedStringFromTable(@"similarBusinesses", @"Salon_Detail", nil);
     [self setupCrossSell];
     [self setupRecentReviews];
     self.address.text = business.address.street;

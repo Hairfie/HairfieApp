@@ -12,10 +12,13 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    
+    _endOfScroll.text = NSLocalizedStringFromTable(@"End of Hairfies", @"Feed", nil);
     _endOfScroll.hidden = YES;
 }
 
 -(void) showEndOfScroll {
+    
     _endOfScroll.hidden = NO;
     _spinner.hidden = YES;
 

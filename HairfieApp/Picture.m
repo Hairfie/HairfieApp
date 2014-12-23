@@ -80,7 +80,6 @@
     } else {
         components.query = [queryParts componentsJoinedByString:@"&"];
     }
-
     return components.URL;
 }
 

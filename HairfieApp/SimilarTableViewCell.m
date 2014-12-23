@@ -22,6 +22,7 @@
     
    // _salonPicture.image = [UIImage imageNamed:@"leosquare.jpg"];
     
+    
     _ratingView.notSelectedImage = [UIImage imageNamed:@"not_selected_star.png"];
     _ratingView.halfSelectedImage = [UIImage imageNamed:@"half_selected_star.png"];
     _ratingView.fullSelectedImage = [UIImage imageNamed:@"selected_star.png"];
@@ -74,11 +75,24 @@
     
     self.ratingView.rating = [[self.business ratingBetween:@0 and:@5] floatValue];
     if ([self.business.numReviews isEqualToNumber:@0]) {
-        self.statusLabel.text = NSLocalizedStringFromTable(@"- rate this hairdresser", @"BusinessTableCell", nil);
+        
+        NSString *rateInt = NSLocalizedStringFromTable(@"rate this hairdresser", @"BusinessTableCell", nil);
+
+        self.statusLabel.text = [NSString stringWithFormat:@"- %@", rateInt];
+        
     } else if ([self.business.numReviews isEqualToNumber:@1]) {
-        self.statusLabel.text = NSLocalizedStringFromTable(@"- 1 review", @"BusinessTableCell", nil);
+       
+         NSString *rateInt = NSLocalizedStringFromTable(@"review", @"BusinessTableCell", nil);
+       
+
+        self.statusLabel.text = [NSString stringWithFormat:@"- 1 %@", rateInt];
+    
+    
     } else {
-        self.statusLabel.text = [NSString stringWithFormat:NSLocalizedStringFromTable(@"- %@ reviews", @"BusinessTableCell", nil), self.business.numReviews];
+        
+        NSString *rateInt = NSLocalizedStringFromTable(@"reviews", @"BusinessTableCell", nil);
+        
+        self.statusLabel.text = [NSString stringWithFormat:@"- %@ %@", self.business.numReviews, rateInt];
     }
     
     if ([self.business.kind isEqualToString:KIND_ATHOME]) {

@@ -12,6 +12,7 @@
 
 @property (nonatomic) IBOutlet UIView *topView;
 @property (nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic) IBOutlet UILabel *headerTitle;
 
 @property (nonatomic) IBOutlet NSLayoutConstraint *tableViewHeight;
 
