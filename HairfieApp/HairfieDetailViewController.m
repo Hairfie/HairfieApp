@@ -567,8 +567,13 @@
     [profilePicture sd_setImageWithURL:[self.hairfie.author pictureUrlwithWidth:@100 andHeight:@100] placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
 
 
+    // add gesture recognizer to open user's profile on picture tap
+    UITapGestureRecognizer *profilePictureTap = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                        action:@selector(showProfile:)];
     
-    
+    [profilePicture addGestureRecognizer:profilePictureTap];
+    [profilePicture setMultipleTouchEnabled:YES];
+    [profilePicture setUserInteractionEnabled:YES];
     
     
     UIButton *usernameButton = [[UIButton alloc] init];
