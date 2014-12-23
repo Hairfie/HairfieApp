@@ -31,25 +31,14 @@
                             <constraint firstAttribute="height" constant="25" id="XKJ-TJ-HFb"/>
                         </constraints>
                     </imageView>
-                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UVe-yb-jA6" userLabel="Book Button">
-                        <rect key="frame" x="230" y="9" width="82" height="30"/>
-                        <color key="backgroundColor" red="1" green="0.45882352941176469" blue="0.44313725490196076" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <state key="normal" title="Réserver">
-                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                        </state>
-                        <connections>
-                            <action selector="book:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="L9e-8y-5Qq"/>
-                        </connections>
-                    </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Au Cheuveux Qui Chante" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="rf5-vf-8YN" userLabel="Name">
-                        <rect key="frame" x="43" y="14" width="179" height="22"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Au Cheuveux Qui Chante" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="rf5-vf-8YN" userLabel="Name">
+                        <rect key="frame" x="43" y="13.5" width="158" height="21.5"/>
                         <fontDescription key="fontDescription" name="SourceSansPro-Semibold" family="Source Sans Pro" pointSize="17"/>
                         <color key="textColor" red="0.52156862745098043" green="0.5490196078431373" blue="0.59607843137254901" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="33 Rue du Mail" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GMK-tf-goA" userLabel="Street Address">
-                        <rect key="frame" x="43" y="40" width="179" height="22"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="33 Rue du Mail" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GMK-tf-goA" userLabel="Street Address">
+                        <rect key="frame" x="43" y="40" width="118" height="21.5"/>
                         <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="17"/>
                         <color key="textColor" red="0.52156862749999999" green="0.54901960780000003" blue="0.59607843140000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
@@ -60,6 +49,21 @@
                         <color key="textColor" red="0.52156862749999999" green="0.54901960780000003" blue="0.59607843140000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UVe-yb-jA6" userLabel="Book Button">
+                        <rect key="frame" x="256" y="26" width="50" height="50"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="50" id="cAi-Nr-dIY"/>
+                            <constraint firstAttribute="width" constant="50" id="sPg-aA-vOn"/>
+                        </constraints>
+                        <state key="normal" image="phone-icon-round.png">
+                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="book:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="L9e-8y-5Qq"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <color key="backgroundColor" red="0.97254901959999995" green="0.97254901959999995" blue="0.97254901959999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -69,8 +73,8 @@
                     <constraint firstItem="rf5-vf-8YN" firstAttribute="width" secondItem="GMK-tf-goA" secondAttribute="width" id="Ifh-Ur-FQ0"/>
                     <constraint firstItem="GMK-tf-goA" firstAttribute="width" secondItem="auS-Ar-2tM" secondAttribute="width" id="RYQ-pI-l02"/>
                     <constraint firstItem="rf5-vf-8YN" firstAttribute="centerY" secondItem="pQM-JK-NEK" secondAttribute="centerY" constant="2" id="Shs-GA-ric"/>
-                    <constraint firstItem="UVe-yb-jA6" firstAttribute="leading" secondItem="rf5-vf-8YN" secondAttribute="trailing" constant="8" id="bBI-R2-fvg"/>
-                    <constraint firstItem="UVe-yb-jA6" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="dqS-fc-yUR"/>
+                    <constraint firstItem="UVe-yb-jA6" firstAttribute="leading" secondItem="rf5-vf-8YN" secondAttribute="trailing" constant="55" id="bBI-R2-fvg"/>
+                    <constraint firstItem="UVe-yb-jA6" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="12" id="dqS-fc-yUR"/>
                     <constraint firstItem="UVe-yb-jA6" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="dwS-KO-SWV"/>
                     <constraint firstItem="pQM-JK-NEK" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="1" id="hzQ-dF-gaM"/>
                     <constraint firstItem="rf5-vf-8YN" firstAttribute="leading" secondItem="pQM-JK-NEK" secondAttribute="trailing" constant="8" id="lru-fa-qIH"/>
@@ -89,6 +93,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="phone-icon-round.png" width="80" height="80"/>
         <image name="picto-hairfie-detail-business.png" width="50" height="50"/>
     </resources>
 </document>

@@ -21,6 +21,7 @@
     _searchAroundMeImage.image = [_searchAroundMeImage.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     _searchAroundMeImage.tintColor = [UIColor lightBlueHairfie];
 
+    _searchBttn.backgroundColor = [UIColor salonDetailTab];
     _searchBttn.layer.cornerRadius = 5;
     _searchBttn.layer.masksToBounds = YES;
 

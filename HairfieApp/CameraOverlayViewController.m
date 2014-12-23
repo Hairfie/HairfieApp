@@ -47,7 +47,7 @@
         [_imagePicker setDelegate:self];
         if ([UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera]) {
             _imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-            _imagePicker.cameraDevice = UIImagePickerControllerCameraDeviceFront;
+            _imagePicker.cameraDevice = UIImagePickerControllerCameraDeviceRear;
             _imagePicker.showsCameraControls = NO;
             _imagePicker.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
             _imagePicker.allowsEditing = YES;
