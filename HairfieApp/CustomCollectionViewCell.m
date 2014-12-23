@@ -9,6 +9,7 @@
 #import "CustomCollectionViewCell.h"
 #import "UIRoundImageView.h"
 #import "User.h"
+#import "UIImageView+UIActivityIndicatorForSDWebImage.h"
 
 @implementation CustomCollectionViewCell
 
@@ -51,8 +52,9 @@
     self.nbLikes.text = hairfie.displayNumLikes;
     self.priceLabel.text = [hairfie displayPrice];
 
-    [self.hairfieView sd_setImageWithURL:[hairfie.picture urlWithWidth:@300 height:@420]
-                        placeholderImage:[UIColor imageWithColor:[UIColor colorWithRed:234/255.0f green:236/255.0f blue:238/255.0f alpha:1]]];
+    [self.hairfieView setImageWithURL:[hairfie.picture urlWithWidth:@300 height:@420]
+                        placeholderImage:[UIColor imageWithColor:[UIColor colorWithRed:234/255.0f green:236/255.0f blue:238/255.0f alpha:1]]
+                        usingActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
    
     
     if (hairfie.price.amount == nil) {

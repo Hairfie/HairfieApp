@@ -20,6 +20,8 @@
 #import "InstagramSharer.h"
 #import <Social/Social.h>
 #import <Pinterest/Pinterest.h>
+#import "UIImageView+UIActivityIndicatorForSDWebImage.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface HairfieDetailViewController ()
 
@@ -467,10 +469,12 @@
         UIImageView *hairfieImageView2 = [[UIImageView alloc] initWithFrame:CGRectMake(320, 0, 320, 320)];
         Picture *hairfie2 = (Picture*)[self.hairfie.pictures objectAtIndex:1];
         
-        [hairfieImageView1 sd_setImageWithURL:[hairfie1 urlWithWidth:@640 height:@640]
-                             placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
-        [hairfieImageView2 sd_setImageWithURL:[hairfie2 urlWithWidth:@640 height:@640]
-                             placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
+        [hairfieImageView1 setImageWithURL:[hairfie1 urlWithWidth:@640 height:@640]
+                            placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]
+                  usingActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+        [hairfieImageView2 setImageWithURL:[hairfie2 urlWithWidth:@640 height:@640]
+                          placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]
+               usingActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
         
         hairfieImageView1.contentMode = UIViewContentModeScaleAspectFit;
         hairfieImageView1.clipsToBounds = YES;
@@ -479,14 +483,14 @@
         hairfieImageView2.clipsToBounds = YES;
         [hairfieScroller addSubview:hairfieImageView1];
         [hairfieScroller addSubview:hairfieImageView2];
-    }
-    else {
+    } else {
         hairfieScroller = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, 320)];
         UIImageView *hairfieImageView1 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 320)];
         Picture *hairfie1 = (Picture*)[self.hairfie.pictures objectAtIndex:0];
         
-        [hairfieImageView1 sd_setImageWithURL:[hairfie1 urlWithWidth:@640 height:@640]
-                             placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
+        [hairfieImageView1 setImageWithURL:[hairfie1 urlWithWidth:@640 height:@640]
+                          placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]
+               usingActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
 
         
         hairfieImageView1.contentMode = UIViewContentModeScaleAspectFit;

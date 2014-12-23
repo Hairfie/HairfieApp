@@ -20,6 +20,7 @@ target "HairfieApp" do
   pod 'Underscore.m'
   pod 'NSDate+TimeAgo'
   pod 'Pinterest-iOS'
+  pod 'UIActivityIndicator-for-SDWebImage'
 end
 
 target "HairfieAppTests" do
