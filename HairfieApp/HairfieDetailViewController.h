@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <SDWebImage/UIImageView+WebCache.h>
 #import "Hairfie.h"
 
 @interface HairfieDetailViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, UIDocumentInteractionControllerDelegate, UIScrollViewDelegate>
