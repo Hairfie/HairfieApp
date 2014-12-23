@@ -14,7 +14,7 @@
 #import "CameraOverlayViewController.h"
 
 #import "SalonTableViewCell.h"
-#import "SalonDetailViewController.h"
+#import "BusinessViewController.h"
 #import "BusinessViewController.h"
 #import "SimilarTableViewCell.h"
 
@@ -322,7 +322,7 @@
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"salonDetail"]) {
-        SalonDetailViewController *salonDetail = [segue destinationViewController];
+        BusinessViewController *salonDetail = [segue destinationViewController];
         [salonDetail setBusiness:[businesses objectAtIndex:rowSelected]];
     }
     if ([segue.identifier isEqualToString:@"businessDetailtest"]) {

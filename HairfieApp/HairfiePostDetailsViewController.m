@@ -104,7 +104,7 @@
     else {
         self.tagsButton.hidden = YES;
     }
-    
+
     if (appDelegate.currentUser.managedBusinesses.count != 0)
     {
         if (salonTypes.count == 2) {
