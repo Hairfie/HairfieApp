@@ -173,8 +173,7 @@
 -(IBAction)addTags:(id)sender
 {
     NSLog(@"TAGS");
-    [self.navigationController popViewControllerAnimated:YES];
-   // [self performSegueWithIdentifier:@"addTagsToHairfie" sender:self];
+    [self performSegueWithIdentifier:@"addTagsToHairfie" sender:self];
 }
 
 -(IBAction)showSalonsChoices:(id)sender
