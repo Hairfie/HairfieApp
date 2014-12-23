@@ -30,7 +30,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="220"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" canCancelContentTouches="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b2h-VQ-N90" userLabel="Pictures scroll view">
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b2h-VQ-N90" userLabel="Pictures scroll view">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="220"/>
                     <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
@@ -39,6 +39,9 @@
                 </scrollView>
                 <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="onP-7F-Nc5" userLabel="Pictures scroll view control">
                     <rect key="frame" x="261" y="173" width="39" height="37"/>
+                    <connections>
+                        <action selector="picturePageChanged:" destination="-1" eventType="valueChanged" id="pF7-Gy-2gN"/>
+                    </connections>
                 </pageControl>
                 <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b0j-Qe-fDH" userLabel="Hairdresser's picture border">
                     <rect key="frame" x="105" y="25" width="110" height="110"/>

@@ -350,11 +350,12 @@
     
     BusinessReusableView *userHeader = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"businessHeaderView" forIndexPath:indexPath];
     
-    headerViewController = [[SalonDetailHeaderViewController alloc] initWithNibName:@"SalonDetailHeaderViewController" bundle:nil];
-    headerViewController.business = self.business;
+
 
     
     if (!isSetup) {
+        headerViewController = [[SalonDetailHeaderViewController alloc] initWithNibName:@"SalonDetailHeaderViewController" bundle:nil];
+        headerViewController.business = self.business;
         [userHeader addSubview:headerViewController.view];
         isSetup = YES;
     }

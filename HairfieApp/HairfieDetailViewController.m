@@ -546,7 +546,7 @@
     nbLike.font = [UIFont fontWithName:@"SourceSansPro-SemiBold" size:18];
 
     
-    hairfieScroller.contentSize = CGSizeMake(320 * self.hairfie.pictures.count, 320);
+    hairfieScroller.contentSize = CGSizeMake(hairfieScroller.frame.size.width * self.hairfie.pictures.count, 320);
     [hairfieView addSubview:hairfieScroller];
     [hairfieView addSubview:pageControl];
     [hairfieView addSubview:likeButton];

@@ -152,7 +152,6 @@
             imageView.contentMode = UIViewContentModeScaleToFill;
             [_imageSliderView addSubview:imageView];
         }
-        
     }
     _imageSliderView.pagingEnabled = YES;
     _imageSliderView.contentSize = CGSizeMake(320 + _imageSliderView.frame.size.width *

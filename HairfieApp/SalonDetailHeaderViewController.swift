@@ -20,12 +20,13 @@ import QuartzCore
     @IBOutlet weak var hairdresserPictureBorderView: UIView!
     @IBOutlet weak var ratingView: RatingView!
     @IBOutlet weak var numReviewsLabel: UILabel!
-    
     var business: Business!
+    
+    
     
     override func viewWillAppear(animated: Bool) {
         
-        hairdresserPictureView.contentMode = UIViewContentMode.ScaleAspectFill
+        hairdresserPictureView.contentMode = UIViewContentMode.Center
         
         // configure hairdresser's picture border
         hairdresserPictureBorderView.layer.cornerRadius = hairdresserPictureBorderView.frame.size.height / 2
@@ -145,17 +146,17 @@ import QuartzCore
         )
     }
 
-//    func goToCurrentPicturePage(animated: Bool) {
-//        var page = picturesPageControl.currentPage
-//        var bounds = picturesScrollView.bounds
-//        bounds.origin.x = CGRectGetWidth(bounds) * CGFloat(page)
-//        bounds.origin.y = 0
-//        picturesScrollView.scrollRectToVisible(bounds, animated: animated)
-//    }
+    func goToCurrentPicturePage(animated: Bool) {
+        var page = picturesPageControl.currentPage
+        var bounds = picturesScrollView.bounds
+        bounds.origin.x = CGRectGetWidth(bounds) * CGFloat(page)
+        bounds.origin.y = 0
+        picturesScrollView.scrollRectToVisible(bounds, animated: animated)
+    }
 
-//    @IBAction func picturePageChanged(AnyObject) {
-//        goToCurrentPicturePage(true);
-//    }
+    @IBAction func picturePageChanged(AnyObject) {
+        goToCurrentPicturePage(true);
+    }
 
     
 
