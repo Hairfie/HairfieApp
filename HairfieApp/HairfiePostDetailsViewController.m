@@ -118,7 +118,7 @@
         int height = cell.frame.size.height ;
         _salonTableViewHeight.constant = salonTypes.count * height;
         
-        if (_salonChosen == nil) {
+        if (_hairfiePost.business == nil) {
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:1 inSection:0];
             [self.dataChoice selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
             _isSalon = YES;
@@ -126,8 +126,7 @@
         }
     }
 
-    if(_salonChosen != nil) {
-        _hairfiePost.business = _salonChosen;
+    if(_hairfiePost.business != nil) {
         if ([_hairfiePost.business.activeHairdressers count] != 0)
             [self loadHairdressers];
         _isSalon = YES;
