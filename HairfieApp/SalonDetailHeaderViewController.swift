@@ -15,7 +15,6 @@ import QuartzCore
 
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var picturesScrollView: UIScrollView!
-    @IBOutlet weak var picturesContainerView: UIView!
     @IBOutlet weak var picturesPageControl: UIPageControl!
     @IBOutlet weak var hairdresserPictureView: UIRoundImageView!
     @IBOutlet weak var hairdresserPictureBorderView: UIView!
@@ -25,9 +24,7 @@ import QuartzCore
     var business: Business!
     
     override func viewWillAppear(animated: Bool) {
-        picturesScrollView.canCancelContentTouches = false;
-        picturesScrollView.delegate = self;
-
+        
         hairdresserPictureView.contentMode = UIViewContentMode.ScaleAspectFill
         
         // configure hairdresser's picture border
@@ -70,7 +67,7 @@ import QuartzCore
         }
 
         // remove all existing pictures
-        picturesContainerView.subviews.map({ $0.removeFromSuperview() });
+        picturesScrollView.subviews.map({ $0.removeFromSuperview() });
 
         if (business.kind == KIND_ATHOME && business.owner != nil) {
             hairdresserPictureBorderView.hidden = false;
@@ -96,17 +93,15 @@ import QuartzCore
                 }
             })
 
-            picturesContainerView.addSubview(background);
+            picturesScrollView.addSubview(background);
         } else {
             hairdresserPictureBorderView.hidden = true;
-            
-            picturesScrollView.pagingEnabled = true;
-            
+
             picturesScrollView.contentSize = CGSize(width: CGFloat(business.pictures.count) * picturesScrollView.frame.width, height: picturesScrollView.frame.height)
             
-            picturesPageControl.hidden = business.pictures.count < 2;
+            picturesPageControl.hidden = false;
             picturesPageControl.numberOfPages = business.pictures.count;
-
+            picturesPageControl.currentPage = 0;
             var index: Int
             for index = 0; index < business.pictures.count; ++index {
                 var frame = getFrameForPictureAtIndex(index);
@@ -115,11 +110,13 @@ import QuartzCore
                 pictureView.contentMode = UIViewContentMode.ScaleAspectFill;
                 var pictureUrl = picture.urlWithWidth(frame.width, height: frame.height)
                 downloadImage(pictureUrl!, callback: { (image, error) -> Void in
+                  
                     if (nil != image) {
                         pictureView.image = image
                     }
+                    
                 })
-                picturesContainerView.addSubview(pictureView);
+                picturesScrollView.addSubview(pictureView);
             }
         }
     }
@@ -131,7 +128,6 @@ import QuartzCore
             progress: nil,
             completed: { (image, data, error, finished) -> Void in
                 if (nil != image) {
-                    println("test");
                     callback(image, error:error);
                 } else {
                     callback(nil, error:error);
@@ -149,19 +145,26 @@ import QuartzCore
         )
     }
 
-    func goToCurrentPicturePage(animated: Bool) {
-        var page = picturesPageControl.currentPage
-        var bounds = picturesScrollView.bounds
-        bounds.origin.x = CGRectGetWidth(bounds) * CGFloat(page)
-        bounds.origin.y = 0
-        picturesScrollView.scrollRectToVisible(bounds, animated: animated)
+//    func goToCurrentPicturePage(animated: Bool) {
+//        var page = picturesPageControl.currentPage
+//        var bounds = picturesScrollView.bounds
+//        bounds.origin.x = CGRectGetWidth(bounds) * CGFloat(page)
+//        bounds.origin.y = 0
+//        picturesScrollView.scrollRectToVisible(bounds, animated: animated)
+//    }
+
+//    @IBAction func picturePageChanged(AnyObject) {
+//        goToCurrentPicturePage(true);
+//    }
+
+    
+
+     func scrollViewWillBeginDragging(scrollView: UIScrollView!) {
+        println("will begin dragging");
     }
 
-    @IBAction func picturePageChanged(AnyObject) {
-        goToCurrentPicturePage(true);
-    }
-
-    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+    
+    func scrollViewDidEndDecelerating(scrollView: UIScrollView!) {
         if (scrollView == self.picturesScrollView) {
             var pageWidth = picturesScrollView.frame.size.width;
             var pageNumber = floor((picturesScrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;

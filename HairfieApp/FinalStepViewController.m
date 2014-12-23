@@ -66,9 +66,9 @@
     
     _validateBttn.layer.cornerRadius = 5;
     _validateBttn.layer.masksToBounds = YES;
-    _addHairfiesBttn.layer.cornerRadius = 5;
-    _addHairfiesBttn.layer.masksToBounds = YES;
-    
+//    _addHairfiesBttn.layer.cornerRadius = 5;
+//    _addHairfiesBttn.layer.masksToBounds = YES;
+//    
     
     
     // Do any additional setup after loading the view.
@@ -196,7 +196,7 @@
             _serviceTableView.hidden = YES;
         else
             _serviceTableView.hidden = NO;
-        _addHairfiesLbl.text = NSLocalizedStringFromTable(@"hairfie claim update", @"Claim", nil);
+       // _addHairfiesLbl.text = NSLocalizedStringFromTable(@"hairfie claim update", @"Claim", nil);
         [_serviceTableView reloadData];
         [_hairdresserTableView reloadData];
     }
@@ -221,34 +221,35 @@
 -(void)setButtonSelected:(UIButton*)aButton
 {
     self.infoView.hidden = YES;
-    self.hairfieView.hidden = YES;
+  //  self.hairfieView.hidden = YES;
     self.hairdresserView.hidden = YES;
-    self.priceAndSaleView.hidden = YES;
+ //   self.priceAndSaleView.hidden = YES;
     
     [self decorateButton:self.infoBttn withImage:@"infos" active:NO];
-    [self decorateButton:self.hairfieBttn withImage:@"hairfies" active:NO];
+ //   [self decorateButton:self.hairfieBttn withImage:@"hairfies" active:NO];
     [self decorateButton:self.hairdresserBttn withImage:@"hairdressers" active:NO];
-    [self decorateButton:self.priceAndSaleBttn withImage:@"prices" active:NO];
+//    [self decorateButton:self.priceAndSaleBttn withImage:@"prices" active:NO];
     
     if (aButton == self.infoBttn) {
         [self decorateButton:self.infoBttn withImage:@"infos" active:YES];
         [self.containerView bringSubviewToFront:self.infoView];
         self.infoView.hidden = NO;
-    } else if (aButton == self.hairfieBttn) {
-        [self decorateButton:self.hairfieBttn withImage:@"hairfies" active:YES];
-        [self.containerView bringSubviewToFront:self.hairfieView];
-        self.hairfieView.hidden = NO;
+//    } else if (aButton == self.hairfieBttn) {
+//        [self decorateButton:self.hairfieBttn withImage:@"hairfies" active:YES];
+//        [self.containerView bringSubviewToFront:self.hairfieView];
+//        self.hairfieView.hidden = NO;
     } else if (aButton == self.hairdresserBttn) {
         [self decorateButton:self.hairdresserBttn withImage:@"hairdressers" active:YES];
         [self.containerView bringSubviewToFront:self.hairdresserView];
         self.hairdresserView.hidden = NO;
-    } else if (aButton == self.priceAndSaleBttn) {
-        [self decorateButton:self.priceAndSaleBttn withImage:@"prices" active:YES];
-        [self.containerView bringSubviewToFront:self.priceAndSaleView];
-        self.priceAndSaleView.hidden = NO;
     }
+//     else if (aButton == self.priceAndSaleBttn) {
+//        [self decorateButton:self.priceAndSaleBttn withImage:@"prices" active:YES];
+//        [self.containerView bringSubviewToFront:self.priceAndSaleView];
+//        self.priceAndSaleView.hidden = NO;
+//    }
     
-    for (UIButton *btn in @[self.infoBttn, self.hairfieBttn, self.hairdresserBttn, self.priceAndSaleBttn]) {
+    for (UIButton *btn in @[self.infoBttn, /*self.hairfieBttn,*/ self.hairdresserBttn/*, self.priceAndSaleBttn*/]) {
         for (UIView *subView in btn.subviews) {
             if (subView.tag == 1) [subView removeFromSuperview];
         }
@@ -276,13 +277,13 @@
 -(void) unSelectAll
 {
     _infoView.hidden = YES;
-    _hairfieView.hidden = YES;
+ //   _hairfieView.hidden = YES;
     _hairdresserView.hidden = YES;
-    _priceAndSaleView.hidden = YES;
+ //   _priceAndSaleView.hidden = YES;
     [self setNormalStateColor:_infoBttn];
-    [self setNormalStateColor:_hairfieBttn];
+  //  [self setNormalStateColor:_hairfieBttn];
     [self setNormalStateColor:_hairdresserBttn];
-    [self setNormalStateColor:_priceAndSaleBttn];
+  //  [self setNormalStateColor:_priceAndSaleBttn];
 }
 
 
@@ -460,7 +461,6 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-  // set this bish
     UIImage *image;
     if([info valueForKey:UIImagePickerControllerEditedImage]) {
         image = [info valueForKey:UIImagePickerControllerEditedImage];

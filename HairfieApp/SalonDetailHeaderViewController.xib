@@ -19,7 +19,6 @@
                 <outlet property="hairdresserPictureView" destination="dZ7-tO-4Fy" id="VSG-af-hrz"/>
                 <outlet property="nameLabel" destination="90h-wb-UlQ" id="Oq0-np-OH4"/>
                 <outlet property="numReviewsLabel" destination="3JL-cQ-6N9" id="WDI-KH-iiw"/>
-                <outlet property="picturesContainerView" destination="VXE-Mv-Gfg" id="wJd-fK-Pmw"/>
                 <outlet property="picturesPageControl" destination="onP-7F-Nc5" id="00n-Xy-v9g"/>
                 <outlet property="picturesScrollView" destination="b2h-VQ-N90" id="vbF-xm-UrS"/>
                 <outlet property="ratingView" destination="nnI-KP-rM8" id="vcd-ZR-Ru9"/>
@@ -31,20 +30,15 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="220"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b2h-VQ-N90" userLabel="Pictures scroll view">
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" canCancelContentTouches="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b2h-VQ-N90" userLabel="Pictures scroll view">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="220"/>
-                    <subviews>
-                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VXE-Mv-Gfg" userLabel="Pictures container">
-                            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                        </view>
-                    </subviews>
                     <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="osn-hZ-ceZ"/>
+                    </connections>
                 </scrollView>
                 <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="onP-7F-Nc5" userLabel="Pictures scroll view control">
                     <rect key="frame" x="261" y="173" width="39" height="37"/>
-                    <connections>
-                        <action selector="picturePageChanged:" destination="-1" eventType="valueChanged" id="45B-Fc-Vv1"/>
-                    </connections>
                 </pageControl>
                 <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b0j-Qe-fDH" userLabel="Hairdresser's picture border">
                     <rect key="frame" x="105" y="25" width="110" height="110"/>
@@ -89,8 +83,11 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="b2h-VQ-N90" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="2LI-ec-dga"/>
+                <constraint firstAttribute="trailing" secondItem="b2h-VQ-N90" secondAttribute="trailing" id="5x2-ep-shO"/>
                 <constraint firstAttribute="centerX" secondItem="EsZ-Cm-TUW" secondAttribute="centerX" id="8bN-zL-SkN"/>
                 <constraint firstAttribute="bottom" secondItem="b2h-VQ-N90" secondAttribute="bottom" id="FmY-Lg-yld"/>
+                <constraint firstItem="b2h-VQ-N90" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Hbv-5L-nDj"/>
                 <constraint firstAttribute="centerX" secondItem="b0j-Qe-fDH" secondAttribute="centerX" id="eH3-ZR-RGM"/>
                 <constraint firstItem="90h-wb-UlQ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="hV6-6d-l5B"/>
                 <constraint firstAttribute="centerX" secondItem="90h-wb-UlQ" secondAttribute="centerX" id="iJd-Aa-8gH"/>
