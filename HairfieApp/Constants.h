@@ -12,7 +12,7 @@
 #ifdef DEV
     #define BASE_URL @"http://api-staging.hairfie.com/"
 #elif ADHOC
-    #define BASE_URL @"http://api-staging.hairfie.com/"
+    #define BASE_URL @"http://api.hairfie.com/"
 #elif RELEASE
     #define BASE_URL @"https://hairfie.herokuapp.com/"
 #endif
