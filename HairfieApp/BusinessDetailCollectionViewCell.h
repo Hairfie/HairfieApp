@@ -27,6 +27,12 @@
 @property (nonatomic) IBOutlet UITableView *reviewTableView;
 @property (nonatomic) IBOutlet UIButton *moreReviewBttn;
 
+@property (nonatomic) IBOutlet UILabel *addReviewLbl;
+@property (nonatomic) IBOutlet UILabel *seeDetailsLbl;
+@property (nonatomic) IBOutlet UILabel *similarBusinessesLbl;
+
+
+
 @property (nonatomic) IBOutlet NSLayoutConstraint *telephoneLabelWidth;
 @property (nonatomic) IBOutlet NSLayoutConstraint *similarViewYPos;
 @property (nonatomic) IBOutlet NSLayoutConstraint *moreReviewButtonYpos;

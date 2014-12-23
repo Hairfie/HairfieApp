@@ -79,9 +79,9 @@ import QuartzCore
             var frame = hairdresserPictureView.frame;
             var background = UIImageView(frame: getFrameForPictureAtIndex(0));
             background.contentMode = UIViewContentMode.ScaleAspectFill;
+
             var pictureUrl = business.owner.picture.urlWithWidth(frame.width * 2, height: frame.height * 2);
-            
-            downloadImage(pictureUrl!, callback:{ (image, error) -> Void in
+                       downloadImage(pictureUrl!, callback:{ (image, error) -> Void in
                 if (nil != image) {
                     self.hairdresserPictureView.image = image;
                 }
@@ -115,7 +115,6 @@ import QuartzCore
                     if (nil != image) {
                         pictureView.image = image
                     }
-                    
                 })
                 picturesScrollView.addSubview(pictureView);
             }

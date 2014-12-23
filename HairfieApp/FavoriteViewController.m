@@ -32,6 +32,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.headerTitle.text = NSLocalizedStringFromTable(@"Favorites", @"Menu", nil);
     [self.view addGestureRecognizer:self.slidingViewController.panGesture];
     appDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     
