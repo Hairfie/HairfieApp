@@ -578,8 +578,13 @@
     [profilePicture sd_setImageWithURL:[self.hairfie.author pictureUrlwithWidth:@100 andHeight:@100] placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
 
 
+    // add gesture recognizer to open user's profile on picture tap
+    UITapGestureRecognizer *profilePictureTap = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                        action:@selector(showProfile:)];
     
-    
+    [profilePicture addGestureRecognizer:profilePictureTap];
+    [profilePicture setMultipleTouchEnabled:YES];
+    [profilePicture setUserInteractionEnabled:YES];
     
     
     UIButton *usernameButton = [[UIButton alloc] init];
@@ -598,7 +603,7 @@
    // usernameButton.titleLabel.adjustsFontSizeToFitWidth = YES;
 
 
-    UILabel *nbHairfies = [[UILabel alloc]initWithFrame:CGRectMake(62, 30, 92, 21)];
+    UILabel *nbHairfies = [[UILabel alloc]initWithFrame:CGRectMake(62, 22, 92, 21)];
     nbHairfies.text = self.hairfie.author.displayHairfies;
     nbHairfies.font = [UIFont fontWithName:@"SourceSansPro-Light" size:13];
     nbHairfies.textColor = [[UIColor blackHairfie]colorWithAlphaComponent:0.8];
