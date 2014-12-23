@@ -34,12 +34,11 @@
     Hairfie *hairfiePicked;
     NSInteger hairfiesCount;
 }
-- (void)viewDidLoad {
+
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    
-    
-    
-    
+
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(showDetails:)
                                                  name:@"detailsTab"
@@ -141,6 +140,7 @@
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
+
 -(void)getHairdresserHairfies
 {
     hairdresserHairfies = [[NSMutableArray alloc] init];
@@ -253,8 +253,6 @@
         return CGSizeMake(320, 134);
 }
 
-
-
 -(UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     
@@ -271,9 +269,6 @@
         return [self hairdresserDetailsCellAtIndexPath:indexPath];
     }
 }
-
-
-
 
 -(UICollectionViewCell *)hairdresserDetailsCellAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -321,7 +316,6 @@
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
 {
-    
     return CGSizeMake(320, 324);
 }
 
@@ -336,15 +330,5 @@
         hairfieDetail.hairfie = hairfiePicked;
     }
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

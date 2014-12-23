@@ -199,7 +199,6 @@
 		B3615B3519AF1D0600F1141D /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = B3615B3419AF1D0600F1141D /* UIScrollView+TPKeyboardAvoidingAdditions.m */; };
 		B3615B3819AF242800F1141D /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = B3615B3719AF242800F1141D /* User.m */; };
 		B362754A19D00F3F00CAA414 /* VerificationClaimViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B362754919D00F3F00CAA414 /* VerificationClaimViewController.m */; };
-		B36731D7198F939A00E11C56 /* SalonDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B36731D6198F939A00E11C56 /* SalonDetailViewController.m */; };
 		B36731E2198FB17800E11C56 /* picto-man-white.png in Resources */ = {isa = PBXBuildFile; fileRef = B36731E0198FB17800E11C56 /* picto-man-white.png */; };
 		B36731E3198FB17800E11C56 /* picto-woman-white.png in Resources */ = {isa = PBXBuildFile; fileRef = B36731E1198FB17800E11C56 /* picto-woman-white.png */; };
 		B36731E5198FD87600E11C56 /* picto-home-black.png in Resources */ = {isa = PBXBuildFile; fileRef = B36731E4198FD87600E11C56 /* picto-home-black.png */; };
@@ -719,8 +718,6 @@
 		B3615B3719AF242800F1141D /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		B362754819D00F3F00CAA414 /* VerificationClaimViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerificationClaimViewController.h; sourceTree = "<group>"; };
 		B362754919D00F3F00CAA414 /* VerificationClaimViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerificationClaimViewController.m; sourceTree = "<group>"; };
-		B36731D5198F939A00E11C56 /* SalonDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SalonDetailViewController.h; sourceTree = "<group>"; };
-		B36731D6198F939A00E11C56 /* SalonDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SalonDetailViewController.m; sourceTree = "<group>"; };
 		B36731E0198FB17800E11C56 /* picto-man-white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "picto-man-white.png"; sourceTree = "<group>"; };
 		B36731E1198FB17800E11C56 /* picto-woman-white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "picto-woman-white.png"; sourceTree = "<group>"; };
 		B36731E4198FD87600E11C56 /* picto-home-black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "picto-home-black.png"; sourceTree = "<group>"; };
@@ -1524,8 +1521,6 @@
 			isa = PBXGroup;
 			children = (
 				B3AA0C9A1A23458900FAEC01 /* NEW SALON */,
-				B36731D5198F939A00E11C56 /* SalonDetailViewController.h */,
-				B36731D6198F939A00E11C56 /* SalonDetailViewController.m */,
 				71E08E5C19FF9A2700A56FBB /* SalonDetailHeaderViewController.swift */,
 				71E08E5E19FF9A6600A56FBB /* SalonDetailHeaderViewController.xib */,
 				B30B4F3C19A5E9F500D3F54D /* Custom Cells */,
@@ -2449,7 +2444,6 @@
 				B3FA620519F7AE64002D8B6F /* UILabel+Style.m in Sources */,
 				B35D112519BEFB5C00486050 /* ApplyFiltersViewController.m in Sources */,
 				713C8A211A0A67CB00B7B94C /* HairfieDetailBusinessTableViewCell.m in Sources */,
-				B36731D7198F939A00E11C56 /* SalonDetailViewController.m in Sources */,
 				B3423214198924290058866B /* AFSecurityPolicy.m in Sources */,
 				71026D1B19CAE34200994831 /* HairfieLike.m in Sources */,
 				B345BAD8199502A3007BB61A /* CustomCollectionViewCell.m in Sources */,

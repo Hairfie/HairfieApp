@@ -261,12 +261,6 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 -(void)setupHairfies
 {
     businessHairfies = [[NSMutableArray alloc] init];
@@ -317,18 +311,24 @@
                           }];
 }
 
-
 -(NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section
 {
-    if (isDetailsTab == YES)
+    if (isDetailsTab == YES) {
         return 1;
-    if (isHairdressersTab == YES)
-        return self.business.activeHairdressers.count;
-    if (isServicesTab == YES)
-        return self.business.services.count;
-    if (isHairfiesTab == YES)
-        return businessHairfies.count + 2;
+    }
     
+    if (isHairdressersTab == YES) {
+        return self.business.activeHairdressers.count;
+    }
+    
+    if (isServicesTab == YES) {
+        return self.business.services.count;
+    }
+    
+    if (isHairfiesTab == YES) {
+        return businessHairfies.count + 2;
+    }
+
     return 1;
 }
 
@@ -349,9 +349,6 @@
     
     BusinessReusableView *userHeader = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"businessHeaderView" forIndexPath:indexPath];
     
-
-
-    
     if (!isSetup) {
         headerViewController = [[SalonDetailHeaderViewController alloc] initWithNibName:@"SalonDetailHeaderViewController" bundle:nil];
         headerViewController.business = self.business;
@@ -368,22 +365,21 @@
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (isHairdressersTab == YES)
+    if (isHairdressersTab == YES) {
         return CGSizeMake(320, 45);
-    if (isServicesTab == YES)
+    } else if (isServicesTab == YES) {
         return CGSizeMake(320, 45);
-    if (isDetailsTab == YES)
+    } else if (isDetailsTab == YES) {
         return CGSizeMake(320, 964);
-    if (isHairfiesTab == YES) {
+    } else if (isHairfiesTab == YES) {
         if (indexPath.row < (businessHairfies.count + 1)) {
             return CGSizeMake(145, 210);
         } else {
-            
             return CGSizeMake(300, 58);
         }
-    }
-    else
+    }  else {
         return CGSizeMake(320, 127);
+    }
 }
 
 
@@ -419,14 +415,11 @@
 {
     BusinessServicesCollectionViewCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:@"businessServiceCell" forIndexPath:indexPath];
     
-    if (self.business.services.count == 0)
-    {
+    if (self.business.services.count == 0) {
         [cell initWithoutData];
     } else {
-    
-    Service *service = [self.business.services objectAtIndex:indexPath.row];
-   
-    [cell setService:service];
+        Service *service = [self.business.services objectAtIndex:indexPath.row];
+        [cell setService:service];
     }
     
     return cell;
@@ -504,12 +497,10 @@
     }
     if (isHairdressersTab == YES)
     {
-        
         hairdresserPicked = [self.business.activeHairdressers objectAtIndex:indexPath.row];
         [self performSegueWithIdentifier:@"showHairdresserDetail" sender:self];
     }
 }
-
 
 -(void)checkIfCameraDisabled
 {
@@ -532,41 +523,34 @@
     }];
 }
 
-
-
-
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"similarBusiness"])
-    {
+    if ([segue.identifier isEqualToString:@"similarBusiness"]) {
         BusinessViewController *bus = segue.destinationViewController;
-        
         bus.business = similarBusiness;
     }
     
-    if ([segue.identifier isEqualToString:@"hairfieDetail"])
-    {
+    if ([segue.identifier isEqualToString:@"hairfieDetail"]) {
         HairfieDetailViewController *hairfieDetail = segue.destinationViewController;
-        
-     
         hairfieDetail.hairfie = hairfie;
     }
     
     if ([segue.identifier isEqualToString:@"showReviews"]) {
         ReviewsViewController *review = [segue destinationViewController];
         review.ratingValue = [ratingForReview floatValue];
-        if (isReviewing == YES)
-            review.isReviewing = YES;
-     
         review.business = _business;
         review.addReviewButton.hidden = NO;
+
+        if (isReviewing == YES) {
+            review.isReviewing = YES;
+        }
     }
-    if ([segue.identifier isEqualToString:@"showMapFromSalon"])
-    {
+
+    if ([segue.identifier isEqualToString:@"showMapFromSalon"]){
         SalonMapViewController *salonMap = [segue destinationViewController];
-        
         salonMap.business = self.business;
     }
+    
     if ([segue.identifier isEqualToString:@"showTimetable"]) {
         HorairesViewController *horaires = [segue destinationViewController];
         horaires.timetable = self.business.timetable;
@@ -577,22 +561,14 @@
         hairdresserDetail.hairdresser = hairdresserPicked;
         hairdresserDetail.business = self.business;
     }
+
     if ([segue.identifier isEqualToString:@"postHairfie"]) {
+        HairfiePost *hairfiePost = [[HairfiePost alloc] initWithBusiness:self.business];
+        
         CameraOverlayViewController *camera = [segue destinationViewController];
         camera.isHairfie = YES;
+        camera.hairfiePost = hairfiePost;
     }
-    
 }
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

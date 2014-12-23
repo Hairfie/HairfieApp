@@ -7,7 +7,7 @@
 //
 
 #import "HairfieDetailViewController.h"
-#import "SalonDetailViewController.h"
+#import "BusinessViewController.h"
 #import "HairfieDetailTableViewCell.h"
 #import "CustomCollectionViewCell.h"
 #import "UserProfileViewController.h"
@@ -248,7 +248,9 @@
 {
     
     [ARAnalytics pageView:@"AR - Hairfie Detail"];
-    [ARAnalytics event:@"AR - Hairfie Detail" withProperties:@{@"Hairfie ID": self.hairfie.id, @"Author": self.hairfie.author.name}];
+    if(self.hairfie) {
+         [ARAnalytics event:@"AR - Hairfie Detail" withProperties:@{@"Hairfie ID": self.hairfie.id, @"Author": self.hairfie.author.name}];   
+    }
 }
 
 -(IBAction)goBack:(id)sender
@@ -747,7 +749,7 @@
         CommentViewController *comment = [segue destinationViewController];
         comment.isCommenting = YES;
     } else if ([segue.identifier isEqualToString:@"businessDetail"]) {
-        SalonDetailViewController *controller = [segue destinationViewController];
+        BusinessViewController *controller = [segue destinationViewController];
         controller.business = sender;
     } else if ([segue.identifier isEqualToString:@"showUserProfile"]) {
         UserProfileViewController *userProfile = [segue destinationViewController];

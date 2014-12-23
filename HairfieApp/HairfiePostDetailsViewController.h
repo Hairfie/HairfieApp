@@ -17,6 +17,7 @@
 @property (nonatomic) IBOutlet UIView *mainView;
 @property (nonatomic) IBOutlet UIView *descView;
 @property (nonatomic) IBOutlet UIView *topView;
+@property (nonatomic) IBOutlet UIView *containerView;
 @property (nonatomic) IBOutlet UITextField *priceTextField;
 @property (nonatomic) IBOutlet UIButton *priceLabelButton;
 @property (nonatomic) IBOutlet SAMTextView *hairfieDesc;

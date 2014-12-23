@@ -38,14 +38,11 @@
 
 -(void)viewDidLoad
 {
-
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeUploadStatus:) name:@"firstPicUploaded" object:nil];
     //// TAGS = NO DESCRIPTION
     _hairfieDesc.hidden = YES;
     ////
     
-    isLoaded = NO;
     UIColor *placeholder = [[UIColor whiteColor] colorWithAlphaComponent:0.6];
     appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [_emailTextField setValue:placeholder
@@ -67,7 +64,6 @@
     _dataChoice.layer.borderWidth = 1;
     _dataChoice.layer.borderColor = [UIColor lightGreyHairfie].CGColor;
     [_dataChoice setSeparatorInset:UIEdgeInsetsZero];
-
     
     _hairdresserTableView.hidden = YES;
     _hairdresserTableView.layer.borderWidth = 1;
@@ -76,7 +72,7 @@
     
     _isSalon = NO;
     _isHairdresser = NO;
-     _emailSubview.hidden = YES;
+    _emailSubview.hidden = YES;
 
     
     _tagsButton.layer.cornerRadius = 5;
@@ -108,7 +104,7 @@
     else {
         self.tagsButton.hidden = YES;
     }
-    
+
     if (appDelegate.currentUser.managedBusinesses.count != 0)
     {
         if (salonTypes.count == 2) {
@@ -122,16 +118,15 @@
         int height = cell.frame.size.height ;
         _salonTableViewHeight.constant = salonTypes.count * height;
         
-        if (isLoaded == NO) {
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:1 inSection:0];
-        [self.dataChoice selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
-        _isSalon = YES;
-        [self tableView:self.dataChoice didSelectRowAtIndexPath:indexPath];
-            isLoaded = YES;
+        if (_hairfiePost.business == nil) {
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:1 inSection:0];
+            [self.dataChoice selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+            _isSalon = YES;
+            [self tableView:self.dataChoice didSelectRowAtIndexPath:indexPath];
         }
     }
-    if(_salonChosen != nil) {
-        _hairfiePost.business = _salonChosen;
+
+    if(_hairfiePost.business != nil) {
         if ([_hairfiePost.business.activeHairdressers count] != 0)
             [self loadHairdressers];
         _isSalon = YES;
@@ -140,6 +135,7 @@
 
     [self refreshTwitterShareButton];
 
+    
     [ARAnalytics pageView:@"AR - Post Hairfie step #3 - Post Detail"];
 }
 
@@ -182,8 +178,10 @@
         _dataChoice.hidden = YES;
         _isSalon = NO;
     } else {
-    
         [_dataChoice reloadData];
+        CGRect frame = _dataChoice.frame;
+        frame.size.height = 200;
+        [_dataChoice setFrame:frame];
         _dataChoice.hidden = NO;
         _isHairdresser = NO;
         _hairdresserTableView.hidden = YES;
@@ -277,41 +275,33 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (tableView == _dataChoice)
-    {
-    if (indexPath.row == salonTypes.count - 1)
-    {
-        [self performSegueWithIdentifier:@"choseSalonType" sender:self];
-        [self showSalonsChoices:self];
-        _hairfiePost.selfMade = NO;
-    }
-    else if (indexPath.row == 0)
-    {
-        [_salonLabelButton setTitle:NSLocalizedStringFromTable(@"I did it", @"Post_Hairfie", nil) forState:UIControlStateNormal];
-        [self showSalonsChoices:self];
-        _hairdresserSubview.hidden = YES;
-        _hairfiePost.selfMade = YES;
-    }
-    else
-    {
-        Business *business = [salonTypes objectAtIndex:indexPath.row];
-         [_salonLabelButton setTitle:business.name forState:UIControlStateNormal];
-        _hairfiePost.business = business;
-        if (business.activeHairdressers.count != 0) {
-            [self loadHairdressers];
-            [_hairdresserLabelButton setTitle:NSLocalizedStringFromTable(@"Who did this?", @"Post_Hairfie", nil) forState:UIControlStateNormal];
+    if (tableView == _dataChoice) {
+        if (indexPath.row == salonTypes.count - 1) {
+            [self performSegueWithIdentifier:@"choseSalonType" sender:self];
+            [self showSalonsChoices:self];
+            _hairfiePost.selfMade = NO;
+        } else if (indexPath.row == 0) {
+            [_salonLabelButton setTitle:NSLocalizedStringFromTable(@"I did it", @"Post_Hairfie", nil) forState:UIControlStateNormal];
+            [self showSalonsChoices:self];
+            _hairdresserSubview.hidden = YES;
+            _hairfiePost.selfMade = YES;
+        } else {
+            Business *business = [salonTypes objectAtIndex:indexPath.row];
+             [_salonLabelButton setTitle:business.name forState:UIControlStateNormal];
+            _hairfiePost.business = business;
+            if (business.activeHairdressers.count != 0) {
+                [self loadHairdressers];
+                [_hairdresserLabelButton setTitle:NSLocalizedStringFromTable(@"Who did this?", @"Post_Hairfie", nil) forState:UIControlStateNormal];
+            }
+            else {
+                [_hairdresserLabelButton setTitle:NSLocalizedStringFromTable(@"No Hairdresser in this salon", @"Post_Hairfie", nil) forState:UIControlStateNormal];
+                _hairdresserTableViewHeight.constant = 0;
+            }
+            _hairdresserSubview.hidden = NO;
+            [self showSalonsChoices:self];
+            _hairfiePost.selfMade = NO;
         }
-        else {
-            [_hairdresserLabelButton setTitle:NSLocalizedStringFromTable(@"No Hairdresser in this salon", @"Post_Hairfie", nil) forState:UIControlStateNormal];
-            _hairdresserTableViewHeight.constant = 0;
-        }
-        _hairdresserSubview.hidden = NO;
-        [self showSalonsChoices:self];
-        _hairfiePost.selfMade = NO;
-    }
-    }
-    else
-    {
+    } else {
         Hairdresser *hairdresser = [salonHairdressers objectAtIndex:indexPath.row];
         [_hairdresserLabelButton setTitle:[hairdresser displayFullName] forState:UIControlStateNormal];
         _hairfiePost.hairdresser = hairdresser;
