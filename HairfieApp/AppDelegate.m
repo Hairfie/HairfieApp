@@ -14,6 +14,7 @@
 #import "ECSlidingViewController.h"
 #import <Crashlytics/Crashlytics.h>
 #import "UserAuthenticator.h"
+#import <PonyDebugger/PonyDebugger.h>
 
 @interface AppDelegate ()
 
@@ -73,6 +74,15 @@ static LBRESTAdapter * _lbAdaptater = nil;
                                              selector:@selector(saveUserLanguage:)
                                                  name:@"currentUser"
                                                object:nil];
+    
+    if(DEV) {
+        PDDebugger *debugger = [PDDebugger defaultInstance];
+        [debugger connectToURL:[NSURL URLWithString:@"ws://localhost:9000/device"]];
+        [debugger enableNetworkTrafficDebugging];
+        [debugger forwardAllNetworkTraffic];
+        [debugger enableCoreDataDebugging];
+        [debugger enableViewHierarchyDebugging];
+    }
     
     
     return YES;
