@@ -48,10 +48,13 @@ PODS:
   - NewRelicAgent (4.83)
   - NSDate+TimeAgo (1.0.3)
   - Pinterest-iOS (2.3)
+  - PonyDebugger (0.4.0):
+    - SocketRocket
   - SAMTextView (0.2.1)
   - SDWebImage (3.7.1):
     - SDWebImage/Core
   - SDWebImage/Core (3.7.1)
+  - SocketRocket (0.3.1-beta2)
   - SSKeychain (1.2.2)
   - UIActivityIndicator-for-SDWebImage (1.2):
     - SDWebImage (~> 3.7)
@@ -70,11 +73,16 @@ DEPENDENCIES:
   - NewRelicAgent
   - NSDate+TimeAgo
   - Pinterest-iOS
+  - PonyDebugger (from `https://github.com/square/PonyDebugger.git`)
   - SAMTextView
   - SDWebImage (~> 3.6)
   - SSKeychain
   - UIActivityIndicator-for-SDWebImage
   - Underscore.m
+
+EXTERNAL SOURCES:
+  PonyDebugger:
+    :git: https://github.com/square/PonyDebugger.git
 
 SPEC CHECKSUMS:
   ARAnalytics: 93c5b65989145f88f4d45e262612eac277b0c219
@@ -89,8 +97,10 @@ SPEC CHECKSUMS:
   NewRelicAgent: 1adba1fb51631f598a2a130e7b1c3be1de715736
   NSDate+TimeAgo: f3533e0198fab05b716368b19f8c2185d53d6f3b
   Pinterest-iOS: 418044a91ac88d370a54ce06b89ee034c240171d
+  PonyDebugger: 66f053d403cef52e8ed3c669d651b213b2617326
   SAMTextView: 1062a784ba7b2080b0c17748001c416b53010b4b
   SDWebImage: 116e88633b5b416ea0ca4b334a4ac59cf72dd38d
+  SocketRocket: 79a68ae186063c65e1fe6f638b1ae2927aa5f304
   SSKeychain: cc48bd3ad24fcd9125adb9e0d23dd50b8bbd08b9
   UIActivityIndicator-for-SDWebImage: 8bd92c15280fbe54816448c6b14674145eee05c7
   Underscore.m: f99c166a9fdccfb5069085b6b4263c04b817fc9f
