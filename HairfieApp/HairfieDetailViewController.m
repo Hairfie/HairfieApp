@@ -45,6 +45,7 @@
     Hairdresser *hairfieHairdresser;
     Business *hairdresserBusiness;
     BOOL didLikeWithDoubleTap;
+    NSInteger indentValue;
 }
 
 - (void)viewDidLoad
@@ -254,7 +255,7 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    
+     detailsTableView.userInteractionEnabled = YES;
     [ARAnalytics pageView:@"AR - Hairfie Detail"];
     if(self.hairfie) {
          [ARAnalytics event:@"AR - Hairfie Detail" withProperties:@{@"Hairfie ID": self.hairfie.id, @"Author": self.hairfie.author.name}];   
@@ -311,7 +312,7 @@
     if (tableView == detailsTableView) {
         NSString *infoName = displayedInfoNames[indexPath.row];
         if ([infoName isEqualToString:@"business"]) {
-            NSLog(@"testANCE");
+            
             // the current hairfie's business property contains a
             // partial business object, so we need to fetch the
             // complete version prior to show details
@@ -322,6 +323,7 @@
                       failure:^(NSError *error) {
                           NSLog(@"Failed to retrieve complete business: %@", error.localizedDescription);
                       }];
+            tableView.userInteractionEnabled = NO;
         } else if ([infoName isEqualToString:@"selfMade"]) {
             [self performSegueWithIdentifier:@"showUserProfile" sender:self];
         }
@@ -582,7 +584,7 @@
    
     // HAIRFIE DETAIL
 
-    hairfieDetailView = [[UIView alloc] initWithFrame:CGRectMake(0, 333, 320, 100)];
+    hairfieDetailView = [[UIView alloc] initWithFrame:CGRectMake(0, 333, 320, 200)];
 
     UIRoundImageView *borderProfile = [[UIRoundImageView alloc]initWithFrame:CGRectMake(10, 0, 44, 44)];
     [borderProfile setBackgroundColor:[[UIColor blackHairfie] colorWithAlphaComponent:0.2]];
@@ -631,6 +633,11 @@
     UILabel *descLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, 43, 280, 54)];
     descLabel.numberOfLines = 2;
     descLabel.attributedText = self.hairfie.displayDescAndTags;
+   
+    UIView *tagsView = [[UIView alloc]initWithFrame:CGRectMake(10, 43, 280, 54)];
+    
+    [self displayTags:tagsView];
+    
 //    descLabel.text = self.hairfie.description;
 //    descLabel.font = [UIFont fontWithName:@"SourceSansPro-Light" size:12];
 //    descLabel.textColor = [[UIColor blackHairfie] colorWithAlphaComponent:0.8];
@@ -640,11 +647,11 @@
     [hairfieDetailView addSubview:usernameButton];
     [hairfieDetailView addSubview:nbHairfies];
     [hairfieDetailView addSubview:createdAt];
-    [hairfieDetailView addSubview:descLabel];
-
+  //  [hairfieDetailView addSubview:descLabel];
+    [hairfieDetailView addSubview:tagsView];
     // RESTE
 
-    detailsTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 432, 320, [self infosTableHeight])];
+    detailsTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 452, 320, [self infosTableHeight])];
     detailsTableView.dataSource = self;
     detailsTableView.delegate = self;
     detailsTableView.backgroundColor = [UIColor clearColor];
@@ -657,6 +664,67 @@
 
     return collectionHeaderView;
 }
+
+-(void)displayTags:(UIView*)aView {
+    
+    NSInteger posX = 0;
+    indentValue = 0;
+    NSInteger screenWidth = self.view.bounds.size.width;
+    for (int i = 1; i < [self.hairfie.tags count] + 1; i++) {
+        
+        Tag *tag = [self.hairfie.tags objectAtIndex:i - 1];
+        
+        UILabel *label = [[UILabel alloc] init];
+        label.text = tag.name;
+        CGRect frame;
+
+        if (i != 1)
+            posX += indentValue + 15;
+        label.font = [UIFont fontWithName:@"SourceSansPro-Light" size:15];
+        [self getLabelWidth:label];
+        
+        frame.origin.x = posX;
+        if (i == 1)
+            frame.origin.y = 10;
+        
+        if (posX + indentValue >= screenWidth - 20)
+        {
+            frame.origin.y += 35;
+            posX = 0;
+            frame.origin.x = posX;
+        }
+        
+        frame.size.width = indentValue + 10;
+        frame.size.height = 27;
+
+            
+        [label setTextColor:[UIColor colorWithRed:148/255.f green:153/255.0f blue:161/255.0f alpha:1]];
+        [label setBackgroundColor:[UIColor colorWithRed:240/255.f green:241/255.0f blue:241/255.0f alpha:1]];
+ 
+        label.textAlignment = NSTextAlignmentCenter;
+        [label setFrame:frame];
+        label.layer.cornerRadius = 3;
+        label.layer.masksToBounds = YES;
+        label.tag = i - 1;
+        
+        [aView addSubview:label];
+    }
+    
+}
+
+-(void)getLabelWidth:(UILabel*)aLabel
+{
+    float widthIs =
+    [aLabel.text
+     boundingRectWithSize:aLabel.frame.size
+     options:NSStringDrawingUsesLineFragmentOrigin
+     attributes:@{ NSFontAttributeName:aLabel.font }
+     context:nil]
+    .size.width;
+    
+    indentValue = (int)ceilf(widthIs);
+}
+
 
 -(IBAction)showProfile:(id)sender
 {
