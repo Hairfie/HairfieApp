@@ -48,8 +48,12 @@ static LBRESTAdapter * _lbAdaptater = nil;
     _manager = [[CLLocationManager alloc] init];
     _credentialStore = [[CredentialStore alloc] init];
     userAuthenticator = [[UserAuthenticator alloc] init];
-    
-    
+    self.hairfieNotif = [HairfieNotifications new];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(networkStateChanged:)
+                                                 name:kReachabilityChangedNotification object:nil];
+    self.reachability = [Reachability reachabilityForInternetConnection];
+    [self.reachability startNotifier];
     
     NSLog(@"LOGIN STATUS : %d", [_credentialStore isLoggedIn]);
     NSLog(@"USER ID : %@", [_credentialStore userId]);
@@ -84,9 +88,18 @@ static LBRESTAdapter * _lbAdaptater = nil;
         [debugger enableViewHierarchyDebugging];
     }
     
-    
     return YES;
 }
+
+- (void)networkStateChanged:(NSNotification *)notice {
+    NetworkStatus currentNetStatus = [self.reachability currentReachabilityStatus];
+    if (currentNetStatus == NotReachable) {
+        [self.hairfieNotif showNotificationWithMessage:NSLocalizedStringFromTable(@"No network", @"Authentication", nil)];
+    } else {
+        [self.hairfieNotif removeNotification];
+    }
+}
+
 
 - (BOOL)application:(UIApplication *)application
             openURL:(NSURL *)url

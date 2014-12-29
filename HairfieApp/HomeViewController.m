@@ -18,6 +18,7 @@
 #import "LoginViewController.h"
 #import "CameraOverlayViewController.h"
 #import <AssetsLibrary/AssetsLibrary.h>
+#import "HairfieNotifications.h"
 
 #define CUSTOM_CELL_IDENTIFIER @"hairfieCell"
 #define LOADING_CELL_IDENTIFIER @"LoadingItemCell"
@@ -54,6 +55,8 @@
     
     [delegate startTrackingLocation:YES];
 
+     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showNoNetwork:) name:@"No Network" object:nil];
+    
     self.navigationItem.title = [NSString stringWithFormat:NSLocalizedStringFromTable(@"Home", @"Feed", nil)];
     [_hairfieCollection registerNib:[UINib nibWithNibName:@"CustomCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:CUSTOM_CELL_IDENTIFIER];
     [_hairfieCollection registerNib:[UINib nibWithNibName:@"LoadingCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:LOADING_CELL_IDENTIFIER];
@@ -82,6 +85,13 @@
     
     [_topBarView addBottomBorderWithHeight:1.0 andColor:[UIColor lightGrey]];
 
+}
+
+-(void)showNoNetwork:(NSNotification*)notification
+{
+    HairfieNotifications *notif;
+    
+    [notif showNotificationWithMessage:@"test" ForDuration:1];
 }
 
 -(void) hideKeyboard

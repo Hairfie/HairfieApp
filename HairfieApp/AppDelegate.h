@@ -13,7 +13,9 @@
 #import "Hairfie.h"
 #import "KeychainItemWrapper.h"
 #import "CredentialStore.h"
+#import "Reachability.h"
 #import <FacebookSDK/FacebookSDK.h>
+#import "HairfieNotifications.h"
 
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, CLLocationManagerDelegate>
@@ -28,6 +30,8 @@
 + ( LBRESTAdapter *) lbAdaptater;
 @property (nonatomic) KeychainItemWrapper *keychainItem;
 @property (nonatomic) FBSession *fbSession;
+@property (nonatomic) Reachability *reachability;
+@property (nonatomic) HairfieNotifications *hairfieNotif;
 
 -(void)showLoginStoryboard;
 -(void)startTrackingLocation:(BOOL)forceLocation;

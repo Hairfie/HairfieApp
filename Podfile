@@ -21,6 +21,7 @@ target "HairfieApp" do
   pod 'NSDate+TimeAgo'
   pod 'Pinterest-iOS'
   pod 'UIActivityIndicator-for-SDWebImage'
+  pod 'CWStatusBarNotification', '~> 2.2.2'
   pod 'PonyDebugger', :git => 'https://github.com/square/PonyDebugger.git'
 end
 

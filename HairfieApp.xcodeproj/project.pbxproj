@@ -290,6 +290,9 @@
 		B3B715FA1A515D6400DB6FDB /* nav-disclosure-light.png in Resources */ = {isa = PBXBuildFile; fileRef = B3B715F91A515D6400DB6FDB /* nav-disclosure-light.png */; };
 		B3B715FE1A515F8700DB6FDB /* NoReviewCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B715FC1A515F8700DB6FDB /* NoReviewCollectionViewCell.m */; };
 		B3B715FF1A515F8700DB6FDB /* NoReviewCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3B715FD1A515F8700DB6FDB /* NoReviewCollectionViewCell.xib */; };
+		B3B716011A51888300DB6FDB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3B716001A51888300DB6FDB /* SystemConfiguration.framework */; };
+		B3B716051A5188A600DB6FDB /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B716041A5188A600DB6FDB /* Reachability.m */; };
+		B3B716091A518A9600DB6FDB /* HairfieNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B716081A518A9600DB6FDB /* HairfieNotifications.m */; };
 		B3BAA85D1A014240009F0274 /* SuggestHairdresserReport.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BAA85C1A014240009F0274 /* SuggestHairdresserReport.m */; };
 		B3BB4820199B983800F8CD5B /* arrow-nav.png in Resources */ = {isa = PBXBuildFile; fileRef = B3BB481F199B983800F8CD5B /* arrow-nav.png */; };
 		B3BB63A11A1C99570087AB27 /* TestUserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BB63A01A1C99560087AB27 /* TestUserProfileViewController.m */; };
@@ -847,6 +850,11 @@
 		B3B715FB1A515F8700DB6FDB /* NoReviewCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoReviewCollectionViewCell.h; sourceTree = "<group>"; };
 		B3B715FC1A515F8700DB6FDB /* NoReviewCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoReviewCollectionViewCell.m; sourceTree = "<group>"; };
 		B3B715FD1A515F8700DB6FDB /* NoReviewCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoReviewCollectionViewCell.xib; sourceTree = "<group>"; };
+		B3B716001A51888300DB6FDB /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		B3B716031A5188A600DB6FDB /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		B3B716041A5188A600DB6FDB /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		B3B716071A518A9600DB6FDB /* HairfieNotifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HairfieNotifications.h; sourceTree = "<group>"; };
+		B3B716081A518A9600DB6FDB /* HairfieNotifications.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HairfieNotifications.m; sourceTree = "<group>"; };
 		B3BAA85B1A014240009F0274 /* SuggestHairdresserReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuggestHairdresserReport.h; sourceTree = "<group>"; };
 		B3BAA85C1A014240009F0274 /* SuggestHairdresserReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuggestHairdresserReport.m; sourceTree = "<group>"; };
 		B3BB481F199B983800F8CD5B /* arrow-nav.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow-nav.png"; sourceTree = "<group>"; };
@@ -968,6 +976,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3B716011A51888300DB6FDB /* SystemConfiguration.framework in Frameworks */,
 				B33DF76519B4AA5900B4877F /* Accounts.framework in Frameworks */,
 				B33DF76319B4A9A900B4877F /* Social.framework in Frameworks */,
 				B39BA17A19AF52D100A48BD5 /* Security.framework in Frameworks */,
@@ -1027,6 +1036,7 @@
 		1511518D1982B7A8001157A2 /* HairfieApp */ = {
 			isa = PBXGroup;
 			children = (
+				B3B716021A51889100DB6FDB /* Reachability */,
 				7164B5621A0D0EF2002B68E5 /* Share */,
 				153E1FB119B4A97600DEC95D /* Repositories */,
 				15CE407019B0E7670088FEA7 /* Authentication */,
@@ -1048,6 +1058,7 @@
 		1511518E1982B7A8001157A2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B3B716061A518A7B00DB6FDB /* HairfieNotifications */,
 				B3F234031A3F214700879902 /* add-second-picture.png */,
 				B3AA0CB71A24D10100FAEC01 /* HairdresserDetail  */,
 				B35CB8221A1B42B900ADD12A /* Filters Resources */,
@@ -1263,6 +1274,7 @@
 		38C395959A7A499C87409BBF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B3B716001A51888300DB6FDB /* SystemConfiguration.framework */,
 				B3F6B70319F6749200EF4B5C /* libPods-HairfieApp.a */,
 				15B829C819B85F6200525802 /* FacebookSDK.framework */,
 				B33DF76419B4AA5900B4877F /* Accounts.framework */,
@@ -1766,6 +1778,24 @@
 				B3AD59BE198B9D3500909ADE /* picto-list-woman.png */,
 			);
 			name = "List ";
+			sourceTree = "<group>";
+		};
+		B3B716021A51889100DB6FDB /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				B3B716031A5188A600DB6FDB /* Reachability.h */,
+				B3B716041A5188A600DB6FDB /* Reachability.m */,
+			);
+			name = Reachability;
+			sourceTree = "<group>";
+		};
+		B3B716061A518A7B00DB6FDB /* HairfieNotifications */ = {
+			isa = PBXGroup;
+			children = (
+				B3B716071A518A9600DB6FDB /* HairfieNotifications.h */,
+				B3B716081A518A9600DB6FDB /* HairfieNotifications.m */,
+			);
+			name = HairfieNotifications;
 			sourceTree = "<group>";
 		};
 		B3BD86A0198BD13E00BD8591 /* star rating */ = {
@@ -2447,6 +2477,7 @@
 				15481A8D19E3EBDB00C9D7A7 /* PopUpViewController.swift in Sources */,
 				B3F95FE119B5E5BA00798D57 /* AdvanceSearch.m in Sources */,
 				B3CCE78A1998CDAC00067DB9 /* HairfieDetailTableViewCell.m in Sources */,
+				B3B716051A5188A600DB6FDB /* Reachability.m in Sources */,
 				71026D1E19CAF1BE00994831 /* HairfieLikeRepository.m in Sources */,
 				B35A82A819A62F40003B1321 /* PricesTableViewCell.m in Sources */,
 				15B4972F19DC021B00917B83 /* TutoContainerViewController.m in Sources */,
@@ -2534,6 +2565,7 @@
 				B3423215198924290058866B /* AFURLConnectionOperation.m in Sources */,
 				B319B5D119C876AC007F79B0 /* SecondStepSalonPhoneViewController.m in Sources */,
 				71AAB62A19D005170000552D /* Money.m in Sources */,
+				B3B716091A518A9600DB6FDB /* HairfieNotifications.m in Sources */,
 				1538A3A919E53FB600F09628 /* UIView+Borders.m in Sources */,
 				B319B5CB19C85E2E007F79B0 /* FirstStepViewController.m in Sources */,
 				B3BB63A81A1CA5F40087AB27 /* ReviewsCollectionViewCell.m in Sources */,
