@@ -13,6 +13,7 @@
 #import "LoadingCollectionViewCell.h"
 #import "CustomCollectionViewCell.h"
 #import "ReviewsCollectionViewCell.h"
+#import "NoReviewCollectionViewCell.h"
 #import "UserProfileReusableView.h"
 #import "HairfieDetailViewController.h"
 #import "CameraOverlayViewController.h"
@@ -23,7 +24,7 @@
 #define HAIRFIE_CELL @"hairfieCell"
 #define LOADING_CELL @"loadingCell"
 #define REVIEW_CELL @"reviewCell"
-
+#define NO_REVIEW_CELL @"noReviewCell"
 @interface TestUserProfileViewController ()
 
 
@@ -66,6 +67,9 @@
           forCellWithReuseIdentifier:LOADING_CELL];
     [self.collectionView registerNib:[UINib nibWithNibName:@"ReviewsCollectionViewCell" bundle:nil]
           forCellWithReuseIdentifier:REVIEW_CELL];
+    
+    [self.collectionView registerNib:[UINib nibWithNibName:@"NoReviewCollectionViewCell" bundle:nil]
+          forCellWithReuseIdentifier:NO_REVIEW_CELL];
 
     appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     
@@ -237,8 +241,14 @@ if (self.imageFromSegue != nil)
 {
     if (isHairfiesTab)
         return userHairfies.count + 1;
-    return userReviews.count;
+    else {
+        if (userReviews.count != 0)
+            return userReviews.count;
+        else
+            return 1;
+    }
 }
+
 
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
@@ -307,11 +317,18 @@ if (self.imageFromSegue != nil)
 -(UICollectionViewCell *)reviewCellAtIndexPath:(NSIndexPath *)indexPath
 {
     ReviewsCollectionViewCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:REVIEW_CELL forIndexPath:indexPath];
-    BusinessReview *review = (BusinessReview *)[userReviews objectAtIndex:indexPath.row];
-   
-    [cell setReview:review];
+     NoReviewCollectionViewCell *noReviewCell = [self.collectionView dequeueReusableCellWithReuseIdentifier:NO_REVIEW_CELL forIndexPath:indexPath];
     
-    return cell;
+    
+    
+    if (userReviews.count != 0) {
+        BusinessReview *review = (BusinessReview *)[userReviews objectAtIndex:indexPath.row];
+        [cell setReview:review];
+         return cell;
+    }
+    else
+        return noReviewCell;
+    
 }
 
 

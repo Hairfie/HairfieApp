@@ -287,6 +287,9 @@
 		B3B29D4C19EE8E7D00C293C6 /* half_selected_star.png in Resources */ = {isa = PBXBuildFile; fileRef = B3B29D4919EE8E7D00C293C6 /* half_selected_star.png */; };
 		B3B29D4D19EE8E7D00C293C6 /* not_selected_star.png in Resources */ = {isa = PBXBuildFile; fileRef = B3B29D4A19EE8E7D00C293C6 /* not_selected_star.png */; };
 		B3B29D4E19EE8E7D00C293C6 /* selected_star.png in Resources */ = {isa = PBXBuildFile; fileRef = B3B29D4B19EE8E7D00C293C6 /* selected_star.png */; };
+		B3B715FA1A515D6400DB6FDB /* nav-disclosure-light.png in Resources */ = {isa = PBXBuildFile; fileRef = B3B715F91A515D6400DB6FDB /* nav-disclosure-light.png */; };
+		B3B715FE1A515F8700DB6FDB /* NoReviewCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B715FC1A515F8700DB6FDB /* NoReviewCollectionViewCell.m */; };
+		B3B715FF1A515F8700DB6FDB /* NoReviewCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3B715FD1A515F8700DB6FDB /* NoReviewCollectionViewCell.xib */; };
 		B3BAA85D1A014240009F0274 /* SuggestHairdresserReport.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BAA85C1A014240009F0274 /* SuggestHairdresserReport.m */; };
 		B3BB4820199B983800F8CD5B /* arrow-nav.png in Resources */ = {isa = PBXBuildFile; fileRef = B3BB481F199B983800F8CD5B /* arrow-nav.png */; };
 		B3BB63A11A1C99570087AB27 /* TestUserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BB63A01A1C99560087AB27 /* TestUserProfileViewController.m */; };
@@ -840,6 +843,10 @@
 		B3B29D4919EE8E7D00C293C6 /* half_selected_star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = half_selected_star.png; sourceTree = "<group>"; };
 		B3B29D4A19EE8E7D00C293C6 /* not_selected_star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = not_selected_star.png; sourceTree = "<group>"; };
 		B3B29D4B19EE8E7D00C293C6 /* selected_star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = selected_star.png; sourceTree = "<group>"; };
+		B3B715F91A515D6400DB6FDB /* nav-disclosure-light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nav-disclosure-light.png"; sourceTree = "<group>"; };
+		B3B715FB1A515F8700DB6FDB /* NoReviewCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoReviewCollectionViewCell.h; sourceTree = "<group>"; };
+		B3B715FC1A515F8700DB6FDB /* NoReviewCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoReviewCollectionViewCell.m; sourceTree = "<group>"; };
+		B3B715FD1A515F8700DB6FDB /* NoReviewCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoReviewCollectionViewCell.xib; sourceTree = "<group>"; };
 		B3BAA85B1A014240009F0274 /* SuggestHairdresserReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuggestHairdresserReport.h; sourceTree = "<group>"; };
 		B3BAA85C1A014240009F0274 /* SuggestHairdresserReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuggestHairdresserReport.m; sourceTree = "<group>"; };
 		B3BB481F199B983800F8CD5B /* arrow-nav.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow-nav.png"; sourceTree = "<group>"; };
@@ -1056,6 +1063,7 @@
 				15E3D2AF19D075B40065A07E /* Localization */,
 				B3FB10B419B09DA600CADCFD /* man-picto.png */,
 				15C89EAC19D3567600E91171 /* take-hairfie.png */,
+				B3B715F91A515D6400DB6FDB /* nav-disclosure-light.png */,
 				15A50D9919CC39AF0043BFB4 /* login-user.png */,
 				B3FB10B519B09DA600CADCFD /* woman-picto.png */,
 				15697B2E199BAFD000DA83FE /* UIImage Subclasses */,
@@ -2032,6 +2040,9 @@
 				B3BB63A31A1C9B2A0087AB27 /* UserProfileReusableView.m */,
 				B3BB63A51A1CA5F40087AB27 /* ReviewsCollectionViewCell.h */,
 				B3BB63A61A1CA5F40087AB27 /* ReviewsCollectionViewCell.m */,
+				B3B715FB1A515F8700DB6FDB /* NoReviewCollectionViewCell.h */,
+				B3B715FC1A515F8700DB6FDB /* NoReviewCollectionViewCell.m */,
+				B3B715FD1A515F8700DB6FDB /* NoReviewCollectionViewCell.xib */,
 				B3BB63A71A1CA5F40087AB27 /* ReviewsCollectionViewCell.xib */,
 			);
 			name = "User Profile";
@@ -2305,6 +2316,7 @@
 				B34231641988E60D0058866B /* SourceSansPro-ExtraLightItalic.ttf in Resources */,
 				15E3D2C319D075CC0065A07E /* Claim.strings in Resources */,
 				B342316C1988EFD20058866B /* aroundme-bttn.png in Resources */,
+				B3B715FF1A515F8700DB6FDB /* NoReviewCollectionViewCell.xib in Resources */,
 				15B4972519DBEFBB00917B83 /* add-a-hairfie.jpg in Resources */,
 				15E3D2C619D075CC0065A07E /* Localizable.strings in Resources */,
 				713C8A221A0A67CB00B7B94C /* HairfieDetailBusinessTableViewCell.xib in Resources */,
@@ -2315,6 +2327,7 @@
 				153B08BA19E43834002E915A /* BusinessErrorReport.strings in Resources */,
 				B3E65FD31986A32D00AF0C15 /* navigation-bg.jpg in Resources */,
 				719C208519ED5016008E0B17 /* tab-business-prices-active.png in Resources */,
+				B3B715FA1A515D6400DB6FDB /* nav-disclosure-light.png in Resources */,
 				B3F6624E1987E87E0041F298 /* MenuTableViewCell.xib in Resources */,
 				B3F5522419BF33F50033230E /* arrow-dropdown.png in Resources */,
 				15A50D9A19CC39AF0043BFB4 /* login-user.png in Resources */,
@@ -2535,6 +2548,7 @@
 				B3423218198924290058866B /* AFURLSessionManager.m in Sources */,
 				B3AA0CB31A24C59600FAEC01 /* HairdresserDetailViewController.m in Sources */,
 				158FCA8019FA3DA10001F86C /* DateUtils.m in Sources */,
+				B3B715FE1A515F8700DB6FDB /* NoReviewCollectionViewCell.m in Sources */,
 				15B8ADE319C09A3E009846AA /* BusinessRepository.m in Sources */,
 				B3F5522219BF313E0033230E /* HairfiePostDetailsViewController.m in Sources */,
 				B36AC50E19DC31C600B8AC13 /* HairdresserTableViewCell.m in Sources */,

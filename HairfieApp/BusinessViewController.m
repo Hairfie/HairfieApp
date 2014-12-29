@@ -318,11 +318,15 @@
     }
     
     if (isHairdressersTab == YES) {
-        return self.business.activeHairdressers.count;
+        return self.business.activeHairdressers.count + 1;
     }
     
     if (isServicesTab == YES) {
-        return self.business.services.count;
+        if (self.business.services.count != 0)
+            return self.business.services.count;
+        else
+            return 1;
+
     }
     
     if (isHairfiesTab == YES) {
@@ -341,6 +345,12 @@
     if (isHairfiesTab == YES)
         return UIEdgeInsetsMake(10 , 10, 0, 10);
     return UIEdgeInsetsMake(0 , 0, 0, 0);
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
+    if (isHairfiesTab == YES)
+        return 10;
+    return 0;
 }
 
 -(UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
@@ -431,13 +441,21 @@
     BusinessHairdressersCollectionViewCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:@"businessHairdresserCell" forIndexPath:indexPath];
     
     
-    NSLog(@"business hairdressers count %zd", self.business.activeHairdressers.count);
-    if (self.business.activeHairdressers.count == 0)
-        cell.hairdresserName.text = NSLocalizedStringFromTable(@"No Hairdresser", @"Salon_Detail", nil);
-    else {
-    Hairdresser *hairdresser = [self.business.activeHairdressers objectAtIndex:indexPath.row];
-    [cell setHairdresser:hairdresser];
-    }
+     NSLog(@"INDEX %zd", indexPath.row);
+    
+//    if (self.business.activeHairdressers.count == 0)
+//        cell.hairdresserName.text = NSLocalizedStringFromTable(@"No Hairdresser", @"Salon_Detail", nil);
+//    else {
+        if (indexPath.row < self.business.activeHairdressers.count) {
+        Hairdresser *hairdresser = [self.business.activeHairdressers objectAtIndex:indexPath.row];
+        cell.disclosureIndicator.hidden = YES;
+        [cell setHairdresser:hairdresser];
+        }
+        if (indexPath.row == self.business.activeHairdressers.count) {
+            cell.hairdresserName.text = NSLocalizedStringFromTable(@"No Hairdresser", @"Salon_Detail", nil);
+        }
+       //}
+   
     return cell;
 }
 -(UICollectionViewCell *)newHairfieCellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -497,8 +515,16 @@
     }
     if (isHairdressersTab == YES)
     {
-        hairdresserPicked = [self.business.activeHairdressers objectAtIndex:indexPath.row];
-        [self performSegueWithIdentifier:@"showHairdresserDetail" sender:self];
+        if (self.business.activeHairdressers.count != 0) {
+            if (indexPath.row == self.business.activeHairdressers.count) {
+                [self performSegueWithIdentifier:@"suggestHairdresser" sender:self];
+            } else {
+                hairdresserPicked = [self.business.activeHairdressers objectAtIndex:indexPath.row];
+                [self performSegueWithIdentifier:@"showHairdresserDetail" sender:self];
+            }
+        } else {
+            [self performSegueWithIdentifier:@"suggestHairdresser" sender:self];
+        }
     }
 }
 

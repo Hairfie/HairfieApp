@@ -73,6 +73,7 @@
           }
 
     [self initKnownData];
+   
     
     UITapGestureRecognizer *singleTap =  [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addPicture:)];
     [singleTap setNumberOfTapsRequired:1];
@@ -175,7 +176,6 @@
 
 -(void) initKnownData
 {
-    
     [self setupHairfies];
     [self updateHairfieView];
     [self setupHeaderPictures];
