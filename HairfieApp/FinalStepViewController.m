@@ -22,6 +22,7 @@
 #import "BusinessViewController.h"
 #import "AppDelegate.h"
 #import "NSString+PhoneFormatter.h"
+#import "HairfieNotifications.h"
 
 
 @interface FinalStepViewController ()
@@ -697,6 +698,8 @@
     void (^loadSuccessBlock)(NSArray *) = ^(NSArray *results) {
         
         [[NSNotificationCenter defaultCenter] postNotificationName:@"currentUser" object:self];
+        HairfieNotifications *notif = [HairfieNotifications new];
+        [notif showNotificationWithMessage:NSLocalizedStringFromTable(@"Business updated", @"Claim", nil) ForDuration:2.5];
         [self performSegueWithIdentifier:@"toSalonDetail" sender:self];
     };
 

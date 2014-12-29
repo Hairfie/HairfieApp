@@ -9,6 +9,7 @@
 #import "ReviewsViewController.h"
 #import "ReviewTableViewCell.h"
 #import "BusinessReview.h"
+#import "HairfieNotifications.h"
 
 @interface ReviewsViewController ()
 
@@ -140,7 +141,8 @@
     [review setRating:[NSNumber numberWithFloat:self.reviewRating.rating] between:@0 and:@5];
     review.comment = self.reviewTextView.text;
     [review save];
-
+    HairfieNotifications *hairfieNotif = [HairfieNotifications new];
+    [hairfieNotif showNotificationWithMessage:NSLocalizedStringFromTable(@"Review Posted", @"Salon_Detail", nil) ForDuration:2.5];
     self.isReviewing = NO;
     self.addReviewButton.hidden = YES;
     self.reviewRating.rating = 0;

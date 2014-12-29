@@ -86,6 +86,7 @@
     
     [_instantBttn setImage:[instantImg CIPhotoEffectInstant] forState:UIControlStateNormal];
     
+    // FIXME : process of all the filters at once, could be the reason for slowness
     
     UIImage *img = [UIImage imageNamed:@"original.jpeg"];
     [_transferBttn setImage:[img CIPhotoEffectTransfer] forState:UIControlStateNormal];

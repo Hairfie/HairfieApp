@@ -16,6 +16,7 @@
 #import "AppDelegate.h"
 #import "Hairfie.h"
 #import "NotLoggedAlert.h"
+#import "HairfieNotifications.h"
 
 @interface HairdresserDetailViewController ()
 
@@ -83,7 +84,8 @@
                                 asUser:currentUser.id
                                success:^(){
                                
-                               
+                                   HairfieNotifications *notif = [HairfieNotifications new];
+                                   [notif showNotificationWithMessage:NSLocalizedStringFromTable(@"Hairdresser Fav", @"Salon_Detail", nil) ForDuration:2.5];
                                }
                                failure: ^(NSError *error) {
                                    

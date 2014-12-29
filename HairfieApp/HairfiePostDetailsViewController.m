@@ -378,6 +378,8 @@
             } else {
                 [self performSegueWithIdentifier:@"toHome" sender:self];
             }
+            HairfieNotifications *notif = [HairfieNotifications new];
+            [notif showNotificationWithMessage:NSLocalizedStringFromTable(@"Hairfie Post Successful", @"Post_Hairfie", nil) ForDuration:2.5];
         };
         [_hairfiePost saveWithSuccess:loadSuccessBlock failure:loadErrorBlock];
     } else {

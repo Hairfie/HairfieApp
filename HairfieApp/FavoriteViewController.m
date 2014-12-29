@@ -91,8 +91,11 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
     Hairdresser *hairdresser = [[favoriteHairdressers objectAtIndex:indexPath.row] businessMember];
-    [cell setupCell:hairdresser];
-  
+
+    if ([hairdresser.firstName length] > 0)
+        [cell setupCell:hairdresser];
+    else
+        [cell setHidden:YES];
     return cell;
 }
 
