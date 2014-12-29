@@ -10,10 +10,13 @@
 #define HairfieApp_constants_h
 
 #ifdef DEV
+    #define ENV @"dev"
     #define BASE_URL @"http://api-staging.hairfie.com/"
 #elif ADHOC
+    #define ENV @"adhoc"
     #define BASE_URL @"http://api.hairfie.com/"
 #elif RELEASE
+    #define ENV @"release"
     #define BASE_URL @"https://hairfie.herokuapp.com/"
 #endif
 

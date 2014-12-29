@@ -79,7 +79,8 @@ static LBRESTAdapter * _lbAdaptater = nil;
                                                  name:@"currentUser"
                                                object:nil];
     
-    if(DEV) {
+    
+    if([ENV isEqualToString:@"dev"]) {
         PDDebugger *debugger = [PDDebugger defaultInstance];
         [debugger connectToURL:[NSURL URLWithString:@"ws://localhost:9000/device"]];
         [debugger enableNetworkTrafficDebugging];
