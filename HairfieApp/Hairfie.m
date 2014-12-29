@@ -165,6 +165,7 @@
     NSDictionary *tagsAttributes = @{
                                      NSFontAttributeName : [UIFont fontWithName:@"SourceSansPro-Light" size:15],
                                      NSForegroundColorAttributeName : [UIColor salonDetailTab]
+                                    // NSBackgroundColorAttributeName : [UIColor colorWithRed:240/255.f green:241/255.0f blue:241/255.0f alpha:1]
                                      };
     
     NSMutableAttributedString *output = [[NSMutableAttributedString alloc] initWithString:self.description attributes:descAttributes];
