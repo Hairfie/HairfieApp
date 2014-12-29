@@ -54,9 +54,12 @@
         
     
         [hairfiePics addObject:firstPic];
-    } else {
+    }
+    
+    if (self.isProfile == YES) {
         original = [self squareCropImage:self.hairfiePost.picture.image ToSideLength:320];
     
+        self.secondImgBttn.hidden = YES;
         self.secondImageView.hidden = YES;
     }
     self.firstImageView.image = original;
@@ -68,6 +71,7 @@
     
     self.secondImgBttn.layer.cornerRadius = 2;
     self.secondImgBttn.layer.masksToBounds = YES;
+    
     self.editBttn.layer.cornerRadius = self.editBttn.frame.size.height / 2;;
     self.editBttn.layer.masksToBounds = YES;
     self.editBttn.layer.borderColor  = [UIColor whiteColor].CGColor;
