@@ -281,6 +281,7 @@
         [_hairfiePost setPictureWithImage:imageTaken andContainer:@"hairfies"];
         filters.hairfiePost = _hairfiePost;
         filters.isHairfie = YES;
+       
         if(self.isSecondHairfie == YES) {
             filters.isSecondHairfie = YES;
             filters.isHairfie = NO;
@@ -288,8 +289,6 @@
         if (self.isProfile == YES) {
             filters.isProfile = YES;
             filters.user = self.user;
-            
-            filters.isHairfie = NO;
         }
         
     }

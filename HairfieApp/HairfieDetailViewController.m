@@ -22,6 +22,7 @@
 #import <Pinterest/Pinterest.h>
 #import "UIImageView+UIActivityIndicatorForSDWebImage.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "Tag.h"
 
 @interface HairfieDetailViewController ()
 
@@ -163,11 +164,18 @@
 -(void)shareOnInstagram
 {
     NSURL *imageURL = [self.hairfie.picture urlWithWidth:@620 height:@620];
-
+    
+    NSMutableArray *tags = [[NSMutableArray alloc] init];
+    for (Tag *tag in self.hairfie.tags) {
+        [tags addObject:[NSString stringWithFormat:@"#%@", tag.name]];
+    }
+    NSString *caption = [tags componentsJoinedByString:@" "];
+    
     [InstagramSharer interactionControllerForImageWithURL:imageURL
                                                   success:^(UIDocumentInteractionController *dic) {
                                                       // we need to store it as instance variable to retain it
                                                       documentController = dic;
+                                                      documentController.annotation = @{@"InstagramCaption": caption};
                                                       [documentController presentOpenInMenuFromRect:CGRectMake(0, 0, 0, 0)
                                                                                              inView:self.view
                                                                                            animated:YES];
