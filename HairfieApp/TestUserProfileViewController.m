@@ -361,7 +361,7 @@ if (self.imageFromSegue != nil)
         [self performSegueWithIdentifier:@"showHairfieDetail" sender:self];
     else
     {
-        
+        if (userReviews.count != 0) {
         BusinessReview *businessReview = [userReviews objectAtIndex:indexPath.item];
         [Business getById:businessReview.business.id
               withSuccess:^(Business *business) {
@@ -371,6 +371,7 @@ if (self.imageFromSegue != nil)
                   failure:^(NSError *error) {
                       NSLog(@"Failed to retrieve complete business: %@", error.localizedDescription);
                   }];
+        }
     }
     [self.collectionView deselectItemAtIndexPath:indexPath animated:YES];
 }
