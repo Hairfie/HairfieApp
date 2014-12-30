@@ -46,7 +46,10 @@
 
 -(NSURL *)pictureUrlwithWidth:(NSNumber *)width andHeight:(NSNumber *)height
 {
-    return [self.picture urlWithWidth:width height:height];
+    if(self.picture)
+        return [self.picture urlWithWidth:width height:height];
+    else
+        return [UIColor imageWithColor:[UIColor lightGreyHairfie]];
 }
 
 -(NSURL *)pictureUrl

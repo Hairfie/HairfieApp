@@ -79,20 +79,20 @@ import QuartzCore
             var frame = hairdresserPictureView.frame;
             var background = UIImageView(frame: getFrameForPictureAtIndex(0));
             background.contentMode = UIViewContentMode.ScaleAspectFill;
-
-            var pictureUrl = business.owner.picture.urlWithWidth(frame.width * 2, height: frame.height * 2);
-                       downloadImage(pictureUrl!, callback:{ (image, error) -> Void in
-                if (nil != image) {
-                    self.hairdresserPictureView.image = image;
-                }
-            })
-            
-            // background image, smaller for better blur effect
-            downloadImage(business.owner.picture.urlWithWidth(50, height: 50)!, callback:{ (image, error) -> Void in
-                if (nil != image) {
-                    background.image = image!.applyLightEffect();
-                }
-            })
+            if((business.owner.picture) != nil) {
+                var pictureUrl = business.owner.picture.urlWithWidth(frame.width * 2, height: frame.height * 2);
+                downloadImage(pictureUrl!, callback:{ (image, error) -> Void in
+                    if (nil != image) {
+                        self.hairdresserPictureView.image = image;
+                    }
+                })
+                // background image, smaller for better blur effect
+                downloadImage(business.owner.picture.urlWithWidth(50, height: 50)!, callback:{ (image, error) -> Void in
+                    if (nil != image) {
+                        background.image = image!.applyLightEffect();
+                    }
+                })
+            }
 
             picturesScrollView.addSubview(background);
         } else {
