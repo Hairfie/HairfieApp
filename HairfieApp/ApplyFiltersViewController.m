@@ -81,19 +81,16 @@
     NSLog(@"size of image in KB: %f ", imgData.length/1024.0);
     _filtersView.hidden = NO;
     
-    UIImage *instantImg = [UIImage imageNamed:@"original.jpeg"];
-   
+    [_originalBttn setImage:[UIImage imageNamed:@"original.jpeg"] forState:UIControlStateNormal];
+    [_sepiaBttn setImage:[UIImage imageNamed:@"original-sepia.JPG"] forState:UIControlStateNormal];
+    [_curveBttn setImage:[UIImage imageNamed:@"original-curve.JPG"] forState:UIControlStateNormal];
+    [_instantBttn setImage:[UIImage imageNamed:@"original-instant.JPG"] forState:UIControlStateNormal];
+    [_transferBttn setImage:[UIImage imageNamed:@"original-transfer.JPG"] forState:UIControlStateNormal];
+    [_processBttn setImage:[UIImage imageNamed:@"original-process.JPG"] forState:UIControlStateNormal];
+    [_photoEffectNoirBttn setImage:[UIImage imageNamed:@"original-noir.JPG"] forState:UIControlStateNormal];
+    [_vignetteBttn setImage:[UIImage imageNamed:@"original-vignette.JPG"] forState:UIControlStateNormal];
+    [_vintageBttn setImage:[UIImage imageNamed:@"original-vintage.JPG"] forState:UIControlStateNormal];
     
-    [_instantBttn setImage:[instantImg CIPhotoEffectInstant] forState:UIControlStateNormal];
-    
-    // FIXME : process of all the filters at once, could be the reason for slowness
-    
-    UIImage *img = [UIImage imageNamed:@"original.jpeg"];
-    [_transferBttn setImage:[img CIPhotoEffectTransfer] forState:UIControlStateNormal];
-    [_processBttn setImage:[img CIPhotoEffectProcess] forState:UIControlStateNormal];
-    [_photoEffectNoirBttn setImage:[img CIPhotoEffectNoir] forState:UIControlStateNormal];
-    [_vignetteBttn setImage:[img vignetteWithRadius:0 andIntensity:18] forState:UIControlStateNormal];
-    [_vintageBttn setImage:[img vintageFilter] forState:UIControlStateNormal];
     
     [_vintageBttn roundStyle];
     [_vignetteBttn roundStyle];
