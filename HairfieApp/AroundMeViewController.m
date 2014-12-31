@@ -163,7 +163,9 @@
 
     // add business pins to the map
     NSMutableArray *annotations = [[NSMutableArray alloc] init];
-    NSRange range = {0, NUM_MAP_PINS};
+
+    NSRange range = {0, MIN(NUM_MAP_PINS, [businesses count])};
+    
     for (Business *business in [businesses subarrayWithRange:range]) {
         [annotations addObject:[self annotationForBusiness:business]];
     }

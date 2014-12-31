@@ -67,8 +67,9 @@
     [self.callBttn setTitle:NSLocalizedStringFromTable(@"book", @"Salon_Detail", nil) forState:UIControlStateNormal];
     self.collectionView.allowsMultipleSelection = NO;
     menuActions = @[
-                    @{@"label": NSLocalizedStringFromTable(@"Report an error", @"Salon_Detail",nil), @"segue": @"reportError"}
-                    ];
+                    @{@"label": NSLocalizedStringFromTable(@"Report an error", @"Salon_Detail",nil), @"segue": @"reportError"},
+                    @{@"label": NSLocalizedStringFromTable(@"Claim this business", @"Salon_Detail",nil), @"segue": @"reportError"},
+                ];
 
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(showBusinessDetails:)
@@ -158,9 +159,15 @@
 {
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
                                                              delegate:self
-                                                    cancelButtonTitle:NSLocalizedStringFromTable(@"Cancel", @"Salon_Detail", nil)
+                                                    cancelButtonTitle:nil
                                                destructiveButtonTitle:nil
-                                                    otherButtonTitles: NSLocalizedStringFromTable(@"Report an error", @"Salon_Detail",nil),nil];
+                                                    otherButtonTitles:nil];
+    for( NSDictionary *button in menuActions)  {
+        [actionSheet addButtonWithTitle:[button objectForKey:@"label"]];
+    }
+    
+    [actionSheet addButtonWithTitle:NSLocalizedStringFromTable(@"Cancel", @"Salon_Detail", nil)];
+    actionSheet.cancelButtonIndex = [menuActions count];
     
     [actionSheet showInView:self.view];
 }
@@ -169,12 +176,18 @@
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (1 == buttonIndex) return; // it's the cancel button
+    if (buttonIndex == [menuActions count] ) return; // it's the cancel button
     
-    [self performSegueWithIdentifier:[menuActions[buttonIndex] objectForKey:@"segue"] sender:self];
+    if([menuActions[buttonIndex] objectForKey:@"segue"] != nil) {
+        [self performSegueWithIdentifier:[menuActions[buttonIndex] objectForKey:@"segue"] sender:self];
+    } else {
+        
+    }
 }
 
-
+-(void)claimExistingBusiness {
+    NSLog(@"Claim !");
+}
 
 -(void)showBusinessMap:(NSNotification*)notification {
 
