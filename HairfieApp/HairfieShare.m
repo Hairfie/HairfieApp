@@ -29,6 +29,24 @@
                                   failure:aFailureHandler];
 }
 
++(void)shareHairfiePro:(NSString *)hairfieId
+            success:(void(^)())aSuccessHandler
+            failure:(void(^)(NSError *error))aFailureHandler {
+
+    
+    [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/hairfies/:hairfieId/share"
+                                                                                 verb:@"POST"]
+                                        forMethod:@"hairfies.share"];
+    
+    [[[self class] repository] invokeStaticMethod:@"share"
+                                       parameters:@{@"hairfieId": hairfieId, @"facebookPage": @"true"}
+                                          success:^(id value) {
+                                              NSLog(@"Sharing Result : %@", value);
+                                              aSuccessHandler();
+                                          }
+                                          failure:aFailureHandler];
+
+}
 +(HairfieRepository *)repository
 {
     return (HairfieRepository *)[[AppDelegate lbAdaptater] repositoryWithClass:[HairfieRepository class]];

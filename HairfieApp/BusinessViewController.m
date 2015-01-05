@@ -129,14 +129,13 @@
     
     
     [self initData];
-    NSLog(@"BUSINESS HAIRFIES COUNT %zd", businessHairfies.count);
-    
     // Do any additional setup after loading the view.
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
     
+    NSLog(@"business ID %@", self.business.id);
     if(_didClaim) {
         [self.navBttn setHidden:YES];
     } else {

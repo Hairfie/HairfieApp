@@ -13,6 +13,7 @@
 #import "GeoPoint.h"
 #import "Timetable.h"
 #import "Picture.h"
+#import "FacebookPage.h"
 
 
 @interface Business : LBModel
@@ -32,6 +33,7 @@
 @property (strong, nonatomic) NSNumber *numReviews;
 @property (strong, nonatomic) NSNumber *rating;
 @property (strong, nonatomic) NSMutableArray *activeHairdressers;
+@property (strong, nonatomic) FacebookPage *facebookPage;
 
 @property (nonatomic) BOOL crossSell;
 

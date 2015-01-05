@@ -30,7 +30,10 @@
 
 -(void)setBusiness:(id)aBusiness
 {
-    _business = [Business fromSetterValue:aBusiness];
+    if (aBusiness == nil)
+        _business = nil;
+    else
+        _business = [Business fromSetterValue:aBusiness];
 }
 
 -(void)setPictureWithImage:(UIImage *)image
@@ -70,7 +73,16 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:[Hairfie EVENT_SAVED] object:hairfie];
         
         NSLog(@"result :%@", hairfie);
-        if(self.shareOnFB) {
+        if(self.shareOnFBPRO) {
+            Hairfie *newHairfie = [[Hairfie alloc] initWithDictionary:result];
+            [HairfieShare shareHairfiePro:newHairfie.id success:^{
+                aSuccessHandler(hairfie);
+            } failure:^(NSError *error) {
+                NSLog(@"Error : %@", error.description);
+                aSuccessHandler(hairfie);
+            }];
+
+        } else if(self.shareOnFB) {
             Hairfie *newHairfie = [[Hairfie alloc] initWithDictionary:result];
             [HairfieShare shareHairfie:newHairfie.id success:^{
                 aSuccessHandler(hairfie);
@@ -78,6 +90,7 @@
                 NSLog(@"Error : %@", error.description);
                 aSuccessHandler(hairfie);
             }];
+            
         } else {
             aSuccessHandler(hairfie);
         }
