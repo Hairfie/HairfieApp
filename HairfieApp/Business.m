@@ -310,7 +310,9 @@
     [[Business repository] invokeStaticMethod:@"update" parameters:parameters success:aSuccessHandler failure:aFailureHandler];
 }
 
-
+-(void)claimWithSuccess:(void (^)(NSArray *))aSuccessHandler failure:(void (^)(NSError *))aFailureHandler {
+    
+}
 
 +(void)listSimilarTo:(NSString *)aBusinessId
                limit:(NSNumber *)aLimit
@@ -352,6 +354,8 @@
                                           }
                                           failure:aFailureHandler];
 }
+
+
 
 +(id)fromSetterValue:(id)aValue
 {
