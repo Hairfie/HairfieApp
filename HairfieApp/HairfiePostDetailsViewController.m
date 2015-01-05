@@ -34,6 +34,7 @@
     BOOL isFbShareActivated;
     AppDelegate *appDelegate;
     BOOL isLoaded;
+    BOOL isHairfiePostBusinessClaimed;
 }
 
 -(void)viewDidLoad
@@ -87,6 +88,8 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    
+   
     if (self.hairfiePost.customerEmail.length != 0)
     {
         [self.emailLabel setText:self.hairfiePost.customerEmail ];
@@ -131,7 +134,11 @@
             [self loadHairdressers];
         _isSalon = YES;
         [_salonLabelButton setTitle:_hairfiePost.business.name forState:UIControlStateNormal];
-          }
+        
+    
+        NSLog(@"user %@", appDelegate.currentUser.managedBusinesses);
+        NSLog(@"business %@", _hairfiePost.business);
+    }
 
     [self refreshTwitterShareButton];
 
@@ -265,6 +272,8 @@
     }
     else {
    
+        if (indexPath.row == 0)
+            cell.accessoryType = UITableViewCellAccessoryNone;
         if (indexPath.row == salonTypes.count - 1)
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
@@ -272,13 +281,13 @@
         {
             Business *business = [salonTypes objectAtIndex:indexPath.row];
             cell.textLabel.text = business.name;
+            cell.accessoryType = UITableViewCellAccessoryNone;
         }
         else
             cell.textLabel.text = [salonTypes objectAtIndex:indexPath.row];
             cell.textLabel.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:16];
             cell.textLabel.textColor =
             [UIColor colorWithRed:191/255.0f green:194/255.0f blue:199/255.0f alpha:1];
-    
     }
     return cell;
 }
@@ -302,6 +311,7 @@
             Business *business = [salonTypes objectAtIndex:indexPath.row];
              [_salonLabelButton setTitle:business.name forState:UIControlStateNormal];
             _hairfiePost.business = business;
+            
             if (business.activeHairdressers.count != 0) {
                 [self loadHairdressers];
                 [_hairdresserLabelButton setTitle:NSLocalizedStringFromTable(@"Who did this?", @"Post_Hairfie", nil) forState:UIControlStateNormal];
@@ -462,7 +472,7 @@
         _hairfiePost.shareOnFB = NO;
         _hairfiePost.shareOnFBPRO = NO;
     } else {
-        if (self.hairfiePost.business.facebookPage != nil && self.hairfiePost.selfMade == NO)
+        if (self.hairfiePost.business.facebookPage != nil && self.hairfiePost.selfMade == NO && isHairfiePostBusinessClaimed == YES)
         {
             NSLog(@"SHARE FB PRO");
             [sender setImage:[UIImage imageNamed:@"fbpro-share-on.png"] forState:UIControlStateNormal];
