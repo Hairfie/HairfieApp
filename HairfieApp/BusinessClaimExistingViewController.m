@@ -38,7 +38,11 @@
 }
 
 -(IBAction)claim:(id)sender {
-
+    [self.business claimWithSuccess:^(NSArray *results) {
+        NSLog(@"results : %@", results);
+    } failure:^(NSError *error) {
+        NSLog(@"error : %@", error);
+    }];
 }
 
 -(void)claimSubmitted {

@@ -312,6 +312,14 @@
 
 -(void)claimWithSuccess:(void (^)(NSArray *))aSuccessHandler failure:(void (^)(NSError *))aFailureHandler {
     
+    [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/claim"
+                                                                                 verb:@"POST"]
+                                        forMethod:@"claim"];
+    LBModelRepository *repository = (LBModelRepository *)[[self class] repository];
+    [repository invokeStaticMethod:@""
+                        parameters:nil
+                           success:aSuccessHandler
+                           failure:aFailureHandler];
 }
 
 +(void)listSimilarTo:(NSString *)aBusinessId
