@@ -17,6 +17,7 @@
 #import "HorairesViewController.h"
 #import "HairdresserDetailViewController.h"
 #import "CameraOverlayViewController.h"
+#import "BusinessClaimExistingViewController.h"
 
 #import "LoadingCollectionViewCell.h"
 #import "CustomCollectionViewCell.h"
@@ -68,7 +69,7 @@
     self.collectionView.allowsMultipleSelection = NO;
     menuActions = @[
                     @{@"label": NSLocalizedStringFromTable(@"Report an error", @"Salon_Detail",nil), @"segue": @"reportError"},
-                    @{@"label": NSLocalizedStringFromTable(@"Claim this business", @"Salon_Detail",nil), @"segue": @"reportError"},
+                    @{@"label": NSLocalizedStringFromTable(@"Claim this business", @"Salon_Detail",nil), @"segue": @"claimExisting"},
                 ];
 
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -179,8 +180,6 @@
     
     if([menuActions[buttonIndex] objectForKey:@"segue"] != nil) {
         [self performSegueWithIdentifier:[menuActions[buttonIndex] objectForKey:@"segue"] sender:self];
-    } else {
-        
     }
 }
 
@@ -606,6 +605,11 @@
         CameraOverlayViewController *camera = [segue destinationViewController];
         camera.isHairfie = YES;
         camera.hairfiePost = hairfiePost;
+    }
+    
+    if ([segue.identifier isEqualToString:@"claimExisting"]) {
+        BusinessClaimExistingViewController *controller = [segue destinationViewController];
+        controller.business = self.business;
     }
 }
 
