@@ -34,6 +34,11 @@
     _timetable = [Timetable fromSetterValue:aTimetable];
 }
 
+-(void)setFacebookPage:(id)aFacebookPage
+{
+    _facebookPage = [FacebookPage fromSetterValue:aFacebookPage];
+}
+
 -(void)setThumbnail:(id)aPicture
 {
     _thumbnail = [Picture fromSetterValue:aPicture];

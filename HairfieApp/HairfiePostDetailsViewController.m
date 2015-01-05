@@ -131,7 +131,7 @@
             [self loadHairdressers];
         _isSalon = YES;
         [_salonLabelButton setTitle:_hairfiePost.business.name forState:UIControlStateNormal];
-    }
+          }
 
     [self refreshTwitterShareButton];
 
@@ -420,7 +420,6 @@
 
 -(void) uploadHairfiePictures {
     uploadInProgress = YES;
-
     [_hairfiePost uploadPictureWithSuccess:^{
         NSLog(@"Uploaded !");
         uploadInProgress = NO;
