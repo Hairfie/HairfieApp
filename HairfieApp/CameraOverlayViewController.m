@@ -248,11 +248,19 @@
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
-    NSLog(@"Cancel did ");
+    NSLog(@"1 %@", self.navigationController.viewControllers);
+ 
     [picker dismissViewControllerAnimated:NO completion:nil];
-
-    [self.navigationController popViewControllerAnimated:YES];
-    [self.navigationController popViewControllerAnimated:YES];
+    NSLog(@"2 %@", self.navigationController.viewControllers);
+    
+   //
+    NSLog(@"3 %@", self.navigationController.viewControllers);
+    
+    if (self.navigationController.viewControllers.count == 2)
+        [self.navigationController popViewControllerAnimated:YES];
+    else
+        [self performSegueWithIdentifier:@"backToHome" sender:self];
+    
 
 }
 
@@ -277,6 +285,8 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"cameraFilters"])
     {
+        
+        NSLog(@"nav %@", self.navigationController.viewControllers);
         ApplyFiltersViewController *filters = [segue destinationViewController];
         [_hairfiePost setPictureWithImage:imageTaken andContainer:@"hairfies"];
         filters.hairfiePost = _hairfiePost;

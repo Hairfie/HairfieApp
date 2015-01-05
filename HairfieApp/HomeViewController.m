@@ -51,22 +51,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    
-    
     [delegate startTrackingLocation:YES];
-
      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showNoNetwork:) name:@"No Network" object:nil];
-    
     self.navigationItem.title = [NSString stringWithFormat:NSLocalizedStringFromTable(@"Home", @"Feed", nil)];
     [_hairfieCollection registerNib:[UINib nibWithNibName:@"CustomCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:CUSTOM_CELL_IDENTIFIER];
     [_hairfieCollection registerNib:[UINib nibWithNibName:@"LoadingCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:LOADING_CELL_IDENTIFIER];
-
     _searchView.hidden = YES;
     _searchView.businessSearch = [[BusinessSearch alloc] init];
     [_searchView initView];
     [_searchView.searchAroundMeImage setTintColor:[UIColor pinkBtnHairfie]];
     _searchView.searchByLocation.text = NSLocalizedStringFromTable(@"Around Me", @"Feed", nil);
-
     refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget:self action:@selector(getHairfiesFromRefresh:)
              forControlEvents:UIControlEventValueChanged];
@@ -82,15 +76,12 @@
         NSLog(@"not logged");
         [self prepareUserNotLogged];
     }
-    
     [_topBarView addBottomBorderWithHeight:1.0 andColor:[UIColor lightGrey]];
-
 }
 
 -(void)showNoNetwork:(NSNotification*)notification
 {
     HairfieNotifications *notif;
-    
     [notif showNotificationWithMessage:@"test" ForDuration:1];
 }
 
@@ -109,7 +100,6 @@
                                              selector:@selector(willSearch:)
                                                  name:self.searchView.businessSearch.changedEventName
                                                object:self.searchView.businessSearch];
-
     [self getHairfies:nil];
     if (_didClaim == YES)
     {
@@ -120,23 +110,20 @@
 
 
 -(void)showPopup {
-    
     _popViewController = [[PopUpViewController alloc] initWithNibName:@"PopUpViewController" bundle:nil];
-    
     [_popViewController showInView:self.view withTitle:NSLocalizedStringFromTable(@"You just claimed your business!", @"Claim", nil) withMessage:NSLocalizedStringFromTable(@"If you want to modify it, go into the menu and select your business", @"Claim", nil) withButton:NSLocalizedStringFromTable(@"Ok", @"Claim", nil) animated:YES];
 }
+
 
 -(IBAction)takeHairfie:(id)sender
 {
     [self checkIfCameraDisabled];
-    
 }
 
 -(void)checkIfCameraDisabled
 {
     __block BOOL isChecked = NO;
     ALAssetsLibrary *lib = [[ALAssetsLibrary alloc] init];
-    
     [lib enumerateGroupsWithTypes:ALAssetsGroupSavedPhotos usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
         if (isChecked == NO) {
        [self performSegueWithIdentifier:@"cameraOverlay" sender:self];
