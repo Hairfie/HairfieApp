@@ -234,6 +234,16 @@
     return 1;
 }
 
+-(void)deselectShareIcons
+{
+    isFbShareActivated = NO;
+    self.hairfiePost.shareOnFB = NO;
+    self.hairfiePost.shareOnTwitter = NO;
+    self.hairfiePost.shareOnFBPRO = NO;
+    [self.fbShareButton setImage:[UIImage imageNamed:@"fb-share-off.png"] forState:UIControlStateNormal];
+    [self.twitterShareButton setImage:[UIImage imageNamed:@"twitter-share-off.png"] forState:UIControlStateNormal];
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 
@@ -275,6 +285,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [self deselectShareIcons];
     if (tableView == _dataChoice) {
         if (indexPath.row == salonTypes.count - 1) {
             [self performSegueWithIdentifier:@"choseSalonType" sender:self];
@@ -282,9 +293,11 @@
             _hairfiePost.selfMade = NO;
         } else if (indexPath.row == 0) {
             [_salonLabelButton setTitle:NSLocalizedStringFromTable(@"I did it", @"Post_Hairfie", nil) forState:UIControlStateNormal];
+            _hairfiePost.business = nil;
             [self showSalonsChoices:self];
             _hairdresserSubview.hidden = YES;
             _hairfiePost.selfMade = YES;
+            _hairfiePost.shareOnFBPRO = NO;
         } else {
             Business *business = [salonTypes objectAtIndex:indexPath.row];
              [_salonLabelButton setTitle:business.name forState:UIControlStateNormal];
@@ -443,10 +456,19 @@
 -(IBAction)fbShare:(id)sender {
     
     if(isFbShareActivated) {
+        
         [sender setImage:[UIImage imageNamed:@"fb-share-off.png"] forState:UIControlStateNormal];
         isFbShareActivated = NO;
         _hairfiePost.shareOnFB = NO;
+        _hairfiePost.shareOnFBPRO = NO;
     } else {
+        if (self.hairfiePost.business.facebookPage != nil && self.hairfiePost.selfMade == NO)
+        {
+            NSLog(@"SHARE FB PRO");
+            [sender setImage:[UIImage imageNamed:@"fbpro-share-on.png"] forState:UIControlStateNormal];
+            isFbShareActivated = YES;
+            _hairfiePost.shareOnFBPRO = YES;
+        } else {
         [self checkFbSessionWithSuccess:^{
             NSArray *permissionsNeeded = @[@"publish_actions"];
             [FBUtils getPermissions:permissionsNeeded success:^{
@@ -460,6 +482,7 @@
         } failure:^(NSError *error) {
             NSLog(@"Sharing failed !");
         }];
+        }
     }
 }
 

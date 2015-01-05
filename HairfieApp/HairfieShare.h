@@ -15,4 +15,9 @@
             success:(void(^)())aSuccessHandler
             failure:(void(^)(NSError *error))aFailureHandler;
 
++(void)shareHairfiePro:(NSString *)hairfieId
+            success:(void(^)())aSuccessHandler
+            failure:(void(^)(NSError *error))aFailureHandler;
+
+
 @end
