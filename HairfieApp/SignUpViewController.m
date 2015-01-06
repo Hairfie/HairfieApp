@@ -128,7 +128,7 @@ numberOfRowsInComponent:(NSInteger)component
     };
     void (^loadSuccessBlock)(NSDictionary *) = ^(NSDictionary *results){
         [MRProgressOverlayView dismissAllOverlaysForView:self.view animated:YES];
-        NSLog(@"results %@", results);
+        NSLog(@"results %@", [results objectForKey:@"accessToken"]);
         NSDictionary *token = [results objectForKey:@"accessToken"];
         [delegate.credentialStore setAuthTokenAndUserId:[token objectForKey:@"id"] forUser:[results objectForKey:@"id"]];
         [AppDelegate lbAdaptater].accessToken = [token objectForKey:@"id"];
@@ -140,7 +140,6 @@ numberOfRowsInComponent:(NSInteger)component
     
     if ([self isValidEmail: _emailField.text])
     {
-        
         NSNumber *newsletter;
         if (_isNewsletterChecked == TRUE)
             newsletter = @true;
@@ -153,11 +152,6 @@ numberOfRowsInComponent:(NSInteger)component
             gender = GENDER_FEMALE;
         }
         
-        NSString *repoName = @"users";
-        [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/users" verb:@"POST"] forMethod:@"users"];
-        
-        LBModelRepository *loginData = [[AppDelegate lbAdaptater] repositoryWithModelName:repoName];
-        
         NSString *language = [[NSLocale preferredLanguages] objectAtIndex:0];
         
         while (uploadInProgress) {
@@ -165,11 +159,10 @@ numberOfRowsInComponent:(NSInteger)component
             [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
         }
         if(uploadedPicture) {
-            [loginData invokeStaticMethod:@"" parameters:@{@"firstName":_firstNameField.text, @"lastName":_lastNameField.text, @"email": _emailField.text, @"password" : _passwordField.text, @"newsletter":newsletter, @"gender":gender, @"picture":uploadedPicture.toApiValue, @"language": language} success:loadSuccessBlock failure:loadErrorBlock];
+            [User signUpUserWithFirstName:self.firstNameField.text lastName:self.lastNameField.text email:self.emailField.text password:self.passwordField.text gender:gender language:language picture:uploadedPicture.toApiValue withNewsletter:newsletter success:loadSuccessBlock failure:loadErrorBlock];
         } else {
-            [loginData invokeStaticMethod:@"" parameters:@{@"firstName":_firstNameField.text, @"lastName":_lastNameField.text, @"email": _emailField.text, @"password" : _passwordField.text, @"newsletter":newsletter, @"gender":gender, @"language": language} success:loadSuccessBlock failure:loadErrorBlock];
+            [User signUpUserWithFirstName:self.firstNameField.text lastName:self.lastNameField.text email:self.emailField.text password:self.passwordField.text gender:gender language:language picture:nil withNewsletter:newsletter success:loadSuccessBlock failure:loadErrorBlock];
         }
-
     }
     else
     {

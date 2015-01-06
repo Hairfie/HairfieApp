@@ -403,6 +403,55 @@
                                   failure:aFailureHandler];
 }
 
++(void)loginUserWithEmail:(NSString *)anEmail
+              andPassword:(NSString *)aPassword
+                  success:(void (^)())aSuccessHandler
+                  failure:(void (^)(NSError *))aFailureHandler
+{
+    [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/users/login" verb:@"POST"] forMethod:@"users.login"];
+  
+    [[User repository] invokeStaticMethod:@"login" parameters:@{@"email": anEmail, @"password" : aPassword} success:aSuccessHandler failure:aFailureHandler];
+}
+
++(void)signUpUserWithFirstName:(NSString *)aFirstName
+                      lastName:(NSString *)aLastName
+                         email:(NSString *)anEmail
+                      password:(NSString *)aPassword
+                        gender:(NSString *)aGender
+                      language:(NSString *)aLanguage
+                       picture:(NSString *)aPictureUrl
+                withNewsletter:(NSNumber *)isNewsletter
+                       success:(void (^)(NSDictionary *result))aSuccessHandler
+                       failure:(void (^)(NSError *))aFailureHandler {
+    
+    
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    
+    [parameters setObject:aFirstName forKey:@"firstName"];
+    [parameters setObject:aLastName forKey:@"lastName"];
+    [parameters setObject:anEmail forKey:@"email"];
+    [parameters setObject:aPassword forKey:@"password"];
+    [parameters setObject:aGender forKey:@"gender"];
+    [parameters setObject:aLanguage forKey:@"language"];
+    if (aPictureUrl != nil)
+        [parameters setObject:aPictureUrl forKey:@"picture"];
+
+    [parameters setObject:isNewsletter forKey:@"newsletter"];
+
+    
+    [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/users" verb:@"POST"] forMethod:@"users"];
+
+     [[User repository] invokeStaticMethod:@"" parameters:parameters success:aSuccessHandler failure:aFailureHandler];
+}
+
++(void)recoverPasswordForUserWithEmail:(NSString *)anEmail
+                               success:(void (^)(NSDictionary *results))aSuccessHandler
+                               failure:(void (^)(NSError *))aFailureHandler {
+    [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/users/reset" verb:@"POST"] forMethod:@"reset"];
+    
+    [[User repository] invokeStaticMethod:@"reset" parameters:@{@"email":anEmail} success:aSuccessHandler failure:aFailureHandler];
+}
+
 +(id)fromSetterValue:(id)aValue
 {
     return [SetterUtils getInstanceOf:[self class] fromSetterValue:aValue];

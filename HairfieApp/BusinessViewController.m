@@ -73,6 +73,7 @@
                     @{@"label": NSLocalizedStringFromTable(@"Report an error", @"Salon_Detail",nil), @"segue": @"reportError"},
                     @{@"label": NSLocalizedStringFromTable(@"Claim this business", @"Salon_Detail",nil), @"segue": @"claimExisting"},
                 ];
+    
     appDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     [self.callBttn setTitle:NSLocalizedStringFromTable(@"book", @"Salon_Detail", nil) forState:UIControlStateNormal];
     self.callBttnPicto.hidden = NO;
@@ -150,8 +151,6 @@
 }
 
 -(void)checkIfBusinessIsOwnedByUser:(Business*)aBusiness {
-    
-    NSLog(@"abusiness facebook %@", aBusiness.facebookPage.name);
     for (int i = 0; i < appDelegate.currentUser.managedBusinesses.count; i++) {
         Business *business = [appDelegate.currentUser.managedBusinesses objectAtIndex:i];
         if ([aBusiness.id isEqualToString:business.id]) {

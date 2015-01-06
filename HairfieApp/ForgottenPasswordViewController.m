@@ -78,10 +78,8 @@
         [successAlert show];
     };
     
-    [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/users/reset" verb:@"POST"] forMethod:@"reset"];
-    LBModelRepository *users = [[AppDelegate lbAdaptater] repositoryWithModelName:@"users"];
+     [User recoverPasswordForUserWithEmail:emailToRecover success:loadSuccessBlock failure:loadErrorBlock];
     
-    [users invokeStaticMethod:@"reset" parameters:@{@"email":emailToRecover} success:loadSuccessBlock failure:loadErrorBlock];
    
     // spinner doesnt stop no back-end, stops when editing field
     [spinner startAnimating];

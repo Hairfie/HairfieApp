@@ -129,11 +129,16 @@
 
     if ([self isValidEmail: _emailField.text]) {
 
-        NSString *repoName = @"users";
-        [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/users/login" verb:@"POST"] forMethod:@"users.login"];
-
-        LBModelRepository *loginData = [[AppDelegate lbAdaptater] repositoryWithModelName:repoName];
-        [loginData invokeStaticMethod:@"login" parameters:@{@"email": _emailField.text, @"password" : _passwordField.text} success:loadSuccessBlock failure:loadErrorBlock];
+        
+        
+        
+        [User loginUserWithEmail:self.emailField.text andPassword:self.passwordField.text success:loadSuccessBlock failure:loadErrorBlock];
+        
+//        NSString *repoName = @"users";
+//        [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/users/login" verb:@"POST"] forMethod:@"users.login"];
+//    
+//        LBModelRepository *loginData = [[AppDelegate lbAdaptater] repositoryWithModelName:repoName];
+//        [loginData invokeStaticMethod:@"login" parameters:@{@"email": _emailField.text, @"password" : _passwordField.text} success:loadSuccessBlock failure:loadErrorBlock];
     } else {
         UIAlertView *badLogin = [[UIAlertView alloc] initWithTitle:NSLocalizedStringFromTable(@"Login Failed", @"Login_Sign_Up", nil) message:NSLocalizedStringFromTable(@"The email/password in incorrect", @"Login_Sign_Up", nil) delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
         [badLogin show];

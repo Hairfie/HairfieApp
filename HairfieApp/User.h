@@ -86,6 +86,31 @@
 -(void)getManagedBusinessesByUserSuccess:(void (^)())aSuccessHandler
                                  failure:(void (^)(NSError *))aFailureHandler;
 
+
+
++(void)loginUserWithEmail:(NSString*)anEmail
+              andPassword:(NSString*)aPassword
+                  success:(void (^)())aSuccessHandler
+                  failure:(void (^)(NSError *))aFailureHandler;
+
+
++(void)signUpUserWithFirstName:(NSString*)aFirstName
+                      lastName:(NSString*)aLastName
+                         email:(NSString*)anEmail
+                      password:(NSString*)aPassword
+                        gender:(NSString*)aGender
+                      language:(NSString*)aLanguage
+                       picture:(NSString*)aPictureUrl
+                withNewsletter:(NSNumber*)isNewsletter
+                       success:(void (^)(NSDictionary *result))aSuccessHandler
+                       failure:(void (^)(NSError *))aFailureHandler;
+
++(void)recoverPasswordForUserWithEmail:(NSString*)anEmail
+                               success:(void (^)(NSDictionary *results))aSuccessHandler
+                               failure:(void (^)(NSError *))aFailureHandler;
+
+
+
 +(id)fromSetterValue:(id)aValue;
 -(void)refresh;
 
