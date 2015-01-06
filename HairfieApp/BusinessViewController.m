@@ -69,12 +69,20 @@
     
     isDetailsTab = YES;
      self.collectionView.allowsMultipleSelection = NO;
-    menuActions = @[
-                    @{@"label": NSLocalizedStringFromTable(@"Report an error", @"Salon_Detail",nil), @"segue": @"reportError"},
-                    @{@"label": NSLocalizedStringFromTable(@"Claim this business", @"Salon_Detail",nil), @"segue": @"claimExisting"},
-                ];
     
     appDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
+
+    if([appDelegate.credentialStore isLoggedIn]) {
+        menuActions = @[
+                        @{@"label": NSLocalizedStringFromTable(@"Report an error", @"Salon_Detail",nil), @"segue": @"reportError"},
+                        @{@"label": NSLocalizedStringFromTable(@"Claim this business", @"Salon_Detail",nil), @"segue": @"claimExisting"},
+                        ];
+    } else {
+        menuActions = @[
+                        @{@"label": NSLocalizedStringFromTable(@"Report an error", @"Salon_Detail",nil), @"segue": @"reportError"}
+                        ];
+    }
+    
     [self.callBttn setTitle:NSLocalizedStringFromTable(@"book", @"Salon_Detail", nil) forState:UIControlStateNormal];
     self.callBttnPicto.hidden = NO;
 
