@@ -323,7 +323,7 @@
                       failure:^(NSError *error) {
                           NSLog(@"Failed to retrieve complete business: %@", error.localizedDescription);
                       }];
-            tableView.userInteractionEnabled = NO;
+            
         } else if ([infoName isEqualToString:@"selfMade"]) {
             [self performSegueWithIdentifier:@"showUserProfile" sender:self];
         }
@@ -343,6 +343,7 @@
           
            
         }
+        tableView.userInteractionEnabled = NO;
     }
 }
 
