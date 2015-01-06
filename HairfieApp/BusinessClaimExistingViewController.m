@@ -24,6 +24,13 @@
     self.headerSubmitButton.layer.cornerRadius = 5;
     [self.headerSubmitButton setTitle:NSLocalizedStringFromTable(@"Claim", @"BusinessClaimExisting", nil)
                              forState:UIControlStateNormal];
+    if(self.business.owner != nil) {
+        [self.headerSubmitButton setHidden:YES];
+        [self.claimTitleLabel setHidden:YES];
+    } else {
+        [self.alreadyClaimedLabel setHidden:YES];
+    }
+    
 }
 
 
@@ -38,15 +45,13 @@
 }
 
 -(IBAction)claim:(id)sender {
-    [self.business claimWithSuccess:^(NSArray *results) {
-        NSLog(@"results : %@", results);
+    [self.business claimWithSuccess:^(NSArray *result) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"currentUser" object:self];
+        [self dismissViewControllerAnimated:YES completion:nil];
+        
     } failure:^(NSError *error) {
         NSLog(@"error : %@", error);
     }];
-}
-
--(void)claimSubmitted {
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

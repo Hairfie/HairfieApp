@@ -13,6 +13,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *headerTitleLabel;
 @property (weak, nonatomic) IBOutlet UIButton *headerSubmitButton;
 
+@property (weak, nonatomic) IBOutlet UILabel *alreadyClaimedLabel;
+@property (weak, nonatomic) IBOutlet UILabel *claimTitleLabel;
+
+
 @property (strong, nonatomic) Business *business;
 
 @end

@@ -312,12 +312,12 @@
 
 -(void)claimWithSuccess:(void (^)(NSArray *))aSuccessHandler failure:(void (^)(NSError *))aFailureHandler {
     
-    [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/claim"
+    [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/businesses/:businessId/claim"
                                                                                  verb:@"POST"]
-                                        forMethod:@"claim"];
+                                        forMethod:@"businesses.claim"];
     LBModelRepository *repository = (LBModelRepository *)[[self class] repository];
-    [repository invokeStaticMethod:@""
-                        parameters:nil
+    [repository invokeStaticMethod:@"claim"
+                        parameters:@{@"businessId": self.id}
                            success:aSuccessHandler
                            failure:aFailureHandler];
 }
