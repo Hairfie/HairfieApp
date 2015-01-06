@@ -35,6 +35,7 @@
     AppDelegate *appDelegate;
     BOOL isLoaded;
     BOOL isHairfiePostBusinessClaimed;
+
 }
 
 -(void)viewDidLoad
@@ -134,10 +135,7 @@
             [self loadHairdressers];
         _isSalon = YES;
         [_salonLabelButton setTitle:_hairfiePost.business.name forState:UIControlStateNormal];
-        
-    
-        NSLog(@"user %@", appDelegate.currentUser.managedBusinesses);
-        NSLog(@"business %@", _hairfiePost.business);
+        [self checkIfBusinessIsOwnedByUser:_hairfiePost.business];
     }
 
     [self refreshTwitterShareButton];
@@ -311,7 +309,7 @@
             Business *business = [salonTypes objectAtIndex:indexPath.row];
              [_salonLabelButton setTitle:business.name forState:UIControlStateNormal];
             _hairfiePost.business = business;
-            
+            [self checkIfBusinessIsOwnedByUser:_hairfiePost.business];
             if (business.activeHairdressers.count != 0) {
                 [self loadHairdressers];
                 [_hairdresserLabelButton setTitle:NSLocalizedStringFromTable(@"Who did this?", @"Post_Hairfie", nil) forState:UIControlStateNormal];
@@ -329,6 +327,18 @@
         [_hairdresserLabelButton setTitle:[hairdresser displayFullName] forState:UIControlStateNormal];
         _hairfiePost.hairdresser = hairdresser;
         [self showHairdresserChoices:self];
+    }
+}
+
+-(void)checkIfBusinessIsOwnedByUser:(Business*)aBusiness {
+    
+    for (int i = 0; i < appDelegate.currentUser.managedBusinesses.count; i++) {
+        Business *business = [appDelegate.currentUser.managedBusinesses objectAtIndex:i];
+        if (aBusiness.id == business.id)
+        {
+            if (aBusiness.facebookPage != nil)
+                isHairfiePostBusinessClaimed = YES;
+        }
     }
 }
 
@@ -471,14 +481,15 @@
         isFbShareActivated = NO;
         _hairfiePost.shareOnFB = NO;
         _hairfiePost.shareOnFBPRO = NO;
-    } else {
-        if (self.hairfiePost.business.facebookPage != nil && self.hairfiePost.selfMade == NO && isHairfiePostBusinessClaimed == YES)
+    } else {        
+        
+        if (self.hairfiePost.selfMade == NO && isHairfiePostBusinessClaimed == YES)
         {
             NSLog(@"SHARE FB PRO");
             [sender setImage:[UIImage imageNamed:@"fbpro-share-on.png"] forState:UIControlStateNormal];
             isFbShareActivated = YES;
             _hairfiePost.shareOnFBPRO = YES;
-        } else {
+        }else {
         [self checkFbSessionWithSuccess:^{
             NSArray *permissionsNeeded = @[@"publish_actions"];
             [FBUtils getPermissions:permissionsNeeded success:^{
@@ -493,6 +504,7 @@
             NSLog(@"Sharing failed !");
         }];
         }
+        
     }
 }
 
