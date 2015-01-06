@@ -29,9 +29,14 @@
                              forState:UIControlStateNormal];
     if(self.business.owner != nil) {
         [self.headerSubmitButton setHidden:YES];
-        [self.claimTitleLabel setHidden:YES];
+        [self.webView setHidden:YES];
     } else {
         [self.alreadyClaimedLabel setHidden:YES];
+        
+//        [self.webView loadHTMLString:@"<html><body style=\"background-color:black;\"></body></html>" baseURL:nil];
+
+        NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"Claim" ofType:@"html"]]];
+        [self.webView loadRequest:urlRequest];
     }
     
 }
