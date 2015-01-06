@@ -51,6 +51,7 @@
 		158FCA9119FA9B870001F86C /* FBAuthenticator.m in Sources */ = {isa = PBXBuildFile; fileRef = 158FCA9019FA9B870001F86C /* FBAuthenticator.m */; };
 		158FCA9419FE54110001F86C /* fb-share-off.png in Resources */ = {isa = PBXBuildFile; fileRef = 158FCA9219FE54110001F86C /* fb-share-off.png */; };
 		158FCA9519FE54110001F86C /* fb-share-on.png in Resources */ = {isa = PBXBuildFile; fileRef = 158FCA9319FE54110001F86C /* fb-share-on.png */; };
+		1592078A1A5B02BC007D7928 /* BusinessClaimExistingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 159207891A5B02BC007D7928 /* BusinessClaimExistingViewController.m */; };
 		15A50D9A19CC39AF0043BFB4 /* login-user.png in Resources */ = {isa = PBXBuildFile; fileRef = 15A50D9919CC39AF0043BFB4 /* login-user.png */; };
 		15A50D9D19CC6FAC0043BFB4 /* NotLoggedAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A50D9C19CC6FAB0043BFB4 /* NotLoggedAlert.m */; };
 		15A91EB219DADD97000539C9 /* hairdresser-who-string-hairfie-post.png in Resources */ = {isa = PBXBuildFile; fileRef = 15A91EB119DADD97000539C9 /* hairdresser-who-string-hairfie-post.png */; };
@@ -478,6 +479,8 @@
 		158FCA9019FA9B870001F86C /* FBAuthenticator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBAuthenticator.m; sourceTree = "<group>"; };
 		158FCA9219FE54110001F86C /* fb-share-off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fb-share-off.png"; sourceTree = "<group>"; };
 		158FCA9319FE54110001F86C /* fb-share-on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fb-share-on.png"; sourceTree = "<group>"; };
+		159207881A5B02BC007D7928 /* BusinessClaimExistingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessClaimExistingViewController.h; sourceTree = "<group>"; };
+		159207891A5B02BC007D7928 /* BusinessClaimExistingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessClaimExistingViewController.m; sourceTree = "<group>"; };
 		15A50D9919CC39AF0043BFB4 /* login-user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-user.png"; sourceTree = "<group>"; };
 		15A50D9B19CC6FAB0043BFB4 /* NotLoggedAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotLoggedAlert.h; sourceTree = "<group>"; };
 		15A50D9C19CC6FAB0043BFB4 /* NotLoggedAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotLoggedAlert.m; sourceTree = "<group>"; };
@@ -1587,6 +1590,8 @@
 				B3F6B70619F69A3900EF4B5C /* SuggestHairdresserViewController.m */,
 				B3A2FE991A07DA94000B839F /* SalonMapViewController.h */,
 				B3A2FE9A1A07DA94000B839F /* SalonMapViewController.m */,
+				159207881A5B02BC007D7928 /* BusinessClaimExistingViewController.h */,
+				159207891A5B02BC007D7928 /* BusinessClaimExistingViewController.m */,
 			);
 			name = "Salon Detail";
 			sourceTree = "<group>";
@@ -2542,6 +2547,7 @@
 				B3423211198924290058866B /* AFHTTPRequestOperationManager.m in Sources */,
 				B367DC3419C98EBF00A0452A /* BusinessAnnotation.m in Sources */,
 				15E9527119FF9C0700699CBE /* Day.m in Sources */,
+				1592078A1A5B02BC007D7928 /* BusinessClaimExistingViewController.m in Sources */,
 				715290DE19FE477900C93950 /* TagCategory.m in Sources */,
 				B319B5C719C6E77D007F79B0 /* BusinessReviewRepository.m in Sources */,
 				B33D4C5619D1A46D009DE6DD /* Service.m in Sources */,
@@ -2960,7 +2966,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ICON_NAME = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PINTEREST_CLIENT_ID = 1441349;
@@ -3001,7 +3007,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ICON_NAME = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PINTEREST_CLIENT_ID = 1441348;
 				SDKROOT = iphoneos;
@@ -3032,7 +3038,7 @@
 					DEV,
 				);
 				INFOPLIST_FILE = HairfieApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -3094,7 +3100,7 @@
 					RELEASE,
 				);
 				INFOPLIST_FILE = HairfieApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -3202,7 +3208,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ICON_NAME = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PINTEREST_CLIENT_ID = 1441350;
 				SDKROOT = iphoneos;
@@ -3234,7 +3240,7 @@
 					ADHOC,
 				);
 				INFOPLIST_FILE = HairfieApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",

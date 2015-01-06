@@ -18,6 +18,7 @@
 #import "HorairesViewController.h"
 #import "HairdresserDetailViewController.h"
 #import "CameraOverlayViewController.h"
+#import "BusinessClaimExistingViewController.h"
 
 #import "LoadingCollectionViewCell.h"
 #import "CustomCollectionViewCell.h"
@@ -70,7 +71,7 @@
      self.collectionView.allowsMultipleSelection = NO;
     menuActions = @[
                     @{@"label": NSLocalizedStringFromTable(@"Report an error", @"Salon_Detail",nil), @"segue": @"reportError"},
-                    @{@"label": NSLocalizedStringFromTable(@"Claim this business", @"Salon_Detail",nil), @"segue": @"reportError"},
+                    @{@"label": NSLocalizedStringFromTable(@"Claim this business", @"Salon_Detail",nil), @"segue": @"claimExisting"},
                 ];
     appDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     [self.callBttn setTitle:NSLocalizedStringFromTable(@"book", @"Salon_Detail", nil) forState:UIControlStateNormal];
@@ -202,8 +203,6 @@
     
     if([menuActions[buttonIndex] objectForKey:@"segue"] != nil) {
         [self performSegueWithIdentifier:[menuActions[buttonIndex] objectForKey:@"segue"] sender:self];
-    } else {
-        
     }
 }
 
@@ -630,6 +629,7 @@
         camera.isHairfie = YES;
         camera.hairfiePost = hairfiePost;
     }
+<<<<<<< HEAD
     if ([segue.identifier isEqualToString:@"editOwnedBusiness"]) {
         FinalStepViewController *finalStepVc = [segue destinationViewController];
         
@@ -637,6 +637,13 @@
         finalStepVc.businessToManage = self.business;
     }
         
+=======
+    
+    if ([segue.identifier isEqualToString:@"claimExisting"]) {
+        BusinessClaimExistingViewController *controller = [segue destinationViewController];
+        controller.business = self.business;
+    }
+>>>>>>> 612bc718913a89ba9ec7cb84423cdc520373eb0d
 }
 
 @end

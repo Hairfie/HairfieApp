@@ -169,6 +169,7 @@
     for (Business *business in [businesses subarrayWithRange:range]) {
         [annotations addObject:[self annotationForBusiness:business]];
     }
+
     [self.mapView addAnnotations:annotations];
 
     // tweak visible area of the map

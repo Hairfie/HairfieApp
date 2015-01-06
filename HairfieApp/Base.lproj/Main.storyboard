@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="m6Z-pY-ich">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C81h" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="m6Z-pY-ich">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
@@ -110,8 +110,15 @@
             <string>SourceSansPro-Light</string>
             <string>SourceSansPro-Light</string>
             <string>SourceSansPro-Light</string>
+            <string>SourceSansPro-Light</string>
+            <string>SourceSansPro-Light</string>
+            <string>SourceSansPro-Light</string>
         </mutableArray>
         <mutableArray key="SourceSansPro-Regular.ttf">
+            <string>SourceSansPro-Regular</string>
+            <string>SourceSansPro-Regular</string>
+            <string>SourceSansPro-Regular</string>
+            <string>SourceSansPro-Regular</string>
             <string>SourceSansPro-Regular</string>
             <string>SourceSansPro-Regular</string>
             <string>SourceSansPro-Regular</string>
@@ -2357,6 +2364,7 @@
                         <segue destination="wuV-Ro-JC1" kind="push" identifier="hairfieDetail" id="ljj-N5-0Sy"/>
                         <segue destination="Uin-U7-dKF" kind="push" identifier="showHairdresserDetail" id="9F8-Wo-5DF"/>
                         <segue destination="BHW-4V-7I5" kind="push" identifier="editOwnedBusiness" id="Vzm-3A-jKo"/>
+                        <segue destination="weK-ZQ-B1h" kind="modal" identifier="claimExisting" id="DrE-6P-yiw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rJo-33-XCW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2676,7 +2684,7 @@
                                             <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5ZR-VD-wlu" userLabel="HAIRDRESSER VIEW">
                                                 <rect key="frame" x="0.0" y="278" width="320" height="615"/>
                                                 <subviews>
-                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="FpJ-1K-79p">
+                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="FpJ-1K-79p">
                                                         <rect key="frame" x="0.0" y="0.0" width="320" height="615"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
@@ -3515,7 +3523,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tpd-Rb-H90" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2611" y="-2865"/>
+            <point key="canvasLocation" x="2539" y="-2889"/>
         </scene>
         <!--Business Error Report View Controller-->
         <scene sceneID="tWC-SF-dNg">
@@ -3596,7 +3604,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9gz-KA-mWQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3014" y="-2941"/>
+            <point key="canvasLocation" x="3138" y="-3457"/>
         </scene>
         <!--Favorites-->
         <scene sceneID="pSr-Pn-kI9">
@@ -4805,7 +4813,7 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xt3-i7-57w">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EuT-Lu-oD6" userLabel="VIEW CONTAINER">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EuT-Lu-oD6" userLabel="VIEW CONTAINER">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="588"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="URA-Dh-nh8" userLabel="HAIRFIE VIEW">
@@ -5785,6 +5793,177 @@
             </objects>
             <point key="canvasLocation" x="809" y="-3612"/>
         </scene>
+        <!--Business Claim Existing View Controller-->
+        <scene sceneID="wp9-ao-GQb">
+            <objects>
+                <viewController id="weK-ZQ-B1h" customClass="BusinessClaimExistingViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="lWM-NJ-Rf8"/>
+                        <viewControllerLayoutGuide type="bottom" id="7qO-5D-TRf"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Q8O-6p-lfs">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bi4-lb-jmf" userLabel="Top Bar View">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4to-iK-4Vq" userLabel="Go Back">
+                                        <rect key="frame" x="10" y="17" width="40" height="40"/>
+                                        <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                        <state key="normal" image="arrow-nav.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="goBack:" destination="Ocj-76-qDE" eventType="touchUpInside" id="BSS-X4-5zv"/>
+                                            <action selector="goBack:" destination="weK-ZQ-B1h" eventType="touchUpInside" id="PtQ-7T-MDZ"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UFz-F6-Ek7">
+                                        <rect key="frame" x="252" y="22" width="60" height="30"/>
+                                        <color key="backgroundColor" red="1" green="0.45882352939999999" blue="0.4431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="14"/>
+                                        <state key="normal" title="Claim">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="claim:" destination="weK-ZQ-B1h" eventType="touchUpInside" id="cne-XO-xyL"/>
+                                            <action selector="submitErrorReport:" destination="Ocj-76-qDE" eventType="touchUpInside" id="pJd-Y1-b8P"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Claim this business" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="l9f-NN-EPT">
+                                        <rect key="frame" x="86" y="25" width="148" height="23"/>
+                                        <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="18"/>
+                                        <color key="textColor" red="0.41176470590000003" green="0.4431372549" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Augmentez votre visibilité et votre chiffre d'affaires !" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="taX-OD-ggL">
+                                <rect key="frame" x="10" y="84" width="300" height="55"/>
+                                <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="20"/>
+                                <color key="textColor" red="0.43921568630000002" green="0.46666666670000001" blue="0.51764705879999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Désolé, ce salon a déjà un propriétaire. Si vous êtes le propriétaire de ce salon, contactez nous à l'adresse hello@hairfie.com" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="TWN-7L-M1B">
+                                <rect key="frame" x="10" y="253" width="300" height="83"/>
+                                <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="16"/>
+                                <color key="textColor" red="0.43921568630000002" green="0.46666666670000001" blue="0.51764705879999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="taX-OD-ggL" firstAttribute="top" secondItem="bi4-lb-jmf" secondAttribute="top" constant="84" id="1jH-H5-Srz"/>
+                            <constraint firstAttribute="centerX" secondItem="TWN-7L-M1B" secondAttribute="centerX" id="3zN-ot-bja"/>
+                            <constraint firstItem="bi4-lb-jmf" firstAttribute="top" secondItem="lWM-NJ-Rf8" secondAttribute="bottom" constant="-20" id="7Yh-zL-2Sb"/>
+                            <constraint firstItem="taX-OD-ggL" firstAttribute="leading" secondItem="Q8O-6p-lfs" secondAttribute="leadingMargin" constant="-6" id="Fka-OU-m4J"/>
+                            <constraint firstItem="TWN-7L-M1B" firstAttribute="leading" secondItem="Q8O-6p-lfs" secondAttribute="leadingMargin" constant="-6" id="G1Y-fr-DtQ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="taX-OD-ggL" secondAttribute="trailing" constant="-6" id="OCU-jz-2tq"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="bi4-lb-jmf" secondAttribute="trailing" constant="-16" id="WXr-Sj-Ndq"/>
+                            <constraint firstItem="bi4-lb-jmf" firstAttribute="top" secondItem="lWM-NJ-Rf8" secondAttribute="bottom" constant="-20" id="afP-Ly-pnf"/>
+                            <constraint firstAttribute="centerX" secondItem="taX-OD-ggL" secondAttribute="centerX" id="bnw-dW-iEv"/>
+                            <constraint firstItem="bi4-lb-jmf" firstAttribute="leading" secondItem="Q8O-6p-lfs" secondAttribute="leadingMargin" constant="-16" id="flY-Io-bWJ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="TWN-7L-M1B" secondAttribute="trailing" constant="-6" id="gUT-gN-Hny"/>
+                            <constraint firstAttribute="centerY" secondItem="TWN-7L-M1B" secondAttribute="centerY" constant="-10.5" id="hDy-lF-Eda"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="JHy-6J-DBB"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="alreadyClaimedLabel" destination="TWN-7L-M1B" id="8Cv-fg-w2J"/>
+                        <outlet property="claimTitleLabel" destination="taX-OD-ggL" id="sqn-89-w0P"/>
+                        <outlet property="headerSubmitButton" destination="UFz-F6-Ek7" id="t2Z-Bl-i94"/>
+                        <outlet property="headerTitleLabel" destination="l9f-NN-EPT" id="Iqp-XJ-zAA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mrI-c0-Cn0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3131" y="-4076"/>
+        </scene>
+        <!--Business Error Report View Controller-->
+        <scene sceneID="6j8-Bl-y1a">
+            <objects>
+                <viewController id="Ocj-76-qDE" customClass="BusinessErrorReportViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="khr-c6-kZf"/>
+                        <viewControllerLayoutGuide type="bottom" id="yXT-7K-pwY"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ex2-EP-8Xv">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3cq-l9-vhi" userLabel="Top Bar View">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dfW-8P-Nzl" userLabel="Go Back">
+                                        <rect key="frame" x="10" y="17" width="40" height="40"/>
+                                        <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                        <state key="normal" image="arrow-nav.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="goBack:" destination="Ocj-76-qDE" eventType="touchUpInside" id="TfD-ff-0DT"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RRM-1p-Wrf">
+                                        <rect key="frame" x="252" y="22" width="60" height="30"/>
+                                        <color key="backgroundColor" red="1" green="0.45882352939999999" blue="0.4431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="14"/>
+                                        <state key="normal" title="Send">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="submitErrorReport:" destination="Ocj-76-qDE" eventType="touchUpInside" id="69l-U5-hRz"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Report an error" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="KQZ-jg-xqM">
+                                        <rect key="frame" x="86" y="25" width="148" height="23"/>
+                                        <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="18"/>
+                                        <color key="textColor" red="0.41176470590000003" green="0.4431372549" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mU1-ZJ-KgW" customClass="SAMTextView">
+                                <rect key="frame" x="10" y="72" width="300" height="267"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <inset key="scrollIndicatorInsets" minX="15" minY="10" maxX="15" maxY="0.0"/>
+                                <color key="textColor" red="0.1960784314" green="0.26274509800000001" blue="0.3411764706" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="send"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Ocj-76-qDE" id="yPa-Rd-Ifw"/>
+                                </connections>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="yXT-7K-pwY" firstAttribute="top" secondItem="mU1-ZJ-KgW" secondAttribute="bottom" constant="10" id="91j-wY-oJH"/>
+                            <constraint firstItem="3cq-l9-vhi" firstAttribute="leading" secondItem="Ex2-EP-8Xv" secondAttribute="leadingMargin" constant="-16" id="H49-vD-mf3"/>
+                            <constraint firstItem="mU1-ZJ-KgW" firstAttribute="top" secondItem="3cq-l9-vhi" secondAttribute="bottom" constant="8" symbolic="YES" id="KXD-XU-MCo"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="mU1-ZJ-KgW" secondAttribute="trailing" constant="10" id="QaE-SJ-lEh"/>
+                            <constraint firstItem="mU1-ZJ-KgW" firstAttribute="leading" secondItem="Ex2-EP-8Xv" secondAttribute="leadingMargin" constant="10" id="Smu-B4-vr7"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="3cq-l9-vhi" secondAttribute="trailing" constant="-16" id="Yl8-Vb-lDy"/>
+                            <constraint firstItem="3cq-l9-vhi" firstAttribute="top" secondItem="Ex2-EP-8Xv" secondAttribute="topMargin" id="gaU-9W-ahh"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="0Vx-hZ-7Tf"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="bodyText" destination="mU1-ZJ-KgW" id="KHs-Kc-Hlt"/>
+                        <outlet property="headerSubmitButton" destination="RRM-1p-Wrf" id="Y9D-cn-Yx6"/>
+                        <outlet property="headerTitleLabel" destination="KQZ-jg-xqM" id="AYw-XE-cfI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JNX-F8-pW0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3138" y="-3457"/>
+        </scene>
     </scenes>
     <resources>
         <image name="add-comment-textfield.png" width="600" height="71"/>
@@ -5843,6 +6022,8 @@
     <inferredMetricsTieBreakers>
         <segue reference="OXf-FI-oBV"/>
         <segue reference="Vzm-3A-jKo"/>
+        <segue reference="VGS-VM-Pwy"/>
+        <segue reference="WYb-zG-qo5"/>
         <segue reference="VGS-VM-Pwy"/>
         <segue reference="ljj-N5-0Sy"/>
         <segue reference="YMQ-jo-wz1"/>

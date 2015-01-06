@@ -310,7 +310,17 @@
     [[Business repository] invokeStaticMethod:@"update" parameters:parameters success:aSuccessHandler failure:aFailureHandler];
 }
 
-
+-(void)claimWithSuccess:(void (^)(NSArray *))aSuccessHandler failure:(void (^)(NSError *))aFailureHandler {
+    
+    [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/businesses/:businessId/claim"
+                                                                                 verb:@"POST"]
+                                        forMethod:@"businesses.claim"];
+    LBModelRepository *repository = (LBModelRepository *)[[self class] repository];
+    [repository invokeStaticMethod:@"claim"
+                        parameters:@{@"businessId": self.id}
+                           success:aSuccessHandler
+                           failure:aFailureHandler];
+}
 
 +(void)listSimilarTo:(NSString *)aBusinessId
                limit:(NSNumber *)aLimit
@@ -352,6 +362,8 @@
                                           }
                                           failure:aFailureHandler];
 }
+
+
 
 +(id)fromSetterValue:(id)aValue
 {

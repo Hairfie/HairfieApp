@@ -72,6 +72,9 @@
 -(void)updateWithSuccess:(void(^)(NSArray *results))aSuccessHandler
                  failure:(void(^)(NSError *error))aFailureHandler;
 
+-(void)claimWithSuccess:(void(^)(NSArray *results))aSuccessHandler
+                 failure:(void(^)(NSError *error))aFailureHandler;
+
 +(id)fromSetterValue:(id)aValue;
 
 @end
