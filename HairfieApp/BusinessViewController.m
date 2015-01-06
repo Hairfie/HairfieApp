@@ -10,6 +10,7 @@
 #import "Hairfie.h"
 #import "Service.h"
 #import "Hairdresser.h"
+#import "AppDelegate.h"
 
 #import "HairfieDetailViewController.h"
 #import "ReviewsViewController.h"
@@ -23,6 +24,8 @@
 #import "BusinessDetailCollectionViewCell.h"
 #import "BusinessHairdressersCollectionViewCell.h"
 #import "BusinessServicesCollectionViewCell.h"
+
+#import "FinalStepViewController.h"
 
 #import "BusinessReusableView.h"
 #import "NotLoggedAlert.h"
@@ -41,7 +44,7 @@
     BOOL isServicesTab;
     
     NSMutableArray *businessHairfies;
-
+    AppDelegate *appDelegate;
     BOOL endOfHairfies;
     BOOL loadingHairfies;
     Business *similarBusiness;
@@ -64,12 +67,14 @@
     [super viewDidLoad];
     
     isDetailsTab = YES;
-    [self.callBttn setTitle:NSLocalizedStringFromTable(@"book", @"Salon_Detail", nil) forState:UIControlStateNormal];
-    self.collectionView.allowsMultipleSelection = NO;
+     self.collectionView.allowsMultipleSelection = NO;
     menuActions = @[
                     @{@"label": NSLocalizedStringFromTable(@"Report an error", @"Salon_Detail",nil), @"segue": @"reportError"},
                     @{@"label": NSLocalizedStringFromTable(@"Claim this business", @"Salon_Detail",nil), @"segue": @"reportError"},
                 ];
+    appDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
+    [self.callBttn setTitle:NSLocalizedStringFromTable(@"book", @"Salon_Detail", nil) forState:UIControlStateNormal];
+    self.callBttnPicto.hidden = NO;
 
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(showBusinessDetails:)
@@ -116,7 +121,6 @@
                                                object:nil];
 
     
-    
     [self.collectionView registerNib:[UINib nibWithNibName:@"CustomCollectionViewCell" bundle:nil]forCellWithReuseIdentifier:HAIRFIE_CELL];
     [self.collectionView registerNib:[UINib nibWithNibName:@"LoadingCollectionViewCell" bundle:nil]
           forCellWithReuseIdentifier:LOADING_CELL];
@@ -129,19 +133,32 @@
     
     
     [self initData];
+    [self checkIfBusinessIsOwnedByUser:self.business];
     // Do any additional setup after loading the view.
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
     
-    NSLog(@"business ID %@", self.business.id);
     if(_didClaim) {
         [self.navBttn setHidden:YES];
     } else {
         [self.leftMenuBttn setHidden:YES];
     }
     [self.collectionView reloadData];
+}
+
+-(void)checkIfBusinessIsOwnedByUser:(Business*)aBusiness {
+    
+    NSLog(@"abusiness facebook %@", aBusiness.facebookPage.name);
+    for (int i = 0; i < appDelegate.currentUser.managedBusinesses.count; i++) {
+        Business *business = [appDelegate.currentUser.managedBusinesses objectAtIndex:i];
+        if ([aBusiness.id isEqualToString:business.id]) {
+            [self.callBttn setTitle:NSLocalizedStringFromTable(@"Manage",@"Salon_Detail",nil) forState:UIControlStateNormal];
+            self.callBttnPicto.hidden = YES;
+            [self.callBttn setContentEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
+            }
+        }
 }
 
 -(void)initData
@@ -151,7 +168,13 @@
 }
 
 -(IBAction)callBusiness:(id)sender {
+    if (self.callBttnPicto.hidden == NO) {
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"telprompt://%@", self.business.phoneNumber]]];
+    }
+    else
+    {
+        [self performSegueWithIdentifier:@"editOwnedBusiness" sender:self];
+    }
 }
 
 -(IBAction)showMenuActionSheet:(id)sender
@@ -607,6 +630,13 @@
         camera.isHairfie = YES;
         camera.hairfiePost = hairfiePost;
     }
+    if ([segue.identifier isEqualToString:@"editOwnedBusiness"]) {
+        FinalStepViewController *finalStepVc = [segue destinationViewController];
+        
+        finalStepVc.isSegueFromBusinessDetail = YES;
+        finalStepVc.businessToManage = self.business;
+    }
+        
 }
 
 @end

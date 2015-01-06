@@ -48,7 +48,7 @@
 @property (nonatomic) IBOutlet UIView* hairfieView;
 @property (nonatomic) IBOutlet UIView* hairdresserView;
 @property (nonatomic) IBOutlet UIView* priceAndSaleView;
-
+@property (nonatomic) BOOL isSegueFromBusinessDetail;
 
 @property (nonatomic) IBOutlet UIView* topBarView;
 

@@ -37,6 +37,7 @@
     NSMutableArray *pictureForGallery;
     AppDelegate *appDelegate;
     NSInteger serviceIndex;
+
     
 }
 
@@ -199,6 +200,10 @@
        // _addHairfiesLbl.text = NSLocalizedStringFromTable(@"hairfie claim update", @"Claim", nil);
         [_serviceTableView reloadData];
         [_hairdresserTableView reloadData];
+    }
+    if (self.isSegueFromBusinessDetail == YES){
+        _menuButton.hidden = YES;
+        _navButton.hidden = NO;
     }
 }
 

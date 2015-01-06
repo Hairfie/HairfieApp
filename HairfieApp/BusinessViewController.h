@@ -18,6 +18,7 @@
 @property (nonatomic) IBOutlet UIButton *navBttn;
 @property (nonatomic) IBOutlet UIButton *bottomMenuBttn;
 @property (nonatomic) IBOutlet UIButton *callBttn;
+@property (nonatomic) IBOutlet UIImageView *callBttnPicto;
 
 @property (nonatomic) BOOL didClaim;
 
