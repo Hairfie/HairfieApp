@@ -207,7 +207,7 @@
 }
 
 -(void)claimExistingBusiness {
-    NSLog(@"Claim !");
+    [self performSegueWithIdentifier:@"claimExisting" sender:self];
 }
 
 -(void)showBusinessMap:(NSNotification*)notification {
@@ -629,21 +629,16 @@
         camera.isHairfie = YES;
         camera.hairfiePost = hairfiePost;
     }
-<<<<<<< HEAD
     if ([segue.identifier isEqualToString:@"editOwnedBusiness"]) {
         FinalStepViewController *finalStepVc = [segue destinationViewController];
         
         finalStepVc.isSegueFromBusinessDetail = YES;
         finalStepVc.businessToManage = self.business;
     }
-        
-=======
-    
     if ([segue.identifier isEqualToString:@"claimExisting"]) {
         BusinessClaimExistingViewController *controller = [segue destinationViewController];
         controller.business = self.business;
     }
->>>>>>> 612bc718913a89ba9ec7cb84423cdc520373eb0d
 }
 
 @end

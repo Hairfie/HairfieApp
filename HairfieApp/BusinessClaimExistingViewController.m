@@ -6,7 +6,10 @@
 //  Copyright (c) 2015 Hairfie. All rights reserved.
 //
 
+
 #import "BusinessClaimExistingViewController.h"
+
+#import "FinalStepViewController.h"
 #import "Business.h"
 
 @interface BusinessClaimExistingViewController ()
@@ -41,17 +44,29 @@
 }
 
 -(IBAction)goBack:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(IBAction)claim:(id)sender {
     [self.business claimWithSuccess:^(NSArray *result) {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"currentUser" object:self];
-        [self dismissViewControllerAnimated:YES completion:nil];
-        
+      //  [self dismissViewControllerAnimated:YES completion:nil];
+        [self performSegueWithIdentifier:@"editClaimedBusiness" sender:self];
     } failure:^(NSError *error) {
         NSLog(@"error : %@", error);
     }];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"editClaimedBusiness"]) {
+        FinalStepViewController *finalStepVc = [segue destinationViewController];
+        
+        finalStepVc.isSegueFromBusinessDetail = NO;
+        finalStepVc.businessToManage = self.business;
+        
+    }
+        
 }
 
 @end

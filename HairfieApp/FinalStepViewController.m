@@ -205,6 +205,11 @@
         _menuButton.hidden = YES;
         _navButton.hidden = NO;
     }
+    else {
+        _menuButton.hidden = NO;
+        _navButton.hidden = YES;
+
+    }
 }
 
 -(IBAction)changeTab:(id)sender {
