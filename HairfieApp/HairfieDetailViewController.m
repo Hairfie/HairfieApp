@@ -820,6 +820,11 @@
     return cell;
 }
 
+-(void)dealloc {
+    [self.hairfieCollection setDelegate:nil];
+    [detailsTableView setDelegate:nil];
+}
+
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"addComment"]) {

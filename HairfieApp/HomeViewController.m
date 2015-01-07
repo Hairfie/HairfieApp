@@ -299,6 +299,7 @@
                 [hairfies addObject:models[i]];
             }
         }
+
         [self customReloadData];
     };
     NSLog(@"Get Hairfies for page : %@", page);
@@ -316,6 +317,8 @@
 
 - (void)customReloadData
 {
+    NSLog(@"customReloadData");
+    //[_hairfieCollection reloadItemsAtIndexPaths:[_hairfieCollection indexPathsForVisibleItems]];
     [_hairfieCollection reloadData];
     if (refreshControl) {
         [refreshControl endRefreshing];
