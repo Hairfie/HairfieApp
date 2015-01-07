@@ -5,9 +5,8 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 target "HairfieApp" do
   pod 'SDWebImage', '~> 3.6'
-  pod 'CPPickerView', '~> 1.2.0'
+  pod 'AKPickerView'
   pod 'SSKeychain'
-  pod 'NewRelicAgent'
   pod 'GoogleAnalytics-iOS-SDK'
   pod 'ARAnalytics/GoogleAnalytics'
   pod 'ARAnalytics/Mixpanel'
@@ -23,6 +22,7 @@ target "HairfieApp" do
   pod 'UIActivityIndicator-for-SDWebImage'
   pod 'CWStatusBarNotification', '~> 2.2.2'
   pod 'PonyDebugger', :git => 'https://github.com/square/PonyDebugger.git'
+  pod 'NewRelicAgent'
 end
 
 target "HairfieAppTests" do

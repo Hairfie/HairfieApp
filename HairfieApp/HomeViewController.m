@@ -19,9 +19,11 @@
 #import "CameraOverlayViewController.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "HairfieNotifications.h"
+#import "CategoriesCollectionViewCell.h"
 
 #define CUSTOM_CELL_IDENTIFIER @"hairfieCell"
 #define LOADING_CELL_IDENTIFIER @"LoadingItemCell"
+#define CATEGORY_CELL_IDENTIFIER @"categoryCell"
 
 
 @interface HomeViewController ()
@@ -35,6 +37,11 @@
     UIGestureRecognizer *dismiss;
     NSNumber *currentPage;
     BOOL endOfScroll;
+    NSArray *pickerItems;
+    BOOL shouldDisplayHairfies;
+    NSArray *categoriesNames;
+    NSArray *categoriesImages;
+    NSString *pickerItemSelected;
 }
 @end
 
@@ -42,25 +49,24 @@
 
 @implementation HomeViewController
 
-@synthesize searchView = _searchView, menuButton = _menuButton, topBarView = _topBarView;
-
 -(UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleDefault;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    pickerItemSelected = @"Hairfies";
+    
     delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [delegate startTrackingLocation:YES];
      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showNoNetwork:) name:@"No Network" object:nil];
+    
     self.navigationItem.title = [NSString stringWithFormat:NSLocalizedStringFromTable(@"Home", @"Feed", nil)];
     [_hairfieCollection registerNib:[UINib nibWithNibName:@"CustomCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:CUSTOM_CELL_IDENTIFIER];
+    [_hairfieCollection registerNib:[UINib nibWithNibName:@"CategoriesCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:CATEGORY_CELL_IDENTIFIER];
     [_hairfieCollection registerNib:[UINib nibWithNibName:@"LoadingCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:LOADING_CELL_IDENTIFIER];
-    _searchView.hidden = YES;
-    _searchView.businessSearch = [[BusinessSearch alloc] init];
-    [_searchView initView];
-    [_searchView.searchAroundMeImage setTintColor:[UIColor pinkBtnHairfie]];
-    _searchView.searchByLocation.text = NSLocalizedStringFromTable(@"Around Me", @"Feed", nil);
+   
     refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget:self action:@selector(getHairfiesFromRefresh:)
              forControlEvents:UIControlEventValueChanged];
@@ -77,29 +83,76 @@
         [self prepareUserNotLogged];
     }
     [_topBarView addBottomBorderWithHeight:1.0 andColor:[UIColor lightGrey]];
+    categoriesNames = [[NSArray alloc] initWithObjects:@"FEMME",@"HOMME",@"BARBIER",@"MARIAGE",@"COLORATION", nil];
+    
+    categoriesImages = [[NSArray alloc] initWithObjects:@"woman-category.png",@"man-category.png",@"barber-category.png",@"marriage-category.png",@"color-category.png", nil];
+    [self initPickerView];
 }
+
+-(void)initPickerView {
+    self.pickerView = [[AKPickerView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 60)];
+    self.pickerView.delegate = self;
+    self.pickerView.dataSource = self;
+    self.pickerView.highlightedFont =  [UIFont fontWithName:@"SourceSansPro-Regular" size:17];
+    self.pickerView.font = [UIFont fontWithName:@"SourceSansPro-Light" size:17];
+    self.pickerView.highlightedTextColor = [UIColor whiteColor];
+    self.pickerView.textColor = [UIColor whiteColor];
+    self.pickerView.interitemSpacing = 75;
+    self.pickerView.fisheyeFactor = 0.0001;
+    pickerItems = [[NSArray alloc] initWithObjects:@"Hairfies", @"Réserver", nil];
+    
+    [self.pickerContainerView addSubview:self.pickerView];
+}
+
+- (NSUInteger)numberOfItemsInPickerView:(AKPickerView *)pickerView {
+    return 2;
+}
+
+- (NSString *)pickerView:(AKPickerView *)pickerView titleForItem:(NSInteger)item {
+    return pickerItems[item];
+}
+
+- (void)pickerView:(AKPickerView *)pickerView didSelectItem:(NSInteger)item {
+    
+    pickerItemSelected = [pickerItems objectAtIndex:item];
+    
+    if ([pickerItemSelected isEqualToString:@"Hairfies"]) {
+        self.takeHairfieBttn.hidden = NO;
+    } else if ([pickerItemSelected isEqualToString:@"Réserver"]){
+       
+        self.takeHairfieBttn.hidden = YES;
+
+    }
+    [UIView transitionWithView: self.hairfieCollection
+                      duration: 0.5f
+                       options: UIViewAnimationOptionTransitionCrossDissolve
+                    animations: ^(void)
+     {
+         [self.hairfieCollection reloadData];
+     }
+                    completion: ^(BOOL isFinished)
+     {
+         /* TODO: Whatever you want here */
+     }];
+
+}
+
 
 -(void)showNoNetwork:(NSNotification*)notification
 {
     HairfieNotifications *notif;
-    [notif showNotificationWithMessage:@"test" ForDuration:1];
+    [notif showNotificationWithMessage:@"No active network" ForDuration:1];
 }
+
 
 -(void) hideKeyboard
 {
-    [_searchView.searchByLocation resignFirstResponder];
-    [_searchView.searchByName resignFirstResponder];
-    _searchView.hidden = YES;
     [self.view removeGestureRecognizer:dismiss];
 }
 
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(willSearch:)
-                                                 name:self.searchView.businessSearch.changedEventName
-                                               object:self.searchView.businessSearch];
     [self getHairfies:nil];
     if (_didClaim == YES)
     {
@@ -143,10 +196,6 @@
 
 -(void)viewWillDisappear:(BOOL)animated
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:self.searchView.businessSearch.changedEventName
-                                                  object:self.searchView.businessSearch];
-
     [self.view removeGestureRecognizer:dismiss];
 }
 
@@ -156,20 +205,6 @@
     [self performSegueWithIdentifier:@"searchFromFeed" sender:self];
     [self.view removeGestureRecognizer:dismiss];
 }
-
--(void)textFieldDidBeginEditing:(UITextField *)textField
-{
-    //_advancedSearchView.hidden = NO;
-
-    _searchView.hidden = NO;
-    [self.view addGestureRecognizer:dismiss];
-    if ([_searchView.searchByLocation.text isEqualToString:NSLocalizedStringFromTable(@"Around Me", @"Feed", nil)])
-        [_searchView.searchAroundMeImage setTintColor:[UIColor lightBlueHairfie]];
-    [_searchView.searchByName performSelector:@selector(becomeFirstResponder) withObject:nil afterDelay:0.0];
-
-    [textField resignFirstResponder];
-}
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -181,42 +216,43 @@
 
 // header view size
 
--(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
-{
-
-    return CGSizeMake(320, 200);
-}
-
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    if ([pickerItemSelected isEqualToString:@"Hairfies"]) {
     if (indexPath.row < [hairfies count]) {
         return CGSizeMake((collectionView.frame.size.width - 30) / 2, 210);
     } else {
         return CGSizeMake(collectionView.frame.size.width, 58);
     }
+    }
+    else  if ([pickerItemSelected isEqualToString:@"Réserver"]){
+        return CGSizeMake(collectionView.frame.size.width - 30, 100);
+    }
+    else
+        return CGSizeMake(100, 100);
+        
 }
-
-// header view data source
-
-- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
-{
-    UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"headerView" forIndexPath:indexPath];
-
-    return headerView;
-}
-
 
 - (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section {
-    return [hairfies count] + 1;
+    if ([pickerItemSelected isEqualToString:@"Hairfies"])
+        return [hairfies count] + 1;
+    else  if ([pickerItemSelected isEqualToString:@"Réserver"])
+        return [categoriesNames count];
+    else
+        return 0;
 }
+
 // 2
 - (NSInteger)numberOfSectionsInCollectionView: (UICollectionView *)collectionView {
-    return 1;
+    return 2;
 }
 
 
 // 3
 - (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if ([pickerItemSelected isEqualToString:@"Hairfies"]) {
     if (indexPath.row < [hairfies count]) {
 
         if(indexPath.row == ([hairfies count] - HAIRFIES_PAGE_SIZE + 1)){
@@ -227,7 +263,29 @@
     } else {
         return [self loadingCellForIndexPath:indexPath];
     }
+    }
+    else  if ([pickerItemSelected isEqualToString:@"Réserver"]) {
+        return [self categoryCellForIndexPath:indexPath];
+    }
+    else
+        return nil;
 }
+
+- (UICollectionViewCell *)categoryCellForIndexPath:(NSIndexPath *)indexPath{
+
+    CategoriesCollectionViewCell *cell = [_hairfieCollection dequeueReusableCellWithReuseIdentifier:CATEGORY_CELL_IDENTIFIER forIndexPath:indexPath];
+
+    if (cell == nil) {
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"CategoriesCollectionViewCell" owner:self options:nil];
+        cell = [nib objectAtIndex:0];
+    }
+    
+    
+    [cell setupCellWithName:[categoriesNames objectAtIndex:indexPath.item] andImage:[UIImage imageNamed:[categoriesImages objectAtIndex:indexPath.item]]];
+    
+    return cell;
+}
+
 
 - (UICollectionViewCell *)hairfieCellForIndexPath:(NSIndexPath *)indexPath{
     CustomCollectionViewCell *cell = [_hairfieCollection dequeueReusableCellWithReuseIdentifier:CUSTOM_CELL_IDENTIFIER forIndexPath:indexPath];
@@ -264,11 +322,19 @@
 }
 
 
--(void) collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    hairfieRow = indexPath.row;
-    NSLog(@"select hairfie");
-    [self performSegueWithIdentifier:@"hairfieDetail" sender:self];
+-(void) collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if ([pickerItemSelected isEqualToString:@"Hairfies"]) {
+        hairfieRow = indexPath.row;
+        NSLog(@"select hairfie");
+        [self performSegueWithIdentifier:@"hairfieDetail" sender:self];
+    } else  if ([pickerItemSelected isEqualToString:@"Réserver"]) {
+        
+        [self performSegueWithIdentifier:@"searchFromFeed" sender:self];
+        
+    }
+    else
+        NSLog(@"nuff");
 
 }
 
@@ -355,8 +421,8 @@
 {
     if ([segue.identifier isEqualToString:@"searchFromFeed"])
     {
-        AroundMeViewController *controller = [segue destinationViewController];
-        controller.businessSearch = self.searchView.businessSearch;
+      //  AroundMeViewController *controller = [segue destinationViewController];
+      
     }
     if ([segue.identifier isEqualToString:@"hairfieDetail"])
     {

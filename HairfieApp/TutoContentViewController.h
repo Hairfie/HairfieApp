@@ -18,5 +18,4 @@
 @property (nonatomic) IBOutlet UILabel *titleLabel;
 @property (nonatomic) IBOutlet UIImageView *imageView;
 
-
 @end

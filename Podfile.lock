@@ -1,4 +1,5 @@
 PODS:
+  - AKPickerView (0.2.0)
   - ARAnalytics/CoreIOS (2.8.0)
   - ARAnalytics/DSL (2.8.0):
     - Aspects (~> 1.3.1)
@@ -46,7 +47,7 @@ PODS:
   - MRProgress/ProgressBaseClass (0.8.0-alpha1)
   - MRProgress/Stopable (0.8.0-alpha1):
     - MRProgress/Helper
-  - NewRelicAgent (4.83)
+  - NewRelicAgent (4.152)
   - NSDate+TimeAgo (1.0.3)
   - Pinterest-iOS (2.3)
   - PonyDebugger (0.4.0):
@@ -62,6 +63,7 @@ PODS:
   - Underscore.m (0.2.1)
 
 DEPENDENCIES:
+  - AKPickerView
   - ARAnalytics/DSL (~> 2.8.0)
   - ARAnalytics/GoogleAnalytics
   - ARAnalytics/Mixpanel
@@ -87,6 +89,7 @@ EXTERNAL SOURCES:
     :git: https://github.com/square/PonyDebugger.git
 
 SPEC CHECKSUMS:
+  AKPickerView: 9130c48bfa7436c66b81b779fe0c2bebbc44c85f
   ARAnalytics: 93c5b65989145f88f4d45e262612eac277b0c219
   Aspects: 7f1aea592d35c0c1af74ee2a5efa5c555b0ebfc9
   CPPickerView: 3ac971919f9010a315a48e8d88d322a43aa62a2e
@@ -97,7 +100,7 @@ SPEC CHECKSUMS:
   libPhoneNumber-iOS: 98fc07d70c8fdb5e6a8e3442c37e97353065c20e
   Mixpanel: c075cedebda3328ce1ee29a18429e265ce967cd8
   MRProgress: a5a9f58939ac3e7458dd9a5d0c423c748788b046
-  NewRelicAgent: 1adba1fb51631f598a2a130e7b1c3be1de715736
+  NewRelicAgent: d4226e1dffd30a1855052a04c537d3e3d75035f8
   NSDate+TimeAgo: f3533e0198fab05b716368b19f8c2185d53d6f3b
   Pinterest-iOS: 418044a91ac88d370a54ce06b89ee034c240171d
   PonyDebugger: 66f053d403cef52e8ed3c669d651b213b2617326

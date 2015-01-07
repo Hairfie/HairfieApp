@@ -130,8 +130,7 @@
 
 
 -(void)viewWillAppear:(BOOL)animated {
-    
-if (self.imageFromSegue != nil)
+    if (self.imageFromSegue != nil)
         [self uploadProfileImage:self.imageFromSegue];
 }
 
