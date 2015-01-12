@@ -85,7 +85,7 @@
     currentPage = @(0);
     hairfies = [[NSMutableArray alloc] init];
     endOfScroll = NO;
-    [self getHairfies:nil];
+   // [self getHairfies:nil];
      dismiss = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
     if([delegate.credentialStore isLoggedIn]) {
         [self.view addGestureRecognizer:self.slidingViewController.panGesture];
@@ -131,7 +131,6 @@
 
 - (HomeContentViewController *)viewControllerAtIndex:(NSUInteger)index
 {
- 
     if (([pickerItems count] == 0) || (index >= [pickerItems count])) {
         return nil;
     }
@@ -154,7 +153,6 @@
     }
     
     index--;
-    [self.pickerView scrollToItem:index animated:YES];
     pickerItemSelected = [pickerItems objectAtIndex:index];
     return [self viewControllerAtIndex:index];
 }
@@ -168,12 +166,12 @@
     if (index == NSNotFound) {
         return nil;
     }
-    [self.pickerView scrollToItem:index animated:YES];
+ 
     index++;
     if (index == [pickerItems count]) {
         return nil;
     }
- pickerItemSelected = [pickerItems objectAtIndex:index];
+    pickerItemSelected = [pickerItems objectAtIndex:index];
     return [self viewControllerAtIndex:index];
 }
 
@@ -188,13 +186,7 @@
     return 0;
 }
 
-
-
-
-
-
 // Init menu picker
-
 
 -(void)initPickerView {
     self.pickerView = [[AKPickerView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 60)];
@@ -206,6 +198,7 @@
     self.pickerView.textColor = [UIColor whiteColor];
     self.pickerView.interitemSpacing = 75;
     self.pickerView.fisheyeFactor = 0.0001;
+    
     pickerItems = [[NSArray alloc] initWithObjects:@"Hairfies", @"Réserver", nil];
     
     [self.pickerContainerView addSubview:self.pickerView];
@@ -224,26 +217,11 @@
     pickerItemSelected = [pickerItems objectAtIndex:item];
     
     if ([pickerItemSelected isEqualToString:@"Hairfies"]) {
-        self.takeHairfieBttn.hidden = NO;
+        NSLog(@"switch to page Hairfies");
     } else if ([pickerItemSelected isEqualToString:@"Réserver"]){
-       
-        self.takeHairfieBttn.hidden = YES;
-
+        NSLog(@"switch to page Reserver");
     }
-    [UIView transitionWithView: self.hairfieCollection
-                      duration: 0.5f
-                       options: UIViewAnimationOptionTransitionCrossDissolve
-                    animations: ^(void)
-     {
-         [self.hairfieCollection reloadData];
-     }
-                    completion: ^(BOOL isFinished)
-     {
-         /* TODO: Whatever you want here */
-     }];
-
 }
-
 
 -(void)showNoNetwork:(NSNotification*)notification
 {
@@ -260,7 +238,7 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    [self getHairfies:nil];
+    //[self getHairfies:nil];
     if (_didClaim == YES)
     {
         [self showPopup];

@@ -59,8 +59,6 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-   
-    NSLog(@"menu item %@", self.menuItemSelected);
     [self.contentCollection reloadData];
 }
 
