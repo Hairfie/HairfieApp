@@ -153,6 +153,10 @@
         [salonHairdressers addObject:hairdresser];
     }
     _hairdresserTableViewHeight.constant = [salonHairdressers count] * 41;
+    if (_hairdresserTableViewHeight.constant >= 4 * 41)
+    {
+        _hairdresserTableViewHeight.constant = 4 * 41;
+    }
     _isHairdresser = NO;
     [_hairdresserTableView reloadData];
 }
