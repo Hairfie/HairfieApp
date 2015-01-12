@@ -264,6 +264,7 @@
 
 -(IBAction)goBack:(id)sender
 {
+    [self removeDelegates];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -820,7 +821,7 @@
     return cell;
 }
 
--(void)dealloc {
+-(void)removeDelegates {
     [self.hairfieCollection setDelegate:nil];
     [detailsTableView setDelegate:nil];
 }
