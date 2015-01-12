@@ -20,6 +20,7 @@
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "HairfieNotifications.h"
 #import "CategoriesCollectionViewCell.h"
+#import "HomeContentViewController.h"
 
 #define CUSTOM_CELL_IDENTIFIER @"hairfieCell"
 #define LOADING_CELL_IDENTIFIER @"LoadingItemCell"
@@ -56,11 +57,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
+    // Init page controller
+    self.pageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"HomePageViewController"];
+    self.pageViewController.dataSource = self;
+   
+    
+    
+    
     pickerItemSelected = @"Hairfies";
     
     delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [delegate startTrackingLocation:YES];
      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showNoNetwork:) name:@"No Network" object:nil];
+    
+      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(switchMenuItem:) name:@"collectionChanged" object:nil];
     
     self.navigationItem.title = [NSString stringWithFormat:NSLocalizedStringFromTable(@"Home", @"Feed", nil)];
     [_hairfieCollection registerNib:[UINib nibWithNibName:@"CustomCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:CUSTOM_CELL_IDENTIFIER];
@@ -87,7 +98,103 @@
     
     categoriesImages = [[NSArray alloc] initWithObjects:@"woman-category.png",@"man-category.png",@"barber-category.png",@"marriage-category.png",@"color-category.png", nil];
     [self initPickerView];
+    
+    // Init HomeContent
+    
+    HomeContentViewController *homeContent = [self viewControllerAtIndex:0];
+    
+    NSArray *viewControllers = @[homeContent];
+    [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
+    
+    
+    
+    CGRect frame = CGRectMake(0, 182, self.view.frame.size.width, self.view.frame.size.height);
+    
+    // Change the size of page view controller
+    self.pageViewController.view.frame = frame;
+    [self addChildViewController:_pageViewController];
+    [self.view addSubview:_pageViewController.view];
+    [self.pageViewController didMoveToParentViewController:self];
 }
+
+
+-(void)switchMenuItem:(NSNotification*)notification{
+    NSDictionary* userInfo = notification.userInfo;
+    NSString *menuItem = [userInfo objectForKey:@"menuItem"];
+    if ([menuItem isEqualToString:@"Hairfies"])
+        [self.pickerView selectItem:0 animated:YES];
+    else
+       [self.pickerView selectItem:1 animated:YES];
+}
+
+// Page Controller Content View Functions
+
+- (HomeContentViewController *)viewControllerAtIndex:(NSUInteger)index
+{
+ 
+    if (([pickerItems count] == 0) || (index >= [pickerItems count])) {
+        return nil;
+    }
+    
+    HomeContentViewController *homeContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"HomeContentViewController"];
+    homeContentViewController.pageIndex = index;
+    homeContentViewController.menuItemSelected = pickerItemSelected;
+    
+    return homeContentViewController;
+}
+
+
+
+- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController
+{
+    NSUInteger index = ((HomeContentViewController*) viewController).pageIndex;
+    
+    if ((index == 0) || (index == NSNotFound)) {
+        return nil;
+    }
+    
+    index--;
+    [self.pickerView scrollToItem:index animated:YES];
+    pickerItemSelected = [pickerItems objectAtIndex:index];
+    return [self viewControllerAtIndex:index];
+}
+
+
+
+- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController
+{
+    NSUInteger index = ((HomeContentViewController*) viewController).pageIndex;
+    
+    if (index == NSNotFound) {
+        return nil;
+    }
+    [self.pickerView scrollToItem:index animated:YES];
+    index++;
+    if (index == [pickerItems count]) {
+        return nil;
+    }
+ pickerItemSelected = [pickerItems objectAtIndex:index];
+    return [self viewControllerAtIndex:index];
+}
+
+
+- (NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController
+{
+    return [pickerItems count];
+}
+
+- (NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController
+{
+    return 0;
+}
+
+
+
+
+
+
+// Init menu picker
+
 
 -(void)initPickerView {
     self.pickerView = [[AKPickerView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 60)];
@@ -241,6 +348,8 @@
         return [categoriesNames count];
     else
         return 0;
+    
+    
 }
 
 // 2

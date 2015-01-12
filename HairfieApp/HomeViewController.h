@@ -14,7 +14,7 @@
 
 //@class PopUpViewController;
 
-@interface HomeViewController : GAITrackedViewController <UINavigationControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UIScrollViewDelegate, UIImagePickerControllerDelegate, UICollectionViewDelegateFlowLayout, AKPickerViewDelegate, AKPickerViewDataSource>
+@interface HomeViewController : GAITrackedViewController <UINavigationControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UIScrollViewDelegate, UIImagePickerControllerDelegate, UICollectionViewDelegateFlowLayout, AKPickerViewDelegate, AKPickerViewDataSource, UIPageViewControllerDataSource>
 
 @property (nonatomic) IBOutlet UILabel *AroundMeLabel;
 @property (nonatomic) IBOutlet UICollectionView *hairfieCollection;
@@ -32,7 +32,7 @@
 @property (nonatomic) AKPickerView *pickerView;
 @property (nonatomic) IBOutlet UIView *pickerContainerView;
 
-
+@property (strong, nonatomic) UIPageViewController *pageViewController;
 
 
 @property (nonatomic) BOOL isNotLogged;

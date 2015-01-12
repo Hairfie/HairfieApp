@@ -315,7 +315,6 @@
 		B3BD86B0198BE0DF00BD8591 /* picto-list-nav.png in Resources */ = {isa = PBXBuildFile; fileRef = B3BD86AF198BE0DF00BD8591 /* picto-list-nav.png */; };
 		B3C39A421A5D30E500DE11CA /* hairffie-typo.png in Resources */ = {isa = PBXBuildFile; fileRef = B3C39A411A5D30E500DE11CA /* hairffie-typo.png */; };
 		B3C39A441A5D328E00DE11CA /* homepage-filter-search-bttn.png in Resources */ = {isa = PBXBuildFile; fileRef = B3C39A431A5D328E00DE11CA /* homepage-filter-search-bttn.png */; };
-		B3C39A471A5D3A2E00DE11CA /* HomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3C39A461A5D3A2E00DE11CA /* HomePageViewController.m */; };
 		B3C39A511A5D4B1000DE11CA /* CategoriesCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B3C39A4F1A5D4B1000DE11CA /* CategoriesCollectionViewCell.m */; };
 		B3C39A521A5D4B1000DE11CA /* CategoriesCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3C39A501A5D4B1000DE11CA /* CategoriesCollectionViewCell.xib */; };
 		B3C39A551A5D4D8600DE11CA /* PredefinedSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = B3C39A541A5D4D8600DE11CA /* PredefinedSearch.m */; };
@@ -324,7 +323,8 @@
 		B3C39A5E1A5D4FE200DE11CA /* barber-category.png in Resources */ = {isa = PBXBuildFile; fileRef = B3C39A591A5D4FE200DE11CA /* barber-category.png */; };
 		B3C39A5F1A5D4FE200DE11CA /* man-category.png in Resources */ = {isa = PBXBuildFile; fileRef = B3C39A5A1A5D4FE200DE11CA /* man-category.png */; };
 		B3C39A601A5D4FE200DE11CA /* woman-category.png in Resources */ = {isa = PBXBuildFile; fileRef = B3C39A5B1A5D4FE200DE11CA /* woman-category.png */; };
-		B3C39A631A5D8EA600DE11CA /* HomePagedCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3C39A621A5D8EA600DE11CA /* HomePagedCollectionViewController.m */; };
+		B3C39A651A63FE9B00DE11CA /* hairffie-typo-2.png in Resources */ = {isa = PBXBuildFile; fileRef = B3C39A641A63FE9B00DE11CA /* hairffie-typo-2.png */; };
+		B3C39A691A64042700DE11CA /* HomeContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3C39A681A64042700DE11CA /* HomeContentViewController.m */; };
 		B3C45BD1199A4670000E6C8E /* switch-camera-button.png in Resources */ = {isa = PBXBuildFile; fileRef = B3C45BCF199A4670000E6C8E /* switch-camera-button.png */; };
 		B3C45BD2199A4670000E6C8E /* take-picture-button.png in Resources */ = {isa = PBXBuildFile; fileRef = B3C45BD0199A4670000E6C8E /* take-picture-button.png */; };
 		B3CCE7781998B6CA00067DB9 /* HairfieDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3CCE7771998B6CA00067DB9 /* HairfieDetailViewController.m */; };
@@ -907,8 +907,6 @@
 		B3BD86AF198BE0DF00BD8591 /* picto-list-nav.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "picto-list-nav.png"; sourceTree = "<group>"; };
 		B3C39A411A5D30E500DE11CA /* hairffie-typo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hairffie-typo.png"; sourceTree = "<group>"; };
 		B3C39A431A5D328E00DE11CA /* homepage-filter-search-bttn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "homepage-filter-search-bttn.png"; sourceTree = "<group>"; };
-		B3C39A451A5D3A2E00DE11CA /* HomePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomePageViewController.h; sourceTree = "<group>"; };
-		B3C39A461A5D3A2E00DE11CA /* HomePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomePageViewController.m; sourceTree = "<group>"; };
 		B3C39A4E1A5D4B1000DE11CA /* CategoriesCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoriesCollectionViewCell.h; sourceTree = "<group>"; };
 		B3C39A4F1A5D4B1000DE11CA /* CategoriesCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoriesCollectionViewCell.m; sourceTree = "<group>"; };
 		B3C39A501A5D4B1000DE11CA /* CategoriesCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CategoriesCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -919,8 +917,9 @@
 		B3C39A591A5D4FE200DE11CA /* barber-category.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "barber-category.png"; sourceTree = "<group>"; };
 		B3C39A5A1A5D4FE200DE11CA /* man-category.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "man-category.png"; sourceTree = "<group>"; };
 		B3C39A5B1A5D4FE200DE11CA /* woman-category.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "woman-category.png"; sourceTree = "<group>"; };
-		B3C39A611A5D8EA600DE11CA /* HomePagedCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomePagedCollectionViewController.h; sourceTree = "<group>"; };
-		B3C39A621A5D8EA600DE11CA /* HomePagedCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomePagedCollectionViewController.m; sourceTree = "<group>"; };
+		B3C39A641A63FE9B00DE11CA /* hairffie-typo-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hairffie-typo-2.png"; sourceTree = "<group>"; };
+		B3C39A671A64042700DE11CA /* HomeContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeContentViewController.h; sourceTree = "<group>"; };
+		B3C39A681A64042700DE11CA /* HomeContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeContentViewController.m; sourceTree = "<group>"; };
 		B3C45BCF199A4670000E6C8E /* switch-camera-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "switch-camera-button.png"; sourceTree = "<group>"; };
 		B3C45BD0199A4670000E6C8E /* take-picture-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "take-picture-button.png"; sourceTree = "<group>"; };
 		B3CCE7761998B6CA00067DB9 /* HairfieDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HairfieDetailViewController.h; sourceTree = "<group>"; };
@@ -1541,6 +1540,7 @@
 		B345BAD41995027A007BB61A /* Feed */ = {
 			isa = PBXGroup;
 			children = (
+				B3C39A661A6403FE00DE11CA /* FeedV2 */,
 				B330B5C3198658970059AE56 /* HomeViewController.h */,
 				B330B5C4198658970059AE56 /* HomeViewController.m */,
 				B3C39A4E1A5D4B1000DE11CA /* CategoriesCollectionViewCell.h */,
@@ -1554,10 +1554,6 @@
 				15B8D63619C83A3700C889CF /* LoadingCollectionViewCell.xib */,
 				15B8D63819C83DD200C889CF /* LoadingCollectionViewCell.h */,
 				15B8D63919C83DD200C889CF /* LoadingCollectionViewCell.m */,
-				B3C39A451A5D3A2E00DE11CA /* HomePageViewController.h */,
-				B3C39A461A5D3A2E00DE11CA /* HomePageViewController.m */,
-				B3C39A611A5D8EA600DE11CA /* HomePagedCollectionViewController.h */,
-				B3C39A621A5D8EA600DE11CA /* HomePagedCollectionViewController.m */,
 			);
 			name = Feed;
 			sourceTree = "<group>";
@@ -1903,6 +1899,7 @@
 				B3C39A561A5D4FD400DE11CA /* Categories */,
 				B3C39A431A5D328E00DE11CA /* homepage-filter-search-bttn.png */,
 				B3C39A411A5D30E500DE11CA /* hairffie-typo.png */,
+				B3C39A641A63FE9B00DE11CA /* hairffie-typo-2.png */,
 			);
 			name = "HomePage Resources";
 			sourceTree = "<group>";
@@ -1917,6 +1914,15 @@
 				B3C39A5B1A5D4FE200DE11CA /* woman-category.png */,
 			);
 			name = Categories;
+			sourceTree = "<group>";
+		};
+		B3C39A661A6403FE00DE11CA /* FeedV2 */ = {
+			isa = PBXGroup;
+			children = (
+				B3C39A671A64042700DE11CA /* HomeContentViewController.h */,
+				B3C39A681A64042700DE11CA /* HomeContentViewController.m */,
+			);
+			name = FeedV2;
 			sourceTree = "<group>";
 		};
 		B3CCE7751998B6AB00067DB9 /* Hairfie Detail */ = {
@@ -2318,6 +2324,7 @@
 				B34231621988E1DC0058866B /* home-picto.png in Resources */,
 				B35A829F19A5FF02003B1321 /* placeholder-image.jpg in Resources */,
 				B39BA17819AF46CD00A48BD5 /* picto-logout.png in Resources */,
+				B3C39A651A63FE9B00DE11CA /* hairffie-typo-2.png in Resources */,
 				B3FB10B619B09DA600CADCFD /* man-picto.png in Resources */,
 				B34582FF19F7DB2A00A91F5A /* userprofile-filter-button.png in Resources */,
 				B3A2F48E19F4FEF000BD9354 /* ClaimServiceTableViewCell.xib in Resources */,
@@ -2612,7 +2619,6 @@
 				B35A82A819A62F40003B1321 /* PricesTableViewCell.m in Sources */,
 				15B4972F19DC021B00917B83 /* TutoContainerViewController.m in Sources */,
 				B3A2FEA01A07EF61000B839F /* PostHairfieEmailViewController.m in Sources */,
-				B3C39A631A5D8EA600DE11CA /* HomePagedCollectionViewController.m in Sources */,
 				B345BAE819951A7E007BB61A /* OLEContainerScrollView+Swizzling.m in Sources */,
 				718A98B019C1EF46003CD34B /* GeoPoint.m in Sources */,
 				B345BAEB19951A7E007BB61A /* OLESwizzling.m in Sources */,
@@ -2630,7 +2636,6 @@
 				B3AA0CA01A2346D800FAEC01 /* BusinessReusableView.m in Sources */,
 				B3A2F48D19F4FEF000BD9354 /* ClaimServiceTableViewCell.m in Sources */,
 				B3423211198924290058866B /* AFHTTPRequestOperationManager.m in Sources */,
-				B3C39A471A5D3A2E00DE11CA /* HomePageViewController.m in Sources */,
 				B367DC3419C98EBF00A0452A /* BusinessAnnotation.m in Sources */,
 				15E9527119FF9C0700699CBE /* Day.m in Sources */,
 				1592078A1A5B02BC007D7928 /* BusinessClaimExistingViewController.m in Sources */,
@@ -2652,6 +2657,7 @@
 				B3CCE7781998B6CA00067DB9 /* HairfieDetailViewController.m in Sources */,
 				B3615B3219AF1CC800F1141D /* TPKeyboardAvoidingScrollView.m in Sources */,
 				B367DC3A19C9C42600A0452A /* FinalStepViewController.m in Sources */,
+				B3C39A691A64042700DE11CA /* HomeContentViewController.m in Sources */,
 				7164B56A1A0D1D4B002B68E5 /* InstagramSharer.m in Sources */,
 				151151941982B7A8001157A2 /* AppDelegate.m in Sources */,
 				15A50D9D19CC6FAC0043BFB4 /* NotLoggedAlert.m in Sources */,
