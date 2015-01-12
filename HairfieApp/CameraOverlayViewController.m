@@ -217,7 +217,9 @@
 
 -(void) cancelTakePicture
 {
-    NSLog(@"CANCEL");
+   [[self.navigationController.viewControllers objectAtIndex:[self.navigationController.viewControllers count]-2] viewWillAppear:YES];
+    NSLog(@"nav controllers %@", self.navigationController.viewControllers);
+    
     [self.navigationController popViewControllerAnimated:YES];
      [_imagePicker dismissViewControllerAnimated:YES completion:nil];
 }
@@ -256,12 +258,7 @@
    //
     NSLog(@"3 %@", self.navigationController.viewControllers);
     
-    if (self.navigationController.viewControllers.count == 2)
-        [self.navigationController popViewControllerAnimated:YES];
-    else
-        [self performSegueWithIdentifier:@"backToHome" sender:self];
-    
-
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 
