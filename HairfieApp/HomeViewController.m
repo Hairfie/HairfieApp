@@ -19,8 +19,9 @@
 #import "CameraOverlayViewController.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "HairfieNotifications.h"
+#import "HairfieContentViewController.h"
+#import "CategoryContentViewController.h"
 #import "CategoriesCollectionViewCell.h"
-#import "HomeContentViewController.h"
 
 #define CUSTOM_CELL_IDENTIFIER @"hairfieCell"
 #define LOADING_CELL_IDENTIFIER @"LoadingItemCell"
@@ -31,6 +32,7 @@
 {
     AppDelegate *delegate;
     AdvanceSearch *searchView;
+    Hairfie *hairfieSelected;
     NSMutableArray *hairfies;
     NSInteger hairfieRow;
     UIAlertView *chooseCameraType;
@@ -70,6 +72,8 @@
     delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [delegate startTrackingLocation:YES];
      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showNoNetwork:) name:@"No Network" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doSearch:) name:@"searchFromFeed" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(segueToHairfieDetail:) name:@"hairfieSelected" object:nil];
     
       [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(switchMenuItem:) name:@"collectionChanged" object:nil];
     
@@ -97,13 +101,14 @@
     categoriesNames = [[NSArray alloc] initWithObjects:@"FEMME",@"HOMME",@"BARBIER",@"MARIAGE",@"COLORATION", nil];
     
     categoriesImages = [[NSArray alloc] initWithObjects:@"woman-category.png",@"man-category.png",@"barber-category.png",@"marriage-category.png",@"color-category.png", nil];
-    [self initPickerView];
+    pickerItems = [[NSArray alloc] initWithObjects:@"Hairfies", @"Réserver", nil];
     
+    
+   
     // Init HomeContent
     
-    HomeContentViewController *homeContent = [self viewControllerAtIndex:0];
-    
-    NSArray *viewControllers = @[homeContent];
+    HairfieContentViewController *hairfieContent = (HairfieContentViewController*)[self viewControllerAtIndex:0];
+    NSArray *viewControllers = @[hairfieContent];
     [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
     
     
@@ -115,8 +120,22 @@
     [self addChildViewController:_pageViewController];
     [self.view addSubview:_pageViewController.view];
     [self.pageViewController didMoveToParentViewController:self];
+    [self initPickerView];
+    [self.pickerView reloadData];
+    [self.pickerContainerView addSubview:self.pickerView];
+    [self.pickerView selectItem:0 animated:NO];
 }
 
+
+-(void)doSearch:(NSNotification*)notification {
+     [self performSegueWithIdentifier:@"searchFromFeed" sender:self];
+}
+
+-(void)segueToHairfieDetail:(NSNotification*)notification {
+    NSDictionary* userInfo = notification.userInfo;
+    hairfieSelected = [userInfo objectForKey:@"hairfie"];
+    [self performSegueWithIdentifier:@"hairfieDetail" sender:self];
+}
 
 -(void)switchMenuItem:(NSNotification*)notification{
     NSDictionary* userInfo = notification.userInfo;
@@ -129,24 +148,35 @@
 
 // Page Controller Content View Functions
 
-- (HomeContentViewController *)viewControllerAtIndex:(NSUInteger)index
+- (UIViewController *)viewControllerAtIndex:(NSUInteger)index
 {
     if (([pickerItems count] == 0) || (index >= [pickerItems count])) {
         return nil;
     }
     
-    HomeContentViewController *homeContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"HomeContentViewController"];
-    homeContentViewController.pageIndex = index;
-    homeContentViewController.menuItemSelected = pickerItemSelected;
+    if (index == 0) {
+    HairfieContentViewController *hairfieContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"HairfieContentViewController"];
+    hairfieContentViewController.pageIndex = index;
+    hairfieContentViewController.menuItemSelected = pickerItemSelected;
     
-    return homeContentViewController;
+    return hairfieContentViewController;
+    }
+    else if (index == 1) {
+        CategoryContentViewController *categoryContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"CategoryContentViewController"];
+         categoryContentViewController.pageIndex = index;
+        return categoryContentViewController;
+    }
+    else
+        return nil;
 }
 
 
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController
 {
-    NSUInteger index = ((HomeContentViewController*) viewController).pageIndex;
+    if ([viewController isKindOfClass:[HairfieContentViewController class]]) {
+    NSUInteger index = ((HairfieContentViewController*)viewController).pageIndex;
+   
     
     if ((index == 0) || (index == NSNotFound)) {
         return nil;
@@ -155,13 +185,19 @@
     index--;
     pickerItemSelected = [pickerItems objectAtIndex:index];
     return [self viewControllerAtIndex:index];
+    }
+    else
+        return nil;
 }
 
 
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController
 {
-    NSUInteger index = ((HomeContentViewController*) viewController).pageIndex;
+    if ([viewController isKindOfClass:[HairfieContentViewController class]]) {
+   
+        
+        NSUInteger index = ((CategoryContentViewController*)viewController).pageIndex;
     
     if (index == NSNotFound) {
         return nil;
@@ -172,7 +208,10 @@
         return nil;
     }
     pickerItemSelected = [pickerItems objectAtIndex:index];
-    return [self viewControllerAtIndex:index];
+    return [self viewControllerAtIndex:1];
+    }
+    else
+        return nil;
 }
 
 
@@ -198,10 +237,6 @@
     self.pickerView.textColor = [UIColor whiteColor];
     self.pickerView.interitemSpacing = 75;
     self.pickerView.fisheyeFactor = 0.0001;
-    
-    pickerItems = [[NSArray alloc] initWithObjects:@"Hairfies", @"Réserver", nil];
-    
-    [self.pickerContainerView addSubview:self.pickerView];
 }
 
 - (NSUInteger)numberOfItemsInPickerView:(AKPickerView *)pickerView {
@@ -212,15 +247,22 @@
     return pickerItems[item];
 }
 
+
 - (void)pickerView:(AKPickerView *)pickerView didSelectItem:(NSInteger)item {
-    
+
     pickerItemSelected = [pickerItems objectAtIndex:item];
-    
-    if ([pickerItemSelected isEqualToString:@"Hairfies"]) {
-        NSLog(@"switch to page Hairfies");
-    } else if ([pickerItemSelected isEqualToString:@"Réserver"]){
-        NSLog(@"switch to page Reserver");
-    }
+//    if ([pickerItemSelected isEqualToString:@"Hairfies"]) {
+//        HairfieContentViewController *hairfieContent = (HairfieContentViewController*)[self viewControllerAtIndex:0];
+//        NSArray *viewControllers = @[hairfieContent];
+//        [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
+//        
+//        NSLog(@"switch to page Hairfies");
+//    } else if ([pickerItemSelected isEqualToString:@"Réserver"]){
+//        CategoryContentViewController *categoryContent =(CategoryContentViewController*)[self viewControllerAtIndex:1];
+//        NSArray *viewControllers = @[categoryContent];
+//        [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
+//        NSLog(@"switch to page Reserver");
+//    }
 }
 
 -(void)showNoNetwork:(NSNotification*)notification
@@ -514,7 +556,7 @@
     if ([segue.identifier isEqualToString:@"hairfieDetail"])
     {
         HairfieDetailViewController *hairfieDetail = [segue destinationViewController];
-        hairfieDetail.hairfie = (Hairfie*)[hairfies objectAtIndex:hairfieRow];
+        hairfieDetail.hairfie = hairfieSelected;
 
     }
     if ([segue.identifier isEqualToString:@"cameraOverlay"])

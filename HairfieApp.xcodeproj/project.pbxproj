@@ -324,7 +324,8 @@
 		B3C39A5F1A5D4FE200DE11CA /* man-category.png in Resources */ = {isa = PBXBuildFile; fileRef = B3C39A5A1A5D4FE200DE11CA /* man-category.png */; };
 		B3C39A601A5D4FE200DE11CA /* woman-category.png in Resources */ = {isa = PBXBuildFile; fileRef = B3C39A5B1A5D4FE200DE11CA /* woman-category.png */; };
 		B3C39A651A63FE9B00DE11CA /* hairffie-typo-2.png in Resources */ = {isa = PBXBuildFile; fileRef = B3C39A641A63FE9B00DE11CA /* hairffie-typo-2.png */; };
-		B3C39A691A64042700DE11CA /* HomeContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3C39A681A64042700DE11CA /* HomeContentViewController.m */; };
+		B3C39A691A64042700DE11CA /* HairfieContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3C39A681A64042700DE11CA /* HairfieContentViewController.m */; };
+		B3C39A6C1A651ADB00DE11CA /* CategoryContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3C39A6B1A651ADB00DE11CA /* CategoryContentViewController.m */; };
 		B3C45BD1199A4670000E6C8E /* switch-camera-button.png in Resources */ = {isa = PBXBuildFile; fileRef = B3C45BCF199A4670000E6C8E /* switch-camera-button.png */; };
 		B3C45BD2199A4670000E6C8E /* take-picture-button.png in Resources */ = {isa = PBXBuildFile; fileRef = B3C45BD0199A4670000E6C8E /* take-picture-button.png */; };
 		B3CCE7781998B6CA00067DB9 /* HairfieDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3CCE7771998B6CA00067DB9 /* HairfieDetailViewController.m */; };
@@ -918,8 +919,10 @@
 		B3C39A5A1A5D4FE200DE11CA /* man-category.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "man-category.png"; sourceTree = "<group>"; };
 		B3C39A5B1A5D4FE200DE11CA /* woman-category.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "woman-category.png"; sourceTree = "<group>"; };
 		B3C39A641A63FE9B00DE11CA /* hairffie-typo-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hairffie-typo-2.png"; sourceTree = "<group>"; };
-		B3C39A671A64042700DE11CA /* HomeContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeContentViewController.h; sourceTree = "<group>"; };
-		B3C39A681A64042700DE11CA /* HomeContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeContentViewController.m; sourceTree = "<group>"; };
+		B3C39A671A64042700DE11CA /* HairfieContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HairfieContentViewController.h; sourceTree = "<group>"; };
+		B3C39A681A64042700DE11CA /* HairfieContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HairfieContentViewController.m; sourceTree = "<group>"; };
+		B3C39A6A1A651ADB00DE11CA /* CategoryContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryContentViewController.h; sourceTree = "<group>"; };
+		B3C39A6B1A651ADB00DE11CA /* CategoryContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryContentViewController.m; sourceTree = "<group>"; };
 		B3C45BCF199A4670000E6C8E /* switch-camera-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "switch-camera-button.png"; sourceTree = "<group>"; };
 		B3C45BD0199A4670000E6C8E /* take-picture-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "take-picture-button.png"; sourceTree = "<group>"; };
 		B3CCE7761998B6CA00067DB9 /* HairfieDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HairfieDetailViewController.h; sourceTree = "<group>"; };
@@ -1919,8 +1922,10 @@
 		B3C39A661A6403FE00DE11CA /* FeedV2 */ = {
 			isa = PBXGroup;
 			children = (
-				B3C39A671A64042700DE11CA /* HomeContentViewController.h */,
-				B3C39A681A64042700DE11CA /* HomeContentViewController.m */,
+				B3C39A671A64042700DE11CA /* HairfieContentViewController.h */,
+				B3C39A681A64042700DE11CA /* HairfieContentViewController.m */,
+				B3C39A6A1A651ADB00DE11CA /* CategoryContentViewController.h */,
+				B3C39A6B1A651ADB00DE11CA /* CategoryContentViewController.m */,
 			);
 			name = FeedV2;
 			sourceTree = "<group>";
@@ -2657,7 +2662,8 @@
 				B3CCE7781998B6CA00067DB9 /* HairfieDetailViewController.m in Sources */,
 				B3615B3219AF1CC800F1141D /* TPKeyboardAvoidingScrollView.m in Sources */,
 				B367DC3A19C9C42600A0452A /* FinalStepViewController.m in Sources */,
-				B3C39A691A64042700DE11CA /* HomeContentViewController.m in Sources */,
+				B3C39A691A64042700DE11CA /* HairfieContentViewController.m in Sources */,
+				B3C39A6C1A651ADB00DE11CA /* CategoryContentViewController.m in Sources */,
 				7164B56A1A0D1D4B002B68E5 /* InstagramSharer.m in Sources */,
 				151151941982B7A8001157A2 /* AppDelegate.m in Sources */,
 				15A50D9D19CC6FAC0043BFB4 /* NotLoggedAlert.m in Sources */,

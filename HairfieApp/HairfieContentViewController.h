@@ -1,5 +1,5 @@
 //
-//  HomeContentViewController.h
+//  HairfieContentViewController.h
 //  HairfieApp
 //
 //  Created by Leo Martin on 1/12/15.
@@ -8,12 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HomeContentViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
+@interface HairfieContentViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 
 
 @property NSUInteger pageIndex;
 
-@property (nonatomic) NSArray *contentArray;
 @property (nonatomic) NSString *menuItemSelected;
 @property (nonatomic) IBOutlet UICollectionView *contentCollection;
 
