@@ -45,7 +45,6 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     NSDictionary* dict = [NSDictionary dictionaryWithObject:@"Hairfies"
-                          
                                                      forKey:@"menuItem"];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"collectionChanged"
                                                         object:self
@@ -54,7 +53,7 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    [self.contentCollection reloadData];
+  //  [self.contentCollection reloadData];
 }
 
 - (void)didReceiveMemoryWarning {

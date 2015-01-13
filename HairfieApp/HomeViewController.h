@@ -14,13 +14,11 @@
 
 //@class PopUpViewController;
 
-@interface HomeViewController : GAITrackedViewController <UINavigationControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UIScrollViewDelegate, UIImagePickerControllerDelegate, UICollectionViewDelegateFlowLayout, AKPickerViewDelegate, AKPickerViewDataSource, UIPageViewControllerDataSource>
+@interface HomeViewController : GAITrackedViewController <UINavigationControllerDelegate, UIScrollViewDelegate, UIImagePickerControllerDelegate, AKPickerViewDelegate, AKPickerViewDataSource, UIPageViewControllerDataSource>
 
 @property (nonatomic) IBOutlet UILabel *AroundMeLabel;
-@property (nonatomic) IBOutlet UICollectionView *hairfieCollection;
 @property (nonatomic) IBOutlet UIView *topView;
 @property (nonatomic) IBOutlet UIScrollView *scrollTest;
-@property (nonatomic) IBOutlet UICollectionReusableView *headerView;
 @property (nonatomic) UIImagePickerController *imagePicker;
 @property (nonatomic) IBOutlet UIView *overlayView;
 @property (nonatomic) IBOutlet UIView *topBarView;

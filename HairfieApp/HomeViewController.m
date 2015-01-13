@@ -78,18 +78,12 @@
       [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(switchMenuItem:) name:@"collectionChanged" object:nil];
     
     self.navigationItem.title = [NSString stringWithFormat:NSLocalizedStringFromTable(@"Home", @"Feed", nil)];
-    [_hairfieCollection registerNib:[UINib nibWithNibName:@"CustomCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:CUSTOM_CELL_IDENTIFIER];
-    [_hairfieCollection registerNib:[UINib nibWithNibName:@"CategoriesCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:CATEGORY_CELL_IDENTIFIER];
-    [_hairfieCollection registerNib:[UINib nibWithNibName:@"LoadingCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:LOADING_CELL_IDENTIFIER];
-   
+    
     refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget:self action:@selector(getHairfiesFromRefresh:)
              forControlEvents:UIControlEventValueChanged];
-    [_hairfieCollection addSubview:refreshControl];
-    currentPage = @(0);
-    hairfies = [[NSMutableArray alloc] init];
-    endOfScroll = NO;
-   // [self getHairfies:nil];
+    
+
      dismiss = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
     if([delegate.credentialStore isLoggedIn]) {
         [self.view addGestureRecognizer:self.slidingViewController.panGesture];
@@ -98,9 +92,7 @@
         [self prepareUserNotLogged];
     }
     [_topBarView addBottomBorderWithHeight:1.0 andColor:[UIColor lightGrey]];
-    categoriesNames = [[NSArray alloc] initWithObjects:@"FEMME",@"HOMME",@"BARBIER",@"MARIAGE",@"COLORATION", nil];
     
-    categoriesImages = [[NSArray alloc] initWithObjects:@"woman-category.png",@"man-category.png",@"barber-category.png",@"marriage-category.png",@"color-category.png", nil];
     pickerItems = [[NSArray alloc] initWithObjects:@"Hairfies", @"Réserver", nil];
     
     
@@ -114,18 +106,17 @@
     
     
     CGRect frame = CGRectMake(0, 182, self.view.frame.size.width, self.view.frame.size.height);
-    
+
     // Change the size of page view controller
     self.pageViewController.view.frame = frame;
+    self.pageViewController.doubleSided = YES;
     [self addChildViewController:_pageViewController];
     [self.view addSubview:_pageViewController.view];
     [self.pageViewController didMoveToParentViewController:self];
     [self initPickerView];
-    [self.pickerView reloadData];
     [self.pickerContainerView addSubview:self.pickerView];
-    [self.pickerView selectItem:0 animated:NO];
+    [self.pickerView reloadData];
 }
-
 
 -(void)doSearch:(NSNotification*)notification {
      [self performSegueWithIdentifier:@"searchFromFeed" sender:self];
@@ -141,9 +132,9 @@
     NSDictionary* userInfo = notification.userInfo;
     NSString *menuItem = [userInfo objectForKey:@"menuItem"];
     if ([menuItem isEqualToString:@"Hairfies"])
-        [self.pickerView selectItem:0 animated:YES];
+        [self.pickerView scrollToItem:0 animated:YES];
     else
-       [self.pickerView selectItem:1 animated:YES];
+        [self.pickerView scrollToItem:1 animated:YES];
 }
 
 // Page Controller Content View Functions
@@ -174,7 +165,7 @@
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController
 {
-    if ([viewController isKindOfClass:[HairfieContentViewController class]]) {
+    if ([viewController isKindOfClass:[CategoryContentViewController class]]) {
     NSUInteger index = ((HairfieContentViewController*)viewController).pageIndex;
    
     
@@ -232,7 +223,7 @@
     self.pickerView.delegate = self;
     self.pickerView.dataSource = self;
     self.pickerView.highlightedFont =  [UIFont fontWithName:@"SourceSansPro-Regular" size:17];
-    self.pickerView.font = [UIFont fontWithName:@"SourceSansPro-Light" size:17];
+    self.pickerView.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:17];
     self.pickerView.highlightedTextColor = [UIColor whiteColor];
     self.pickerView.textColor = [UIColor whiteColor];
     self.pickerView.interitemSpacing = 75;
@@ -240,7 +231,7 @@
 }
 
 - (NSUInteger)numberOfItemsInPickerView:(AKPickerView *)pickerView {
-    return 2;
+    return [pickerItems count];
 }
 
 - (NSString *)pickerView:(AKPickerView *)pickerView titleForItem:(NSInteger)item {
@@ -251,18 +242,19 @@
 - (void)pickerView:(AKPickerView *)pickerView didSelectItem:(NSInteger)item {
 
     pickerItemSelected = [pickerItems objectAtIndex:item];
-//    if ([pickerItemSelected isEqualToString:@"Hairfies"]) {
-//        HairfieContentViewController *hairfieContent = (HairfieContentViewController*)[self viewControllerAtIndex:0];
-//        NSArray *viewControllers = @[hairfieContent];
-//        [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
-//        
-//        NSLog(@"switch to page Hairfies");
-//    } else if ([pickerItemSelected isEqualToString:@"Réserver"]){
-//        CategoryContentViewController *categoryContent =(CategoryContentViewController*)[self viewControllerAtIndex:1];
-//        NSArray *viewControllers = @[categoryContent];
-//        [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
-//        NSLog(@"switch to page Reserver");
-//    }
+    
+    if ([pickerItemSelected isEqualToString:@"Hairfies"]) {
+        HairfieContentViewController *hairfieContent = (HairfieContentViewController*)[self viewControllerAtIndex:0];
+        NSArray *viewControllers = @[hairfieContent];
+        [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionReverse animated:YES completion:nil];
+        
+        NSLog(@"switch to page Hairfies");
+    } else if ([pickerItemSelected isEqualToString:@"Réserver"]){
+        CategoryContentViewController *categoryContent =(CategoryContentViewController*)[self viewControllerAtIndex:1];
+        NSArray *viewControllers = @[categoryContent];
+        [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
+        NSLog(@"switch to page Reserver");
+    }
 }
 
 -(void)showNoNetwork:(NSNotification*)notification
@@ -280,7 +272,6 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    //[self getHairfies:nil];
     if (_didClaim == YES)
     {
         [self showPopup];
@@ -339,190 +330,12 @@
 }
 
 
-// Collection View Datasource + Delegate
-
-// header view size
-
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    
-    if ([pickerItemSelected isEqualToString:@"Hairfies"]) {
-    if (indexPath.row < [hairfies count]) {
-        return CGSizeMake((collectionView.frame.size.width - 30) / 2, 210);
-    } else {
-        return CGSizeMake(collectionView.frame.size.width, 58);
-    }
-    }
-    else  if ([pickerItemSelected isEqualToString:@"Réserver"]){
-        return CGSizeMake(collectionView.frame.size.width - 30, 100);
-    }
-    else
-        return CGSizeMake(100, 100);
-        
-}
-
-- (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section {
-    if ([pickerItemSelected isEqualToString:@"Hairfies"])
-        return [hairfies count] + 1;
-    else  if ([pickerItemSelected isEqualToString:@"Réserver"])
-        return [categoriesNames count];
-    else
-        return 0;
-    
-    
-}
-
-// 2
-- (NSInteger)numberOfSectionsInCollectionView: (UICollectionView *)collectionView {
-    return 2;
-}
-
-
-// 3
-- (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    
-    if ([pickerItemSelected isEqualToString:@"Hairfies"]) {
-    if (indexPath.row < [hairfies count]) {
-
-        if(indexPath.row == ([hairfies count] - HAIRFIES_PAGE_SIZE + 1)){
-            [self fetchMoreHairfies];
-        }
-
-        return [self hairfieCellForIndexPath:indexPath];
-    } else {
-        return [self loadingCellForIndexPath:indexPath];
-    }
-    }
-    else  if ([pickerItemSelected isEqualToString:@"Réserver"]) {
-        return [self categoryCellForIndexPath:indexPath];
-    }
-    else
-        return nil;
-}
-
-- (UICollectionViewCell *)categoryCellForIndexPath:(NSIndexPath *)indexPath{
-
-    CategoriesCollectionViewCell *cell = [_hairfieCollection dequeueReusableCellWithReuseIdentifier:CATEGORY_CELL_IDENTIFIER forIndexPath:indexPath];
-
-    if (cell == nil) {
-        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"CategoriesCollectionViewCell" owner:self options:nil];
-        cell = [nib objectAtIndex:0];
-    }
-    
-    
-    [cell setupCellWithName:[categoriesNames objectAtIndex:indexPath.item] andImage:[UIImage imageNamed:[categoriesImages objectAtIndex:indexPath.item]]];
-    
-    return cell;
-}
-
-
-- (UICollectionViewCell *)hairfieCellForIndexPath:(NSIndexPath *)indexPath{
-    CustomCollectionViewCell *cell = [_hairfieCollection dequeueReusableCellWithReuseIdentifier:CUSTOM_CELL_IDENTIFIER forIndexPath:indexPath];
-    Hairfie *hairfie = (Hairfie *)[hairfies objectAtIndex:indexPath.row];
-
-    if (cell == nil) {
-        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"CustomCollectionViewCell" owner:self options:nil];
-        cell = [nib objectAtIndex:0];
-    }
-
-    if (!hairfies) {
-        cell.hairfieView.image = [UIImage imageNamed:@"hairfie.jpg"];
-    }
-    else {
-        [cell setHairfie:hairfie];
-    }
-
-    return cell;
-}
-
-- (UICollectionViewCell *)loadingCellForIndexPath:(NSIndexPath *)indexPath {
-    LoadingCollectionViewCell *cell = [_hairfieCollection dequeueReusableCellWithReuseIdentifier:LOADING_CELL_IDENTIFIER forIndexPath:indexPath];
-
-    if (cell == nil) {
-        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"LoadingCollectionViewCell" owner:self options:nil];
-        cell = [nib objectAtIndex:0];
-    }
-
-    if(endOfScroll) {
-        [cell showEndOfScroll];
-    }
-
-    return cell;
-}
-
-
--(void) collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    
-    if ([pickerItemSelected isEqualToString:@"Hairfies"]) {
-        hairfieRow = indexPath.row;
-        NSLog(@"select hairfie");
-        [self performSegueWithIdentifier:@"hairfieDetail" sender:self];
-    } else  if ([pickerItemSelected isEqualToString:@"Réserver"]) {
-        
-        [self performSegueWithIdentifier:@"searchFromFeed" sender:self];
-        
-    }
-    else
-        NSLog(@"nuff");
-
-}
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     //NSArray *indexPaths = [_hairfieCollection indexPathsForVisibleItems];
     //NSLog(@"indexPaths scroll %@", indexPaths);
 }
 
-
--(void)getHairfies:(NSNumber *)page
-{
-    if(page == nil) {
-        page = @(0);
-    }
-    NSNumber *offset = @([page integerValue] * HAIRFIES_PAGE_SIZE);
-
-    void (^loadErrorBlock)(NSError *) = ^(NSError *error){
-        NSLog(@"Error on load %@", error.description);
-        [refreshControl endRefreshing];
-    };
-    void (^loadSuccessBlock)(NSArray *) = ^(NSArray *models){
-        if([models count] < HAIRFIES_PAGE_SIZE) endOfScroll = YES;
-        for (int i = 0; i < models.count; i++) {
-            NSNumber *dynamicIndex = @(i + [offset integerValue]);
-            if([dynamicIndex integerValue] < [hairfies count]) {
-                [hairfies replaceObjectAtIndex:[dynamicIndex integerValue] withObject:models[i]];
-            } else {
-                [hairfies addObject:models[i]];
-            }
-        }
-        [self customReloadData];
-    };
-    NSLog(@"Get Hairfies for page : %@", page);
-
-    if(!endOfScroll) {
-        [Hairfie listLatestPerPage:page
-                           success:loadSuccessBlock
-                           failure:loadErrorBlock];
-    }
-}
-
--(void)getHairfiesFromRefresh:(UIRefreshControl *)refresh {
-    [self getHairfies:nil];
-}
-
-- (void)customReloadData
-{
-    [_hairfieCollection reloadData];
-    if (refreshControl) {
-        [refreshControl endRefreshing];
-    }
-}
-
-- (void)fetchMoreHairfies {
-    NSLog(@"FETCHING MORE HAIRFIES ******************");
-    int value = [currentPage intValue];
-    currentPage = [NSNumber numberWithInt:value + 1];;
-    [self getHairfies:currentPage];
-}
 
 -(void) prepareUserNotLogged {
     [_menuButton setHidden:YES];
