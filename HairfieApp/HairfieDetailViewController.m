@@ -264,6 +264,7 @@
 
 -(IBAction)goBack:(id)sender
 {
+    [self removeDelegates];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -818,6 +819,11 @@
     cell.layer.borderColor = [UIColor colorWithRed:234/255.0f green:236/255.0f blue:238/255.0f alpha:1].CGColor;
     cell.layer.borderWidth = 1.0f;
     return cell;
+}
+
+-(void)removeDelegates {
+    [self.hairfieCollection setDelegate:nil];
+    [detailsTableView setDelegate:nil];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

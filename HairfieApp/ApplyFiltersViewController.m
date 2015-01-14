@@ -247,7 +247,7 @@
 
             self.isSecondHairfie = NO;
             [filteredHairfies removeObjectForKey:@"filter2"];
-            [self modifyFirstPicture:self];
+            [self modifyFirstPicture:nil];
         } else {
             
             Picture *picture = [hairfiePics objectAtIndex:1];
@@ -261,7 +261,7 @@
             self.secondImgBttn.backgroundColor = [UIColor lightGreyHairfie];
             [self.secondImgBttn setTitle:@"+" forState:UIControlStateNormal];
 
-            [self modifyFirstPicture:self];
+            [self modifyFirstPicture:nil];
             
            
         }
