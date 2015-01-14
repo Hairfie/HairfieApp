@@ -262,17 +262,6 @@
         return nil;
 }
 
-
-//- (NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController
-//{
-//    return [pickerItems count];
-//}
-//
-//- (NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController
-//{
-//    return 0;
-//}
-
 // Init menu picker
 
 -(void)initPickerView {
