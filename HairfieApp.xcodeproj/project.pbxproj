@@ -101,6 +101,8 @@
 		71537CB21A44329300519C1B /* BusinessMemberFavoriteRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 71537CB11A44329300519C1B /* BusinessMemberFavoriteRepository.m */; };
 		7164B56A1A0D1D4B002B68E5 /* InstagramSharer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7164B5691A0D1D4B002B68E5 /* InstagramSharer.m */; };
 		7164B56D1A0D380F002B68E5 /* URLUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 7164B56C1A0D380F002B68E5 /* URLUtils.m */; };
+		7175C5DE1A666A410030DAA5 /* BusinessMemberClaim.m in Sources */ = {isa = PBXBuildFile; fileRef = 7175C5DD1A666A410030DAA5 /* BusinessMemberClaim.m */; };
+		7175C5E11A666BC40030DAA5 /* BusinessMemberClaimRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 7175C5E01A666BC40030DAA5 /* BusinessMemberClaimRepository.m */; };
 		718A98B019C1EF46003CD34B /* GeoPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 718A98AF19C1EF46003CD34B /* GeoPoint.m */; };
 		718B6B7819C831E200F2F8EF /* picto-hairfie-liked.png in Resources */ = {isa = PBXBuildFile; fileRef = 718B6B7719C831E200F2F8EF /* picto-hairfie-liked.png */; };
 		718B6B7A19C8339000F2F8EF /* picto-hairfie-detail-liked.png in Resources */ = {isa = PBXBuildFile; fileRef = 718B6B7919C8339000F2F8EF /* picto-hairfie-detail-liked.png */; };
@@ -574,6 +576,10 @@
 		7164B5691A0D1D4B002B68E5 /* InstagramSharer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstagramSharer.m; sourceTree = "<group>"; };
 		7164B56B1A0D380F002B68E5 /* URLUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLUtils.h; sourceTree = "<group>"; };
 		7164B56C1A0D380F002B68E5 /* URLUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URLUtils.m; sourceTree = "<group>"; };
+		7175C5DC1A666A410030DAA5 /* BusinessMemberClaim.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessMemberClaim.h; sourceTree = "<group>"; };
+		7175C5DD1A666A410030DAA5 /* BusinessMemberClaim.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessMemberClaim.m; sourceTree = "<group>"; };
+		7175C5DF1A666BC40030DAA5 /* BusinessMemberClaimRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessMemberClaimRepository.h; sourceTree = "<group>"; };
+		7175C5E01A666BC40030DAA5 /* BusinessMemberClaimRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessMemberClaimRepository.m; sourceTree = "<group>"; };
 		718A98AE19C1EF46003CD34B /* GeoPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeoPoint.h; sourceTree = "<group>"; };
 		718A98AF19C1EF46003CD34B /* GeoPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeoPoint.m; sourceTree = "<group>"; };
 		718B6B7719C831E200F2F8EF /* picto-hairfie-liked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "picto-hairfie-liked.png"; sourceTree = "<group>"; };
@@ -1183,6 +1189,8 @@
 				B3844E4319FE98570083CE0D /* TagCategoryRepository.m */,
 				71537CB01A44329300519C1B /* BusinessMemberFavoriteRepository.h */,
 				71537CB11A44329300519C1B /* BusinessMemberFavoriteRepository.m */,
+				7175C5DF1A666BC40030DAA5 /* BusinessMemberClaimRepository.h */,
+				7175C5E01A666BC40030DAA5 /* BusinessMemberClaimRepository.m */,
 			);
 			name = Repositories;
 			sourceTree = "<group>";
@@ -1961,6 +1969,8 @@
 				715290DC19FE477900C93950 /* TagCategory.m */,
 				71537CAD1A4430C200519C1B /* BusinessMemberFavorite.h */,
 				71537CAE1A4430C200519C1B /* BusinessMemberFavorite.m */,
+				7175C5DC1A666A410030DAA5 /* BusinessMemberClaim.h */,
+				7175C5DD1A666A410030DAA5 /* BusinessMemberClaim.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -2547,6 +2557,7 @@
 				B345BAE819951A7E007BB61A /* OLEContainerScrollView+Swizzling.m in Sources */,
 				718A98B019C1EF46003CD34B /* GeoPoint.m in Sources */,
 				B345BAEB19951A7E007BB61A /* OLESwizzling.m in Sources */,
+				7175C5DE1A666A410030DAA5 /* BusinessMemberClaim.m in Sources */,
 				B3FA620519F7AE64002D8B6F /* UILabel+Style.m in Sources */,
 				B35D112519BEFB5C00486050 /* ApplyFiltersViewController.m in Sources */,
 				713C8A211A0A67CB00B7B94C /* HairfieDetailBusinessTableViewCell.m in Sources */,
@@ -2681,6 +2692,7 @@
 				71A564E91A1A3A9100398C7B /* CALayer+XibConfiguration.m in Sources */,
 				B36AC50519DAB47E00B8AC13 /* STCollapseTableView.m in Sources */,
 				B308701719878C030080E6D2 /* SettingsViewController.m in Sources */,
+				7175C5E11A666BC40030DAA5 /* BusinessMemberClaimRepository.m in Sources */,
 				B3AA0CB61A24CAAF00FAEC01 /* HairdresserReusableView.m in Sources */,
 				B3A1281A198A85D8004D90BD /* CustomPinView.m in Sources */,
 				71537CAF1A4430C200519C1B /* BusinessMemberFavorite.m in Sources */,
