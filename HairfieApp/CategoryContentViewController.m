@@ -40,7 +40,7 @@
 
 
 -(void)viewDidAppear:(BOOL)animated{
-    NSDictionary* dict = [NSDictionary dictionaryWithObject:@"Réserver"
+    NSDictionary* dict = [NSDictionary dictionaryWithObject:NSLocalizedStringFromTable(@"Book",@"Feed",nil)
                           
                                                      forKey:@"menuItem"];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"collectionChanged"

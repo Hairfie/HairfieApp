@@ -85,7 +85,7 @@
     
     
     
-    pickerItemSelected = @"Hairfies";
+    pickerItemSelected = NSLocalizedStringFromTable(@"Book",@"Feed",nil);
     
     delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [delegate startTrackingLocation:YES];
@@ -110,25 +110,22 @@
     }
     [_topBarView addBottomBorderWithHeight:1.0 andColor:[UIColor lightGrey]];
     
-    pickerItems = [[NSArray alloc] initWithObjects:@"Hairfies", @"Réserver", nil];
+    pickerItems = [[NSArray alloc] initWithObjects:NSLocalizedStringFromTable(@"Book",@"Feed",nil),NSLocalizedStringFromTable(@"Hairfies",@"Feed",nil), nil];
     
     
    
     // Init HomeContent
     
-    HairfieContentViewController *hairfieVc = (HairfieContentViewController*)[self viewControllerAtIndex:0];
+    HairfieContentViewController *hairfieVc = (HairfieContentViewController*)[self viewControllerAtIndex:1];
     hairfieContent = @[hairfieVc];
-    CategoryContentViewController *categoryVc = (CategoryContentViewController*)[self viewControllerAtIndex:1];
+    CategoryContentViewController *categoryVc = (CategoryContentViewController*)[self viewControllerAtIndex:0];
     categoryContent = @[categoryVc];
-    [self.pageViewController setViewControllers:hairfieContent direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
+    [self.pageViewController setViewControllers:categoryContent direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
     
     
     
     CGRect frame = CGRectMake(0, 147, self.view.frame.size.width, self.view.frame.size.height - 147);
     
-    NSLog(@"HEIGHT %f", self.view.frame.size.height);
-    NSLog(@"HEIGHT 2 %f", frame.size.height);
-
     // Change the size of page view controller
     self.pageViewController.view.frame = frame;
     self.pageViewController.doubleSided = YES;
@@ -186,12 +183,12 @@
 -(void)switchMenuItem:(NSNotification*)notification{
     NSDictionary* userInfo = notification.userInfo;
     NSString *menuItem = [userInfo objectForKey:@"menuItem"];
-    if ([menuItem isEqualToString:@"Hairfies"]) {
+    if ([menuItem isEqualToString:NSLocalizedStringFromTable(@"Book",@"Feed",nil)]) {
         [self.pickerView scrollToItem:0 animated:YES];
-        self.takeHairfieBttn.hidden = NO;
+        self.takeHairfieBttn.hidden = YES;
     } else {
         [self.pickerView scrollToItem:1 animated:YES];
-        self.takeHairfieBttn.hidden = YES;
+        self.takeHairfieBttn.hidden = NO;
     }
 }
 
@@ -202,18 +199,17 @@
     if (([pickerItems count] == 0) || (index >= [pickerItems count])) {
         return nil;
     }
-    
     if (index == 0) {
+        CategoryContentViewController *categoryContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"CategoryContentViewController"];
+        categoryContentViewController.pageIndex = index;
+        return categoryContentViewController;
+    }
+    else if (index == 1) {
         HairfieContentViewController *hairfieContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"HairfieContentViewController"];
         hairfieContentViewController.pageIndex = index;
         hairfieContentViewController.menuItemSelected = pickerItemSelected;
         
         return hairfieContentViewController;
-    }
-    else if (index == 1) {
-        CategoryContentViewController *categoryContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"CategoryContentViewController"];
-        categoryContentViewController.pageIndex = index;
-        return categoryContentViewController;
     }
     else
         return nil;
@@ -223,8 +219,8 @@
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController
 {
-    if ([viewController isKindOfClass:[CategoryContentViewController class]]) {
-    NSUInteger index = ((HairfieContentViewController*)viewController).pageIndex;
+    if ([viewController isKindOfClass:[HairfieContentViewController class]]) {
+    NSUInteger index = ((CategoryContentViewController*)viewController).pageIndex;
    
     
     if ((index == 0) || (index == NSNotFound)) {
@@ -242,10 +238,10 @@
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController
 {
-    if ([viewController isKindOfClass:[HairfieContentViewController class]]) {
+    if ([viewController isKindOfClass:[CategoryContentViewController class]]) {
    
         
-        NSUInteger index = ((CategoryContentViewController*)viewController).pageIndex;
+        NSUInteger index = ((HairfieContentViewController*)viewController).pageIndex;
     
     if (index == NSNotFound) {
         return nil;
@@ -296,13 +292,13 @@
 
     pickerItemSelected = [pickerItems objectAtIndex:item];
     
-    if ([pickerItemSelected isEqualToString:@"Hairfies"]) {
-        self.takeHairfieBttn.hidden = NO;
-        [self.pageViewController setViewControllers:hairfieContent direction:UIPageViewControllerNavigationDirectionReverse animated:YES completion:nil];
-
-    } else if ([pickerItemSelected isEqualToString:@"Réserver"]){
+    if ([pickerItemSelected isEqualToString:NSLocalizedStringFromTable(@"Book",@"Feed",nil)]) {
         self.takeHairfieBttn.hidden = YES;
-        [self.pageViewController setViewControllers:categoryContent direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
+        [self.pageViewController setViewControllers:categoryContent direction:UIPageViewControllerNavigationDirectionReverse animated:YES completion:nil];
+
+    } else if ([pickerItemSelected isEqualToString:NSLocalizedStringFromTable(@"Hairfies",@"Feed",nil)]){
+        self.takeHairfieBttn.hidden = NO;
+        [self.pageViewController setViewControllers:hairfieContent direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
     }
 }
 

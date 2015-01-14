@@ -44,7 +44,7 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    NSDictionary* dict = [NSDictionary dictionaryWithObject:@"Hairfies"
+    NSDictionary* dict = [NSDictionary dictionaryWithObject:NSLocalizedStringFromTable(@"Hairfies",@"Feed",nil)
                                                      forKey:@"menuItem"];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"collectionChanged"
                                                         object:self
@@ -85,20 +85,16 @@
 // 3
 - (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    if ([self.menuItemSelected isEqualToString:@"Hairfies"]) {
-        if (indexPath.row < [hairfies count]) {
-            
-            if(indexPath.row == ([hairfies count] - HAIRFIES_PAGE_SIZE + 1)){
-                [self fetchMoreHairfies];
-            }
-            
-            return [self hairfieCellForIndexPath:indexPath];
-        } else {
-            return [self loadingCellForIndexPath:indexPath];
+    if (indexPath.row < [hairfies count]) {
+        
+        if(indexPath.row == ([hairfies count] - HAIRFIES_PAGE_SIZE + 1)){
+            [self fetchMoreHairfies];
         }
+        
+        return [self hairfieCellForIndexPath:indexPath];
+    } else {
+        return [self loadingCellForIndexPath:indexPath];
     }
-    else
-        return nil;
 }
 
 
