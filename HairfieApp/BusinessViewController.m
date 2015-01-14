@@ -30,6 +30,8 @@
 
 #import "BusinessReusableView.h"
 #import "NotLoggedAlert.h"
+#import "BusinessMemberClaim.h"
+#import "HairfieNotifications.h"
 
 #import <AssetsLibrary/AssetsLibrary.h>
 
@@ -74,9 +76,10 @@
 
     if([appDelegate.credentialStore isLoggedIn]) {
         menuActions = @[
-                        @{@"label": NSLocalizedStringFromTable(@"Report an error", @"Salon_Detail",nil), @"segue": @"reportError"},
-                        @{@"label": NSLocalizedStringFromTable(@"Claim this business", @"Salon_Detail",nil), @"segue": @"claimExisting"},
-                        ];
+            @{@"label": NSLocalizedStringFromTable(@"Report an error", @"Salon_Detail",nil), @"segue": @"reportError"},
+            @{@"label": NSLocalizedStringFromTable(@"Claim this business", @"Salon_Detail",nil), @"segue": @"claimExisting"},
+            @{@"label": NSLocalizedStringFromTable(@"I am hairdresser in this salon", @"Salon_Detail", nil), @"action": @"claimBusinessMember"}
+        ];
     } else {
         menuActions = @[
                         @{@"label": NSLocalizedStringFromTable(@"Report an error", @"Salon_Detail",nil), @"segue": @"reportError"}
@@ -210,6 +213,20 @@
     
     if([menuActions[buttonIndex] objectForKey:@"segue"] != nil) {
         [self performSegueWithIdentifier:[menuActions[buttonIndex] objectForKey:@"segue"] sender:self];
+    }
+    
+    if ([[menuActions[buttonIndex] objectForKey:@"action"] isEqualToString:@"claimBusinessMember"]) {
+        [BusinessMemberClaim createWithBusiness:self.business.id
+                                        success:^{
+                                            NSLog(@"Business member claim successfully created");
+                                            HairfieNotifications *notif = [HairfieNotifications new];
+                                            [notif showNotificationWithMessage:NSLocalizedStringFromTable(@"Business member successfully claimed", @"Salon_Detail", nil) ForDuration:2.5];
+                                        }
+                                        failure:^(NSError *error) {
+                                            NSLog(@"Failed to claim business member: %@", error.localizedDescription);
+                                            HairfieNotifications *notif = [HairfieNotifications new];
+                                            [notif showNotificationWithMessage:NSLocalizedStringFromTable(@"Failed to claim business member", @"Salon_Detail", nil) ForDuration:2.5];
+                                        }];
     }
 }
 
