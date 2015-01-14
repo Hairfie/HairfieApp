@@ -23,11 +23,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+   
     [self.contentCollection registerNib:[UINib nibWithNibName:@"CategoriesCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:CATEGORY_CELL_IDENTIFIER];
     categoriesNames = [[NSArray alloc] initWithObjects:@"FEMME",@"HOMME",@"BARBIER",@"MARIAGE",@"COLORATION", nil];
     
     categoriesImages = [[NSArray alloc] initWithObjects:@"woman-category.png",@"man-category.png",@"barber-category.png",@"marriage-category.png",@"color-category.png", nil];
 
+    
     // Do any additional setup after loading the view.
 }
 
@@ -44,6 +46,7 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"collectionChanged"
                                                         object:self
                                                       userInfo:dict];
+    NSLog(@"frame collection height %f", self.view.frame.size.height);
 
 }
 -(void)viewWillAppear:(BOOL)animated

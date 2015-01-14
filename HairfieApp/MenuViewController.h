@@ -11,6 +11,8 @@
 #import "User.h"
 #import "Business.h"
 #import "STCollapseTableView.h"
+#import "HomeViewController.h"
+
 
 @interface MenuViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
@@ -22,6 +24,7 @@
 @property (nonatomic) IBOutlet UILabel *name;
 @property (nonatomic) IBOutlet UILabel *hairfieNb;
 @property (nonatomic) User *currentUser;
+@property (nonatomic) HomeViewController *homeVc;
 @property (nonatomic) IBOutlet UIButton *userProfileButton;
 
 -(IBAction)unwindToMenuViewController:(UIStoryboardSegue *)segue;

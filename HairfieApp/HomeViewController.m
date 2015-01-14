@@ -22,6 +22,8 @@
 #import "HairfieContentViewController.h"
 #import "CategoryContentViewController.h"
 #import "CategoriesCollectionViewCell.h"
+#import <Underscore.m/Underscore.h>
+
 
 #define CUSTOM_CELL_IDENTIFIER @"hairfieCell"
 #define LOADING_CELL_IDENTIFIER @"LoadingItemCell"
@@ -45,6 +47,9 @@
     NSArray *categoriesNames;
     NSArray *categoriesImages;
     NSString *pickerItemSelected;
+    NSArray *hairfieContent;
+    NSArray *categoryContent;
+    BOOL isSetup;
 }
 @end
 
@@ -56,11 +61,24 @@
     return UIStatusBarStyleDefault;
 }
 
+
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    
+    self = [super initWithCoder:aDecoder];
+    
+    if (self) {
+        // Custom initialization
+        NSLog(@"Was called...");
+    }
+    
+    return self;
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
-    // Init page controller
+    self.automaticallyAdjustsScrollViewInsets = NO;
     self.pageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"HomePageViewController"];
     self.pageViewController.dataSource = self;
    
@@ -82,7 +100,6 @@
     refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget:self action:@selector(getHairfiesFromRefresh:)
              forControlEvents:UIControlEventValueChanged];
-    
 
      dismiss = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
     if([delegate.credentialStore isLoggedIn]) {
@@ -99,13 +116,18 @@
    
     // Init HomeContent
     
-    HairfieContentViewController *hairfieContent = (HairfieContentViewController*)[self viewControllerAtIndex:0];
-    NSArray *viewControllers = @[hairfieContent];
-    [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
+    HairfieContentViewController *hairfieVc = (HairfieContentViewController*)[self viewControllerAtIndex:0];
+    hairfieContent = @[hairfieVc];
+    CategoryContentViewController *categoryVc = (CategoryContentViewController*)[self viewControllerAtIndex:1];
+    categoryContent = @[categoryVc];
+    [self.pageViewController setViewControllers:hairfieContent direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
     
     
     
-    CGRect frame = CGRectMake(0, 182, self.view.frame.size.width, self.view.frame.size.height);
+    CGRect frame = CGRectMake(0, 147, self.view.frame.size.width, self.view.frame.size.height - 147);
+    
+    NSLog(@"HEIGHT %f", self.view.frame.size.height);
+    NSLog(@"HEIGHT 2 %f", frame.size.height);
 
     // Change the size of page view controller
     self.pageViewController.view.frame = frame;
@@ -114,8 +136,41 @@
     [self.view addSubview:_pageViewController.view];
     [self.pageViewController didMoveToParentViewController:self];
     [self initPickerView];
-    [self.pickerContainerView addSubview:self.pickerView];
-    [self.pickerView reloadData];
+    
+    [self.view bringSubviewToFront:self.takeHairfieBttn];
+    [self.view sendSubviewToBack:self.pageViewController.view];
+    [self drawTriangleInView];
+}
+
+
+-(void)drawTriangleInView {
+  
+    
+    CAShapeLayer *mask = [[CAShapeLayer alloc] init];
+    mask.frame = self.pickerContainerView.bounds;
+    mask.fillColor = [[UIColor blackColor] CGColor];
+    
+    CGFloat width = self.pickerContainerView.frame.size.width;
+    CGFloat height = self.pickerContainerView.frame.size.height;
+    
+    CGMutablePathRef path = CGPathCreateMutable();
+    
+    CGPathMoveToPoint(path, nil, 0, 0);
+    CGPathAddLineToPoint(path, nil, width, 0);
+    CGPathAddLineToPoint(path, nil, width, height);
+    CGPathAddLineToPoint(path, nil, (width/2) + 5, height);
+    CGPathAddLineToPoint(path, nil, width/2, height - 5);
+    CGPathAddLineToPoint(path, nil, (width/2) - 5, height);
+    CGPathAddLineToPoint(path, nil, 0, height);
+    CGPathAddLineToPoint(path, nil, 0, 0);
+    CGPathCloseSubpath(path);
+    
+    mask.path = path;
+    CGPathRelease(path);
+    
+    self.pickerContainerView.layer.mask = mask;
+
+
 }
 
 -(void)doSearch:(NSNotification*)notification {
@@ -131,10 +186,13 @@
 -(void)switchMenuItem:(NSNotification*)notification{
     NSDictionary* userInfo = notification.userInfo;
     NSString *menuItem = [userInfo objectForKey:@"menuItem"];
-    if ([menuItem isEqualToString:@"Hairfies"])
+    if ([menuItem isEqualToString:@"Hairfies"]) {
         [self.pickerView scrollToItem:0 animated:YES];
-    else
+        self.takeHairfieBttn.hidden = NO;
+    } else {
         [self.pickerView scrollToItem:1 animated:YES];
+        self.takeHairfieBttn.hidden = YES;
+    }
 }
 
 // Page Controller Content View Functions
@@ -146,15 +204,15 @@
     }
     
     if (index == 0) {
-    HairfieContentViewController *hairfieContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"HairfieContentViewController"];
-    hairfieContentViewController.pageIndex = index;
-    hairfieContentViewController.menuItemSelected = pickerItemSelected;
-    
-    return hairfieContentViewController;
+        HairfieContentViewController *hairfieContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"HairfieContentViewController"];
+        hairfieContentViewController.pageIndex = index;
+        hairfieContentViewController.menuItemSelected = pickerItemSelected;
+        
+        return hairfieContentViewController;
     }
     else if (index == 1) {
         CategoryContentViewController *categoryContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"CategoryContentViewController"];
-         categoryContentViewController.pageIndex = index;
+        categoryContentViewController.pageIndex = index;
         return categoryContentViewController;
     }
     else
@@ -172,7 +230,6 @@
     if ((index == 0) || (index == NSNotFound)) {
         return nil;
     }
-    
     index--;
     pickerItemSelected = [pickerItems objectAtIndex:index];
     return [self viewControllerAtIndex:index];
@@ -206,20 +263,20 @@
 }
 
 
-- (NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController
-{
-    return [pickerItems count];
-}
-
-- (NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController
-{
-    return 0;
-}
+//- (NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController
+//{
+//    return [pickerItems count];
+//}
+//
+//- (NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController
+//{
+//    return 0;
+//}
 
 // Init menu picker
 
 -(void)initPickerView {
-    self.pickerView = [[AKPickerView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 60)];
+    self.pickerView = [[AKPickerView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 40)];
     self.pickerView.delegate = self;
     self.pickerView.dataSource = self;
     self.pickerView.highlightedFont =  [UIFont fontWithName:@"SourceSansPro-Regular" size:17];
@@ -228,6 +285,13 @@
     self.pickerView.textColor = [UIColor whiteColor];
     self.pickerView.interitemSpacing = 75;
     self.pickerView.fisheyeFactor = 0.0001;
+    self.pickerView.tag = 0;
+    [self.pickerView reloadData];
+    if(!_.find(self.pickerContainerView.subviews, ^BOOL(UIView *subview) {
+        return subview.tag == 0;
+    })) {
+        [self.pickerContainerView addSubview:self.pickerView];
+    }
 }
 
 - (NSUInteger)numberOfItemsInPickerView:(AKPickerView *)pickerView {
@@ -244,16 +308,12 @@
     pickerItemSelected = [pickerItems objectAtIndex:item];
     
     if ([pickerItemSelected isEqualToString:@"Hairfies"]) {
-        HairfieContentViewController *hairfieContent = (HairfieContentViewController*)[self viewControllerAtIndex:0];
-        NSArray *viewControllers = @[hairfieContent];
-        [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionReverse animated:YES completion:nil];
-        
-        NSLog(@"switch to page Hairfies");
+        self.takeHairfieBttn.hidden = NO;
+        [self.pageViewController setViewControllers:hairfieContent direction:UIPageViewControllerNavigationDirectionReverse animated:YES completion:nil];
+
     } else if ([pickerItemSelected isEqualToString:@"Réserver"]){
-        CategoryContentViewController *categoryContent =(CategoryContentViewController*)[self viewControllerAtIndex:1];
-        NSArray *viewControllers = @[categoryContent];
-        [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
-        NSLog(@"switch to page Reserver");
+        self.takeHairfieBttn.hidden = YES;
+        [self.pageViewController setViewControllers:categoryContent direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
     }
 }
 

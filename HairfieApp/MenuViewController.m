@@ -48,8 +48,12 @@
    
     newBusiness = NO;
     didInsert = NO;
-    self.slidingViewController.topViewAnchoredGesture = ECSlidingViewControllerAnchoredGesturePanning | ECSlidingViewControllerAnchoredGestureTapping;
     
+    
+    _homeVc = (HomeViewController*)self.slidingViewController.topViewController;
+   // self.slidingViewController.topViewController = self.homeVc;
+    self.slidingViewController.topViewAnchoredGesture = ECSlidingViewControllerAnchoredGesturePanning | ECSlidingViewControllerAnchoredGestureTapping;
+
     appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(currentUserChanged:) name:@"currentUser" object:nil];
@@ -350,7 +354,9 @@
     {
         if (indexPath.row == 0)
         {
-            [self performSegueWithIdentifier:@"HomeSegue" sender:self];
+            self.slidingViewController.topViewController = self.homeVc;
+            [self.slidingViewController resetTopViewAnimated:YES];
+          //  [self performSegueWithIdentifier:@"HomeSegue" sender:self];
         }
         if (indexPath.row == 1)
         {
