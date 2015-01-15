@@ -10,7 +10,7 @@
 #import "Business.h"
 #import "RatingView.h"
 
-@interface BusinessDetailCollectionViewCell : UICollectionViewCell <RatingViewDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface BusinessDetailCollectionViewCell : UICollectionViewCell <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic) IBOutlet UILabel *address;
 @property (nonatomic) IBOutlet UILabel *city;
@@ -20,23 +20,16 @@
 @property (nonatomic) IBOutlet UILabel *isOpenLabelDetail;
 @property (nonatomic) IBOutlet UIImageView *isOpenImage;
 @property (nonatomic) IBOutlet UIImageView *isOpenImageDetail;
-@property (nonatomic) IBOutlet RatingView *addRatingView;
-@property (nonatomic) IBOutlet UIView *addRatingSuperView;
 @property (nonatomic) IBOutlet UITableView *similarTableView;
 @property (nonatomic) IBOutlet UIView *similarContainerView;
 @property (nonatomic) IBOutlet UITableView *reviewTableView;
 @property (nonatomic) IBOutlet UIButton *moreReviewBttn;
-
-@property (nonatomic) IBOutlet UILabel *addReviewLbl;
+@property (nonatomic) IBOutlet UIView *reviewsSection;
 @property (nonatomic) IBOutlet UILabel *seeDetailsLbl;
 @property (nonatomic) IBOutlet UILabel *similarBusinessesLbl;
-
-
-
 @property (nonatomic) IBOutlet NSLayoutConstraint *telephoneLabelWidth;
-@property (nonatomic) IBOutlet NSLayoutConstraint *similarViewYPos;
-@property (nonatomic) IBOutlet NSLayoutConstraint *moreReviewButtonYpos;
-
+@property (nonatomic) IBOutlet NSLayoutConstraint *reviewsListHeight;
+@property (nonatomic) IBOutlet NSLayoutConstraint *reviewsSectionHeight;
 
 -(void)setupDetails:(Business*)business;
 
