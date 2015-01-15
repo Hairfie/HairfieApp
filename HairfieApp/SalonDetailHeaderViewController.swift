@@ -20,9 +20,8 @@ import QuartzCore
     @IBOutlet weak var hairdresserPictureBorderView: UIView!
     @IBOutlet weak var ratingView: RatingView!
     @IBOutlet weak var numReviewsLabel: UILabel!
+    
     var business: Business!
-    
-    
     
     override func viewWillAppear(animated: Bool) {
         
@@ -156,17 +155,10 @@ import QuartzCore
     @IBAction func picturePageChanged(AnyObject) {
         goToCurrentPicturePage(true);
     }
-
-    
-
-     func scrollViewWillBeginDragging(scrollView: UIScrollView!) {
-        println("will begin dragging");
-    }
-
     
     func scrollViewDidEndDecelerating(scrollView: UIScrollView!) {
         if (scrollView == self.picturesScrollView) {
-            var pageWidth = picturesScrollView.frame.size.width;
+            var pageWidth = self.view.frame.size.width;
             var pageNumber = floor((picturesScrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
             picturesPageControl.currentPage = Int(pageNumber);
         }

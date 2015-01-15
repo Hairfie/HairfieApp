@@ -409,7 +409,9 @@
     if (!isSetup) {
         headerViewController = [[SalonDetailHeaderViewController alloc] initWithNibName:@"SalonDetailHeaderViewController" bundle:nil];
         headerViewController.business = self.business;
-        [userHeader addSubview:headerViewController.view];
+        UIView *headerView = headerViewController.view;
+        [headerView setFrame:CGRectMake(0, 0, self.view.bounds.size.width, 220)]; // can we use auto-layout instead?
+        [userHeader addSubview:headerView];
         isSetup = YES;
     }
    
