@@ -97,7 +97,6 @@
                                 <color key="backgroundColor" red="0.92549019607843142" green="0.92549019607843142" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="1C0-er-cHS"/>
-                                    <constraint firstAttribute="width" constant="280" id="92E-Zr-hEF"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G3G-uS-51Q" userLabel="Phone">
@@ -155,7 +154,6 @@
                                 <rect key="frame" x="20" y="125" width="280" height="1"/>
                                 <color key="backgroundColor" red="0.92549019610000005" green="0.92549019610000005" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="280" id="evl-ac-S0a"/>
                                     <constraint firstAttribute="height" constant="1" id="jOA-ab-07h"/>
                                 </constraints>
                             </view>
@@ -223,6 +221,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="OkT-LM-VRY" firstAttribute="top" secondItem="G3G-uS-51Q" secondAttribute="bottom" constant="4" id="4G2-0z-UNs"/>
+                            <constraint firstAttribute="trailing" secondItem="OkT-LM-VRY" secondAttribute="trailing" constant="20" id="6PG-7A-Xbj"/>
+                            <constraint firstItem="OkT-LM-VRY" firstAttribute="leading" secondItem="oqS-34-mpv" secondAttribute="leading" constant="20" id="8ra-zH-bQs"/>
                             <constraint firstItem="9Oz-Mf-PMX" firstAttribute="top" secondItem="OkT-LM-VRY" secondAttribute="bottom" constant="4" id="BKQ-L5-UKs"/>
                             <constraint firstItem="G3G-uS-51Q" firstAttribute="leading" secondItem="oqS-34-mpv" secondAttribute="leading" id="Lvx-92-DBo"/>
                             <constraint firstItem="G3G-uS-51Q" firstAttribute="top" secondItem="KKr-w3-vaz" secondAttribute="bottom" constant="4" id="Mbu-P8-wmJ"/>
@@ -231,8 +231,10 @@
                             <constraint firstItem="9Oz-Mf-PMX" firstAttribute="leading" secondItem="oqS-34-mpv" secondAttribute="leading" id="Nfd-49-wZh"/>
                             <constraint firstItem="ZCy-aE-zwA" firstAttribute="top" secondItem="oqS-34-mpv" secondAttribute="top" id="O6w-9u-2j2"/>
                             <constraint firstItem="G3G-uS-51Q" firstAttribute="centerX" secondItem="OkT-LM-VRY" secondAttribute="centerX" id="SyB-Vm-pIP"/>
+                            <constraint firstItem="KKr-w3-vaz" firstAttribute="leading" secondItem="oqS-34-mpv" secondAttribute="leading" constant="20" id="T3Z-7N-Io2"/>
                             <constraint firstAttribute="width" secondItem="ZCy-aE-zwA" secondAttribute="width" id="Xco-Hp-bQz"/>
                             <constraint firstAttribute="width" secondItem="G3G-uS-51Q" secondAttribute="width" id="dDY-cf-hfi"/>
+                            <constraint firstAttribute="trailing" secondItem="KKr-w3-vaz" secondAttribute="trailing" constant="20" id="jLn-Hs-zLU"/>
                             <constraint firstAttribute="height" constant="180" id="oDl-nb-Cdh"/>
                             <constraint firstItem="9Oz-Mf-PMX" firstAttribute="width" secondItem="oqS-34-mpv" secondAttribute="width" id="xvG-oW-XUf"/>
                             <constraint firstItem="KKr-w3-vaz" firstAttribute="top" secondItem="ZCy-aE-zwA" secondAttribute="bottom" constant="4" id="zgZ-AV-zGQ"/>
