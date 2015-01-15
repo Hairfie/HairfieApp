@@ -620,14 +620,8 @@
     }
     
     if ([segue.identifier isEqualToString:@"showReviews"]) {
-        ReviewsViewController *review = [segue destinationViewController];
-        review.ratingValue = [ratingForReview floatValue];
-        review.business = _business;
-        review.addReviewButton.hidden = NO;
-
-        if (isReviewing == YES) {
-            review.isReviewing = YES;
-        }
+        ReviewsViewController *vc = [segue destinationViewController];
+        vc.business = self.business;
     }
 
     if ([segue.identifier isEqualToString:@"showMapFromSalon"]){
