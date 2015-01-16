@@ -18,22 +18,42 @@
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="45"/>
                 <subviews>
-                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Y1r-up-Emj">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y1r-up-Emj" userLabel="Separator">
                         <rect key="frame" x="0.0" y="44" width="320" height="1"/>
                         <color key="backgroundColor" red="0.87301450276243098" green="0.87301450276243098" blue="0.87301450276243098" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="f0U-KM-dFB"/>
+                        </constraints>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Sdk-99-qTT">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Sdk-99-qTT">
                         <rect key="frame" x="15" y="8" width="297" height="29"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="29" id="8NY-Co-AFx"/>
+                        </constraints>
                         <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="18"/>
                         <color key="textColor" red="0.56565089779005517" green="0.56565089779005517" blue="0.56565089779005517" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" image="nav-disclosure-light.png" translatesAutoresizingMaskIntoConstraints="NO" id="2VB-ul-lK6">
+                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="nav-disclosure-light.png" translatesAutoresizingMaskIntoConstraints="NO" id="2VB-ul-lK6" userLabel="Nav disclosure">
                         <rect key="frame" x="305" y="17" width="7" height="12"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="12" id="LOC-qo-Cd8"/>
+                            <constraint firstAttribute="width" constant="7" id="WAI-h6-ucQ"/>
+                        </constraints>
                     </imageView>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="Y1r-up-Emj" secondAttribute="trailing" id="0ne-UJ-ZNo"/>
+                <constraint firstItem="Y1r-up-Emj" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="7SP-wy-8wf"/>
+                <constraint firstAttribute="centerY" secondItem="2VB-ul-lK6" secondAttribute="centerY" constant="-0.5" id="A6k-dD-GPY"/>
+                <constraint firstAttribute="bottom" secondItem="Y1r-up-Emj" secondAttribute="bottom" id="G1y-zB-GUn"/>
+                <constraint firstAttribute="trailing" secondItem="Sdk-99-qTT" secondAttribute="trailing" constant="8" id="XHR-iL-lXN"/>
+                <constraint firstAttribute="trailing" secondItem="2VB-ul-lK6" secondAttribute="trailing" constant="8" id="kK2-Xm-dP7"/>
+                <constraint firstItem="Sdk-99-qTT" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="muI-PP-8Pr"/>
+                <constraint firstAttribute="centerY" secondItem="Sdk-99-qTT" secondAttribute="centerY" id="onn-BA-PLK"/>
+            </constraints>
             <size key="customSize" width="50" height="55"/>
             <connections>
                 <outlet property="disclosureIndicator" destination="2VB-ul-lK6" id="OGG-XH-wlE"/>

@@ -17,6 +17,8 @@
 @property (strong, nonatomic) NSString *id;
 @property (strong, nonatomic) Business *business;
 @property (strong, nonatomic) User *author;
+@property (strong, nonatomic) NSString *firstName;
+@property (strong, nonatomic) NSString *lastName;
 @property (strong, nonatomic) NSNumber *rating;
 @property (strong, nonatomic) NSString *comment;
 @property (strong, nonatomic) NSDate *createdAt;
@@ -24,6 +26,8 @@
 +(NSString *)EVENT_SAVED;
 
 -(id)initWithDictionary:(NSDictionary *)data;
+
+-(NSString *)authorDisplayName;
 
 -(NSNumber *)ratingBetween:(NSNumber *)theMin
                        and:(NSNumber *)theMax;

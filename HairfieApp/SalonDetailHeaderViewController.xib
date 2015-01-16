@@ -43,10 +43,10 @@
                         <action selector="picturePageChanged:" destination="-1" eventType="valueChanged" id="pF7-Gy-2gN"/>
                     </connections>
                 </pageControl>
-                <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b0j-Qe-fDH" userLabel="Hairdresser's picture border">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b0j-Qe-fDH" userLabel="Picture border">
                     <rect key="frame" x="105" y="25" width="110" height="110"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dZ7-tO-4Fy" userLabel="Hairdresser's picture" customClass="UIRoundImageView">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dZ7-tO-4Fy" userLabel="Picture" customClass="UIRoundImageView">
                             <rect key="frame" x="5" y="5" width="100" height="100"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="100" id="1tp-gb-AOc"/>
@@ -57,30 +57,47 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="centerX" secondItem="dZ7-tO-4Fy" secondAttribute="centerX" id="6iq-yX-t7m"/>
+                        <constraint firstAttribute="height" constant="110" id="qEK-Qj-fIb"/>
                         <constraint firstAttribute="centerY" secondItem="dZ7-tO-4Fy" secondAttribute="centerY" id="s0b-Hm-Nbv"/>
+                        <constraint firstAttribute="width" constant="110" id="yV9-zG-GNY"/>
                     </constraints>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Au Cheveu Qui Chante" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="90h-wb-UlQ" userLabel="Name">
-                    <rect key="frame" x="10" y="140" width="300" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Au Cheveu Qui Chante" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="90h-wb-UlQ" userLabel="Name">
+                    <rect key="frame" x="10" y="138" width="300" height="23"/>
                     <fontDescription key="fontDescription" name="SourceSansPro-Bold" family="Source Sans Pro" pointSize="18"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
+                    <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <size key="shadowOffset" width="0.0" height="0.0"/>
                 </label>
-                <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EsZ-Cm-TUW" userLabel="Reviews">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EsZ-Cm-TUW" userLabel="Reviews">
                     <rect key="frame" x="60" y="165" width="200" height="20"/>
                     <subviews>
-                        <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nnI-KP-rM8" userLabel="Rating" customClass="RatingView">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nnI-KP-rM8" userLabel="Rating" customClass="RatingView">
                             <rect key="frame" x="0.0" y="0.0" width="114" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="114" id="18J-e6-Jiq"/>
+                                <constraint firstAttribute="height" constant="20" id="YFP-QI-GmR"/>
+                            </constraints>
                         </view>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="24 reviews" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3JL-cQ-6N9">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="24 reviews" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3JL-cQ-6N9">
                             <rect key="frame" x="127" y="-1" width="82" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="82" id="8MU-Ug-hse"/>
+                                <constraint firstAttribute="height" constant="21" id="bz3-Xi-jug"/>
+                            </constraints>
                             <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="11"/>
                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
                     <constraints>
-                        <constraint firstItem="3JL-cQ-6N9" firstAttribute="leading" secondItem="nnI-KP-rM8" secondAttribute="trailing" constant="10" id="PeK-rB-LbU"/>
+                        <constraint firstAttribute="width" constant="200" id="Z63-X0-JKy"/>
+                        <constraint firstItem="3JL-cQ-6N9" firstAttribute="top" secondItem="EsZ-Cm-TUW" secondAttribute="top" constant="-1" id="Zvn-nz-xqn"/>
+                        <constraint firstItem="nnI-KP-rM8" firstAttribute="top" secondItem="EsZ-Cm-TUW" secondAttribute="top" id="fGZ-jn-NRx"/>
+                        <constraint firstItem="nnI-KP-rM8" firstAttribute="leading" secondItem="EsZ-Cm-TUW" secondAttribute="leading" id="hpu-Ed-E5K"/>
+                        <constraint firstAttribute="trailing" secondItem="3JL-cQ-6N9" secondAttribute="trailing" constant="-9" id="uXq-iN-W2l"/>
+                        <constraint firstAttribute="height" constant="20" id="yXp-kF-yW5"/>
                     </constraints>
                 </view>
             </subviews>
@@ -91,9 +108,11 @@
                 <constraint firstAttribute="centerX" secondItem="EsZ-Cm-TUW" secondAttribute="centerX" id="8bN-zL-SkN"/>
                 <constraint firstAttribute="bottom" secondItem="b2h-VQ-N90" secondAttribute="bottom" id="FmY-Lg-yld"/>
                 <constraint firstItem="b2h-VQ-N90" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Hbv-5L-nDj"/>
+                <constraint firstItem="90h-wb-UlQ" firstAttribute="centerX" secondItem="EsZ-Cm-TUW" secondAttribute="centerX" id="ZsR-pa-n35"/>
                 <constraint firstAttribute="centerX" secondItem="b0j-Qe-fDH" secondAttribute="centerX" id="eH3-ZR-RGM"/>
                 <constraint firstItem="90h-wb-UlQ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="hV6-6d-l5B"/>
                 <constraint firstAttribute="centerX" secondItem="90h-wb-UlQ" secondAttribute="centerX" id="iJd-Aa-8gH"/>
+                <constraint firstAttribute="bottom" secondItem="90h-wb-UlQ" secondAttribute="bottom" constant="59" id="lLZ-OZ-s83"/>
                 <constraint firstItem="EsZ-Cm-TUW" firstAttribute="top" secondItem="90h-wb-UlQ" secondAttribute="bottom" constant="4" id="oMP-gN-VnX"/>
                 <constraint firstAttribute="bottom" secondItem="onP-7F-Nc5" secondAttribute="bottom" constant="10" id="q9F-Gc-snl"/>
                 <constraint firstAttribute="trailing" secondItem="onP-7F-Nc5" secondAttribute="trailing" constant="20" id="rSh-Ww-LYn"/>
@@ -104,6 +123,12 @@
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="iJd-Aa-8gH"/>
+                    <exclude reference="8bN-zL-SkN"/>
+                </mask>
+            </variation>
             <point key="canvasLocation" x="268" y="229"/>
         </view>
     </objects>

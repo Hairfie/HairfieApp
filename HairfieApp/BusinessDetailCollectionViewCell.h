@@ -24,11 +24,9 @@
 @property (nonatomic) IBOutlet UIView *similarContainerView;
 @property (nonatomic) IBOutlet UITableView *reviewTableView;
 @property (nonatomic) IBOutlet UIButton *moreReviewBttn;
-@property (nonatomic) IBOutlet UIView *reviewsSection;
 @property (nonatomic) IBOutlet UILabel *seeDetailsLbl;
 @property (nonatomic) IBOutlet UILabel *similarBusinessesLbl;
 @property (nonatomic) IBOutlet NSLayoutConstraint *telephoneLabelWidth;
-@property (nonatomic) IBOutlet NSLayoutConstraint *reviewsListHeight;
 @property (nonatomic) IBOutlet NSLayoutConstraint *reviewsSectionHeight;
 
 -(void)setupDetails:(Business*)business;

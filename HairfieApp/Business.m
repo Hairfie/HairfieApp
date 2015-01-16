@@ -211,6 +211,11 @@
     return [self.gps distanceTo:aGeoPoint];
 }
 
+-(BOOL)isFacebookPageShareEnabled
+{
+    return nil != self.facebookPage;
+}
+
 +(void)listNearby:(GeoPoint *)aGeoPoint
             query:(NSString *)aQuery
             limit:(NSNumber *)aLimit

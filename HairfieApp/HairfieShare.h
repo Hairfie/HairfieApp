@@ -12,12 +12,9 @@
 @interface HairfieShare : LBModel
 
 +(void)shareHairfie:(NSString *)hairfieId
-            success:(void(^)())aSuccessHandler
+         onFacebook:(BOOL)facebook
+       facebookPage:(BOOL)facebookPage
+        withSuccess:(void(^)())aSuccessHandler
             failure:(void(^)(NSError *error))aFailureHandler;
-
-+(void)shareHairfiePro:(NSString *)hairfieId
-            success:(void(^)())aSuccessHandler
-            failure:(void(^)(NSError *error))aFailureHandler;
-
-
+                        
 @end
