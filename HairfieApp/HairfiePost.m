@@ -73,24 +73,18 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:[Hairfie EVENT_SAVED] object:hairfie];
         
         NSLog(@"result :%@", hairfie);
-        if(self.shareOnFBPRO) {
-            Hairfie *newHairfie = [[Hairfie alloc] initWithDictionary:result];
-            [HairfieShare shareHairfiePro:newHairfie.id success:^{
-                aSuccessHandler(hairfie);
-            } failure:^(NSError *error) {
-                NSLog(@"Error : %@", error.description);
-                aSuccessHandler(hairfie);
-            }];
-
-        } else if(self.shareOnFB) {
-            Hairfie *newHairfie = [[Hairfie alloc] initWithDictionary:result];
-            [HairfieShare shareHairfie:newHairfie.id success:^{
-                aSuccessHandler(hairfie);
-            } failure:^(NSError *error) {
-                NSLog(@"Error : %@", error.description);
-                aSuccessHandler(hairfie);
-            }];
-            
+        
+        if (self.shareOnFacebook || self.shareOnFacebookPage) {
+            [HairfieShare shareHairfie:hairfie.id
+                            onFacebook:self.shareOnFacebook
+                          facebookPage:self.shareOnFacebookPage
+                           withSuccess:^() {
+                               aSuccessHandler(hairfie);
+                           }
+                               failure:^(NSError *error) {
+                                   NSLog(@"Failed to share hairfie: %@", error.localizedDescription);
+                                   aSuccessHandler(hairfie);
+                               }];
         } else {
             aSuccessHandler(hairfie);
         }
@@ -98,22 +92,10 @@
     
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     
-    
-    if (self.pictures.count != 0)
-    {
-        NSMutableArray *picturesApi = [[NSMutableArray alloc] init];
-        Picture *firstPic = [self.pictures objectAtIndex:0];
-        NSString *firstImg = [firstPic toApiValue];
-        [picturesApi addObject:firstImg];
-        if (self.pictures.count == 2)
-        {
-            Picture *secondPic = [self.pictures objectAtIndex:1];
-            NSString *secondImg = [secondPic toApiValue];
-            [picturesApi addObject:secondImg];
-        }
-        [parameters setObject:picturesApi forKey:@"pictures"];
+    if (self.pictures != nil) {
+        [parameters setObject:Underscore.array(self.pictures).map(^(Picture *p) { return [p toApiValue]; }).unwrap
+                       forKey:@"pictures"];
     }
-    
     if(self.price != nil) {
         [parameters setObject:self.price.toDictionary forKey:@"price"];
     }
@@ -134,14 +116,11 @@
     {
         [parameters setObject:self.hairdresser.id forKey:@"hairdresserId"];
     }
-
     if (self.tags != nil) {
-        NSMutableArray *tagsToSend = [[NSMutableArray alloc] init];
-        for (Tag *tag in self.tags) {
-            [tagsToSend addObject:[tag toApiValue]];
-        }
-        [parameters setObject:tagsToSend forKey:@"tags"];
+        [parameters setObject:Underscore.array(self.tags).map(^(Tag *t) { return [t toApiValue]; }).unwrap
+                       forKey:@"tags"];
     }
+
     [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/hairfies"
                                                                                  verb:@"POST"]
                                         forMethod:@"hairfies.create"];
@@ -155,12 +134,34 @@
 
 -(BOOL)pictureIsUploaded
 {
-    
     Picture *firstPic = [self.pictures objectAtIndex:0];
     
     BOOL result = firstPic.name ? YES : NO;
     
     return result;
+}
+
+-(Picture *)mainPicture
+{
+    if (self.pictures.count < 1) {
+        return nil;
+    }
+    
+    return [self.pictures objectAtIndex:0];
+}
+
+-(BOOL)hasSecondaryPicture
+{
+    return nil != [self secondaryPicture];
+}
+
+-(Picture *)secondaryPicture
+{
+    if (self.pictures.count < 2) {
+        return nil;
+    }
+    
+    return [self.pictures objectAtIndex:1];
 }
 
 +(HairfieRepository *)repository

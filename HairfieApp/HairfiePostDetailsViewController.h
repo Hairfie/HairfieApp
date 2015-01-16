@@ -35,7 +35,8 @@
 @property (nonatomic) IBOutlet UIView *priceSubview;
 @property (nonatomic) IBOutlet NSLayoutConstraint *whoSubviewConstraint;
 @property (nonatomic) IBOutlet UIView *emailSubview;
-@property (nonatomic) IBOutlet UIButton *fbShareButton;
+@property (nonatomic) IBOutlet UIButton *facebookShareButton;
+@property (nonatomic) IBOutlet UIButton *facebookPageShareButton;
 @property (nonatomic) IBOutlet UIButton *twitterShareButton;
 @property (nonatomic) IBOutlet UILabel *emailLabel;
 @property (nonatomic) IBOutlet UIButton *tagsButton;
