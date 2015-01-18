@@ -246,7 +246,7 @@
             [spinner startAnimating];
         }
 
-        NSLog(@"GEO POINT %@, QUERY %@", [self.businessSearch.whereGeoPoint asApiString], self.businessSearch.query);
+        NSLog(@"GEO POINT %@, QUERY %@", [self.businessSearch.whereGeoPoint toApiValue], self.businessSearch.query);
         
         [Business listNearby:self.businessSearch.whereGeoPoint
                        query:self.businessSearch.query

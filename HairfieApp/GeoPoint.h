@@ -24,14 +24,14 @@
 -(id)initWithLongitude:(NSNumber *)aLongitude
               latitude:(NSNumber *)aLatitude;
 
-
-
 -(CLLocation *)location;
 
 -(NSNumber *)distanceTo:(GeoPoint *)point;
 
--(NSString *)asApiString;
--(NSDictionary*)toDictionary;
+-(NSDictionary *)toApiValue;
+
+-(NSDictionary *)toDictionary;
+
 -(BOOL)isNotValid;
 
 +(id)fromSetterValue:(id)aValue;
