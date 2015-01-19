@@ -21,6 +21,7 @@
 #import "PostHairfieEmailViewController.h"
 #import <LoopBack/LoopBack.h>
 #import <Social/Social.h>
+#import <UIAlertView+Blocks.h>
 
 #define OVERLAY_TAG 99
 
@@ -330,69 +331,90 @@
 
 -(IBAction)postHairfie:(id)sender
 {
-    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    if([delegate.credentialStore isLoggedIn]) {
-
-        [self addSpinnerAndOverlay];
-
-        NSLog(@"Post Hairfie");
-        while (uploadInProgress) {
-            NSLog(@"---------- Upload in progress ----------");
-            [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
+    if([appDelegate.credentialStore isLoggedIn]) {
+        if([self hasForgottenCustomerEmail]) {
+            [UIAlertView showWithTitle:NSLocalizedStringFromTable(@"No customer email", @"Post_Hairfie", nil)
+                               message:NSLocalizedStringFromTable(@"You forgot to enter a customer email", @"Post_Hairfie", nil)
+                     cancelButtonTitle:NSLocalizedStringFromTable(@"Add email", @"Post_Hairfie", nil)
+                     otherButtonTitles:@[NSLocalizedStringFromTable(@"Continue anyway", @"Post_Hairfie", nil)]
+                              tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                                  if (buttonIndex == [alertView cancelButtonIndex]) {
+                                      NSLog(@"Cancelled");
+                                      [self performSegueWithIdentifier:@"postHairfieEmail" sender:self];
+                                  } else {
+                                      NSLog(@"Continue anyway");
+                                      [self saveHairfiePost];
+                                  }
+                              }];
+        } else {
+            [self saveHairfiePost];
         }
 
-        NSLog(@"isuploaded %c", [_hairfiePost pictureIsUploaded]);
-        if(![_hairfiePost pictureIsUploaded]) {
-            [self removeSpinnerAndOverlay];
-            [self showUploadFailedAlertView];
-            return;
-        }
-        
-        _hairfiePost.description = self.hairfieDesc.text;
-        
-        if (![self.priceTextField.text isEqualToString:@""]) {
-            Money *price = [[Money alloc] initWithAmount:[NSNumber numberWithDouble:[self.priceTextField.text doubleValue]]
-                                                currency:@"EUR"];
-
-            _hairfiePost.price = price;
-        }
-
-        if (self.salonChosen) {
-            _hairfiePost.business = self.salonChosen;
-        }
-        
-
-        NSLog(@"Hairfie to post : %@", _hairfiePost);
-
-        void (^loadErrorBlock)(NSError *) = ^(NSError *error){
-            NSLog(@"Error : %@", error.description);
-            [self removeSpinnerAndOverlay];
-            [self showUploadFailedAlertView];
-
-        };
-        void (^loadSuccessBlock)(Hairfie *) = ^(Hairfie *hairfie){
-            NSLog(@"Hairfie Posté");
-            [self removeSpinnerAndOverlay];
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"currentUser" object:self];
-
-            if (self.hairfiePost.shareOnTwitter) {
-                SLComposeViewController *vc = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
-                [vc addURL:hairfie.landingPageUrl];
-                vc.completionHandler = ^(SLComposeViewControllerResult result) {
-                    [self performSegueWithIdentifier:@"toHome" sender:self];
-                };
-
-                [self presentViewController:vc animated:YES completion:nil];
-            } else {
-                [self performSegueWithIdentifier:@"toHome" sender:self];
-            }
-            HairfieNotifications *notif = [HairfieNotifications new];
-            [notif showNotificationWithMessage:NSLocalizedStringFromTable(@"Hairfie Post Successful", @"Post_Hairfie", nil) ForDuration:2.5];
-        };
-        [_hairfiePost saveWithSuccess:loadSuccessBlock failure:loadErrorBlock];
     } else {
         [self showNotLoggedAlertWithDelegate:nil andTitle:nil andMessage:nil];
     }
+}
+
+-(void)saveHairfiePost {
+    
+    [self addSpinnerAndOverlay];
+    
+    NSLog(@"Post Hairfie");
+    while (uploadInProgress) {
+        NSLog(@"---------- Upload in progress ----------");
+        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
+    }
+    
+    NSLog(@"isuploaded %c", [_hairfiePost pictureIsUploaded]);
+    if(![_hairfiePost pictureIsUploaded]) {
+        [self removeSpinnerAndOverlay];
+        [self showUploadFailedAlertView];
+        return;
+    }
+    
+    _hairfiePost.description = self.hairfieDesc.text;
+    
+    if (![self.priceTextField.text isEqualToString:@""]) {
+        Money *price = [[Money alloc] initWithAmount:[NSNumber numberWithDouble:[self.priceTextField.text doubleValue]]
+                                            currency:@"EUR"];
+        
+        _hairfiePost.price = price;
+    }
+    
+    if (self.salonChosen) {
+        _hairfiePost.business = self.salonChosen;
+    }
+    
+    
+    NSLog(@"Hairfie to post : %@", _hairfiePost);
+    
+    void (^loadErrorBlock)(NSError *) = ^(NSError *error){
+        NSLog(@"Error : %@", error.description);
+        [self removeSpinnerAndOverlay];
+        [self showUploadFailedAlertView];
+        
+    };
+    void (^loadSuccessBlock)(Hairfie *) = ^(Hairfie *hairfie){
+        NSLog(@"Hairfie Posté");
+        [self removeSpinnerAndOverlay];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"currentUser" object:self];
+        
+        if (self.hairfiePost.shareOnTwitter) {
+            SLComposeViewController *vc = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
+            [vc addURL:hairfie.landingPageUrl];
+            vc.completionHandler = ^(SLComposeViewControllerResult result) {
+                [self performSegueWithIdentifier:@"toHome" sender:self];
+            };
+            
+            [self presentViewController:vc animated:YES completion:nil];
+        } else {
+            [self performSegueWithIdentifier:@"toHome" sender:self];
+        }
+        HairfieNotifications *notif = [HairfieNotifications new];
+        [notif showNotificationWithMessage:NSLocalizedStringFromTable(@"Hairfie Post Successful", @"Post_Hairfie", nil) ForDuration:2.5];
+    };
+    [_hairfiePost saveWithSuccess:loadSuccessBlock failure:loadErrorBlock];
+    
 }
 
 -(void)addSpinnerAndOverlay
@@ -530,6 +552,12 @@
 {
     return [self.hairfiePost.business isFacebookPageShareEnabled]
         && [self currentUserIsManagerOfBusiness:self.hairfiePost.business];
+}
+
+-(BOOL)hasForgottenCustomerEmail
+{
+    return !self.hairfiePost.customerEmail
+    && [self currentUserIsManagerOfBusiness:self.hairfiePost.business];
 }
 
 -(IBAction)setHairfieEmail:(id)sender

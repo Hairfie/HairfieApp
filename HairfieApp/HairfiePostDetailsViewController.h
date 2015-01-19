@@ -40,7 +40,7 @@
 @property (nonatomic) IBOutlet UIButton *twitterShareButton;
 @property (nonatomic) IBOutlet UILabel *emailLabel;
 @property (nonatomic) IBOutlet UIButton *tagsButton;
--(IBAction)fbShare:(id)sender;
+//-(IBAction)fbShare:(id)sender;
 
 
 @property (nonatomic) BOOL isSalon;
