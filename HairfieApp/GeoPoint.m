@@ -65,9 +65,9 @@
     return [[CLLocation alloc] initWithLatitude:[self.lat doubleValue] longitude:[self.lng doubleValue]];
 }
 
--(NSString *)asApiString
+-(NSDictionary *)toApiValue
 {
-    return [[NSString alloc] initWithFormat:@"%@,%@", self.lng, self.lat];
+    return [self toDictionary];
 }
 
 -(NSDictionary*)toDictionary

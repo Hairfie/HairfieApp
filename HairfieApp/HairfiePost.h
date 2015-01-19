@@ -23,8 +23,8 @@
 @property (strong, nonatomic) Picture *picture;
 @property (strong, nonatomic) Hairdresser *hairdresser;
 @property (strong, nonatomic) NSString *description;
-@property (nonatomic)         BOOL shareOnFB;
-@property (nonatomic)         BOOL shareOnFBPRO;
+@property (nonatomic)         BOOL shareOnFacebook;
+@property (nonatomic)         BOOL shareOnFacebookPage;
 @property (nonatomic)         BOOL shareOnTwitter;
 @property (strong, nonatomic) Money *price;
 @property (strong, nonatomic) Business *business;
@@ -46,6 +46,10 @@
                         failure:(void(^)(NSError *error))aFailureHandler;
 
 -(BOOL)pictureIsUploaded;
+
+-(Picture *)mainPicture;
+-(BOOL)hasSecondaryPicture;
+-(Picture *)secondaryPicture;
 
 +(HairfieRepository *)repository;
 

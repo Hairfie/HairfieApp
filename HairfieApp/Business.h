@@ -54,6 +54,8 @@
 -(NSNumber *)ratingBetween:(NSNumber *)aMin
                        and:(NSNumber *)aMax;
 
+-(BOOL)isFacebookPageShareEnabled;
+
 +(void)listNearby:(GeoPoint *)aGeoPoint
             query:(NSString *)aQuery
             limit:(NSNumber *)aLimit

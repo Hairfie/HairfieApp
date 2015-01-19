@@ -42,6 +42,11 @@
     return self;
 }
 
+-(NSString *)authorDisplayName
+{
+    return [NSString stringWithFormat:@"%@ %@.", self.firstName, [self.lastName substringToIndex:1]];
+}
+
 -(NSNumber *)ratingBetween:(NSNumber *)theMin // TODO: scale from the min
                        and:(NSNumber *)theMax
 {

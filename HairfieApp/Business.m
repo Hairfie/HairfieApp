@@ -211,6 +211,11 @@
     return [self.gps distanceTo:aGeoPoint];
 }
 
+-(BOOL)isFacebookPageShareEnabled
+{
+    return nil != self.facebookPage;
+}
+
 +(void)listNearby:(GeoPoint *)aGeoPoint
             query:(NSString *)aQuery
             limit:(NSNumber *)aLimit
@@ -230,7 +235,7 @@
     }
 
     [businessData invokeStaticMethod:@"nearby"
-                          parameters:@{@"here": aGeoPoint.asApiString, @"limit" : aLimit, @"query" : aQuery}
+                          parameters:@{@"here": [aGeoPoint toApiValue], @"limit" : aLimit, @"query" : aQuery}
                              success:^(NSArray *results) {
                                  NSMutableArray *businesses = [[NSMutableArray alloc] init];
                                  for (NSDictionary *result in results) {

@@ -13,40 +13,30 @@
 @implementation HairfieShare
 
 +(void)shareHairfie:(NSString *)hairfieId
-            success:(void(^)())aSuccessHandler
-            failure:(void(^)(NSError *error))aFailureHandler {
-    
+         onFacebook:(BOOL)facebook
+       facebookPage:(BOOL)facebookPage
+        withSuccess:(void(^)())aSuccessHandler
+            failure:(void(^)(NSError *error))aFailureHandler
+{
     [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/hairfies/:hairfieId/share"
                                                                                  verb:@"POST"]
                                         forMethod:@"hairfies.share"];
     
-    [[[self class] repository] invokeStaticMethod:@"share"
-                               parameters:@{@"hairfieId": hairfieId, @"facebook": @"true"}
-                                  success:^(id value) {
-                                      NSLog(@"Sharing Result : %@", value);
-                                      aSuccessHandler();
-                                  }
-                                  failure:aFailureHandler];
-}
-
-+(void)shareHairfiePro:(NSString *)hairfieId
-            success:(void(^)())aSuccessHandler
-            failure:(void(^)(NSError *error))aFailureHandler {
-
-    
-    [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/hairfies/:hairfieId/share"
-                                                                                 verb:@"POST"]
-                                        forMethod:@"hairfies.share"];
+    NSDictionary *parameters = @{
+        @"hairfieId": hairfieId,
+        @"facebook": [NSNumber numberWithBool:facebook],
+        @"facebookPage": [NSNumber numberWithBool:facebookPage]
+    };
     
     [[[self class] repository] invokeStaticMethod:@"share"
-                                       parameters:@{@"hairfieId": hairfieId, @"facebookPage": @"true"}
+                                       parameters:parameters
                                           success:^(id value) {
                                               NSLog(@"Sharing Result : %@", value);
                                               aSuccessHandler();
                                           }
                                           failure:aFailureHandler];
-
 }
+
 +(HairfieRepository *)repository
 {
     return (HairfieRepository *)[[AppDelegate lbAdaptater] repositoryWithClass:[HairfieRepository class]];

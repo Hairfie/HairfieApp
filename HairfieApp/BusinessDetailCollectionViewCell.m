@@ -13,11 +13,14 @@
 #import "SimilarTableViewCell.h"
 #import "BusinessReview.h"
 
+#define NUM_REVIEWS 2
+#define NUM_SIMILAR_BUSINESSES 3
+#define REVIEW_ROW_HEIGHT 130
 
 @implementation BusinessDetailCollectionViewCell
 {
-     BOOL loadingLastestReviews;
-    NSArray *latestReviews;
+    BOOL loadingReviews;
+    NSArray *reviews;
     NSArray *similarBusinesses;
     Business *business;
     AppDelegate *appDelegate;
@@ -35,12 +38,10 @@
     self.reviewTableView.dataSource = self;
     self.similarTableView.delegate = self;
     self.similarTableView.dataSource = self;
-    self.moreReviewBttn.layer.cornerRadius = 5;
-    self.addReviewLbl.text = NSLocalizedStringFromTable(@"addReview", @"Salon_Detail", nil);
     self.seeDetailsLbl.text = NSLocalizedStringFromTable(@"seeDetails", @"Salon_Detail", nil);
     self.similarBusinessesLbl.text = NSLocalizedStringFromTable(@"similarBusinesses", @"Salon_Detail", nil);
     [self setupCrossSell];
-    [self setupRecentReviews];
+    [self setupReviews];
     self.address.text = business.address.street;
     self.city.text = [business.address displayCityAndZipCode];
 
@@ -79,26 +80,13 @@
         }
     }
     
-    self.addRatingSuperView.layer.cornerRadius = 5;
-    self.addRatingView.notSelectedImage = [UIImage imageNamed:@"not_selected_review.png"];
-    self.addRatingView.halfSelectedImage = [UIImage imageNamed:@"half_selected_review.png"];
-    self.addRatingView.fullSelectedImage = [UIImage imageNamed:@"selected_review.png"];
-    self.addRatingView.rating = 0;
-    self.addRatingView.editable = YES;
-    self.addRatingView.maxRating = 5;
-    self.addRatingView.delegate = self;
-    
     if ([business.numReviews isEqualToNumber:@0]) {
-        // hide reviews list
-        self.reviewTableView.hidden = YES;
-        self.moreReviewBttn.hidden = YES;
-        self.moreReviewButtonYpos.constant = 288;
+        [self.reviewsSectionHeight setConstant:0];
     } else {
+        NSInteger tes = MIN(NUM_REVIEWS, [business.numReviews integerValue]);
         
-        
-        NSInteger tes = MIN(2, [business.numReviews integerValue]);
-        self.reviewTableView.hidden = NO;
-        self.moreReviewButtonYpos.constant = 308 + (130 * tes);
+        [self.reviewsSectionHeight setConstant:(REVIEW_ROW_HEIGHT * tes + 70)];
+
         [_moreReviewBttn setTitle:[NSString stringWithFormat:NSLocalizedStringFromTable(@"more (%@)", @"Salon_Detail", nil), business.numReviews]
                          forState:UIControlStateNormal];
     }
@@ -117,31 +105,30 @@
  [[NSNotificationCenter defaultCenter] postNotificationName:@"showBusinessMap" object:nil];
 }
 
--(void)setupRecentReviews
+-(void)setupReviews
 {
-    
     if ([business.numReviews isEqualToNumber:@0]) {
-        loadingLastestReviews = NO;
+        loadingReviews = NO;
         return;
     }
     
-    if (loadingLastestReviews) {
+    if (loadingReviews) {
         return;
     }
     
-    loadingLastestReviews = YES;
+    loadingReviews = YES;
     
     [BusinessReview listLatestByBusiness:business.id
-                                   limit:@2
+                                   limit:[NSNumber numberWithInt:NUM_REVIEWS]
                                     skip:@0
-                                 success:^(NSArray *reviews) {
-                                     latestReviews = reviews;
-                                     loadingLastestReviews = NO;
+                                 success:^(NSArray *loadedReviews) {
+                                     reviews = loadedReviews;
+                                     loadingReviews = NO;
                                      [self.reviewTableView reloadData];
                                  }
                                  failure:^(NSError *error) {
                                      NSLog(@"Failed to load last reviews: %@", error.localizedDescription);
-                                     loadingLastestReviews = NO;
+                                     loadingReviews = NO;
                                  }];
 }
 
@@ -150,7 +137,7 @@
     if (!business.crossSell) return;
     
     [Business listSimilarTo:business.id
-                      limit:@3
+                      limit:[NSNumber numberWithInt:NUM_SIMILAR_BUSINESSES]
                     success:^(NSArray *businesses) {
                         similarBusinesses = businesses;
                         [self.similarTableView reloadData];
@@ -158,23 +145,6 @@
                     failure:^(NSError *error) {
                         NSLog(@"%@", error.localizedDescription);
                     }];
-}
-
--(void)rateView:(RatingView *)rateView ratingDidChange:(float)rating
-{
-   
-    
-    if (appDelegate.currentUser){
-        NSDictionary* userInfo = @{@"reviewRating": @(self.addRatingView.rating)};
-        NSNotificationCenter* nc = [NSNotificationCenter defaultCenter];
-        [nc postNotificationName:@"addReview" object:self userInfo:userInfo];
-        
-    } else {
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"NoUserConnected" object:self];
-    
-    }
-     self.addRatingView.rating = 0;
-    
 }
 
 -(void)addPhoneNumbersToView
@@ -206,12 +176,11 @@
 
 -(IBAction)showReviews:(id)sender
 {
-    self.addRatingView.rating = 0;
-    
-    if (appDelegate.currentUser)
+    if (appDelegate.currentUser) {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"showReviews" object:self];
-    else
+    } else {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"NoUserConnected" object:self];
+    }
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -222,7 +191,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (tableView == self.reviewTableView) {
-        return latestReviews.count;
+        return reviews.count;
     } else if (tableView == self.similarTableView) {
         return similarBusinesses.count;
     } else {
@@ -232,12 +201,13 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (tableView == self.reviewTableView)
-        return 130;
-    else if (tableView == self.similarTableView)
+    if (tableView == self.reviewTableView) {
+        return REVIEW_ROW_HEIGHT;
+    } else if (tableView == self.similarTableView) {
         return 110;
-    else
+    } else {
         return 90;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -252,7 +222,7 @@
             cell = [nib objectAtIndex:0];
         }
         
-        cell.review = latestReviews[indexPath.row];
+        cell.review = reviews[indexPath.row];
         
         return cell;
     } else if (tableView == self.similarTableView) {
