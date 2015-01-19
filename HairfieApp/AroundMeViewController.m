@@ -12,6 +12,7 @@
 #import "AppDelegate.h"
 
 #import "CameraOverlayViewController.h"
+#import "SearchFilterViewController.h"
 
 #import "SalonTableViewCell.h"
 #import "BusinessViewController.h"
@@ -80,6 +81,12 @@
     [self.hairdresserTableView addSubview:refreshControl];
     
     [self updateSearchResults];
+}
+
+
+-(IBAction)modifySearchFilters:(id)sender
+{
+    [self performSegueWithIdentifier:@"modifySearchFilters" sender:self];
 }
 
 
@@ -332,13 +339,26 @@
         BusinessViewController *business = [segue destinationViewController];
         [business setBusiness:[businesses objectAtIndex:rowSelected]];
     }
-    if ([segue.identifier isEqualToString:@"cameraOverlay"])
-    {
+    if ([segue.identifier isEqualToString:@"cameraOverlay"]) {
         CameraOverlayViewController *cameraOverlay= [segue destinationViewController];
         
         cameraOverlay.isHairfie = YES;
     }
+    if ([segue.identifier isEqualToString:@"modifySearchFilters"]) {
+        
+        SearchFilterViewController *searchFilterVc = [segue destinationViewController];
+        searchFilterVc.isModal = YES;
+        searchFilterVc.myDelegate = self;
+        
+    }
 }
+
+- (void)didSetABusinessSearch:(BusinessSearch*)aBusinessSearch{
+
+    NSLog(@"business search %@", aBusinessSearch.where);
+
+}
+
 
 -(IBAction)takeHairfie:(id)sender
 {

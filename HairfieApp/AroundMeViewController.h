@@ -12,12 +12,16 @@
 #import "AppDelegate.h"
 #import "OLEContainerScrollView.h"
 
+#import "SearchFilterViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "UIImage+Resize.h"
 #import "AdvanceSearch.h"
+#import "SearchFilterViewController.h"
 #import "BusinessSearch.h"
 
-@interface AroundMeViewController : UIViewController <MKMapViewDelegate, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate,UIGestureRecognizerDelegate,SDWebImageManagerDelegate, UITextViewDelegate, UITextFieldDelegate>
+
+
+@interface AroundMeViewController : UIViewController <MKMapViewDelegate, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate,UIGestureRecognizerDelegate,SDWebImageManagerDelegate, UITextViewDelegate, UITextFieldDelegate,SearchFilterDelegate>
 {
     NSString *test;
 }
@@ -25,7 +29,6 @@
 @property (nonatomic) NSString *longitude;
 @property (nonatomic) NSString *latitude;
 @property (nonatomic) AppDelegate *delegate;
-
 
 @property (nonatomic) IBOutlet MKMapView *mapView;
 @property (nonatomic) IBOutlet UITableView *hairdresserTableView;
