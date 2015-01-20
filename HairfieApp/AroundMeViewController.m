@@ -89,7 +89,6 @@
     [self performSegueWithIdentifier:@"modifySearchFilters" sender:self];
 }
 
-
 -(void)hideKeyboard
 {
     [_searchView.searchByLocation resignFirstResponder];

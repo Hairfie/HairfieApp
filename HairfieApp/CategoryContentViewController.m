@@ -25,9 +25,11 @@
     [super viewDidLoad];
    
     [self.contentCollection registerNib:[UINib nibWithNibName:@"CategoriesCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:CATEGORY_CELL_IDENTIFIER];
-    categoriesNames = [[NSArray alloc] initWithObjects:@"FEMME",@"HOMME",@"BARBIER",@"MARIAGE",@"COLORATION", nil];
+    categoriesNames = [[NSArray alloc] initWithObjects:NSLocalizedStringFromTable(@"around me", @"Feed", nil),NSLocalizedStringFromTable(@"women", @"Feed", nil),NSLocalizedStringFromTable(@"men", @"Feed", nil),NSLocalizedStringFromTable(@"children", @"Feed", nil), nil];
     
-    categoriesImages = [[NSArray alloc] initWithObjects:@"woman-category.png",@"man-category.png",@"barber-category.png",@"marriage-category.png",@"color-category.png", nil];
+    
+    
+    categoriesImages = [[NSArray alloc] initWithObjects:@"",@"woman-category.png",@"man-category.png",@"", nil];
 
     
     // Do any additional setup after loading the view.
@@ -97,6 +99,7 @@
     [[NSNotificationCenter defaultCenter]postNotificationName:@"searchFromFeed" object:self];
            
 }
+
 
 
 
