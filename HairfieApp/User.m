@@ -126,34 +126,35 @@
 }
 
 
-+(void)addHairdresserToFavorite:(NSString *)hairdresserId
-            asUser:(NSString *)userId
-           success:(void (^)())aSuccessHandler
-           failure:(void (^)(NSError *))aFailureHandler
++(void)addBusinessMember:(NSString *)businessMemberId
+       toFavoritesOfUser:(NSString *)userId
+                 success:(void (^)())aSuccessHandler
+                 failure:(void (^)(NSError *))aFailureHandler
 {
-    [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/users/:userId/favorite-business-members/:hairdresserId"
+    [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/users/:userId/favorite-business-members/:businessMemberId"
                                                                                  verb:@"PUT"]
-                                        forMethod:@"users.favoriteHairdresser"];
+                                        forMethod:@"users.favoriteBusinessMember"];
     
-    [[User repository] invokeStaticMethod:@"favoriteHairdresser"
-                               parameters:@{@"userId": userId, @"hairdresserId": hairdresserId}
+    [[User repository] invokeStaticMethod:@"favoriteBusinessMember"
+                               parameters:@{@"userId": userId, @"businessMemberId": businessMemberId}
                                   success:^(id value) {
                                       aSuccessHandler();
                                   }
                                   failure:aFailureHandler];
 }
 
-+(void)removeHairdresserFromFavorite:(NSString *)hairdresserId
-              asUser:(NSString *)userId
-             success:(void (^)())aSuccessHandler
-             failure:(void (^)(NSError *))aFailureHandler
++(void)removeBusinessMember:(NSString *)businessMemberId
+        fromFavoritesOfUser:(NSString *)userId
+                    success:(void (^)())aSuccessHandler
+                    failure:(void (^)(NSError *))aFailureHandler
+
 {
-    [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/users/:userId/favorite-business-members/:hairdresserId"
+    [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/users/:userId/favorite-business-members/:businessMemberId"
                                                                                  verb:@"DELETE"]
-                                        forMethod:@"users.unfavoriteHairdresser"];
+                                        forMethod:@"users.unfavoriteBusinessMember"];
     
-    [[User repository] invokeStaticMethod:@"unfavoriteHairdresser"
-                               parameters:@{@"userId": userId, @"hairdresserId": hairdresserId}
+    [[User repository] invokeStaticMethod:@"unfavoriteBusinessMember"
+                               parameters:@{@"userId": userId, @"businessMemberId": businessMemberId}
                                   success:^(id value) {
                                       aSuccessHandler();
                                   }
@@ -161,17 +162,17 @@
 }
 
 
-+(void)isHairdresser:(NSString *)hairdresserId
-     favoritedByUser:(NSString *)userId
-         success:(void(^)(BOOL isLiked))aSuccessHandler
-         failure:(void(^)(NSError *))aFailureHandler
++(void)isBusinessMember:(NSString *)businessMemberId
+         favoriteOfUser:(NSString *)userId
+                success:(void(^)(BOOL isLiked))aSuccessHandler
+                failure:(void(^)(NSError *))aFailureHandler
 {
-    [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/users/:userId/favorite-business-members/:hairdresserId"
+    [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/users/:userId/favorite-business-members/:businessMemberId"
                                                                                  verb:@"HEAD"]
-                                        forMethod:@"users.isFavoritedHairdresser"];
+                                        forMethod:@"users.isFavoriteBusinessMember"];
     
-    [[User repository] invokeStaticMethod:@"isFavoritedHairdresser"
-                               parameters:@{@"userId": userId, @"hairdresserId": hairdresserId}
+    [[User repository] invokeStaticMethod:@"isFavoriteBusinessMember"
+                               parameters:@{@"userId": userId, @"businessMemberId": businessMemberId}
                                   success:^(id value) {
                                       aSuccessHandler(YES);
                                   }

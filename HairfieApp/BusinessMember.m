@@ -1,38 +1,51 @@
 //
-//  Hairdresser.m
+//  BusinessMember.m
 //  HairfieApp
 //
 //  Created by Leo Martin on 01/10/2014.
 //  Copyright (c) 2014 Hairfie. All rights reserved.
 //
 
-#import "Hairdresser.h"
+#import "BusinessMember.h"
 #import "AppDelegate.h"
-#import "HairdresserRepository.h"
+#import "BusinessMemberRepository.h"
 #import "SetterUtils.h"
 
-@implementation Hairdresser
+@implementation BusinessMember
 
 -(void)setBusiness:(id)aBusiness
 {
     _business = [Business fromSetterValue:aBusiness];
 }
 
+-(void)setPicture:(id)aPicture
+{
+    _picture = [Picture fromSetterValue:aPicture];
+}
+
 -(id)initWithDictionary:(NSDictionary *)aDictionary
 {
-    self = (Hairdresser *)[[[self class] repository] modelWithDictionary:aDictionary];
+    self = (BusinessMember *)[[[self class] repository] modelWithDictionary:aDictionary];
     
     if ([[aDictionary valueForKey:@"active"] isEqualToNumber:@1])
         self.active = YES;
     else
         self.active = NO;
-    
+
     return self;
 }
 
 -(NSString *)displayFullName
 {
     return [NSString stringWithFormat:@"%@ %@",self.firstName, self.lastName];
+}
+
+-(NSURL *)pictureUrlWithWidth:(NSNumber *)aWdith
+                       height:(NSNumber *)anHeight
+{
+    if (nil == self.picture) return nil;
+    
+    return [self.picture urlWithWidth:aWdith height:anHeight];
 }
 
 -(NSDictionary *)toDictionary
@@ -47,6 +60,10 @@
 
     if (nil != self.business.id) {
         [temp setObject:self.business.id forKey:@"businessId"];
+    }
+    
+    if (nil != self.picture) {
+        [temp setObject:[self.picture toApiValue] forKey:@"picture"];
     }
 
     if (nil != self.firstName) {
@@ -92,7 +109,7 @@
        
         [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/businessMembers"
                                                                                      verb:@"POST"]
-                                            forMethod:@"hairdressers.create"];
+                                            forMethod:@"businessMembers"];
 
         [[[self class] repository] invokeStaticMethod:@"create"
                                            parameters:[self toDictionary]
@@ -101,13 +118,31 @@
     } else {
         [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/businessMembers/:id"
                                                                                      verb:@"PUT"]
-                                            forMethod:@"hairdressers.update"];
+                                            forMethod:@"businessMembers.update"];
 
         [[[self class] repository] invokeStaticMethod:@"update"
                                            parameters:[self toDictionary]
                                               success:onSuccess
                                               failure:aFailureHandler];
     }
+}
+
++(void)getById:(NSString *)aBusinessMemberId
+   withSuccess:(void (^)(BusinessMember *))aSuccessHandler
+       failure:(void (^)(NSError *))aFailureHandler
+{
+    // we can't simply rely on the findById method as we need to initialize
+    // the result model using the initWithDictionary method
+    [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/businessMembers/:businessMemberId"
+                                                                                 verb:@"GET"]
+                                        forMethod:@"businessMembers.getById"];
+    
+    [[[self class] repository] invokeStaticMethod:@"getById"
+                                       parameters:@{@"businessMemberId": aBusinessMemberId}
+                                          success:^(id value) {
+                                              aSuccessHandler([[[self class] alloc] initWithDictionary:value]);
+                                          }
+                                          failure:aFailureHandler];
 }
 
 +(id)fromSetterValue:(id)aValue
@@ -117,7 +152,7 @@
 
 +(LBModelRepository *)repository
 {
-    return [[AppDelegate lbAdaptater] repositoryWithClass:[HairdresserRepository class]];
+    return [[AppDelegate lbAdaptater] repositoryWithClass:[BusinessMemberRepository class]];
 }
 
 @end

@@ -49,9 +49,8 @@
 }
 
 -(void)uploadPictureWithSuccess:(void(^)())aSuccessHandler
-             failure:(void(^)(NSError *error))aFailureHandler {
-    
-    
+                        failure:(void(^)(NSError *error))aFailureHandler
+{
     Picture *firstPic = [self.pictures objectAtIndex:0];
     [firstPic uploadWithSuccess:^{
         NSLog(@"Uploaded 1st pic");
@@ -102,7 +101,6 @@
     if(self.description != nil) {
         [parameters setObject:self.description forKey:@"description"];
     }
-  
     if(self.business != nil) {
         [parameters setObject:self.business.id forKey:@"businessId"];
     }
@@ -112,9 +110,8 @@
     if(self.customerEmail != nil) {
         [parameters setObject:self.customerEmail forKey:@"customerEmail"];
     }
-    if (self.hairdresser != nil)
-    {
-        [parameters setObject:self.hairdresser.id forKey:@"hairdresserId"];
+    if (self.businessMember != nil) {
+        [parameters setObject:self.businessMember.id forKey:@"businessMemberId"];
     }
     if (self.tags != nil) {
         [parameters setObject:Underscore.array(self.tags).map(^(Tag *t) { return [t toApiValue]; }).unwrap

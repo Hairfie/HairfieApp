@@ -1,14 +1,14 @@
 //
-//  HairdresserDetailViewController.m
+//  BusinessMemberViewController.m
 //  HairfieApp
 //
 //  Created by Leo Martin on 11/25/14.
 //  Copyright (c) 2014 Hairfie. All rights reserved.
 //
 
-#import "HairdresserDetailViewController.h"
+#import "BusinessMemberViewController.h"
 
-#import "HairdresserReusableView.h"
+#import "BusinessMemberReusableView.h"
 #import "LoadingCollectionViewCell.h"
 #import "CustomCollectionViewCell.h"
 #import "DetailsCollectionViewCell.h"
@@ -18,20 +18,16 @@
 #import "NotLoggedAlert.h"
 #import "HairfieNotifications.h"
 
-@interface HairdresserDetailViewController ()
-
-@end
-
 #define HAIRFIE_CELL @"hairfieCell"
 #define LOADING_CELL @"loadingCell"
 #define DETAIL_CELL @"detailCell"
 
-@implementation HairdresserDetailViewController
+@implementation BusinessMemberViewController
 {
     BOOL isHairfiesTab;
     BOOL loadingNext;
     BOOL endOfScroll;
-    NSMutableArray *hairdresserHairfies;
+    NSMutableArray *hairfies;
     Hairfie *hairfiePicked;
     NSInteger hairfiesCount;
 }
@@ -66,11 +62,27 @@
 
     isHairfiesTab = NO;
     
-    [self getHairdresserHairfies];
+    hairfies = [[NSMutableArray alloc] init];
+    endOfScroll = NO;
+    [self loadHairfies];
     // Do any additional setup after loading the view.
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    // lazy load business
+    if (nil == self.business) {
+        [self loadBusiness];
+        self.business = self.businessMember.business; // temporary use values from partial object
+    }
+}
 
+-(void)setBusiness:(Business *)business
+{
+    _business = business;
+    
+    [self.collectionView reloadData];
+}
 
 -(void)addToFavorite:(NSNotification*)notification
 {
@@ -78,22 +90,17 @@
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     User *currentUser = delegate.currentUser;
     
-    if([delegate.credentialStore isLoggedIn]) {
-        
-        [User addHairdresserToFavorite:self.hairdresser.id
-                                asUser:currentUser.id
-                               success:^(){
-                               
-                                   HairfieNotifications *notif = [HairfieNotifications new];
-                                   [notif showNotificationWithMessage:NSLocalizedStringFromTable(@"Hairdresser Fav", @"Salon_Detail", nil) ForDuration:2.5];
-                               }
-                               failure: ^(NSError *error) {
-                                   
-                                   NSLog(@"Failed to add to favorites: %@", error.localizedDescription);
-
-                               }];
-        
-         
+    if ([delegate.credentialStore isLoggedIn]) {
+        [User addBusinessMember:self.businessMember.id
+              toFavoritesOfUser:currentUser.id
+                        success:^() {
+                            HairfieNotifications *notif = [HairfieNotifications new];
+                            [notif showNotificationWithMessage:NSLocalizedStringFromTable(@"Hairdresser Fav", @"Salon_Detail", nil)
+                                                   ForDuration:2.5];
+                        }
+                        failure:^(NSError *error) {
+                            NSLog(@"Failed to add to favorites: %@", error.localizedDescription);
+                        }];
     } else {
         [self showNotLoggedAlertWithDelegate:nil andTitle:nil andMessage:nil];
     }
@@ -101,23 +108,16 @@
 
 -(void)removeFromFavorite:(NSNotification*)notification
 {
-    
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     User *currentUser = delegate.currentUser;
     
-    NSLog(@"USER ID %@, HAIRDRESSER ID %@", currentUser.id, self.hairdresser.id);
-   if([delegate.credentialStore isLoggedIn]) {
-       
-       [User removeHairdresserFromFavorite:self.hairdresser.id
-                               asUser:currentUser.id
-                              success:^(){
-                                  
-                                  
-                              }
-                              failure: ^(NSError *error) {
-                                   NSLog(@"Failed to remove from favorites: %@", error.localizedDescription);
-                                  
-                              }];
+    if ([delegate.credentialStore isLoggedIn]) {
+        [User removeBusinessMember:self.businessMember.id
+               fromFavoritesOfUser:currentUser.id
+                           success:^{}
+                           failure:^(NSError *error) {
+                               NSLog(@"Failed to remove from favorites: %@", error.localizedDescription);
+                           }];
 
    } else {
        [self showNotLoggedAlertWithDelegate:nil andTitle:nil andMessage:nil];
@@ -143,58 +143,52 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
--(void)getHairdresserHairfies
+-(void)loadBusiness
 {
-    hairdresserHairfies = [[NSMutableArray alloc] init];
-    endOfScroll = NO;
-    [self loadHairfies];
+    [Business getById:self.businessMember.business.id
+          withSuccess:^(Business *business) {
+              self.business = business;
+          }
+              failure:^(NSError *error) {
+                  NSLog(@"Failed to load business: %@", error.localizedDescription);
+              }];
 }
-
+         
 -(void)loadHairfies
 {
     if (endOfScroll || loadingNext) return;
     
     
     NSDate *until = nil;
-    if (hairdresserHairfies.count > 0) {
-        until = [hairdresserHairfies[0] createdAt];
+    if (hairfies.count > 0) {
+        until = [hairfies[0] createdAt];
     }
     
     loadingNext = YES;
     
-    
-    
-    
-    [Hairfie listLatestByHairdresser:self.hairdresser.id
-                            limit:[NSNumber numberWithInt:HAIRFIES_PAGE_SIZE]
-                            skip:[NSNumber numberWithLong:hairdresserHairfies.count]
-                         success:^(NSArray *results) {
+    [Hairfie listLatestByBusinessMember:self.businessMember.id
+                                  limit:[NSNumber numberWithInt:HAIRFIES_PAGE_SIZE]
+                                   skip:[NSNumber numberWithLong:hairfies.count]
+                                success:^(NSArray *results) {
+                                    if (results.count < HAIRFIES_PAGE_SIZE) {
+                                        endOfScroll = YES;
+                                    }
                              
-                             if (results.count < HAIRFIES_PAGE_SIZE) {
-                                 endOfScroll = YES;
-                                 
-                             }
-                             
-                             for (Hairfie *result in results) {
-                                 if (![hairdresserHairfies containsObject:result]) {
-                                     [hairdresserHairfies addObject:result];
-                                 }
-                             }
-                           
-                             hairfiesCount = hairdresserHairfies.count;
-                             [self.collectionView reloadData];
-                             
-                             if (results.count < HAIRFIES_PAGE_SIZE) {
-                                 NSLog(@"Got %@ harfies instead of %@ asked, we reached the end.", [NSNumber numberWithLong:results.count], [NSNumber numberWithInt:HAIRFIES_PAGE_SIZE]);
-                                 endOfScroll = YES;
-                             }
-                             
-                             loadingNext = NO;
-                         }
-                         failure:^(NSError *error) {
-                             NSLog(@"%@", error.localizedDescription);
-                             loadingNext = NO;
-                         }];
+                                    for (Hairfie *result in results) {
+                                        if (![hairfies containsObject:result]) {
+                                            [hairfies addObject:result];
+                                        }
+                                    }
+                                    
+                                    hairfiesCount = hairfies.count;
+                                    [self.collectionView reloadData];
+                                    
+                                    loadingNext = NO;
+                                }
+                                failure:^(NSError *error) {
+                                    NSLog(@"Failed to load next hairfies: %@", error.localizedDescription);
+                                    loadingNext = NO;
+                                }];
 }
 
 
@@ -202,8 +196,10 @@
 
 -(NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section
 {
-    if (isHairfiesTab)
-        return hairdresserHairfies.count + 1;
+    if (isHairfiesTab) {
+        return hairfies.count + 1;
+    }
+
     return 1;
 }
 
@@ -222,17 +218,17 @@
 {
     UICollectionReusableView *headerView = nil;
     
-    HairdresserReusableView *hairdresserHeader = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"hairdresserReusableView" forIndexPath:indexPath];
+    BusinessMemberReusableView *businessMemberHeader = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"businessMemberReusableView" forIndexPath:indexPath];
     
     
-    hairdresserHeader.hairdresser = self.hairdresser;
-    hairdresserHeader.business = self.business;
-    hairdresserHeader.hairfiesCount = hairfiesCount;
+    businessMemberHeader.businessMember = self.businessMember;
+    businessMemberHeader.business = self.business;
+    businessMemberHeader.hairfiesCount = hairfiesCount;
   
-    [hairdresserHeader setupView];
+    [businessMemberHeader setupView];
     
     
-    headerView = hairdresserHeader;
+    headerView = businessMemberHeader;
     
     return headerView;
     
@@ -244,7 +240,7 @@
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     if (isHairfiesTab == YES) {
-        if (indexPath.row < hairdresserHairfies.count) {
+        if (indexPath.row < hairfies.count) {
             return CGSizeMake(145, 210);
         } else {
             
@@ -259,9 +255,9 @@
 {
     
     if (isHairfiesTab == YES) {
-        if (indexPath.row < hairdresserHairfies.count) {
+        if (indexPath.row < hairfies.count) {
             //load more hairfies?
-            if (indexPath.row == (hairdresserHairfies.count - HAIRFIES_PAGE_SIZE + 1)) {
+            if (indexPath.row == (hairfies.count - HAIRFIES_PAGE_SIZE + 1)) {
                 [self loadHairfies];
             }
             return [self hairfieCellAtIndexPath:indexPath];
@@ -277,7 +273,7 @@
     DetailsCollectionViewCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:DETAIL_CELL forIndexPath:indexPath];
     
     
-    [cell setupCell:self.business];
+    [cell setBusiness:self.business];
     
     return cell;
 }
@@ -299,7 +295,7 @@
 {
     CustomCollectionViewCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:HAIRFIE_CELL
                                                                                     forIndexPath:indexPath];
-    Hairfie *hairfie = (Hairfie *)[hairdresserHairfies objectAtIndex:indexPath.item];
+    Hairfie *hairfie = (Hairfie *)[hairfies objectAtIndex:indexPath.item];
     
     [cell setHairfie:hairfie];
     
@@ -310,7 +306,7 @@
 {
    if (isHairfiesTab == YES)
    {
-       hairfiePicked = [hairdresserHairfies objectAtIndex:indexPath.item];
+       hairfiePicked = [hairfies objectAtIndex:indexPath.item];
        [self performSegueWithIdentifier:@"showHairfieDetail" sender:self];
    }
 }

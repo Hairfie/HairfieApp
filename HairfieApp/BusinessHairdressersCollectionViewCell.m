@@ -10,13 +10,9 @@
 
 @implementation BusinessHairdressersCollectionViewCell
 
-- (void)awakeFromNib {
-    // Initialization code
-}
-
--(void)setHairdresser:(Hairdresser*)hairdresser
+-(void)setBusinessMember:(BusinessMember *)businessMember
 {
-    [self.hairdresserName setText:[hairdresser displayFullName]];
+    [self.hairdresserName setText:[businessMember displayFullName]];
 }
 
 @end

@@ -13,7 +13,7 @@
 #import "AppDelegate.h"
 #import "Service.h"
 #import "Picture.h"
-#import "Hairdresser.h"
+#import "BusinessMember.h"
 #import "BusinessReview.h"
 #import "SetterUtils.h"
 
@@ -60,7 +60,7 @@
     NSMutableArray *temp = [[NSMutableArray alloc] init];
     if (![hairdressers isEqual:[NSNull null]]) {
         for (id hairdresser in hairdressers) {
-            [temp addObject:[Hairdresser fromSetterValue:hairdresser]];
+            [temp addObject:[BusinessMember fromSetterValue:hairdresser]];
         }
     }
     _activeHairdressers = temp;
@@ -216,6 +216,15 @@
     return nil != self.facebookPage;
 }
 
+
+-(NSURL *)thumbnailUrlWithWidth:(NSNumber *)aWidth
+                         height:(NSNumber *)anHeight
+{
+    if (nil == self.thumbnail) return nil;
+    
+    return [self.thumbnail urlWithWidth:aWidth height:anHeight];
+}
+
 +(void)listNearby:(GeoPoint *)aGeoPoint
             query:(NSString *)aQuery
             limit:(NSNumber *)aLimit
@@ -252,43 +261,33 @@
 -(void)updateWithSuccess:(void(^)(NSArray *results))aSuccessHandler
                  failure:(void(^)(NSError *error))aFailureHandler
 {
-    [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/businesses/:id" verb:@"PUT"] forMethod:@"businesses.update"];
+    [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/businesses/:id" verb:@"PUT"]
+                                        forMethod:@"businesses.update"];
     
-        NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     
-       [parameters setObject:self.id forKey:@"id"];
+    [parameters setObject:self.id forKey:@"id"];
     
-    if (self.name != nil)
+    if (self.name != nil) {
         [parameters setObject:self.name forKey:@"name"];
-  
-    if (self.gps != nil)
-        [parameters setObject:[self.gps toDictionary] forKey:@"gps"];
- 
-    if (self.phoneNumber != nil)
-        [parameters setObject:self.phoneNumber forKey:@"phoneNumber"];
-
-   if (self.timetable != nil)
-        [parameters setObject:[self.timetable toDictionary] forKey:@"timetable"];
-
-    if (self.address != nil)
-        [parameters setObject:[self.address toDictionary]  forKey:@"address"];
-    
-     NSMutableArray *hairdresserToSend = [[NSMutableArray alloc] init];
-    
-    if (self.activeHairdressers != nil)
-    {
-          //NSMutableArray *hairdresserToSend = [[NSMutableArray alloc] init];
-        
-        for (int i = 0; i < [self.activeHairdressers count]; i++)
-        {
-            Hairdresser *hairdresser = [self.activeHairdressers objectAtIndex:i];
-            [hairdresserToSend addObject:[hairdresser toDictionary]];
-            
-        }
-        
-        [parameters setObject:hairdresserToSend forKey:@"hairdressers"];
     }
-    
+  
+    if (self.gps != nil) {
+        [parameters setObject:[self.gps toDictionary] forKey:@"gps"];
+    }
+ 
+    if (self.phoneNumber != nil) {
+        [parameters setObject:self.phoneNumber forKey:@"phoneNumber"];
+    }
+
+    if (self.timetable != nil) {
+        [parameters setObject:[self.timetable toDictionary] forKey:@"timetable"];
+    }
+
+    if (self.address != nil) {
+        [parameters setObject:[self.address toDictionary]  forKey:@"address"];
+    }
+
     if (self.pictures != (id)[NSNull null])
     {
         NSMutableArray *pictureToSend = [[NSMutableArray alloc] init];

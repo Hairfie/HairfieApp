@@ -10,9 +10,9 @@
 #import "FavoriteViewController.h"
 #import "UIViewController+ECSlidingViewController.h"
 #import "FavoriteCell.h"
-#import "Hairdresser.h"
+#import "BusinessMember.h"
 #import "BusinessViewController.h"
-#import "HairdresserDetailViewController.h"
+#import "BusinessMemberViewController.h"
 #import "BusinessMemberFavorite.h"
 
 @interface FavoriteViewController ()
@@ -21,11 +21,11 @@
 
 @implementation FavoriteViewController
 {
-    NSArray *favoriteHairdressers;
+    NSArray *favoriteBusinessMembers;
     AppDelegate *appDelegate;
     
     Business *selectedBusiness;
-    Hairdresser *selectedHairdresser;
+    BusinessMember *selectedBusinessMember;
     BOOL isBusiness;
     
 }
@@ -39,7 +39,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(segueToBusiness:) name:@"goToBusiness" object:nil];
      
-    [self getFavoriteHairdressers];
+    [self getFavoriteBusinessMembers];
     
     [self.topView addBottomBorderWithHeight:1.0 andColor:[UIColor lightGrey]];
     // Do any additional setup after loading the view.
@@ -54,15 +54,14 @@
     
 }
      
--(void)getFavoriteHairdressers {
-    
-    
+-(void)getFavoriteBusinessMembers
+{
     void (^loadErrorBlock)(NSError *) = ^(NSError *error){
         NSLog(@"Error  %@", [error userInfo]);
     };
     void (^loadSuccessBlock)(NSArray *) = ^(NSArray *result){
-        favoriteHairdressers = result;
-        self.tableViewHeight.constant = favoriteHairdressers.count * 100;
+        favoriteBusinessMembers = result;
+        self.tableViewHeight.constant = favoriteBusinessMembers.count * 100;
         if (self.tableViewHeight.constant > self.view.bounds.size.height - 64)
             self.tableViewHeight.constant = self.view.bounds.size.height - 64;
         [self.tableView reloadData];
@@ -90,18 +89,20 @@
     cell.indentationWidth = 0;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
-    Hairdresser *hairdresser = [[favoriteHairdressers objectAtIndex:indexPath.row] businessMember];
+    BusinessMember *businessMember = [[favoriteBusinessMembers objectAtIndex:indexPath.row] businessMember];
 
-    if ([hairdresser.firstName length] > 0)
-        [cell setupCell:hairdresser];
-    else
+    if ([businessMember.firstName length] > 0) {
+        [cell setBusinessMember:businessMember];
+    } else {
         [cell setHidden:YES];
+    }
+
     return cell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return favoriteHairdressers.count;
+    return favoriteBusinessMembers.count;
 }
 
 
@@ -112,53 +113,39 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    selectedHairdresser = [favoriteHairdressers[indexPath.row] businessMember];
+    selectedBusinessMember = [favoriteBusinessMembers[indexPath.row] businessMember];
     isBusiness = NO;
-    [self getBusiness:selectedHairdresser.business.id];
+    [self getBusiness:selectedBusinessMember.business.id];
 }
 
 
--(void)getBusiness:(NSString*)businessId{
-    
-    
+-(void)getBusiness:(NSString*)businessId
+{
     [Business getById:businessId withSuccess:^(Business *business) {
-        selectedBusiness = business;
-        if (isBusiness == YES)
-            [self performSegueWithIdentifier:@"showBusiness" sender:self];
-        else
-            [self performSegueWithIdentifier:@"showHairdresser" sender:self];
-        
-    }
-              failure:^(NSError *error) {
-                  NSLog(@"Failed to retrieve complete business: %@", error.localizedDescription);
-              }];
+                                    selectedBusiness = business;
+                                    if (isBusiness == YES) {
+                                        [self performSegueWithIdentifier:@"showBusiness" sender:self];
+                                    } else {
+                                        [self performSegueWithIdentifier:@"showHairdresser" sender:self];
+                                    }
+                                }
+                                    failure:^(NSError *error) {
+                                        NSLog(@"Failed to retrieve complete business: %@", error.localizedDescription);
+                                    }];
     
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"showHairdresser"]){
-        HairdresserDetailViewController *hairdresserVc = [segue destinationViewController];
-        hairdresserVc.hairdresser = selectedHairdresser;
-        hairdresserVc.business = selectedBusiness;
+        BusinessMemberViewController *vc = [segue destinationViewController];
+        vc.businessMember = selectedBusinessMember;
+        vc.business = selectedBusiness;
     }
     if ([segue.identifier isEqualToString:@"showBusiness"]) {
         BusinessViewController *businessVc = [segue destinationViewController];
-        
         businessVc.business = selectedBusiness;
     }
 }
-
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

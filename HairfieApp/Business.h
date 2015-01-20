@@ -56,6 +56,9 @@
 
 -(BOOL)isFacebookPageShareEnabled;
 
+-(NSURL *)thumbnailUrlWithWidth:(NSNumber *)aWidth
+                         height:(NSNumber *)anHeight;
+
 +(void)listNearby:(GeoPoint *)aGeoPoint
             query:(NSString *)aQuery
             limit:(NSNumber *)aLimit

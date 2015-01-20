@@ -9,13 +9,13 @@
 #import "BusinessMemberFavorite.h"
 #import "BusinessMemberFavoriteRepository.h"
 #import "AppDelegate.h"
-#import "Hairdresser.h"
+#import "BusinessMember.h"
 
 @implementation BusinessMemberFavorite
 
 -(void)setBusinessMember:(id)aBusinessMember
 {
-    _businessMember = [Hairdresser fromSetterValue:aBusinessMember];
+    _businessMember = [BusinessMember fromSetterValue:aBusinessMember];
 }
 
 -(id)initWithDictionary:(NSDictionary *)aDictionary
