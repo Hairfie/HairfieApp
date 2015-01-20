@@ -8,6 +8,7 @@
 
 #import "SearchFilterViewController.h"
 #import "SearchFilterTableViewCell.h"
+#import <UIAlertView+Blocks.h>
 
 @interface SearchFilterViewController ()
 
@@ -19,6 +20,8 @@
     // Temporary Datas
     NSArray *sectionTitles;
     NSArray *sectionContent;
+    NSString *queryWhere;
+    NSString *queryName;
     
 
 }
@@ -26,6 +29,7 @@
     [super viewDidLoad];
     [self initViewAndData];
     queryfilters = [[NSMutableArray alloc] init];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(setFilterForQuery:)
                                                  name:@"filterSelected"
@@ -42,6 +46,14 @@
                       NSLocalizedStringFromTable(@"Man", @"Claim", nil),NSLocalizedStringFromTable(@"Woman", @"Claim", nil),NSLocalizedStringFromTable(@"Kid", @"Claim", nil), nil];
     
         // Do any additional setup after loading the view.
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    
+    if (self.businessSearch != nil) {
+        self.searchTextField.text = self.businessSearch.query;
+        self.locationTextField.text = self.businessSearch.where;
+    }
 }
 
 /// NSNotification Methods
@@ -123,24 +135,48 @@
 
 // Search
 
+
 -(IBAction)doSearch:(id)sender
 {
-    BusinessSearch *businessSearch = [[BusinessSearch alloc] init];
+    self.businessSearch = [[BusinessSearch alloc] init];
     
     
+    if (self.locationTextField.text == (id)[NSNull null] || self.locationTextField.text.length == 0 ) {
+        self.businessSearch.where = @"";
+    } else {
+        self.businessSearch.where = queryWhere;
+    }
+    
+    self.businessSearch.query = queryName;
+    self.businessSearch.clientTypes = queryfilters;
+    
+    NSLog(@"\n\nQUERY %@\nWHERE %@\nCLIENT TYPES %@", self.businessSearch.query, self.businessSearch.where, self.businessSearch.clientTypes);
     
     if (self.isModal == YES) {
         
-        businessSearch.where = @"YOLO TEST";
+    
         if([self.myDelegate respondsToSelector:@selector(didSetABusinessSearch:)])
         {
-            [self.myDelegate didSetABusinessSearch:businessSearch];
+            [self.myDelegate didSetABusinessSearch:self.businessSearch];
         }
         
         [self dismissViewControllerAnimated:YES completion:nil];
-    }
-    else
+    } else {
         [self performSegueWithIdentifier:@"displayResultsSearch" sender:self];
+        
+    }
+}
+
+/// Segues
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([segue.identifier isEqualToString:@"displayResultsSearch"]) {
+        AroundMeViewController *aroundMeVc = [segue destinationViewController];
+        
+        aroundMeVc.businessSearch = self.businessSearch;
+        
+    }
+    
 }
 
 
@@ -153,15 +189,16 @@
     // Try to find next responder
     UIResponder* nextResponder = [textField.superview viewWithTag:nextTag];
     if (nextResponder) {
+        
         // Found next responder, so set it.
         [nextResponder becomeFirstResponder];
     } else {
         [textField resignFirstResponder];
+        queryName = self.searchTextField.text;
+        queryWhere = self.locationTextField.text;
     }
     return YES;
 }
-
-
 
 
 

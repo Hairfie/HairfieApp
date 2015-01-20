@@ -39,9 +39,8 @@
 @property (nonatomic, strong) IBOutlet UILabel *searchDesc;
 @property (nonatomic) IBOutlet AdvanceSearch *searchView;
 
-// Search Active
-
-@property (nonatomic) IBOutlet UITextField *searchField;
+@property (nonatomic) IBOutlet UILabel *topBarTitle;
+@property (nonatomic) IBOutlet UIView *topBarView;
 
 @property (nonatomic) BOOL isSearching;
 @property (nonatomic) BOOL isRefreshing;

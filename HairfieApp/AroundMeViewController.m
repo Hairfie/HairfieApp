@@ -56,10 +56,10 @@
 
     self.mapView.showsPointsOfInterest = NO;
     aroundMe = NSLocalizedStringFromTable(@"Around Me", @"Around_Me", nil);
-
+    businesses = [[NSArray alloc] init];
     self.delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [self.delegate startTrackingLocation:YES];
-
+    self.topBarTitle.text = NSLocalizedStringFromTable(@"Find your hairdresser", @"Around_Me", nil);
     dismiss = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
     self.isSearching = YES;
     self.isRefreshing = NO;
@@ -79,7 +79,7 @@
     [refreshControl addTarget:self action:@selector(updateSearchResults)
              forControlEvents:UIControlEventValueChanged];
     [self.hairdresserTableView addSubview:refreshControl];
-    
+    [self.topBarView addBottomBorderWithHeight:1 andColor:[UIColor lightGrey]];
     [self updateSearchResults];
 }
 
@@ -108,7 +108,7 @@
         [self updateSearchResults];
     }
     
-    self.searchView.businessSearch = self.businessSearch;
+    //self.searchView.businessSearch = self.businessSearch;
 
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(businessSearchChanged:)
@@ -253,10 +253,12 @@
             [spinner startAnimating];
         }
 
-        NSLog(@"GEO POINT %@, QUERY %@", [self.businessSearch.whereGeoPoint toApiValue], self.businessSearch.query);
         
+        NSLog(@"GEO POINT %@, QUERY %@, types %@", [self.businessSearch.whereGeoPoint toApiValue], self.businessSearch.query, self.businessSearch.clientTypes);
+      //  NSArray *array = [[NSArray alloc] initWithObjects:@"men", nil];
         [Business listNearby:self.businessSearch.whereGeoPoint
                        query:self.businessSearch.query
+                    clientTypes:self.businessSearch.clientTypes
                        limit:NUM_SEARCH_RESULTS
                      success:loadSuccessBlock
                      failure:loadErrorBlock];
@@ -349,6 +351,9 @@
         SearchFilterViewController *searchFilterVc = [segue destinationViewController];
         searchFilterVc.isModal = YES;
         searchFilterVc.myDelegate = self;
+        if (self.businessSearch != nil) {
+            searchFilterVc.businessSearch = self.businessSearch;
+        }
         
     }
 }

@@ -218,12 +218,24 @@
 
 +(void)listNearby:(GeoPoint *)aGeoPoint
             query:(NSString *)aQuery
+          clientTypes:(NSArray *)clientTypes
             limit:(NSNumber *)aLimit
           success:(void(^)(NSArray *business))aSuccessHandler
           failure:(void(^)(NSError *error))aFailureHandler
 {
+    
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+
     if (nil == aQuery) {
         aQuery = @"";
+    }
+    
+    [parameters setObject:aQuery forKey:@"query"];
+    [parameters setObject:[aGeoPoint toApiValue] forKey:@"here"];
+    
+    if (clientTypes != nil)
+    {
+        [parameters setObject:clientTypes forKey:@"clientTypes"];
     }
     
 
@@ -234,8 +246,11 @@
         return;
     }
 
+    
+    
+    
     [businessData invokeStaticMethod:@"nearby"
-                          parameters:@{@"here": [aGeoPoint toApiValue], @"limit" : aLimit, @"query" : aQuery}
+                          parameters:parameters
                              success:^(NSArray *results) {
                                  NSMutableArray *businesses = [[NSMutableArray alloc] init];
                                  for (NSDictionary *result in results) {

@@ -39,6 +39,8 @@
 
 @property (nonatomic) IBOutlet UITableView *searchFiltersTable;
 
+@property (nonatomic) BusinessSearch *businessSearch;
+
 @property (nonatomic) BOOL isModal;
 
 @end
