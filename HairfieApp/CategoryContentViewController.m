@@ -8,6 +8,7 @@
 
 #import "CategoryContentViewController.h"
 #import "CategoriesCollectionViewCell.h"
+#import "BusinessSearch.h"
 
 @interface CategoryContentViewController ()
 
@@ -93,10 +94,23 @@
 }
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-
-     //       NSUInteger selectedRow = indexPath.row;
     
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"searchFromFeed" object:self];
+    BusinessSearch *businessSearch = [[BusinessSearch alloc] init];
+
+     if (indexPath.row == 1)
+     {
+         NSArray *clientTypes = [NSArray arrayWithObjects:@"women", nil];
+         businessSearch.clientTypes = clientTypes;
+     }
+    if (indexPath.row == 2)
+    {
+        NSArray *clientTypes = [NSArray arrayWithObjects:@"men", nil];
+        businessSearch.clientTypes = clientTypes;
+    }
+   
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:businessSearch, @"businessSearch", nil];
+    
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"searchFromFeed" object:nil userInfo:dic];
            
 }
 

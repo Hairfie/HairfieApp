@@ -177,6 +177,9 @@
 }
 
 -(void)doSearch:(NSNotification*)notification {
+    
+    NSDictionary *dic = notification.userInfo;
+    businessSearch = [dic objectForKey:@"businessSearch"];
      [self performSegueWithIdentifier:@"showSearchResults" sender:self];
 }
 
