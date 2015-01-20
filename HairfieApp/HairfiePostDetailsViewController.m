@@ -21,6 +21,7 @@
 #import "PostHairfieEmailViewController.h"
 #import <LoopBack/LoopBack.h>
 #import <Social/Social.h>
+#import <UIAlertView+Blocks.h>
 
 #define OVERLAY_TAG 99
 
@@ -31,116 +32,105 @@
     NSMutableArray *salonHairdressers;
     Picture *uploadedPicture;
     BOOL uploadInProgress;
-    BOOL isFbShareActivated;
     AppDelegate *appDelegate;
     BOOL isLoaded;
-    BOOL isHairfiePostBusinessClaimed;
-
 }
 
 -(void)viewDidLoad
 {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeUploadStatus:) name:@"firstPicUploaded" object:nil];
+    
     //// TAGS = NO DESCRIPTION
-    _hairfieDesc.hidden = YES;
+    self.hairfieDesc.hidden = YES;
     ////
-    
-    UIColor *placeholder = [[UIColor whiteColor] colorWithAlphaComponent:0.6];
+
     appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    [_emailTextField setValue:placeholder
-                    forKeyPath:@"_placeholderLabel.textColor"];
     
-    Picture *hairfiePic  = [self.hairfiePost.pictures objectAtIndex:0];
+    [self.emailTextField setValue:[[UIColor whiteColor] colorWithAlphaComponent:0.6]
+                       forKeyPath:@"_placeholderLabel.textColor"];
     
-    _hairfieImageView.image = hairfiePic.image;
 
-    if (self.hairfiePost.pictures.count == 2)
-    {
-        Picture *secondHairfiePic  = (Picture*)[self.hairfiePost.pictures objectAtIndex:1];
-        _secondHairfieImageView.image = secondHairfiePic.image;
+    // setup images
+    self.hairfieImageView.image = [[self.hairfiePost mainPicture] image];
+    if ([self.hairfiePost hasSecondaryPicture]) {
+        self.secondHairfieImageView.image = [[self.hairfiePost secondaryPicture] image];
     }
-    _hairfieDesc.alpha = 0.5;
-    _hairfieDesc.placeholder = NSLocalizedStringFromTable(@"Add a description", @"Post_Hairfie", nil);
 
-    _dataChoice.hidden = YES;
-    _dataChoice.layer.borderWidth = 1;
-    _dataChoice.layer.borderColor = [UIColor lightGreyHairfie].CGColor;
-    [_dataChoice setSeparatorInset:UIEdgeInsetsZero];
+    self.dataChoice.hidden = YES;
+    self.dataChoice.layer.borderWidth = 1;
+    self.dataChoice.layer.borderColor = [UIColor lightGreyHairfie].CGColor;
+    [self.dataChoice setSeparatorInset:UIEdgeInsetsZero];
     
-    _hairdresserTableView.hidden = YES;
-    _hairdresserTableView.layer.borderWidth = 1;
-    _hairdresserTableView.layer.borderColor = [UIColor lightGreyHairfie].CGColor;
-    [_hairdresserTableView setSeparatorInset:UIEdgeInsetsZero];
+    self.hairdresserTableView.hidden = YES;
+    self.hairdresserTableView.layer.borderWidth = 1;
+    self.hairdresserTableView.layer.borderColor = [UIColor lightGreyHairfie].CGColor;
+    [self.hairdresserTableView setSeparatorInset:UIEdgeInsetsZero];
     
-    _isSalon = NO;
-    _isHairdresser = NO;
-    _emailSubview.hidden = YES;
+    self.isSalon = NO;
+    self.isHairdresser = NO;
+    self.emailSubview.hidden = YES;
+    
+    self.tagsButton.layer.cornerRadius = 5;
+    self.tagsButton.layer.masksToBounds = YES;
 
-    
-    _tagsButton.layer.cornerRadius = 5;
-    _tagsButton.layer.masksToBounds = YES;
     salonTypes = [[NSMutableArray alloc] initWithObjects:NSLocalizedStringFromTable(@"I did it", @"Post_Hairfie", nil), NSLocalizedStringFromTable(@"Hairdresser in a Salon", @"Post_Hairfie", nil), nil];
 
-    [_priceTextField textFieldWithPhoneKeyboard];
-    [_descView addBottomBorderWithHeight:3 andColor:[UIColor salonDetailTab]];
-    [_topView addBottomBorderWithHeight:1 andColor:[UIColor lightGrey]];
+    [self.priceTextField textFieldWithPhoneKeyboard];
+    [self.topView addBottomBorderWithHeight:1 andColor:[UIColor lightGrey]];
+
     [self uploadHairfiePictures];
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    
-   
-    if (self.hairfiePost.customerEmail.length != 0)
-    {
-        [self.emailLabel setText:self.hairfiePost.customerEmail ];
+    // customer email field
+    if (self.hairfiePost.customerEmail.length != 0) {
+        self.emailLabel.text = self.hairfiePost.customerEmail;
+    } else {
+        self.emailLabel.text = NSLocalizedStringFromTable(@"add email hairfie", @"Post_Hairfie", nil);
     }
-    else
-    {
-        [self.emailLabel setText:NSLocalizedStringFromTable(@"add email hairfie", @"Post_Hairfie", nil)];
-    }
-    if (self.hairfiePost.tags.count != 0)
-    {
+
+    // selected tags count
+    if (self.hairfiePost.tags.count != 0) {
         self.tagsButton.hidden = NO;
         NSString *tagLabel = [NSString stringWithFormat:@"(%zd) tags", self.hairfiePost.tags.count];
         [self.tagsButton setTitle:tagLabel forState:UIControlStateNormal];
-    }
-    else {
+    } else {
         self.tagsButton.hidden = YES;
     }
 
+    // business selector
     if (appDelegate.currentUser.managedBusinesses.count != 0)
     {
+        // NOTE: it is not managed businesses change proof!
         if (salonTypes.count == 2) {
-            for (Business *business in appDelegate.currentUser.managedBusinesses)
-            {
+            for (Business *business in appDelegate.currentUser.managedBusinesses) {
                 [salonTypes insertObject:business atIndex:1];
             }
         }
         
         UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
         int height = cell.frame.size.height ;
-        _salonTableViewHeight.constant = salonTypes.count * height;
+        self.salonTableViewHeight.constant = salonTypes.count * height;
         
-        if (_hairfiePost.business == nil) {
+        if (self.hairfiePost.business == nil) {
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:1 inSection:0];
             [self.dataChoice selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
-            _isSalon = YES;
+            self.isSalon = YES;
             [self tableView:self.dataChoice didSelectRowAtIndexPath:indexPath];
         }
     }
 
-    if(_hairfiePost.business != nil) {
-        if ([_hairfiePost.business.activeHairdressers count] != 0)
+    if (self.hairfiePost.business != nil) {
+        if ([self.hairfiePost.business.activeHairdressers count] != 0) {
             [self loadHairdressers];
-        _isSalon = YES;
-        [_salonLabelButton setTitle:_hairfiePost.business.name forState:UIControlStateNormal];
-        [self checkIfBusinessIsOwnedByUser:_hairfiePost.business];
+        }
+        self.isSalon = YES;
+        [self.salonLabelButton setTitle:self.hairfiePost.business.name forState:UIControlStateNormal];
     }
 
-    [self refreshTwitterShareButton];
+    [self refreshShareButtons];
 
-    
     [ARAnalytics pageView:@"AR - Post Hairfie step #3 - Post Detail"];
 }
 
@@ -148,18 +138,15 @@
 {
     salonHairdressers = [[NSMutableArray alloc] init];
    
-    for (Hairdresser *hairdresser in _hairfiePost.business.activeHairdressers)
-    {
+    for (Hairdresser *hairdresser in _hairfiePost.business.activeHairdressers) {
         [salonHairdressers addObject:hairdresser];
     }
     
-    _hairdresserTableViewHeight.constant = [salonHairdressers count] * 41;
-    if (_hairdresserTableViewHeight.constant >= 4 * 41)
-    {
-        _hairdresserTableViewHeight.constant = 4 * 41;
-    }
-    _isHairdresser = NO;
-    [_hairdresserTableView reloadData];
+    self.hairdresserTableViewHeight.constant = MIN(4, salonHairdressers.count) * 41;
+
+    self.isHairdresser = NO;
+    
+    [self.hairdresserTableView reloadData];
 }
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
@@ -167,6 +154,7 @@
     if ([text isEqualToString:@"\n"]) {
         [textView resignFirstResponder];
     }
+
     return YES;
 }
 
@@ -184,48 +172,31 @@
 
 -(IBAction)showSalonsChoices:(id)sender
 {
-    if (_isSalon == YES) {
-        _dataChoice.hidden = YES;
-        _isSalon = NO;
+    if (self.isSalon == YES) {
+        self.dataChoice.hidden = YES;
+        self.isSalon = NO;
     } else {
-        [_dataChoice reloadData];
+        [self.dataChoice reloadData];
         CGRect frame = _dataChoice.frame;
         frame.size.height = 200;
-        [_dataChoice setFrame:frame];
-        _dataChoice.hidden = NO;
-        _isHairdresser = NO;
-        _hairdresserTableView.hidden = YES;
-        _isSalon = YES;
+        [self.dataChoice setFrame:frame];
+        self.dataChoice.hidden = NO;
+        self.isHairdresser = NO;
+        self.hairdresserTableView.hidden = YES;
+        self.isSalon = YES;
     }
 }
 
 -(IBAction)showHairdresserChoices:(id)sender
 {
-    if (_isHairdresser == YES) {
-        _hairdresserTableView.hidden = YES;
-        _isHairdresser = NO;
+    if (self.isHairdresser == YES) {
+        self.hairdresserTableView.hidden = YES;
+        self.isHairdresser = NO;
     } else {
-        [_hairdresserTableView reloadData];
-        _isSalon = NO;
-        _hairdresserTableView.hidden = NO;
-        _isHairdresser = YES;
-    }
-     
-}
-
--(void)textViewDidBeginEditing:(UITextView *)textView
-{
-    if (textView == _hairfieDesc)
-    {
-        _hairfieDesc.placeholder = @"";
-    }
-}
-
--(void)textViewDidEndEditing:(UITextView *)textView
-{
-    if (textView == _hairfieDesc)
-    {
-        _hairfieDesc.placeholder = NSLocalizedStringFromTable(@"Add a description", @"Post_Hairfie", nil);
+        [self.hairdresserTableView reloadData];
+        self.isSalon = NO;
+        self.hairdresserTableView.hidden = NO;
+        self.isHairdresser = YES;
     }
 }
 
@@ -236,22 +207,22 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (tableView == _dataChoice)
+    if (tableView == self.dataChoice) {
         return salonTypes.count;
-    if (tableView == _hairdresserTableView)
+    } else if (tableView == _hairdresserTableView) {
         return salonHairdressers.count;
-    
+    }
+
     return 1;
 }
 
--(void)deselectShareIcons
+-(void)deselectShareButtons
 {
-    isFbShareActivated = NO;
-    self.hairfiePost.shareOnFB = NO;
+    self.hairfiePost.shareOnFacebook = NO;
+    self.hairfiePost.shareOnFacebookPage = NO;
     self.hairfiePost.shareOnTwitter = NO;
-    self.hairfiePost.shareOnFBPRO = NO;
-    [self.fbShareButton setImage:[UIImage imageNamed:@"fb-share-off.png"] forState:UIControlStateNormal];
-    [self.twitterShareButton setImage:[UIImage imageNamed:@"twitter-share-off.png"] forState:UIControlStateNormal];
+    
+    [self refreshShareButtons];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -297,7 +268,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self deselectShareIcons];
+    [self deselectShareButtons];
     if (tableView == _dataChoice) {
         if (indexPath.row == salonTypes.count - 1) {
             [self performSegueWithIdentifier:@"choseSalonType" sender:self];
@@ -309,12 +280,10 @@
             [self showSalonsChoices:self];
             _hairdresserSubview.hidden = YES;
             _hairfiePost.selfMade = YES;
-            _hairfiePost.shareOnFBPRO = NO;
         } else {
             Business *business = [salonTypes objectAtIndex:indexPath.row];
              [_salonLabelButton setTitle:business.name forState:UIControlStateNormal];
             _hairfiePost.business = business;
-            [self checkIfBusinessIsOwnedByUser:_hairfiePost.business];
             if (business.activeHairdressers.count != 0) {
                 [self loadHairdressers];
                 [_hairdresserLabelButton setTitle:NSLocalizedStringFromTable(@"Who did this?", @"Post_Hairfie", nil) forState:UIControlStateNormal];
@@ -327,6 +296,8 @@
             [self showSalonsChoices:self];
             _hairfiePost.selfMade = NO;
         }
+        
+        [self refreshShareButtons];
     } else {
         Hairdresser *hairdresser = [salonHairdressers objectAtIndex:indexPath.row];
         [_hairdresserLabelButton setTitle:[hairdresser displayFullName] forState:UIControlStateNormal];
@@ -335,16 +306,16 @@
     }
 }
 
--(void)checkIfBusinessIsOwnedByUser:(Business*)aBusiness {
-    
+-(BOOL)currentUserIsManagerOfBusiness:(Business *)aBusiness
+{
     for (int i = 0; i < appDelegate.currentUser.managedBusinesses.count; i++) {
         Business *business = [appDelegate.currentUser.managedBusinesses objectAtIndex:i];
-        if (aBusiness.id == business.id)
-        {
-            if (aBusiness.facebookPage != nil)
-                isHairfiePostBusinessClaimed = YES;
+        if (aBusiness.id == business.id) {
+            return YES;
         }
     }
+
+    return NO;
 }
 
 -(void)textFieldDidEndEditing:(UITextField *)textField
@@ -360,72 +331,94 @@
 
 -(IBAction)postHairfie:(id)sender
 {
-    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    if([delegate.credentialStore isLoggedIn]) {
-
-        [self addSpinnerAndOverlay];
-
-        NSLog(@"Post Hairfie");
-        while (uploadInProgress) {
-            NSLog(@"---------- Upload in progress ----------");
-            [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
+    if([appDelegate.credentialStore isLoggedIn]) {
+        if([self hasForgottenCustomerEmail]) {
+            [UIAlertView showWithTitle:NSLocalizedStringFromTable(@"No customer email", @"Post_Hairfie", nil)
+                               message:NSLocalizedStringFromTable(@"You forgot to enter a customer email", @"Post_Hairfie", nil)
+                     cancelButtonTitle:NSLocalizedStringFromTable(@"Add email", @"Post_Hairfie", nil)
+                     otherButtonTitles:@[NSLocalizedStringFromTable(@"Continue anyway", @"Post_Hairfie", nil)]
+                              tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                                  if (buttonIndex == [alertView cancelButtonIndex]) {
+                                      NSLog(@"Cancelled");
+                                      [self performSegueWithIdentifier:@"postHairfieEmail" sender:self];
+                                  } else {
+                                      NSLog(@"Continue anyway");
+                                      [self saveHairfiePost];
+                                  }
+                              }];
+        } else {
+            [self saveHairfiePost];
         }
 
-        NSLog(@"isuploaded %c", [_hairfiePost pictureIsUploaded]);
-        if(![_hairfiePost pictureIsUploaded]) {
-            [self removeSpinnerAndOverlay];
-            [self showUploadFailedAlertView];
-            return;
-        }
-        
-        _hairfiePost.description = self.hairfieDesc.text;
-        
-        if (![self.priceTextField.text isEqualToString:@""]) {
-            Money *price = [[Money alloc] initWithAmount:[NSNumber numberWithDouble:[self.priceTextField.text doubleValue]]
-                                                currency:@"EUR"];
-
-            _hairfiePost.price = price;
-        }
-
-        if (self.salonChosen) {
-            _hairfiePost.business = self.salonChosen;
-        }
-        
-
-        NSLog(@"Hairfie to post : %@", _hairfiePost);
-
-        void (^loadErrorBlock)(NSError *) = ^(NSError *error){
-            NSLog(@"Error : %@", error.description);
-            [self removeSpinnerAndOverlay];
-            [self showUploadFailedAlertView];
-
-        };
-        void (^loadSuccessBlock)(Hairfie *) = ^(Hairfie *hairfie){
-            NSLog(@"Hairfie Posté");
-            [self removeSpinnerAndOverlay];
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"currentUser" object:self];
-
-            if (self.hairfiePost.shareOnTwitter) {
-                SLComposeViewController *vc = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
-                [vc addURL:hairfie.landingPageUrl];
-                vc.completionHandler = ^(SLComposeViewControllerResult result) {
-                    [self performSegueWithIdentifier:@"toHome" sender:self];
-                };
-
-                [self presentViewController:vc animated:YES completion:nil];
-            } else {
-                [self performSegueWithIdentifier:@"toHome" sender:self];
-            }
-            HairfieNotifications *notif = [HairfieNotifications new];
-            [notif showNotificationWithMessage:NSLocalizedStringFromTable(@"Hairfie Post Successful", @"Post_Hairfie", nil) ForDuration:2.5];
-        };
-        [_hairfiePost saveWithSuccess:loadSuccessBlock failure:loadErrorBlock];
     } else {
         [self showNotLoggedAlertWithDelegate:nil andTitle:nil andMessage:nil];
     }
 }
 
--(void) addSpinnerAndOverlay {
+-(void)saveHairfiePost {
+    
+    [self addSpinnerAndOverlay];
+    
+    NSLog(@"Post Hairfie");
+    while (uploadInProgress) {
+        NSLog(@"---------- Upload in progress ----------");
+        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
+    }
+    
+    NSLog(@"isuploaded %c", [_hairfiePost pictureIsUploaded]);
+    if(![_hairfiePost pictureIsUploaded]) {
+        [self removeSpinnerAndOverlay];
+        [self showUploadFailedAlertView];
+        return;
+    }
+    
+    _hairfiePost.description = self.hairfieDesc.text;
+    
+    if (![self.priceTextField.text isEqualToString:@""]) {
+        Money *price = [[Money alloc] initWithAmount:[NSNumber numberWithDouble:[self.priceTextField.text doubleValue]]
+                                            currency:@"EUR"];
+        
+        _hairfiePost.price = price;
+    }
+    
+    if (self.salonChosen) {
+        _hairfiePost.business = self.salonChosen;
+    }
+    
+    
+    NSLog(@"Hairfie to post : %@", _hairfiePost);
+    
+    void (^loadErrorBlock)(NSError *) = ^(NSError *error){
+        NSLog(@"Error : %@", error.description);
+        [self removeSpinnerAndOverlay];
+        [self showUploadFailedAlertView];
+        
+    };
+    void (^loadSuccessBlock)(Hairfie *) = ^(Hairfie *hairfie){
+        NSLog(@"Hairfie Posté");
+        [self removeSpinnerAndOverlay];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"currentUser" object:self];
+        
+        if (self.hairfiePost.shareOnTwitter) {
+            SLComposeViewController *vc = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
+            [vc addURL:hairfie.landingPageUrl];
+            vc.completionHandler = ^(SLComposeViewControllerResult result) {
+                [self performSegueWithIdentifier:@"toHome" sender:self];
+            };
+            
+            [self presentViewController:vc animated:YES completion:nil];
+        } else {
+            [self performSegueWithIdentifier:@"toHome" sender:self];
+        }
+        HairfieNotifications *notif = [HairfieNotifications new];
+        [notif showNotificationWithMessage:NSLocalizedStringFromTable(@"Hairfie Post Successful", @"Post_Hairfie", nil) ForDuration:2.5];
+    };
+    [_hairfiePost saveWithSuccess:loadSuccessBlock failure:loadErrorBlock];
+    
+}
+
+-(void)addSpinnerAndOverlay
+{
     UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
     [spinner setFrame:CGRectMake(150, self.view.frame.size.height/2, spinner.frame.size.width, spinner.frame.size.height)];
     spinner.hidesWhenStopped = YES;
@@ -447,7 +440,8 @@
     [_mainView addSubview:overlay];
 }
 
--(void) removeSpinnerAndOverlay {
+-(void)removeSpinnerAndOverlay
+{
     [[_mainView viewWithTag:OVERLAY_TAG] removeFromSuperview];
 }
 
@@ -456,7 +450,8 @@
     uploadInProgress = NO;
 }
 
--(void) uploadHairfiePictures {
+-(void) uploadHairfiePictures
+{
     uploadInProgress = YES;
     [_hairfiePost uploadPictureWithSuccess:^{
         NSLog(@"Uploaded !");
@@ -467,56 +462,50 @@
     }];
 }
 
-
--(void)showUploadFailedAlertView {
+-(void)showUploadFailedAlertView
+{
     UIAlertView *errorAlert = [[UIAlertView alloc]initWithTitle:@"Error" message:NSLocalizedStringFromTable(@"There was an error uploading your hairfie, Try Again !", @"Post_Hairfie", nil)  delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
     [errorAlert show];
 }
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
     [self uploadHairfiePictures];
 }
 
-
--(IBAction)fbShare:(id)sender {
-    
-    if(isFbShareActivated) {
-        
-        [sender setImage:[UIImage imageNamed:@"fb-share-off.png"] forState:UIControlStateNormal];
-        isFbShareActivated = NO;
-        _hairfiePost.shareOnFB = NO;
-        _hairfiePost.shareOnFBPRO = NO;
-    } else {        
-        
-        if (self.hairfiePost.selfMade == NO && isHairfiePostBusinessClaimed == YES)
-        {
-            NSLog(@"SHARE FB PRO");
-            [sender setImage:[UIImage imageNamed:@"fbpro-share-on.png"] forState:UIControlStateNormal];
-            isFbShareActivated = YES;
-            _hairfiePost.shareOnFBPRO = YES;
-        }else {
-        [self checkFbSessionWithSuccess:^{
-            NSArray *permissionsNeeded = @[@"publish_actions"];
-            [FBUtils getPermissions:permissionsNeeded success:^{
-                NSLog(@"GOGO Share !");
-                [sender setImage:[UIImage imageNamed:@"fb-share-on.png"] forState:UIControlStateNormal];
-                isFbShareActivated = YES;
-                _hairfiePost.shareOnFB = YES;
-            } failure:^(NSError *error) {
-                NSLog(@"Sharing failed !");
-            }];
-        } failure:^(NSError *error) {
-            NSLog(@"Sharing failed !");
-        }];
-        }
-        
+-(IBAction)switchFacebookShare:(id)sender
+{
+    if (self.hairfiePost.shareOnFacebook) {
+        self.hairfiePost.shareOnFacebook = NO;
+        [self refreshShareButtons];
+    } else {
+        // prior to activate facebook share, we need to get user's permission
+        [self checkFacebookPermissions:@[@"publish_actions"]
+                           withSuccess:^{
+                               NSLog(@"Got facebook permissions");
+                               self.hairfiePost.shareOnFacebook = YES;
+                               [self refreshShareButtons];
+                           }
+                               failure:^(NSError *error) {
+                                   NSLog(@"Failed to get facebook permissions: %@", error.localizedDescription);
+                               }];
     }
 }
 
--(IBAction)twitterShare:(id)sender
+-(IBAction)switchFacebookPageShare:(id)sender
 {
-    if (!self.hairfiePost.shareOnTwitter) {
-        if (![SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]) {
+    self.hairfiePost.shareOnFacebookPage = !self.hairfiePost.shareOnFacebookPage;
+    [self refreshShareButtons];
+}
+
+-(IBAction)switchTwitterShare:(id)sender
+{
+    if (self.hairfiePost.shareOnTwitter) {
+        self.hairfiePost.shareOnTwitter = NO;
+    } else {
+        if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]) {
+            self.hairfiePost.shareOnTwitter = YES;
+        } else {
             NSString *message = NSLocalizedStringFromTable(@"It seems that we cannot talk to Twitter at the moment or you have not yet added your Twitter account to this device.", @"Hairfie_Detail", nil);
             
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Oops"
@@ -525,18 +514,33 @@
                                                       cancelButtonTitle:@"Ok"
                                                       otherButtonTitles:nil];
             [alertView show];
-        } else {
-            self.hairfiePost.shareOnTwitter = YES;
         }
-    } else {
-        self.hairfiePost.shareOnTwitter = NO;
     }
-
-    [self refreshTwitterShareButton];
+    
+    [self refreshShareButtons];
 }
 
--(void)refreshTwitterShareButton
+-(void)refreshShareButtons
 {
+    if ([self canShareOnFacebookPage]) {
+        self.facebookPageShareButton.hidden = NO;
+    } else {
+        self.facebookPageShareButton.hidden = YES;
+        self.hairfiePost.shareOnFacebookPage = NO;
+    }
+    
+    if (self.hairfiePost.shareOnFacebook) {
+        [self.facebookShareButton setImage:[UIImage imageNamed:@"facebook-share-on"] forState:UIControlStateNormal];
+    } else {
+        [self.facebookShareButton setImage:[UIImage imageNamed:@"facebook-share-off"] forState:UIControlStateNormal];
+    }
+    
+    if (self.hairfiePost.shareOnFacebookPage) {
+        [self.facebookPageShareButton setImage:[UIImage imageNamed:@"facebook-page-share-on"] forState:UIControlStateNormal];
+    } else {
+        [self.facebookPageShareButton setImage:[UIImage imageNamed:@"facebook-page-share-off"] forState:UIControlStateNormal];
+    }
+    
     if (self.hairfiePost.shareOnTwitter) {
         [self.twitterShareButton setImage:[UIImage imageNamed:@"twitter-share-on"] forState:UIControlStateNormal];
     } else {
@@ -544,19 +548,44 @@
     }
 }
 
+-(BOOL)canShareOnFacebookPage
+{
+    return [self.hairfiePost.business isFacebookPageShareEnabled]
+        && [self currentUserIsManagerOfBusiness:self.hairfiePost.business];
+}
+
+-(BOOL)hasForgottenCustomerEmail
+{
+    return !self.hairfiePost.customerEmail
+    && [self currentUserIsManagerOfBusiness:self.hairfiePost.business];
+}
+
 -(IBAction)setHairfieEmail:(id)sender
 {
     [self performSegueWithIdentifier:@"postHairfieEmail" sender:self];
 }
 
--(void)checkFbSessionWithSuccess:(void(^)())aSuccessHandler
-                         failure:(void(^)(NSError *error))aFailureHandler {
+/**
+ * TODO: move me into some facebook utility
+ */
+-(void)checkFacebookPermissions:(NSArray *)permissions
+                    withSuccess:(void(^)())aSuccessHandler
+                        failure:(void(^)(NSError *error))aFailureHandler
+{
+    void (^getPermissions)() = ^() {
+        [FBUtils getPermissions:permissions
+                        success:^{ aSuccessHandler(); }
+                        failure:aFailureHandler];
+    };
+    
     if (FBSession.activeSession.state == FBSessionStateOpen
         || FBSession.activeSession.state == FBSessionStateOpenTokenExtended) {
-        aSuccessHandler();
+        getPermissions();
     } else {
         FBAuthenticator *fbAuthenticator = [[FBAuthenticator alloc] init];
-        [fbAuthenticator linkFbAccountWithPermissions:@[@"publish_actions"] success:aSuccessHandler failure:aFailureHandler];
+        [fbAuthenticator linkFbAccountWithPermissions:permissions
+                                              success:getPermissions
+                                              failure:aFailureHandler];
     }
 }
 
@@ -576,8 +605,6 @@
         [postEmail setHairfiePost:self.hairfiePost];
     }
 }
-
-
 
 @end
 

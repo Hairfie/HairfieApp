@@ -30,6 +30,8 @@
 
 #import "BusinessReusableView.h"
 #import "NotLoggedAlert.h"
+#import "BusinessMemberClaim.h"
+#import "HairfieNotifications.h"
 
 #import <AssetsLibrary/AssetsLibrary.h>
 
@@ -74,9 +76,10 @@
 
     if([appDelegate.credentialStore isLoggedIn]) {
         menuActions = @[
-                        @{@"label": NSLocalizedStringFromTable(@"Report an error", @"Salon_Detail",nil), @"segue": @"reportError"},
-                        @{@"label": NSLocalizedStringFromTable(@"Claim this business", @"Salon_Detail",nil), @"segue": @"claimExisting"},
-                        ];
+            @{@"label": NSLocalizedStringFromTable(@"Report an error", @"Salon_Detail",nil), @"segue": @"reportError"},
+            @{@"label": NSLocalizedStringFromTable(@"Claim this business", @"Salon_Detail",nil), @"segue": @"claimExisting"},
+            @{@"label": NSLocalizedStringFromTable(@"I am hairdresser in this salon", @"Salon_Detail", nil), @"action": @"claimBusinessMember"}
+        ];
     } else {
         menuActions = @[
                         @{@"label": NSLocalizedStringFromTable(@"Report an error", @"Salon_Detail",nil), @"segue": @"reportError"}
@@ -110,11 +113,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(showMoreReviews:)
                                                  name:@"showReviews"
-                                               object:nil];
-
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(addAReview:)
-                                                 name:@"addReview"
                                                object:nil];
 
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -211,6 +209,20 @@
     if([menuActions[buttonIndex] objectForKey:@"segue"] != nil) {
         [self performSegueWithIdentifier:[menuActions[buttonIndex] objectForKey:@"segue"] sender:self];
     }
+    
+    if ([[menuActions[buttonIndex] objectForKey:@"action"] isEqualToString:@"claimBusinessMember"]) {
+        [BusinessMemberClaim createWithBusiness:self.business.id
+                                        success:^{
+                                            NSLog(@"Business member claim successfully created");
+                                            HairfieNotifications *notif = [HairfieNotifications new];
+                                            [notif showNotificationWithMessage:NSLocalizedStringFromTable(@"Business member successfully claimed", @"Salon_Detail", nil) ForDuration:2.5];
+                                        }
+                                        failure:^(NSError *error) {
+                                            NSLog(@"Failed to claim business member: %@", error.localizedDescription);
+                                            HairfieNotifications *notif = [HairfieNotifications new];
+                                            [notif showNotificationWithMessage:NSLocalizedStringFromTable(@"Failed to claim business member", @"Salon_Detail", nil) ForDuration:2.5];
+                                        }];
+    }
 }
 
 -(void)claimExistingBusiness {
@@ -238,18 +250,6 @@
     [self performSegueWithIdentifier:@"showReviews" sender:self];
     isReviewing = NO;
 }
-
--(void)addAReview:(NSNotification*)notification {
-    
-    
-    NSDictionary* userInfo = notification.userInfo;
-    
-    ratingForReview = [userInfo objectForKey:@"reviewRating"];
-    [self performSegueWithIdentifier:@"showReviews" sender:self];
-    isReviewing = YES;
-}
-
-
 
 -(void)showSimilarBusiness:(NSNotification*)notification {
 
@@ -382,15 +382,21 @@
     return 1;
 }
 
-- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
-    if (isHairfiesTab == YES)
-        return UIEdgeInsetsMake(10 , 10, 0, 10);
-    return UIEdgeInsetsMake(0 , 0, 0, 0);
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+{
+    if (isHairfiesTab == YES) {
+        return UIEdgeInsetsMake(10, 10, 0, 10);
+    }
+    
+    return UIEdgeInsetsMake(0, 0, 0, 0);
 }
 
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
-    if (isHairfiesTab == YES)
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
+{
+    if (isHairfiesTab == YES) {
         return 10;
+    }
+
     return 0;
 }
 
@@ -403,7 +409,9 @@
     if (!isSetup) {
         headerViewController = [[SalonDetailHeaderViewController alloc] initWithNibName:@"SalonDetailHeaderViewController" bundle:nil];
         headerViewController.business = self.business;
-        [userHeader addSubview:headerViewController.view];
+        UIView *headerView = headerViewController.view;
+        [headerView setFrame:CGRectMake(0, 0, self.view.bounds.size.width, 220)]; // can we use auto-layout instead?
+        [userHeader addSubview:headerView];
         isSetup = YES;
     }
    
@@ -416,35 +424,34 @@
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSInteger width = collectionView.bounds.size.width;
+    
     if (isHairdressersTab == YES) {
-        return CGSizeMake(320, 45);
+        return CGSizeMake(width, 45);
     } else if (isServicesTab == YES) {
-        return CGSizeMake(320, 45);
+        return CGSizeMake(width, 45);
     } else if (isDetailsTab == YES) {
-        return CGSizeMake(320, 964);
+        return CGSizeMake(width, 964);
     } else if (isHairfiesTab == YES) {
         if (indexPath.row < (businessHairfies.count + 1)) {
-            return CGSizeMake(145, 210);
+            return CGSizeMake((width - 30) / 2, 210);
         } else {
-            return CGSizeMake(300, 58);
+            return CGSizeMake(width, 58);
         }
     }  else {
-        return CGSizeMake(320, 127);
+        return CGSizeMake(width, 127);
     }
 }
 
-
-
-
 -(UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (isServicesTab == YES)
+    if (isServicesTab == YES) {
         return [self serviceCellForItemAtIndexPath:indexPath];
-    if (isHairdressersTab == YES)
+    } else if (isHairdressersTab == YES) {
         return [self hairdresserCellForItemAtIndexPath:indexPath];
-    if (isDetailsTab == YES)
+    } else if (isDetailsTab == YES) {
         return [self detailCellAtIndexPath:indexPath];
-    if (isHairfiesTab == YES) {
+    } else if (isHairfiesTab == YES) {
         if (indexPath.row == 0) {
             return [self newHairfieCellForItemAtIndexPath:indexPath];
         }
@@ -457,10 +464,9 @@
             return [self loadingCellAtIndexPath:indexPath];
         }
     }
+
     return nil;
 }
-
-
 
 -(UICollectionViewCell *)serviceCellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -476,29 +482,21 @@
     return cell;
 }
 
-
 -(UICollectionViewCell *)hairdresserCellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     BusinessHairdressersCollectionViewCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:@"businessHairdresserCell" forIndexPath:indexPath];
     
-    
-     NSLog(@"INDEX %zd", indexPath.row);
-    
-//    if (self.business.activeHairdressers.count == 0)
-//        cell.hairdresserName.text = NSLocalizedStringFromTable(@"No Hairdresser", @"Salon_Detail", nil);
-//    else {
-        if (indexPath.row < self.business.activeHairdressers.count) {
+    if (indexPath.row < self.business.activeHairdressers.count) {
         Hairdresser *hairdresser = [self.business.activeHairdressers objectAtIndex:indexPath.row];
         cell.disclosureIndicator.hidden = YES;
         [cell setHairdresser:hairdresser];
-        }
-        if (indexPath.row == self.business.activeHairdressers.count) {
-            cell.hairdresserName.text = NSLocalizedStringFromTable(@"No Hairdresser", @"Salon_Detail", nil);
-        }
-       //}
-   
+    } else if (indexPath.row == self.business.activeHairdressers.count) {
+        cell.hairdresserName.text = NSLocalizedStringFromTable(@"No Hairdresser", @"Salon_Detail", nil);
+    }
+
     return cell;
 }
+
 -(UICollectionViewCell *)newHairfieCellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     CustomCollectionViewCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:@"hairfieCell" forIndexPath:indexPath];
@@ -516,6 +514,7 @@
     
     return cell;
 }
+
 -(UICollectionViewCell *)loadingCellAtIndexPath:(NSIndexPath *)indexPath
 {
     LoadingCollectionViewCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:LOADING_CELL forIndexPath:indexPath];
@@ -526,7 +525,6 @@
     
     return cell;
 }
-
 
 -(UICollectionViewCell *)hairfieCellAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -541,21 +539,16 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (isHairfiesTab == YES)
-    {
-        if (indexPath.row == 0)
-        {
+    if (isHairfiesTab == YES) {
+        if (indexPath.row == 0) {
             [self checkIfCameraDisabled];
+        } else {
+            hairfie = [businessHairfies objectAtIndex:(indexPath.row - 1)];
+            NSLog(@"business HAIRFIES %@", hairfie.numLikes);
+            [self.collectionView deselectItemAtIndexPath:indexPath animated:YES];
+            [self performSegueWithIdentifier:@"hairfieDetail" sender:self];
         }
-        else {
-        hairfie = [businessHairfies objectAtIndex:(indexPath.row - 1)];
-        NSLog(@"business HAIRFIES %@", hairfie.numLikes);
-        [self.collectionView deselectItemAtIndexPath:indexPath animated:YES];
-        [self performSegueWithIdentifier:@"hairfieDetail" sender:self];
-        }
-    }
-    if (isHairdressersTab == YES)
-    {
+    } else if (isHairdressersTab == YES) {
         if (self.business.activeHairdressers.count != 0) {
             if (indexPath.row == self.business.activeHairdressers.count) {
                 [self performSegueWithIdentifier:@"suggestHairdresser" sender:self];
@@ -603,14 +596,8 @@
     }
     
     if ([segue.identifier isEqualToString:@"showReviews"]) {
-        ReviewsViewController *review = [segue destinationViewController];
-        review.ratingValue = [ratingForReview floatValue];
-        review.business = _business;
-        review.addReviewButton.hidden = NO;
-
-        if (isReviewing == YES) {
-            review.isReviewing = YES;
-        }
+        ReviewsViewController *vc = [segue destinationViewController];
+        vc.business = self.business;
     }
 
     if ([segue.identifier isEqualToString:@"showMapFromSalon"]){

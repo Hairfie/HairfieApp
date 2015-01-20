@@ -52,7 +52,7 @@
     _contentLabel.text = review.comment;
     _ratingView.rating = [[review ratingBetween:@0 and:@5] floatValue];
     _statusLabel.text = [[review ratingBetween:@0 and:@5] stringValue];
-    _nameLabel.text = review.author.displayName;
+    _nameLabel.text = review.authorDisplayName;
 
     [profilePicture sd_setImageWithURL:[review.author pictureUrlwithWidth:@100 andHeight:@100]
                       placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];

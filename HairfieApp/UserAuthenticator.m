@@ -32,15 +32,17 @@
     void (^loadErrorBlock)(NSError *) = ^(NSError *error){
         NSLog(@"Error  %@", [error userInfo]);
         NSString *httpString = [[error userInfo] objectForKey:@"NSLocalizedRecoverySuggestion"];
-        NSDictionary *httpDic = [NSJSONSerialization
-                                 JSONObjectWithData: [httpString dataUsingEncoding:NSUTF8StringEncoding]
-                                            options: NSJSONReadingMutableContainers
-                                            error: &error];
-        int statusCode = (int)[[[httpDic objectForKey:@"error"] objectForKey:@"statusCode"] integerValue];
+        if(httpString) {
+            NSDictionary *httpDic = [NSJSONSerialization
+                                     JSONObjectWithData:[httpString dataUsingEncoding:NSUTF8StringEncoding]
+                                                options:NSJSONReadingMutableContainers
+                                                error: &error];
+            int statusCode = (int)[[[httpDic objectForKey:@"error"] objectForKey:@"statusCode"] integerValue];
 
-        if(statusCode == 404 || statusCode == 401) {
-            [delegate.credentialStore clearSavedCredentials];
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"badCredentials" object:self];
+            if(statusCode == 404 || statusCode == 401) {
+                [delegate.credentialStore clearSavedCredentials];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"badCredentials" object:self];
+            }
         }
         NSLog(@"Error on load %@", error.description);
     };

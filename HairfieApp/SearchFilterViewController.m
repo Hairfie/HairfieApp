@@ -25,7 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initViewAndData];
-    
+    queryfilters = [[NSMutableArray alloc] init];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(setFilterForQuery:)
                                                  name:@"filterSelected"
@@ -64,14 +64,25 @@
         
          [queryfilters addObject:@"children"];
     }
-    NSLog(@"query filters add %@", queryfilters);
 }
 
 
 -(void)removeFilterForQuery:(NSNotification*)notification {
     
-    [queryfilters removeObject:@"men"];
-    NSLog(@"queryfilters %@", queryfilters);
+    SearchFilterTableViewCell *cell = notification.object;
+    
+    NSIndexPath * indexPath = [self.searchFiltersTable indexPathForCell:cell];
+    
+    if (indexPath.row == 0){
+        [queryfilters removeObject:@"men"];
+        
+    } else if (indexPath.row == 1){
+        [queryfilters removeObject:@"women"];
+        
+    } else{
+        
+        [queryfilters removeObject:@"children"];
+    }
 }
 
 //// Init methods

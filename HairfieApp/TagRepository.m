@@ -15,5 +15,4 @@
     return [self repositoryWithClassName:@"tags"];
 }
 
-
 @end
