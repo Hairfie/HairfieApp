@@ -11,7 +11,7 @@
 #import <LoopBack/LoopBack.h>
 #import "User.h"
 #import "Business.h"
-#import "Hairdresser.h"
+#import "BusinessMember.h"
 #import "HairfieRepository.h"
 #import "Picture.h"
 #import "Money.h"
@@ -21,7 +21,7 @@
 @interface HairfiePost : LBModel
 
 @property (strong, nonatomic) Picture *picture;
-@property (strong, nonatomic) Hairdresser *hairdresser;
+@property (strong, nonatomic) BusinessMember *businessMember;
 @property (strong, nonatomic) NSString *description;
 @property (nonatomic)         BOOL shareOnFacebook;
 @property (nonatomic)         BOOL shareOnFacebookPage;

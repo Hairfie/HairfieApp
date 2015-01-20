@@ -62,9 +62,9 @@
     _business = [Business fromSetterValue:aBusiness];
 }
 
--(void)setHairdresser:(Hairdresser *)anHairdresser
+-(void)setBusinessMember:(id)aBusinessMember
 {
-    _hairdresser = [Hairdresser fromSetterValue:anHairdresser];
+    _businessMember = [BusinessMember fromSetterValue:aBusinessMember];
 }
 
 -(void)setPicture:(id)aPicture
@@ -221,13 +221,13 @@
 }
 
 
-+ (void) listLatestByHairdresser:(NSString*)hairdresserId
-                limit:(NSNumber *)limit
-               skip:(NSNumber *)skip
-            success:(void (^)(NSArray *))aSuccessHandler
-            failure:(void (^)(NSError *))aFailureHandler {
-    
-    NSMutableDictionary *where = [[NSMutableDictionary alloc] initWithDictionary:@{@"businessMemberId": hairdresserId}];
++(void)listLatestByBusinessMember:(NSString*)businessMemberId
+                            limit:(NSNumber *)limit
+                             skip:(NSNumber *)skip
+                          success:(void (^)(NSArray *))aSuccessHandler
+                          failure:(void (^)(NSError *))aFailureHandler
+{
+    NSMutableDictionary *where = [[NSMutableDictionary alloc] initWithDictionary:@{@"businessMemberId": businessMemberId}];
     NSDictionary *parameters = @{
                                  @"filter": @{
                                          @"where":where,

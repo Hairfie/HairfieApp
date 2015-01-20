@@ -1,21 +1,21 @@
 //
-//  HairdresserReusableView.m
+//  BusinessMemberReusableView.m
 //  HairfieApp
 //
 //  Created by Leo Martin on 11/25/14.
 //  Copyright (c) 2014 Hairfie. All rights reserved.
 //
 
-#import "HairdresserReusableView.h"
+#import "BusinessMemberReusableView.h"
 #import "AppDelegate.h"
 #import "UIRoundImageView.h"
 #import "UIImage+Filters.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "UIButton+Style.h"
 
-@implementation HairdresserReusableView
+@implementation BusinessMemberReusableView
 {
-    UIImageView *hairdresserPicture;
+    UIImageView *businessMemberPicture;
     BOOL isSetup;
     BOOL isFavorited;
     AppDelegate *appDelegate;
@@ -29,7 +29,7 @@
     
     if (!isSetup) {
         appDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
-        [self getHairdresserFavoriteStatus];
+        [self loadFavoriteStatus];
         
         UIView *bottomBorder =  [[UIView alloc] init];
         [bottomBorder setFrame:CGRectMake(0, self.detailsBttn.frame.size.height, self.detailsBttn.frame.size.width, 4)];
@@ -41,44 +41,41 @@
         
         [self.favoriteBttn setImage:[UIImage imageNamed:@"picto-fav-hairdresser-selected.png"] forState:UIControlStateSelected];
         [self.favoriteBttn setImage:[UIImage imageNamed:@"picto-fav-hairdresser.png"] forState:UIControlStateNormal];
-        self.nameLabel.text = [self.hairdresser displayFullName];
+        self.nameLabel.text = [self.businessMember displayFullName];
     }
 }
 
--(void)getHairdresserFavoriteStatus
+-(void)loadFavoriteStatus
 {
-    [User isHairdresser:self.hairdresser.id favoritedByUser:appDelegate.currentUser.id success:^(BOOL liked) {
-        [self.favoriteBttn setSelected:liked];
-        isFavorited = liked;
-    }
-                failure:^(NSError *error) {
-                    NSLog(@"Failed to get favorite status: %@", error.localizedDescription);
-                }];
+    [User isBusinessMember:self.businessMember.id
+            favoriteOfUser:appDelegate.currentUser.id
+                   success:^(BOOL liked) {
+                       [self.favoriteBttn setSelected:liked];
+                       isFavorited = liked;
+                   }
+                   failure:^(NSError *error) {
+                       NSLog(@"Failed to get favorite status: %@", error.localizedDescription);
+                   }];
 }
 -(void)setupHeaderPictures
 {
     SDWebImageManager *manager = [SDWebImageManager sharedManager];
-    
-    [manager downloadImageWithURL:[self.business.owner pictureUrlwithWidth:@50 andHeight:@50]
+
+    [manager downloadImageWithURL:[self.businessMember pictureUrlWithWidth:@50 height:@50]
                           options:0
-                         progress:^(NSInteger receivedSize, NSInteger expectedSize)
-     {
-         // progression tracking code
-     }
-                        completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL)
-     {
-         if (image)
-         {
-             self.backgroundProfilePicture.image = [image applyLightEffect];
-         }
-     }];
+                         progress:^(NSInteger receivedSize, NSInteger expectedSize) {}
+                        completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                            if (image) {
+                                self.backgroundProfilePicture.image = [image applyLightEffect];
+                            }
+                        }];
     
-    hairdresserPicture = [[UIRoundImageView alloc] initWithFrame:CGRectMake(118, 68, 84, 84)];
-    hairdresserPicture.clipsToBounds = YES;
-    hairdresserPicture.contentMode = UIViewContentModeScaleAspectFit;
+    businessMemberPicture = [[UIRoundImageView alloc] initWithFrame:CGRectMake(118, 68, 84, 84)];
+    businessMemberPicture.clipsToBounds = YES;
+    businessMemberPicture.contentMode = UIViewContentModeScaleAspectFit;
     
-    [hairdresserPicture sd_setImageWithURL:[self.business.owner pictureUrlwithWidth:@200 andHeight:@200]
-                          placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
+    [businessMemberPicture sd_setImageWithURL:[self.businessMember pictureUrlWithWidth:@200 height:@200]
+                             placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
     
     UIView *profileBorder =[[UIView alloc] initWithFrame:CGRectMake(113, 63, 94, 94)];
     profileBorder.layer.cornerRadius = profileBorder.frame.size.height / 2;
@@ -95,7 +92,7 @@
     proLbl.layer.masksToBounds = YES;
     
     [self addSubview:profileBorder];
-    [self addSubview:hairdresserPicture];
+    [self addSubview:businessMemberPicture];
     [self addSubview:proLbl];
 }
 

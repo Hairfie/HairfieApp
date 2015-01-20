@@ -7,13 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Hairdresser.h"
+#import "BusinessMember.h"
 
 @interface BusinessHairdressersCollectionViewCell : UICollectionViewCell
 
 @property (nonatomic) IBOutlet UILabel *hairdresserName;
 @property (nonatomic) IBOutlet UIImageView *disclosureIndicator;
 
--(void)setHairdresser:(Hairdresser*)hairdresser;
+-(void)setBusinessMember:(BusinessMember *)businessMember;
 
 @end

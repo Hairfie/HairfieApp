@@ -1,5 +1,5 @@
 //
-//  HairdresserDetailViewController.h
+//  BusinessMemberViewController.h
 //  HairfieApp
 //
 //  Created by Leo Martin on 11/25/14.
@@ -7,13 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Hairdresser.h"
+#import "BusinessMember.h"
 #import "Business.h"
 
-@interface HairdresserDetailViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate>
+@interface BusinessMemberViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property (nonatomic) IBOutlet UICollectionView *collectionView;
-@property (nonatomic) Hairdresser *hairdresser;
+@property (nonatomic) BusinessMember *businessMember;
 @property (nonatomic) Business *business;
 
 @end

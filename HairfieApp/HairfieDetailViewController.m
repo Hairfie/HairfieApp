@@ -15,7 +15,7 @@
 #import "AppDelegate.h"
 #import "NotLoggedAlert.h"
 #import "UIRoundImageView.h"
-#import "HairdresserDetailViewController.h"
+#import "BusinessMemberViewController.h"
 #import "HairfieDetailBusinessTableViewCell.h"
 #import "InstagramSharer.h"
 #import <Social/Social.h>
@@ -42,8 +42,6 @@
     UILabel *priceLabel;
     UIScrollView *hairfieScroller;
     UIPageControl *pageControl;
-    Hairdresser *hairfieHairdresser;
-    Business *hairdresserBusiness;
     BOOL didLikeWithDoubleTap;
     NSInteger indentValue;
 }
@@ -110,8 +108,8 @@
     if (self.hairfie.business) {
         [tempDisplayedInfoNames addObject:@"business"];
     }
-    if (self.hairfie.hairdresser) {
-        [tempDisplayedInfoNames addObject:@"hairdresser"];
+    if (self.hairfie.businessMember) {
+        [tempDisplayedInfoNames addObject:@"businessMember"];
     }
     if (self.hairfie.selfMade) {
         [tempDisplayedInfoNames addObject:@"selfMade"];
@@ -328,18 +326,15 @@
         } else if ([infoName isEqualToString:@"selfMade"]) {
             [self performSegueWithIdentifier:@"showUserProfile" sender:self];
         }
-        else if ([infoName isEqualToString:@"hairdresser"])
+        else if ([infoName isEqualToString:@"businessMember"])
         {
-            
-            NSLog(@"TEST");
-            [Business getById:self.hairfie.business.id
-                  withSuccess:^(Business *business) {
-                      hairdresserBusiness = business;
-                       [self performSegueWithIdentifier:@"showHairdresserProfile" sender:self];
-                  }
-                      failure:^(NSError *error) {
-                          NSLog(@"Failed to retrieve complete business: %@", error.localizedDescription);
-                      }];
+            [BusinessMember getById:self.hairfie.businessMember.id
+                        withSuccess:^(BusinessMember *businessMember) {
+                            [self performSegueWithIdentifier:@"showBusinessMember" sender:businessMember];
+                        }
+                            failure:^(NSError *error) {
+                                NSLog(@"Failed to retrieve complete business member: %@", error.localizedDescription);
+                            }];
 
           
            
@@ -407,9 +402,9 @@
         cell.userInteractionEnabled = false;
         cell.contentLabel.text = self.hairfie.displayPrice;
         cell.accessoryType = UITableViewCellAccessoryNone;
-    } else if ([infoName isEqualToString:@"hairdresser"]) {
+    } else if ([infoName isEqualToString:@"businessMember"]) {
         cell.pictoView.image = [UIImage imageNamed:@"picto-hairfie-detail-hairdresser.png"];
-        cell.contentLabel.text = self.hairfie.hairdresser.displayFullName;
+        cell.contentLabel.text = self.hairfie.businessMember.displayFullName;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         UIView *backgroundView = [[UIView alloc] initWithFrame:cell.frame];
         backgroundView.backgroundColor = cell.contentView.backgroundColor;
@@ -838,14 +833,9 @@
         UserProfileViewController *userProfile = [segue destinationViewController];
         [userProfile setUser:self.hairfie.author];
         userProfile.isCurrentUser = NO;
-    }
-    else if ([segue.identifier isEqualToString:@"showHairdresserProfile"])
-    {
-        HairdresserDetailViewController *hairdresserProfile = [segue destinationViewController];
-    
-        hairdresserProfile.hairdresser = self.hairfie.hairdresser;
-        hairdresserProfile.business = hairdresserBusiness;
-        
+    } else if ([segue.identifier isEqualToString:@"showBusinessMember"]) {
+        BusinessMemberViewController *vc = [segue destinationViewController];
+        vc.businessMember = sender;
     }
 }
 

@@ -16,13 +16,13 @@
 
 @implementation ClaimAddHairdresserViewController
 {
-    NSMutableArray *hairdressers;
+    NSMutableArray *businessMembers;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    hairdressers = [[NSMutableArray alloc] init];
+    businessMembers = [[NSMutableArray alloc] init];
     
     _firstNameView.layer.cornerRadius = 5;
     _firstNameView.layer.borderColor = [UIColor lightGreyHairfie].CGColor;
@@ -52,16 +52,15 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    if (_hairdressersClaimed != nil) {
-        hairdressers = _hairdressersClaimed;
+    if (self.claimedBusinessMembers != nil) {
+        businessMembers = self.claimedBusinessMembers;
     }
 
-    if (_hairdresserFromSegue != nil)
-    {
-        _firstNameField.text = _hairdresserFromSegue.firstName;
-         _lastNameField.text = _hairdresserFromSegue.lastName;
-         _emailField.text = _hairdresserFromSegue.email;
-         _phoneNumberField.text = _hairdresserFromSegue.phoneNumber;
+    if (self.businessMemberFromSegue != nil) {
+        self.firstNameField.text = self.businessMemberFromSegue.firstName;
+        self.lastNameField.text = self.businessMemberFromSegue.firstName;
+        self.emailField.text = self.businessMemberFromSegue.email;
+        self.phoneNumberField.text = self.businessMemberFromSegue.phoneNumber;
     }
 }
 
@@ -82,25 +81,27 @@
 
 -(void)addHairdresserWithBusiness:(Business *)aBusiness
 {
-    Hairdresser *hairdresser = [[Hairdresser alloc] init];
-    hairdresser.business = aBusiness;
-    hairdresser.active = YES;
-    hairdresser.firstName = _firstNameField.text;
-    hairdresser.lastName = _lastNameField.text;
-    hairdresser.email = _emailField.text;
-    hairdresser.phoneNumber = _phoneNumberField.text;
+    BusinessMember *businessMember = [[BusinessMember alloc] init];
+    businessMember.business = aBusiness;
+    businessMember.active = YES;
+    businessMember.firstName = self.firstNameField.text;
+    businessMember.lastName = self.lastNameField.text;
+    businessMember.email = self.emailField.text;
+    businessMember.phoneNumber = self.phoneNumberField.text;
    
-    if (_hairdresserFromSegue.id != nil)
+    if (self.businessMemberFromSegue.id != nil)
     {
-        hairdresser.id = _hairdresserFromSegue.id;
+        businessMember.id = self.businessMemberFromSegue.id;
     }
     
-    [hairdressers addObject:hairdresser];
-    NSLog(@"hairdressers %@", hairdresser);
-    [hairdresser saveWithSuccess:^() { NSLog(@"Hairdresser saved"); }
-                         failure:^(NSError *error) {
-                             NSLog(@"Failed to save hairdresser: %@", error.localizedDescription);
-                         }];
+    [businessMembers addObject:businessMember];
+    NSLog(@"businessMembers %@", businessMembers);
+    [businessMember saveWithSuccess:^() {
+                        NSLog(@"Business member successfully saved");
+                    }
+                            failure:^(NSError *error) {
+                                NSLog(@"Failed to save business member: %@", error.localizedDescription);
+                            }];
 }
 
 -(IBAction)validateHairdresser:(id)sender
@@ -111,7 +112,7 @@
     [self addHairdresserWithBusiness:finalStep.businessToManage];
 
     if (finalStep.businessToManage != nil) {
-        finalStep.businessToManage.activeHairdressers = hairdressers;
+        finalStep.businessToManage.activeHairdressers = businessMembers;
     }
     [self goBack:self];
 }
