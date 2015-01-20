@@ -41,6 +41,6 @@
 
 @property (nonatomic) BusinessSearch *businessSearch;
 
-@property (nonatomic) BOOL isModal;
+@property (nonatomic) BOOL isModifyingSearch;
 
 @end

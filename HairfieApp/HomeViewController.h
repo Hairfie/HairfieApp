@@ -26,6 +26,7 @@
 @property (nonatomic) PopUpViewController *popViewController;
 @property (nonatomic) IBOutlet UIButton *menuButton;
 @property (nonatomic) IBOutlet UIButton *takeHairfieBttn;
+@property (nonatomic) IBOutlet UILabel *filterSearchBttnTitle;
 
 @property (nonatomic) AKPickerView *pickerView;
 @property (nonatomic) IBOutlet UIView *pickerContainerView;

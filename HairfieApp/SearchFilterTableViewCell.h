@@ -13,4 +13,6 @@
 @property (nonatomic) IBOutlet UIButton *activateBttn;
 @property (nonatomic) IBOutlet UILabel *titleLabel;
 @property (nonatomic) BOOL isSelected;
+
+-(void)setFilterSelected:(BOOL)selected;
 @end

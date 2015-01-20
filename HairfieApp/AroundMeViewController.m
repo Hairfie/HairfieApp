@@ -55,6 +55,8 @@
     [super viewDidLoad];
 
     self.mapView.showsPointsOfInterest = NO;
+    
+    
     aroundMe = NSLocalizedStringFromTable(@"Around Me", @"Around_Me", nil);
     businesses = [[NSArray alloc] init];
     self.delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
@@ -80,8 +82,9 @@
              forControlEvents:UIControlEventValueChanged];
     [self.hairdresserTableView addSubview:refreshControl];
     [self.topBarView addBottomBorderWithHeight:1 andColor:[UIColor lightGrey]];
-    [self updateSearchResults];
+   // [self updateSearchResults];
 }
+
 
 
 -(IBAction)modifySearchFilters:(id)sender
@@ -101,12 +104,10 @@
 {
     [_delegate startTrackingLocation:YES];
 
-    if (nil == self.businessSearch) {
-        NSLog(@"Creating brand new business search...");
+    if (self.businessSearch == nil) {
         self.businessSearch = [[BusinessSearch alloc] init];
-        [self updateSearchResults];
     }
-    
+    [self updateSearchResults];
     //self.searchView.businessSearch = self.businessSearch;
 
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -348,7 +349,7 @@
     if ([segue.identifier isEqualToString:@"modifySearchFilters"]) {
         
         SearchFilterViewController *searchFilterVc = [segue destinationViewController];
-        searchFilterVc.isModal = YES;
+        searchFilterVc.isModifyingSearch = YES;
         searchFilterVc.myDelegate = self;
         if (self.businessSearch != nil) {
             searchFilterVc.businessSearch = self.businessSearch;
@@ -359,6 +360,8 @@
 
 - (void)didSetABusinessSearch:(BusinessSearch*)aBusinessSearch{
 
+    self.businessSearch = aBusinessSearch;
+    
     NSLog(@"business search %@", aBusinessSearch.where);
 
 }

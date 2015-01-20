@@ -50,6 +50,7 @@
     NSArray *hairfieContent;
     NSArray *categoryContent;
     BOOL isSetup;
+    BusinessSearch *businessSearch;
 }
 @end
 
@@ -81,7 +82,7 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.pageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"HomePageViewController"];
     self.pageViewController.dataSource = self;
-   
+    self.filterSearchBttnTitle.text = NSLocalizedStringFromTable(@"Filter search", @"Feed", nil);
     
     
     
@@ -95,6 +96,11 @@
     
       [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(switchMenuItem:) name:@"collectionChanged" object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(segueToSearchResults:)
+                                                 name:@"segueToSearchResults"
+                                               object:nil];
+
     self.navigationItem.title = [NSString stringWithFormat:NSLocalizedStringFromTable(@"Home", @"Feed", nil)];
     
     refreshControl = [[UIRefreshControl alloc] init];
@@ -171,13 +177,24 @@
 }
 
 -(void)doSearch:(NSNotification*)notification {
-     [self performSegueWithIdentifier:@"searchFromFeed" sender:self];
+     [self performSegueWithIdentifier:@"showSearchResults" sender:self];
 }
 
 -(void)segueToHairfieDetail:(NSNotification*)notification {
     NSDictionary* userInfo = notification.userInfo;
     hairfieSelected = [userInfo objectForKey:@"hairfie"];
     [self performSegueWithIdentifier:@"hairfieDetail" sender:self];
+}
+
+-(IBAction)filterSearch:(id)sender
+{
+    [self performSegueWithIdentifier:@"filterSearch" sender:self];
+}
+-(void)segueToSearchResults:(NSNotification*)notification {
+    NSDictionary *dic = notification.userInfo;
+    
+    businessSearch = [dic objectForKey:@"businessSearch"];
+    [self performSegueWithIdentifier:@"showSearchResults" sender:self];
 }
 
 -(void)switchMenuItem:(NSNotification*)notification{
@@ -406,10 +423,11 @@
 
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"searchFromFeed"])
+    if ([segue.identifier isEqualToString:@"showSearchResults"])
     {
-      //  AroundMeViewController *controller = [segue destinationViewController];
+        AroundMeViewController *controller = [segue destinationViewController];
       
+        controller.businessSearch = businessSearch;
     }
     if ([segue.identifier isEqualToString:@"hairfieDetail"])
     {

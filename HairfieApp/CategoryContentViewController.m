@@ -25,11 +25,11 @@
     [super viewDidLoad];
    
     [self.contentCollection registerNib:[UINib nibWithNibName:@"CategoriesCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:CATEGORY_CELL_IDENTIFIER];
-    categoriesNames = [[NSArray alloc] initWithObjects:NSLocalizedStringFromTable(@"around me", @"Feed", nil),NSLocalizedStringFromTable(@"women", @"Feed", nil),NSLocalizedStringFromTable(@"men", @"Feed", nil),NSLocalizedStringFromTable(@"children", @"Feed", nil), nil];
+    categoriesNames = [[NSArray alloc] initWithObjects:NSLocalizedStringFromTable(@"around me", @"Feed", nil),NSLocalizedStringFromTable(@"women", @"Feed", nil),NSLocalizedStringFromTable(@"men", @"Feed", nil), nil];
     
     
     
-    categoriesImages = [[NSArray alloc] initWithObjects:@"",@"woman-category.png",@"man-category.png",@"", nil];
+    categoriesImages = [[NSArray alloc] initWithObjects:@"aroundme-category.png",@"woman-category.png",@"man-category.png", nil];
 
     
     // Do any additional setup after loading the view.

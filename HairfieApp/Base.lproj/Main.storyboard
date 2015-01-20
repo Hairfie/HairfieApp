@@ -105,6 +105,7 @@
             <string>SourceSansPro-Light</string>
             <string>SourceSansPro-Light</string>
             <string>SourceSansPro-Light</string>
+            <string>SourceSansPro-Light</string>
         </mutableArray>
         <mutableArray key="SourceSansPro-Regular.ttf">
             <string>SourceSansPro-Regular</string>
@@ -511,16 +512,16 @@
                                 <color key="backgroundColor" red="1" green="0.45882352939999999" blue="0.4431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2eu-PK-IT8" userLabel="Search Button">
-                                <rect key="frame" x="36" y="69" width="248" height="38"/>
+                                <rect key="frame" x="10" y="72" width="300" height="37"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="38" id="2SH-GM-Fvq"/>
-                                    <constraint firstAttribute="width" constant="248" id="x9T-MQ-zuB"/>
+                                    <constraint firstAttribute="width" constant="300" id="Akg-Ew-PFK"/>
+                                    <constraint firstAttribute="height" constant="37" id="gpH-cs-FqR"/>
                                 </constraints>
-                                <state key="normal" image="homepage-filter-search-bttn.png">
+                                <state key="normal" image="hairfie-post-search-name.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="yR0-uS-AJe" kind="push" id="aVx-Lr-qLp"/>
+                                    <action selector="filterSearch:" destination="eci-2w-4CQ" eventType="touchUpInside" id="C02-Ke-dy5"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GvC-kG-3Q1" userLabel="Hairfie Button">
@@ -579,16 +580,22 @@
                                     <constraint firstItem="cGg-6D-Krf" firstAttribute="leading" secondItem="rQE-Vr-vK4" secondAttribute="leading" id="ust-PS-h2d"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qiI-qM-7RB">
+                                <rect key="frame" x="58" y="80" width="246" height="21"/>
+                                <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="17"/>
+                                <color key="textColor" red="0.42745098040000001" green="0.46274509800000002" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="rQE-Vr-vK4" firstAttribute="top" secondItem="4KN-ho-QEE" secondAttribute="topMargin" id="9fH-hE-rXU"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="2eu-PK-IT8" secondAttribute="trailing" constant="20" id="HA7-U3-Pbb"/>
-                            <constraint firstItem="2eu-PK-IT8" firstAttribute="top" secondItem="rQE-Vr-vK4" secondAttribute="bottom" constant="5" id="f2d-jt-6dR"/>
-                            <constraint firstItem="qPN-L9-OQU" firstAttribute="top" secondItem="2eu-PK-IT8" secondAttribute="bottom" constant="5" id="iYE-cc-ybp"/>
+                            <constraint firstItem="2eu-PK-IT8" firstAttribute="top" secondItem="rQE-Vr-vK4" secondAttribute="bottom" constant="8" id="XRN-ac-F4u"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="2eu-PK-IT8" secondAttribute="trailing" constant="-6" id="fN3-Ws-LS2"/>
+                            <constraint firstItem="2eu-PK-IT8" firstAttribute="leading" secondItem="4KN-ho-QEE" secondAttribute="leadingMargin" constant="-6" id="g2p-pA-aLG"/>
                             <constraint firstItem="tBR-Dh-Qg0" firstAttribute="top" secondItem="GvC-kG-3Q1" secondAttribute="bottom" constant="8" id="kiH-Gp-fnR"/>
                             <constraint firstAttribute="centerX" secondItem="GvC-kG-3Q1" secondAttribute="centerX" id="lGJ-9D-3OM"/>
-                            <constraint firstItem="2eu-PK-IT8" firstAttribute="leading" secondItem="4KN-ho-QEE" secondAttribute="leadingMargin" constant="20" id="vbi-Fz-AtS"/>
+                            <constraint firstItem="qPN-L9-OQU" firstAttribute="top" secondItem="2eu-PK-IT8" secondAttribute="bottom" constant="8" id="rWB-D7-Z7c"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Home" id="wE9-Qp-qyd">
@@ -599,11 +606,13 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="568"/>
                     <connections>
+                        <outlet property="filterSearchBttnTitle" destination="qiI-qM-7RB" id="uQF-33-deP"/>
                         <outlet property="pickerContainerView" destination="qPN-L9-OQU" id="lQX-5B-O8e"/>
                         <outlet property="takeHairfieBttn" destination="GvC-kG-3Q1" id="aJ8-CS-bKD"/>
                         <outlet property="topBarView" destination="rQE-Vr-vK4" id="dbg-6F-rsN"/>
-                        <segue destination="5vw-Wx-iMq" kind="push" identifier="searchFromFeed" id="4Cm-qL-flu"/>
+                        <segue destination="5vw-Wx-iMq" kind="push" identifier="showSearchResults" id="4Cm-qL-flu"/>
                         <segue destination="C0A-PA-Dfl" kind="push" identifier="cameraOverlay" id="MlL-bZ-CKF"/>
+                        <segue destination="yR0-uS-AJe" kind="modal" identifier="filterSearch" id="cpa-I8-e9p"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tyk-UX-pm7" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -647,7 +656,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JC7-rw-pY7" userLabel="TOP BAR">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JC7-rw-pY7" userLabel="TOP BAR">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xMa-ep-gdF">
@@ -694,7 +703,7 @@
                                     <constraint firstAttribute="height" constant="80" id="UQV-6C-l23"/>
                                 </constraints>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BYw-ul-o7V">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BYw-ul-o7V">
                                 <rect key="frame" x="0.0" y="80" width="320" height="320"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="320" id="vyB-Qb-Vfl"/>
@@ -707,7 +716,7 @@
                                     <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Cw-p2-Kms">
                                         <rect key="frame" x="0.0" y="0.0" width="728" height="70"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="txc-Qj-wYU">
+                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="txc-Qj-wYU">
                                                 <rect key="frame" x="8" y="9" width="60" height="60"/>
                                                 <color key="backgroundColor" red="0.41176470590000003" green="0.4431372549" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
@@ -2209,9 +2218,9 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nOa-rt-BeM">
-                                        <rect key="frame" x="8" y="20" width="40" height="40"/>
-                                        <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
-                                        <state key="normal" image="arrow-nav.png">
+                                        <rect key="frame" x="267" y="23" width="45" height="35"/>
+                                        <inset key="contentEdgeInsets" minX="20" minY="10" maxX="10" maxY="10"/>
+                                        <state key="normal" image="cancel-search-bttn.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -2245,7 +2254,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="125"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Rechercher sur Hairfie" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="whJ-xk-brt">
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Rechercher sur Hairfie" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="whJ-xk-brt">
                                             <rect key="frame" x="10" y="20" width="300" height="40"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -2254,7 +2263,7 @@
                                                 <outlet property="delegate" destination="yR0-uS-AJe" id="hBp-ED-1Ge"/>
                                             </connections>
                                         </textField>
-                                        <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="À proximité de mon lieu actuel" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pYs-TH-Loh">
+                                        <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="À proximité de mon lieu actuel" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="pYs-TH-Loh">
                                             <rect key="frame" x="10" y="70" width="300" height="40"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -2293,12 +2302,11 @@
                         <outlet property="searchTextField" destination="whJ-xk-brt" id="3cr-Ju-vha"/>
                         <outlet property="topBarTitle" destination="LLI-u9-21p" id="rU6-dM-cG6"/>
                         <outlet property="topBarView" destination="qfQ-k3-YTQ" id="XU7-GZ-Rc6"/>
-                        <segue destination="5vw-Wx-iMq" kind="push" identifier="displayResultsSearch" id="lVd-hJ-tym"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cMH-Dx-Psn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1627" y="-1544"/>
+            <point key="canvasLocation" x="1641" y="-1491"/>
         </scene>
         <!--Around Me View Controller-->
         <scene sceneID="MKB-OL-5Kh">
@@ -2564,7 +2572,7 @@
                                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5ZR-VD-wlu" userLabel="HAIRDRESSER VIEW">
                                                 <rect key="frame" x="0.0" y="278" width="320" height="615"/>
                                                 <subviews>
-                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="FpJ-1K-79p">
+                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="FpJ-1K-79p">
                                                         <rect key="frame" x="0.0" y="0.0" width="320" height="615"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
@@ -2666,7 +2674,7 @@
                                                             <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sWj-Ma-gq4" userLabel="Separator 4">
                                                                 <color key="backgroundColor" red="0.85490196080000003" green="0.85490196080000003" blue="0.87058823529999996" alpha="1" colorSpace="calibratedRGB"/>
                                                             </view>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="picto-list-phone.png" translatesAutoresizingMaskIntoConstraints="NO" id="ONJ-ou-2AS">
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="picto-list-phone.png" translatesAutoresizingMaskIntoConstraints="NO" id="ONJ-ou-2AS">
                                                                 <rect key="frame" x="10" y="86" width="16" height="16"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="16" id="9xs-zZ-bTk"/>
@@ -2689,7 +2697,7 @@
                                                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z1i-KZ-pp2" userLabel="Separator 2">
                                                                 <color key="backgroundColor" red="0.85490196080000003" green="0.85490196080000003" blue="0.87058823529999996" alpha="1" colorSpace="calibratedRGB"/>
                                                             </view>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="picto-clock-black.png" translatesAutoresizingMaskIntoConstraints="NO" id="a0o-5H-PFd">
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="picto-clock-black.png" translatesAutoresizingMaskIntoConstraints="NO" id="a0o-5H-PFd">
                                                                 <rect key="frame" x="10" y="133" width="16" height="16"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="16" id="0Cz-K5-ojW"/>
@@ -2772,10 +2780,10 @@
                                                                     <constraint firstAttribute="width" constant="8" id="Adg-Rh-Cua"/>
                                                                 </constraints>
                                                             </imageView>
-                                                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HDM-ep-dgz" userLabel="Rating Container View">
+                                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HDM-ep-dgz" userLabel="Rating Container View">
                                                                 <rect key="frame" x="10" y="164" width="300" height="77"/>
                                                                 <subviews>
-                                                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tg1-Ua-4sM" customClass="RatingView">
+                                                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tg1-Ua-4sM" customClass="RatingView">
                                                                         <rect key="frame" x="71" y="35" width="158" height="20"/>
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                         <constraints>
@@ -2783,7 +2791,7 @@
                                                                             <constraint firstAttribute="height" constant="20" id="Iuf-dJ-f9E"/>
                                                                         </constraints>
                                                                     </view>
-                                                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Add a review" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TE0-Qo-gk8">
+                                                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Add a review" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TE0-Qo-gk8">
                                                                         <rect key="frame" x="100" y="8" width="100" height="10"/>
                                                                         <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="1"/>
                                                                         <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="13"/>
@@ -2873,7 +2881,7 @@
                                                     <constraint firstAttribute="trailing" secondItem="VBB-fJ-v6H" secondAttribute="trailing" constant="8" id="uIR-80-lpx"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="POI-R8-aQS" userLabel="Header Container View">
+                                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="POI-R8-aQS" userLabel="Header Container View">
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="220"/>
                                                 <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                             </view>
@@ -3863,7 +3871,7 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gw7-iJ-pa5">
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gw7-iJ-pa5">
                                 <rect key="frame" x="0.0" y="352" width="320" height="216"/>
                                 <subviews>
                                     <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="39r-IS-RRx">
@@ -5961,6 +5969,7 @@
         <image name="arrow-nav.png" width="40" height="40"/>
         <image name="arrow-next.png" width="100" height="100"/>
         <image name="cancel-hairfie.png" width="64" height="64"/>
+        <image name="cancel-search-bttn.png" width="45" height="46"/>
         <image name="checkbox-true.png" width="46" height="46"/>
         <image name="curve.jpeg" width="640" height="640"/>
         <image name="facebook-page-share-off.png" width="61" height="60"/>
@@ -5971,7 +5980,6 @@
         <image name="hairfie-post-contour.png" width="208" height="305"/>
         <image name="hairfie-post-search-location.png" width="599" height="74"/>
         <image name="hairfie-post-search-name.png" width="599" height="74"/>
-        <image name="homepage-filter-search-bttn.png" width="495" height="76"/>
         <image name="location-button-search.png" width="76" height="54"/>
         <image name="location-icon-red.png" width="24" height="32"/>
         <image name="menu-bttn.png" width="30" height="26"/>
@@ -6009,16 +6017,15 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="bPy-wx-rAm"/>
-        <segue reference="lVd-hJ-tym"/>
-        <segue reference="y0x-ky-Mk2"/>
-        <segue reference="17m-hw-CE8"/>
+        <segue reference="ifC-bw-jQg"/>
         <segue reference="Vzm-3A-jKo"/>
         <segue reference="9F8-Wo-5DF"/>
         <segue reference="VGS-VM-Pwy"/>
         <segue reference="ZYG-tz-TFe"/>
         <segue reference="YaZ-tZ-kVO"/>
         <segue reference="XyP-UR-YzB"/>
-        <segue reference="N5w-ND-ZjU"/>
+        <segue reference="3El-su-ZTa"/>
+        <segue reference="MlL-bZ-CKF"/>
+        <segue reference="cpa-I8-e9p"/>
     </inferredMetricsTieBreakers>
 </document>

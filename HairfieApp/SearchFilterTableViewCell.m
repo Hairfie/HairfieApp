@@ -12,6 +12,7 @@
 
 
 - (void)awakeFromNib {
+    
     // Initialization code
 }
 
@@ -19,6 +20,10 @@
     [super setSelected:selected animated:animated];
     
     // Configure the view for the selected state
+}
+
+-(void)setFilterSelected:(BOOL)selected {
+    [self.activateBttn setImage:[UIImage imageNamed:@"filter-selected.png"] forState:UIControlStateNormal];
 }
 
 -(IBAction)setBttnSelected:(UIButton*)sender {

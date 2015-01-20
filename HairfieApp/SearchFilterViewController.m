@@ -14,6 +14,8 @@
 
 @end
 
+#define CELL_ID  @"searchFilterCell"
+
 @implementation SearchFilterViewController
 {
     NSMutableArray *queryfilters;
@@ -22,6 +24,8 @@
     NSArray *sectionContent;
     NSString *queryWhere;
     NSString *queryName;
+    BOOL isCancelling;
+
     
 
 }
@@ -43,19 +47,47 @@
     
     sectionTitles = [[NSArray alloc]initWithObjects: NSLocalizedStringFromTable(@"Pour qui ?", @"Around_Me", nil), nil];
     sectionContent = [[NSArray alloc] initWithObjects:
-                      NSLocalizedStringFromTable(@"Man", @"Claim", nil),NSLocalizedStringFromTable(@"Woman", @"Claim", nil),NSLocalizedStringFromTable(@"Kid", @"Claim", nil), nil];
+                      @{@"displayValue":NSLocalizedStringFromTable(@"Man", @"Claim", nil), @"key":@"men", @"tag":@0},
+                      @{@"displayValue":NSLocalizedStringFromTable(@"Woman", @"Claim", nil), @"key":@"women", @"tag":@1},
+                      @{@"displayValue":NSLocalizedStringFromTable(@"Kid", @"Claim", nil), @"key":@"children", @"tag":@2}, nil];
+    
+    
+    
     
         // Do any additional setup after loading the view.
 }
 
 -(void)viewWillAppear:(BOOL)animated {
     
+    isCancelling = NO;
     if (self.businessSearch != nil) {
         self.searchTextField.text = self.businessSearch.query;
         self.locationTextField.text = self.businessSearch.where;
+        [self.searchFiltersTable reloadData];
+        
     }
 }
 
+-(void)viewWillDisappear:(BOOL)animated {
+    if (isCancelling == NO) {
+    if (self.isModifyingSearch == NO)
+    {
+        
+        NSDictionary* dict = [NSDictionary dictionaryWithObject:self.businessSearch
+                                                         forKey:@"businessSearch"];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"segueToSearchResults"
+                                                            object:self
+                                                          userInfo:dict];
+       
+    }
+    if(self.isModifyingSearch == YES) {
+        if([self.myDelegate respondsToSelector:@selector(didSetABusinessSearch:)])
+        {
+            [self.myDelegate didSetABusinessSearch:self.businessSearch];
+        }
+    }
+    }
+}
 /// NSNotification Methods
 
 -(void)setFilterForQuery:(NSNotification*)notification {
@@ -63,19 +95,9 @@
     
     NSIndexPath * indexPath = [self.searchFiltersTable indexPathForCell:cell];
     
+    NSDictionary *dic = [sectionContent objectAtIndex:indexPath.row];
     
-    // Temporary filters
-    
-    if (indexPath.row == 0){
-        [queryfilters addObject:@"men"];
-        
-    } else if (indexPath.row == 1){
-         [queryfilters addObject:@"women"];
-        
-    } else{
-        
-         [queryfilters addObject:@"children"];
-    }
+    [queryfilters addObject:[dic objectForKey:@"key"]];
 }
 
 
@@ -85,16 +107,8 @@
     
     NSIndexPath * indexPath = [self.searchFiltersTable indexPathForCell:cell];
     
-    if (indexPath.row == 0){
-        [queryfilters removeObject:@"men"];
-        
-    } else if (indexPath.row == 1){
-        [queryfilters removeObject:@"women"];
-        
-    } else{
-        
-        [queryfilters removeObject:@"children"];
-    }
+    NSDictionary *dic = [sectionContent objectAtIndex:indexPath.row];
+    [queryfilters removeObject:[dic objectForKey:@"key"]];
 }
 
 //// Init methods
@@ -126,11 +140,9 @@
 // Navigation
 -(IBAction)goBack:(id)sender {
     
-    if (self.isModal == YES) {
-        [self dismissViewControllerAnimated:YES completion:nil];
-    }
-    else
-        [self.navigationController popViewControllerAnimated:YES];
+    isCancelling = YES;
+    [self dismissViewControllerAnimated:YES completion:nil];
+
 }
 
 // Search
@@ -152,19 +164,8 @@
     
     NSLog(@"\n\nQUERY %@\nWHERE %@\nCLIENT TYPES %@", self.businessSearch.query, self.businessSearch.where, self.businessSearch.clientTypes);
     
-    if (self.isModal == YES) {
         
-    
-        if([self.myDelegate respondsToSelector:@selector(didSetABusinessSearch:)])
-        {
-            [self.myDelegate didSetABusinessSearch:self.businessSearch];
-        }
-        
-        [self dismissViewControllerAnimated:YES completion:nil];
-    } else {
-        [self performSegueWithIdentifier:@"displayResultsSearch" sender:self];
-        
-    }
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 /// Segues
@@ -212,17 +213,34 @@
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"searchFilterCell";
-    SearchFilterTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    SearchFilterTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_ID];
 
     
     if (cell == nil) {
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"SearchFilterTableViewCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
-
-    cell.titleLabel.text = [sectionContent objectAtIndex:indexPath.row];
-    cell.tag = indexPath.row;
+    
+    NSDictionary *dic = [sectionContent objectAtIndex:indexPath.row];
+    
+    
+    
+    cell.titleLabel.text = [dic objectForKey:@"displayValue"];
+    cell.tag = [[dic objectForKey:@"tag"] integerValue];
+    
+    NSDictionary *alreadySelectedDic = _.find(self.businessSearch.clientTypes, ^BOOL (NSString *valueToTest) {
+        return [valueToTest isEqualToString:[dic objectForKey:@"key"]];
+    });
+    
+    if(alreadySelectedDic) 
+    {
+        [cell setFilterSelected:YES];
+        cell.isSelected = YES;
+        [queryfilters addObject:[dic objectForKey:@"key"]];
+    }else {
+        cell.isSelected = NO;
+    }
     return cell;
 }
 
