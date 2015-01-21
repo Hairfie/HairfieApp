@@ -49,29 +49,29 @@
                                placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
         self.name.text = hairfie.author.displayName;
     }
-
-    
-    
     
     self.nbLikes.text = hairfie.displayNumLikes;
     self.priceLabel.text = [hairfie displayPrice];
 
     if (hairfie.pictures.count == 1) {
-    [self.hairfieView setImageWithURL:[[hairfie.pictures objectAtIndex:0] urlWithWidth:@300 height:@420]
-                        placeholderImage:[UIColor imageWithColor:[UIColor colorWithRed:234/255.0f green:236/255.0f blue:238/255.0f alpha:1]]
-                        usingActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+        [self.hairfieView setImageWithURL:[[hairfie.pictures objectAtIndex:0] urlWithWidth:@300 height:@420]
+                         placeholderImage:[UIColor imageWithColor:[UIColor colorWithRed:234/255.0f green:236/255.0f blue:238/255.0f alpha:1]]
+              usingActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+
         self.secondHairfieView.hidden = YES;
     } else {
         [self.hairfieView setImageWithURL:[[hairfie.pictures objectAtIndex:0] urlWithWidth:@300 height:@420]
-                         placeholderImage:[UIColor imageWithColor:[UIColor colorWithRed:234/255.0f green:236/255.0f blue:238/255.0f alpha:1]]usingActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-         [self.secondHairfieView setImageWithURL:[[hairfie.pictures objectAtIndex:1] urlWithWidth:@300 height:@420]
-                                placeholderImage:[UIColor imageWithColor:[UIColor colorWithRed:234/255.0f green:236/255.0f blue:238/255.0f alpha:1]]usingActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+                         placeholderImage:[UIColor imageWithColor:[UIColor colorWithRed:234/255.0f green:236/255.0f blue:238/255.0f alpha:1]]
+              usingActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    
+        [self.secondHairfieView setImageWithURL:[[hairfie.pictures objectAtIndex:1] urlWithWidth:@70 height:@70]
+                                placeholderImage:[UIColor imageWithColor:[UIColor colorWithRed:234/255.0f green:236/255.0f blue:238/255.0f alpha:1]]
+                     usingActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
         
         self.secondHairfieView.hidden = NO;
     }
     
     if (hairfie.price.amount == nil) {
-    
         self.priceView.hidden = YES;
         self.priceLabel.hidden = YES;
     }
