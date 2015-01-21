@@ -37,7 +37,6 @@
     NSInteger posX = 10;
     indentValue = 0;
     NSInteger screenWidth = self.bounds.size.width;
-    NSLog(@"screenwidth %d", screenWidth - 10);
     for (int i = 1; i < [tags count] + 1; i++) {
      
         Tag *tag = [tags objectAtIndex:i - 1];
@@ -47,7 +46,7 @@
         [button addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
         if (i != 1)
             posX += indentValue + 15;
-         button.titleLabel.font = [UIFont fontWithName:@"SourceSansPro-Light" size:15];
+         button.titleLabel.font = [UIFont fontWithName:@"SourceSansPro-Light" size:17];
         [self getLabelWidth:button.titleLabel];
         
         BOOL isTagSelected = _.any(selectedTags, ^BOOL (Tag *hairfieTag){
@@ -99,7 +98,7 @@
      context:nil]
     .size.width;
     
-    indentValue = (int)ceilf(widthIs);
+    indentValue = (int)ceilf(widthIs) + 10;
 }
 
 -(IBAction)buttonClicked:(UIButton*)sender

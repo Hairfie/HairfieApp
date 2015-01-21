@@ -212,15 +212,15 @@
     }
     headers = [[NSMutableArray alloc] init];
     
-    UIView* header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 46)];
+    UIView* header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
     [header setBackgroundColor:[UIColor whiteColor]];
-    UILabel *mylabel = [[UILabel alloc] initWithFrame:CGRectMake(52, 0, 237, 40)];
+    UILabel *mylabel = [[UILabel alloc] initWithFrame:CGRectMake(65, 14, 237, 28)];
     mylabel.text = NSLocalizedStringFromTable(@"Business", @"Menu", nil);
-    UIView *separatorView = [[UIView alloc] initWithFrame:CGRectMake(0, 45, 320, 1)];\
+    UIView *separatorView = [[UIView alloc] initWithFrame:CGRectMake(0, 49, 320, 1)];\
     separatorView.backgroundColor = [UIColor colorWithRed:236/255.0f green:236/255.0f blue:238/255.0f alpha:1];
     UIView *topseparatorView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 0)];\
     topseparatorView.backgroundColor = [UIColor colorWithRed:236/255.0f green:236/255.0f blue:238/255.0f alpha:1];
-    UIImageView *pictoBusiness = [[UIImageView alloc] initWithFrame:CGRectMake(12, 12, 20, 20)];
+    UIImageView *pictoBusiness = [[UIImageView alloc] initWithFrame:CGRectMake(30, 20, 15, 15)];
     pictoBusiness.image = [UIImage imageNamed:@"picto-home.png"];
     mylabel.font = [UIFont fontWithName:@"SourceSansPro-Light" size:15];
     mylabel.textColor = [UIColor colorWithRed:103/255.0f green:111/255.0f blue:116/255.0f alpha:1];
@@ -251,9 +251,16 @@
         cell.menuItem.text = [_menuItems objectAtIndex:indexPath.row];
         [cell.menuPicto setImage:[UIImage imageNamed:[_menuPictos objectAtIndex:indexPath.row]]];
            cell.indentationWidth = 0;
+        if (indexPath.row == 0) {
+            cell.selectionIndicator.hidden = NO;
+        }
+        else
+            cell.selectionIndicator.hidden = YES;
+        
     }
     if (indexPath.section == 1)
     {
+        cell.selectionIndicator.hidden = YES;
         if (indexPath.row == 0)
         {
             cell.menuItem.text = NSLocalizedStringFromTable(@"Add a business", @"Menu", nil);
@@ -286,6 +293,7 @@
     }
     if (indexPath.section == 2)
     {
+        cell.selectionIndicator.hidden = YES;
          cell.backgroundColor = [UIColor whiteColor];
         [cell.menuPicto setImage:[UIImage imageNamed:@"picto-logout.png"]];
         cell.menuItem.text = NSLocalizedStringFromTable(@"Log out", @"Menu", nil);
@@ -298,7 +306,7 @@
         cell.menuPicto.layer.cornerRadius = 0;
         cell.menuPicto.clipsToBounds = NO;
     }
-    cell.selectionIndicator.hidden = YES;
+    
     cell.menuItem.font = [UIFont fontWithName:@"SourceSansPro-Light" size:15];
     cell.menuItem.textColor = [UIColor colorWithRed:103/255.0f green:111/255.0f blue:116/255.0f alpha:1];
     cell.menuPicto.contentMode = UIViewContentModeScaleToFill;
@@ -321,18 +329,18 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     if (section == 1)
-        return 45;
+        return 50;
     return 1;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 45;
+    return 50;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 45;
+    return 50;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -348,38 +356,50 @@
 -(void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     MenuTableViewCell *cell = (MenuTableViewCell*)[tableView cellForRowAtIndexPath:indexPath];
-
-     cell.selectionIndicator.hidden = NO;
+    
+    
+    cell.selectionIndicator.hidden = NO;
     if (indexPath.section == 0)
     {
         if (indexPath.row == 0)
         {
             self.slidingViewController.topViewController = self.homeVc;
             [self.slidingViewController resetTopViewAnimated:YES];
-          //  [self performSegueWithIdentifier:@"HomeSegue" sender:self];
+            //  [self performSegueWithIdentifier:@"HomeSegue" sender:self];
         }
         if (indexPath.row == 1)
         {
+            [self deselectHomeCell:tableView];
             [self performSegueWithIdentifier:@"LikeSegue" sender:self];
         }
         if (indexPath.row == 2)
-        {
+        {  [self deselectHomeCell:tableView];
             [self performSegueWithIdentifier:@"FavoriteSegue" sender:self];
         }
     }
     if (indexPath.section == 1)
     {
         if (indexPath.row == 0)
-            [self performSegueWithIdentifier:@"BusinessSegue" sender:self];
-
+            [self deselectHomeCell:tableView];
+        [self performSegueWithIdentifier:@"BusinessSegue" sender:self];
+        
         if (indexPath.row <= [managedBusinesses count] && indexPath.row > 0)
         {
+            [self deselectHomeCell:tableView];
             businessToManage = [managedBusinesses objectAtIndex:indexPath.row - 1];
             [self performSegueWithIdentifier:@"ManageBusiness" sender:self];
         }
-           }
-    if (indexPath.section == 2)
+    }
+    if (indexPath.section == 2) {
         [self logOut];
+        [self deselectHomeCell:tableView];
+    }
+}
+
+-(void)deselectHomeCell:(UITableView*)tableView {
+    NSIndexPath *indexPath = [NSIndexPath indexPathForItem:0 inSection:0];
+    MenuTableViewCell *homeCell = (MenuTableViewCell*)[tableView cellForRowAtIndexPath:indexPath];
+    homeCell.selectionIndicator.hidden = YES;
 }
 
 -(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
