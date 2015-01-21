@@ -17,18 +17,18 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="" id="gTV-IL-0wX" customClass="CustomCollectionViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="150" height="210"/>
+            <rect key="frame" x="0.0" y="0.0" width="145" height="210"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="150" height="210"/>
+                <rect key="frame" x="0.0" y="0.0" width="145" height="210"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mL7-Ta-Le1">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mL7-Ta-Le1">
                         <rect key="frame" x="0.0" y="0.0" width="150" height="180"/>
                     </imageView>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x1y-Lf-DUK" userLabel="Caption">
+                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x1y-Lf-DUK" userLabel="Caption">
                         <rect key="frame" x="0.0" y="180" width="150" height="30"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WFI-kj-zoh" userLabel="Top Border View">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WFI-kj-zoh" userLabel="Top Border View">
                                 <rect key="frame" x="0.0" y="0.0" width="150" height="2"/>
                                 <color key="backgroundColor" red="1" green="0.45882352941176469" blue="0.44313725490196076" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -51,14 +51,14 @@
                             <constraint firstItem="WFI-kj-zoh" firstAttribute="leading" secondItem="x1y-Lf-DUK" secondAttribute="leading" id="zZy-ff-Jn6"/>
                         </constraints>
                     </view>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="picto-hairfie-like.png" translatesAutoresizingMaskIntoConstraints="NO" id="hPb-2R-DdA" userLabel="Likes Picto Image">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="picto-hairfie-like.png" translatesAutoresizingMaskIntoConstraints="NO" id="hPb-2R-DdA" userLabel="Likes Picto Image">
                         <rect key="frame" x="107" y="155" width="16" height="15"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="2Ie-ol-rF0"/>
                             <constraint firstAttribute="width" constant="16" id="3XV-Yi-pSs"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6CO-0M-BpI" userLabel="Likes Count Label">
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="13" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6CO-0M-BpI" userLabel="Likes Count Label">
                         <rect key="frame" x="124" y="151" width="20" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="DBJ-5e-SRT"/>
@@ -81,6 +81,9 @@
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="69g-OM-taA">
+                        <rect key="frame" x="103" y="7" width="35" height="35"/>
+                    </imageView>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
@@ -106,6 +109,7 @@
                 <outlet property="priceLabel" destination="zdf-2L-aV1" id="4de-EA-6Cn"/>
                 <outlet property="priceView" destination="P1H-Sm-YKH" id="7y5-mz-V6F"/>
                 <outlet property="profilePicture" destination="X2x-Pg-Tg6" id="M1e-RQ-Ysp"/>
+                <outlet property="secondHairfieView" destination="69g-OM-taA" id="9bd-ig-8Jv"/>
             </connections>
             <point key="canvasLocation" x="305" y="188"/>
         </collectionViewCell>

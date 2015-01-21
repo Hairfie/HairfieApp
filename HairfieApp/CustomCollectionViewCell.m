@@ -21,6 +21,10 @@
     self.hairfieView.contentMode = UIViewContentModeScaleAspectFill;
     self.layer.borderColor = [UIColor colorWithRed:234/255.0f green:236/255.0f blue:238/255.0f alpha:1].CGColor;
     self.layer.borderWidth = 1.0f;
+    self.secondHairfieView.layer.borderWidth = 1;
+    self.secondHairfieView.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.secondHairfieView.layer.cornerRadius = 2.5;
+    self.secondHairfieView.layer.masksToBounds = YES;
 }
 
 -(void)setHairfie:(Hairfie *)hairfie
@@ -52,10 +56,19 @@
     self.nbLikes.text = hairfie.displayNumLikes;
     self.priceLabel.text = [hairfie displayPrice];
 
-    [self.hairfieView setImageWithURL:[hairfie.picture urlWithWidth:@300 height:@420]
+    if (hairfie.pictures.count == 1) {
+    [self.hairfieView setImageWithURL:[[hairfie.pictures objectAtIndex:0] urlWithWidth:@300 height:@420]
                         placeholderImage:[UIColor imageWithColor:[UIColor colorWithRed:234/255.0f green:236/255.0f blue:238/255.0f alpha:1]]
                         usingActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-   
+        self.secondHairfieView.hidden = YES;
+    } else {
+        [self.hairfieView setImageWithURL:[[hairfie.pictures objectAtIndex:0] urlWithWidth:@300 height:@420]
+                         placeholderImage:[UIColor imageWithColor:[UIColor colorWithRed:234/255.0f green:236/255.0f blue:238/255.0f alpha:1]]usingActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+         [self.secondHairfieView setImageWithURL:[[hairfie.pictures objectAtIndex:1] urlWithWidth:@300 height:@420]
+                                placeholderImage:[UIColor imageWithColor:[UIColor colorWithRed:234/255.0f green:236/255.0f blue:238/255.0f alpha:1]]usingActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+        
+        self.secondHairfieView.hidden = NO;
+    }
     
     if (hairfie.price.amount == nil) {
     

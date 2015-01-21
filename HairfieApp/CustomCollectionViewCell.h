@@ -14,6 +14,9 @@
 @interface CustomCollectionViewCell : UICollectionViewCell
 
 @property (nonatomic, strong) IBOutlet UIImageView *hairfieView;
+
+@property (nonatomic, strong) IBOutlet UIImageView *secondHairfieView;
+
 @property (nonatomic, strong) IBOutlet UILabel *name;
 @property (nonatomic, strong) IBOutlet UILabel *nbLikes;
 @property (nonatomic, strong) IBOutlet UIImageView *likes;

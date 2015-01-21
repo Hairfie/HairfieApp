@@ -64,6 +64,9 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    NSLog(@"width cell %f", (collectionView.frame.size.width - 30) / 2);
+    
     if (indexPath.row < [hairfies count]) {
         return CGSizeMake((collectionView.frame.size.width - 30) / 2, 210);
     } else {
