@@ -142,9 +142,12 @@
 //    }
     
   //  [self setupFilters];
-
-    
 }
+
+-(IBAction)goBackToHome:(id)sender {
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
 
 -(IBAction)goBack:(id)sender
 {

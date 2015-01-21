@@ -289,7 +289,7 @@
     self.pickerView.highlightedTextColor = [UIColor whiteColor];
     self.pickerView.textColor = [UIColor whiteColor];
     self.pickerView.interitemSpacing = 75;
-    self.pickerView.fisheyeFactor = 0.0001;
+    self.pickerView.fisheyeFactor = 0;//0.0001;
     self.pickerView.tag = 0;
     [self.pickerView reloadData];
     if(!_.find(self.pickerContainerView.subviews, ^BOOL(UIView *subview) {
