@@ -9,14 +9,14 @@
 #import "BusinessViewController.h"
 #import "Hairfie.h"
 #import "Service.h"
-#import "Hairdresser.h"
+#import "BusinessMember.h"
 #import "AppDelegate.h"
 
 #import "HairfieDetailViewController.h"
 #import "ReviewsViewController.h"
 #import "SalonMapViewController.h"
 #import "HorairesViewController.h"
-#import "HairdresserDetailViewController.h"
+#import "BusinessMemberViewController.h"
 #import "CameraOverlayViewController.h"
 #import "BusinessClaimExistingViewController.h"
 
@@ -52,7 +52,7 @@
     BOOL loadingHairfies;
     Business *similarBusiness;
     Hairfie *hairfie;
-    Hairdresser *hairdresserPicked;
+    BusinessMember *businessMemberPicked;
     BOOL isSetup;
     BOOL isReviewing;
     NSNumber *ratingForReview;
@@ -487,9 +487,9 @@
     BusinessHairdressersCollectionViewCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:@"businessHairdresserCell" forIndexPath:indexPath];
     
     if (indexPath.row < self.business.activeHairdressers.count) {
-        Hairdresser *hairdresser = [self.business.activeHairdressers objectAtIndex:indexPath.row];
+        BusinessMember *businessMember = [self.business.activeHairdressers objectAtIndex:indexPath.row];
         cell.disclosureIndicator.hidden = YES;
-        [cell setHairdresser:hairdresser];
+        [cell setBusinessMember:businessMember];
     } else if (indexPath.row == self.business.activeHairdressers.count) {
         cell.hairdresserName.text = NSLocalizedStringFromTable(@"No Hairdresser", @"Salon_Detail", nil);
     }
@@ -553,7 +553,7 @@
             if (indexPath.row == self.business.activeHairdressers.count) {
                 [self performSegueWithIdentifier:@"suggestHairdresser" sender:self];
             } else {
-                hairdresserPicked = [self.business.activeHairdressers objectAtIndex:indexPath.row];
+                businessMemberPicked = [self.business.activeHairdressers objectAtIndex:indexPath.row];
                 [self performSegueWithIdentifier:@"showHairdresserDetail" sender:self];
             }
         } else {
@@ -611,9 +611,9 @@
     }
     
     if ([segue.identifier isEqualToString:@"showHairdresserDetail"]) {
-        HairdresserDetailViewController *hairdresserDetail = [segue destinationViewController];
-        hairdresserDetail.hairdresser = hairdresserPicked;
-        hairdresserDetail.business = self.business;
+        BusinessMemberViewController *vc = [segue destinationViewController];
+        vc.businessMember = businessMemberPicked;
+        vc.business = self.business;
     }
 
     if ([segue.identifier isEqualToString:@"postHairfie"]) {

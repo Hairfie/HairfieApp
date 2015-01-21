@@ -68,20 +68,20 @@
            failure:(void (^)(NSError *))aFailureHandler;
 
 
-+(void)removeHairdresserFromFavorite:(NSString *)hairdresserId
-                              asUser:(NSString *)userId
-                             success:(void (^)())aSuccessHandler
-                             failure:(void (^)(NSError *))aFailureHandler;
++(void)removeBusinessMember:(NSString *)businessMemberId
+        fromFavoritesOfUser:(NSString *)userId
+                    success:(void (^)())aSuccessHandler
+                    failure:(void (^)(NSError *))aFailureHandler;
 
-+(void)addHairdresserToFavorite:(NSString *)hairdresserId
-                         asUser:(NSString *)userId
-                        success:(void (^)())aSuccessHandler
-                        failure:(void (^)(NSError *))aFailureHandler;
++(void)addBusinessMember:(NSString *)businessMemberId
+       toFavoritesOfUser:(NSString *)userId
+                 success:(void (^)())aSuccessHandler
+                 failure:(void (^)(NSError *))aFailureHandler;
 
-+(void)isHairdresser:(NSString *)hairdresserId
-     favoritedByUser:(NSString *)userId
-             success:(void(^)(BOOL isLiked))aSuccessHandler
-             failure:(void(^)(NSError *))aFailureHandler;
++(void)isBusinessMember:(NSString *)businessMemberId
+         favoriteOfUser:(NSString *)userId
+                success:(void(^)(BOOL isLiked))aSuccessHandler
+                failure:(void(^)(NSError *))aFailureHandler;
 
 -(void)getManagedBusinessesByUserSuccess:(void (^)())aSuccessHandler
                                  failure:(void (^)(NSError *))aFailureHandler;

@@ -7,11 +7,11 @@
 //
 
 #import <LoopBack/LoopBack.h>
-#import "Hairdresser.h"
+#import "BusinessMember.h"
 
 @interface BusinessMemberFavorite : LBModel
 
-@property (strong, nonatomic) Hairdresser* businessMember;
+@property (strong, nonatomic) BusinessMember* businessMember;
 @property (strong, nonatomic) NSDate* createdAt;
 
 +(void)getBusinessMemberFavoritesByUser:(NSString *)aUserId

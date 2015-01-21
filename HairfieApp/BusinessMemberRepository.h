@@ -1,5 +1,5 @@
 //
-//  HairdresserRepository.h
+//  BusinessMemberRepository.h
 //  HairfieApp
 //
 //  Created by Antoine Hérault on 15/10/2014.
@@ -8,7 +8,7 @@
 
 #import <LoopBack/LoopBack.h>
 
-@interface HairdresserRepository : LBModelRepository
+@interface BusinessMemberRepository : LBModelRepository
 
 +(instancetype)repository;
 

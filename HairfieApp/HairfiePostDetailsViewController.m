@@ -29,7 +29,7 @@
 @implementation HairfiePostDetailsViewController
 {
     NSMutableArray *salonTypes;
-    NSMutableArray *salonHairdressers;
+    NSMutableArray *salonBusinessMembers;
     Picture *uploadedPicture;
     BOOL uploadInProgress;
     AppDelegate *appDelegate;
@@ -123,7 +123,7 @@
 
     if (self.hairfiePost.business != nil) {
         if ([self.hairfiePost.business.activeHairdressers count] != 0) {
-            [self loadHairdressers];
+            [self loadBusinessMembers];
         }
         self.isSalon = YES;
         [self.salonLabelButton setTitle:self.hairfiePost.business.name forState:UIControlStateNormal];
@@ -134,15 +134,15 @@
     [ARAnalytics pageView:@"AR - Post Hairfie step #3 - Post Detail"];
 }
 
--(void)loadHairdressers
+-(void)loadBusinessMembers
 {
-    salonHairdressers = [[NSMutableArray alloc] init];
+    salonBusinessMembers = [[NSMutableArray alloc] init];
    
-    for (Hairdresser *hairdresser in _hairfiePost.business.activeHairdressers) {
-        [salonHairdressers addObject:hairdresser];
+    for (BusinessMember *hairdresser in _hairfiePost.business.activeHairdressers) {
+        [salonBusinessMembers addObject:hairdresser];
     }
     
-    self.hairdresserTableViewHeight.constant = MIN(4, salonHairdressers.count) * 41;
+    self.hairdresserTableViewHeight.constant = MIN(4, salonBusinessMembers.count) * 41;
 
     self.isHairdresser = NO;
     
@@ -210,7 +210,7 @@
     if (tableView == self.dataChoice) {
         return salonTypes.count;
     } else if (tableView == _hairdresserTableView) {
-        return salonHairdressers.count;
+        return salonBusinessMembers.count;
     }
 
     return 1;
@@ -240,9 +240,8 @@
   
     if (tableView == self.hairdresserTableView)
     {
-        
-        Hairdresser *hairdresser = [salonHairdressers objectAtIndex:indexPath.row];
-        cell.textLabel.text = [hairdresser displayFullName];
+        BusinessMember *businessMember = [salonBusinessMembers objectAtIndex:indexPath.row];
+        cell.textLabel.text = [businessMember displayFullName];
     }
     else {
    
@@ -285,7 +284,7 @@
              [_salonLabelButton setTitle:business.name forState:UIControlStateNormal];
             _hairfiePost.business = business;
             if (business.activeHairdressers.count != 0) {
-                [self loadHairdressers];
+                [self loadBusinessMembers];
                 [_hairdresserLabelButton setTitle:NSLocalizedStringFromTable(@"Who did this?", @"Post_Hairfie", nil) forState:UIControlStateNormal];
             }
             else {
@@ -299,9 +298,9 @@
         
         [self refreshShareButtons];
     } else {
-        Hairdresser *hairdresser = [salonHairdressers objectAtIndex:indexPath.row];
-        [_hairdresserLabelButton setTitle:[hairdresser displayFullName] forState:UIControlStateNormal];
-        _hairfiePost.hairdresser = hairdresser;
+        BusinessMember *businessMember = [salonBusinessMembers objectAtIndex:indexPath.row];
+        [_hairdresserLabelButton setTitle:[businessMember displayFullName] forState:UIControlStateNormal];
+        _hairfiePost.businessMember = businessMember;
         [self showHairdresserChoices:self];
     }
 }
@@ -378,13 +377,8 @@
         Money *price = [[Money alloc] initWithAmount:[NSNumber numberWithDouble:[self.priceTextField.text doubleValue]]
                                             currency:@"EUR"];
         
-        _hairfiePost.price = price;
+        self.hairfiePost.price = price;
     }
-    
-    if (self.salonChosen) {
-        _hairfiePost.business = self.salonChosen;
-    }
-    
     
     NSLog(@"Hairfie to post : %@", _hairfiePost);
     

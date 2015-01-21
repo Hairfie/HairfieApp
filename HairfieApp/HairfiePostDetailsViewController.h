@@ -10,7 +10,7 @@
 #import "SAMTextView.h"
 #import "Business.h"
 #import "HairfiePost.h"
-#import "Hairdresser.h"
+#import "BusinessMember.h"
 
 @interface HairfiePostDetailsViewController : UIViewController <UINavigationControllerDelegate, UITextViewDelegate, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, UIAlertViewDelegate>
 
@@ -54,10 +54,5 @@
 @property (nonatomic) IBOutlet NSLayoutConstraint *hairdresserTableViewHeight;
 @property (nonatomic) IBOutlet NSLayoutConstraint *tableViewYPos;
 @property (nonatomic) IBOutlet NSLayoutConstraint *shareViewYPos;
-
-@property (nonatomic) Business *salonChosen;
-@property (nonatomic) Hairdresser *hairdresserChosen;
-
-
 
 @end

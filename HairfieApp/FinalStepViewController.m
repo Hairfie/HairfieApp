@@ -13,7 +13,7 @@
 #import "HairdresserTableViewCell.h"
 #import "ClaimServiceTableViewCell.h"
 #import "Address.h"
-#import "Hairdresser.h"
+#import "BusinessMember.h"
 #import "Picture.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "ClaimAddHairdresserViewController.h"
@@ -32,7 +32,7 @@
 @implementation FinalStepViewController
 {
     UIImagePickerController *imagePicker;
-    Hairdresser *hairdresserForEditing;
+    BusinessMember *businessMemberForEditing;
     Service *serviceForEditing;
     NSMutableArray *pictureForGallery;
     AppDelegate *appDelegate;
@@ -539,16 +539,16 @@
             if  (_businessToManage.activeHairdressers != (id)[NSNull null])
             {
                 
-                claimHairdresser.hairdressersClaimed = _businessToManage.activeHairdressers;
-                [_businessToManage.activeHairdressers removeObjectIdenticalTo:hairdresserForEditing];
+                claimHairdresser.claimedBusinessMembers = self.businessToManage.activeHairdressers;
+                [_businessToManage.activeHairdressers removeObjectIdenticalTo:businessMemberForEditing];
             }
             else
     
-                claimHairdresser.hairdressersClaimed = [[NSMutableArray alloc] init];
+                claimHairdresser.claimedBusinessMembers = [[NSMutableArray alloc] init];
         }
         
         if (_isEditingHairdresser == YES)
-            claimHairdresser.hairdresserFromSegue = hairdresserForEditing;
+            claimHairdresser.businessMemberFromSegue = businessMemberForEditing;
         _isEditingHairdresser = NO;
     }
     if ([segue.identifier isEqualToString:@"claimService"])
@@ -598,17 +598,17 @@
             cell = [nib objectAtIndex:0];
         }
         
-        Hairdresser *hairdresser = [[Hairdresser alloc] init];
+        BusinessMember *businessMember = [[BusinessMember alloc] init];
         
         
         if (_businessToManage != nil)
         {
-            hairdresser = [_businessToManage.activeHairdressers objectAtIndex:indexPath.row];
+            businessMember = [_businessToManage.activeHairdressers objectAtIndex:indexPath.row];
         }
         
 
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.fullName.text = [hairdresser displayFullName];
+        cell.fullName.text = [businessMember displayFullName];
         cell.separatorInset = UIEdgeInsetsMake(0, 10000, 0, 0);
         cell.tag = indexPath.row;
         return cell;
@@ -661,7 +661,7 @@
     if (tableView == _hairdresserTableView)
     {
     if (_businessToManage != nil)
-        hairdresserForEditing = [_businessToManage.activeHairdressers objectAtIndex:indexPath.row];
+        businessMemberForEditing = [_businessToManage.activeHairdressers objectAtIndex:indexPath.row];
     _isEditingHairdresser = YES;
    
     [self performSegueWithIdentifier:@"claimHairdresser" sender:self];
@@ -680,17 +680,16 @@
 {
   
     HairdresserTableViewCell *cell = notification.object;
-    Hairdresser *hairdresser = [_businessToManage.activeHairdressers objectAtIndex:cell.tag];
-    if (hairdresser.active == YES)
-        hairdresser.active = NO;
-    else
-        hairdresser.active = YES;
-    [hairdresser saveWithSuccess:^() { NSLog(@"Hairdresser saved"); }
-                         failure:^(NSError *error) {
-                             NSLog(@"Failed to save hairdresser: %@", error.localizedDescription);
-                         }];
-    [_businessToManage.activeHairdressers removeObjectAtIndex:cell.tag];
-    [_hairdresserTableView reloadData];
+    BusinessMember *businessMember = [self.businessToManage.activeHairdressers objectAtIndex:cell.tag];
+    businessMember.active = NO;
+    [businessMember saveWithSuccess:^{
+                                NSLog(@"Business member successfully saved");
+                                [self.businessToManage.activeHairdressers removeObjectAtIndex:cell.tag];
+                                [self.hairdresserTableView reloadData];
+                            }
+                            failure:^(NSError *error) {
+                                NSLog(@"Failed to save business member: %@", error.localizedDescription);
+                            }];
 }
 
 -(void)clearService:(NSNotification*)notification
@@ -699,6 +698,7 @@
     [_businessToManage.services removeObjectAtIndex:cell.tag];
     [_serviceTableView reloadData];
 }
+
 -(IBAction)claimThisBusiness:(id)sender
 {
     void (^loadErrorBlock)(NSError *) = ^(NSError *error){

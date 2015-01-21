@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C94b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
@@ -8,10 +8,8 @@
         <mutableArray key="SourceSansPro-Light.ttf">
             <string>SourceSansPro-Light</string>
             <string>SourceSansPro-Light</string>
-            <string>SourceSansPro-Light</string>
         </mutableArray>
         <mutableArray key="SourceSansPro-Semibold.ttf">
-            <string>SourceSansPro-Semibold</string>
             <string>SourceSansPro-Semibold</string>
         </mutableArray>
     </customFonts>
@@ -24,59 +22,49 @@
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="234"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.79999999999999982" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Lieu de travail" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yMm-AQ-n6d">
-                        <rect key="frame" x="10" y="10" width="256" height="34"/>
+                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.79999999999999982" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lieu de travail" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yMm-AQ-n6d" userLabel="Business title">
+                        <rect key="frame" x="10" y="10" width="302" height="34"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="34" id="Xmv-EG-92b"/>
+                        </constraints>
                         <fontDescription key="fontDescription" name="SourceSansPro-Semibold" family="Source Sans Pro" pointSize="17"/>
                         <color key="textColor" red="0.14901960784313725" green="0.21176470588235294" blue="0.24313725490196078" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n1L-w9-slW">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="n1L-w9-slW" userLabel="Business picture">
                         <rect key="frame" x="10" y="64" width="50" height="50"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="50" id="aKa-xg-JG0"/>
                             <constraint firstAttribute="height" constant="50" id="sF4-xi-F4f"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S0g-kz-gVR">
-                        <rect key="frame" x="67" y="64" width="200" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S0g-kz-gVR" userLabel="Business name">
+                        <rect key="frame" x="67" y="64" width="245" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="Whb-AL-vaj"/>
+                        </constraints>
                         <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="16"/>
                         <color key="textColor" red="0.51764705882352946" green="0.54509803921568623" blue="0.58431372549019611" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JGV-xV-J3L">
-                        <rect key="frame" x="67" y="93" width="200" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JGV-xV-J3L" userLabel="Business address">
+                        <rect key="frame" x="67" y="93" width="245" height="21"/>
                         <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="16"/>
                         <color key="textColor" red="0.51764705879999995" green="0.5450980392" blue="0.58431372550000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.80000001192092896" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Informations sur le coiffeur" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FPE-bf-Zwa">
-                        <rect key="frame" x="10" y="135" width="256" height="34"/>
-                        <fontDescription key="fontDescription" name="SourceSansPro-Semibold" family="Source Sans Pro" pointSize="17"/>
-                        <color key="textColor" red="0.14901960780000001" green="0.21176470589999999" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="ciseaux-picto.png" translatesAutoresizingMaskIntoConstraints="NO" id="jzn-mU-1Rs">
-                        <rect key="frame" x="13" y="177" width="15" height="17"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="15" id="8fz-5R-qf1"/>
-                            <constraint firstAttribute="height" constant="17" id="fnS-zI-rXG"/>
-                        </constraints>
-                    </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="(spécialités)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FBl-6Z-MNi">
-                        <rect key="frame" x="41" y="175" width="83" height="21"/>
-                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="15"/>
-                        <color key="textColor" red="0.51764705879999995" green="0.5450980392" blue="0.58431372550000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <view alpha="0.34999999999999964" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sP5-IL-FwT" userLabel="SEPARATOR">
-                        <rect key="frame" x="20" y="122" width="300" height="1"/>
-                        <color key="backgroundColor" red="0.92549019607843142" green="0.92549019607843142" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </view>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <constraints>
+                <constraint firstItem="S0g-kz-gVR" firstAttribute="leading" secondItem="n1L-w9-slW" secondAttribute="trailing" constant="7" id="8la-Go-dJc"/>
+                <constraint firstItem="n1L-w9-slW" firstAttribute="top" secondItem="yMm-AQ-n6d" secondAttribute="bottom" constant="20" id="Fyb-Uh-gpQ"/>
+                <constraint firstAttribute="trailing" secondItem="yMm-AQ-n6d" secondAttribute="trailing" constant="8" id="JRG-vt-dqm"/>
+                <constraint firstItem="yMm-AQ-n6d" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="UWG-kU-2iC"/>
+                <constraint firstAttribute="trailing" secondItem="S0g-kz-gVR" secondAttribute="trailing" constant="8" id="gBg-VM-JP0"/>
+                <constraint firstItem="n1L-w9-slW" firstAttribute="top" secondItem="S0g-kz-gVR" secondAttribute="top" id="pDS-eZ-Xyk"/>
                 <constraint firstItem="n1L-w9-slW" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="pIH-wm-H4k"/>
+                <constraint firstItem="yMm-AQ-n6d" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="rab-tf-KmS"/>
             </constraints>
             <size key="customSize" width="348" height="234"/>
             <connections>
@@ -88,7 +76,4 @@
             <point key="canvasLocation" x="301" y="219"/>
         </collectionViewCell>
     </objects>
-    <resources>
-        <image name="ciseaux-picto.png" width="30" height="37"/>
-    </resources>
 </document>

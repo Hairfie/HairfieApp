@@ -13,14 +13,14 @@
 #import "HairfieRepository.h"
 #import "Picture.h"
 #import "Money.h"
-#import "Hairdresser.h"
+#import "BusinessMember.h"
 
 @interface Hairfie : LBModel
 
 @property (strong, nonatomic) NSString *id;
 @property (strong, nonatomic) Picture *picture;
 @property (strong, nonatomic) NSString *description;
-@property (strong, nonatomic) Hairdresser *hairdresser;
+@property (strong, nonatomic) BusinessMember *businessMember;
 @property (strong, nonatomic) Money *price;
 @property (strong, nonatomic) NSNumber *numLikes;
 @property (strong, nonatomic) NSString *numComments;
@@ -53,11 +53,11 @@
           success:(void(^)(NSArray *hairfies))aSuccessHandler
           failure:(void(^)(NSError *error))aFailureHandler;
 
-+ (void) listLatestByHairdresser:(NSString*)hairdresserId
-                           limit:(NSNumber *)limit
-                            skip:(NSNumber *)skip
-                         success:(void (^)(NSArray *))aSuccessHandler
-                         failure:(void (^)(NSError *))aFailureHandler;
++(void)listLatestByBusinessMember:(NSString*)businessMemberId
+                            limit:(NSNumber *)limit
+                             skip:(NSNumber *)skip
+                          success:(void (^)(NSArray *))aSuccessHandler
+                          failure:(void (^)(NSError *))aFailureHandler;
 
 +(void)listLatestPerPage:(NSNumber *)page
                  success:(void(^)(NSArray *hairfies))aSuccessHandler

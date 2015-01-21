@@ -106,7 +106,7 @@
 		718A98B019C1EF46003CD34B /* GeoPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 718A98AF19C1EF46003CD34B /* GeoPoint.m */; };
 		718B6B7819C831E200F2F8EF /* picto-hairfie-liked.png in Resources */ = {isa = PBXBuildFile; fileRef = 718B6B7719C831E200F2F8EF /* picto-hairfie-liked.png */; };
 		718B6B7A19C8339000F2F8EF /* picto-hairfie-detail-liked.png in Resources */ = {isa = PBXBuildFile; fileRef = 718B6B7919C8339000F2F8EF /* picto-hairfie-detail-liked.png */; };
-		718E16C919EE6A3C00AF26A1 /* HairdresserRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 718E16C819EE6A3C00AF26A1 /* HairdresserRepository.m */; };
+		718E16C919EE6A3C00AF26A1 /* BusinessMemberRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 718E16C819EE6A3C00AF26A1 /* BusinessMemberRepository.m */; };
 		719C207F19ED5016008E0B17 /* tab-business-hairdressers-active.png in Resources */ = {isa = PBXBuildFile; fileRef = 719C207719ED5016008E0B17 /* tab-business-hairdressers-active.png */; };
 		719C208019ED5016008E0B17 /* tab-business-hairdressers.png in Resources */ = {isa = PBXBuildFile; fileRef = 719C207819ED5016008E0B17 /* tab-business-hairdressers.png */; };
 		719C208119ED5016008E0B17 /* tab-business-hairfies-active.png in Resources */ = {isa = PBXBuildFile; fileRef = 719C207919ED5016008E0B17 /* tab-business-hairfies-active.png */; };
@@ -225,7 +225,7 @@
 		B367DC4319C9E40800A0452A /* FinalStepAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B367DC4219C9E40800A0452A /* FinalStepAddressViewController.m */; };
 		B36AC50519DAB47E00B8AC13 /* STCollapseTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B36AC50419DAB47E00B8AC13 /* STCollapseTableView.m */; };
 		B36AC50719DAD22400B8AC13 /* addBusiness-picto.png in Resources */ = {isa = PBXBuildFile; fileRef = B36AC50619DAD22400B8AC13 /* addBusiness-picto.png */; };
-		B36AC50A19DC27B000B8AC13 /* Hairdresser.m in Sources */ = {isa = PBXBuildFile; fileRef = B36AC50919DC27B000B8AC13 /* Hairdresser.m */; };
+		B36AC50A19DC27B000B8AC13 /* BusinessMember.m in Sources */ = {isa = PBXBuildFile; fileRef = B36AC50919DC27B000B8AC13 /* BusinessMember.m */; };
 		B36AC50E19DC31C600B8AC13 /* HairdresserTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B36AC50C19DC31C600B8AC13 /* HairdresserTableViewCell.m */; };
 		B36AC50F19DC31C600B8AC13 /* HairdresserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B36AC50D19DC31C600B8AC13 /* HairdresserTableViewCell.xib */; };
 		B36AE55419AB71990045FDDA /* location-button-search.png in Resources */ = {isa = PBXBuildFile; fileRef = B36AE55319AB71990045FDDA /* location-button-search.png */; };
@@ -276,7 +276,7 @@
 		B3AA0CAA1A23728A00FAEC01 /* BusinessHairdressersCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3AA0CA81A23728A00FAEC01 /* BusinessHairdressersCollectionViewCell.xib */; };
 		B3AA0CAE1A237A3700FAEC01 /* BusinessServicesCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B3AA0CAC1A237A3700FAEC01 /* BusinessServicesCollectionViewCell.m */; };
 		B3AA0CAF1A237A3700FAEC01 /* BusinessServicesCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3AA0CAD1A237A3700FAEC01 /* BusinessServicesCollectionViewCell.xib */; };
-		B3AA0CB31A24C59600FAEC01 /* HairdresserDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3AA0CB21A24C59600FAEC01 /* HairdresserDetailViewController.m */; };
+		B3AA0CB31A24C59600FAEC01 /* BusinessMemberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3AA0CB21A24C59600FAEC01 /* BusinessMemberViewController.m */; };
 		B3AA0CB61A24CAAF00FAEC01 /* HairdresserReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B3AA0CB51A24CAAF00FAEC01 /* HairdresserReusableView.m */; };
 		B3AA0CBF1A24D4D900FAEC01 /* DetailsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B3AA0CBD1A24D4D900FAEC01 /* DetailsCollectionViewCell.m */; };
 		B3AA0CC01A24D4D900FAEC01 /* DetailsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3AA0CBE1A24D4D900FAEC01 /* DetailsCollectionViewCell.xib */; };
@@ -585,8 +585,8 @@
 		718A98AF19C1EF46003CD34B /* GeoPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeoPoint.m; sourceTree = "<group>"; };
 		718B6B7719C831E200F2F8EF /* picto-hairfie-liked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "picto-hairfie-liked.png"; sourceTree = "<group>"; };
 		718B6B7919C8339000F2F8EF /* picto-hairfie-detail-liked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "picto-hairfie-detail-liked.png"; sourceTree = "<group>"; };
-		718E16C719EE6A3C00AF26A1 /* HairdresserRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HairdresserRepository.h; sourceTree = "<group>"; };
-		718E16C819EE6A3C00AF26A1 /* HairdresserRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HairdresserRepository.m; sourceTree = "<group>"; };
+		718E16C719EE6A3C00AF26A1 /* BusinessMemberRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessMemberRepository.h; sourceTree = "<group>"; };
+		718E16C819EE6A3C00AF26A1 /* BusinessMemberRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessMemberRepository.m; sourceTree = "<group>"; };
 		719C207719ED5016008E0B17 /* tab-business-hairdressers-active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-business-hairdressers-active.png"; sourceTree = "<group>"; };
 		719C207819ED5016008E0B17 /* tab-business-hairdressers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-business-hairdressers.png"; sourceTree = "<group>"; };
 		719C207919ED5016008E0B17 /* tab-business-hairfies-active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-business-hairfies-active.png"; sourceTree = "<group>"; };
@@ -776,8 +776,8 @@
 		B36AC50319DAB47E00B8AC13 /* STCollapseTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STCollapseTableView.h; sourceTree = "<group>"; };
 		B36AC50419DAB47E00B8AC13 /* STCollapseTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STCollapseTableView.m; sourceTree = "<group>"; };
 		B36AC50619DAD22400B8AC13 /* addBusiness-picto.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "addBusiness-picto.png"; sourceTree = "<group>"; };
-		B36AC50819DC27B000B8AC13 /* Hairdresser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Hairdresser.h; sourceTree = "<group>"; };
-		B36AC50919DC27B000B8AC13 /* Hairdresser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Hairdresser.m; sourceTree = "<group>"; };
+		B36AC50819DC27B000B8AC13 /* BusinessMember.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessMember.h; sourceTree = "<group>"; };
+		B36AC50919DC27B000B8AC13 /* BusinessMember.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessMember.m; sourceTree = "<group>"; };
 		B36AC50B19DC31C600B8AC13 /* HairdresserTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HairdresserTableViewCell.h; sourceTree = "<group>"; };
 		B36AC50C19DC31C600B8AC13 /* HairdresserTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HairdresserTableViewCell.m; sourceTree = "<group>"; };
 		B36AC50D19DC31C600B8AC13 /* HairdresserTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HairdresserTableViewCell.xib; sourceTree = "<group>"; };
@@ -847,9 +847,9 @@
 		B3AA0CAB1A237A3700FAEC01 /* BusinessServicesCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessServicesCollectionViewCell.h; sourceTree = "<group>"; };
 		B3AA0CAC1A237A3700FAEC01 /* BusinessServicesCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessServicesCollectionViewCell.m; sourceTree = "<group>"; };
 		B3AA0CAD1A237A3700FAEC01 /* BusinessServicesCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BusinessServicesCollectionViewCell.xib; sourceTree = "<group>"; };
-		B3AA0CB11A24C59600FAEC01 /* HairdresserDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HairdresserDetailViewController.h; sourceTree = "<group>"; };
-		B3AA0CB21A24C59600FAEC01 /* HairdresserDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HairdresserDetailViewController.m; sourceTree = "<group>"; };
-		B3AA0CB41A24CAAF00FAEC01 /* HairdresserReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HairdresserReusableView.h; sourceTree = "<group>"; };
+		B3AA0CB11A24C59600FAEC01 /* BusinessMemberViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessMemberViewController.h; sourceTree = "<group>"; };
+		B3AA0CB21A24C59600FAEC01 /* BusinessMemberViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessMemberViewController.m; sourceTree = "<group>"; };
+		B3AA0CB41A24CAAF00FAEC01 /* BusinessMemberReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessMemberReusableView.h; sourceTree = "<group>"; };
 		B3AA0CB51A24CAAF00FAEC01 /* HairdresserReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HairdresserReusableView.m; sourceTree = "<group>"; };
 		B3AA0CBC1A24D4D900FAEC01 /* DetailsCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsCollectionViewCell.h; sourceTree = "<group>"; };
 		B3AA0CBD1A24D4D900FAEC01 /* DetailsCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsCollectionViewCell.m; sourceTree = "<group>"; };
@@ -1183,16 +1183,16 @@
 				B319B5C619C6E77D007F79B0 /* BusinessReviewRepository.m */,
 				B33D4C5719D1A655009DE6DD /* BusinessClaimRepository.h */,
 				B33D4C5819D1A655009DE6DD /* BusinessClaimRepository.m */,
-				718E16C719EE6A3C00AF26A1 /* HairdresserRepository.h */,
-				718E16C819EE6A3C00AF26A1 /* HairdresserRepository.m */,
-				B3844E3F19FE978D0083CE0D /* TagRepository.h */,
-				B3844E4019FE978D0083CE0D /* TagRepository.m */,
-				B3844E4219FE98570083CE0D /* TagCategoryRepository.h */,
-				B3844E4319FE98570083CE0D /* TagCategoryRepository.m */,
+				718E16C719EE6A3C00AF26A1 /* BusinessMemberRepository.h */,
+				718E16C819EE6A3C00AF26A1 /* BusinessMemberRepository.m */,
 				71537CB01A44329300519C1B /* BusinessMemberFavoriteRepository.h */,
 				71537CB11A44329300519C1B /* BusinessMemberFavoriteRepository.m */,
 				7175C5DF1A666BC40030DAA5 /* BusinessMemberClaimRepository.h */,
 				7175C5E01A666BC40030DAA5 /* BusinessMemberClaimRepository.m */,
+				B3844E3F19FE978D0083CE0D /* TagRepository.h */,
+				B3844E4019FE978D0083CE0D /* TagRepository.m */,
+				B3844E4219FE98570083CE0D /* TagCategoryRepository.h */,
+				B3844E4319FE98570083CE0D /* TagCategoryRepository.m */,
 			);
 			name = Repositories;
 			sourceTree = "<group>";
@@ -1380,7 +1380,7 @@
 		B3087010198782CF0080E6D2 /* Pages */ = {
 			isa = PBXGroup;
 			children = (
-				B3AA0CB01A24C57800FAEC01 /* Hairdresser Detail */,
+				B3AA0CB01A24C57800FAEC01 /* Business Member */,
 				B3FA61FF19F79E43002D8B6F /* User Profile */,
 				1536598919DEFF570002D5ED /* Tuto + Login + Sign Up */,
 				B319B5C819C85E1C007F79B0 /* CLAIM */,
@@ -1802,18 +1802,18 @@
 			name = "NEW SALON";
 			sourceTree = "<group>";
 		};
-		B3AA0CB01A24C57800FAEC01 /* Hairdresser Detail */ = {
+		B3AA0CB01A24C57800FAEC01 /* Business Member */ = {
 			isa = PBXGroup;
 			children = (
-				B3AA0CB11A24C59600FAEC01 /* HairdresserDetailViewController.h */,
-				B3AA0CB21A24C59600FAEC01 /* HairdresserDetailViewController.m */,
-				B3AA0CB41A24CAAF00FAEC01 /* HairdresserReusableView.h */,
+				B3AA0CB11A24C59600FAEC01 /* BusinessMemberViewController.h */,
+				B3AA0CB21A24C59600FAEC01 /* BusinessMemberViewController.m */,
+				B3AA0CB41A24CAAF00FAEC01 /* BusinessMemberReusableView.h */,
 				B3AA0CB51A24CAAF00FAEC01 /* HairdresserReusableView.m */,
 				B3AA0CBC1A24D4D900FAEC01 /* DetailsCollectionViewCell.h */,
 				B3AA0CBD1A24D4D900FAEC01 /* DetailsCollectionViewCell.m */,
 				B3AA0CBE1A24D4D900FAEC01 /* DetailsCollectionViewCell.xib */,
 			);
-			name = "Hairdresser Detail";
+			name = "Business Member";
 			sourceTree = "<group>";
 		};
 		B3AA0CB71A24D10100FAEC01 /* HairdresserDetail  */ = {
@@ -1953,8 +1953,8 @@
 				71A0AC3C19CC2CEA00BC1ABB /* Timetable.m */,
 				71A0AC3E19CC2DA000BC1ABB /* TimeWindow.h */,
 				71A0AC3F19CC2DA000BC1ABB /* TimeWindow.m */,
-				B36AC50819DC27B000B8AC13 /* Hairdresser.h */,
-				B36AC50919DC27B000B8AC13 /* Hairdresser.m */,
+				B36AC50819DC27B000B8AC13 /* BusinessMember.h */,
+				B36AC50919DC27B000B8AC13 /* BusinessMember.m */,
 				B33D4C5419D1A46D009DE6DD /* Service.h */,
 				B33D4C5519D1A46D009DE6DD /* Service.m */,
 				71AAB62819D005170000552D /* Money.h */,
@@ -2619,7 +2619,7 @@
 				7164B56D1A0D380F002B68E5 /* URLUtils.m in Sources */,
 				71A0AC3D19CC2CEA00BC1ABB /* Timetable.m in Sources */,
 				B3844E3719FE65E40083CE0D /* AddTagsToHairfieViewController.m in Sources */,
-				B36AC50A19DC27B000B8AC13 /* Hairdresser.m in Sources */,
+				B36AC50A19DC27B000B8AC13 /* BusinessMember.m in Sources */,
 				B33E4C4919A4AA4C0024F5F7 /* CommentViewController.m in Sources */,
 				B3E0B15A19ACC14800C3EACE /* SignUpViewController.m in Sources */,
 				B3E0B15619ACB6ED00C3EACE /* LoginViewController.m in Sources */,
@@ -2651,13 +2651,13 @@
 				B33D4C5919D1A655009DE6DD /* BusinessClaimRepository.m in Sources */,
 				B3844E4119FE978D0083CE0D /* TagRepository.m in Sources */,
 				B3423216198924290058866B /* AFURLRequestSerialization.m in Sources */,
-				718E16C919EE6A3C00AF26A1 /* HairdresserRepository.m in Sources */,
+				718E16C919EE6A3C00AF26A1 /* BusinessMemberRepository.m in Sources */,
 				158FCA8319FA3DCF0001F86C /* SetterUtils.m in Sources */,
 				711FB93B19D9911E0023CAD4 /* BusinessErrorReportViewController.m in Sources */,
 				B33E4C4319A48FE70024F5F7 /* HoraireTableViewCell.m in Sources */,
 				B3AA0C9D1A2345A900FAEC01 /* BusinessViewController.m in Sources */,
 				B3423218198924290058866B /* AFURLSessionManager.m in Sources */,
-				B3AA0CB31A24C59600FAEC01 /* HairdresserDetailViewController.m in Sources */,
+				B3AA0CB31A24C59600FAEC01 /* BusinessMemberViewController.m in Sources */,
 				158FCA8019FA3DA10001F86C /* DateUtils.m in Sources */,
 				B3B715FE1A515F8700DB6FDB /* NoReviewCollectionViewCell.m in Sources */,
 				15B8ADE319C09A3E009846AA /* BusinessRepository.m in Sources */,

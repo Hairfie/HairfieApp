@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "UIRoundImageView.h"
-#import "Hairdresser.h"
+#import "BusinessMember.h"
 
 @interface FavoriteCell : UITableViewCell
 
@@ -16,10 +16,9 @@
 @property (nonatomic) IBOutlet UIButton *hairdresserBusiness;
 @property (nonatomic) IBOutlet UILabel *hairdresserHairfies;
 
-
 @property (nonatomic) IBOutlet NSLayoutConstraint *businessWidth;
 
--(void)setupCell:(Hairdresser*)hairdresser;
+@property (strong, nonatomic) BusinessMember *businessMember;
 
 @end
 
