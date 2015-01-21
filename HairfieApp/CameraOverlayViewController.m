@@ -40,8 +40,6 @@
 }
 
 -(void) setupImagePicker {
-    
-
     if(!_imagePicker) {
         _imagePicker = [[UIImagePickerController alloc]init];
         [_imagePicker setDelegate:self];
@@ -65,8 +63,13 @@
     if(![self.presentedViewController isEqual:_imagePicker]) {
         [self presentViewController:_imagePicker animated:NO completion:nil];
     }
+    
 }
 
+
+-(void)viewWillDisappear:(BOOL)animated{
+    _imagePicker = nil;
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
