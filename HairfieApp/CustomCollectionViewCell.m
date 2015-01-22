@@ -60,11 +60,11 @@
 
         self.secondHairfieView.hidden = YES;
     } else {
-        [self.hairfieView setImageWithURL:[[hairfie.pictures objectAtIndex:0] urlWithWidth:@300 height:@420]
+        [self.hairfieView setImageWithURL:[[hairfie.pictures objectAtIndex:1] urlWithWidth:@300 height:@420]
                          placeholderImage:[UIColor imageWithColor:[UIColor colorWithRed:234/255.0f green:236/255.0f blue:238/255.0f alpha:1]]
               usingActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
     
-        [self.secondHairfieView setImageWithURL:[[hairfie.pictures objectAtIndex:1] urlWithWidth:@70 height:@70]
+        [self.secondHairfieView setImageWithURL:[[hairfie.pictures objectAtIndex:0] urlWithWidth:@70 height:@70]
                                 placeholderImage:[UIColor imageWithColor:[UIColor colorWithRed:234/255.0f green:236/255.0f blue:238/255.0f alpha:1]]
                      usingActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
         
