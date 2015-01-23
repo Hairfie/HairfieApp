@@ -109,12 +109,19 @@ import QuartzCore
                 var pictureView = UIImageView(frame: frame)
                 pictureView.contentMode = UIViewContentMode.ScaleAspectFill;
                 var pictureUrl = picture.urlWithWidth(frame.width, height: frame.height)
+                
+                var gradientMaskLayer:CAGradientLayer = CAGradientLayer();
+                gradientMaskLayer.frame = pictureView.bounds;
+                gradientMaskLayer.colors = [UIColor.blackColor().CGColor!, UIColor.clearColor().CGColor!];
+                gradientMaskLayer.locations = [0.0, 1.2];
+                pictureView.layer.mask = gradientMaskLayer;
+    
                 downloadImage(pictureUrl!, callback: { (image, error) -> Void in
-                  
                     if (nil != image) {
                         pictureView.image = image
                     }
                 })
+
                 picturesScrollView.addSubview(pictureView);
             }
         }
