@@ -25,6 +25,7 @@
     NSArray *categoriesImages;
     NSNumber *currentPage;
     NSMutableArray *hairfies;
+    UIRefreshControl *refreshControl;
     BOOL endOfScroll;
 }
 
@@ -33,17 +34,22 @@
     [self.contentCollection registerNib:[UINib nibWithNibName:@"CustomCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:CUSTOM_CELL_IDENTIFIER];
      [self.contentCollection registerNib:[UINib nibWithNibName:@"LoadingCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:LOADING_CELL_IDENTIFIER];
     
+    
     currentPage = @(0);
     hairfies = [[NSMutableArray alloc] init];
     endOfScroll = NO;
     [self getHairfies:nil];
+    refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(getHairfiesFromRefresh:)
+             forControlEvents:UIControlEventValueChanged];
+    [self.contentCollection addSubview:refreshControl];
     
-      
     // Do any additional setup after loading the view.
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
+    
     NSDictionary* dict = [NSDictionary dictionaryWithObject:NSLocalizedStringFromTable(@"Hairfies",@"Feed",nil)
                                                      forKey:@"menuItem"];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"collectionChanged"
@@ -154,6 +160,10 @@
 
 // Get Hairfies Data
 
+-(void)getHairfiesFromRefresh:(UIRefreshControl *)refresh {
+    [self getHairfies:nil];
+}
+
 -(void)getHairfies:(NSNumber *)page
 {
     if(page == nil) {
@@ -163,7 +173,7 @@
     
     void (^loadErrorBlock)(NSError *) = ^(NSError *error){
         NSLog(@"Error on load %@", error.description);
-       // [refreshControl endRefreshing];
+        [refreshControl endRefreshing];
     };
     void (^loadSuccessBlock)(NSArray *) = ^(NSArray *models){
         if([models count] < HAIRFIES_PAGE_SIZE) endOfScroll = YES;
@@ -197,9 +207,9 @@
 - (void)customReloadData
 {
     [self.contentCollection reloadData];
-//    if (refreshControl) {
-//        [refreshControl endRefreshing];
-//    }
+    if (refreshControl) {
+       [refreshControl endRefreshing];
+    }
 }
 
 
