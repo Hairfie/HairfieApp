@@ -30,13 +30,15 @@
     if(self.business.owner != nil) {
         [self.headerSubmitButton setHidden:YES];
         [self.webView setHidden:YES];
+        [self.activityIndicator setHidden:YES];
     } else {
         [self.alreadyClaimedLabel setHidden:YES];
         
 //        [self.webView loadHTMLString:@"<html><body style=\"background-color:black;\"></body></html>" baseURL:nil];
-
+      
         NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"Claim" ofType:@"html"]]];
         [self.webView loadRequest:urlRequest];
+       
     }
     
 }
@@ -53,9 +55,12 @@
 }
 
 -(IBAction)claim:(id)sender {
+    
+      [self.activityIndicator startAnimating];
     [self.business claimWithSuccess:^(NSArray *result) {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"currentUser" object:self];
       //  [self dismissViewControllerAnimated:YES completion:nil];
+          [self.activityIndicator stopAnimating];
         [self performSegueWithIdentifier:@"editClaimedBusiness" sender:self];
     } failure:^(NSError *error) {
         NSLog(@"error : %@", error);

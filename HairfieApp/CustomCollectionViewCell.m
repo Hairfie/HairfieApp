@@ -44,8 +44,8 @@
         self.name.text = hairfie.business.name;
     } else {
     
-        [self.profilePicture sd_setImageWithURL:[hairfie.author pictureUrlwithWidth:
-                                                 @100 andHeight:@100]
+        [self.profilePicture sd_setImageWithURL:[hairfie.author pictureUrlWithWidth:
+                                                 @100 height:@100]
                                placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
         self.name.text = hairfie.author.displayName;
     }

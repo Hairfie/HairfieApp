@@ -98,6 +98,9 @@
             @"segue": @"reportContent"
         }*/
     ];
+ 
+    NSLog(@"hairfie author : %@", [self.hairfie.businessMember toDictionary]);
+
 }
 
 -(void)reloadData
@@ -244,6 +247,8 @@
                                                   otherButtonTitles:nil];
         [alertView show];
     }
+ 
+
 }
 
 -(UIViewController *)documentInteractionControllerViewControllerForPreview:(UIDocumentInteractionController *)controller
@@ -586,7 +591,7 @@
     UIRoundImageView *borderProfile = [[UIRoundImageView alloc]initWithFrame:CGRectMake(10, 0, 44, 44)];
     [borderProfile setBackgroundColor:[[UIColor blackHairfie] colorWithAlphaComponent:0.2]];
     UIRoundImageView *profilePicture = [[UIRoundImageView alloc] initWithFrame:CGRectMake(12, 2, 40, 40)];
-    [profilePicture sd_setImageWithURL:[self.hairfie.author pictureUrlwithWidth:@100 andHeight:@100] placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
+    [profilePicture sd_setImageWithURL:[self.hairfie.author pictureUrlWithWidth:@100 height:@100] placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
 
 
     // add gesture recognizer to open user's profile on picture tap

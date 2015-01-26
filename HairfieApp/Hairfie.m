@@ -118,14 +118,14 @@
 }
 
 
--(NSURL *)pictureUrlwithWidth:(NSNumber *)width andHeight:(NSNumber *)height
+-(NSURL *)pictureUrlWithWidth:(NSNumber *)width andHeight:(NSNumber *)height
 {
     return [self.picture urlWithWidth:width height:height];
 }
 
 -(NSURL *)pictureUrl
 {
-    return [self pictureUrlwithWidth:nil andHeight:nil];
+    return [self pictureUrlWithWidth:nil andHeight:nil];
 }
 
 -(NSString *)displayPrice

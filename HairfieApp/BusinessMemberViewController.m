@@ -35,7 +35,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(showDetails:)
                                                  name:@"detailsTab"
@@ -73,8 +72,15 @@
     // lazy load business
     if (nil == self.business) {
         [self loadBusiness];
-        self.business = self.businessMember.business; // temporary use values from partial object
+        self.business = self.businessMember.business;
+        // temporary use values from partial object
     }
+    if (nil == self.user)
+    {
+        [self loadUser];
+        self.user = self.businessMember.user;
+    }
+    
 }
 
 -(void)setBusiness:(Business *)business
@@ -82,6 +88,13 @@
     _business = business;
     
     [self.collectionView reloadData];
+}
+
+-(void)setUser:(User *)user
+{
+    _user = user;
+    
+  //[self.collectionView reloadData];
 }
 
 -(void)addToFavorite:(NSNotification*)notification
@@ -145,6 +158,7 @@
 
 -(void)loadBusiness
 {
+    if (self.businessMember.business.id != nil) {
     [Business getById:self.businessMember.business.id
           withSuccess:^(Business *business) {
               self.business = business;
@@ -152,8 +166,23 @@
               failure:^(NSError *error) {
                   NSLog(@"Failed to load business: %@", error.localizedDescription);
               }];
+    }
 }
-         
+
+-(void)loadUser
+{
+    if (self.businessMember.user.id != nil) {
+    
+    [User getById:self.businessMember.user.id
+          success:^(User *user) {
+              self.user = user;
+          }
+              failure:^(NSError *error) {
+                  NSLog(@"Failed to load business: %@", error.localizedDescription);
+              }];
+    }
+}
+
 -(void)loadHairfies
 {
     if (endOfScroll || loadingNext) return;
@@ -223,6 +252,7 @@
     
     businessMemberHeader.businessMember = self.businessMember;
     businessMemberHeader.business = self.business;
+    businessMemberHeader.user = self.user;
     businessMemberHeader.hairfiesCount = hairfiesCount;
   
     [businessMemberHeader setupView];

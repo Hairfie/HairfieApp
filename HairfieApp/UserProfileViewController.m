@@ -141,7 +141,7 @@
     
     SDWebImageManager *manager = [SDWebImageManager sharedManager];
     
-    [manager downloadImageWithURL:[self.user pictureUrlwithWidth:@50 andHeight:@50]
+    [manager downloadImageWithURL:[self.user pictureUrlWithWidth:@50 height:@50]
                           options:0
                          progress:^(NSInteger receivedSize, NSInteger expectedSize)
      {
@@ -159,7 +159,7 @@
     userProfilePicture.clipsToBounds = YES;
     userProfilePicture.contentMode = UIViewContentModeScaleAspectFit;
     
-    [userProfilePicture sd_setImageWithURL:[self.user pictureUrlwithWidth:@200 andHeight:@200]
+    [userProfilePicture sd_setImageWithURL:[self.user pictureUrlWithWidth:@200 height:@200]
                           placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
     
     UIView *profileBorder =[[UIView alloc] initWithFrame:CGRectMake(113, 43, 94, 94)];

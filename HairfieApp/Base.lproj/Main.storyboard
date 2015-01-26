@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C94b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="m6Z-pY-ich">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="m6Z-pY-ich">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
@@ -2551,7 +2551,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="guP-Fw-zqY" userLabel="VIEW CONTAINER">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="1230"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fjc-1f-saH" userLabel="PRICES SALES VIEW">
+                                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fjc-1f-saH" userLabel="PRICES SALES VIEW">
                                                 <rect key="frame" x="0.0" y="278" width="320" height="615"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.79999999999999982" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="No Discount available." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Njg-Hk-zGq">
@@ -2584,10 +2584,10 @@
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </view>
-                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5ZR-VD-wlu" userLabel="HAIRDRESSER VIEW">
+                                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5ZR-VD-wlu" userLabel="HAIRDRESSER VIEW">
                                                 <rect key="frame" x="0.0" y="278" width="320" height="615"/>
                                                 <subviews>
-                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="FpJ-1K-79p">
+                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="FpJ-1K-79p">
                                                         <rect key="frame" x="0.0" y="0.0" width="320" height="615"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
@@ -2602,7 +2602,7 @@
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </view>
-                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g2N-rX-8kI" userLabel="HAIRFIE VIEW">
+                                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g2N-rX-8kI" userLabel="HAIRFIE VIEW">
                                                 <rect key="frame" x="0.0" y="278" width="320" height="600"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.79999999999999982" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="HAIRFIES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i0i-hm-iGW">
@@ -2657,7 +2657,7 @@
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </view>
-                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8hf-8q-hqK" userLabel="INFO VIEW">
+                                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8hf-8q-hqK" userLabel="INFO VIEW">
                                                 <rect key="frame" x="0.0" y="278" width="320" height="1192"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pQj-wF-6sZ" userLabel="Detail Container View">
@@ -2712,7 +2712,7 @@
                                                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z1i-KZ-pp2" userLabel="Separator 2">
                                                                 <color key="backgroundColor" red="0.85490196080000003" green="0.85490196080000003" blue="0.87058823529999996" alpha="1" colorSpace="calibratedRGB"/>
                                                             </view>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="picto-clock-black.png" translatesAutoresizingMaskIntoConstraints="NO" id="a0o-5H-PFd">
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="picto-clock-black.png" translatesAutoresizingMaskIntoConstraints="NO" id="a0o-5H-PFd">
                                                                 <rect key="frame" x="10" y="133" width="16" height="16"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="16" id="0Cz-K5-ojW"/>
@@ -2740,7 +2740,7 @@
                                                                 <color key="textColor" red="0.51764705879999995" green="0.5450980392" blue="0.58431372550000005" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" image="nav-disclosure.png" translatesAutoresizingMaskIntoConstraints="NO" id="4ys-iO-FG6">
+                                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" image="nav-disclosure.png" translatesAutoresizingMaskIntoConstraints="NO" id="4ys-iO-FG6">
                                                                 <rect key="frame" x="296" y="136" width="8" height="13"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="13" id="OI1-aL-ZfC"/>
@@ -2825,7 +2825,7 @@
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </view>
-                                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VBB-fJ-v6H">
+                                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VBB-fJ-v6H">
                                                         <rect key="frame" x="184" y="555" width="128" height="25"/>
                                                         <color key="backgroundColor" red="0.98039215690000003" green="0.25882352939999997" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
                                                         <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="14"/>
@@ -2834,7 +2834,7 @@
                                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
                                                     </button>
-                                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aTG-pn-ebO" userLabel="Similar Container View">
+                                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aTG-pn-ebO" userLabel="Similar Container View">
                                                         <rect key="frame" x="0.0" y="581" width="320" height="363"/>
                                                         <subviews>
                                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="SIMILAR SALONS" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j8A-ax-Ky5">
@@ -2846,7 +2846,7 @@
                                                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LJq-b6-9Kh" userLabel="Similar Separator">
                                                                 <color key="backgroundColor" red="0.81176470590000005" green="0.81176470590000005" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
                                                             </view>
-                                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="wW3-x4-wkc" userLabel="Similar Table View">
+                                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="wW3-x4-wkc" userLabel="Similar Table View">
                                                                 <rect key="frame" x="0.0" y="40" width="320" height="323"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <constraints>
@@ -2896,11 +2896,11 @@
                                                     <constraint firstAttribute="trailing" secondItem="VBB-fJ-v6H" secondAttribute="trailing" constant="8" id="uIR-80-lpx"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="POI-R8-aQS" userLabel="Header Container View">
+                                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="POI-R8-aQS" userLabel="Header Container View">
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="220"/>
                                                 <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                             </view>
-                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="F1e-I3-z9r" userLabel="Tab Bar View">
+                                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="F1e-I3-z9r" userLabel="Tab Bar View">
                                                 <rect key="frame" x="0.0" y="220" width="320" height="60"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1fN-Tc-Gwu" userLabel="Background Blue View">
@@ -3277,7 +3277,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="sfO-bt-d8t">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="-20" width="320" height="588"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="mEQ-U5-Okh">
                                     <size key="itemSize" width="123" height="201"/>
@@ -3301,11 +3301,11 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="324"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pp9-Eq-iVN">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="274"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pp9-Eq-iVN">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="324"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2yk-P0-WaK">
-                                            <rect key="frame" x="77" y="172" width="167" height="21"/>
+                                            <rect key="frame" x="77" y="200" width="167" height="21"/>
                                             <fontDescription key="fontDescription" name="SourceSansPro-Semibold" family="Source Sans Pro" pointSize="18"/>
                                             <color key="textColor" red="0.87301450280000004" green="0.87301450280000004" blue="0.87301450280000004" alpha="0.79000000000000004" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -3323,7 +3323,7 @@
                                                     <color key="backgroundColor" red="1" green="0.74117647060000003" blue="0.70980392160000005" alpha="1" colorSpace="calibratedRGB"/>
                                                 </view>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4is-wV-9vT" userLabel="Details BTTN">
-                                                    <rect key="frame" x="0.0" y="0.0" width="160" height="48"/>
+                                                    <rect key="frame" x="-1" y="0.0" width="162" height="48"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="18"/>
                                                     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -3333,7 +3333,7 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="881-vr-DAa" userLabel="Hairfies Bttn">
-                                                    <rect key="frame" x="160" y="0.0" width="160" height="48"/>
+                                                    <rect key="frame" x="160" y="0.0" width="161" height="48"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" name="SourceSansPro-Semibold" family="Source Sans Pro" pointSize="18"/>
                                                     <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -3342,6 +3342,12 @@
                                                         <action selector="changeTab:" destination="Xwi-t2-q8v" eventType="touchUpInside" id="sBC-Tq-jFM"/>
                                                     </connections>
                                                 </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Hairfies" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="elU-S7-77I" userLabel="Hairfies LBL">
+                                                    <rect key="frame" x="160" y="26" width="160" height="21"/>
+                                                    <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="14"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Infos" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xGx-oh-R9Y" userLabel="Details LBL">
                                                     <rect key="frame" x="0.0" y="26" width="160" height="21"/>
                                                     <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="14"/>
@@ -3349,17 +3355,11 @@
                                                     <nil key="highlightedColor"/>
                                                     <size key="shadowOffset" width="0.0" height="0.0"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Hairfies" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="elU-S7-77I" userLabel="Hairfies LBL">
-                                                    <rect key="frame" x="160" y="26" width="160" height="21"/>
-                                                    <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="14"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                             </subviews>
                                             <color key="backgroundColor" red="0.74117647058823533" green="0.71372549019607845" blue="0.66666666666666663" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
                                         </view>
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0yi-tp-qf4">
-                                            <rect key="frame" x="137" y="206" width="46" height="46"/>
+                                            <rect key="frame" x="137" y="228" width="46" height="46"/>
                                             <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                             <state key="normal" image="picto-fav-hairdresser.png">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -4766,10 +4766,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xt3-i7-57w">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xt3-i7-57w">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EuT-Lu-oD6" userLabel="VIEW CONTAINER">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EuT-Lu-oD6" userLabel="VIEW CONTAINER">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="588"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="URA-Dh-nh8" userLabel="HAIRFIE VIEW">
@@ -5808,6 +5808,9 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <dataDetectorType key="dataDetectorTypes"/>
                             </webView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="2HO-yy-bZJ">
+                                <rect key="frame" x="150" y="350" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -5816,6 +5819,7 @@
                             <constraint firstItem="bi4-lb-jmf" firstAttribute="top" secondItem="lWM-NJ-Rf8" secondAttribute="bottom" constant="-20" id="7Yh-zL-2Sb"/>
                             <constraint firstItem="TWN-7L-M1B" firstAttribute="leading" secondItem="Q8O-6p-lfs" secondAttribute="leadingMargin" constant="-6" id="G1Y-fr-DtQ"/>
                             <constraint firstItem="fjh-tF-FSo" firstAttribute="top" secondItem="lWM-NJ-Rf8" secondAttribute="bottom" constant="52" id="K0W-Ou-yd4"/>
+                            <constraint firstAttribute="centerX" secondItem="2HO-yy-bZJ" secondAttribute="centerX" constant="-0.5" id="LMa-2D-ed5"/>
                             <constraint firstItem="fjh-tF-FSo" firstAttribute="leading" secondItem="Q8O-6p-lfs" secondAttribute="leadingMargin" constant="-16" id="UTz-Le-KMn"/>
                             <constraint firstAttribute="trailingMargin" secondItem="bi4-lb-jmf" secondAttribute="trailing" constant="-16" id="WXr-Sj-Ndq"/>
                             <constraint firstItem="7qO-5D-TRf" firstAttribute="top" secondItem="fjh-tF-FSo" secondAttribute="bottom" constant="8" id="aGw-a1-g28"/>
@@ -5823,6 +5827,7 @@
                             <constraint firstItem="bi4-lb-jmf" firstAttribute="leading" secondItem="Q8O-6p-lfs" secondAttribute="leadingMargin" constant="-16" id="flY-Io-bWJ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="TWN-7L-M1B" secondAttribute="trailing" constant="-6" id="gUT-gN-Hny"/>
                             <constraint firstAttribute="centerY" secondItem="TWN-7L-M1B" secondAttribute="centerY" constant="-10.5" id="hDy-lF-Eda"/>
+                            <constraint firstItem="7qO-5D-TRf" firstAttribute="top" secondItem="2HO-yy-bZJ" secondAttribute="bottom" constant="198" id="laO-eu-7hn"/>
                             <constraint firstAttribute="centerX" secondItem="fjh-tF-FSo" secondAttribute="centerX" id="mOA-KI-ulf"/>
                             <constraint firstAttribute="trailingMargin" secondItem="fjh-tF-FSo" secondAttribute="trailing" constant="-16" id="qm9-7a-YlH"/>
                         </constraints>
@@ -5830,6 +5835,7 @@
                     <navigationItem key="navigationItem" id="JHy-6J-DBB"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="2HO-yy-bZJ" id="Iwq-at-jGl"/>
                         <outlet property="alreadyClaimedLabel" destination="TWN-7L-M1B" id="8Cv-fg-w2J"/>
                         <outlet property="headerSubmitButton" destination="UFz-F6-Ek7" id="t2Z-Bl-i94"/>
                         <outlet property="headerTitleLabel" destination="l9f-NN-EPT" id="Iqp-XJ-zAA"/>
@@ -6032,15 +6038,15 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="ifC-bw-jQg"/>
-        <segue reference="Vzm-3A-jKo"/>
-        <segue reference="VGS-VM-Pwy"/>
-        <segue reference="N5w-ND-ZjU"/>
-        <segue reference="gc2-JI-si9"/>
-        <segue reference="cpa-I8-e9p"/>
+        <segue reference="csi-dT-fBw"/>
         <segue reference="XyP-UR-YzB"/>
-        <segue reference="ZYG-tz-TFe"/>
-        <segue reference="cUj-YN-hJW"/>
+        <segue reference="18q-AN-mc0"/>
         <segue reference="YaZ-tZ-kVO"/>
+        <segue reference="cUj-YN-hJW"/>
+        <segue reference="BMp-kN-6Xv"/>
+        <segue reference="N5w-ND-ZjU"/>
+        <segue reference="cpa-I8-e9p"/>
+        <segue reference="I6i-3Z-opd"/>
+        <segue reference="VGS-VM-Pwy"/>
     </inferredMetricsTieBreakers>
 </document>

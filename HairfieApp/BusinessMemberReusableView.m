@@ -19,13 +19,16 @@
     BOOL isSetup;
     BOOL isFavorited;
     AppDelegate *appDelegate;
+    NSURL *pictureUrl;
 }
 
+#define DEFAULT_PICTURE_URL @"default-user-picture.png"
+#define DEFAULT_PICTURE_URL_BG @"default-user-picture-bg.png"
 
 -(void)setupView
 {
     [self setupData];
-    [self setupHeaderPictures];
+   // [self setupHeaderPictures];
     
     if (!isSetup) {
         appDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
@@ -42,6 +45,9 @@
         [self.favoriteBttn setImage:[UIImage imageNamed:@"picto-fav-hairdresser-selected.png"] forState:UIControlStateSelected];
         [self.favoriteBttn setImage:[UIImage imageNamed:@"picto-fav-hairdresser.png"] forState:UIControlStateNormal];
         self.nameLabel.text = [self.businessMember displayFullName];
+       
+        [self setupHeaderPictures];
+
     }
 }
 
@@ -59,30 +65,25 @@
 }
 -(void)setupHeaderPictures
 {
-    SDWebImageManager *manager = [SDWebImageManager sharedManager];
-
-    [manager downloadImageWithURL:[self.businessMember pictureUrlWithWidth:@50 height:@50]
-                          options:0
-                         progress:^(NSInteger receivedSize, NSInteger expectedSize) {}
-                        completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
-                            if (image) {
-                                self.backgroundProfilePicture.image = [image applyLightEffect];
-                            }
-                        }];
     
-    businessMemberPicture = [[UIRoundImageView alloc] initWithFrame:CGRectMake(118, 68, 84, 84)];
-    businessMemberPicture.clipsToBounds = YES;
-    businessMemberPicture.contentMode = UIViewContentModeScaleAspectFit;
     
-    [businessMemberPicture sd_setImageWithURL:[self.businessMember pictureUrlWithWidth:@200 height:@200]
-                             placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
+    if (self.businessMember.picture != nil){
+        [self setPictureData:self.businessMember isDefault:NO];
+    }
+    else if (self.user.picture != nil) {
+        [self setPictureData:self.user isDefault:NO];
+    }
+    else {
+        [self setPictureData:nil isDefault:YES];
+        
+    }
     
-    UIView *profileBorder =[[UIView alloc] initWithFrame:CGRectMake(113, 63, 94, 94)];
+    UIView *profileBorder =[[UIView alloc] initWithFrame:CGRectMake(self.bounds.size.width / 2 - 63, 63, 126, 126)];
     profileBorder.layer.cornerRadius = profileBorder.frame.size.height / 2;
     profileBorder.clipsToBounds = YES;
     profileBorder.backgroundColor = [UIColor colorWithWhite:1 alpha:0.3];
     
-    UILabel *proLbl = [[UILabel alloc] initWithFrame:CGRectMake(80, 95, 42, 30)];
+    UILabel *proLbl = [[UILabel alloc] initWithFrame:CGRectMake(80, 101, 42, 30)];
     proLbl.text = @"PRO";
     proLbl.textColor = [UIColor whiteColor];
     proLbl.font = [UIFont fontWithName:@"SourceSansPro-Light" size:17];
@@ -96,9 +97,43 @@
     [self addSubview:proLbl];
 }
 
+-(void)setPictureData:(id)entity
+                isDefault:(BOOL)isDefault
+{
+    businessMemberPicture = [[UIRoundImageView alloc] initWithFrame:CGRectMake(self.bounds.size.width / 2 - 58, 68, 116, 116)];    businessMemberPicture.clipsToBounds = YES;
+    businessMemberPicture.contentMode = UIViewContentModeScaleAspectFit;
+    if (isDefault == NO) {
+    SDWebImageManager *manager = [SDWebImageManager sharedManager];
+    
+    [manager downloadImageWithURL:[entity pictureUrlWithWidth:@50 height:@50]
+                          options:0
+                         progress:^(NSInteger receivedSize, NSInteger expectedSize) {}
+                        completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                            if (image) {
+                                self.backgroundProfilePicture.image = [image applyLightEffect];
+                            }
+                        }];
+    
+    
+  
+    
+    [businessMemberPicture sd_setImageWithURL:[entity pictureUrlWithWidth:@200 height:@200]
+                             placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
+    
+    }
+    else {
+        
+      //  [self.backgroundProfilePicture setImage:[UIImage imageNamed:DEFAULT_PICTURE_URL_BG]];
+        self.backgroundProfilePicture.image = [[UIImage imageNamed:DEFAULT_PICTURE_URL_BG] applyLightEffect];
+        [businessMemberPicture setImage:[UIImage imageNamed:DEFAULT_PICTURE_URL]];
+        
+    }
+}
+
 -(void)setupData
 {
     [self.hairfieBttn profileTabStyle];
+    [self.detailsBttn profileTabStyle];
     [self.detailsBttn setTitle:@"Info" forState:UIControlStateNormal];
     [self.hairfieBttn setTitle:[NSString stringWithFormat:@"%zd", self.hairfiesCount] forState:UIControlStateNormal];
 }

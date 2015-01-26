@@ -9,11 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "BusinessMember.h"
 #import "Business.h"
+#import "User.h"
 
 @interface BusinessMemberViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property (nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic) BusinessMember *businessMember;
 @property (nonatomic) Business *business;
+@property (nonatomic) User *user;
 
 @end

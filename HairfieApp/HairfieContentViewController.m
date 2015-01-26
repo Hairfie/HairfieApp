@@ -197,7 +197,6 @@
 }
 
 - (void)fetchMoreHairfies {
-    NSLog(@"FETCHING MORE HAIRFIES ******************");
     int value = [currentPage intValue];
     currentPage = [NSNumber numberWithInt:value + 1];;
     [self getHairfies:currentPage];
