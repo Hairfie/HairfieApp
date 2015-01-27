@@ -48,4 +48,6 @@
 #define GENDER_MALE @"MALE"
 #define GENDER_FEMALE @"FEMALE"
 
+#define kStatusBarTappedNotification  @"statusBarTappedNotification"
+
 #endif

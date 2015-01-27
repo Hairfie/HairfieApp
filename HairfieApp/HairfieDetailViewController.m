@@ -258,6 +258,7 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    NSLog(@"info names %@", displayedInfoNames);
      detailsTableView.userInteractionEnabled = YES;
     [ARAnalytics pageView:@"AR - Hairfie Detail"];
     if(self.hairfie) {

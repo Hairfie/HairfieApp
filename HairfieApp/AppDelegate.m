@@ -16,6 +16,8 @@
 #import "UserAuthenticator.h"
 #import <PonyDebugger/PonyDebugger.h>
 
+
+
 @interface AppDelegate ()
 
 @end
@@ -173,6 +175,21 @@ static LBRESTAdapter * _lbAdaptater = nil;
                                                                                            forKey:@"newLocationResult"]];
 
     [manager stopUpdatingLocation];
+}
+
+#pragma mark - Status bar touch tracking
+- (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [super touchesBegan:touches withEvent:event];
+    CGPoint location = [[[event allTouches] anyObject] locationInView:[self window]];
+    CGRect statusBarFrame = [UIApplication sharedApplication].statusBarFrame;
+    if (CGRectContainsPoint(statusBarFrame, location)) {
+        [self statusBarTouchedAction];
+    }
+}
+
+- (void)statusBarTouchedAction {
+    [[NSNotificationCenter defaultCenter] postNotificationName:kStatusBarTappedNotification
+                                                        object:nil];
 }
 
 

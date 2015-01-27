@@ -22,7 +22,7 @@
 @property (nonatomic) UIImagePickerController *imagePicker;
 @property (nonatomic) IBOutlet UIView *overlayView;
 @property (nonatomic) IBOutlet UIView *topBarView;
-
+@property (nonatomic) IBOutlet UIImageView *hairfieLogo;
 @property (nonatomic) PopUpViewController *popViewController;
 @property (nonatomic) IBOutlet UIButton *menuButton;
 @property (nonatomic) IBOutlet UIButton *takeHairfieBttn;

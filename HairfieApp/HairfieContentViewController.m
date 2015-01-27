@@ -30,11 +30,17 @@
 }
 
 - (void)viewDidLoad {
+    
+   
+    self.contentCollection.scrollsToTop = YES;
     [super viewDidLoad];
     [self.contentCollection registerNib:[UINib nibWithNibName:@"CustomCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:CUSTOM_CELL_IDENTIFIER];
      [self.contentCollection registerNib:[UINib nibWithNibName:@"LoadingCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:LOADING_CELL_IDENTIFIER];
     
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(statusBarTappedAction:)
+                                                 name:kStatusBarTappedNotification
+                                               object:nil];
     currentPage = @(0);
     hairfies = [[NSMutableArray alloc] init];
     endOfScroll = NO;
@@ -43,9 +49,17 @@
     [refreshControl addTarget:self action:@selector(getHairfiesFromRefresh:)
              forControlEvents:UIControlEventValueChanged];
     [self.contentCollection addSubview:refreshControl];
+   
     
     // Do any additional setup after loading the view.
 }
+
+- (void)statusBarTappedAction:(NSNotification*)notification {
+    [self.contentCollection scrollRectToVisible:CGRectMake(10, 0, self.contentCollection.frame.size.width, self.contentCollection.frame.size.height) animated:YES];
+}
+
+-(void)scrollToTop {
+   }
 
 -(void)viewDidAppear:(BOOL)animated
 {
@@ -59,7 +73,6 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-  //  [self.contentCollection reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -70,9 +83,6 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    NSLog(@"width cell %f", (collectionView.frame.size.width - 30) / 2);
-    
     if (indexPath.row < [hairfies count]) {
         return CGSizeMake((collectionView.frame.size.width - 30) / 2, 210);
     } else {
@@ -94,9 +104,11 @@
 // 3
 - (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
+
     if (indexPath.row < [hairfies count]) {
         
-        if(indexPath.row == ([hairfies count] - HAIRFIES_PAGE_SIZE + 1)){
+        
+        if(indexPath.row == ([hairfies count] - HAIRFIES_PAGE_SIZE + 1) && currentPage != 0){
             [self fetchMoreHairfies];
         }
         
@@ -166,6 +178,7 @@
 
 -(void)getHairfies:(NSNumber *)page
 {
+    
     if(page == nil) {
         page = @(0);
     }
@@ -176,7 +189,8 @@
         [refreshControl endRefreshing];
     };
     void (^loadSuccessBlock)(NSArray *) = ^(NSArray *models){
-        if([models count] < HAIRFIES_PAGE_SIZE) endOfScroll = YES;
+        if([models count] < HAIRFIES_PAGE_SIZE)
+            endOfScroll = YES;
         for (int i = 0; i < models.count; i++) {
             NSNumber *dynamicIndex = @(i + [offset integerValue]);
             if([dynamicIndex integerValue] < [hairfies count]) {
@@ -185,6 +199,7 @@
                 [hairfies addObject:models[i]];
             }
         }
+        NSLog(@"hairfie count %d", hairfies.count);
         [self customReloadData];
     };
     NSLog(@"Get Hairfies for page : %@", page);

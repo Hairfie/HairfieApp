@@ -382,7 +382,7 @@
         self.hairfiePost.price = price;
     }
     
-    NSLog(@"Hairfie to post : %@", _hairfiePost);
+    NSLog(@"Hairfie to post : %@", [_hairfiePost toDictionary]);
     
     void (^loadErrorBlock)(NSError *) = ^(NSError *error){
         NSLog(@"Error : %@", error.description);
