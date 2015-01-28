@@ -23,7 +23,7 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
-    _tableViewHeight.constant = 7 * 65;
+    [self.topView addBottomBorderWithHeight:1 andColor:[UIColor lightGrey]];
     weekdays = [[[Week alloc] init] weekdays];
 }
 

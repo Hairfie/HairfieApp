@@ -11,10 +11,11 @@
 
 @interface HorairesViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
-@property (nonatomic) IBOutlet UITableView *horaireTableView;
-@property (nonatomic) IBOutlet NSLayoutConstraint *tableViewHeight;
+@property (nonatomic) IBOutlet UITableView *horaireTableView;;
 
 @property (nonatomic) Timetable *timetable;
+
+@property (nonatomic) IBOutlet UIView *topView;
 
 -(IBAction)goBack:(id)sender;
 
