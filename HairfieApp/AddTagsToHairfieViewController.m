@@ -27,9 +27,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resizeTagCell:) name:@"resizeTagCell" object:nil];
-    
-    
     hairfieTags = [NSMutableArray arrayWithArray:self.hairfiePost.tags];
     self.tagsDictionary = [[NSMutableDictionary alloc] init];
     [self.topView addBottomBorderWithHeight:1 andColor:[UIColor lightGrey]];
@@ -92,10 +89,6 @@
 }
 
 
-//-(CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    return 100;
-//}
-
 -(TagsTableViewCell *)configureCellAtIndex:(NSIndexPath*)indexPath
 {
     
@@ -113,8 +106,6 @@
     
     TagCategory *category = [tagGroup objectAtIndex:0];
     NSArray *tagsFromCategory = [tagGroup objectAtIndex:1];
-    NSLog(@"\ncategory %@ \ntags %d", category.name, tagsFromCategory.count);
-    
     cell.tagCategory.text = category.name;
     cell.tag = indexPath.row;
     [cell setTags:tagsFromCategory withSelectedTags:hairfieTags];
