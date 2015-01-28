@@ -99,7 +99,7 @@
         }*/
     ];
  
-    NSLog(@"hairfie author : %@", [self.hairfie.businessMember toDictionary]);
+    NSLog(@"hairfie : %@", [self.hairfie toDictionary]);
 
 }
 
@@ -114,7 +114,7 @@
     if (self.hairfie.businessMember) {
         [tempDisplayedInfoNames addObject:@"businessMember"];
     }
-    if (self.hairfie.selfMade) {
+    if (self.hairfie.selfMade == YES) {
         [tempDisplayedInfoNames addObject:@"selfMade"];
     }
     if (nil != self.hairfie.price) {

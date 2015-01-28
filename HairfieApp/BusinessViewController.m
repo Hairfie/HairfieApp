@@ -544,7 +544,10 @@
             [self checkIfCameraDisabled];
         } else {
             hairfie = [businessHairfies objectAtIndex:(indexPath.row - 1)];
-            NSLog(@"business HAIRFIES %@", hairfie.numLikes);
+            if (hairfie.selfMade == YES)
+                NSLog(@"TRUE");
+            else
+                NSLog(@"FALSE");
             [self.collectionView deselectItemAtIndexPath:indexPath animated:YES];
             [self performSegueWithIdentifier:@"hairfieDetail" sender:self];
         }
