@@ -109,6 +109,7 @@
     refreshControl = [[UIRefreshControl alloc] init];
 
     if([delegate.credentialStore isLoggedIn]) {
+        
        [self.view addGestureRecognizer:self.slidingViewController.panGesture];
     } else {
         NSLog(@"not logged");
@@ -411,8 +412,7 @@
 
 
 -(void) prepareUserNotLogged {
-    [_menuButton setHidden:YES];
-    
+    self.menuButton.hidden = YES;
     UIImage *loginButtonImg = [UIImage imageNamed:@"login-user.png"];
     loginButtonImg = [loginButtonImg imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
 

@@ -258,6 +258,7 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    [detailsTableView reloadData];
     NSLog(@"info names %@", displayedInfoNames);
      detailsTableView.userInteractionEnabled = YES;
     [ARAnalytics pageView:@"AR - Hairfie Detail"];
@@ -314,10 +315,16 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    
+    
     if (tableView == detailsTableView) {
         NSString *infoName = displayedInfoNames[indexPath.row];
         if ([infoName isEqualToString:@"business"]) {
             
+            HairfieDetailBusinessTableViewCell *cell = (HairfieDetailBusinessTableViewCell*)[tableView cellForRowAtIndexPath:indexPath];
+            
+            [cell setBackgroundColor:[UIColor greenColor]];
             // the current hairfie's business property contains a
             // partial business object, so we need to fetch the
             // complete version prior to show details
@@ -334,6 +341,10 @@
         }
         else if ([infoName isEqualToString:@"businessMember"])
         {
+            HairfieDetailTableViewCell *cell = (HairfieDetailTableViewCell*)[tableView cellForRowAtIndexPath:indexPath];
+            
+            [cell setBackgroundColor:[UIColor greenColor]];
+
             [BusinessMember getById:self.hairfie.businessMember.id
                         withSuccess:^(BusinessMember *businessMember) {
                             [self performSegueWithIdentifier:@"showBusinessMember" sender:businessMember];
@@ -385,7 +396,7 @@
         separatorView.layer.borderWidth = 1.0;
         [cell.contentView addSubview:separatorView];
 
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        //cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
         return cell;
     }

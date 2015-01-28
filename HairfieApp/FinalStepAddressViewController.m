@@ -19,13 +19,16 @@
 {
     CLLocation *newLocation;
     NSString *geocodeCountry;
+    BOOL geolocating;
+    GeoPoint *gps;
 }
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-  
+   
+    gps = [[GeoPoint alloc] init];
     _street.text = _address.street;
     _city.text = _address.city;
     _zipCode.text = _address.zipCode;
@@ -82,9 +85,8 @@
     if (nextResponder) {
         // Found next responder, so set it.
         [nextResponder becomeFirstResponder];
-        [self geocodeAddress:[address displayAddress]];
     } else {
-        
+        geolocating = YES;
         [self geocodeAddress:[address displayAddress]];
         [self validateAddress:self];
         [textField resignFirstResponder];
@@ -95,18 +97,30 @@
 
 -(IBAction)validateAddress:(id)sender
 {
+   
     // TO DO enregistrer l'adresse modifiée
-    
-    FinalStepViewController *finalStep = [self.navigationController.viewControllers objectAtIndex:[self.navigationController.viewControllers count]-2];
+       FinalStepViewController *finalStep = [self.navigationController.viewControllers objectAtIndex:[self.navigationController.viewControllers count]-2];
    
     Address *address = [[Address alloc] initWithStreet:_street.text city:_city.text zipCode:_zipCode.text country:geocodeCountry];
-    GeoPoint *gps = [[GeoPoint alloc] initWithLocation:newLocation];
+    if (newLocation == nil) {
+        geolocating = YES;
+        [self geocodeAddress:[address displayAddress]];
+        
+    }
+    
+    while (geolocating) {
+        NSLog(@"---------- Geolocatings ----------");
+        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
+    }
+    
+
     
     if (finalStep.businessToManage != nil)
     {
         finalStep.businessToManage.address = address;
         finalStep.businessToManage.gps = gps;
     }
+
     [self goBack:self];
 }
 
@@ -121,6 +135,12 @@
             // Process the placemark.
             
             newLocation =  aPlacemark.location;
+            
+            NSLog(@"new location lat %f lng %f", aPlacemark.location.coordinate.latitude, aPlacemark.location.coordinate.longitude);
+           
+            geolocating = NO;
+            gps.lat = [NSNumber numberWithFloat:aPlacemark.location.coordinate.latitude];
+            gps.lng = [NSNumber numberWithFloat:aPlacemark.location.coordinate.longitude];
             [self reverseGeocodeGps:newLocation];
         }
     }];

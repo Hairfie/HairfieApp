@@ -55,6 +55,16 @@
     return self;
 }
 
+-(void)setLat:(NSNumber *)aLat
+{
+    _lat = aLat;
+}
+
+-(void)setLng:(NSNumber *)aLng
+{
+    _lng = aLng;
+}
+
 -(NSNumber *)distanceTo:(GeoPoint *)point
 {
     return [[NSNumber alloc] initWithDouble:[self.location distanceFromLocation:point.location]];
