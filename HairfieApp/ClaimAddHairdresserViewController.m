@@ -55,12 +55,12 @@
     if (self.claimedBusinessMembers != nil) {
         businessMembers = self.claimedBusinessMembers;
     }
-
+    
     if (self.businessMemberFromSegue != nil) {
         self.firstNameField.text = self.businessMemberFromSegue.firstName;
         self.lastNameField.text = self.businessMemberFromSegue.firstName;
-        self.emailField.text = self.businessMemberFromSegue.email;
-        self.phoneNumberField.text = self.businessMemberFromSegue.phoneNumber;
+        self.emailField.text = (![self.businessMemberFromSegue.email isEqual:(id)[NSNull null]]) ? self.businessMemberFromSegue.email : @"";
+         self.phoneNumberField.text = (![self.businessMemberFromSegue.phoneNumber isEqual:(id)[NSNull null]]) ? self.businessMemberFromSegue.phoneNumber : @"";
     }
 }
 

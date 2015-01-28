@@ -285,8 +285,6 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"cameraFilters"])
     {
-        
-        NSLog(@"nav %@", self.navigationController.viewControllers);
         ApplyFiltersViewController *filters = [segue destinationViewController];
         [_hairfiePost setPictureWithImage:imageTaken andContainer:@"hairfies"];
         filters.hairfiePost = _hairfiePost;
