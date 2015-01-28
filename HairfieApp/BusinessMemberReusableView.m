@@ -78,12 +78,12 @@
         
     }
     
-    UIView *profileBorder =[[UIView alloc] initWithFrame:CGRectMake(self.bounds.size.width / 2 - 63, 63, 126, 126)];
+    UIView *profileBorder =[[UIView alloc] initWithFrame:CGRectMake(self.bounds.size.width / 2 - 80, 40, 160, 160)];
     profileBorder.layer.cornerRadius = profileBorder.frame.size.height / 2;
     profileBorder.clipsToBounds = YES;
     profileBorder.backgroundColor = [UIColor colorWithWhite:1 alpha:0.3];
     
-    UILabel *proLbl = [[UILabel alloc] initWithFrame:CGRectMake(80, 101, 42, 30)];
+    UILabel *proLbl = [[UILabel alloc] initWithFrame:CGRectMake(63, 101, 42, 30)];
     proLbl.text = @"PRO";
     proLbl.textColor = [UIColor whiteColor];
     proLbl.font = [UIFont fontWithName:@"SourceSansPro-Light" size:17];
@@ -100,7 +100,8 @@
 -(void)setPictureData:(id)entity
                 isDefault:(BOOL)isDefault
 {
-    businessMemberPicture = [[UIRoundImageView alloc] initWithFrame:CGRectMake(self.bounds.size.width / 2 - 58, 68, 116, 116)];    businessMemberPicture.clipsToBounds = YES;
+    businessMemberPicture = [[UIRoundImageView alloc] initWithFrame:CGRectMake(self.bounds.size.width / 2 - 75, 45, 150, 150)];
+    businessMemberPicture.clipsToBounds = YES;
     businessMemberPicture.contentMode = UIViewContentModeScaleAspectFit;
     if (isDefault == NO) {
     SDWebImageManager *manager = [SDWebImageManager sharedManager];
