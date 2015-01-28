@@ -109,7 +109,10 @@
     refreshControl = [[UIRefreshControl alloc] init];
 
     if([delegate.credentialStore isLoggedIn]) {
-     //   [self.view addGestureRecognizer:self.slidingViewController.panGesture];
+        NSLog(@"%@",self.slidingViewController.panGesture);
+        
+        
+        [self.view addGestureRecognizer:self.slidingViewController.panGesture];
     } else {
         NSLog(@"not logged");
         [self prepareUserNotLogged];

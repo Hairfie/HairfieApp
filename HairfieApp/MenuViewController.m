@@ -80,6 +80,8 @@
                                                  name:[User EVENT_CHANGED]
                                                object:nil];
     
+    self.slidingViewController.topViewController = self.homeVc;
+     [self.slidingViewController resetTopViewAnimated:YES];
    
 }
 
@@ -365,9 +367,9 @@
     {
         if (indexPath.row == 0)
         {
-          //  self.slidingViewController.topViewController = self.homeVc;
-          //  [self.slidingViewController resetTopViewAnimated:YES];
-            [self performSegueWithIdentifier:@"HomeSegue" sender:self];
+            
+           
+           [self performSegueWithIdentifier:@"HomeSegue" sender:self];
         }
         if (indexPath.row == 1)
         {
