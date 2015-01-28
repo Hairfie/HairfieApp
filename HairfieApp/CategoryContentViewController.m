@@ -26,10 +26,9 @@
     [super viewDidLoad];
    
     [self.contentCollection registerNib:[UINib nibWithNibName:@"CategoriesCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:CATEGORY_CELL_IDENTIFIER];
+    
+    
     categoriesNames = [[NSArray alloc] initWithObjects:NSLocalizedStringFromTable(@"women hairdresser", @"Feed", nil),NSLocalizedStringFromTable(@"men hairdresser", @"Feed", nil), nil];
-    
-    
-    
     categoriesImages = [[NSArray alloc] initWithObjects:@"woman-category.png",@"man-category.png", nil];
 
     

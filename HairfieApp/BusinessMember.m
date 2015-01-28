@@ -42,7 +42,7 @@
 
 -(NSString *)displayFullName
 {
-    return [NSString stringWithFormat:@"%@ %@",self.firstName, self.lastName];
+    return [NSString stringWithFormat:@"%@ %@.",self.firstName, [self.lastName substringToIndex:1]];
 }
 
 -(NSURL *)pictureUrlWithWidth:(NSNumber *)aWdith

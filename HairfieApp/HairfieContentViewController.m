@@ -199,7 +199,6 @@
                 [hairfies addObject:models[i]];
             }
         }
-        NSLog(@"hairfie count %d", hairfies.count);
         [self customReloadData];
     };
     NSLog(@"Get Hairfies for page : %@", page);
