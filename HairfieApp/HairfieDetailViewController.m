@@ -550,7 +550,7 @@
     UIView *priceBg =[[UIView alloc] initWithFrame:CGRectMake(10, 10, 40, 40)];
     priceBg.layer.cornerRadius = priceBg.frame.size.height / 2;
     priceBg.clipsToBounds = YES;
-    priceBg.backgroundColor = [UIColor salonDetailTab];
+    priceBg.backgroundColor = [UIColor pinkHairfie];
     priceBg.layer.borderColor = [UIColor whiteColor].CGColor;
     priceBg.layer.borderWidth = 1;
     

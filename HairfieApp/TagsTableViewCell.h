@@ -23,4 +23,6 @@
 
 -(void)setTags:(NSArray*)tags withSelectedTags:(NSArray*)selectedTags;
 
+-(CGFloat)getHeight;
+
 @end

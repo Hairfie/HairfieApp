@@ -21,16 +21,20 @@
 {
     NSMutableArray *tags;
     NSMutableArray *hairfieTags;
+    NSInteger nbLines;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     hairfieTags = [NSMutableArray arrayWithArray:self.hairfiePost.tags];
     self.tagsDictionary = [[NSMutableDictionary alloc] init];
     [self.topView addBottomBorderWithHeight:1 andColor:[UIColor lightGrey]];
     self.validateBttn.layer.cornerRadius = 5;
     self.validateBttn.layer.masksToBounds = YES;
     [self initTags];
+    
+    self.tagsTableView.estimatedRowHeight = 100;
     // Do any additional setup after loading the view.
 }
 
@@ -70,19 +74,26 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return tags.count;
+    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    return 160;
+    TagsTableViewCell *cell = [self configureCellAtIndex:indexPath];
+    return [cell getHeight];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    return [self configureCellAtIndex:indexPath];
+}
+
+
+-(TagsTableViewCell *)configureCellAtIndex:(NSIndexPath*)indexPath
+{
     
     static NSString *CellIdentifier = @"tagCell";
-    TagsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    TagsTableViewCell *cell = [self.tagsTableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     NSArray *tagGroup = [tags objectAtIndex:indexPath.row];
     
@@ -92,20 +103,16 @@
     }
     cell.backgroundColor = [UIColor whiteColor];
     
-
+    
     TagCategory *category = [tagGroup objectAtIndex:0];
     NSArray *tagsFromCategory = [tagGroup objectAtIndex:1];
-    NSLog(@"\ncategory %@ \ntags %d", category.name, tagsFromCategory.count);
-
-    if (tableView == self.tagsTableView) {
-        cell.tagCategory.text = category.name;
-        cell.tag = indexPath.row;
-        [cell setTags:tagsFromCategory withSelectedTags:hairfieTags];
-        cell.delegate = self;
-    }
+    cell.tagCategory.text = category.name;
+    cell.tag = indexPath.row;
+    [cell setTags:tagsFromCategory withSelectedTags:hairfieTags];
+    cell.delegate = self;
+    
     return cell;
 }
-
 
 -(void)tagWasSelected:(Tag *)tag isSelected:(BOOL)selected
 {

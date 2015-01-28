@@ -13,16 +13,14 @@
 
 @implementation TagsTableViewCell
 {
-    NSInteger indentValue;
     BOOL isSelected;
     NSMutableArray *tagsSelected;
-    NSMutableDictionary *tagsDic;
     NSArray *tagsList;
+    NSInteger lineNumber;
 }
 - (void)awakeFromNib {
     // Initialization code
     tagsSelected = [[NSMutableArray alloc] init];
-    tagsDic = [[NSMutableDictionary alloc] init];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -34,8 +32,9 @@
 -(void)setTags:(NSArray*)tags withSelectedTags:(NSArray*)selectedTags
 {
     tagsList = [NSArray arrayWithArray:tags];
-    NSInteger posX = 10;
-    indentValue = 0;
+    NSInteger posX = 15;
+    NSInteger indentValue = 0;
+    lineNumber = 1;
     NSInteger screenWidth = self.bounds.size.width;
     for (int i = 1; i < [tags count] + 1; i++) {
      
@@ -47,7 +46,8 @@
         if (i != 1)
             posX += indentValue + 15;
          button.titleLabel.font = [UIFont fontWithName:@"SourceSansPro-Light" size:17];
-        [self getLabelWidth:button.titleLabel];
+        
+        indentValue = [self getLabelWidth:button.titleLabel];
         
         BOOL isTagSelected = _.any(selectedTags, ^BOOL (Tag *hairfieTag){
          return [tag.id isEqualToString:hairfieTag.id];
@@ -62,8 +62,9 @@
         if (posX + indentValue >= screenWidth - 20)
         {
             frame.origin.y += 30;
-            posX = 10;
+            posX = 15;
             frame.origin.x = posX;
+            lineNumber++;
         }
         
         frame.size.width = indentValue + 10;
@@ -88,7 +89,7 @@
     }
 }
 
--(void)getLabelWidth:(UILabel*)aLabel
+-(NSInteger)getLabelWidth:(UILabel*)aLabel
 {
     float widthIs =
     [aLabel.text
@@ -98,7 +99,11 @@
      context:nil]
     .size.width;
     
-    indentValue = (int)ceilf(widthIs) + 10;
+    return (int)ceilf(widthIs) + 10;
+}
+
+-(CGFloat)getHeight {
+    return lineNumber*30 + 50;
 }
 
 -(IBAction)buttonClicked:(UIButton*)sender
