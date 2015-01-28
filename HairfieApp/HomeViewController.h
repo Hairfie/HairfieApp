@@ -19,18 +19,17 @@
 @property (nonatomic) IBOutlet UILabel *AroundMeLabel;
 @property (nonatomic) IBOutlet UIView *topView;
 @property (nonatomic) IBOutlet UIScrollView *scrollTest;
-@property (nonatomic) UIImagePickerController *imagePicker;
 @property (nonatomic) IBOutlet UIView *overlayView;
 @property (nonatomic) IBOutlet UIView *topBarView;
 @property (nonatomic) IBOutlet UIImageView *hairfieLogo;
-@property (nonatomic) PopUpViewController *popViewController;
 @property (nonatomic) IBOutlet UIButton *menuButton;
 @property (nonatomic) IBOutlet UIButton *takeHairfieBttn;
 @property (nonatomic) IBOutlet UILabel *filterSearchBttnTitle;
-
-@property (nonatomic) AKPickerView *pickerView;
+@property (nonatomic) IBOutlet AKPickerView *pickerView;
 @property (nonatomic) IBOutlet UIView *pickerContainerView;
 
+@property (nonatomic) UIImagePickerController *imagePicker;
+@property (nonatomic) PopUpViewController *popViewController;
 @property (strong, nonatomic) UIPageViewController *pageViewController;
 
 

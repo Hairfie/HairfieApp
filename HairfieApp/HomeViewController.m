@@ -123,33 +123,53 @@
     
     // Init HomeContent
     
-   HairfieContentViewController *hairfieVc = (HairfieContentViewController*)[self viewControllerAtIndex:1];
+    HairfieContentViewController *hairfieVc = (HairfieContentViewController*)[self viewControllerAtIndex:1];
     hairfieContent = @[hairfieVc];
     CategoryContentViewController *categoryVc = (CategoryContentViewController*)[self viewControllerAtIndex:0];
     categoryContent = @[categoryVc];
+
     [self.pageViewController setViewControllers:categoryContent direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
-    
-    
-    
-    CGRect frame = CGRectMake(0, 147, self.view.frame.size.width, self.view.frame.size.height - 147);
+
     
     // Change the size of page view controller
-    self.pageViewController.view.frame = frame;
+    //CGRect frame = CGRectMake(0, 147, self.view.frame.size.width, self.view.frame.size.height - 147);
+    //self.pageViewController.view.frame = frame;
     self.pageViewController.doubleSided = YES;
-    [self addChildViewController:_pageViewController];
-    [self.view addSubview:_pageViewController.view];
+    [self addChildViewController:self.pageViewController];
+    [self.view addSubview:self.pageViewController.view];
     [self.pageViewController didMoveToParentViewController:self];
-    [self initPickerView];
     
     [self.view bringSubviewToFront:self.takeHairfieBttn];
     [self.view sendSubviewToBack:self.pageViewController.view];
-    [self drawTriangleInView];
-    //  NSLog(@"page controller views %@", self.pageViewController.viewControllers);
+    
+    UIView *pageViewControllerView = self.pageViewController.view;
+    
+    [pageViewControllerView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[pageViewControllerView]|"
+                                                                      options:NSLayoutFormatDirectionLeadingToTrailing
+                                                                      metrics:nil
+                                                                        views:NSDictionaryOfVariableBindings(pageViewControllerView)]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-147-[pageViewControllerView]|"
+                                                                      options:NSLayoutFormatDirectionLeadingToTrailing
+                                                                      metrics:nil
+                                                                        views:NSDictionaryOfVariableBindings(pageViewControllerView)]];
+    
+    
+    //configure picker view
+    self.pickerView.delegate = self;
+    self.pickerView.dataSource = self;
+    self.pickerView.highlightedFont =  [UIFont fontWithName:@"SourceSansPro-Regular" size:17];
+    self.pickerView.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:17];
+    self.pickerView.highlightedTextColor = [UIColor whiteColor];
+    self.pickerView.textColor = [UIColor whiteColor];
+    self.pickerView.interitemSpacing = 75;
+    self.pickerView.fisheyeFactor = 0;//0.0001;
+    [self.pickerView reloadData];
 }
 
--(void)viewDidAppear:(BOOL)animated
+-(void)viewDidLayoutSubviews
 {
-    
+    [self drawTriangleInView];
 }
 
 -(IBAction)test:(id)sender
@@ -157,9 +177,8 @@
     NSLog(@"cool");
 }
 
--(void)drawTriangleInView {
-  
-    
+-(void)drawTriangleInView
+{
     CAShapeLayer *mask = [[CAShapeLayer alloc] init];
     mask.frame = self.pickerContainerView.bounds;
     mask.fillColor = [[UIColor blackColor] CGColor];
@@ -183,8 +202,6 @@
     CGPathRelease(path);
     
     self.pickerContainerView.layer.mask = mask;
-
-
 }
 
 -(void)doSearch:(NSNotification*)notification {
@@ -290,25 +307,6 @@
 }
 
 // Init menu picker
-
--(void)initPickerView {
-    self.pickerView = [[AKPickerView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 40)];
-    self.pickerView.delegate = self;
-    self.pickerView.dataSource = self;
-    self.pickerView.highlightedFont =  [UIFont fontWithName:@"SourceSansPro-Regular" size:17];
-    self.pickerView.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:17];
-    self.pickerView.highlightedTextColor = [UIColor whiteColor];
-    self.pickerView.textColor = [UIColor whiteColor];
-    self.pickerView.interitemSpacing = 75;
-    self.pickerView.fisheyeFactor = 0;//0.0001;
-    self.pickerView.tag = 0;
-    [self.pickerView reloadData];
-    if(!_.find(self.pickerContainerView.subviews, ^BOOL(UIView *subview) {
-        return subview.tag == 0;
-    })) {
-        [self.pickerContainerView addSubview:self.pickerView];
-    }
-}
 
 - (NSUInteger)numberOfItemsInPickerView:(AKPickerView *)pickerView {
     return [pickerItems count];
