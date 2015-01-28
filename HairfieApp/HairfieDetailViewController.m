@@ -98,6 +98,9 @@
             @"segue": @"reportContent"
         }*/
     ];
+ 
+    NSLog(@"hairfie : %@", [self.hairfie toDictionary]);
+
 }
 
 -(void)reloadData
@@ -111,7 +114,7 @@
     if (self.hairfie.businessMember) {
         [tempDisplayedInfoNames addObject:@"businessMember"];
     }
-    if (self.hairfie.selfMade) {
+    if (self.hairfie.selfMade == YES) {
         [tempDisplayedInfoNames addObject:@"selfMade"];
     }
     if (nil != self.hairfie.price) {
@@ -244,6 +247,8 @@
                                                   otherButtonTitles:nil];
         [alertView show];
     }
+ 
+
 }
 
 -(UIViewController *)documentInteractionControllerViewControllerForPreview:(UIDocumentInteractionController *)controller
@@ -253,6 +258,7 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    NSLog(@"info names %@", displayedInfoNames);
      detailsTableView.userInteractionEnabled = YES;
     [ARAnalytics pageView:@"AR - Hairfie Detail"];
     if(self.hairfie) {
@@ -586,7 +592,7 @@
     UIRoundImageView *borderProfile = [[UIRoundImageView alloc]initWithFrame:CGRectMake(10, 0, 44, 44)];
     [borderProfile setBackgroundColor:[[UIColor blackHairfie] colorWithAlphaComponent:0.2]];
     UIRoundImageView *profilePicture = [[UIRoundImageView alloc] initWithFrame:CGRectMake(12, 2, 40, 40)];
-    [profilePicture sd_setImageWithURL:[self.hairfie.author pictureUrlwithWidth:@100 andHeight:@100] placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
+    [profilePicture sd_setImageWithURL:[self.hairfie.author pictureUrlWithWidth:@100 height:@100] placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
 
 
     // add gesture recognizer to open user's profile on picture tap

@@ -79,6 +79,10 @@
                                              selector:@selector(userChanged:)
                                                  name:[User EVENT_CHANGED]
                                                object:nil];
+    
+    self.slidingViewController.topViewController = self.homeVc;
+     [self.slidingViewController resetTopViewAnimated:YES];
+   
 }
 
 -(void)userChanged:(NSNotification *)aNotification
@@ -113,12 +117,12 @@
 {
     _name.text = appDelegate.currentUser.name;
     _hairfieNb.text = [appDelegate.currentUser displayHairfies];
-  
+    NSLog(@"user email %@", appDelegate.currentUser.email);
     
     SDWebImageManager *manager = [SDWebImageManager sharedManager];
 
 
-    [manager downloadImageWithURL:[appDelegate.currentUser pictureUrlwithWidth:@50 andHeight:@50]
+    [manager downloadImageWithURL:[appDelegate.currentUser pictureUrlWithWidth:@50 height:@50]
                      options:0
                     progress:^(NSInteger receivedSize, NSInteger expectedSize)
      {
@@ -142,7 +146,7 @@
     border.clipsToBounds = YES;
     border.backgroundColor = [UIColor colorWithWhite:1 alpha:0.2];
 
-    [profilePicture sd_setImageWithURL:[appDelegate.currentUser pictureUrlwithWidth:@200 andHeight:@200]
+    [profilePicture sd_setImageWithURL:[appDelegate.currentUser pictureUrlWithWidth:@200 height:@200]
                       placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
   
     [_profileView addSubview:border];
@@ -363,9 +367,9 @@
     {
         if (indexPath.row == 0)
         {
-            self.slidingViewController.topViewController = self.homeVc;
-            [self.slidingViewController resetTopViewAnimated:YES];
-            //  [self performSegueWithIdentifier:@"HomeSegue" sender:self];
+            
+           
+           [self performSegueWithIdentifier:@"HomeSegue" sender:self];
         }
         if (indexPath.row == 1)
         {

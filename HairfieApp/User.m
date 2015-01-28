@@ -44,8 +44,9 @@
     }
 }
 
--(NSURL *)pictureUrlwithWidth:(NSNumber *)width andHeight:(NSNumber *)height
+-(NSURL *)pictureUrlWithWidth:(NSNumber *)width height:(NSNumber *)height
 {
+    
     if(self.picture)
         return [self.picture urlWithWidth:width height:height];
     else
@@ -54,7 +55,7 @@
 
 -(NSURL *)pictureUrl
 {
-    return [self pictureUrlwithWidth:nil andHeight:nil];
+    return [self pictureUrlWithWidth:nil height:nil];
 }
 
 -(void)setupEventListeners
@@ -263,12 +264,12 @@
 {
     [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/users/:id"
                                                                                  verb:@"GET"]
-                                        forMethod:@"users.get"];
+                                        forMethod:@"users.getById"];
     
-    [[[self class] repository] invokeStaticMethod:@"get"
+    [[[self class] repository] invokeStaticMethod:@"getById"
                                        parameters:@{@"id":anId}
-                                          success:^(NSDictionary *result) {
-                                              aSuccessHandler([[User alloc] initWithDictionary:result]);
+                                          success:^(id value) {
+                                              aSuccessHandler([[self.class alloc] initWithDictionary:value]);
                                           }
                                           failure:aFailureHandler];
 }

@@ -57,6 +57,10 @@
         self.secondHairfieImageView.layer.borderColor = [UIColor whiteColor].CGColor;
         self.secondHairfieImageView.layer.borderWidth = 1;
     }
+    else {
+        self.secondHairfieImageView.hidden = YES;
+    }
+        
 
     self.dataChoice.hidden = YES;
     self.dataChoice.layer.borderWidth = 1;
@@ -382,7 +386,7 @@
         self.hairfiePost.price = price;
     }
     
-    NSLog(@"Hairfie to post : %@", _hairfiePost);
+    NSLog(@"Hairfie to post : %@", [_hairfiePost toDictionary]);
     
     void (^loadErrorBlock)(NSError *) = ^(NSError *error){
         NSLog(@"Error : %@", error.description);

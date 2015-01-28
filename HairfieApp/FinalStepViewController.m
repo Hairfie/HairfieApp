@@ -23,6 +23,7 @@
 #import "AppDelegate.h"
 #import "NSString+PhoneFormatter.h"
 #import "HairfieNotifications.h"
+#import "UIImage+Resize.h"
 
 
 @interface FinalStepViewController ()
@@ -433,6 +434,7 @@
     
     void (^loadErrorBlock)(NSError *) = ^(NSError *error){
         NSLog(@"Error : %@", error.description);
+    
     };
 
     void (^loadSuccessBlock)(void) = ^(void){
@@ -479,8 +481,8 @@
     }
     
     
-    
-    [self uploadSalonImage:image];
+    UIImage *resizedImage = [image resizedImageToFitInSize:CGSizeMake(320, 320) scaleIfSmaller:NO];
+    [self uploadSalonImage:resizedImage];
     
 }
 

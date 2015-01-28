@@ -39,7 +39,6 @@
     NSInteger hairfieRow;
     UIAlertView *chooseCameraType;
     UIRefreshControl *refreshControl;
-    UIGestureRecognizer *dismiss;
     NSNumber *currentPage;
     BOOL endOfScroll;
     NSArray *pickerItems;
@@ -79,37 +78,38 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.automaticallyAdjustsScrollViewInsets = NO;
     self.pageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"HomePageViewController"];
     self.pageViewController.dataSource = self;
     self.filterSearchBttnTitle.text = NSLocalizedStringFromTable(@"Filter search", @"Feed", nil);
-    
-    
     
     pickerItemSelected = NSLocalizedStringFromTable(@"Book",@"Feed",nil);
     
     delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [delegate startTrackingLocation:YES];
-     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showNoNetwork:) name:@"No Network" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doSearch:) name:@"searchFromFeed" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(segueToHairfieDetail:) name:@"hairfieSelected" object:nil];
     
-      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(switchMenuItem:) name:@"collectionChanged" object:nil];
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(showNoNetwork:)
+                                                 name:@"No Network" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(doSearch:)
+                                                 name:@"searchFromFeed" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(switchMenuItem:)
+                                                 name:@"collectionChanged" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(segueToSearchResults:)
                                                  name:@"segueToSearchResults"
                                                object:nil];
-
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                              selector:@selector(segueToHairfieDetail:)
+                                                 name:@"hairfieSelected" object:nil];
     self.navigationItem.title = [NSString stringWithFormat:NSLocalizedStringFromTable(@"Home", @"Feed", nil)];
     
     refreshControl = [[UIRefreshControl alloc] init];
-    [refreshControl addTarget:self action:@selector(getHairfiesFromRefresh:)
-             forControlEvents:UIControlEventValueChanged];
 
-     dismiss = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
     if([delegate.credentialStore isLoggedIn]) {
-        [self.view addGestureRecognizer:self.slidingViewController.panGesture];
+       [self.view addGestureRecognizer:self.slidingViewController.panGesture];
     } else {
         NSLog(@"not logged");
         [self prepareUserNotLogged];
@@ -119,10 +119,10 @@
     pickerItems = [[NSArray alloc] initWithObjects:NSLocalizedStringFromTable(@"Book",@"Feed",nil),NSLocalizedStringFromTable(@"Hairfies",@"Feed",nil), nil];
     
     
-   
+    
     // Init HomeContent
     
-    HairfieContentViewController *hairfieVc = (HairfieContentViewController*)[self viewControllerAtIndex:1];
+   HairfieContentViewController *hairfieVc = (HairfieContentViewController*)[self viewControllerAtIndex:1];
     hairfieContent = @[hairfieVc];
     CategoryContentViewController *categoryVc = (CategoryContentViewController*)[self viewControllerAtIndex:0];
     categoryContent = @[categoryVc];
@@ -143,8 +143,18 @@
     [self.view bringSubviewToFront:self.takeHairfieBttn];
     [self.view sendSubviewToBack:self.pageViewController.view];
     [self drawTriangleInView];
+    //  NSLog(@"page controller views %@", self.pageViewController.viewControllers);
 }
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    
+}
+
+-(IBAction)test:(id)sender
+{
+    NSLog(@"cool");
+}
 
 -(void)drawTriangleInView {
   
@@ -329,14 +339,12 @@
 }
 
 
--(void) hideKeyboard
-{
-    [self.view removeGestureRecognizer:dismiss];
-}
-
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    
+   
+    
     if (_didClaim == YES)
     {
         [self showPopup];
@@ -379,14 +387,14 @@
 
 -(void)viewWillDisappear:(BOOL)animated
 {
-    [self.view removeGestureRecognizer:dismiss];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kStatusBarTappedNotification object:nil];
+    [self.pageViewController removeFromParentViewController];
 }
 
 
 -(void)willSearch:(NSNotification*)notification
 {
     [self performSegueWithIdentifier:@"searchFromFeed" sender:self];
-    [self.view removeGestureRecognizer:dismiss];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -31,7 +31,8 @@
 -(NSString *)name;
 -(NSString *)displayName;
 -(NSString *)displayHairfies;
--(NSURL *)pictureUrlwithWidth:(NSNumber *)width andHeight:(NSNumber *)height;
+-(NSURL *)pictureUrlWithWidth:(NSNumber *)width
+                       height:(NSNumber *)height;
 -(NSURL *)pictureUrl;
 
 +(NSString *)EVENT_CHANGED;

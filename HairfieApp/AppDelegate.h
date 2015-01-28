@@ -20,6 +20,8 @@
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, CLLocationManagerDelegate>
 
+
+
 @property (strong, nonatomic) UIWindow *window;
 @property (nonatomic)     CLLocationManager *manager;
 @property (nonatomic)     CLLocation *myLocation;

@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *alreadyClaimedLabel;
 @property (weak, nonatomic) IBOutlet UILabel *claimTitleLabel;
 
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 
 

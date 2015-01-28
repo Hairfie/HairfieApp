@@ -48,7 +48,7 @@
     _ratingView.rating = [[review ratingBetween:@0 and:@5] floatValue];
     _nameLabel.text = review.author.displayName;
     _businessName.text = review.business.name;
-    [profilePicture sd_setImageWithURL:[review.author pictureUrlwithWidth:@100 andHeight:@100]
+    [profilePicture sd_setImageWithURL:[review.author pictureUrlWithWidth:@100 height:@100]
                       placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
 }
 

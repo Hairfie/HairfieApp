@@ -74,6 +74,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     return 160;
 }
 
@@ -94,7 +95,8 @@
 
     TagCategory *category = [tagGroup objectAtIndex:0];
     NSArray *tagsFromCategory = [tagGroup objectAtIndex:1];
-    
+    NSLog(@"\ncategory %@ \ntags %d", category.name, tagsFromCategory.count);
+
     if (tableView == self.tagsTableView) {
         cell.tagCategory.text = category.name;
         cell.tag = indexPath.row;
@@ -120,7 +122,6 @@
         hairfieTags = [NSMutableArray arrayWithArray:filteredHairfies];
         
     }
-    NSLog(@"HAIRFIE TAFS %@", hairfieTags);
 }
 
 

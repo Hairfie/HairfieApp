@@ -18,6 +18,11 @@
     _business = [Business fromSetterValue:aBusiness];
 }
 
+-(void)setUser:(User *)anUser
+{
+    _user = [User fromSetterValue:anUser];
+}
+
 -(void)setPicture:(id)aPicture
 {
     _picture = [Picture fromSetterValue:aPicture];
@@ -37,7 +42,7 @@
 
 -(NSString *)displayFullName
 {
-    return [NSString stringWithFormat:@"%@ %@",self.firstName, self.lastName];
+    return [NSString stringWithFormat:@"%@ %@.",self.firstName, [self.lastName substringToIndex:1]];
 }
 
 -(NSURL *)pictureUrlWithWidth:(NSNumber *)aWdith
@@ -45,7 +50,11 @@
 {
     if (nil == self.picture) return nil;
     
+    
+    
     return [self.picture urlWithWidth:aWdith height:anHeight];
+    
+    
 }
 
 -(NSDictionary *)toDictionary
@@ -61,7 +70,11 @@
     if (nil != self.business.id) {
         [temp setObject:self.business.id forKey:@"businessId"];
     }
-    
+
+    if (nil != self.user.id) {
+        [temp setObject:self.user.id forKey:@"userId"];
+    }
+
     if (nil != self.picture) {
         [temp setObject:[self.picture toApiValue] forKey:@"picture"];
     }

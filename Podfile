@@ -22,7 +22,7 @@ target "HairfieApp" do
   pod 'UIActivityIndicator-for-SDWebImage'
   pod 'CWStatusBarNotification', '~> 2.2.2'
   pod 'PonyDebugger', :git => 'https://github.com/square/PonyDebugger.git'
-  pod 'NewRelicAgent'
+  pod 'NewRelicAgent', '~> 4.174'
   pod 'UIAlertView+Blocks'
 end
 

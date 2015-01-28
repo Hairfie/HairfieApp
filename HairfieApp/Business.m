@@ -356,7 +356,6 @@
                                  for (NSDictionary *result in results) {
                                      [businesses addObject:[[Business alloc] initWithDictionary:result]];
                                  }
-
                                  aSuccessHandler([[NSArray alloc] initWithArray: businesses]);
                              }
                              failure:^(NSError *error) {
