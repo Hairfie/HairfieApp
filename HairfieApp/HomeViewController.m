@@ -78,7 +78,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.automaticallyAdjustsScrollViewInsets = NO;
     self.pageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"HomePageViewController"];
     self.pageViewController.dataSource = self;
     self.filterSearchBttnTitle.text = NSLocalizedStringFromTable(@"Filter search", @"Feed", nil);

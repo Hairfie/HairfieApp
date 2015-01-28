@@ -55,6 +55,10 @@
     if ([self.hairfiePost hasSecondaryPicture]) {
         self.secondHairfieImageView.image = [[self.hairfiePost secondaryPicture] image];
     }
+    else {
+        self.secondHairfieImageView.hidden = YES;
+    }
+        
 
     self.secondHairfieImageView.layer.borderColor = [UIColor whiteColor].CGColor;
     self.secondHairfieImageView.layer.borderWidth = 1;
