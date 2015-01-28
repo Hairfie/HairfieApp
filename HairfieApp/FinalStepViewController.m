@@ -383,7 +383,7 @@
     overlayView.frame =  imagePicker.cameraOverlayView.frame;
     
     UIView *navigationView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 60)];
-    navigationView.backgroundColor = [UIColor blackHairfie];
+    navigationView.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.78];
     
     
     UIImage *goBackImg = [UIImage imageNamed:@"arrow-nav.png"];
@@ -391,16 +391,22 @@
                               buttonWithType:UIButtonTypeCustom];
     [goBackButton setImage:goBackImg forState:UIControlStateNormal];
     [goBackButton addTarget:self action:@selector(cancelTakePicture) forControlEvents:UIControlEventTouchUpInside];
-    [goBackButton setFrame:CGRectMake(10, 22, 20, 20)];
+    [goBackButton setFrame:CGRectMake(0, 22, 60, 40)];
+    [goBackButton setImageEdgeInsets:UIEdgeInsetsMake(10,10,10,30)];
     
-    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(67, 20, 186, 23)];
-    titleLabel.text = NSLocalizedStringFromTable(@"Take a profile picture", @"Login_Sign_Up", nil);
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(92, 30, 136, 23)];
+    titleLabel.text = NSLocalizedStringFromTable(@"Take Hairfie", @"Post_Hairfie", nil);
     titleLabel.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:18];
     titleLabel.textAlignment = NSTextAlignmentCenter;
-    titleLabel.textColor = [UIColor whiteColor];
+    titleLabel.textColor = [UIColor titleGrey];
     [navigationView addSubview:titleLabel];
     [navigationView addSubview:goBackButton];
+    
+    UIView *bottomNavigationView = [[UIView alloc] initWithFrame:CGRectMake(0, 380, 320, self.view.frame.size.height - 380)];
+    bottomNavigationView.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.78];
+    
     [overlayView addSubview:navigationView];
+    [overlayView addSubview:bottomNavigationView];
     
     
     UIImage *takePictureImg = [UIImage imageNamed:@"take-picture-button.png"];
@@ -409,21 +415,28 @@
                                    buttonWithType:UIButtonTypeCustom];
     [takePictureButton setImage:takePictureImg forState:UIControlStateNormal];
     [takePictureButton addTarget:self action:@selector(snapPicture) forControlEvents:UIControlEventTouchUpInside];
-    [takePictureButton setFrame:CGRectMake(122, 401, 77, 77)];
+    [takePictureButton setFrame:CGRectMake(122, 380 + bottomNavigationView.frame.size.height/2 - 38, 77, 77)];
     
     takePictureButton.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin;
+    
+  //  [self addLastPictureFromLibrary];
+  //  [self addGoToLibraryButton:nil toView:overlayView];
+    
     UIImage *switchCameraImg = [UIImage imageNamed:@"switch-camera-button.png"];
     
     UIButton *switchCameraButton = [UIButton
                                     buttonWithType:UIButtonTypeCustom];
     [switchCameraButton setImage:switchCameraImg forState:UIControlStateNormal];
     [switchCameraButton addTarget:self action:@selector(switchCamera) forControlEvents:UIControlEventTouchUpInside];
-    [switchCameraButton setFrame:CGRectMake(268, 75, 32, 32)];
+    [switchCameraButton setFrame:CGRectMake(248, 65, 52, 52)];
+    [switchCameraButton setImageEdgeInsets:UIEdgeInsetsMake(10,10,10,10)];
     
     [overlayView addSubview:switchCameraButton];
     [overlayView addSubview:takePictureButton];
+    //[self addFaceShapeToOverlay:overlayView];
     
     imagePicker.cameraOverlayView = overlayView;
+
 }
 
 
@@ -481,7 +494,7 @@
     }
     
     
-    UIImage *resizedImage = [image resizedImageToFitInSize:CGSizeMake(320, 320) scaleIfSmaller:NO];
+    UIImage *resizedImage = [image resizedImageToFitInSize:CGSizeMake(640, 640) scaleIfSmaller:NO];
     [self uploadSalonImage:resizedImage];
     
 }

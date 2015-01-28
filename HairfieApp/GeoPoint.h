@@ -36,4 +36,7 @@
 
 +(id)fromSetterValue:(id)aValue;
 
+-(void)setLng:(NSNumber *)aLng;
+-(void)setLat:(NSNumber *)aLat;
+
 @end
