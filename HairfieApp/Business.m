@@ -232,18 +232,17 @@
           success:(void(^)(NSArray *business))aSuccessHandler
           failure:(void(^)(NSError *error))aFailureHandler
 {
-    
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
 
-    if (nil == aQuery) {
-        aQuery = @"";
+    if (nil != aGeoPoint) {
+        [parameters setObject:[aGeoPoint toApiValue] forKey:@"here"];
     }
     
-    [parameters setObject:aQuery forKey:@"query"];
-    [parameters setObject:[aGeoPoint toApiValue] forKey:@"here"];
+    if (nil != aQuery) {
+        [parameters setObject:aQuery forKey:@"query"];
+    }
     
-    if (clientTypes != nil)
-    {
+    if (nil != clientTypes) {
         [parameters setObject:clientTypes forKey:@"clientTypes"];
     }
     
