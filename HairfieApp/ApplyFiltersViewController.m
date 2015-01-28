@@ -50,8 +50,6 @@
         Picture *firstPic = self.hairfiePost.picture;
         original = [self squareCropImage:firstPic.image ToSideLength:320];
         firstPic.image = original;
-        
-        
     
         [hairfiePics addObject:firstPic];
     }
