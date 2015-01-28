@@ -117,6 +117,28 @@
     _tags = [[NSArray alloc] initWithArray:temp];
 }
 
+-(Picture *)mainPicture
+{
+    if (self.pictures.count < 1) {
+        return nil;
+    }
+    
+    return [self.pictures objectAtIndex:self.pictures.count-1];
+}
+
+-(BOOL)hasSecondaryPicture
+{
+    return nil != [self secondaryPicture];
+}
+
+-(Picture *)secondaryPicture
+{
+    if (self.pictures.count < 2) {
+        return nil;
+    }
+    
+    return [self.pictures objectAtIndex:0];
+}
 
 -(NSURL *)pictureUrlwithWidth:(NSNumber *)width andHeight:(NSNumber *)height
 {

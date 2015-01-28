@@ -48,6 +48,10 @@
 -(NSString *)displayShortDate;
 -(NSString *)displayTimeAgo;
 
+-(Picture *)mainPicture;
+-(BOOL)hasSecondaryPicture;
+-(Picture *)secondaryPicture;
+
 +(void)listLatest:(NSNumber *)limit
              skip:(NSNumber *)skip
           success:(void(^)(NSArray *hairfies))aSuccessHandler
