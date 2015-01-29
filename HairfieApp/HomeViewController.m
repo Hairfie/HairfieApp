@@ -108,9 +108,11 @@
     CategoryContentViewController *categoryVc = (CategoryContentViewController*)[self viewControllerAtIndex:0];
     categoryContent = @[categoryVc];
 
-    [self.pageViewController setViewControllers:categoryContent direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
+    [self.pageViewController setViewControllers:categoryContent
+                                      direction:UIPageViewControllerNavigationDirectionForward
+                                       animated:NO
+                                     completion:nil];
 
-    
     // Change the size of page view controller
     //CGRect frame = CGRectMake(0, 147, self.view.frame.size.width, self.view.frame.size.height - 147);
     //self.pageViewController.view.frame = frame;
@@ -122,19 +124,6 @@
     [self.view bringSubviewToFront:self.takeHairfieBttn];
     [self.view sendSubviewToBack:self.pageViewController.view];
     
-    UIView *pageViewControllerView = self.pageViewController.view;
-    
-    [pageViewControllerView setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[pageViewControllerView]|"
-                                                                      options:NSLayoutFormatDirectionLeadingToTrailing
-                                                                      metrics:nil
-                                                                        views:NSDictionaryOfVariableBindings(pageViewControllerView)]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-147-[pageViewControllerView]|"
-                                                                      options:NSLayoutFormatDirectionLeadingToTrailing
-                                                                      metrics:nil
-                                                                        views:NSDictionaryOfVariableBindings(pageViewControllerView)]];
-    
-    
     //configure picker view
     self.pickerView.delegate = self;
     self.pickerView.dataSource = self;
@@ -145,6 +134,17 @@
     self.pickerView.interitemSpacing = 75;
     self.pickerView.fisheyeFactor = 0;//0.0001;
     [self.pickerView reloadData];
+
+    UIView *pageViewControllerView = _pageViewController.view;
+    [pageViewControllerView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[pageViewControllerView]|"
+                                                                      options:NSLayoutFormatDirectionLeadingToTrailing
+                                                                      metrics:nil
+                                                                        views:NSDictionaryOfVariableBindings(pageViewControllerView)]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-147-[pageViewControllerView]|"
+                                                                      options:NSLayoutFormatDirectionLeadingToTrailing
+                                                                      metrics:nil
+                                                                        views:NSDictionaryOfVariableBindings(pageViewControllerView)]];
 }
 
 -(void)viewDidLayoutSubviews

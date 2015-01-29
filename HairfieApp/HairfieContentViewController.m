@@ -72,13 +72,8 @@
 -(void)viewWillAppear:(BOOL)animated {
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
     if (indexPath.row < [hairfies count]) {
         return CGSizeMake((collectionView.frame.size.width - 30) / 2, 210);
     } else {
@@ -86,8 +81,8 @@
     }
 }
 
-- (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section {
-   
+- (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section
+{
     return [hairfies count] + 1;
 }
 
@@ -95,7 +90,6 @@
 - (NSInteger)numberOfSectionsInCollectionView: (UICollectionView *)collectionView {
     return 5;
 }
-
 
 // 3
 - (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -215,16 +209,5 @@
        [refreshControl endRefreshing];
     }
 }
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
