@@ -15,8 +15,6 @@
 }
 
 -(void)setupCellWithName:(NSString*)aName andImage:(UIImage*)anImage {
-
-    
     self.categoryImage.image = anImage;
     if (anImage == nil)
         self.backgroundColor = [UIColor lightGrey];

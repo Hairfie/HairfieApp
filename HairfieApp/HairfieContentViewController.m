@@ -19,8 +19,7 @@
 
 @end
 
-@implementation HairfieContentViewController
-{
+@implementation HairfieContentViewController {
     NSArray *categoriesNames;
     NSArray *categoriesImages;
     NSNumber *currentPage;
@@ -30,8 +29,7 @@
 }
 
 - (void)viewDidLoad {
-    
-   
+
     self.contentCollection.scrollsToTop = YES;
     [super viewDidLoad];
     [self.contentCollection registerNib:[UINib nibWithNibName:@"CustomCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:CUSTOM_CELL_IDENTIFIER];
@@ -59,20 +57,19 @@
 }
 
 -(void)scrollToTop {
-   }
+}
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    
     NSDictionary* dict = [NSDictionary dictionaryWithObject:NSLocalizedStringFromTable(@"Hairfies",@"Feed",nil)
                                                      forKey:@"menuItem"];
+
     [[NSNotificationCenter defaultCenter] postNotificationName:@"collectionChanged"
                                                         object:self
                                                       userInfo:dict];
 }
 
--(void)viewWillAppear:(BOOL)animated
-{
+-(void)viewWillAppear:(BOOL)animated {
 }
 
 - (void)didReceiveMemoryWarning {
@@ -81,8 +78,7 @@
 }
 
 
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
-{
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row < [hairfies count]) {
         return CGSizeMake((collectionView.frame.size.width - 30) / 2, 210);
     } else {
@@ -103,15 +99,11 @@
 
 // 3
 - (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    
 
     if (indexPath.row < [hairfies count]) {
-        
-        
         if(indexPath.row == ([hairfies count] - HAIRFIES_PAGE_SIZE + 1) && currentPage != 0){
             [self fetchMoreHairfies];
         }
-        
         return [self hairfieCellForIndexPath:indexPath];
     } else {
         return [self loadingCellForIndexPath:indexPath];
@@ -153,8 +145,7 @@
     return cell;
 }
 
--(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
     Hairfie *hairfie = (Hairfie*)[hairfies objectAtIndex:indexPath.row];
     

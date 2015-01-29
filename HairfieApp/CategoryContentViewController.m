@@ -43,37 +43,30 @@
 
 -(void)viewDidAppear:(BOOL)animated{
     NSDictionary* dict = [NSDictionary dictionaryWithObject:NSLocalizedStringFromTable(@"Book",@"Feed",nil)
-                          
                                                      forKey:@"menuItem"];
+
     [[NSNotificationCenter defaultCenter] postNotificationName:@"collectionChanged"
                                                         object:self
                                                       userInfo:dict];
     NSLog(@"frame collection height %f", self.view.frame.size.height);
 
 }
--(void)viewWillAppear:(BOOL)animated
-{
+-(void)viewWillAppear:(BOOL)animated {
 }
 
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
-{
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     return CGSizeMake(collectionView.frame.size.width - 30, 100);
 }
 
 - (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section {
-    
     return [categoriesNames count];
 }
 
-// 2
 - (NSInteger)numberOfSectionsInCollectionView: (UICollectionView *)collectionView {
     return 1;
 }
 
-
-// 3
 - (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    
     return [self categoryCellForIndexPath:indexPath];
 }
 
@@ -86,44 +79,26 @@
         cell = [nib objectAtIndex:0];
     }
     
-    
     [cell setupCellWithName:[categoriesNames objectAtIndex:indexPath.item] andImage:[UIImage imageNamed:[categoriesImages objectAtIndex:indexPath.item]]];
     
     return cell;
 }
--(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
+
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
     BusinessSearch *businessSearch = [[BusinessSearch alloc] init];
 
-     if (indexPath.row == 1)
-     {
+    if (indexPath.row == 1) {
          NSArray *clientTypes = [NSArray arrayWithObjects:@"women", nil];
          businessSearch.clientTypes = clientTypes;
-     }
-    if (indexPath.row == 2)
-    {
+    } else if (indexPath.row == 2) {
         NSArray *clientTypes = [NSArray arrayWithObjects:@"men", nil];
         businessSearch.clientTypes = clientTypes;
     }
    
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:businessSearch, @"businessSearch", nil];
     
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"searchFromFeed" object:nil userInfo:dic];
-           
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"searchFromFeed" object:nil userInfo:dic];
 }
-
-
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

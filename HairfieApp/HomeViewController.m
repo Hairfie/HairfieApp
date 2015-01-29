@@ -86,24 +86,7 @@
     
     delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [delegate startTrackingLocation:YES];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(showNoNetwork:)
-                                                 name:@"No Network" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(doSearch:)
-                                                 name:@"searchFromFeed" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(switchMenuItem:)
-                                                 name:@"collectionChanged" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(segueToSearchResults:)
-                                                 name:@"segueToSearchResults"
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                              selector:@selector(segueToHairfieDetail:)
-                                                 name:@"hairfieSelected" object:nil];
+
     self.navigationItem.title = [NSString stringWithFormat:NSLocalizedStringFromTable(@"Home", @"Feed", nil)];
     
     refreshControl = [[UIRefreshControl alloc] init];
@@ -217,10 +200,10 @@
     [self performSegueWithIdentifier:@"hairfieDetail" sender:self];
 }
 
--(IBAction)filterSearch:(id)sender
-{
+-(IBAction)filterSearch:(id)sender {
     [self performSegueWithIdentifier:@"filterSearch" sender:self];
 }
+
 -(void)segueToSearchResults:(NSNotification*)notification {
     NSDictionary *dic = notification.userInfo;
     
@@ -341,13 +324,10 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    
-   
-    
-    if (_didClaim == YES)
-    {
+    if (_didClaim == YES) {
         [self showPopup];
     }
+    [self addAllObservers];
     [ARAnalytics pageView:@"AR - Feed"];
 }
 
@@ -384,15 +364,13 @@
 }
 
 
--(void)viewWillDisappear:(BOOL)animated
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:kStatusBarTappedNotification object:nil];
+-(void)viewWillDisappear:(BOOL)animated {
+    [self removeAllObservers];
     [self.pageViewController removeFromParentViewController];
 }
 
 
--(void)willSearch:(NSNotification*)notification
-{
+-(void)willSearch:(NSNotification*)notification {
     [self performSegueWithIdentifier:@"searchFromFeed" sender:self];
 }
 
@@ -427,6 +405,50 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"backToLogin" object:self];
 }
 
+-(void)addAllObservers {
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(showNoNetwork:)
+                                                 name:@"No Network" object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(doSearch:)
+                                                 name:@"searchFromFeed" object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(switchMenuItem:)
+                                                 name:@"collectionChanged" object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(segueToSearchResults:)
+                                                 name:@"segueToSearchResults"
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(segueToHairfieDetail:)
+                                                 name:@"hairfieSelected" object:nil];
+}
+
+-(void)removeAllObservers {
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                 name:@"searchFromFeed" object:nil];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                 name:@"collectionChanged" object:nil];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                 name:@"segueToSearchResults" object:nil];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                 name:@"hairfieSelected" object:nil];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:kStatusBarTappedNotification object:nil];
+
+}
+
+- (void)dealloc {
+    [self removeAllObservers];
+}
 
 #pragma mark - Navigation
 
