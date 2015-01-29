@@ -113,25 +113,9 @@
 
 //// Init methods
 
--(void)initViewAndData {
-    
+-(void)initViewAndData
+{
     self.topBarTitle.text = NSLocalizedStringFromTable(@"Search", @"Around_Me", nil);
-    [self.topBarView addBottomBorderWithHeight:1.0 andColor:[UIColor lightGrey]];
-    [self styleTextField:self.searchTextField];
-    [self styleTextField:self.locationTextField];
-}
-
-
-
--(void)styleTextField:(UITextField*)aTextField {
-    UIView *paddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
-    aTextField.layer.cornerRadius = 5;
-    aTextField.layer.masksToBounds = YES;
-    aTextField.layer.borderWidth = 1;
-    aTextField.layer.borderColor = [UIColor colorWithRed:218/255.0f green:218/255.0f blue:218/255.0f alpha:1].CGColor;
-    aTextField.font = [UIFont fontWithName:@"SourceSansPro-Light" size:15];
-    aTextField.leftViewMode = UITextFieldViewModeAlways;
-    aTextField.leftView = paddingView;
 }
 
 //// Button Actions
@@ -216,7 +200,6 @@
     
     SearchFilterTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_ID];
 
-    
     if (cell == nil) {
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"SearchFilterTableViewCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
@@ -266,38 +249,18 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 45)];
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 45)];
     headerView.backgroundColor = [UIColor colorWithRed:246/255.0f green:241/255.0f blue:241/255.0f alpha:1];
     [headerView addBottomBorderWithHeight:1 andColor:[UIColor colorWithRed:229/255.0f green:229/255.0f blue:229/255.0f alpha:1]];
+
     UILabel *headerLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, 200, 45)];
     headerLabel.font = [UIFont fontWithName:@"SourceSansPro-Light" size:15];
     headerLabel.textColor = [UIColor colorWithRed:131/255.0f green:138/255.0f blue:151/255.0f alpha:1];
     headerLabel.text = [sectionTitles objectAtIndex:section];
+
     [headerView addSubview:headerLabel];
+    
     return headerView;
 }
-
-/// Other funcs
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-
-
-
-
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

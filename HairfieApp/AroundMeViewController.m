@@ -66,8 +66,6 @@
     self.isSearching = YES;
     self.isRefreshing = NO;
     self.hairdresserTableView.hidden = YES;
-    [self.searchView initView];
-    self.searchView.hidden = YES;
 
     self.hairdresserTableView.delegate = self;
     self.hairdresserTableView.dataSource = self;
@@ -81,23 +79,12 @@
     [refreshControl addTarget:self action:@selector(updateSearchResults)
              forControlEvents:UIControlEventValueChanged];
     [self.hairdresserTableView addSubview:refreshControl];
-    [self.topBarView addBottomBorderWithHeight:1 andColor:[UIColor lightGrey]];
    // [self updateSearchResults];
 }
-
-
 
 -(IBAction)modifySearchFilters:(id)sender
 {
     [self performSegueWithIdentifier:@"modifySearchFilters" sender:self];
-}
-
--(void)hideKeyboard
-{
-    [_searchView.searchByLocation resignFirstResponder];
-    [_searchView.searchByName resignFirstResponder];
-    _searchView.hidden = YES;
-    [self.view removeGestureRecognizer:dismiss];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -137,18 +124,6 @@
     
     [self getBusinesses];
 }
-
--(void)textFieldDidBeginEditing:(UITextField *)textField
-{
-    [textField resignFirstResponder];
-    _searchView.hidden = NO;
-    if ([self.searchView.searchByLocation.text isEqualToString:aroundMe]) {
-        [self.searchView.searchAroundMeImage setTintColor:[UIColor lightBlueHairfie]];
-    }
-    [_searchView.searchByName performSelector:@selector(becomeFirstResponder) withObject:nil afterDelay:0.0];
-    [self.view addGestureRecognizer:dismiss];
-}
-
 
 -(void)businessSearchChanged:(NSNotification *)notification
 {

@@ -31,7 +31,6 @@
 
 @property (nonatomic) id<SearchFilterDelegate> myDelegate;
 
-@property (nonatomic) IBOutlet UIView *topBarView;
 @property (nonatomic) IBOutlet UILabel *topBarTitle;
 
 @property (nonatomic) IBOutlet UITextField *searchTextField;

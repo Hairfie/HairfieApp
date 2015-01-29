@@ -11,7 +11,6 @@
 #import "LoadingCollectionViewCell.h"
 #import "UIViewController+ECSlidingViewController.h"
 #import "AroundMeViewController.h"
-#import "AdvanceSearch.h"
 #import "HairfieDetailViewController.h"
 #import "ApplyFiltersViewController.h"
 #import "UserRepository.h"
@@ -33,7 +32,6 @@
 @interface HomeViewController ()
 {
     AppDelegate *delegate;
-    AdvanceSearch *searchView;
     Hairfie *hairfieSelected;
     NSMutableArray *hairfies;
     NSInteger hairfieRow;
@@ -98,7 +96,6 @@
         NSLog(@"not logged");
         [self prepareUserNotLogged];
     }
-    [_topBarView addBottomBorderWithHeight:1.0 andColor:[UIColor lightGrey]];
     
     pickerItems = [[NSArray alloc] initWithObjects:NSLocalizedStringFromTable(@"Book",@"Feed",nil),NSLocalizedStringFromTable(@"Hairfies",@"Feed",nil), nil];
     
