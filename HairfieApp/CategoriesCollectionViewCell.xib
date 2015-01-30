@@ -18,11 +18,20 @@
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SaF-UP-dNx">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SaF-UP-dNx" userLabel="Image">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="keyPath">
+                                <integer key="value" value="4"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="euH-SU-q7m">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="euH-SU-q7m">
                         <rect key="frame" x="0.0" y="36" width="320" height="27"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="320" id="2oc-Oa-jar"/>
+                            <constraint firstAttribute="height" constant="27" id="q1z-KE-vAf"/>
+                        </constraints>
                         <fontDescription key="fontDescription" name="SourceSansPro-Semibold" family="Source Sans Pro" pointSize="18"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
@@ -30,6 +39,14 @@
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="SaF-UP-dNx" secondAttribute="bottom" id="2uL-6f-QbZ"/>
+                <constraint firstAttribute="centerY" secondItem="euH-SU-q7m" secondAttribute="centerY" constant="0.5" id="63m-dZ-rA8"/>
+                <constraint firstAttribute="centerX" secondItem="euH-SU-q7m" secondAttribute="centerX" id="FQk-Ct-u58"/>
+                <constraint firstAttribute="trailing" secondItem="SaF-UP-dNx" secondAttribute="trailing" id="Nd2-2T-Adm"/>
+                <constraint firstItem="SaF-UP-dNx" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="XhI-Um-72D"/>
+                <constraint firstItem="SaF-UP-dNx" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="iaU-gC-x7c"/>
+            </constraints>
             <connections>
                 <outlet property="categoryImage" destination="SaF-UP-dNx" id="PjM-Xh-256"/>
                 <outlet property="categoryName" destination="euH-SU-q7m" id="RVh-hu-2vf"/>
