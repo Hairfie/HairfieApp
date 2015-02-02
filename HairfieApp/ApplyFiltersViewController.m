@@ -236,6 +236,8 @@
 }
 
 
+
+
 -(void)deletePicture{
     if (hairfiePics.count == 2) {
      

@@ -70,6 +70,7 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated {
+    
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
