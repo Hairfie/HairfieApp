@@ -342,8 +342,6 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     
-   
-    
     if (_didClaim == YES)
     {
         [self showPopup];

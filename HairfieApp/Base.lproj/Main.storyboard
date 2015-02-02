@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C106a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="m6Z-pY-ich">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="m6Z-pY-ich">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
@@ -189,10 +189,10 @@
             </objects>
             <point key="canvasLocation" x="-449" y="-1024"/>
         </scene>
-        <!--Test User Profile View Controller-->
+        <!--User Profile View Controller-->
         <scene sceneID="c2r-qi-TwD">
             <objects>
-                <viewController id="7uP-yg-Ah1" customClass="TestUserProfileViewController" sceneMemberID="viewController">
+                <viewController id="7uP-yg-Ah1" customClass="UserProfileViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="WOt-7P-cAN"/>
                         <viewControllerLayoutGuide type="bottom" id="bd3-Yd-hVc"/>
@@ -1197,7 +1197,7 @@
                                             <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ohU-Ir-QA0" userLabel="PRICE CONTAINER">
                                                 <rect key="frame" x="20" y="240" width="320" height="60"/>
                                                 <subviews>
-                                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="hairdresser-price-hairfie-post.png" translatesAutoresizingMaskIntoConstraints="NO" id="dJj-zm-Orv">
+                                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" image="hairdresser-price-hairfie-post.png" translatesAutoresizingMaskIntoConstraints="NO" id="dJj-zm-Orv">
                                                         <rect key="frame" x="10" y="0.0" width="300" height="39"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="300" id="4tx-S3-EQC"/>
@@ -1212,7 +1212,7 @@
                                                             <outlet property="delegate" destination="60g-nd-hW0" id="zJn-nK-G0f"/>
                                                         </connections>
                                                     </textField>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4aW-yv-yzw">
+                                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4aW-yv-yzw">
                                                         <rect key="frame" x="30" y="0.0" width="18" height="37"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="37" id="gUB-fF-Tub"/>
@@ -1242,7 +1242,7 @@
                                                         <color key="textColor" red="0.52941176470588236" green="0.55686274509803924" blue="0.59215686274509804" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZyS-LM-vZF" userLabel="EMAIL">
+                                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZyS-LM-vZF" userLabel="EMAIL">
                                                         <rect key="frame" x="10" y="10" width="300" height="40"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="300" id="MFg-dO-DB7"/>
@@ -1400,7 +1400,7 @@
                                     <action selector="postHairfie:" destination="60g-nd-hW0" eventType="touchUpInside" id="LmW-Y0-78B"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TQK-UT-z3v">
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TQK-UT-z3v">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Post Hairfie" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DwS-SE-hxP">
@@ -2644,7 +2644,7 @@
                                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I2R-pl-TuI" userLabel="Separator 1">
                                                         <color key="backgroundColor" red="0.92549019607843142" green="0.92549019607843142" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
                                                     </view>
-                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="gAx-Ib-aqZ">
+                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="gAx-Ib-aqZ">
                                                         <rect key="frame" x="0.0" y="65" width="320" height="329"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
@@ -2662,7 +2662,7 @@
                                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5ZR-VD-wlu" userLabel="HAIRDRESSER VIEW">
                                                 <rect key="frame" x="0.0" y="278" width="320" height="615"/>
                                                 <subviews>
-                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="FpJ-1K-79p">
+                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="FpJ-1K-79p">
                                                         <rect key="frame" x="0.0" y="0.0" width="320" height="615"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
@@ -2738,7 +2738,7 @@
                                                     <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pQj-wF-6sZ" userLabel="Detail Container View">
                                                         <rect key="frame" x="0.0" y="0.0" width="320" height="277"/>
                                                         <subviews>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="picto-home-black.png" translatesAutoresizingMaskIntoConstraints="NO" id="ReP-q6-dG9">
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="picto-home-black.png" translatesAutoresizingMaskIntoConstraints="NO" id="ReP-q6-dG9">
                                                                 <rect key="frame" x="10" y="20" width="15" height="16"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="16" id="Y2a-C5-F7d"/>
@@ -2764,7 +2764,7 @@
                                                             <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sWj-Ma-gq4" userLabel="Separator 4">
                                                                 <color key="backgroundColor" red="0.85490196080000003" green="0.85490196080000003" blue="0.87058823529999996" alpha="1" colorSpace="calibratedRGB"/>
                                                             </view>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="picto-list-phone.png" translatesAutoresizingMaskIntoConstraints="NO" id="ONJ-ou-2AS">
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="picto-list-phone.png" translatesAutoresizingMaskIntoConstraints="NO" id="ONJ-ou-2AS">
                                                                 <rect key="frame" x="10" y="86" width="16" height="16"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="16" id="9xs-zZ-bTk"/>
@@ -2787,7 +2787,7 @@
                                                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z1i-KZ-pp2" userLabel="Separator 2">
                                                                 <color key="backgroundColor" red="0.85490196080000003" green="0.85490196080000003" blue="0.87058823529999996" alpha="1" colorSpace="calibratedRGB"/>
                                                             </view>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="picto-clock-black.png" translatesAutoresizingMaskIntoConstraints="NO" id="a0o-5H-PFd">
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="picto-clock-black.png" translatesAutoresizingMaskIntoConstraints="NO" id="a0o-5H-PFd">
                                                                 <rect key="frame" x="10" y="133" width="16" height="16"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="16" id="0Cz-K5-ojW"/>
@@ -2825,7 +2825,7 @@
                                                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ru1-3Q-E4m" userLabel="Separator 3">
                                                                 <color key="backgroundColor" red="0.85490196080000003" green="0.85490196080000003" blue="0.87058823529999996" alpha="1" colorSpace="calibratedRGB"/>
                                                             </view>
-                                                            <imageView hidden="YES" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" image="picto-list-resume.png" translatesAutoresizingMaskIntoConstraints="NO" id="CEM-y2-XUg">
+                                                            <imageView hidden="YES" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" image="picto-list-resume.png" translatesAutoresizingMaskIntoConstraints="NO" id="CEM-y2-XUg">
                                                                 <rect key="frame" x="13" y="172" width="11" height="16"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="11" id="LbA-5O-fdu"/>
@@ -2870,10 +2870,10 @@
                                                                     <constraint firstAttribute="width" constant="8" id="Adg-Rh-Cua"/>
                                                                 </constraints>
                                                             </imageView>
-                                                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HDM-ep-dgz" userLabel="Rating Container View">
+                                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HDM-ep-dgz" userLabel="Rating Container View">
                                                                 <rect key="frame" x="10" y="164" width="300" height="77"/>
                                                                 <subviews>
-                                                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tg1-Ua-4sM" customClass="RatingView">
+                                                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tg1-Ua-4sM" customClass="RatingView">
                                                                         <rect key="frame" x="71" y="35" width="158" height="20"/>
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                         <constraints>
@@ -2909,7 +2909,7 @@
                                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
                                                     </button>
-                                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aTG-pn-ebO" userLabel="Similar Container View">
+                                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aTG-pn-ebO" userLabel="Similar Container View">
                                                         <rect key="frame" x="0.0" y="581" width="320" height="363"/>
                                                         <subviews>
                                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="SIMILAR SALONS" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j8A-ax-Ky5">
@@ -2921,7 +2921,7 @@
                                                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LJq-b6-9Kh" userLabel="Similar Separator">
                                                                 <color key="backgroundColor" red="0.81176470590000005" green="0.81176470590000005" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
                                                             </view>
-                                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="wW3-x4-wkc" userLabel="Similar Table View">
+                                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="wW3-x4-wkc" userLabel="Similar Table View">
                                                                 <rect key="frame" x="0.0" y="40" width="320" height="323"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <constraints>
@@ -3959,7 +3959,7 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gw7-iJ-pa5">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gw7-iJ-pa5">
                                 <rect key="frame" x="0.0" y="352" width="320" height="216"/>
                                 <subviews>
                                     <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="39r-IS-RRx">
@@ -6112,23 +6112,15 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="ryT-yY-w9K"/>
-        <segue reference="f6n-n6-g5l"/>
-        <segue reference="N5w-ND-ZjU"/>
-        <segue reference="MlL-bZ-CKF"/>
-        <segue reference="cpa-I8-e9p"/>
-        <segue reference="YaZ-tZ-kVO"/>
-        <segue reference="XyP-UR-YzB"/>
-        <segue reference="cUj-YN-hJW"/>
-        <segue reference="MlL-bZ-CKF"/>
-        <segue reference="N5w-ND-ZjU"/>
-        <segue reference="f6n-n6-g5l"/>
-        <segue reference="cpa-I8-e9p"/>
-        <segue reference="cUj-YN-hJW"/>
-        <segue reference="XyP-UR-YzB"/>
-        <segue reference="ryT-yY-w9K"/>
-        <segue reference="YaZ-tZ-kVO"/>
         <segue reference="Vzm-3A-jKo"/>
+        <segue reference="csi-dT-fBw"/>
+        <segue reference="XyP-UR-YzB"/>
+        <segue reference="18q-AN-mc0"/>
+        <segue reference="cUj-YN-hJW"/>
+        <segue reference="YaZ-tZ-kVO"/>
+        <segue reference="BMp-kN-6Xv"/>
+        <segue reference="N5w-ND-ZjU"/>
+        <segue reference="cpa-I8-e9p"/>
         <segue reference="VGS-VM-Pwy"/>
     </inferredMetricsTieBreakers>
 </document>

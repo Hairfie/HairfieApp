@@ -320,7 +320,7 @@
 		B3B716091A518A9600DB6FDB /* HairfieNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B716081A518A9600DB6FDB /* HairfieNotifications.m */; };
 		B3BAA85D1A014240009F0274 /* SuggestHairdresserReport.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BAA85C1A014240009F0274 /* SuggestHairdresserReport.m */; };
 		B3BB4820199B983800F8CD5B /* arrow-nav.png in Resources */ = {isa = PBXBuildFile; fileRef = B3BB481F199B983800F8CD5B /* arrow-nav.png */; };
-		B3BB63A11A1C99570087AB27 /* TestUserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BB63A01A1C99560087AB27 /* TestUserProfileViewController.m */; };
+		B3BB63A11A1C99570087AB27 /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BB63A01A1C99560087AB27 /* UserProfileViewController.m */; };
 		B3BB63A41A1C9B2A0087AB27 /* UserProfileReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BB63A31A1C9B2A0087AB27 /* UserProfileReusableView.m */; };
 		B3BB63A81A1CA5F40087AB27 /* ReviewsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BB63A61A1CA5F40087AB27 /* ReviewsCollectionViewCell.m */; };
 		B3BB63A91A1CA5F40087AB27 /* ReviewsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3BB63A71A1CA5F40087AB27 /* ReviewsCollectionViewCell.xib */; };
@@ -411,7 +411,6 @@
 		B3F6B70A19F69F4300EF4B5C /* SuggestHairdresser.strings in Resources */ = {isa = PBXBuildFile; fileRef = B3F6B70C19F69F4300EF4B5C /* SuggestHairdresser.strings */; };
 		B3F95FE119B5E5BA00798D57 /* AdvanceSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = B3F95FE019B5E5BA00798D57 /* AdvanceSearch.m */; };
 		B3FA61FE19F79650002D8B6F /* picto-menu-point-dark.png in Resources */ = {isa = PBXBuildFile; fileRef = B3FA61FD19F79650002D8B6F /* picto-menu-point-dark.png */; };
-		B3FA620219F79E57002D8B6F /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3FA620119F79E57002D8B6F /* UserProfileViewController.m */; };
 		B3FA620519F7AE64002D8B6F /* UILabel+Style.m in Sources */ = {isa = PBXBuildFile; fileRef = B3FA620419F7AE63002D8B6F /* UILabel+Style.m */; };
 		B3FA620819F7B4B7002D8B6F /* UserProfile.strings in Resources */ = {isa = PBXBuildFile; fileRef = B3FA620A19F7B4B7002D8B6F /* UserProfile.strings */; };
 		B3FB10B619B09DA600CADCFD /* man-picto.png in Resources */ = {isa = PBXBuildFile; fileRef = B3FB10B419B09DA600CADCFD /* man-picto.png */; };
@@ -929,8 +928,8 @@
 		B3BAA85B1A014240009F0274 /* SuggestHairdresserReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuggestHairdresserReport.h; sourceTree = "<group>"; };
 		B3BAA85C1A014240009F0274 /* SuggestHairdresserReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuggestHairdresserReport.m; sourceTree = "<group>"; };
 		B3BB481F199B983800F8CD5B /* arrow-nav.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow-nav.png"; sourceTree = "<group>"; };
-		B3BB639F1A1C99560087AB27 /* TestUserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestUserProfileViewController.h; sourceTree = "<group>"; };
-		B3BB63A01A1C99560087AB27 /* TestUserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestUserProfileViewController.m; sourceTree = "<group>"; };
+		B3BB639F1A1C99560087AB27 /* UserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileViewController.h; sourceTree = "<group>"; };
+		B3BB63A01A1C99560087AB27 /* UserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileViewController.m; sourceTree = "<group>"; };
 		B3BB63A21A1C9B2A0087AB27 /* UserProfileReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileReusableView.h; sourceTree = "<group>"; };
 		B3BB63A31A1C9B2A0087AB27 /* UserProfileReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileReusableView.m; sourceTree = "<group>"; };
 		B3BB63A51A1CA5F40087AB27 /* ReviewsCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewsCollectionViewCell.h; sourceTree = "<group>"; };
@@ -1049,8 +1048,6 @@
 		B3F95FDF19B5E5BA00798D57 /* AdvanceSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdvanceSearch.h; sourceTree = "<group>"; };
 		B3F95FE019B5E5BA00798D57 /* AdvanceSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdvanceSearch.m; sourceTree = "<group>"; };
 		B3FA61FD19F79650002D8B6F /* picto-menu-point-dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "picto-menu-point-dark.png"; sourceTree = "<group>"; };
-		B3FA620019F79E57002D8B6F /* UserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileViewController.h; sourceTree = "<group>"; };
-		B3FA620119F79E57002D8B6F /* UserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileViewController.m; sourceTree = "<group>"; };
 		B3FA620319F7AE63002D8B6F /* UILabel+Style.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Style.h"; sourceTree = "<group>"; };
 		B3FA620419F7AE63002D8B6F /* UILabel+Style.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Style.m"; sourceTree = "<group>"; };
 		B3FA620919F7B4B7002D8B6F /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/UserProfile.strings; sourceTree = "<group>"; };
@@ -2250,10 +2247,8 @@
 		B3FA61FF19F79E43002D8B6F /* User Profile */ = {
 			isa = PBXGroup;
 			children = (
-				B3FA620019F79E57002D8B6F /* UserProfileViewController.h */,
-				B3FA620119F79E57002D8B6F /* UserProfileViewController.m */,
-				B3BB639F1A1C99560087AB27 /* TestUserProfileViewController.h */,
-				B3BB63A01A1C99560087AB27 /* TestUserProfileViewController.m */,
+				B3BB639F1A1C99560087AB27 /* UserProfileViewController.h */,
+				B3BB63A01A1C99560087AB27 /* UserProfileViewController.m */,
 				B3BB63A21A1C9B2A0087AB27 /* UserProfileReusableView.h */,
 				B3BB63A31A1C9B2A0087AB27 /* UserProfileReusableView.m */,
 				B3BB63A51A1CA5F40087AB27 /* ReviewsCollectionViewCell.h */,
@@ -2728,7 +2723,6 @@
 				1564959519AF6292008DC070 /* HairfieColors.m in Sources */,
 				B3AA0CBF1A24D4D900FAEC01 /* DetailsCollectionViewCell.m in Sources */,
 				B3391BB51A5A9B27006D63A9 /* FacebookPage.m in Sources */,
-				B3FA620219F79E57002D8B6F /* UserProfileViewController.m in Sources */,
 				B3423210198924290058866B /* AFHTTPRequestOperation.m in Sources */,
 				1515448219C301ED00FBC07D /* CameraOverlayViewController.m in Sources */,
 				B3AA0CA41A23681800FAEC01 /* BusinessDetailCollectionViewCell.m in Sources */,
@@ -2771,7 +2765,7 @@
 				B319B5CE19C8609E007F79B0 /* SecondStepViewController.m in Sources */,
 				71E08E5D19FF9A2700A56FBB /* SalonDetailHeaderViewController.swift in Sources */,
 				158FCA9119FA9B870001F86C /* FBAuthenticator.m in Sources */,
-				B3BB63A11A1C99570087AB27 /* TestUserProfileViewController.m in Sources */,
+				B3BB63A11A1C99570087AB27 /* UserProfileViewController.m in Sources */,
 				71537CB21A44329300519C1B /* BusinessMemberFavoriteRepository.m in Sources */,
 				B39BA17E19AF535400A48BD5 /* KeychainItemWrapper.m in Sources */,
 				B3AE0D3F19C05EE900149C2B /* PostSalonTableViewCell.m in Sources */,
