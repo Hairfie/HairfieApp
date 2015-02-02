@@ -54,14 +54,14 @@
     self.hairfieImageView.image = [[self.hairfiePost mainPicture] image];
     if ([self.hairfiePost hasSecondaryPicture]) {
         self.secondHairfieImageView.image = [[self.hairfiePost secondaryPicture] image];
+        self.secondHairfieImageView.layer.borderColor = [UIColor whiteColor].CGColor;
+        self.secondHairfieImageView.layer.borderWidth = 1;
     }
     else {
         self.secondHairfieImageView.hidden = YES;
     }
         
 
-    self.secondHairfieImageView.layer.borderColor = [UIColor whiteColor].CGColor;
-    self.secondHairfieImageView.layer.borderWidth = 1;
     self.dataChoice.hidden = YES;
     self.dataChoice.layer.borderWidth = 1;
     self.dataChoice.layer.borderColor = [UIColor lightGreyHairfie].CGColor;

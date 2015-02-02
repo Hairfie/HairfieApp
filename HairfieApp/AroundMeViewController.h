@@ -15,7 +15,6 @@
 #import "SearchFilterViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "UIImage+Resize.h"
-#import "AdvanceSearch.h"
 #import "SearchFilterViewController.h"
 #import "BusinessSearch.h"
 
@@ -37,10 +36,7 @@
 @property (nonatomic) IBOutlet UIView *headerView;
 @property (nonatomic) IBOutlet UIView *searchHeaderView;
 @property (nonatomic, strong) IBOutlet UILabel *searchDesc;
-@property (nonatomic) IBOutlet AdvanceSearch *searchView;
-
 @property (nonatomic) IBOutlet UILabel *topBarTitle;
-@property (nonatomic) IBOutlet UIView *topBarView;
 
 @property (nonatomic) BOOL isSearching;
 @property (nonatomic) BOOL isRefreshing;

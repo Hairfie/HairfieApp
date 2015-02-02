@@ -11,7 +11,6 @@
 #import "LoadingCollectionViewCell.h"
 #import "UIViewController+ECSlidingViewController.h"
 #import "AroundMeViewController.h"
-#import "AdvanceSearch.h"
 #import "HairfieDetailViewController.h"
 #import "ApplyFiltersViewController.h"
 #import "UserRepository.h"
@@ -33,7 +32,6 @@
 @interface HomeViewController ()
 {
     AppDelegate *delegate;
-    AdvanceSearch *searchView;
     Hairfie *hairfieSelected;
     NSMutableArray *hairfies;
     NSInteger hairfieRow;
@@ -86,24 +84,7 @@
     
     delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [delegate startTrackingLocation:YES];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(showNoNetwork:)
-                                                 name:@"No Network" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(doSearch:)
-                                                 name:@"searchFromFeed" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(switchMenuItem:)
-                                                 name:@"collectionChanged" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(segueToSearchResults:)
-                                                 name:@"segueToSearchResults"
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                              selector:@selector(segueToHairfieDetail:)
-                                                 name:@"hairfieSelected" object:nil];
+
     self.navigationItem.title = [NSString stringWithFormat:NSLocalizedStringFromTable(@"Home", @"Feed", nil)];
     
     refreshControl = [[UIRefreshControl alloc] init];
@@ -115,7 +96,6 @@
         NSLog(@"not logged");
         [self prepareUserNotLogged];
     }
-    [_topBarView addBottomBorderWithHeight:1.0 andColor:[UIColor lightGrey]];
     
     pickerItems = [[NSArray alloc] initWithObjects:NSLocalizedStringFromTable(@"Book",@"Feed",nil),NSLocalizedStringFromTable(@"Hairfies",@"Feed",nil), nil];
     
@@ -128,9 +108,11 @@
     CategoryContentViewController *categoryVc = (CategoryContentViewController*)[self viewControllerAtIndex:0];
     categoryContent = @[categoryVc];
 
-    [self.pageViewController setViewControllers:categoryContent direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
+    [self.pageViewController setViewControllers:categoryContent
+                                      direction:UIPageViewControllerNavigationDirectionForward
+                                       animated:NO
+                                     completion:nil];
 
-    
     // Change the size of page view controller
     //CGRect frame = CGRectMake(0, 147, self.view.frame.size.width, self.view.frame.size.height - 147);
     //self.pageViewController.view.frame = frame;
@@ -142,19 +124,6 @@
     [self.view bringSubviewToFront:self.takeHairfieBttn];
     [self.view sendSubviewToBack:self.pageViewController.view];
     
-    UIView *pageViewControllerView = self.pageViewController.view;
-    
-    [pageViewControllerView setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[pageViewControllerView]|"
-                                                                      options:NSLayoutFormatDirectionLeadingToTrailing
-                                                                      metrics:nil
-                                                                        views:NSDictionaryOfVariableBindings(pageViewControllerView)]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-147-[pageViewControllerView]|"
-                                                                      options:NSLayoutFormatDirectionLeadingToTrailing
-                                                                      metrics:nil
-                                                                        views:NSDictionaryOfVariableBindings(pageViewControllerView)]];
-    
-    
     //configure picker view
     self.pickerView.delegate = self;
     self.pickerView.dataSource = self;
@@ -165,6 +134,17 @@
     self.pickerView.interitemSpacing = 75;
     self.pickerView.fisheyeFactor = 0;//0.0001;
     [self.pickerView reloadData];
+
+    UIView *pageViewControllerView = _pageViewController.view;
+    [pageViewControllerView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[pageViewControllerView]|"
+                                                                      options:NSLayoutFormatDirectionLeadingToTrailing
+                                                                      metrics:nil
+                                                                        views:NSDictionaryOfVariableBindings(pageViewControllerView)]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-147-[pageViewControllerView]|"
+                                                                      options:NSLayoutFormatDirectionLeadingToTrailing
+                                                                      metrics:nil
+                                                                        views:NSDictionaryOfVariableBindings(pageViewControllerView)]];
 }
 
 -(void)viewDidLayoutSubviews
@@ -217,10 +197,10 @@
     [self performSegueWithIdentifier:@"hairfieDetail" sender:self];
 }
 
--(IBAction)filterSearch:(id)sender
-{
+-(IBAction)filterSearch:(id)sender {
     [self performSegueWithIdentifier:@"filterSearch" sender:self];
 }
+
 -(void)segueToSearchResults:(NSNotification*)notification {
     NSDictionary *dic = notification.userInfo;
     
@@ -341,11 +321,10 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    
-    if (_didClaim == YES)
-    {
+    if (_didClaim == YES) {
         [self showPopup];
     }
+    [self addAllObservers];
     [ARAnalytics pageView:@"AR - Feed"];
 }
 
@@ -382,15 +361,13 @@
 }
 
 
--(void)viewWillDisappear:(BOOL)animated
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:kStatusBarTappedNotification object:nil];
+-(void)viewWillDisappear:(BOOL)animated {
+    [self removeAllObservers];
     [self.pageViewController removeFromParentViewController];
 }
 
 
--(void)willSearch:(NSNotification*)notification
-{
+-(void)willSearch:(NSNotification*)notification {
     [self performSegueWithIdentifier:@"searchFromFeed" sender:self];
 }
 
@@ -425,6 +402,50 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"backToLogin" object:self];
 }
 
+-(void)addAllObservers {
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(showNoNetwork:)
+                                                 name:@"No Network" object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(doSearch:)
+                                                 name:@"searchFromFeed" object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(switchMenuItem:)
+                                                 name:@"collectionChanged" object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(segueToSearchResults:)
+                                                 name:@"segueToSearchResults"
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(segueToHairfieDetail:)
+                                                 name:@"hairfieSelected" object:nil];
+}
+
+-(void)removeAllObservers {
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                 name:@"searchFromFeed" object:nil];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                 name:@"collectionChanged" object:nil];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                 name:@"segueToSearchResults" object:nil];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                 name:@"hairfieSelected" object:nil];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:kStatusBarTappedNotification object:nil];
+
+}
+
+- (void)dealloc {
+    [self removeAllObservers];
+}
 
 #pragma mark - Navigation
 

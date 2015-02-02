@@ -144,7 +144,7 @@
         return nil;
     }
     
-    return [self.pictures objectAtIndex:0];
+    return [self.pictures objectAtIndex:self.pictures.count-1];
 }
 
 -(BOOL)hasSecondaryPicture
@@ -158,7 +158,7 @@
         return nil;
     }
     
-    return [self.pictures objectAtIndex:1];
+    return [self.pictures objectAtIndex:0];
 }
 
 +(HairfieRepository *)repository

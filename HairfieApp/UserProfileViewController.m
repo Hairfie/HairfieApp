@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 #import "BusinessReview.h"
 #import <AssetsLibrary/AssetsLibrary.h>
-#import "TestUserProfileViewController.h"
+#import "UserProfileViewController.h"
 #import "LoadingCollectionViewCell.h"
 #import "CustomCollectionViewCell.h"
 #import "ReviewsCollectionViewCell.h"

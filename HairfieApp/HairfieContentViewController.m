@@ -19,8 +19,7 @@
 
 @end
 
-@implementation HairfieContentViewController
-{
+@implementation HairfieContentViewController {
     NSArray *categoriesNames;
     NSArray *categoriesImages;
     NSNumber *currentPage;
@@ -30,8 +29,7 @@
 }
 
 - (void)viewDidLoad {
-    
-   
+
     self.contentCollection.scrollsToTop = YES;
     [super viewDidLoad];
     [self.contentCollection registerNib:[UINib nibWithNibName:@"CustomCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:CUSTOM_CELL_IDENTIFIER];
@@ -59,27 +57,20 @@
 }
 
 -(void)scrollToTop {
-   }
+}
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    
     NSDictionary* dict = [NSDictionary dictionaryWithObject:NSLocalizedStringFromTable(@"Hairfies",@"Feed",nil)
                                                      forKey:@"menuItem"];
+
     [[NSNotificationCenter defaultCenter] postNotificationName:@"collectionChanged"
                                                         object:self
                                                       userInfo:dict];
 }
 
--(void)viewWillAppear:(BOOL)animated
-{
+-(void)viewWillAppear:(BOOL)animated {
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -90,8 +81,8 @@
     }
 }
 
-- (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section {
-   
+- (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section
+{
     return [hairfies count] + 1;
 }
 
@@ -100,18 +91,13 @@
     return 5;
 }
 
-
 // 3
 - (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    
 
     if (indexPath.row < [hairfies count]) {
-        
-        
         if(indexPath.row == ([hairfies count] - HAIRFIES_PAGE_SIZE + 1) && currentPage != 0){
             [self fetchMoreHairfies];
         }
-        
         return [self hairfieCellForIndexPath:indexPath];
     } else {
         return [self loadingCellForIndexPath:indexPath];
@@ -153,8 +139,7 @@
     return cell;
 }
 
--(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
     Hairfie *hairfie = (Hairfie*)[hairfies objectAtIndex:indexPath.row];
     
@@ -224,16 +209,5 @@
        [refreshControl endRefreshing];
     }
 }
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
