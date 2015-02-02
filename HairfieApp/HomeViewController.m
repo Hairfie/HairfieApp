@@ -132,7 +132,7 @@
     self.pickerView.highlightedTextColor = [UIColor whiteColor];
     self.pickerView.textColor = [UIColor whiteColor];
     self.pickerView.interitemSpacing = 75;
-    self.pickerView.fisheyeFactor = 0;//0.0001;
+    self.pickerView.fisheyeFactor = 0.0001;
     [self.pickerView reloadData];
 
     UIView *pageViewControllerView = _pageViewController.view;
@@ -150,11 +150,6 @@
 -(void)viewDidLayoutSubviews
 {
     [self drawTriangleInView];
-}
-
--(IBAction)test:(id)sender
-{
-    NSLog(@"cool");
 }
 
 -(void)drawTriangleInView
@@ -188,7 +183,7 @@
     
     NSDictionary *dic = notification.userInfo;
     businessSearch = [dic objectForKey:@"businessSearch"];
-     [self performSegueWithIdentifier:@"showSearchResults" sender:self];
+    [self performSegueWithIdentifier:@"showSearchResults" sender:self];
 }
 
 -(void)segueToHairfieDetail:(NSNotification*)notification {
@@ -451,6 +446,12 @@
 
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    
+    if ([segue.identifier isEqualToString:@"filterSearch"])
+    {
+        SearchFilterViewController *searchFiltersVc = [segue destinationViewController];
+        searchFiltersVc.isModifyingSearch = NO;
+    }
     if ([segue.identifier isEqualToString:@"showSearchResults"])
     {
         AroundMeViewController *controller = [segue destinationViewController];

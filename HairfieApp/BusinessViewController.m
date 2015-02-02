@@ -427,7 +427,7 @@
     NSInteger width = collectionView.bounds.size.width;
     
     if (isHairdressersTab == YES) {
-        return CGSizeMake(width, 45);
+        return CGSizeMake(width, 60);
     } else if (isServicesTab == YES) {
         return CGSizeMake(width, 45);
     } else if (isDetailsTab == YES) {
@@ -489,11 +489,16 @@
     if (indexPath.row < self.business.activeHairdressers.count) {
         BusinessMember *businessMember = [self.business.activeHairdressers objectAtIndex:indexPath.row];
         cell.disclosureIndicator.hidden = YES;
+        cell.businessMemberPicture.hidden = NO;
         [cell setBusinessMember:businessMember];
+        
+        
     } else if (indexPath.row == self.business.activeHairdressers.count) {
-        cell.hairdresserName.text = NSLocalizedStringFromTable(@"No Hairdresser", @"Salon_Detail", nil);
+        [cell.businessMemberName setText:NSLocalizedStringFromTable(@"No Hairdresser", @"Salon_Detail", nil)];
+        cell.businessMemberPicture.hidden = YES;
+        cell.businessMemberName.leftViewMode = UITextFieldViewModeNever;
+         cell.disclosureIndicator.hidden = NO;
     }
-
     return cell;
 }
 

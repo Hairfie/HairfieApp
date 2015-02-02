@@ -146,8 +146,6 @@
     self.businessSearch.query = queryName;
     self.businessSearch.clientTypes = queryfilters;
     
-    NSLog(@"\n\nQUERY %@\nWHERE %@\nCLIENT TYPES %@", self.businessSearch.query, self.businessSearch.where, self.businessSearch.clientTypes);
-    
         
     [self dismissViewControllerAnimated:YES completion:nil];
 }

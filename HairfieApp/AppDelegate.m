@@ -119,7 +119,7 @@ static LBRESTAdapter * _lbAdaptater = nil;
 
 - (void)showLoginStoryboard {
     [self.window.rootViewController.view removeFromSuperview];
-    [self.window.rootViewController.navigationController popViewControllerAnimated:NO];
+    [self.window.rootViewController.navigationController popViewControllerAnimated:YES];
 
     UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Tuto" bundle:nil];
     UINavigationController *theInitialViewController = [storyBoard instantiateInitialViewController];

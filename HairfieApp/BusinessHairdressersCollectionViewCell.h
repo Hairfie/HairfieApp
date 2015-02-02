@@ -11,8 +11,9 @@
 
 @interface BusinessHairdressersCollectionViewCell : UICollectionViewCell
 
-@property (nonatomic) IBOutlet UILabel *hairdresserName;
+@property (nonatomic) IBOutlet UITextField *businessMemberName;
 @property (nonatomic) IBOutlet UIImageView *disclosureIndicator;
+@property (nonatomic) IBOutlet UIImageView *businessMemberPicture;
 
 -(void)setBusinessMember:(BusinessMember *)businessMember;
 
