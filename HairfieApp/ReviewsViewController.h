@@ -14,6 +14,7 @@
 @interface ReviewsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UITextViewDelegate>
 
 @property (nonatomic) IBOutlet UITableView *reviewTableView;
+@property (nonatomic) IBOutlet UIView *topBarView;
 @property (nonatomic) Business *business;
 
 -(IBAction)goBack:(id)sender;

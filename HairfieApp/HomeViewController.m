@@ -76,6 +76,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(segueToSearchResults:)
+                                                 name:@"segueToSearchResults"
+                                               object:nil];
+    
     self.pageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"HomePageViewController"];
     self.pageViewController.dataSource = self;
     self.filterSearchBttnTitle.text = NSLocalizedStringFromTable(@"Filter search", @"Feed", nil);
@@ -200,6 +205,7 @@
     NSDictionary *dic = notification.userInfo;
     
     businessSearch = [dic objectForKey:@"businessSearch"];
+   
     [self performSegueWithIdentifier:@"showSearchResults" sender:self];
 }
 
@@ -410,10 +416,10 @@
                                              selector:@selector(switchMenuItem:)
                                                  name:@"collectionChanged" object:nil];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(segueToSearchResults:)
-                                                 name:@"segueToSearchResults"
-                                               object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self
+//                                             selector:@selector(doSearch:)
+//                                                 name:@"segueToSearchResults"
+//                                               object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(segueToHairfieDetail:)
@@ -427,8 +433,8 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                  name:@"collectionChanged" object:nil];
     
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                 name:@"segueToSearchResults" object:nil];
+//    [[NSNotificationCenter defaultCenter] removeObserver:self
+//                                                 name:@"segueToSearchResults" object:nil];
     
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                  name:@"hairfieSelected" object:nil];

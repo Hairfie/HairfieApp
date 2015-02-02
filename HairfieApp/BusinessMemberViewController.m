@@ -80,7 +80,16 @@
         [self loadUser];
         self.user = self.businessMember.user;
     }
+    [self loadBusinessMember];
     
+}
+
+
+-(void)setBusinessMember:(BusinessMember *)abusinessMember
+{
+    _businessMember = abusinessMember;
+    
+  //  [self.collectionView reloadData];
 }
 
 -(void)setBusiness:(Business *)business
@@ -166,6 +175,18 @@
               failure:^(NSError *error) {
                   NSLog(@"Failed to load business: %@", error.localizedDescription);
               }];
+    }
+}
+
+-(void)loadBusinessMember
+{
+    if (self.businessMember.id != nil) {
+        [BusinessMember getById:self.businessMember.id withSuccess:^(BusinessMember *businessMember) {
+            self.businessMember = businessMember;
+        }
+                        failure:^(NSError *error) {
+                            NSLog(@"Failed to load business: %@", error.localizedDescription);
+                        }];
     }
 }
 

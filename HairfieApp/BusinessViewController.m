@@ -490,6 +490,8 @@
         BusinessMember *businessMember = [self.business.activeHairdressers objectAtIndex:indexPath.row];
         cell.disclosureIndicator.hidden = YES;
         cell.businessMemberPicture.hidden = NO;
+        NSLog(@"business members %@", [businessMember toDictionary]);
+        
         [cell setBusinessMember:businessMember];
         
         

@@ -108,7 +108,7 @@ import QuartzCore
                 var picture: Picture = business.pictures[index] as Picture
                 var pictureView = UIImageView(frame: frame)
                 pictureView.contentMode = UIViewContentMode.ScaleAspectFill;
-                var pictureUrl = picture.urlWithWidth(frame.width, height: frame.height)
+                var pictureUrl = picture.urlWithWidth(frame.width * 2, height: frame.height * 2)
                 
                 var gradientMaskLayer:CAGradientLayer = CAGradientLayer();
                 gradientMaskLayer.frame = pictureView.bounds;

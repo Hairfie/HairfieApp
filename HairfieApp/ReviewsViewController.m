@@ -21,6 +21,7 @@
     [super viewDidLoad];
     [self loadReviews];
     
+    [self.topBarView addBottomBorderWithHeight:1 andColor:[UIColor lightGrey]];
     self.reviewTableView.backgroundColor = [UIColor whiteColor];
 }
 

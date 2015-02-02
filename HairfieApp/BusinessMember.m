@@ -42,7 +42,10 @@
 
 -(NSString *)displayFullName
 {
-    return [NSString stringWithFormat:@"%@ %@.",self.firstName, [self.lastName substringToIndex:1]];
+    
+    NSString *fullName = (self.lastName.length != 0) ? [NSString stringWithFormat:@"%@ %@.",self.firstName, [self.lastName substringToIndex:1]] : self.firstName;
+    
+    return fullName;
 }
 
 -(NSURL *)pictureUrlWithWidth:(NSNumber *)aWdith

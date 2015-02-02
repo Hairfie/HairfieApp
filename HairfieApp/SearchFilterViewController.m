@@ -76,7 +76,7 @@
         NSDictionary* dict = [NSDictionary dictionaryWithObject:self.businessSearch
                                                          forKey:@"businessSearch"];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"segueToSearchResults"
-                                                            object:self
+                                                            object:nil
                                                           userInfo:dict];
        
     }

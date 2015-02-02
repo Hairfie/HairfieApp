@@ -20,17 +20,20 @@
      UIView *paddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 50, 0)];
     self.businessMemberName.leftView = paddingView;
     self.businessMemberName.leftViewMode = UITextFieldViewModeAlways;
-    
     [self.businessMemberName setText:[businessMember displayFullName]];
  
     if (businessMember.picture != nil){
         [self setPictureData:businessMember isDefault:NO];
+    }
+    else if (businessMember.user.picture != nil){
+        [self setPictureData:businessMember.user isDefault:NO];
     }
     else {
         [self setPictureData:nil isDefault:YES];
         
     }
 }
+
 
 -(void)setPictureData:(id)entity
             isDefault:(BOOL)isDefault
