@@ -22,6 +22,7 @@
     [self.webView loadRequest:urlRequest];
     self.claimBttn.layer.cornerRadius = 5;
     self.claimBttn.layer.masksToBounds = YES;
+    self.headerTitleLabel.text = NSLocalizedStringFromTable(@"Claim your business", @"Claim", nil);
     // Do any additional setup after loading the view.
 }
 
