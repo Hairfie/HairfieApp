@@ -17,6 +17,6 @@
 @property (nonatomic) Timetable *timeTable;
 
 @property (nonatomic) IBOutlet UITableView *timeTableView;
-
+@property (weak, nonatomic) IBOutlet UIView *topBarView;
 
 @end

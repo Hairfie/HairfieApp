@@ -18,5 +18,6 @@
 @property (nonatomic) NSMutableArray *serviceClaimed;
 @property (nonatomic) Service *serviceFromSegue;
 @property (nonatomic) NSInteger serviceIndexFromSegue;
+@property (weak, nonatomic) IBOutlet UIView *topBarView;
 
 @end

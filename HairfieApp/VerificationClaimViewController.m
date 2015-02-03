@@ -25,15 +25,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _isFirstTime = YES;
     delegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     
+    [self.topBarView addBottomBorderWithHeight:1 andColor:[UIColor lightGrey]];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldValidated:) name:@"validateTextField" object:nil];
     
-    
-    NSLog(@"current user %@", [delegate.currentUser toDictionary]);
-    
-    title = [NSArray arrayWithObjects:NSLocalizedStringFromTable(@"Woman", @"Login_Sign_Up", nil), NSLocalizedStringFromTable(@"Man", @"Login_Sign_Up", nil), nil];
+      title = [NSArray arrayWithObjects:NSLocalizedStringFromTable(@"Woman", @"Login_Sign_Up", nil), NSLocalizedStringFromTable(@"Man", @"Login_Sign_Up", nil), nil];
     
     _titleView.hidden = YES;
     [_phoneField textFieldWithPhoneKeyboard];
@@ -65,11 +62,6 @@
 }
 
 -(void)viewDidAppear:(BOOL)animated {
-    if (_isFirstTime == YES)
-    {
-        _isFirstTime = NO;
-        [self showPopup];
-    }
 }
 
 -(void)hideCivilityPicker
@@ -77,13 +69,10 @@
     _titleView.hidden = YES;
 }
 
--(void)showPopup {
-    
-    self.popViewController = [[PopUpViewController alloc] initWithNibName:@"PopUpViewController" bundle:nil];
-    
-    [self.popViewController showInView:self.view withTitle:NSLocalizedStringFromTable(@"You're hairdresser ? Tell Us !", @"Claim", nil) withMessage:NSLocalizedStringFromTable(@"Claim and manage your business on Hairfie", @"Claim", nil) withButton:NSLocalizedStringFromTable(@"Claim your business", @"Claim", nil) animated:YES];
+-(IBAction)goBack:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
-
 -(void) viewWillAppear:(BOOL)animated {
     [ARAnalytics pageView:@"AR - Verification Claim"];
 }

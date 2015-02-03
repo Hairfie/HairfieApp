@@ -22,6 +22,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self.topBarView addBottomBorderWithHeight:1 andColor:[UIColor lightGrey]];
+
     businessMembers = [[NSMutableArray alloc] init];
     
     _firstNameView.layer.cornerRadius = 5;

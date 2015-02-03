@@ -16,5 +16,6 @@
 @property (nonatomic) IBOutlet UITextField *zipCode;
 @property (nonatomic) IBOutlet UIButton *doneBttn;
 @property (nonatomic) Address *address;
+@property (weak, nonatomic) IBOutlet UIView *topBarView;
 
 @end

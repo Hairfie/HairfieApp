@@ -19,12 +19,12 @@
 @property (nonatomic) IBOutlet UITextField *phoneField;
 
 @property (nonatomic) IBOutlet UIView *titleView;
+@property (weak, nonatomic) IBOutlet UIView *topBarView;
 @property (nonatomic) IBOutlet UIButton *titleButton;
 @property (nonatomic) IBOutlet UIPickerView *userTitle;
 
 @property (strong, nonatomic) PopUpViewController *popViewController;
 
-@property (nonatomic) BOOL isFirstTime;
 
 
 -(IBAction)validateVerification:(id)sender;

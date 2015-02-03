@@ -16,6 +16,7 @@
 @property (nonatomic) IBOutlet UIButton *nextBttn;
 @property (nonatomic) CLLocation *businessLocation;
 @property (nonatomic) BusinessClaim *claim;
+@property (weak, nonatomic) IBOutlet UIView *topBarView;
 
 @property (nonatomic) IBOutlet UIView *containerView;
 @property (nonatomic) IBOutlet NSLayoutConstraint *pinYPos;

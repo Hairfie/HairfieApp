@@ -39,6 +39,8 @@
     if (_isSalon == NO) {
         [textField textFieldWithPhoneKeyboard];
     }
+    
+    [self.topBarView addBottomBorderWithHeight:1 andColor:[UIColor lightGrey]];
 
     textField.layer.cornerRadius =5;
     textField.layer.borderColor = [UIColor lightGreyHairfie].CGColor;

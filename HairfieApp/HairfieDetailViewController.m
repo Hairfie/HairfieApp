@@ -131,14 +131,17 @@
                                                              delegate:self
                                                     cancelButtonTitle:NSLocalizedStringFromTable(@"Cancel", @"Salon_Detail", nil)
                                                destructiveButtonTitle:nil
-                                                    otherButtonTitles:NSLocalizedStringFromTable(@"Tweet", @"Hairfie_Detail", nil),NSLocalizedStringFromTable(@"Share on Facebook", @"Hairfie_Detail", nil),NSLocalizedStringFromTable(@"Post on Instagram", @"Hairfie_Detail", nil),NSLocalizedStringFromTable(@"Pin on Pinterest", @"Hairfie_Detail", nil),NSLocalizedStringFromTable(@"Copy Hairfie", @"Hairfie_Detail", nil),NSLocalizedStringFromTable(@"Report Hairfie", @"Hairfie_Detail", nil),nil];
+                                                    otherButtonTitles:NSLocalizedStringFromTable(@"Tweet", @"Hairfie_Detail", nil),NSLocalizedStringFromTable(@"Share on Facebook", @"Hairfie_Detail", nil),NSLocalizedStringFromTable(@"Post on Instagram", @"Hairfie_Detail", nil),NSLocalizedStringFromTable(@"Pin on Pinterest", @"Hairfie_Detail", nil),NSLocalizedStringFromTable(@"Copy Hairfie", @"Hairfie_Detail", nil),nil];//NSLocalizedStringFromTable(@"Report Hairfie", @"Hairfie_Detail", nil),nil];
         [actionSheet showInView:self.view];
 }
 
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (6 == buttonIndex) return; // it's the cancel button
+    
+    // change to 6 if report button is on
+    
+    if (5 == buttonIndex) return; // it's the cancel button
 
     NSDictionary *action = menuActions[buttonIndex];
     NSString *shareName = [action objectForKey:@"share"];

@@ -12,7 +12,7 @@
 @interface ThirdStepViewController : UIViewController <UINavigationControllerDelegate>
 
 
-
+@property (weak, nonatomic) IBOutlet UIView *topBarView;
 @property (nonatomic) IBOutlet UITextField *address;
 @property (nonatomic) IBOutlet UITextField *city;
 @property (nonatomic) IBOutlet UITextField *postalCode;

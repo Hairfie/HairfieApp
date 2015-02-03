@@ -27,7 +27,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [self.topBarView addBottomBorderWithHeight:1 andColor:[UIColor lightGrey]];
+
     NSLog(@"Daypicked : %@", _dayPicked.name);
     _doneBttn.layer.cornerRadius = 5;
     timeTable = [[NSDictionary alloc] init];

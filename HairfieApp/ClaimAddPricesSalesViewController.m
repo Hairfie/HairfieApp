@@ -21,6 +21,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.topBarView addBottomBorderWithHeight:1 andColor:[UIColor lightGrey]];
     services = [[NSMutableArray alloc] init];
     _priceDescriptionView.layer.cornerRadius = 5;
     _priceDescriptionView.layer.borderColor = [UIColor lightGreyHairfie].CGColor;

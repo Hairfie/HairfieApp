@@ -27,7 +27,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-   
+    [self.topBarView addBottomBorderWithHeight:1 andColor:[UIColor lightGrey]];
+
     gps = [[GeoPoint alloc] init];
     _street.text = _address.street;
     _city.text = _address.city;

@@ -36,6 +36,7 @@
     _nextBttn.layer.masksToBounds = YES;
     
     
+    [self.topBarView addBottomBorderWithHeight:1 andColor:[UIColor lightGrey]];
     
    
     _mapHeight.constant = self.view.frame.size.height - 64;

@@ -27,7 +27,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-   
+    [self.topBarView addBottomBorderWithHeight:1 andColor:[UIColor lightGrey]];
+
     if (_timeTable == nil)
         _timeTable = [[Timetable alloc] initEmpty];
     

@@ -25,6 +25,6 @@
 @property (nonatomic) BusinessMember *businessMemberFromSegue;
 
 @property (nonatomic) IBOutlet UIButton* doneBttn;
-
+@property (weak, nonatomic) IBOutlet UIView *topBarView;
 
 @end

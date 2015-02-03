@@ -34,7 +34,8 @@
     _salonBttn.layer.cornerRadius =5;
     _salonBttn.layer.borderColor = [UIColor lightGreyHairfie].CGColor;
     _salonBttn.layer.borderWidth = 1;
-   
+    
+    [self.topBarView addBottomBorderWithHeight:1 andColor:[UIColor lightGrey]];
     man = YES;
     woman = YES;
     kids = YES;

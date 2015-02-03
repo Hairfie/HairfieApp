@@ -14,6 +14,6 @@
 @property (nonatomic) IBOutlet UIButton * salonBttn;
 @property (nonatomic) IBOutlet UIButton * homeBttn;
 @property (nonatomic) BusinessClaim *claim;
-
+@property (weak, nonatomic) IBOutlet UIView *topBarView;
 
 @end

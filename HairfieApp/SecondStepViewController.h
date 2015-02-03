@@ -11,6 +11,7 @@
 
 @interface SecondStepViewController : UIViewController <UINavigationControllerDelegate>
 
+@property (weak, nonatomic) IBOutlet UIView *topBarView;
 @property (nonatomic) IBOutlet UIButton * nextBttn;
 @property (nonatomic) IBOutlet UIButton * salonBttn;
 @property (nonatomic) IBOutlet UIButton * phoneBttn;

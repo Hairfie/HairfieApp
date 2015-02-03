@@ -26,5 +26,6 @@
 @property (nonatomic) NSString *closingTime;
 
 @property (nonatomic) IBOutlet UIButton *doneBttn;
+@property (weak, nonatomic) IBOutlet UIView *topBarView;
 
 @end
