@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="SourceSansPro-Light.ttf">
@@ -21,10 +22,55 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uMh-mc-tTu">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WmI-8n-82J" userLabel="Picture" customClass="UIRoundImageView">
+                        <rect key="frame" x="10" y="25" width="50" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="50" id="2yH-Dj-rtH"/>
+                            <constraint firstAttribute="height" constant="50" id="QWa-E9-atJ"/>
+                        </constraints>
+                    </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qVV-1d-ASq" userLabel="Business member name">
+                        <rect key="frame" x="66" y="8" width="148" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="Rud-Yz-aHN"/>
+                            <constraint firstAttribute="width" constant="148" id="YYt-a6-s2m"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="15"/>
+                        <inset key="contentEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        <state key="normal" title="Button">
+                            <color key="titleColor" red="0.51764705879999995" green="0.5450980392" blue="0.58431372550000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aq7-9g-HJj" userLabel="Hairfies count">
+                        <rect key="frame" x="72" y="32" width="138" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="138" id="4UY-N0-My4"/>
+                            <constraint firstAttribute="height" constant="21" id="Glg-ye-Odm"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="14"/>
+                        <color key="textColor" red="0.51764705879999995" green="0.5450980392" blue="0.58431372550000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hUM-40-LOe" userLabel="Short separator">
+                        <rect key="frame" x="72" y="53" width="160" height="1"/>
+                        <color key="backgroundColor" red="0.92549019610000005" green="0.92549019610000005" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="1qo-9r-ZLa"/>
+                        </constraints>
+                    </view>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="picto-home.png" translatesAutoresizingMaskIntoConstraints="NO" id="ZXM-D7-hmg" userLabel="Picto">
+                        <rect key="frame" x="72" y="68" width="17" height="15"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="17" id="8Uw-Px-5Q7"/>
+                            <constraint firstAttribute="height" constant="15" id="tCQ-Kn-XlL"/>
+                        </constraints>
+                    </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uMh-mc-tTu" userLabel="Business name">
                         <rect key="frame" x="97" y="61" width="52" height="30"/>
                         <color key="backgroundColor" red="1" green="0.45882352941176469" blue="0.44313725490196076" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstAttribute="height" constant="30" id="1jc-dZ-hhL"/>
                             <constraint firstAttribute="width" constant="52" id="ncY-Hw-Cjp"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="15"/>
@@ -37,29 +83,42 @@
                             <action selector="goToBusiness:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Ous-cQ-OSl"/>
                         </connections>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qVV-1d-ASq">
-                        <rect key="frame" x="66" y="8" width="148" height="30"/>
-                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="15"/>
-                        <inset key="contentEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        <state key="normal" title="Button">
-                            <color key="titleColor" red="0.51764705879999995" green="0.5450980392" blue="0.58431372550000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                        </state>
-                    </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aq7-9g-HJj">
-                        <rect key="frame" x="72" y="32" width="138" height="21"/>
-                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="14"/>
-                        <color key="textColor" red="0.51764705879999995" green="0.5450980392" blue="0.58431372550000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hUM-40-LOe">
-                        <rect key="frame" x="72" y="53" width="160" height="1"/>
-                        <color key="backgroundColor" red="0.92549019610000005" green="0.92549019610000005" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rAw-dM-8Ku" userLabel="Bottom separator">
+                        <rect key="frame" x="10" y="99" width="310" height="1"/>
+                        <color key="backgroundColor" red="0.85490196080000003" green="0.85490196080000003" blue="0.85490196080000003" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="3EI-OI-nTb"/>
+                        </constraints>
                     </view>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="picto-home.png" translatesAutoresizingMaskIntoConstraints="NO" id="ZXM-D7-hmg">
-                        <rect key="frame" x="72" y="68" width="17" height="15"/>
-                    </imageView>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="WmI-8n-82J" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="2" id="5Fw-dt-yxm"/>
+                    <constraint firstItem="uMh-mc-tTu" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="53" id="95K-LA-L3Z"/>
+                    <constraint firstItem="aq7-9g-HJj" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="64" id="9fD-MA-oxH"/>
+                    <constraint firstItem="uMh-mc-tTu" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="89" id="9pv-J8-PdS"/>
+                    <constraint firstItem="hUM-40-LOe" firstAttribute="top" secondItem="aq7-9g-HJj" secondAttribute="bottom" id="CvF-x3-YG1"/>
+                    <constraint firstItem="aq7-9g-HJj" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="24" id="Czy-Fb-eqo"/>
+                    <constraint firstItem="rAw-dM-8Ku" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="2" id="DAH-Y4-PS3"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="qVV-1d-ASq" secondAttribute="trailing" constant="98" id="MU5-ZR-SMi"/>
+                    <constraint firstItem="qVV-1d-ASq" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="NTM-ZW-0FE"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="aq7-9g-HJj" secondAttribute="trailing" constant="102" id="UNV-2d-Dgs"/>
+                    <constraint firstItem="ZXM-D7-hmg" firstAttribute="top" secondItem="hUM-40-LOe" secondAttribute="bottom" constant="14" id="VBz-6Q-O1w"/>
+                    <constraint firstItem="hUM-40-LOe" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="64" id="Wm7-he-vV6"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="hUM-40-LOe" secondAttribute="trailing" constant="80" id="afA-fW-5RM"/>
+                    <constraint firstItem="ZXM-D7-hmg" firstAttribute="leading" secondItem="WmI-8n-82J" secondAttribute="trailing" constant="12" id="d8a-xh-qT1"/>
+                    <constraint firstAttribute="centerX" secondItem="rAw-dM-8Ku" secondAttribute="centerX" id="ek4-KO-HZh"/>
+                    <constraint firstItem="WmI-8n-82J" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="17" id="evo-dA-aPN"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="uMh-mc-tTu" secondAttribute="bottom" constant="0.5" id="f2o-RO-Y1v"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="rAw-dM-8Ku" secondAttribute="trailing" constant="-8" id="jkS-Fq-RS0"/>
+                    <constraint firstItem="qVV-1d-ASq" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="58" id="nh6-c5-hjm"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="WmI-8n-82J" secondAttribute="bottom" constant="17" id="r1p-hA-EKg"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="rAw-dM-8Ku" secondAttribute="bottom" constant="-8.5" id="sdM-iC-Ftq"/>
+                </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="ek4-KO-HZh"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
             <connections>
                 <outlet property="businessWidth" destination="ncY-Hw-Cjp" id="Sin-4k-8xq"/>

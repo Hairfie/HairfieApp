@@ -38,11 +38,9 @@
     appDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(segueToBusiness:) name:@"goToBusiness" object:nil];
-     
-    [self getFavoriteBusinessMembers];
     
-    [self.topView addBottomBorderWithHeight:1.0 andColor:[UIColor lightGrey]];
-    // Do any additional setup after loading the view.
+    
+    [self getFavoriteBusinessMembers];
 }
 
 -(void)segueToBusiness:(NSNotification*)notification
@@ -61,9 +59,6 @@
     };
     void (^loadSuccessBlock)(NSArray *) = ^(NSArray *result){
         favoriteBusinessMembers = result;
-        self.tableViewHeight.constant = favoriteBusinessMembers.count * 100;
-        if (self.tableViewHeight.constant > self.view.bounds.size.height - 64)
-            self.tableViewHeight.constant = self.view.bounds.size.height - 64;
         [self.tableView reloadData];
     };
 
@@ -71,12 +66,6 @@
                                                  withSuccess:loadSuccessBlock
                                                      failure:loadErrorBlock];
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -88,7 +77,7 @@
     }
     cell.indentationWidth = 0;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
+    
     BusinessMember *businessMember = [[favoriteBusinessMembers objectAtIndex:indexPath.row] businessMember];
 
     if ([businessMember.firstName length] > 0) {
