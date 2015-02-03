@@ -283,6 +283,39 @@
     return 110;
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 50;
+}
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 50)];
+    headerView.backgroundColor = [UIColor colorWithRed:236/255.0f green:236/255.0f blue:237/255.0f alpha:1];
+    [headerView addBottomBorderWithHeight:1 andColor:[UIColor lightGrey]];
+   
+    
+    UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(10, 0, headerView.frame.size.width, headerView.frame.size.height)];
+    
+    [button setTitle:NSLocalizedStringFromTable(@"Modify filters", @"Around_Me", nil) forState:UIControlStateNormal];
+    
+
+    [button.titleLabel setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:20]];
+   
+    [button setTitleColor:[UIColor colorWithRed:132/255.0f green:137/255.0f blue:149/255.0f alpha:1] forState:UIControlStateNormal];
+    
+    [button setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
+    
+    [button addTarget:self action:@selector(modifySearchFilters:) forControlEvents:UIControlEventTouchUpInside];
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(headerView.frame.size.width - 24, 19, 14, 12)];
+    imageView.image = [UIImage imageNamed:@"search-filters-icon.png"];
+    
+    [headerView addSubview:button];
+    [headerView addSubview:imageView];
+    
+    return headerView;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"similarCell";
