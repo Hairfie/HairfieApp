@@ -13,7 +13,7 @@
 
 //@class PopUpViewController;
 
-@interface HomeViewController : GAITrackedViewController <UINavigationControllerDelegate, UIScrollViewDelegate, UIImagePickerControllerDelegate, AKPickerViewDelegate, AKPickerViewDataSource, UIPageViewControllerDataSource>
+@interface HomeViewController : GAITrackedViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, AKPickerViewDelegate, AKPickerViewDataSource, UIPageViewControllerDataSource>
 
 @property (nonatomic) IBOutlet UILabel *AroundMeLabel;
 @property (nonatomic) IBOutlet UIView *topView;

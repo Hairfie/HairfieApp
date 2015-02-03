@@ -70,7 +70,7 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated {
-    
+    [self.contentCollection reloadData];
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath

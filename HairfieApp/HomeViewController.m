@@ -377,14 +377,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-
-
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    //NSArray *indexPaths = [_hairfieCollection indexPathsForVisibleItems];
-    //NSLog(@"indexPaths scroll %@", indexPaths);
-}
-
-
 -(void) prepareUserNotLogged {
     self.menuButton.hidden = YES;
     UIImage *loginButtonImg = [UIImage imageNamed:@"login-user.png"];
