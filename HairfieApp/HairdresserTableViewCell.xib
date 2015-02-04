@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="SourceSansPro-Light.ttf">
@@ -19,18 +20,28 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="CDJ-77-Glj">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="CDJ-77-Glj">
                         <rect key="frame" x="14" y="11" width="249" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="diL-bA-Pn3"/>
+                        </constraints>
                         <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="17"/>
                         <color key="textColor" red="0.44294084820000001" green="0.44294084820000001" blue="0.44294084820000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xqc-Cv-pp5">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xqc-Cv-pp5">
                         <rect key="frame" x="0.0" y="44" width="320" height="1"/>
                         <color key="backgroundColor" red="0.92549019607843142" green="0.92549019607843142" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="kRK-UJ-JeA"/>
+                        </constraints>
                     </view>
-                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n1g-0f-npq">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n1g-0f-npq">
                         <rect key="frame" x="272" y="3" width="40" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="pe6-ao-EiD"/>
+                            <constraint firstAttribute="width" constant="40" id="wrB-2O-gDt"/>
+                        </constraints>
                         <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                         <state key="normal" title="Button" image="cancel.png">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -40,6 +51,18 @@
                         </connections>
                     </button>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="n1g-0f-npq" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-5" id="01W-Aw-py1"/>
+                    <constraint firstItem="n1g-0f-npq" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="3GC-fT-Htm"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Xqc-Cv-pp5" secondAttribute="trailing" constant="-8" id="4lt-60-kRW"/>
+                    <constraint firstItem="CDJ-77-Glj" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="3" id="9KE-2T-L8w"/>
+                    <constraint firstAttribute="centerX" secondItem="Xqc-Cv-pp5" secondAttribute="centerX" id="BnV-C2-WeD"/>
+                    <constraint firstItem="CDJ-77-Glj" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="6" id="CAR-dv-hAT"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="CDJ-77-Glj" secondAttribute="bottom" constant="4.5" id="HjL-V9-yIz"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="Xqc-Cv-pp5" secondAttribute="bottom" constant="-8.5" id="Qtj-V1-wwn"/>
+                    <constraint firstItem="Xqc-Cv-pp5" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-8" id="RVO-kf-CSy"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="n1g-0f-npq" secondAttribute="bottom" constant="-6.5" id="mGn-eB-yM5"/>
+                </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="clearButton" destination="n1g-0f-npq" id="jQC-hd-AKS"/>

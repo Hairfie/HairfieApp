@@ -145,7 +145,8 @@
         for (int i = 0; i < [pictures count]; i++) {
             Picture *pic = [pictures objectAtIndex:i];
             CGRect frame;
-            frame.origin.x = 320 + _imageSliderView.frame.size.width * i;
+            frame.origin.x = self.view.frame.size.width + self.view.frame.size.width * i;
+            
             frame.origin.y = 0;
             frame.size = _imageSliderView.frame.size;
             UIImageView *imageView = [[UIImageView alloc] initWithFrame:frame];
