@@ -41,7 +41,7 @@
     self.businessMemberPicture.contentMode = UIViewContentModeScaleAspectFill;
     if (isDefault == NO) {
         
-        [self.businessMemberPicture sd_setImageWithURL:[entity pictureUrlWithWidth:@60 height:@60]
+        [self.businessMemberPicture sd_setImageWithURL:[entity pictureUrlWithWidth:@120 height:@120]
                                  placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
         
     }

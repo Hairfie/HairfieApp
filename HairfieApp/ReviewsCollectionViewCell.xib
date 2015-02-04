@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
@@ -23,15 +23,18 @@
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="138"/>
                 <subviews>
-                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WFa-1H-40A" userLabel="Separator">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WFa-1H-40A" userLabel="bottom separator">
                         <rect key="frame" x="20" y="137" width="300" height="1"/>
                         <color key="backgroundColor" red="0.92549019610000005" green="0.92549019610000005" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="ynb-Pb-LiU"/>
+                        </constraints>
                     </view>
-                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rtf-Oa-m4Z" customClass="RatingView">
+                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rtf-Oa-m4Z" userLabel="review score" customClass="RatingView">
                         <rect key="frame" x="64" y="58" width="90" height="30"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="242" translatesAutoresizingMaskIntoConstraints="NO" id="NLp-0q-LgR">
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="242" translatesAutoresizingMaskIntoConstraints="NO" id="NLp-0q-LgR" userLabel="review content">
                         <rect key="frame" x="64" y="75" width="242" height="51"/>
                         <string key="text">Lorem ipsum dolor sitnesciunt. Neque porro 
 quisquam est, qui dolorem ipsum quia dolor sit 
@@ -40,19 +43,19 @@ amet :) </string>
                         <color key="textColor" red="0.48627450979999998" green="0.50588235290000005" blue="0.52549019610000003" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Caroline.F" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sw6-Hj-KL1">
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Caroline.F" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sw6-Hj-KL1" userLabel="name">
                         <rect key="frame" x="62" y="10" width="226" height="25"/>
                         <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="18"/>
                         <color key="textColor" red="0.40392156862745099" green="0.43529411764705883" blue="0.45490196078431372" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rXc-rh-ZdX">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rXc-rh-ZdX" userLabel="business name">
                         <rect key="frame" x="87" y="38" width="156" height="21"/>
                         <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="14"/>
                         <color key="textColor" red="0.40784313725490196" green="0.42745098039215684" blue="0.44313725490196076" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" image="picto-home.png" translatesAutoresizingMaskIntoConstraints="NO" id="ueJ-rA-1Qj">
+                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" image="picto-home.png" translatesAutoresizingMaskIntoConstraints="NO" id="ueJ-rA-1Qj" userLabel="picto">
                         <rect key="frame" x="62" y="39" width="17" height="15"/>
                     </imageView>
                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C7h-px-ZBs">
@@ -64,12 +67,24 @@ amet :) </string>
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                     </button>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="nav-disclosure.png" translatesAutoresizingMaskIntoConstraints="NO" id="XWf-yn-SsZ">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nav-disclosure.png" translatesAutoresizingMaskIntoConstraints="NO" id="XWf-yn-SsZ" userLabel="disclosure">
                         <rect key="frame" x="304" y="62" width="8" height="13"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="13" id="5NF-EG-MSH"/>
+                            <constraint firstAttribute="width" constant="8" id="8hm-lV-oiz"/>
+                        </constraints>
                     </imageView>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="WFa-1H-40A" secondAttribute="bottom" id="0Gd-Ai-XbA"/>
+                <constraint firstAttribute="trailing" secondItem="WFa-1H-40A" secondAttribute="trailing" id="JG7-Cg-X7n"/>
+                <constraint firstAttribute="bottom" secondItem="XWf-yn-SsZ" secondAttribute="bottom" constant="63" id="UpA-GV-VYF"/>
+                <constraint firstItem="WFa-1H-40A" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="20" id="bEk-34-VwP"/>
+                <constraint firstItem="XWf-yn-SsZ" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="62" id="t6K-ad-WvR"/>
+                <constraint firstAttribute="trailing" secondItem="XWf-yn-SsZ" secondAttribute="trailing" constant="8" id="tTc-YS-IJq"/>
+            </constraints>
             <size key="customSize" width="324" height="117"/>
             <connections>
                 <outlet property="businessDetailBttn" destination="C7h-px-ZBs" id="87y-WR-4lU"/>

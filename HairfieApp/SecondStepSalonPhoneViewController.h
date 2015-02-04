@@ -13,8 +13,8 @@
 
 @property (nonatomic) IBOutlet UIButton *doneBttn;;
 @property (nonatomic) IBOutlet UILabel *headerLabel;
-@property (nonatomic)  IBOutlet UITextField *textField;
-@property (weak, nonatomic) IBOutlet UIView *topBarView;
+@property (nonatomic) IBOutlet UITextField *textField;
+@property (weak,nonatomic) IBOutlet UIView *topBarView;
 
 @property (nonatomic) NSString *headerTitle;
 @property (nonatomic) NSString *textFieldPlaceHolder;

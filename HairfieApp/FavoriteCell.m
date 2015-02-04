@@ -9,10 +9,12 @@
 #import "FavoriteCell.h"
 #import "Business.h"
 
+
+#define DEFAULT_PICTURE_URL_BG @"default-user-picture-bg.png"
+
 @implementation FavoriteCell
 {
     Business *business;
-    UIImageView *businessMemberPicture;
 }
 
 -(void)setBusinessMember:(BusinessMember *)businessMember
@@ -30,13 +32,42 @@
     self.businessWidth.constant = textSize.width + 20;
     
     [self.hairdresserHairfies setText:[NSString stringWithFormat:@"%@ hairfies", businessMember.numHairfies]];
+    
+    if (businessMember.picture != nil){
+        [self setPictureData:businessMember isDefault:NO];
+    }
+    else if (businessMember.user.picture != nil){
+        [self setPictureData:businessMember.user isDefault:NO];
+    }
+    else {
+        [self setPictureData:nil isDefault:YES];
+        
+    }
+
 }
 
+-(void)setPictureData:(id)entity
+            isDefault:(BOOL)isDefault
+{
+    self.hairdresserPicture.contentMode = UIViewContentModeScaleAspectFill;
+    if (isDefault == NO) {
+        
+        [self.hairdresserPicture sd_setImageWithURL:[entity pictureUrlWithWidth:@100 height:@100]
+                                      placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
+        
+    }
+    else {
+        [self.hairdresserPicture setImage:[UIImage imageNamed:DEFAULT_PICTURE_URL_BG]];
+        
+    }
+}
 -(IBAction)goToBusiness:(id)sender
 {
     NSDictionary *notificationDic = @{@"businessId":self.businessMember.business.id};
     NSNotificationCenter* nc = [NSNotificationCenter defaultCenter];
     [nc postNotificationName:@"goToBusiness" object:self userInfo:notificationDic];
 }
+
+
 
 @end

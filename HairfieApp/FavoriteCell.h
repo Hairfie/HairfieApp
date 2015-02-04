@@ -15,6 +15,7 @@
 @property (nonatomic) IBOutlet UIButton *hairdresserName;
 @property (nonatomic) IBOutlet UIButton *hairdresserBusiness;
 @property (nonatomic) IBOutlet UILabel *hairdresserHairfies;
+@property (nonatomic) IBOutlet UIRoundImageView *hairdresserPicture;
 
 @property (nonatomic) IBOutlet NSLayoutConstraint *businessWidth;
 

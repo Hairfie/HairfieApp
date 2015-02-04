@@ -35,7 +35,6 @@
     _salonBttn.layer.borderColor = [UIColor lightGreyHairfie].CGColor;
     _salonBttn.layer.borderWidth = 1;
     
-    [self.topBarView addBottomBorderWithHeight:1 andColor:[UIColor lightGrey]];
     man = YES;
     woman = YES;
     kids = YES;
@@ -169,8 +168,9 @@
     }
     else
     {
-        UIAlertView *errorAlert = [[UIAlertView alloc]initWithTitle:NSLocalizedStringFromTable(@"Warning", @"Claim", nil) message:NSLocalizedStringFromTable(@"Please fill in your business' name and phone number", @"Claim", nil)delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-        [errorAlert show];
+//        UIAlertView *errorAlert = [[UIAlertView alloc]initWithTitle:NSLocalizedStringFromTable(@"Warning", @"Claim", nil) message:NSLocalizedStringFromTable(@"Please fill in your business' name and phone number", @"Claim", nil)delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+//        [errorAlert show];
+         [self performSegueWithIdentifier:@"claimBusinessLocation" sender:self];
     }
 
 }

@@ -42,6 +42,7 @@
     NSInteger hairfieRow;
     BOOL uploadInProgress;
     Business *businessPicked;
+    BOOL isSetup;
 }
 
 - (void)viewDidLoad {
@@ -270,8 +271,8 @@
     [userHeader setUser:self.user];
    
     
-    [userHeader setupView];
-
+        [userHeader setupView];
+    
     
     headerView = userHeader;
     
@@ -286,14 +287,14 @@
 {
     if (isHairfiesTab == YES) {
         if (indexPath.row < userHairfies.count) {
-            return CGSizeMake(145, 210);
+            return CGSizeMake((collectionView.frame.size.width - 30) / 2, 210);
         } else {
             
-            return CGSizeMake(300, 58);
+            return CGSizeMake(collectionView.frame.size.width - 20, 58);
         }
     }
     else
-        return CGSizeMake(320, 138);
+        return CGSizeMake(collectionView.frame.size.width, 138);
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -378,7 +379,7 @@
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
 {
-    return CGSizeMake(320, 324);
+    return CGSizeMake(collectionView.frame.size.width, 324);
 }
 
 

@@ -11,8 +11,6 @@
 @interface ClaimBusinessWebViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UILabel *headerTitleLabel;
-@property (weak, nonatomic) IBOutlet UIView *topBarView;
-@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 @property (weak, nonatomic) IBOutlet UIButton *claimBttn;
 

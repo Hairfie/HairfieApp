@@ -20,19 +20,11 @@
     BOOL isSetup;
     NSURL *savedUrl;
 }
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
-
 
 -(void)setupView {
     
     [self setupData];
-    [self setupHeaderPictures];
+    
    
 
     if (!isSetup) {
@@ -42,15 +34,14 @@
             self.editPictureBttn.hidden = YES;
         
         UIView *bottomBorder =  [[UIView alloc] init];
-        [bottomBorder setFrame:CGRectMake(0, self.hairfieBttn.frame.size.height, self.hairfieBttn.frame.size.width - 1, 3)];
+        [bottomBorder setFrame:CGRectMake(0, self.hairfieBttn.frame.size.height, self.hairfieBttn.frame.size.width, 3)];
         bottomBorder.tag = 1;
         bottomBorder.backgroundColor = [UIColor salonDetailTab];
         [self.hairfieBttn addSubview:bottomBorder];
         [self.hairfieBttn setBackgroundColor:[UIColor lightBlackTab]];
         isSetup = YES;
-        
+        [self setupHeaderPictures];
     }
-
 
 }
 
@@ -116,7 +107,7 @@
     if (aButton == self.hairfieBttn) {
        
         [aButton setBackgroundColor:[UIColor lightBlackTab]];
-        [bottomBorder setFrame:CGRectMake(0, aButton.frame.size.height, aButton.frame.size.width - 1, 3)];
+        [bottomBorder setFrame:CGRectMake(0, aButton.frame.size.height, aButton.frame.size.width, 3)];
         [self.reviewBttn setBackgroundColor:[UIColor clearColor]];
          [[NSNotificationCenter defaultCenter] postNotificationName:@"hairfiesTab" object:self];
         
@@ -125,7 +116,7 @@
     {
         [aButton setBackgroundColor:[UIColor lightBlackTab]];
         [self.hairfieBttn setBackgroundColor:[UIColor clearColor]];
-        [bottomBorder setFrame:CGRectMake(1, aButton.frame.size.height, aButton.frame.size.width, 3)];
+        [bottomBorder setFrame:CGRectMake(0, aButton.frame.size.height, aButton.frame.size.width, 3)];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"reviewsTab" object:self];
       
     }

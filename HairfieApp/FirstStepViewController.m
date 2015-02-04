@@ -35,7 +35,6 @@
     _homeBttn.layer.borderColor = [UIColor lightGreyHairfie].CGColor;
     _homeBttn.layer.borderWidth = 1;
     
-    [self.topBarView addBottomBorderWithHeight:1 andColor:[UIColor lightGrey]];
     // Do any additional setup after loading the view.
 }
 

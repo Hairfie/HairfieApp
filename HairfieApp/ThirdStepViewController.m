@@ -47,8 +47,6 @@
     
 
     
-    
-    [self.topBarView addBottomBorderWithHeight:1 andColor:[UIColor lightGrey]];
     isClaimed = NO;
     UIView *addressPadding = [[UIView alloc] initWithFrame:CGRectMake(0, 0,20, 46)];
     UIView *postalPadding = [[UIView alloc] initWithFrame:CGRectMake(0, 0,20, 46)];

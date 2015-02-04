@@ -17,7 +17,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.topBarView addBottomBorderWithHeight:1 andColor:[UIColor lightGrey]];
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"Claim" ofType:@"html"]]];
     [self.webView loadRequest:urlRequest];
     self.claimBttn.layer.cornerRadius = 5;
