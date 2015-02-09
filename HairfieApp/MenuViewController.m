@@ -297,15 +297,28 @@
     }
     if (indexPath.section == 2)
     {
+        if (indexPath.row == 0) {
         cell.selectionIndicator.hidden = YES;
          cell.backgroundColor = [UIColor whiteColor];
         [cell.menuPicto setImage:[UIImage imageNamed:@"picto-logout.png"]];
         cell.menuItem.text = NSLocalizedStringFromTable(@"Log out", @"Menu", nil);
         cell.menuPicto.layer.borderColor = [UIColor clearColor].CGColor;
         cell.indentationWidth = 0;
+        }
+        else if (indexPath.row == 1)
+        {
+            cell.selectionIndicator.hidden = YES;
+            cell.backgroundColor = [UIColor whiteColor];
+            [cell.menuPicto setImage:[UIImage imageNamed:@"picto-hairfie.png"]];
+            cell.menuItem.text = HAIRFIE_VERSION;
+            cell.menuPicto.layer.borderColor = [UIColor clearColor].CGColor;
+            cell.indentationWidth = 0;
+            cell.userInteractionEnabled = NO;
+
+        }
     }
     if (indexPath.section == 0) {
-         cell.backgroundColor = [UIColor whiteColor];
+        cell.backgroundColor = [UIColor whiteColor];
         cell.menuPicto.layer.borderColor = [UIColor clearColor].CGColor;
         cell.menuPicto.layer.cornerRadius = 0;
         cell.menuPicto.clipsToBounds = NO;
@@ -327,7 +340,7 @@
     if (section == 1)
         return 1 + [managedBusinesses count];
     else
-        return 1;
+        return 2;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -360,43 +373,39 @@
 -(void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     MenuTableViewCell *cell = (MenuTableViewCell*)[tableView cellForRowAtIndexPath:indexPath];
-    
-    
+
     cell.selectionIndicator.hidden = NO;
-    if (indexPath.section == 0)
-    {
-        if (indexPath.row == 0)
-        {
-            
-           
-           [self performSegueWithIdentifier:@"HomeSegue" sender:self];
-        }
-        if (indexPath.row == 1)
-        {
+    
+    if (indexPath.section == 0) {
+        if (indexPath.row == 0) {
+            [self performSegueWithIdentifier:@"HomeSegue" sender:self];
+        } if (indexPath.row == 1) {
             [self deselectHomeCell:tableView];
             [self performSegueWithIdentifier:@"LikeSegue" sender:self];
-        }
-        if (indexPath.row == 2)
-        {  [self deselectHomeCell:tableView];
+        } if (indexPath.row == 2) {
+            cell.selectionIndicator.hidden = NO;
+            [self deselectHomeCell:tableView];
             [self performSegueWithIdentifier:@"FavoriteSegue" sender:self];
         }
     }
-    if (indexPath.section == 1)
-    {
-        if (indexPath.row == 0)
+    if (indexPath.section == 1) {
+        if (indexPath.row == 0) {
+            cell.selectionIndicator.hidden = NO;
             [self deselectHomeCell:tableView];
-        [self performSegueWithIdentifier:@"BusinessSegue" sender:self];
-        
-        if (indexPath.row <= [managedBusinesses count] && indexPath.row > 0)
-        {
+            [self performSegueWithIdentifier:@"BusinessSegue" sender:self];
+        } if (indexPath.row <= [managedBusinesses count] && indexPath.row > 0) {
+            cell.selectionIndicator.hidden = NO;
             [self deselectHomeCell:tableView];
             businessToManage = [managedBusinesses objectAtIndex:indexPath.row - 1];
             [self performSegueWithIdentifier:@"ManageBusiness" sender:self];
         }
     }
     if (indexPath.section == 2) {
-        [self logOut];
-        [self deselectHomeCell:tableView];
+        if (indexPath.row == 0) {
+            cell.selectionIndicator.hidden = NO;
+            [self logOut];
+            [self deselectHomeCell:tableView];
+        }
     }
 }
 
@@ -408,8 +417,8 @@
 
 -(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-     MenuTableViewCell *cell = (MenuTableViewCell*)[tableView cellForRowAtIndexPath:indexPath];
-   cell.selectionIndicator.hidden = YES;
+    MenuTableViewCell *cell = (MenuTableViewCell*)[tableView cellForRowAtIndexPath:indexPath];
+    cell.selectionIndicator.hidden = YES;
 }
 
 -(void)logOut
