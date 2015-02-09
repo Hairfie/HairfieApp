@@ -10,7 +10,7 @@
 
 @implementation UITextField (Style)
 
--(void)textFieldWithPhoneKeyboard {
+-(void)textFieldWithPhoneKeyboard:(CGFloat)leftPadding {
     self.keyboardType = UIKeyboardTypePhonePad;
     
     UIToolbar* keyboardDoneButtonView = [[UIToolbar alloc] init];
@@ -26,7 +26,7 @@
     
     doneButton.tintColor = [UIColor whiteColor];
     UIBarButtonItem *fixedSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    fixedSpace.width = 117;
+    fixedSpace.width = leftPadding;
     
     [keyboardDoneButtonView setItems:[NSArray arrayWithObjects:fixedSpace,doneButton, nil]];
     self.inputAccessoryView = keyboardDoneButtonView;

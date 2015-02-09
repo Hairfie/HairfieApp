@@ -30,7 +30,7 @@
     _priceValueView.layer.cornerRadius = 5;
     _priceValueView.layer.borderColor = [UIColor lightGreyHairfie].CGColor;
     _priceValueView.layer.borderWidth = 1;
-    [_priceValue textFieldWithPhoneKeyboard];
+    [_priceValue textFieldWithPhoneKeyboard:(self.view.frame.size.width / 2 - 50)];
     _doneBttn.layer.cornerRadius = 5;
     _doneBttn.layer.masksToBounds = YES;
     // Do any additional setup after loading the view.

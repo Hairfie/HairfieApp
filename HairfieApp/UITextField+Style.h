@@ -10,6 +10,7 @@
 
 @interface UITextField (Style)
 
--(void) textFieldWithPhoneKeyboard;
+//-(void) textFieldWithPhoneKeyboard;
+-(void) textFieldWithPhoneKeyboard:(CGFloat)fixedSpace;
 
 @end

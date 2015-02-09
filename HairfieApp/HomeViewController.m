@@ -305,11 +305,17 @@
     if ([pickerItemSelected isEqualToString:NSLocalizedStringFromTable(@"Book",@"Feed",nil)]) {
         self.takeHairfieBttn.hidden = YES;
         [self.pageViewController setViewControllers:categoryContent direction:UIPageViewControllerNavigationDirectionReverse animated:YES completion:nil];
-
+         NSLog(@"view controllers %@", self.pageViewController.viewControllers);
+        
     } else if ([pickerItemSelected isEqualToString:NSLocalizedStringFromTable(@"Hairfies",@"Feed",nil)]){
         self.takeHairfieBttn.hidden = NO;
         [self.pageViewController setViewControllers:hairfieContent direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
+        
+        NSLog(@"vieW controllers %@", self.pageViewController.viewControllers);
+    
     }
+     NSLog(@"View controllers %@", self.pageViewController.viewControllers);
+    
 }
 
 -(void)showNoNetwork:(NSNotification*)notification

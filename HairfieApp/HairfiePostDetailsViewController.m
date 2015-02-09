@@ -81,9 +81,9 @@
 
     salonTypes = [[NSMutableArray alloc] initWithObjects:NSLocalizedStringFromTable(@"I did it", @"Post_Hairfie", nil), NSLocalizedStringFromTable(@"Hairdresser in a Salon", @"Post_Hairfie", nil), nil];
 
-    [self.priceTextField textFieldWithPhoneKeyboard];
+    [self.priceTextField textFieldWithPhoneKeyboard:(self.view.frame.size.width / 2 - 50)];
     [self.topView addBottomBorderWithHeight:1 andColor:[UIColor lightGrey]];
-
+    
     [self uploadHairfiePictures];
 }
 

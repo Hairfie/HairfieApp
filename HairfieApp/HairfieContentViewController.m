@@ -20,8 +20,6 @@
 @end
 
 @implementation HairfieContentViewController {
-    NSArray *categoriesNames;
-    NSArray *categoriesImages;
     NSNumber *currentPage;
     NSMutableArray *hairfies;
     UIRefreshControl *refreshControl;
@@ -61,6 +59,7 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
+   
     NSDictionary* dict = [NSDictionary dictionaryWithObject:NSLocalizedStringFromTable(@"Hairfies",@"Feed",nil)
                                                      forKey:@"menuItem"];
 
@@ -133,7 +132,7 @@
         cell = [nib objectAtIndex:0];
     }
     
-    if(endOfScroll) {
+    if(endOfScroll == YES) {
         [cell showEndOfScroll];
     }
     
@@ -187,7 +186,6 @@
         }
         [self customReloadData];
     };
-    NSLog(@"Get Hairfies for page : %@", page);
     
     if(!endOfScroll) {
         [Hairfie listLatestPerPage:page

@@ -33,7 +33,7 @@
       title = [NSArray arrayWithObjects:NSLocalizedStringFromTable(@"Woman", @"Login_Sign_Up", nil), NSLocalizedStringFromTable(@"Man", @"Login_Sign_Up", nil), nil];
     
     _titleView.hidden = YES;
-    [_phoneField textFieldWithPhoneKeyboard];
+    [_phoneField textFieldWithPhoneKeyboard:(self.view.frame.size.width / 2 - 50)];
     
     if ([delegate.currentUser.gender isEqualToString:GENDER_MALE])
     {

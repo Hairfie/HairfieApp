@@ -42,7 +42,7 @@
     _phoneNumberView.layer.borderColor = [UIColor lightGreyHairfie].CGColor;
     _phoneNumberView.layer.borderWidth = 1;
 
-    [_phoneNumberField textFieldWithPhoneKeyboard];
+    [_phoneNumberField textFieldWithPhoneKeyboard:(self.view.frame.size.width / 2 - 50)];
     
     _doneBttn.layer.cornerRadius = 5;
     _doneBttn.layer.masksToBounds = YES;

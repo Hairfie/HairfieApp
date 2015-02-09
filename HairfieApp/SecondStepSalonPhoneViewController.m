@@ -37,7 +37,7 @@
         textField.text = textFieldFromSegue;
     }
     if (_isSalon == NO) {
-        [textField textFieldWithPhoneKeyboard];
+        [textField textFieldWithPhoneKeyboard:(self.view.frame.size.width / 2 - 50)];
     }
 
     textField.layer.cornerRadius = 5;
