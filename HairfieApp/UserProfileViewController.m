@@ -259,7 +259,7 @@
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
     if (isHairfiesTab)
         return UIEdgeInsetsMake(10 , 10, 0, 10);
-    return UIEdgeInsetsMake(0 , 0, 0, 0);
+    return UIEdgeInsetsMake(10 , 10, 0, 10);
 }
 
 -(UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath

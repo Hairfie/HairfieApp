@@ -93,7 +93,7 @@
     self.navigationItem.title = [NSString stringWithFormat:NSLocalizedStringFromTable(@"Home", @"Feed", nil)];
     
     refreshControl = [[UIRefreshControl alloc] init];
-
+     self.takeHairfieBttn.hidden = YES;
     if([delegate.credentialStore isLoggedIn]) {
         
        [self.view addGestureRecognizer:self.slidingViewController.panGesture];
