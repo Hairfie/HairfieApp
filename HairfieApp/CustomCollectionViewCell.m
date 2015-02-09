@@ -87,6 +87,8 @@
     self.likes.hidden = YES;
     self.priceView.hidden = YES;
     self.priceLabel.hidden = YES;
+    self.profilePicture.image = nil;
+    self.secondHairfieView.hidden = YES;
     self.profilePicture = [[UIRoundImageView alloc] initWithFrame:CGRectMake(10, 170, 30, 30)];
     self.profilePicture.layer.borderWidth = 1.0f;
     self.profilePicture.layer.borderColor = [UIColor whiteColor].CGColor;
