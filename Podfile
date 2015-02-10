@@ -28,7 +28,6 @@ end
 
 target "HairfieAppTests" do
   pod 'SDWebImage', '~> 3.6'
-  pod 'CPPickerView', '~> 1.2.0'
   pod 'SSKeychain'
   pod 'ECSlidingViewController', '~> 2.0.3'
   pod 'libPhoneNumber-iOS', '~> 0.7'
