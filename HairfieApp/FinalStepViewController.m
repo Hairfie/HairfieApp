@@ -313,12 +313,12 @@
 
 -(IBAction)modifyPhoneNumber:(id)sender
 {
-    [self performSegueWithIdentifier:@"claimPhone" sender:self];
+    [self performSegueWithIdentifier:@"modifyClaimPhone" sender:self];
 }
 
 -(IBAction)modifyName:(id)sender
 {
-    [self performSegueWithIdentifier:@"claimSalon" sender:self];
+    [self performSegueWithIdentifier:@"modifyClaimSalon" sender:self];
 }
 
 -(IBAction)modifyAddress:(id)sender
@@ -505,7 +505,7 @@
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     
-    if ([segue.identifier isEqualToString:@"claimSalon"])
+    if ([segue.identifier isEqualToString:@"modifyClaimSalon"])
     {
         
         SecondStepSalonPhoneViewController *salon = [segue destinationViewController];
@@ -520,7 +520,7 @@
         
     }
     
-    if ([segue.identifier isEqualToString:@"claimPhone"])
+    if ([segue.identifier isEqualToString:@"modifyClaimPhone"])
     {
         
         SecondStepSalonPhoneViewController *phone = [segue destinationViewController];

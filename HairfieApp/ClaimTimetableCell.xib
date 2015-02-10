@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="SourceSansPro-Light.ttf">
@@ -18,23 +19,35 @@
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kdg-3g-Jae" id="dz6-eg-5yS">
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6ur-cJ-uJO">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6ur-cJ-uJO">
                         <rect key="frame" x="10" y="5" width="300" height="51"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Wednesday" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6E9-uU-Tqt">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wednesday" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6E9-uU-Tqt">
                                 <rect key="frame" x="8" y="15" width="95" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="hAc-Xl-2Sn"/>
+                                    <constraint firstAttribute="width" constant="95" id="hjJ-zs-knx"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="17"/>
                                 <color key="textColor" red="0.44294084820000001" green="0.44294084820000001" blue="0.44294084820000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r6d-Sj-be7">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r6d-Sj-be7">
                                 <rect key="frame" x="111" y="15" width="129" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="129" id="9PM-Zy-baZ"/>
+                                    <constraint firstAttribute="height" constant="21" id="Bd3-k9-q6X"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="15"/>
                                 <color key="textColor" red="0.44294084820000001" green="0.44294084820000001" blue="0.44294084820000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LVO-nJ-BuX">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LVO-nJ-BuX">
                                 <rect key="frame" x="260" y="6" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="Otg-qi-tZK"/>
+                                    <constraint firstAttribute="height" constant="40" id="bBV-cj-5ve"/>
+                                </constraints>
                                 <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                 <state key="normal" title="Button" image="cancel.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -45,8 +58,31 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="6E9-uU-Tqt" firstAttribute="top" secondItem="6ur-cJ-uJO" secondAttribute="top" constant="15" id="5lo-8X-qUw"/>
+                            <constraint firstItem="r6d-Sj-be7" firstAttribute="top" secondItem="6ur-cJ-uJO" secondAttribute="top" constant="15" id="B7x-gv-bk0"/>
+                            <constraint firstAttribute="bottom" secondItem="6E9-uU-Tqt" secondAttribute="bottom" constant="15" id="DX6-Vt-gaQ"/>
+                            <constraint firstItem="6E9-uU-Tqt" firstAttribute="leading" secondItem="6ur-cJ-uJO" secondAttribute="leading" constant="8" id="Hcc-o3-S8V"/>
+                            <constraint firstItem="LVO-nJ-BuX" firstAttribute="leading" secondItem="r6d-Sj-be7" secondAttribute="trailing" constant="20" id="OXD-YA-bG1"/>
+                            <constraint firstItem="r6d-Sj-be7" firstAttribute="leading" secondItem="6E9-uU-Tqt" secondAttribute="trailing" constant="8" id="Qq7-oM-yqy"/>
+                            <constraint firstAttribute="bottom" secondItem="LVO-nJ-BuX" secondAttribute="bottom" constant="5" id="S0E-GK-zCT"/>
+                            <constraint firstAttribute="trailing" secondItem="LVO-nJ-BuX" secondAttribute="trailing" id="V09-Ab-gLh"/>
+                            <constraint firstAttribute="bottom" secondItem="6E9-uU-Tqt" secondAttribute="bottom" constant="15" id="bRR-Zy-Pj7"/>
+                            <constraint firstAttribute="bottom" secondItem="r6d-Sj-be7" secondAttribute="bottom" constant="15" id="caF-Rm-Zeb"/>
+                            <constraint firstItem="LVO-nJ-BuX" firstAttribute="top" secondItem="6ur-cJ-uJO" secondAttribute="top" constant="6" id="dTL-ff-3qi"/>
+                            <constraint firstAttribute="centerY" secondItem="6E9-uU-Tqt" secondAttribute="centerY" id="k1K-zr-1Td"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="DX6-Vt-gaQ"/>
+                            </mask>
+                        </variation>
                     </view>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="6ur-cJ-uJO" firstAttribute="centerY" secondItem="dz6-eg-5yS" secondAttribute="centerY" id="kIn-hL-FOs"/>
+                    <constraint firstItem="6ur-cJ-uJO" firstAttribute="centerX" secondItem="dz6-eg-5yS" secondAttribute="centerX" id="tWm-27-MvL"/>
+                </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="containerView" destination="6ur-cJ-uJO" id="lTC-H6-2XN"/>
