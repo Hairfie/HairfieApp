@@ -68,6 +68,7 @@
     }
 }
 
+
 -(void)viewWillDisappear:(BOOL)animated {
     if (isCancelling == NO) {
     if (self.isModifyingSearch == NO)
