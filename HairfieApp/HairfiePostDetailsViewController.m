@@ -74,8 +74,16 @@
     
     self.isSalon = NO;
     self.isHairdresser = NO;
-    self.emailSubview.hidden = YES;
-    
+    self.emailSubview.layer.borderColor = [UIColor lightGreyHairfie].CGColor;
+    self.emailSubview.layer.borderWidth = 1;
+    self.emailSubview.layer.cornerRadius = 2.5;
+    self.emailSubview.layer.masksToBounds = YES;
+
+    self.priceSubview.layer.borderColor = [UIColor lightGreyHairfie].CGColor;
+    self.priceSubview.layer.borderWidth = 1;
+    self.priceSubview.layer.cornerRadius = 2.5;
+    self.priceSubview.layer.masksToBounds = YES;
+
     self.tagsButton.layer.cornerRadius = 5;
     self.tagsButton.layer.masksToBounds = YES;
 
