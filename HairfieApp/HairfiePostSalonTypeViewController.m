@@ -37,7 +37,6 @@
                                                object:nil];
     
     delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    _searchAroundMeImage.image = [_searchAroundMeImage.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     _searchByLocation.text = NSLocalizedStringFromTable(@"Around Me", @"Post_Hairfie", nil);
     _searchBttn.layer.cornerRadius = 5;
     _searchBttn.layer.masksToBounds = YES;
@@ -50,23 +49,6 @@
 -(IBAction)goBack:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
-}
-
--(IBAction)searchAroundMe:(id)sender
-{
-    [_searchByLocation resignFirstResponder];
-    _searchByLocation.text = NSLocalizedStringFromTable(@"Around Me", @"Post_Hairfie", nil);
-    _searchAroundMeImage.tintColor = [UIColor lightBlueHairfie];
-    
-}
-
--(void)textFieldDidBeginEditing:(UITextField *)textField
-{
-    if (textField == _searchByLocation)
-    {
-        _searchAroundMe.enabled = YES;
-        _searchAroundMeImage.tintColor = [UIColor lightGrayColor];
-    }
 }
 
 
