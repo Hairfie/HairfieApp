@@ -18,7 +18,8 @@
 
 -(NSString*)formatPhoneNumber:(NSString*)phoneNumber
 {
-    NBPhoneNumberUtil *phoneUtil = [NBPhoneNumberUtil sharedInstance];
+    NBPhoneNumberUtil *phoneUtil = [[NBPhoneNumberUtil alloc] init];
+    //NBPhoneNumberUtil *phoneUtil = [NBPhoneNumberUtil sharedInstance];
     NSError *anError = nil;
     NBPhoneNumber *myNumber = [phoneUtil parse:phoneNumber
                                  defaultRegion:@"FR" error:&anError];
@@ -43,7 +44,8 @@
 
 -(BOOL)checkPhoneValidity:(NSString*)phoneNumber;
 {
-    NBPhoneNumberUtil *phoneUtil = [NBPhoneNumberUtil sharedInstance];
+    //NBPhoneNumberUtil *phoneUtil = [NBPhoneNumberUtil sharedInstance];
+    NBPhoneNumberUtil *phoneUtil = [[NBPhoneNumberUtil alloc] init];
     NSError *anError = nil;
     NBPhoneNumber *myNumber = [phoneUtil parse:phoneNumber
                                  defaultRegion:@"FR" error:&anError];

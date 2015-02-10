@@ -1,5 +1,5 @@
 # Uncomment this line to define a global platform for your project
-# platform :ios, "6.0"
+platform :ios, "7.0"
 source 'https://github.com/CocoaPods/Specs.git'
 
 
@@ -22,7 +22,6 @@ target "HairfieApp" do
   pod 'UIActivityIndicator-for-SDWebImage'
   pod 'CWStatusBarNotification', '~> 2.2.2'
   pod 'PonyDebugger', :git => 'https://github.com/square/PonyDebugger.git'
-  pod 'NewRelicAgent', '~> 4.174'
   pod 'UIAlertView+Blocks'
 end
 
