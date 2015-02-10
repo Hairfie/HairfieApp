@@ -34,7 +34,8 @@
             self.editPictureBttn.hidden = YES;
         
         UIView *bottomBorder =  [[UIView alloc] init];
-        [bottomBorder setFrame:CGRectMake(0, self.hairfieBttn.frame.size.height, self.hairfieBttn.frame.size.width, 3)];
+        
+        [bottomBorder setFrame:CGRectMake(0, self.hairfieBttn.frame.size.height, self.viewForBaselineLayout.frame.size.width / 2, 3)];
         bottomBorder.tag = 1;
         bottomBorder.backgroundColor = [UIColor salonDetailTab];
         [self.hairfieBttn addSubview:bottomBorder];

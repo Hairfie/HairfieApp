@@ -35,7 +35,7 @@
         [self loadFavoriteStatus];
         
         UIView *bottomBorder =  [[UIView alloc] init];
-        [bottomBorder setFrame:CGRectMake(0, self.detailsBttn.frame.size.height, self.detailsBttn.frame.size.width, 4)];
+        [bottomBorder setFrame:CGRectMake(0, self.detailsBttn.frame.size.height, self.viewForBaselineLayout.frame.size.width, 4)];
         bottomBorder.tag = 1;
         bottomBorder.backgroundColor = [UIColor salonDetailTab];
         [self.detailsBttn addSubview:bottomBorder];
