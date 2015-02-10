@@ -1,5 +1,5 @@
 PODS:
-  - AKPickerView (0.2.0)
+  - AKPickerView (0.2.3)
   - ARAnalytics/CoreIOS (2.8.0)
   - ARAnalytics/DSL (2.8.0):
     - Aspects (~> 1.3.1)
@@ -10,21 +10,23 @@ PODS:
     - ARAnalytics/CoreIOS
     - Mixpanel
   - Aspects (1.3.1)
-  - CrashlyticsFramework (2.2.5)
+  - CrashlyticsFramework (2.2.5.2)
   - CWStatusBarNotification (2.2.2)
   - ECSlidingViewController (2.0.3)
-  - GoogleAnalytics-iOS-SDK (3.0.9)
-  - libPhoneNumber-iOS (0.7.3)
+  - GoogleAnalytics-iOS-SDK (3.10):
+    - GoogleAnalytics-iOS-SDK/Core (= 3.10)
+  - GoogleAnalytics-iOS-SDK/Core (3.10)
+  - libPhoneNumber-iOS (0.8.1)
   - Mixpanel (2.7.2):
-    - Mixpanel/MPCategoryHelpers
+    - Mixpanel/MPCategoryHelpers (= 2.7.2)
   - Mixpanel/MPCategoryHelpers (2.7.2)
   - MRProgress (0.8.0-alpha1):
-    - MRProgress/ActivityIndicator
-    - MRProgress/Blur
-    - MRProgress/Circular
-    - MRProgress/Icons
-    - MRProgress/NavigationBarProgress
-    - MRProgress/Overlay
+    - MRProgress/ActivityIndicator (= 0.8.0-alpha1)
+    - MRProgress/Blur (= 0.8.0-alpha1)
+    - MRProgress/Circular (= 0.8.0-alpha1)
+    - MRProgress/Icons (= 0.8.0-alpha1)
+    - MRProgress/NavigationBarProgress (= 0.8.0-alpha1)
+    - MRProgress/Overlay (= 0.8.0-alpha1)
   - MRProgress/ActivityIndicator (0.8.0-alpha1):
     - MRProgress/Stopable
   - MRProgress/Blur (0.8.0-alpha1):
@@ -46,16 +48,15 @@ PODS:
   - MRProgress/ProgressBaseClass (0.8.0-alpha1)
   - MRProgress/Stopable (0.8.0-alpha1):
     - MRProgress/Helper
-  - NewRelicAgent (4.174)
   - NSDate+TimeAgo (1.0.3)
   - Pinterest-iOS (2.3)
   - PonyDebugger (0.4.0):
     - SocketRocket
   - SAMTextView (0.2.1)
   - SDWebImage (3.7.1):
-    - SDWebImage/Core
+    - SDWebImage/Core (= 3.7.1)
   - SDWebImage/Core (3.7.1)
-  - SocketRocket (0.3.1-beta2)
+  - SocketRocket (0.2.0)
   - SSKeychain (1.2.2)
   - UIActivityIndicator-for-SDWebImage (1.2):
     - SDWebImage (~> 3.7)
@@ -72,8 +73,7 @@ DEPENDENCIES:
   - ECSlidingViewController (~> 2.0.3)
   - GoogleAnalytics-iOS-SDK
   - libPhoneNumber-iOS (~> 0.7)
-  - MRProgress
-  - NewRelicAgent (~> 4.174)
+  - MRProgress (= 0.8.0-alpha1)
   - NSDate+TimeAgo
   - Pinterest-iOS
   - PonyDebugger (from `https://github.com/square/PonyDebugger.git`)
@@ -88,27 +88,31 @@ EXTERNAL SOURCES:
   PonyDebugger:
     :git: https://github.com/square/PonyDebugger.git
 
+CHECKOUT OPTIONS:
+  PonyDebugger:
+    :commit: d9128c93648bff8a1a12062c82b6e5bc5b05a9f9
+    :git: https://github.com/square/PonyDebugger.git
+
 SPEC CHECKSUMS:
-  AKPickerView: 9130c48bfa7436c66b81b779fe0c2bebbc44c85f
+  AKPickerView: 045171145c1229a0c873264b0168c38dfd9e09c1
   ARAnalytics: 93c5b65989145f88f4d45e262612eac277b0c219
   Aspects: 7f1aea592d35c0c1af74ee2a5efa5c555b0ebfc9
-  CrashlyticsFramework: 82d124501d97d3b5d49bd6209dea21c6b7f0a33d
+  CrashlyticsFramework: 4e91082f3019bea7e718e1b67b0a3b56729dbc5d
   CWStatusBarNotification: 7e43716355830c26124eae9b91c4434dfa2a6a73
   ECSlidingViewController: e79fe856bfb1a99a39c995377a1943e50f7647eb
-  GoogleAnalytics-iOS-SDK: d9e198b1f955259a72886769be7377cdfcdb2250
-  libPhoneNumber-iOS: 98fc07d70c8fdb5e6a8e3442c37e97353065c20e
+  GoogleAnalytics-iOS-SDK: f422062075d9ccb1ea8d783fc5ba3829461e9502
+  libPhoneNumber-iOS: 93a9875d4e6156f3e8ed9c58ead659f15af0447f
   Mixpanel: def38b9e600f101686b8d647e05660a72c089c65
   MRProgress: a5a9f58939ac3e7458dd9a5d0c423c748788b046
-  NewRelicAgent: 4876832189351377d14eca74cd87e67fc400e00e
   NSDate+TimeAgo: f3533e0198fab05b716368b19f8c2185d53d6f3b
   Pinterest-iOS: 418044a91ac88d370a54ce06b89ee034c240171d
   PonyDebugger: 66f053d403cef52e8ed3c669d651b213b2617326
   SAMTextView: 1062a784ba7b2080b0c17748001c416b53010b4b
   SDWebImage: 116e88633b5b416ea0ca4b334a4ac59cf72dd38d
-  SocketRocket: 79a68ae186063c65e1fe6f638b1ae2927aa5f304
+  SocketRocket: 6c9cfd1592bea82262b4283dcda3a7de166af3b6
   SSKeychain: cc48bd3ad24fcd9125adb9e0d23dd50b8bbd08b9
   UIActivityIndicator-for-SDWebImage: 8bd92c15280fbe54816448c6b14674145eee05c7
   UIAlertView+Blocks: 0b749f1f7bd5131ff2233b30a406c1585a7171b2
   Underscore.m: f99c166a9fdccfb5069085b6b4263c04b817fc9f
 
-COCOAPODS: 0.34.4
+COCOAPODS: 0.35.0

@@ -40,6 +40,9 @@ import QuartzCore
         ratingView.editable = false;
         ratingView.maxRating = 5;
         
+        picturesScrollView.userInteractionEnabled = true;
+        picturesScrollView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "handleTap:"))
+        
         refresh();
     }
     
@@ -169,5 +172,10 @@ import QuartzCore
             var pageNumber = floor((picturesScrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
             picturesPageControl.currentPage = Int(pageNumber);
         }
+    }
+    
+    func handleTap(gestureRecognizer: UITapGestureRecognizer)
+    {
+        println("Here")
     }
 }
