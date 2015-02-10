@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <CPPickerView.h>
 
 
 @interface SignUpViewController : UIViewController <UINavigationControllerDelegate, UITextFieldDelegate, UIAlertViewDelegate, UIImagePickerControllerDelegate, UIPickerViewDelegate, UIWebViewDelegate>

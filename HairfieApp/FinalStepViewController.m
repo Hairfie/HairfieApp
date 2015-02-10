@@ -77,6 +77,11 @@
     // Do any additional setup after loading the view.
 }
 
+-(void)viewDidLayoutSubviews
+{
+    if (_businessToManage != nil)
+        [self setupGallery:_businessToManage.pictures];
+}
 
 
 
@@ -87,7 +92,7 @@
     [_imageSliderView setContentOffset:offset animated:YES];
 }
 
--(void) scrollViewDidEndDecelerating:(UIScrollView *)scrollview
+-(void) scrollViewDidScroll:(UIScrollView *)scrollview
 {
     if (scrollview == _imageSliderView)
     {
@@ -95,8 +100,11 @@
         CGFloat pageWidth = scrollview.frame.size.width;
         int page = floor((scrollview.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
         _pageControl.currentPage = page;
+        
     }
 }
+
+
 
 -(void) setupGallery:(NSArray*) pictures
 {
@@ -108,17 +116,17 @@
         CGRect frame;
         frame.origin.x = 0;
         frame.origin.y = 0;
-        frame.size = _imageSliderView.frame.size;
+        frame.size = CGSizeMake(self.view.frame.size.width, _imageSliderView.frame.size.height);
         UIView *bgView = [[UIView alloc] initWithFrame:frame];
         bgView.backgroundColor = [UIColor lightGreyHairfie];
         [_imageSliderView addSubview:bgView];
-        UIView *borderBttn =[[UIView alloc] initWithFrame:CGRectMake(105, 35, 110, 110)];
+        UIView *borderBttn =[[UIView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 55, 35, 110, 110)];
         borderBttn.backgroundColor = [UIColor whiteColor];
         borderBttn.alpha = 0.2;
         borderBttn.layer.cornerRadius = borderBttn.frame.size.height / 2;
         borderBttn.clipsToBounds = YES;
         
-        UIButton *addPictureBttn = [[UIButton alloc] initWithFrame:CGRectMake(110, 40, 100, 100)];
+        UIButton *addPictureBttn = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 50, 40, 100, 100)];
         addPictureBttn.layer.cornerRadius = addPictureBttn.frame.size.height / 2;
         addPictureBttn.clipsToBounds = YES;
         addPictureBttn.backgroundColor = [UIColor colorWithRed:250/255.0f green:66/255.0f blue:77/255.0f alpha:1];
@@ -129,7 +137,7 @@
         [_imageSliderView addSubview:borderBttn];
         [_imageSliderView addSubview:addPictureBttn];
     
-        UILabel *addPictureLabel = [[UILabel alloc] initWithFrame:CGRectMake(130, 60, 60, 60)];
+        UILabel *addPictureLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 30, 60, 60, 60)];
         addPictureLabel.minimumScaleFactor = 0.5;
         addPictureLabel.font = [UIFont fontWithName:@"SourceSansPro-Light" size:15];
         addPictureLabel.textColor = [UIColor whiteColor];
@@ -148,7 +156,7 @@
             frame.origin.x = self.view.frame.size.width + self.view.frame.size.width * i;
             
             frame.origin.y = 0;
-            frame.size = _imageSliderView.frame.size;
+            frame.size = CGSizeMake(self.view.frame.size.width, _imageSliderView.frame.size.height);
             UIImageView *imageView = [[UIImageView alloc] initWithFrame:frame];
             [imageView sd_setImageWithURL:pic.url
                                 placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
@@ -158,7 +166,7 @@
         }
     }
     _imageSliderView.pagingEnabled = YES;
-    _imageSliderView.contentSize = CGSizeMake(320 + _imageSliderView.frame.size.width *
+    _imageSliderView.contentSize = CGSizeMake(self.view.frame.size.width + self.view.frame.size.width *
                                               [pictures count], _imageSliderView.frame.size.height);
 }
 
@@ -188,6 +196,7 @@
          _addressLabel.text = [_businessToManage.address displayAddress];
         _nameLabel.text = _businessToManage.name;
         [self setupGallery:_businessToManage.pictures];
+        [self viewDidLayoutSubviews];
         _menuButton.hidden = NO;
         _navButton.hidden = YES;
         
@@ -218,7 +227,8 @@
     [self setButtonSelected:sender];
 }
 
--(void)decorateButton:(UIButton *)aButton withImage:(NSString *)anImage active:(BOOL)isActive
+
+-(void)decorateImage:(UIImageView *)anImageView withImage:(NSString *)anImage active:(BOOL)isActive
 {
     NSString *imageName;
     if (isActive) {
@@ -227,39 +237,30 @@
         imageName = [NSString stringWithFormat:@"tab-business-%@", anImage];
     }
     
-    [aButton setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
+    anImageView.image = [UIImage imageNamed:imageName];
 }
+
+
 
 -(void)setButtonSelected:(UIButton*)aButton
 {
     self.infoView.hidden = YES;
-  //  self.hairfieView.hidden = YES;
     self.hairdresserView.hidden = YES;
- //   self.priceAndSaleView.hidden = YES;
     
-    [self decorateButton:self.infoBttn withImage:@"infos" active:NO];
- //   [self decorateButton:self.hairfieBttn withImage:@"hairfies" active:NO];
-    [self decorateButton:self.hairdresserBttn withImage:@"hairdressers" active:NO];
-//    [self decorateButton:self.priceAndSaleBttn withImage:@"prices" active:NO];
     
+    [self decorateImage:self.infoBttnImage withImage:@"infos" active:NO];
+    [self decorateImage:self.hairdresserBttnImage withImage:@"hairdressers" active:NO];
+
     if (aButton == self.infoBttn) {
-        [self decorateButton:self.infoBttn withImage:@"infos" active:YES];
+        [self decorateImage:self.infoBttnImage withImage:@"infos" active:YES];
         [self.containerView bringSubviewToFront:self.infoView];
         self.infoView.hidden = NO;
-//    } else if (aButton == self.hairfieBttn) {
-//        [self decorateButton:self.hairfieBttn withImage:@"hairfies" active:YES];
-//        [self.containerView bringSubviewToFront:self.hairfieView];
-//        self.hairfieView.hidden = NO;
     } else if (aButton == self.hairdresserBttn) {
-        [self decorateButton:self.hairdresserBttn withImage:@"hairdressers" active:YES];
+        [self decorateImage:self.hairdresserBttnImage withImage:@"hairdressers" active:YES];
         [self.containerView bringSubviewToFront:self.hairdresserView];
         self.hairdresserView.hidden = NO;
     }
-//     else if (aButton == self.priceAndSaleBttn) {
-//        [self decorateButton:self.priceAndSaleBttn withImage:@"prices" active:YES];
-//        [self.containerView bringSubviewToFront:self.priceAndSaleView];
-//        self.priceAndSaleView.hidden = NO;
-//    }
+
     
     for (UIButton *btn in @[self.infoBttn, /*self.hairfieBttn,*/ self.hairdresserBttn/*, self.priceAndSaleBttn*/]) {
         for (UIView *subView in btn.subviews) {
@@ -267,7 +268,7 @@
         }
     }
     
-    UIView *bottomBorder = [[UIView alloc] initWithFrame:CGRectMake(0, aButton.frame.size.height, aButton.frame.size.width, 3)];
+    UIView *bottomBorder = [[UIView alloc] initWithFrame:CGRectMake(0, aButton.frame.size.height, self.view.frame.size.width / 2, 3)];
     bottomBorder.backgroundColor = [UIColor salonDetailTab];
     bottomBorder.tag = 1;
     [aButton addSubview:bottomBorder];

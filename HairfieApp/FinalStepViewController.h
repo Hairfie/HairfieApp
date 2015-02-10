@@ -38,8 +38,10 @@
 // TAB VIEW
 
 @property (nonatomic) IBOutlet UIButton* infoBttn;
+@property (nonatomic) IBOutlet UIImageView* infoBttnImage;
 //@property (nonatomic) IBOutlet UIButton* hairfieBttn;
 @property (nonatomic) IBOutlet UIButton* hairdresserBttn;
+@property (nonatomic) IBOutlet UIImageView* hairdresserBttnImage;
 //@property (nonatomic) IBOutlet UIButton* priceAndSaleBttn;
 @property (nonatomic) IBOutlet UIButton* descriptionBttn;
 @property (nonatomic) IBOutlet UIButton* timetableBttn;
