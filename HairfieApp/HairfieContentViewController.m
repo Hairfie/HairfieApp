@@ -94,7 +94,7 @@
 // 3
 - (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
 
-    if (indexPath.row < [cv numberOfItemsInSection:indexPath.section]) {
+    if (indexPath.row < [hairfies count]) {
         if(indexPath.row == ([hairfies count] - HAIRFIES_PAGE_SIZE + 1) && currentPage != 0){
             [self fetchMoreHairfies];
         }
