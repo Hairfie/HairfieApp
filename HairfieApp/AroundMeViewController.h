@@ -38,6 +38,10 @@
 @property (nonatomic, strong) IBOutlet UILabel *searchDesc;
 @property (nonatomic) IBOutlet UILabel *topBarTitle;
 
+@property (nonatomic) IBOutlet UITextView *errorTextView;
+@property (nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+
+
 @property (nonatomic) BOOL isSearching;
 @property (nonatomic) BOOL isRefreshing;
 

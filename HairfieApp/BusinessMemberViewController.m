@@ -292,14 +292,14 @@
 {
     if (isHairfiesTab == YES) {
         if (indexPath.row < hairfies.count) {
-            return CGSizeMake(145, 210);
+            return CGSizeMake(self.view.frame.size.width / 2 - 30, 210);
         } else {
             
-            return CGSizeMake(300, 58);
+            return CGSizeMake(self.view.frame.size.width - 20, 58);
         }
     }
     else
-        return CGSizeMake(320, 134);
+        return CGSizeMake(self.view.frame.size.width, 134);
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath

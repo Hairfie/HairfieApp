@@ -55,14 +55,11 @@
     [super viewDidLoad];
 
     self.mapView.showsPointsOfInterest = NO;
-    
-    
     aroundMe = NSLocalizedStringFromTable(@"Around Me", @"Around_Me", nil);
     businesses = [[NSArray alloc] init];
     self.delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [self.delegate startTrackingLocation:YES];
     self.topBarTitle.text = NSLocalizedStringFromTable(@"Find your hairdresser", @"Around_Me", nil);
-    dismiss = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
     self.isSearching = YES;
     self.isRefreshing = NO;
     self.hairdresserTableView.hidden = YES;
@@ -79,6 +76,7 @@
     [refreshControl addTarget:self action:@selector(updateSearchResults)
              forControlEvents:UIControlEventValueChanged];
     [self.hairdresserTableView addSubview:refreshControl];
+    
    // [self updateSearchResults];
 }
 
@@ -191,16 +189,13 @@
 
 -(void)getBusinesses
 {
-    UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    [spinner setFrame:CGRectMake(150, self.view.frame.size.height/2, spinner.frame.size.width, spinner.frame.size.height)];
-    spinner.hidesWhenStopped = YES;
+    self.activityIndicator.hidesWhenStopped = YES;
 
     //Error Block
     void (^loadErrorBlock)(NSError *) = ^(NSError *error){
         NSLog(@"Error on load %@", error.description);
         _hairdresserTableView.userInteractionEnabled = YES;
-        [spinner removeFromSuperview];
-        [spinner stopAnimating];
+        self.activityIndicator.hidden = YES;
         [refreshControl endRefreshing];
         _isSearching = NO;
         _isRefreshing = NO;
@@ -214,8 +209,7 @@
         [self refreshMap];
          [_hairdresserTableView reloadData];
         _hairdresserTableView.userInteractionEnabled = YES;
-        [spinner removeFromSuperview];
-        [spinner stopAnimating];
+        self.activityIndicator.hidden = YES;
         [refreshControl endRefreshing];
         _isSearching = NO;
         _isRefreshing = NO;
@@ -224,13 +218,12 @@
     if (_isSearching == YES) {
         if(!_isRefreshing) {
             _hairdresserTableView.hidden = YES;
-            [self.view addSubview:spinner];
-            [spinner startAnimating];
+            self.activityIndicator.hidden = NO;
+            [self.activityIndicator startAnimating];
         }
 
         
         NSLog(@"GEO POINT %@, QUERY %@, types %@", [self.businessSearch.whereGeoPoint toApiValue], self.businessSearch.query, self.businessSearch.clientTypes);
-      //  NSArray *array = [[NSArray alloc] initWithObjects:@"men", nil];
         [Business listNearby:self.businessSearch.whereGeoPoint
                        query:self.businessSearch.query
                     clientTypes:self.businessSearch.clientTypes
@@ -241,31 +234,12 @@
 }
 
 -(void)addErrorView {
-    UIView *errorViewContainer = [[UIView alloc] initWithFrame:CGRectMake(0, _hairdresserTableView.frame.size.height/2 - 25, _hairdresserTableView.frame.size.width, 150)];
-    errorViewContainer.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    //create the uilabel for the text
-    UILabel *errorLabel = [[UILabel alloc] initWithFrame:CGRectMake(_hairdresserTableView.frame.size.width/2-120, 0, 240, 150)];
-    errorLabel.backgroundColor = [UIColor clearColor];
-    errorLabel.font = [UIFont systemFontOfSize:12];
-    errorLabel.numberOfLines = 7;
-    errorLabel.text = NSLocalizedStringFromTable(@"There has been an error retrieving your location. \n If you do not want to share your location, you can use the top bar to directly choose a city. \n Otherwise, try again :-)", @"Around_Me", nil);;
-    errorLabel.font = [UIFont fontWithName:@"SourceSansPro-Light" size:16];
-    [errorLabel setTextColor:[UIColor blackColor]];
-    [errorLabel setTextAlignment:NSTextAlignmentCenter];
-    [errorLabel setLineBreakMode:NSLineBreakByWordWrapping];
-
-    errorLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin;
-    [errorViewContainer addSubview:errorLabel];
-    errorView = errorViewContainer;
-    errorView.tag = ERROR_VIEW_TAG;
-    
-    [self.view addSubview:errorView];
+    [self.errorTextView setText: NSLocalizedStringFromTable(@"There has been an error retrieving your location. \n If you do not want to share your location, you can use the top bar to directly choose a city. \n Otherwise, try again :-)", @"Around_Me", nil)];
+    self.errorTextView.hidden = NO;
 }
 
 -(void)removeErrorView {
-    for (UIView *subView in self.view.subviews) {
-        if (subView.tag == ERROR_VIEW_TAG) [subView removeFromSuperview];
-    }
+    self.errorTextView.hidden = YES;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
