@@ -265,7 +265,7 @@
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 50)];
-    headerView.backgroundColor = [UIColor colorWithRed:236/255.0f green:236/255.0f blue:237/255.0f alpha:1];
+    headerView.backgroundColor = [UIColor colorWithRed:236/255.0f green:236/255.0f blue:237/255.0f alpha:0.98];
     [headerView addBottomBorderWithHeight:1 andColor:[UIColor lightGrey]];
    
     

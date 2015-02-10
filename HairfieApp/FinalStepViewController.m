@@ -262,7 +262,7 @@
     }
 
     
-    for (UIButton *btn in @[self.infoBttn, /*self.hairfieBttn,*/ self.hairdresserBttn/*, self.priceAndSaleBttn*/]) {
+    for (UIButton *btn in @[self.infoBttn, self.hairdresserBttn]) {
         for (UIView *subView in btn.subviews) {
             if (subView.tag == 1) [subView removeFromSuperview];
         }
