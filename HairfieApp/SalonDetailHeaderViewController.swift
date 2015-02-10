@@ -11,7 +11,7 @@ import UIKit
 import QuartzCore
 
 
-@objc class SalonDetailHeaderViewController : UIViewController, UIScrollViewDelegate {
+@objc class SalonDetailHeaderViewController : UIViewController, UIScrollViewDelegate, IDMPhotoBrowserDelegate {
 
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var picturesScrollView: UIScrollView!
@@ -44,6 +44,10 @@ import QuartzCore
         picturesScrollView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "handleTap:"))
         
         refresh();
+    }
+
+    override func viewDidAppear(animated: Bool) {
+
     }
     
     func refresh() {
@@ -124,7 +128,7 @@ import QuartzCore
                         pictureView.image = image
                     }
                 })
-
+                
                 picturesScrollView.addSubview(pictureView);
             }
         }
@@ -176,6 +180,20 @@ import QuartzCore
     
     func handleTap(gestureRecognizer: UITapGestureRecognizer)
     {
-        println("Here")
+        var photos = [IDMPhoto]();
+        var index: Int
+        for index = 0; index < business.pictures.count; ++index {
+            var picture: Picture = business.pictures[index] as Picture
+            var pictureUrl = picture.url;
+            var photo:IDMPhoto = IDMPhoto(URL: pictureUrl);
+            photos.append(photo);
+        }
+    
+        let browser = IDMPhotoBrowser(photos: photos)
+        browser.displayArrowButton = false
+        browser.displayActionButton = true
+        
+        self.presentViewController(browser, animated:true, completion: nil);
+
     }
 }

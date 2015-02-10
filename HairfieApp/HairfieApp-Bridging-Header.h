@@ -11,3 +11,5 @@
 #import "UIRoundImageView.h"
 #import "UIImage+Filters.h"
 #import "RatingView.h"
+
+#import <IDMPhotoBrowser/IDMPhotoBrowser.h>
