@@ -11,7 +11,7 @@ target "HairfieApp" do
   pod 'ARAnalytics/GoogleAnalytics'
   pod 'ARAnalytics/Mixpanel'
   pod 'ARAnalytics/DSL', '~> 2.8.0'
-  pod 'MRProgress'
+  pod 'MRProgress', '= 0.8.0-alpha1'
   pod 'SAMTextView'
   pod 'CrashlyticsFramework'
   pod 'ECSlidingViewController', '~> 2.0.3'
