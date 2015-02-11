@@ -143,7 +143,6 @@
 		B319B5C719C6E77D007F79B0 /* BusinessReviewRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = B319B5C619C6E77D007F79B0 /* BusinessReviewRepository.m */; };
 		B319B5CB19C85E2E007F79B0 /* FirstStepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B319B5CA19C85E2E007F79B0 /* FirstStepViewController.m */; };
 		B319B5CE19C8609E007F79B0 /* SecondStepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B319B5CD19C8609E007F79B0 /* SecondStepViewController.m */; };
-		B319B5D119C876AC007F79B0 /* SecondStepSalonPhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B319B5D019C876AC007F79B0 /* SecondStepSalonPhoneViewController.m */; };
 		B330408B19BDA64600BA6211 /* UITextField+ELFixSecureTextFieldFont.m in Sources */ = {isa = PBXBuildFile; fileRef = B330408A19BDA64600BA6211 /* UITextField+ELFixSecureTextFieldFont.m */; };
 		B330408E19BDAC7000BA6211 /* Hairfie.m in Sources */ = {isa = PBXBuildFile; fileRef = B330408D19BDAC7000BA6211 /* Hairfie.m */; };
 		B330409519BDB21200BA6211 /* HairfieRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = B330409419BDB21200BA6211 /* HairfieRepository.m */; };
@@ -193,6 +192,7 @@
 		B3423216198924290058866B /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = B342320B198924290058866B /* AFURLRequestSerialization.m */; };
 		B3423217198924290058866B /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = B342320D198924290058866B /* AFURLResponseSerialization.m */; };
 		B3423218198924290058866B /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B342320F198924290058866B /* AFURLSessionManager.m */; };
+		B343C2661A8B5C5D005DD54B /* FinalStepClaimInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B343C2651A8B5C5D005DD54B /* FinalStepClaimInfoViewController.m */; };
 		B34582FF19F7DB2A00A91F5A /* userprofile-filter-button.png in Resources */ = {isa = PBXBuildFile; fileRef = B34582FE19F7DB2A00A91F5A /* userprofile-filter-button.png */; };
 		B345BA981994D4C2007BB61A /* button-add-favorite.png in Resources */ = {isa = PBXBuildFile; fileRef = B345BA971994D4C2007BB61A /* button-add-favorite.png */; };
 		B345BACF1994F9FA007BB61A /* picto-take-picture.png in Resources */ = {isa = PBXBuildFile; fileRef = B345BACE1994F9FA007BB61A /* picto-take-picture.png */; };
@@ -221,10 +221,8 @@
 		B367DC2E19C8802200A0452A /* ThirdStepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B367DC2D19C8802200A0452A /* ThirdStepViewController.m */; };
 		B367DC3119C98DC400A0452A /* ThirdStepMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B367DC3019C98DC400A0452A /* ThirdStepMapViewController.m */; };
 		B367DC3419C98EBF00A0452A /* BusinessAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = B367DC3319C98EBF00A0452A /* BusinessAnnotation.m */; };
-		B367DC3719C9BFCA00A0452A /* FinalStepTimetableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B367DC3619C9BFCA00A0452A /* FinalStepTimetableViewController.m */; };
 		B367DC3A19C9C42600A0452A /* FinalStepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B367DC3919C9C42600A0452A /* FinalStepViewController.m */; };
 		B367DC4019C9C54300A0452A /* FinalStepClaimDayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B367DC3F19C9C54300A0452A /* FinalStepClaimDayViewController.m */; };
-		B367DC4319C9E40800A0452A /* FinalStepAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B367DC4219C9E40800A0452A /* FinalStepAddressViewController.m */; };
 		B36986D71A88C7080037D238 /* picto-hairfie.png in Resources */ = {isa = PBXBuildFile; fileRef = B36986D61A88C7080037D238 /* picto-hairfie.png */; };
 		B36AC50519DAB47E00B8AC13 /* STCollapseTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B36AC50419DAB47E00B8AC13 /* STCollapseTableView.m */; };
 		B36AC50719DAD22400B8AC13 /* addBusiness-picto.png in Resources */ = {isa = PBXBuildFile; fileRef = B36AC50619DAD22400B8AC13 /* addBusiness-picto.png */; };
@@ -669,8 +667,6 @@
 		B319B5CA19C85E2E007F79B0 /* FirstStepViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstStepViewController.m; sourceTree = "<group>"; };
 		B319B5CC19C8609E007F79B0 /* SecondStepViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondStepViewController.h; sourceTree = "<group>"; };
 		B319B5CD19C8609E007F79B0 /* SecondStepViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondStepViewController.m; sourceTree = "<group>"; };
-		B319B5CF19C876AB007F79B0 /* SecondStepSalonPhoneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondStepSalonPhoneViewController.h; sourceTree = "<group>"; };
-		B319B5D019C876AC007F79B0 /* SecondStepSalonPhoneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondStepSalonPhoneViewController.m; sourceTree = "<group>"; };
 		B330408819BDA64600BA6211 /* ELFixSecureTextFieldFont-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ELFixSecureTextFieldFont-Prefix.pch"; sourceTree = "<group>"; };
 		B330408919BDA64600BA6211 /* UITextField+ELFixSecureTextFieldFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+ELFixSecureTextFieldFont.h"; sourceTree = "<group>"; };
 		B330408A19BDA64600BA6211 /* UITextField+ELFixSecureTextFieldFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+ELFixSecureTextFieldFont.m"; sourceTree = "<group>"; };
@@ -750,6 +746,8 @@
 		B342320D198924290058866B /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLResponseSerialization.m; sourceTree = "<group>"; };
 		B342320E198924290058866B /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
 		B342320F198924290058866B /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
+		B343C2641A8B5C5D005DD54B /* FinalStepClaimInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinalStepClaimInfoViewController.h; sourceTree = "<group>"; };
+		B343C2651A8B5C5D005DD54B /* FinalStepClaimInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FinalStepClaimInfoViewController.m; sourceTree = "<group>"; };
 		B34582FE19F7DB2A00A91F5A /* userprofile-filter-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "userprofile-filter-button.png"; sourceTree = "<group>"; };
 		B345BA971994D4C2007BB61A /* button-add-favorite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-add-favorite.png"; sourceTree = "<group>"; };
 		B345BACE1994F9FA007BB61A /* picto-take-picture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "picto-take-picture.png"; sourceTree = "<group>"; };
@@ -794,14 +792,10 @@
 		B367DC3019C98DC400A0452A /* ThirdStepMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThirdStepMapViewController.m; sourceTree = "<group>"; };
 		B367DC3219C98EBF00A0452A /* BusinessAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessAnnotation.h; sourceTree = "<group>"; };
 		B367DC3319C98EBF00A0452A /* BusinessAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessAnnotation.m; sourceTree = "<group>"; };
-		B367DC3519C9BFCA00A0452A /* FinalStepTimetableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinalStepTimetableViewController.h; sourceTree = "<group>"; };
-		B367DC3619C9BFCA00A0452A /* FinalStepTimetableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FinalStepTimetableViewController.m; sourceTree = "<group>"; };
 		B367DC3819C9C42600A0452A /* FinalStepViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinalStepViewController.h; sourceTree = "<group>"; };
 		B367DC3919C9C42600A0452A /* FinalStepViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FinalStepViewController.m; sourceTree = "<group>"; };
 		B367DC3E19C9C54300A0452A /* FinalStepClaimDayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinalStepClaimDayViewController.h; sourceTree = "<group>"; };
 		B367DC3F19C9C54300A0452A /* FinalStepClaimDayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FinalStepClaimDayViewController.m; sourceTree = "<group>"; };
-		B367DC4119C9E40800A0452A /* FinalStepAddressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinalStepAddressViewController.h; sourceTree = "<group>"; };
-		B367DC4219C9E40800A0452A /* FinalStepAddressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FinalStepAddressViewController.m; sourceTree = "<group>"; };
 		B36986D61A88C7080037D238 /* picto-hairfie.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "picto-hairfie.png"; sourceTree = "<group>"; };
 		B36AC50319DAB47E00B8AC13 /* STCollapseTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STCollapseTableView.h; sourceTree = "<group>"; };
 		B36AC50419DAB47E00B8AC13 /* STCollapseTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STCollapseTableView.m; sourceTree = "<group>"; };
@@ -1509,8 +1503,6 @@
 				B319B5CA19C85E2E007F79B0 /* FirstStepViewController.m */,
 				B319B5CC19C8609E007F79B0 /* SecondStepViewController.h */,
 				B319B5CD19C8609E007F79B0 /* SecondStepViewController.m */,
-				B319B5CF19C876AB007F79B0 /* SecondStepSalonPhoneViewController.h */,
-				B319B5D019C876AC007F79B0 /* SecondStepSalonPhoneViewController.m */,
 				B367DC2C19C8802200A0452A /* ThirdStepViewController.h */,
 				B367DC2D19C8802200A0452A /* ThirdStepViewController.m */,
 				B367DC2F19C98DC300A0452A /* ThirdStepMapViewController.h */,
@@ -1769,15 +1761,13 @@
 		B378D48919D02C9B004745E9 /* INFO */ = {
 			isa = PBXGroup;
 			children = (
-				B367DC3519C9BFCA00A0452A /* FinalStepTimetableViewController.h */,
-				B367DC3619C9BFCA00A0452A /* FinalStepTimetableViewController.m */,
-				B367DC4119C9E40800A0452A /* FinalStepAddressViewController.h */,
-				B367DC4219C9E40800A0452A /* FinalStepAddressViewController.m */,
 				B367DC3E19C9C54300A0452A /* FinalStepClaimDayViewController.h */,
 				B367DC3F19C9C54300A0452A /* FinalStepClaimDayViewController.m */,
 				B3EDBB5119D461D0005E7032 /* ClaimTimetableCell.xib */,
 				B3EDBB5619D46254005E7032 /* ClaimTimetableCell.h */,
 				B3EDBB5719D46254005E7032 /* ClaimTimetableCell.m */,
+				B343C2641A8B5C5D005DD54B /* FinalStepClaimInfoViewController.h */,
+				B343C2651A8B5C5D005DD54B /* FinalStepClaimInfoViewController.m */,
 			);
 			name = INFO;
 			sourceTree = "<group>";
@@ -2691,7 +2681,6 @@
 				B308700F198782BC0080E6D2 /* LikeViewController.m in Sources */,
 				B3BAA85D1A014240009F0274 /* SuggestHairdresserReport.m in Sources */,
 				B337B6FA19A25116003B0EA5 /* HorairesViewController.m in Sources */,
-				B367DC4319C9E40800A0452A /* FinalStepAddressViewController.m in Sources */,
 				B367DC3119C98DC400A0452A /* ThirdStepMapViewController.m in Sources */,
 				71C0D3FF19C1D7600037CBF4 /* Address.m in Sources */,
 				B3AE0D3819C0510200149C2B /* HairfiePostSalonTypeViewController.m in Sources */,
@@ -2757,8 +2746,8 @@
 				B330B5BC198656450059AE56 /* MenuViewController.m in Sources */,
 				155C170319DD43810060A0C9 /* UIButton+Style.m in Sources */,
 				B3F0B22619EC1DC700E0E6EE /* NSString+PhoneFormatter.m in Sources */,
+				B343C2661A8B5C5D005DD54B /* FinalStepClaimInfoViewController.m in Sources */,
 				B345BAE919951A7E007BB61A /* OLEContainerScrollView.m in Sources */,
-				B367DC3719C9BFCA00A0452A /* FinalStepTimetableViewController.m in Sources */,
 				B308700C198782AF0080E6D2 /* FavoriteViewController.m in Sources */,
 				711FB93E19D998730023CAD4 /* BusinessErrorReport.m in Sources */,
 				B330409519BDB21200BA6211 /* HairfieRepository.m in Sources */,
@@ -2790,7 +2779,6 @@
 				B337B6F619A22B11003B0EA5 /* HairfieDetailCollectionReusableView.m in Sources */,
 				1554FAA919D3408E00A0426B /* UIImage+Filters.m in Sources */,
 				B3423215198924290058866B /* AFURLConnectionOperation.m in Sources */,
-				B319B5D119C876AC007F79B0 /* SecondStepSalonPhoneViewController.m in Sources */,
 				71AAB62A19D005170000552D /* Money.m in Sources */,
 				B3B716091A518A9600DB6FDB /* HairfieNotifications.m in Sources */,
 				1538A3A919E53FB600F09628 /* UIView+Borders.m in Sources */,

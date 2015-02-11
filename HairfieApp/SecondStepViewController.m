@@ -7,7 +7,7 @@
 //
 
 #import "SecondStepViewController.h"
-#import "SecondStepSalonPhoneViewController.h"
+#import "FinalStepClaimInfoViewController.h"
 #import "ThirdStepViewController.h"
 #import "NSString+PhoneFormatter.h"
 
@@ -181,31 +181,30 @@
     if ([segue.identifier isEqualToString:@"claimPhone"])
     {
         
-        SecondStepSalonPhoneViewController *phone = [segue destinationViewController];
-     
-        phone.isSalon= NO;
-        phone.isFinalStep = NO;
-        phone.textFieldFromSegue = _phoneTextField.text;
-        phone.headerTitle = NSLocalizedStringFromTable(@"Phone number", @"Claim", nil);
-        phone.textFieldPlaceHolder = _phoneTextField.placeholder;
+        FinalStepClaimInfoViewController *claimInfo = [segue destinationViewController];
+        claimInfo.isBusinessInfo = YES;
+        claimInfo.isSalon= NO;
+        claimInfo.isFinalStep = NO;
+        claimInfo.textFieldFromSegue = _phoneTextField.text;
+        claimInfo.headerTitle = NSLocalizedStringFromTable(@"Phone number", @"Claim", nil);
+        claimInfo.textFieldPlaceHolder = _phoneTextField.placeholder;
         if (_isPhoneSet == YES)
         {
-            phone.isExisting = YES;
+            claimInfo.isExisting = YES;
         }
     }
     if ([segue.identifier isEqualToString:@"claimSalon"])
     {
-        SecondStepSalonPhoneViewController *salon = [segue destinationViewController];
-        
-        salon.headerTitle = NSLocalizedStringFromTable(@"Salon's name", @"Claim", nil);
-         salon.isFinalStep = NO;
-        salon.isSalon = YES;
-    
-        salon.textFieldPlaceHolder = _salonTextField.placeholder;
-        salon.textFieldFromSegue = _salonTextField.text;
+        FinalStepClaimInfoViewController *claimInfo = [segue destinationViewController];
+        claimInfo.isBusinessInfo = YES;
+        claimInfo.headerTitle = NSLocalizedStringFromTable(@"Salon's name", @"Claim", nil);
+        claimInfo.isFinalStep = NO;
+        claimInfo.isSalon = YES;
+        claimInfo.textFieldPlaceHolder = _salonTextField.placeholder;
+        claimInfo.textFieldFromSegue = _salonTextField.text;
         if (_isSalonSet == YES)
         {
-            salon.isExisting = YES;
+            claimInfo.isExisting = YES;
         }
     }
     if ([segue.identifier isEqualToString:@"claimBusinessLocation"])
