@@ -41,7 +41,7 @@ import QuartzCore
         ratingView.maxRating = 5;
         
         picturesScrollView.userInteractionEnabled = true;
-        picturesScrollView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "handleTap:"))
+       // picturesScrollView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "handleTap:"))
         
         refresh();
     }
@@ -176,6 +176,6 @@ import QuartzCore
     
     func handleTap(gestureRecognizer: UITapGestureRecognizer)
     {
-        println("Here")
+       // println("Here")
     }
 }
