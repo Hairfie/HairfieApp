@@ -74,8 +74,6 @@
         self.headerTitleLabel.text = [NSString stringWithFormat:@"%@'s Hairfie", self.hairfie.author.firstName];
            }
     
-    
-         [_topBarView addBottomBorderWithHeight:1.0 andColor:[UIColor lightGrey]];
 
     menuActions = @[
         @{
@@ -462,9 +460,11 @@
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
 {
-    float height = MAX((350 + 100 + [self infosTableHeight]), (self.view.frame.size.height - _topBarView.frame.size.height + 10));
+    float height = MAX((self.view.frame.size.width + 120 + [self infosTableHeight] + 20), (self.view.frame.size.height - _topBarView.frame.size.height));
+    
+    NSLog(@"height %f", (self.view.frame.size.height - _topBarView.frame.size.height + 10));
 
-    return CGSizeMake(320, height);
+    return CGSizeMake(self.view.frame.size.width, height);
 }
 
 // header view data source
@@ -484,35 +484,35 @@
 
     // HAIRFIE
 
-    hairfieView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 323)];
+    hairfieView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.width)];
     hairfieView.backgroundColor = [UIColor lightGreyHairfie];
     hairfieView.userInteractionEnabled = YES;
     CALayer *bottomBorder = [CALayer layer];
-    bottomBorder.frame = CGRectMake(0.0, 320, 320, 3.0f);
+    bottomBorder.frame = CGRectMake(0.0, self.view.frame.size.width, self.view.frame.size.width, 3.0f);
     bottomBorder.backgroundColor = [UIColor pinkHairfie].CGColor;
     [hairfieView.layer addSublayer:bottomBorder];
     
     
-    hairfieScroller = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, 320)];
+    hairfieScroller = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.width)];
     hairfieScroller.userInteractionEnabled = YES;
     hairfieScroller.scrollEnabled = YES;
     hairfieScroller.pagingEnabled = YES;
     hairfieScroller.delegate = self;
     [hairfieScroller setShowsHorizontalScrollIndicator:NO];
     if (self.hairfie.pictures.count == 2) {
-        pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(141, 283, 40, 40)];
+        pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 20, self.view.frame.size.width - 50, 40, 40)];
         pageControl.numberOfPages = 2;
         pageControl.currentPage = 0;
         
-        UIImageView *hairfieImageView1 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 320)];
+        UIImageView *hairfieImageView1 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.width)];
         Picture *hairfie1 = (Picture*)[self.hairfie.pictures objectAtIndex:0];
-        UIImageView *hairfieImageView2 = [[UIImageView alloc] initWithFrame:CGRectMake(320, 0, 320, 320)];
+        UIImageView *hairfieImageView2 = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width, 0, self.view.frame.size.width, self.view.frame.size.width)];
         Picture *hairfie2 = (Picture*)[self.hairfie.pictures objectAtIndex:1];
         
-        [hairfieImageView1 setImageWithURL:[hairfie1 urlWithWidth:@640 height:@640]
+        [hairfieImageView1 setImageWithURL:[hairfie1 urlWithWidth:@(self.view.frame.size.width * 2) height:@(self.view.frame.size.width * 2)]
                             placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]
                   usingActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-        [hairfieImageView2 setImageWithURL:[hairfie2 urlWithWidth:@640 height:@640]
+        [hairfieImageView2 setImageWithURL:[hairfie2 urlWithWidth:@(self.view.frame.size.width * 2) height:@(self.view.frame.size.width * 2)]
                           placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]
                usingActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
         
@@ -524,11 +524,11 @@
         [hairfieScroller addSubview:hairfieImageView1];
         [hairfieScroller addSubview:hairfieImageView2];
     } else {
-        hairfieScroller = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, 320)];
-        UIImageView *hairfieImageView1 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 320)];
+        hairfieScroller = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.width)];
+        UIImageView *hairfieImageView1 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.width)];
         Picture *hairfie1 = (Picture*)[self.hairfie.pictures objectAtIndex:0];
         
-        [hairfieImageView1 setImageWithURL:[hairfie1 urlWithWidth:@640 height:@640]
+        [hairfieImageView1 setImageWithURL:[hairfie1 urlWithWidth:@(self.view.frame.size.width * 2 ) height:@(self.view.frame.size.width * 2)]
                           placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]
                usingActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
 
@@ -540,12 +540,12 @@
 
     }
     
-    likeView = [[UIImageView alloc] initWithFrame:CGRectMake(130, 130, 60, 60)];
+    likeView = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 25, self.view.frame.size.width / 2 - 25, 50, 50)];
     [likeView setImage:[UIImage imageNamed:@"likes-picto.png"]];
    
     [likeView setHidden:YES];
 
-    likeButton = [[UIButton alloc] initWithFrame:CGRectMake(262, 290, 25, 20)];
+    likeButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 60, self.view.frame.size.width - 40, 25, 20)];
     [likeButton setImage:[UIImage imageNamed:@"picto-hairfie-detail-liked.png"] forState:UIControlStateSelected];
     [likeButton setImage:[UIImage imageNamed:@"picto-hairfie-detail-like.png"] forState:UIControlStateNormal];
     [likeButton addTarget:self action:@selector(likeButtonHandler:) forControlEvents:UIControlEventTouchUpInside];
@@ -583,12 +583,12 @@
                 }];
     }
 
-    [nbLike setFrame:CGRectMake(295, 290, 35, 21)];
+    [nbLike setFrame:CGRectMake(self.view.frame.size.width - 30, self.view.frame.size.width - 40, 35, 21)];
     nbLike.textColor = [UIColor whiteColor];
-    nbLike.font = [UIFont fontWithName:@"SourceSansPro-SemiBold" size:18];
+    nbLike.font = [UIFont fontWithName:@"SourceSansPro-SemiBold" size:21];
 
     
-    hairfieScroller.contentSize = CGSizeMake(hairfieScroller.frame.size.width * self.hairfie.pictures.count, 320);
+    hairfieScroller.contentSize = CGSizeMake(hairfieScroller.frame.size.width * self.hairfie.pictures.count, self.view.frame.size.width);
     [hairfieView addSubview:hairfieScroller];
     [hairfieView addSubview:pageControl];
     [hairfieView addSubview:likeButton];
@@ -601,7 +601,7 @@
    
     // HAIRFIE DETAIL
 
-    hairfieDetailView = [[UIView alloc] initWithFrame:CGRectMake(0, 333, 320, 200)];
+    hairfieDetailView = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.width + 10, self.view.frame.size.width, 120)];
 
     UIRoundImageView *borderProfile = [[UIRoundImageView alloc]initWithFrame:CGRectMake(10, 0, 44, 44)];
     [borderProfile setBackgroundColor:[[UIColor blackHairfie] colorWithAlphaComponent:0.2]];
@@ -640,7 +640,7 @@
     nbHairfies.textColor = [[UIColor blackHairfie]colorWithAlphaComponent:0.8];
 
 
-    UILabel *createdAt = [[UILabel alloc] initWithFrame:CGRectMake(110, 0, 200, 30)];
+    UILabel *createdAt = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 130, 0, 120 , 30)];
     createdAt.text = [self.hairfie displayTimeAgo];
     createdAt.textAlignment = NSTextAlignmentRight;
     createdAt.font = [UIFont fontWithName:@"SourceSansPro-Light" size:15];
@@ -668,7 +668,7 @@
     [hairfieDetailView addSubview:tagsView];
     // RESTE
 
-    detailsTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 452, 320, [self infosTableHeight])];
+    detailsTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.width + 10 + hairfieDetailView.frame.size.height + 10, self.view.frame.size.width, [self infosTableHeight])];
     detailsTableView.dataSource = self;
     detailsTableView.delegate = self;
     detailsTableView.backgroundColor = [UIColor clearColor];
@@ -686,7 +686,7 @@
     
     NSInteger posX = 0;
     indentValue = 0;
-    NSInteger screenWidth = self.view.bounds.size.width;
+    NSInteger screenWidth = self.view.frame.size.width;
     for (int i = 1; i < [self.hairfie.tags count] + 1; i++) {
         
         Tag *tag = [self.hairfie.tags objectAtIndex:i - 1];
