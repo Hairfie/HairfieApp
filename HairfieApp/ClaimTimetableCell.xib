@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="SourceSansPro-Light.ttf">
@@ -80,9 +81,16 @@
                     </view>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="6ur-cJ-uJO" firstAttribute="leading" secondItem="dz6-eg-5yS" secondAttribute="leadingMargin" constant="2" id="LuU-Mm-v13"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="6ur-cJ-uJO" secondAttribute="trailing" constant="2" id="NF2-5Q-FXQ"/>
                     <constraint firstItem="6ur-cJ-uJO" firstAttribute="centerY" secondItem="dz6-eg-5yS" secondAttribute="centerY" id="kIn-hL-FOs"/>
                     <constraint firstItem="6ur-cJ-uJO" firstAttribute="centerX" secondItem="dz6-eg-5yS" secondAttribute="centerX" id="tWm-27-MvL"/>
                 </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="tWm-27-MvL"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
             <connections>
                 <outlet property="containerView" destination="6ur-cJ-uJO" id="lTC-H6-2XN"/>
