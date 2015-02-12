@@ -7,9 +7,7 @@
 //
 
 #import "FinalStepViewController.h"
-#import "SecondStepSalonPhoneViewController.h"
-#import "FinalStepAddressViewController.h"
-#import "FinalStepTimetableViewController.h"
+#import "FinalStepClaimInfoViewController.h"
 #import "HairdresserTableViewCell.h"
 #import "ClaimServiceTableViewCell.h"
 #import "Address.h"
@@ -313,12 +311,12 @@
 
 -(IBAction)modifyPhoneNumber:(id)sender
 {
-    [self performSegueWithIdentifier:@"claimPhone" sender:self];
+    [self performSegueWithIdentifier:@"modifyClaimPhone" sender:self];
 }
 
 -(IBAction)modifyName:(id)sender
 {
-    [self performSegueWithIdentifier:@"claimSalon" sender:self];
+    [self performSegueWithIdentifier:@"modifyClaimSalon" sender:self];
 }
 
 -(IBAction)modifyAddress:(id)sender
@@ -505,48 +503,54 @@
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     
-    if ([segue.identifier isEqualToString:@"claimSalon"])
+    if ([segue.identifier isEqualToString:@"modifyClaimSalon"])
     {
         
-        SecondStepSalonPhoneViewController *salon = [segue destinationViewController];
-        salon.isFinalStep = YES;
-        salon.isExisting = YES;
-        salon.isSalon = YES;
-        salon.headerTitle = NSLocalizedStringFromTable(@"Salon's name", @"Claim", nil);
-        salon.textFieldPlaceHolder = NSLocalizedStringFromTable(@"Salon's name", @"Claim", nil);
+        FinalStepClaimInfoViewController *claimInfo  = [segue destinationViewController];
+        claimInfo.isBusinessInfo = YES;
+        claimInfo.isFinalStep = YES;
+        claimInfo.isExisting = YES;
+        claimInfo.isSalon = YES;
+        claimInfo.headerTitle = NSLocalizedStringFromTable(@"Salon's name", @"Claim", nil);
+        claimInfo.textFieldPlaceHolder = NSLocalizedStringFromTable(@"Salon's name", @"Claim", nil);
         if (_businessToManage != nil)
-            salon.textFieldFromSegue = _businessToManage.name;
+            claimInfo.textFieldFromSegue = _businessToManage.name;
 
         
     }
     
-    if ([segue.identifier isEqualToString:@"claimPhone"])
+    if ([segue.identifier isEqualToString:@"modifyClaimPhone"])
     {
         
-        SecondStepSalonPhoneViewController *phone = [segue destinationViewController];
-        phone.isFinalStep = YES;
-        phone.isExisting = YES;
-        phone.isSalon = NO;
-        phone.headerTitle = NSLocalizedStringFromTable(@"Phone number", @"Claim", nil);
-        phone.textFieldPlaceHolder = NSLocalizedStringFromTable(@"Phone number", @"Claim", nil);
+        
+        FinalStepClaimInfoViewController *claimInfo  = [segue destinationViewController];
+        claimInfo.isBusinessInfo = YES;
+        claimInfo.isFinalStep = YES;
+        claimInfo.isExisting = YES;
+        claimInfo.isSalon = NO;
+        claimInfo.headerTitle = NSLocalizedStringFromTable(@"Phone number", @"Claim", nil);
+        claimInfo.textFieldPlaceHolder = NSLocalizedStringFromTable(@"Phone number", @"Claim", nil);
         if (_businessToManage != nil)
-            phone.textFieldFromSegue = _businessToManage.phoneNumber;
+            claimInfo.textFieldFromSegue = _businessToManage.phoneNumber;
         
     }
     if ([segue.identifier isEqualToString:@"claimAddress"])
     {
-        FinalStepAddressViewController *claimAddress = [segue destinationViewController];
+        FinalStepClaimInfoViewController *claimInfo  = [segue destinationViewController];
+        claimInfo.isAddress = YES;
+        claimInfo.headerTitle = NSLocalizedStringFromTable(@"Modify Address", @"Claim", nil);
         if (_businessToManage != nil)
-            claimAddress.address = _businessToManage.address;
+            claimInfo.address = _businessToManage.address;
     
     }
     
     if ([segue.identifier isEqualToString:@"claimTimetable"])
     {
-        FinalStepTimetableViewController *claimTimetable = [segue destinationViewController];
+        FinalStepClaimInfoViewController *claimInfo  = [segue destinationViewController];
+        claimInfo.isTimetable = YES;
+        claimInfo.headerTitle = NSLocalizedStringFromTable(@"Modify Timetable", @"Claim", nil);
         if (_businessToManage != nil)
-            claimTimetable.timeTable = _businessToManage.timetable;
-        
+            claimInfo.timeTable = _businessToManage.timetable;
     }
     if ([segue.identifier isEqualToString:@"claimHairdresser"])
     {

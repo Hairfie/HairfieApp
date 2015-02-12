@@ -32,7 +32,7 @@
 #import "NotLoggedAlert.h"
 #import "BusinessMemberClaim.h"
 #import "HairfieNotifications.h"
-
+#import <IDMPhotoBrowser/IDMPhotoBrowser.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 
 @interface BusinessViewController ()
@@ -410,8 +410,19 @@
         headerViewController = [[SalonDetailHeaderViewController alloc] initWithNibName:@"SalonDetailHeaderViewController" bundle:nil];
         headerViewController.business = self.business;
         UIView *headerView = headerViewController.view;
+        
+        UITapGestureRecognizer *singleTap =  [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showPicturesGallery:)];
+        [singleTap setNumberOfTapsRequired:1];
+        [userHeader addGestureRecognizer:singleTap];
+        
+        UISwipeGestureRecognizer* swipeDown = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(showPicturesGallery:)];
+        swipeDown.direction = UISwipeGestureRecognizerDirectionDown;
+        [userHeader addGestureRecognizer:swipeDown];
+
+
         [headerView setFrame:CGRectMake(0, 0, self.view.bounds.size.width, 220)]; // can we use auto-layout instead?
         [userHeader addSubview:headerView];
+        
         isSetup = YES;
     }
    
@@ -419,6 +430,19 @@
     headerView = userHeader;
     return headerView;
     
+}
+-(void)showPicturesGallery:(UIGestureRecognizer*)gesture
+{
+    NSMutableArray *photosUrl = [[NSMutableArray alloc] init];
+    for (Picture *pic in self.business.pictures)
+    {
+        IDMPhoto *photo = [[IDMPhoto alloc] initWithURL:pic.url];
+        [photosUrl addObject:photo];
+    }
+    IDMPhotoBrowser *browser = [[IDMPhotoBrowser alloc] initWithPhotos:photosUrl];
+    browser.displayActionButton = NO;
+    
+    [self presentViewController:browser animated:YES completion:nil];
 }
 
 

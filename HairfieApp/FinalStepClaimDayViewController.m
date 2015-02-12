@@ -7,7 +7,7 @@
 //
 
 #import "FinalStepClaimDayViewController.h"
-#import "FinalStepTimetableViewController.h"
+#import "FinalStepClaimInfoViewController.h"
 #import "TimeWindow.h"
 #import "Timetable.h"
 
@@ -122,10 +122,12 @@ numberOfRowsInComponent:(NSInteger)component
 
 -(IBAction)addTimeTable:(id)sender
 {
-    FinalStepTimetableViewController *claimTimeTable = [self.navigationController.viewControllers objectAtIndex:[self.navigationController.viewControllers count]-2];
+    FinalStepClaimInfoViewController *claimTimeTable = [self.navigationController.viewControllers objectAtIndex:[self.navigationController.viewControllers count]-2];
     TimeWindow *timeWindow = [[TimeWindow alloc] initWithStartTime:_openingTime endTime:_closingTime appointmentMode:nil];
     NSLog(@"Daypicked : %@", _dayPicked.name);
     [[claimTimeTable.timeTable performSelector:_dayPicked.selector] addObject:timeWindow];
+    claimTimeTable.isTimetable = YES;
+    claimTimeTable.headerTitle = NSLocalizedStringFromTable(@"Modify Timetable", @"Claim", nil);
     [_openingTimePicker reloadAllComponents];
     [_closingTimePicker reloadAllComponents];
     [self goBack:self];

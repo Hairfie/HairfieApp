@@ -20,18 +20,18 @@ import QuartzCore
     @IBOutlet weak var hairdresserPictureBorderView: UIView!
     @IBOutlet weak var ratingView: RatingView!
     @IBOutlet weak var numReviewsLabel: UILabel!
-    
+
     var business: Business!
-    
+
     override func viewWillAppear(animated: Bool) {
-        
+
         hairdresserPictureView.contentMode = UIViewContentMode.Center
-        
+
         // configure hairdresser's picture border
         hairdresserPictureBorderView.layer.cornerRadius = hairdresserPictureBorderView.frame.size.height / 2
         hairdresserPictureBorderView.clipsToBounds = true
         hairdresserPictureBorderView.backgroundColor = UIColor(white: 1, alpha: 0.3)
-        
+
         // configure rating views
         ratingView.notSelectedImage = UIImage(named: "not_selected_star");
         ratingView.halfSelectedImage = UIImage(named: "half_selected_star");
@@ -39,28 +39,28 @@ import QuartzCore
         ratingView.rating = 0;
         ratingView.editable = false;
         ratingView.maxRating = 5;
-        
+
         picturesScrollView.userInteractionEnabled = true;
-        picturesScrollView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "handleTap:"))
-        
+       // picturesScrollView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "handleTap:"))
+
         refresh();
     }
 
     override func viewDidAppear(animated: Bool) {
 
     }
-    
+
     func refresh() {
         var downloader = SDWebImageDownloader.sharedDownloader()
         var superFrame = self.view.frame;
-        
+
         nameLabel.text = business.name;
         if (Int(business.numReviews) > 0) {
             ratingView.rating = Float(business.ratingBetween(0, and: 5))
         } else {
             ratingView.rating = 0
         }
-        
+
         if (Int(business.numReviews) < 2) {
             numReviewsLabel.text = NSString(
                 format: NSLocalizedString("%@ review", tableName: "Salon_Detail", comment: ""),
@@ -105,7 +105,7 @@ import QuartzCore
             hairdresserPictureBorderView.hidden = true;
 
             picturesScrollView.contentSize = CGSize(width: CGFloat(business.pictures.count) * picturesScrollView.frame.width, height: picturesScrollView.frame.height)
-            
+
             picturesPageControl.hidden = false;
             picturesPageControl.numberOfPages = business.pictures.count;
             picturesPageControl.currentPage = 0;
@@ -116,19 +116,19 @@ import QuartzCore
                 var pictureView = UIImageView(frame: frame)
                 pictureView.contentMode = UIViewContentMode.ScaleAspectFill;
                 var pictureUrl = picture.urlWithWidth(frame.width * 2, height: frame.height * 2)
-                
+
                 var gradientMaskLayer:CAGradientLayer = CAGradientLayer();
                 gradientMaskLayer.frame = pictureView.bounds;
                 gradientMaskLayer.colors = [UIColor.blackColor().CGColor!, UIColor.clearColor().CGColor!];
                 gradientMaskLayer.locations = [0.0, 1.2];
                 pictureView.layer.mask = gradientMaskLayer;
-    
+
                 downloadImage(pictureUrl!, callback: { (image, error) -> Void in
                     if (nil != image) {
                         pictureView.image = image
                     }
                 })
-                
+
                 picturesScrollView.addSubview(pictureView);
             }
         }
@@ -169,7 +169,7 @@ import QuartzCore
     @IBAction func picturePageChanged(AnyObject) {
         goToCurrentPicturePage(true);
     }
-    
+
     func scrollViewDidEndDecelerating(scrollView: UIScrollView!) {
         if (scrollView == self.picturesScrollView) {
             var pageWidth = self.view.frame.size.width;
@@ -177,23 +177,23 @@ import QuartzCore
             picturesPageControl.currentPage = Int(pageNumber);
         }
     }
-    
+
     func handleTap(gestureRecognizer: UITapGestureRecognizer)
     {
-        var photos = [IDMPhoto]();
-        var index: Int
-        for index = 0; index < business.pictures.count; ++index {
-            var picture: Picture = business.pictures[index] as Picture
-            var pictureUrl = picture.url;
-            var photo:IDMPhoto = IDMPhoto(URL: pictureUrl);
-            photos.append(photo);
-        }
-    
-        let browser = IDMPhotoBrowser(photos: photos)
-        browser.displayArrowButton = false
-        browser.displayActionButton = true
-        
-        self.presentViewController(browser, animated:true, completion: nil);
-
+        //var photos = [IDMPhoto]();
+        //var index: Int
+        //for index = 0; index < business.pictures.count; ++index {
+        //    var picture: Picture = business.pictures[index] as Picture
+        //    var pictureUrl = picture.url;
+        //    var photo:IDMPhoto = IDMPhoto(URL: pictureUrl);
+        //    photos.append(photo);
+        //}
+    //
+        //let browser = IDMPhotoBrowser(photos: photos)
+        //browser.displayArrowButton = false
+        //browser.displayActionButton = true
+        //
+        //self.presentViewController(browser, animated:true, completion: nil);
+//
     }
 }

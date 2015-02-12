@@ -23,7 +23,7 @@ target "HairfieApp" do
   pod 'CWStatusBarNotification', '~> 2.2.2'
   pod 'PonyDebugger', :git => 'https://github.com/square/PonyDebugger.git'
   pod 'UIAlertView+Blocks'
-  pod 'IDMPhotoBrowser', :git => 'https://github.com/oonoo/IDMPhotoBrowser.git'
+  pod 'IDMPhotoBrowser'
 end
 
 target "HairfieAppTests" do
