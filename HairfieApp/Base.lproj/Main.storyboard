@@ -6544,11 +6544,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XRS-OV-NAX" userLabel="Top Bar View">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XRS-OV-NAX" userLabel="Header">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="veq-Lv-NKV" userLabel="Go Back">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="veq-Lv-NKV" userLabel="Go Back">
                                         <rect key="frame" x="10" y="17" width="40" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="Fid-eZ-EwN"/>
+                                            <constraint firstAttribute="width" constant="40" id="tkW-SO-KxH"/>
+                                        </constraints>
                                         <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                         <state key="normal" image="arrow-nav.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -6557,15 +6561,23 @@
                                             <action selector="goBack:" destination="Q3n-aX-0gT" eventType="touchUpInside" id="d7W-h8-oy9"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Suggest hairdresser" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="R1s-gY-lhe">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Suggest hairdresser" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="R1s-gY-lhe">
                                         <rect key="frame" x="86" y="25" width="149" height="23"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="23" id="gyH-eb-dhb"/>
+                                            <constraint firstAttribute="width" constant="149" id="zaX-V9-kx1"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="18"/>
                                         <color key="textColor" red="0.41176470590000003" green="0.4431372549" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z01-kl-Hea">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z01-kl-Hea">
                                         <rect key="frame" x="255" y="25" width="60" height="30"/>
                                         <color key="backgroundColor" red="1" green="0.45882352941176469" blue="0.44313725490196076" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="5Fa-FR-p0o"/>
+                                            <constraint firstAttribute="width" constant="60" id="yAE-PF-v0r"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="14"/>
                                         <state key="normal" title="Send">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -6574,35 +6586,70 @@
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="GaI-4m-6T7"/>
+                                    <constraint firstItem="R1s-gY-lhe" firstAttribute="top" secondItem="XRS-OV-NAX" secondAttribute="top" constant="25" id="Gdq-LC-0LA"/>
+                                    <constraint firstItem="veq-Lv-NKV" firstAttribute="leading" secondItem="XRS-OV-NAX" secondAttribute="leading" constant="10" id="Mdu-9q-EFL"/>
+                                    <constraint firstItem="z01-kl-Hea" firstAttribute="top" secondItem="XRS-OV-NAX" secondAttribute="top" constant="25" id="SWp-66-yGw"/>
+                                    <constraint firstAttribute="trailing" secondItem="z01-kl-Hea" secondAttribute="trailing" constant="5" id="VGp-Ib-4gS"/>
+                                    <constraint firstItem="veq-Lv-NKV" firstAttribute="top" secondItem="XRS-OV-NAX" secondAttribute="top" constant="17" id="m5z-o8-RZz"/>
+                                    <constraint firstAttribute="centerX" secondItem="R1s-gY-lhe" secondAttribute="centerX" constant="-0.5" id="q50-cX-31x"/>
+                                </constraints>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yJG-Ta-LRL">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yJG-Ta-LRL" userLabel="First name field">
                                 <rect key="frame" x="16" y="72" width="288" height="46"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8DL-6v-Iwe">
+                                        <rect key="frame" x="9" y="0.0" width="270" height="46"/>
+                                        <color key="textColor" red="0.44294084820000001" green="0.44294084820000001" blue="0.44294084820000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="16"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" returnKeyType="next"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="Q3n-aX-0gT" id="6EQ-4U-mnr"/>
+                                        </connections>
+                                    </textField>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="8DL-6v-Iwe" firstAttribute="top" secondItem="yJG-Ta-LRL" secondAttribute="top" id="2ur-B8-WXH"/>
+                                    <constraint firstItem="8DL-6v-Iwe" firstAttribute="leading" secondItem="yJG-Ta-LRL" secondAttribute="leading" constant="9" id="M2u-eF-Bze"/>
+                                    <constraint firstAttribute="height" constant="46" id="Pm8-Gx-tNf"/>
+                                    <constraint firstAttribute="trailing" secondItem="8DL-6v-Iwe" secondAttribute="trailing" constant="9" id="hxi-jv-Qp6"/>
+                                    <constraint firstAttribute="bottom" secondItem="8DL-6v-Iwe" secondAttribute="bottom" id="tdR-Ja-hkI"/>
+                                </constraints>
                             </view>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8DL-6v-Iwe">
-                                <rect key="frame" x="28" y="72" width="270" height="46"/>
-                                <color key="textColor" red="0.44294084820000001" green="0.44294084820000001" blue="0.44294084820000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="16"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" returnKeyType="next"/>
-                                <connections>
-                                    <outlet property="delegate" destination="Q3n-aX-0gT" id="6EQ-4U-mnr"/>
-                                </connections>
-                            </textField>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v9a-Zg-knU">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v9a-Zg-knU" userLabel="Last name field">
                                 <rect key="frame" x="16" y="135" width="288" height="46"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fdG-uE-pnf">
+                                        <rect key="frame" x="9" y="0.0" width="270" height="46"/>
+                                        <color key="textColor" red="0.44294084820000001" green="0.44294084820000001" blue="0.44294084820000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="16"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" returnKeyType="next"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="Q3n-aX-0gT" id="QdQ-gz-mmW"/>
+                                        </connections>
+                                    </textField>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="46" id="vfv-La-0nK"/>
+                                </constraints>
                             </view>
-                            <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fdG-uE-pnf">
-                                <rect key="frame" x="28" y="135" width="270" height="46"/>
-                                <color key="textColor" red="0.44294084820000001" green="0.44294084820000001" blue="0.44294084820000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="16"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" returnKeyType="next"/>
-                                <connections>
-                                    <outlet property="delegate" destination="Q3n-aX-0gT" id="QdQ-gz-mmW"/>
-                                </connections>
-                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="v9a-Zg-knU" firstAttribute="centerX" secondItem="yJG-Ta-LRL" secondAttribute="centerX" id="0qS-yF-9OD"/>
+                            <constraint firstItem="v9a-Zg-knU" firstAttribute="height" secondItem="yJG-Ta-LRL" secondAttribute="height" id="7PS-Du-4CY"/>
+                            <constraint firstItem="XRS-OV-NAX" firstAttribute="width" secondItem="fT6-zR-PD5" secondAttribute="width" id="KCP-6p-Qpz"/>
+                            <constraint firstAttribute="centerX" secondItem="XRS-OV-NAX" secondAttribute="centerX" id="OJ4-wk-Tzv"/>
+                            <constraint firstItem="yJG-Ta-LRL" firstAttribute="trailing" secondItem="fT6-zR-PD5" secondAttribute="trailingMargin" id="VQC-Xc-FoL"/>
+                            <constraint firstItem="v9a-Zg-knU" firstAttribute="top" secondItem="yJG-Ta-LRL" secondAttribute="bottom" constant="17" id="YFq-KX-XZc"/>
+                            <constraint firstItem="XRS-OV-NAX" firstAttribute="top" secondItem="PQu-fZ-NlX" secondAttribute="bottom" constant="-20" id="a1A-mj-kMT"/>
+                            <constraint firstItem="yJG-Ta-LRL" firstAttribute="leading" secondItem="fT6-zR-PD5" secondAttribute="leadingMargin" id="g4O-EX-IKv"/>
+                            <constraint firstItem="yJG-Ta-LRL" firstAttribute="top" secondItem="XRS-OV-NAX" secondAttribute="bottom" constant="8" id="lqB-8f-Zzg"/>
+                            <constraint firstItem="v9a-Zg-knU" firstAttribute="width" secondItem="yJG-Ta-LRL" secondAttribute="width" id="pAd-Om-p2e"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="cAm-FH-AcG"/>
                     <connections>
