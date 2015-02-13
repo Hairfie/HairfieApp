@@ -24,6 +24,7 @@ target "HairfieApp" do
   pod 'PonyDebugger', :git => 'https://github.com/square/PonyDebugger.git'
   pod 'UIAlertView+Blocks'
   pod 'IDMPhotoBrowser'
+  pod 'PureLayout'
 end
 
 target "HairfieAppTests" do

@@ -103,6 +103,9 @@
 		7164B56D1A0D380F002B68E5 /* URLUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 7164B56C1A0D380F002B68E5 /* URLUtils.m */; };
 		7175C5DE1A666A410030DAA5 /* BusinessMemberClaim.m in Sources */ = {isa = PBXBuildFile; fileRef = 7175C5DD1A666A410030DAA5 /* BusinessMemberClaim.m */; };
 		7175C5E11A666BC40030DAA5 /* BusinessMemberClaimRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 7175C5E01A666BC40030DAA5 /* BusinessMemberClaimRepository.m */; };
+		71812B191A8E348900685682 /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71812B171A8E348900685682 /* CameraViewController.m */; };
+		71812B1A1A8E348900685682 /* CameraViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 71812B181A8E348900685682 /* CameraViewController.xib */; };
+		71812B1D1A8E3D2500685682 /* CameraPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 71812B1C1A8E3D2500685682 /* CameraPreviewView.m */; };
 		718A98B019C1EF46003CD34B /* GeoPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 718A98AF19C1EF46003CD34B /* GeoPoint.m */; };
 		718B6B7819C831E200F2F8EF /* picto-hairfie-liked.png in Resources */ = {isa = PBXBuildFile; fileRef = 718B6B7719C831E200F2F8EF /* picto-hairfie-liked.png */; };
 		718B6B7A19C8339000F2F8EF /* picto-hairfie-detail-liked.png in Resources */ = {isa = PBXBuildFile; fileRef = 718B6B7919C8339000F2F8EF /* picto-hairfie-detail-liked.png */; };
@@ -595,6 +598,11 @@
 		7175C5DD1A666A410030DAA5 /* BusinessMemberClaim.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessMemberClaim.m; sourceTree = "<group>"; };
 		7175C5DF1A666BC40030DAA5 /* BusinessMemberClaimRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessMemberClaimRepository.h; sourceTree = "<group>"; };
 		7175C5E01A666BC40030DAA5 /* BusinessMemberClaimRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessMemberClaimRepository.m; sourceTree = "<group>"; };
+		71812B161A8E348900685682 /* CameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
+		71812B171A8E348900685682 /* CameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraViewController.m; sourceTree = "<group>"; };
+		71812B181A8E348900685682 /* CameraViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CameraViewController.xib; sourceTree = "<group>"; };
+		71812B1B1A8E3D2500685682 /* CameraPreviewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraPreviewView.h; sourceTree = "<group>"; };
+		71812B1C1A8E3D2500685682 /* CameraPreviewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraPreviewView.m; sourceTree = "<group>"; };
 		718A98AE19C1EF46003CD34B /* GeoPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeoPoint.h; sourceTree = "<group>"; };
 		718A98AF19C1EF46003CD34B /* GeoPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeoPoint.m; sourceTree = "<group>"; };
 		718B6B7719C831E200F2F8EF /* picto-hairfie-liked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "picto-hairfie-liked.png"; sourceTree = "<group>"; };
@@ -1393,6 +1401,18 @@
 			name = Share;
 			sourceTree = "<group>";
 		};
+		71812B151A8E344D00685682 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				71812B161A8E348900685682 /* CameraViewController.h */,
+				71812B171A8E348900685682 /* CameraViewController.m */,
+				71812B181A8E348900685682 /* CameraViewController.xib */,
+				71812B1B1A8E3D2500685682 /* CameraPreviewView.h */,
+				71812B1C1A8E3D2500685682 /* CameraPreviewView.m */,
+			);
+			name = Camera;
+			sourceTree = "<group>";
+		};
 		71A564EA1A1A3C6500398C7B /* CALayer Subclasses */ = {
 			isa = PBXGroup;
 			children = (
@@ -1405,6 +1425,7 @@
 		B3087010198782CF0080E6D2 /* Pages */ = {
 			isa = PBXGroup;
 			children = (
+				71812B151A8E344D00685682 /* Camera */,
 				B3AA0CB01A24C57800FAEC01 /* Business Member */,
 				B3FA61FF19F79E43002D8B6F /* User Profile */,
 				1536598919DEFF570002D5ED /* Tuto + Login + Sign Up */,
@@ -2329,6 +2350,7 @@
 				B315568B1A3725550061FD1E /* picto-fav.png in Resources */,
 				159207901A5C184A007D7928 /* Claim.html in Resources */,
 				15E3D2C919D075CC0065A07E /* Post_Hairfie.strings in Resources */,
+				71812B1A1A8E348900685682 /* CameraViewController.xib in Resources */,
 				15FD04501A52FB44009E7A0E /* original-process.JPG in Resources */,
 				158FCA9519FE54110001F86C /* facebook-share-on.png in Resources */,
 				B3AD59C2198B9D3500909ADE /* picto-list-man.png in Resources */,
@@ -2641,6 +2663,7 @@
 				712667EB19C6E67500298FF0 /* UIRoundImageView.m in Sources */,
 				15B8D63A19C83DD200C889CF /* LoadingCollectionViewCell.m in Sources */,
 				B3BD869F198BCFE500BD8591 /* RatingView.m in Sources */,
+				71812B1D1A8E3D2500685682 /* CameraPreviewView.m in Sources */,
 				B3AA0CA01A2346D800FAEC01 /* BusinessReusableView.m in Sources */,
 				B3A2F48D19F4FEF000BD9354 /* ClaimServiceTableViewCell.m in Sources */,
 				B367DC3419C98EBF00A0452A /* BusinessAnnotation.m in Sources */,
@@ -2694,6 +2717,7 @@
 				71E08E5D19FF9A2700A56FBB /* SalonDetailHeaderViewController.swift in Sources */,
 				158FCA9119FA9B870001F86C /* FBAuthenticator.m in Sources */,
 				B3BB63A11A1C99570087AB27 /* UserProfileViewController.m in Sources */,
+				71812B191A8E348900685682 /* CameraViewController.m in Sources */,
 				71537CB21A44329300519C1B /* BusinessMemberFavoriteRepository.m in Sources */,
 				B39BA17E19AF535400A48BD5 /* KeychainItemWrapper.m in Sources */,
 				B3AE0D3F19C05EE900149C2B /* PostSalonTableViewCell.m in Sources */,

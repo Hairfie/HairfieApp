@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "User.h"
 #import "HairfiePost.h"
+#import "CameraViewController.h"
 
-@interface CameraOverlayViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate> {
+@interface CameraOverlayViewController : UIViewController <CameraViewControllerDelegate, UINavigationControllerDelegate> {
     UINavigationController *navController;
 }
 
