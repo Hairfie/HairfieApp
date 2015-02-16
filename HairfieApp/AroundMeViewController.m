@@ -14,7 +14,6 @@
 #import "CameraOverlayViewController.h"
 #import "SearchFilterViewController.h"
 
-#import "SalonTableViewCell.h"
 #import "BusinessViewController.h"
 #import "BusinessViewController.h"
 #import "SimilarTableViewCell.h"
