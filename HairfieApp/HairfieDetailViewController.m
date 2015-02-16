@@ -44,12 +44,13 @@
     UIPageControl *pageControl;
     BOOL didLikeWithDoubleTap;
     NSInteger indentValue;
+    AppDelegate *appDelegate;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     self.hairfieCollection.delegate = self;
     self.hairfieCollection.dataSource = self;
 
@@ -125,11 +126,27 @@
 
 -(IBAction)showMenuActionSheet:(id)sender
 {
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+    UIActionSheet *actionSheet;
+    
+     NSLog(@"\n%@\n%@", appDelegate.currentUser.id, self.hairfie.author.id);
+    
+    if ([self.hairfie.author.id isEqualToString:appDelegate.currentUser.id]) {
+        actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                             delegate:self
+                                                    cancelButtonTitle:NSLocalizedStringFromTable(@"Cancel", @"Salon_Detail", nil)
+                                               destructiveButtonTitle:NSLocalizedStringFromTable(@"Delete", @"Hairfie_Detail", nil)
+                                                    otherButtonTitles:NSLocalizedStringFromTable(@"Tweet", @"Hairfie_Detail", nil),NSLocalizedStringFromTable(@"Share on Facebook", @"Hairfie_Detail", nil),NSLocalizedStringFromTable(@"Post on Instagram", @"Hairfie_Detail", nil),NSLocalizedStringFromTable(@"Pin on Pinterest", @"Hairfie_Detail", nil),NSLocalizedStringFromTable(@"Copy Hairfie", @"Hairfie_Detail", nil),nil];
+    }
+    else {
+    actionSheet = [[UIActionSheet alloc] initWithTitle:nil
                                                              delegate:self
                                                     cancelButtonTitle:NSLocalizedStringFromTable(@"Cancel", @"Salon_Detail", nil)
                                                destructiveButtonTitle:nil
                                                     otherButtonTitles:NSLocalizedStringFromTable(@"Tweet", @"Hairfie_Detail", nil),NSLocalizedStringFromTable(@"Share on Facebook", @"Hairfie_Detail", nil),NSLocalizedStringFromTable(@"Post on Instagram", @"Hairfie_Detail", nil),NSLocalizedStringFromTable(@"Pin on Pinterest", @"Hairfie_Detail", nil),NSLocalizedStringFromTable(@"Copy Hairfie", @"Hairfie_Detail", nil),nil];//NSLocalizedStringFromTable(@"Report Hairfie", @"Hairfie_Detail", nil),nil];
+    }
+    
+    
+   
         [actionSheet showInView:self.view];
 }
 
@@ -137,16 +154,29 @@
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     
+    NSInteger myIndex;
+    if ([self.hairfie.author.id isEqualToString:appDelegate.currentUser.id])
+        myIndex = buttonIndex - 1;
+    else
+        myIndex = buttonIndex;
     // change to 6 if report button is on
     
-    if (5 == buttonIndex) return; // it's the cancel button
-
-    NSDictionary *action = menuActions[buttonIndex];
+    if ([self.hairfie.author.id isEqualToString:appDelegate.currentUser.id]) {
+        if (myIndex == -1)
+        {
+           
+            [self deleteHairfie];
+            }
+    }
+    
+    if (5 == myIndex) return; // it's the cancel button
+    else  if (myIndex != -1){
+    NSDictionary *action = menuActions[myIndex];
     NSString *shareName = [action objectForKey:@"share"];
     NSString *segueName = [action objectForKey:@"segue"];
     
     if (nil != segueName) {
-        [self performSegueWithIdentifier:[menuActions[buttonIndex - 1] objectForKey:@"segue"] sender:self];
+        [self performSegueWithIdentifier:[menuActions[myIndex ] objectForKey:@"segue"] sender:self];
     }
     
     
@@ -162,6 +192,18 @@
         UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
         pasteboard.string = self.hairfie.landingPageUrl.absoluteString;
     }
+    }
+}
+
+-(void)deleteHairfie
+{
+    [Hairfie deleteHairfie:self.hairfie.id success:^() {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    failure:^(NSError *error) {
+    NSLog(@"Failed to retrieve complete business: %@", error.localizedDescription);
+                   }];
+
 }
 
 -(void)shareOnInstagram

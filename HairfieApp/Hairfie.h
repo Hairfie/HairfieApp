@@ -80,7 +80,11 @@
                       skip:(NSNumber *)skip
                    success:(void(^)(NSArray *hairfies))aSuccessHandler
                    failure:(void(^)(NSError *error))aFailureHandler;
-                   
+
++(void)deleteHairfie:(NSString*)hairfieId
+             success:(void(^)())aSuccessHandler
+             failure:(void(^)(NSError *error))aFailureHandler;
+
 +(id)fromSetterValue:(id)aValue;
 
 +(HairfieRepository *)repository;

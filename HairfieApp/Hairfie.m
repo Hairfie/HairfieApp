@@ -242,7 +242,6 @@
                            failure:aFailureHandler];
 }
 
-
 +(void)listLatestByBusinessMember:(NSString*)businessMemberId
                             limit:(NSNumber *)limit
                              skip:(NSNumber *)skip
@@ -361,6 +360,22 @@
                                aSuccessHandler([[NSArray alloc] initWithArray:hairfies]);
                             }
                             failure:aFailureHandler];
+}
+
++(void)deleteHairfie:(NSString *)hairfieId
+             success:(void (^)())aSuccessHandler
+             failure:(void (^)(NSError *error))aFailureHandler
+{
+    
+    [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/hairfies/:id" verb:@"DELETE"]
+                                        forMethod:@"hairfies.delete"];
+    
+    LBModelRepository *repository = [self repository];
+    
+    [repository invokeStaticMethod:@"delete"
+                        parameters:@{@"id":hairfieId}
+                           success:aSuccessHandler
+                           failure:aFailureHandler];
 }
 
 +(id)fromSetterValue:(id)aValue

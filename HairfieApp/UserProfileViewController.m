@@ -89,6 +89,8 @@
 
 -(IBAction)addPicture:(id)sender
 {
+    
+    if ([appDelegate.currentUser.id isEqualToString:self.user.id]) {
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
                                                              delegate:self
                                                     cancelButtonTitle:NSLocalizedStringFromTable(@"Cancel", @"Salon_Detail", nil)
@@ -100,6 +102,7 @@
    
     
     [actionSheet showInView:self.view];
+    }
 }
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex

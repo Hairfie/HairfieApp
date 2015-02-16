@@ -40,7 +40,7 @@
     currentPage = @(0);
     hairfies = [[NSMutableArray alloc] init];
     endOfScroll = NO;
-    [self getHairfies:nil];
+   // [self getHairfies:nil];
     refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget:self action:@selector(getHairfiesFromRefresh:)
              forControlEvents:UIControlEventValueChanged];
@@ -59,7 +59,7 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
-   
+    
     NSDictionary* dict = [NSDictionary dictionaryWithObject:NSLocalizedStringFromTable(@"Hairfies",@"Feed",nil)
                                                      forKey:@"menuItem"];
 
@@ -69,7 +69,7 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated {
-    [self.contentCollection reloadData];
+    [self getHairfies:nil];
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath

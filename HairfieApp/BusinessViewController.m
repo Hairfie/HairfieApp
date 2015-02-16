@@ -458,8 +458,7 @@
 }
 
 
-
-- (void)photoBrowser:(IDMPhotoBrowser *)photoBrowser didDismissAtPageIndex:(NSUInteger)index
+-(void)photoBrowser:(IDMPhotoBrowser *)photoBrowser didDismissAtPageIndex:(NSUInteger)index
 {
     [self restrictRotation:YES];
     NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];
