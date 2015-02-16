@@ -25,6 +25,7 @@
 #import "BusinessDetailCollectionViewCell.h"
 #import "BusinessHairdressersCollectionViewCell.h"
 #import "BusinessServicesCollectionViewCell.h"
+#import "BusinessPictureGalleryViewController.h"
 
 #import "FinalStepViewController.h"
 
@@ -71,8 +72,7 @@
     
     isDetailsTab = YES;
      self.collectionView.allowsMultipleSelection = NO;
-    
-    appDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
+       appDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
 
     if([appDelegate.credentialStore isLoggedIn]) {
         menuActions = @[
@@ -147,6 +147,7 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    [self restrictRotation:YES];
     
     if(_didClaim) {
         [self.navBttn setHidden:YES];
@@ -426,24 +427,47 @@
         isSetup = YES;
     }
    
+   
     [userHeader setupView];
     headerView = userHeader;
     return headerView;
     
 }
+
+-(void) restrictRotation:(BOOL) restriction
+{
+    appDelegate.restrictRotation = restriction;
+}
+
 -(void)showPicturesGallery:(UIGestureRecognizer*)gesture
 {
-    NSMutableArray *photosUrl = [[NSMutableArray alloc] init];
+    NSMutableArray* photosUrl = [[NSMutableArray alloc] init];
+
+    
     for (Picture *pic in self.business.pictures)
     {
         IDMPhoto *photo = [[IDMPhoto alloc] initWithURL:pic.url];
         [photosUrl addObject:photo];
     }
-    IDMPhotoBrowser *browser = [[IDMPhotoBrowser alloc] initWithPhotos:photosUrl];
-    browser.displayActionButton = NO;
+  
     
+    BusinessPictureGalleryViewController *browser = [[BusinessPictureGalleryViewController alloc]initWithPhotos:photosUrl];
+    browser.delegate = self;
+    browser.displayActionButton = NO;
     [self presentViewController:browser animated:YES completion:nil];
 }
+
+
+
+- (void)photoBrowser:(IDMPhotoBrowser *)photoBrowser didDismissAtPageIndex:(NSUInteger)index
+{
+    [self restrictRotation:YES];
+    NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];
+    [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
+}
+
+
+
 
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath

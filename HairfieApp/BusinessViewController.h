@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Business.h"
 
-@interface BusinessViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UIActionSheetDelegate>
+@interface BusinessViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UIActionSheetDelegate, IDMPhotoBrowserDelegate>
 
 @property (nonatomic) IBOutlet UICollectionView *collectionView;
 @property (strong, nonatomic) Business *business;

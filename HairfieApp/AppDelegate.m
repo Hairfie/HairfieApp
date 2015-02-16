@@ -50,6 +50,7 @@ static LBRESTAdapter * _lbAdaptater = nil;
                                       ARGoogleAnalyticsID : GOOGLE_ANALYTICS_TOKEN
                                       }];
 
+    self.restrictRotation = YES;
     _manager = [[CLLocationManager alloc] init];
     _credentialStore = [[CredentialStore alloc] init];
     userAuthenticator = [[UserAuthenticator alloc] init];
@@ -115,6 +116,14 @@ static LBRESTAdapter * _lbAdaptater = nil;
     BOOL wasHandled = [FBAppCall handleOpenURL:url sourceApplication:sourceApplication];
 
     return wasHandled;
+}
+
+-(NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window
+{
+    if(self.restrictRotation)
+        return UIInterfaceOrientationMaskPortrait;
+    else
+        return UIInterfaceOrientationMaskAll;
 }
 
 - (void)showLoginStoryboard {

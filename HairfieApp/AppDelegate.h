@@ -34,9 +34,11 @@
 @property (nonatomic) FBSession *fbSession;
 @property (nonatomic) Reachability *reachability;
 @property (nonatomic) HairfieNotifications *hairfieNotif;
+@property () BOOL restrictRotation;
 
 -(void)showLoginStoryboard;
 -(void)startTrackingLocation:(BOOL)forceLocation;
+
 
 @end
 

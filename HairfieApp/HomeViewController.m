@@ -150,7 +150,9 @@
                                                                       options:NSLayoutFormatDirectionLeadingToTrailing
                                                                       metrics:nil
                                                                         views:NSDictionaryOfVariableBindings(pageViewControllerView)]];
+    
 }
+
 
 -(void)viewDidLayoutSubviews
 {
