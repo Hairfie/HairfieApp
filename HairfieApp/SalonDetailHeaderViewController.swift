@@ -50,6 +50,9 @@ import QuartzCore
 
     }
 
+    override func viewDidLayoutSubviews() {
+        refresh();
+    }
     func refresh() {
         var downloader = SDWebImageDownloader.sharedDownloader()
         var superFrame = self.view.frame;
