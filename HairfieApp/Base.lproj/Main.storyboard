@@ -2690,7 +2690,6 @@
                             <constraint firstAttribute="centerX" secondItem="q17-aw-HaG" secondAttribute="centerX" id="A9M-ik-iK0"/>
                             <constraint firstAttribute="width" secondItem="orD-XI-cE9" secondAttribute="width" id="CD7-UC-oxN"/>
                             <constraint firstItem="wD6-q4-Oww" firstAttribute="top" secondItem="orD-XI-cE9" secondAttribute="bottom" id="D7H-uJ-gcJ"/>
-                            <constraint firstAttribute="width" secondItem="jHV-Tu-r33" secondAttribute="width" id="Sr7-p9-L4O"/>
                             <constraint firstItem="q17-aw-HaG" firstAttribute="top" secondItem="Ywg-h3-Fms" secondAttribute="bottom" constant="-40" id="nvA-6h-30O"/>
                             <constraint firstItem="jHV-Tu-r33" firstAttribute="width" secondItem="Wo5-mI-kis" secondAttribute="width" id="qKU-Na-Q5l"/>
                             <constraint firstItem="wD6-q4-Oww" firstAttribute="top" secondItem="q17-aw-HaG" secondAttribute="bottom" constant="50" id="r9P-Dv-yJu"/>
@@ -5364,7 +5363,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xt3-i7-57w">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="-20" width="320" height="588"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EuT-Lu-oD6" userLabel="VIEW CONTAINER">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -5861,7 +5860,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="VqP-Tv-CU2" firstAttribute="top" secondItem="xt3-i7-57w" secondAttribute="bottom" id="7eN-Xk-hRu"/>
-                            <constraint firstItem="xt3-i7-57w" firstAttribute="top" secondItem="0Si-BM-r8q" secondAttribute="bottom" constant="-20" id="9Ng-kw-mjJ"/>
+                            <constraint firstItem="xt3-i7-57w" firstAttribute="top" secondItem="0Si-BM-r8q" secondAttribute="bottom" constant="-40" id="9Ng-kw-mjJ"/>
                             <constraint firstItem="GtV-yO-i63" firstAttribute="width" secondItem="ACl-lb-M7R" secondAttribute="width" id="AMf-TP-AiQ"/>
                             <constraint firstItem="xt3-i7-57w" firstAttribute="width" secondItem="ACl-lb-M7R" secondAttribute="width" id="INy-YU-LBE"/>
                             <constraint firstAttribute="centerX" secondItem="xt3-i7-57w" secondAttribute="centerX" id="ieN-4L-FnT"/>
@@ -7169,14 +7168,14 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="JOd-nL-lAl"/>
-        <segue reference="WYb-zG-qo5"/>
         <segue reference="OXf-FI-oBV"/>
-        <segue reference="ike-pA-JY1"/>
-        <segue reference="gc2-JI-si9"/>
+        <segue reference="Vzm-3A-jKo"/>
+        <segue reference="JOd-nL-lAl"/>
+        <segue reference="9F8-Wo-5DF"/>
+        <segue reference="ljj-N5-0Sy"/>
+        <segue reference="YMQ-jo-wz1"/>
         <segue reference="vyz-iT-x7e"/>
         <segue reference="y0x-ky-Mk2"/>
-        <segue reference="18q-AN-mc0"/>
-        <segue reference="cUj-YN-hJW"/>
+        <segue reference="ike-pA-JY1"/>
     </inferredMetricsTieBreakers>
 </document>
