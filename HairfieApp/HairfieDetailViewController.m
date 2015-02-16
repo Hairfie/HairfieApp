@@ -30,6 +30,8 @@
 
 @implementation HairfieDetailViewController
 {
+    
+    NSInteger tagLines;
     UIView *hairfieDetailView;
     UIView *hairfieView;
     UILabel *nbLike;
@@ -143,6 +145,7 @@
                                                     cancelButtonTitle:NSLocalizedStringFromTable(@"Cancel", @"Salon_Detail", nil)
                                                destructiveButtonTitle:nil
                                                     otherButtonTitles:NSLocalizedStringFromTable(@"Tweet", @"Hairfie_Detail", nil),NSLocalizedStringFromTable(@"Share on Facebook", @"Hairfie_Detail", nil),NSLocalizedStringFromTable(@"Post on Instagram", @"Hairfie_Detail", nil),NSLocalizedStringFromTable(@"Pin on Pinterest", @"Hairfie_Detail", nil),NSLocalizedStringFromTable(@"Copy Hairfie", @"Hairfie_Detail", nil),nil];//NSLocalizedStringFromTable(@"Report Hairfie", @"Hairfie_Detail", nil),nil];
+        
     }
     
     
@@ -502,12 +505,16 @@
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
 {
-    float height = MAX((self.view.frame.size.width + 120 + [self infosTableHeight] + 20), (self.view.frame.size.height - _topBarView.frame.size.height));
+    [self displayTags:nil];
+    
+    float height = MAX((self.view.frame.size.width + [self infosTableHeight] + 20) + (50 + (35 * tagLines)), (self.view.frame.size.height - _topBarView.frame.size.height));
     
     NSLog(@"height %f", (self.view.frame.size.height - _topBarView.frame.size.height + 10));
 
     return CGSizeMake(self.view.frame.size.width, height);
 }
+
+
 
 // header view data source
 
@@ -643,7 +650,7 @@
    
     // HAIRFIE DETAIL
 
-    hairfieDetailView = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.width + 10, self.view.frame.size.width, 120)];
+    hairfieDetailView = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.width + 10, self.view.frame.size.width, 50)];
 
     UIRoundImageView *borderProfile = [[UIRoundImageView alloc]initWithFrame:CGRectMake(10, 0, 44, 44)];
     [borderProfile setBackgroundColor:[[UIColor blackHairfie] colorWithAlphaComponent:0.2]];
@@ -696,6 +703,11 @@
     UIView *tagsView = [[UIView alloc]initWithFrame:CGRectMake(10, 43, 280, 54)];
     
     [self displayTags:tagsView];
+    if (self.hairfie.tags.count != 0) {
+        [hairfieDetailView setFrame:CGRectMake(0, self.view.frame.size.width + 10, self.view.frame.size.width, 50 + (35 * tagLines))];
+    }
+    else
+        tagLines = 0;
     
 //    descLabel.text = self.hairfie.description;
 //    descLabel.font = [UIFont fontWithName:@"SourceSansPro-Light" size:12];
@@ -710,7 +722,7 @@
     [hairfieDetailView addSubview:tagsView];
     // RESTE
 
-    detailsTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.width + 10 + hairfieDetailView.frame.size.height + 10, self.view.frame.size.width, [self infosTableHeight])];
+    detailsTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.width + 10 + hairfieDetailView.frame.size.height, self.view.frame.size.width, [self infosTableHeight])];
     detailsTableView.dataSource = self;
     detailsTableView.delegate = self;
     detailsTableView.backgroundColor = [UIColor clearColor];
@@ -726,6 +738,7 @@
 
 -(void)displayTags:(UIView*)aView {
     
+    tagLines = 1;
     NSInteger posX = 0;
     indentValue = 0;
     NSInteger screenWidth = self.view.frame.size.width;
@@ -749,6 +762,7 @@
         if (posX + indentValue >= screenWidth - 20)
         {
             frame.origin.y += 35;
+            tagLines++;
             posX = 0;
             frame.origin.x = posX;
         }
@@ -768,7 +782,8 @@
         
         [aView addSubview:label];
     }
-    
+    NSLog(@"tagLine %d", tagLines);
+
 }
 
 -(void)getLabelWidth:(UILabel*)aLabel
