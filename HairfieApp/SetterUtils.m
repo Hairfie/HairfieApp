@@ -13,6 +13,9 @@
 +(id)getInstanceOf:(Class)aClass
    fromSetterValue:(id)aValue
 {
+    if (aValue == nil) {
+        return nil;
+    }
     if ([aValue isEqual:[NSNull null]]) {
         return nil;
     }

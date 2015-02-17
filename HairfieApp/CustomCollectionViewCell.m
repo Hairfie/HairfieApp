@@ -42,11 +42,14 @@
                                placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
 
         self.name.text = hairfie.business.name;
-    } else {
+    } else if (hairfie.author.picture != nil){
     
         [self.profilePicture sd_setImageWithURL:[hairfie.author pictureUrlWithWidth:
                                                  @100 height:@100]
                                placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
+        self.name.text = hairfie.author.displayName;
+    } else {
+        [self.profilePicture setImage:[UIImage imageNamed:@"default-user-picture-bg.png"]];
         self.name.text = hairfie.author.displayName;
     }
     

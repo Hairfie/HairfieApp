@@ -655,8 +655,13 @@
     UIRoundImageView *borderProfile = [[UIRoundImageView alloc]initWithFrame:CGRectMake(10, 0, 44, 44)];
     [borderProfile setBackgroundColor:[[UIColor blackHairfie] colorWithAlphaComponent:0.2]];
     UIRoundImageView *profilePicture = [[UIRoundImageView alloc] initWithFrame:CGRectMake(12, 2, 40, 40)];
+   
+    
+    if (self.hairfie.author.picture != nil) {
     [profilePicture sd_setImageWithURL:[self.hairfie.author pictureUrlWithWidth:@100 height:@100] placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
-
+    }else {
+        [profilePicture setImage:[UIImage imageNamed:@"default-user-picture-bg.png"]];
+    }
 
     // add gesture recognizer to open user's profile on picture tap
     UITapGestureRecognizer *profilePictureTap = [[UITapGestureRecognizer alloc] initWithTarget:self
@@ -802,7 +807,15 @@
 
 -(IBAction)showProfile:(id)sender
 {
-    [self performSegueWithIdentifier:@"showUserProfile" sender:self];
+    //if (self.hairfie.author)
+    
+    NSLog(@"AUTHOR ID %@", self.hairfie.author.id);
+    NSLog(@"BUSINESS MEMBERS %@",[self.hairfie.business toDictionary]);
+    NSLog(@"HAIRDRESSER %@",self.hairfie.businessMember.id);
+    //NSLog(@"%@",);
+   // NSLog(@"%@",);
+    
+   //[self performSegueWithIdentifier:@"showUserProfile" sender:self];
 }
 
 -(void)likeButtonHandler:(id)sender

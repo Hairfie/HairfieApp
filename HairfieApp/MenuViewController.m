@@ -21,6 +21,9 @@
 #import "UIImage+Filters.h"
 #import "UserProfileViewController.h"
 
+#define DEFAULT_PICTURE_URL @"default-user-picture.png"
+#define DEFAULT_PICTURE_URL_BG @"default-user-picture-bg.png"
+
 @implementation MenuViewController
 {
     AppDelegate *appDelegate;
@@ -118,7 +121,17 @@
     _name.text = appDelegate.currentUser.name;
     _hairfieNb.text = [appDelegate.currentUser displayHairfies];
     NSLog(@"user email %@", appDelegate.currentUser.email);
+  
+    profilePicture = [[UIRoundImageView alloc] initWithFrame:CGRectMake(90, 30, 92, 92)];
+    profilePicture.clipsToBounds = YES;
+    profilePicture.contentMode = UIViewContentModeScaleAspectFit;
+    UIView *border =[[UIView alloc] initWithFrame:CGRectMake(85, 25, 102, 102)];
+    border.layer.cornerRadius = border.frame.size.height / 2;
+    border.clipsToBounds = YES;
+    border.backgroundColor = [UIColor colorWithWhite:1 alpha:0.2];
     
+
+    if (appDelegate.currentUser.picture != nil) {
     SDWebImageManager *manager = [SDWebImageManager sharedManager];
 
 
@@ -136,19 +149,16 @@
          }
      }];
     _profileImageView.contentMode = UIViewContentModeScaleAspectFill;
-    
-    profilePicture = [[UIRoundImageView alloc] initWithFrame:CGRectMake(90, 30, 92, 92)];
-    profilePicture.clipsToBounds = YES;
-    profilePicture.contentMode = UIViewContentModeScaleAspectFit;
-
-    UIView *border =[[UIView alloc] initWithFrame:CGRectMake(85, 25, 102, 102)];
-    border.layer.cornerRadius = border.frame.size.height / 2;
-    border.clipsToBounds = YES;
-    border.backgroundColor = [UIColor colorWithWhite:1 alpha:0.2];
-
+   
     [profilePicture sd_setImageWithURL:[appDelegate.currentUser pictureUrlWithWidth:@200 height:@200]
                       placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
-  
+    }else {
+        
+        [profilePicture setImage:[UIImage imageNamed:DEFAULT_PICTURE_URL]];
+
+        _profileImageView.image = [[UIImage imageNamed:DEFAULT_PICTURE_URL_BG] applyLightEffect];
+    }
+    
     [_profileView addSubview:border];
     [_profileView addSubview:profilePicture];
     

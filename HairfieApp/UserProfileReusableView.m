@@ -14,6 +14,9 @@
 #import "UIButton+Style.h"
 #import "UILabel+Style.h"
 
+#define DEFAULT_PICTURE_URL @"default-user-picture.png"
+#define DEFAULT_PICTURE_URL_BG @"default-user-picture-bg.png"
+
 @implementation UserProfileReusableView
 {
     UIImageView *userProfilePicture;
@@ -64,6 +67,11 @@
 
 -(void)setupHeaderPictures
 {
+    userProfilePicture = [[UIRoundImageView alloc] initWithFrame:CGRectMake(self.bounds.size.width / 2 - 75, 45, 150, 150)];
+    userProfilePicture.clipsToBounds = YES;
+    userProfilePicture.contentMode = UIViewContentModeScaleAspectFit;
+
+    if (self.user.picture != nil) {
     SDWebImageManager *manager = [SDWebImageManager sharedManager];
     
     [manager downloadImageWithURL:[self.user pictureUrlWithWidth:@50 height:@50]
@@ -80,12 +88,15 @@
          }
      }];
     
-    userProfilePicture = [[UIRoundImageView alloc] initWithFrame:CGRectMake(self.bounds.size.width / 2 - 75, 45, 150, 150)];
-    userProfilePicture.clipsToBounds = YES;
-    userProfilePicture.contentMode = UIViewContentModeScaleAspectFit;
-    
+       
     [userProfilePicture sd_setImageWithURL:[self.user pictureUrlWithWidth:@150 height:@150]
                           placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
+    
+    } else {
+        
+        self.backgroundProfilePicture.image = [[UIImage imageNamed:DEFAULT_PICTURE_URL_BG] applyLightEffect];
+        [userProfilePicture setImage:[UIImage imageNamed:DEFAULT_PICTURE_URL]];
+    }
     
     UIView *profileBorder =[[UIView alloc] initWithFrame:CGRectMake(self.bounds.size.width / 2 - 80, 40, 160, 160)];
     profileBorder.layer.cornerRadius = profileBorder.frame.size.height / 2;
@@ -94,6 +105,7 @@
     
     [self addSubview:profileBorder];
     [self addSubview:userProfilePicture];
+
 }
 
 -(IBAction)changeTab:(id)sender
