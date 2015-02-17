@@ -104,6 +104,13 @@
 
 }
 
+-(IBAction)changePage:(id)sender {
+    
+    UIPageControl *pager = sender;
+    CGPoint offset = CGPointMake(pager.currentPage * hairfieScroller.frame.size.width, 0);
+    [hairfieScroller setContentOffset:offset animated:YES];
+}
+
 -(void)reloadData
 {
     nbLike.text = [self.hairfie displayNumLikes];
@@ -552,7 +559,7 @@
         pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 20, self.view.frame.size.width - 50, 40, 40)];
         pageControl.numberOfPages = 2;
         pageControl.currentPage = 0;
-        
+        [pageControl addTarget:self action:@selector(changePage:) forControlEvents:UIControlEventValueChanged];
         UIImageView *hairfieImageView1 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.width)];
         Picture *hairfie1 = (Picture*)[self.hairfie.pictures objectAtIndex:0];
         UIImageView *hairfieImageView2 = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width, 0, self.view.frame.size.width, self.view.frame.size.width)];

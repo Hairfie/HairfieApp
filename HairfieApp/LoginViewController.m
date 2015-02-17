@@ -70,9 +70,7 @@
     _noPasswordButton.hidden = NO;
 }
 
--(UIStatusBarStyle)preferredStatusBarStyle {
-    return UIStatusBarStyleLightContent;
-}
+
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField {
     if (textField == _passwordField)
