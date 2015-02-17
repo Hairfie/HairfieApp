@@ -115,13 +115,17 @@
 
     if (finalStep.businessToManage != nil) {
         finalStep.businessToManage.activeHairdressers = businessMembers;
+    
     }
-    [self goBack:self];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(IBAction)goBack:(id)sender
 {
-    [self.navigationController popViewControllerAnimated:YES];
+ 
+    [self validateHairdresser:self];
+    
+    //[self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

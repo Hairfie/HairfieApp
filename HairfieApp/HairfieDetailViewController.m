@@ -656,8 +656,10 @@
     [borderProfile setBackgroundColor:[[UIColor blackHairfie] colorWithAlphaComponent:0.2]];
     UIRoundImageView *profilePicture = [[UIRoundImageView alloc] initWithFrame:CGRectMake(12, 2, 40, 40)];
    
-    
-    if (self.hairfie.author.picture != nil) {
+    if (self.hairfie.businessMember.picture != nil) {
+        [profilePicture sd_setImageWithURL:[self.hairfie.businessMember pictureUrlWithWidth:@100 height:@100] placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
+    }
+    else if (self.hairfie.author.picture != nil) {
     [profilePicture sd_setImageWithURL:[self.hairfie.author pictureUrlWithWidth:@100 height:@100] placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
     }else {
         [profilePicture setImage:[UIImage imageNamed:@"default-user-picture-bg.png"]];
@@ -673,12 +675,17 @@
     
     
     UIButton *usernameButton = [[UIButton alloc] init];
+    if (self.hairfie.businessMember != nil) {
+        [usernameButton setTitle:self.hairfie.businessMember.displayFullName forState:UIControlStateNormal];
+    } else {
     [usernameButton setTitle:self.hairfie.author.displayName forState:UIControlStateNormal];
-    usernameButton.titleLabel.font = [UIFont fontWithName:@"SourceSansPro-Light" size:18];
+    }
     
+    usernameButton.titleLabel.font = [UIFont fontWithName:@"SourceSansPro-Light" size:18];
     CGSize sizeusername = [[usernameButton.titleLabel text]sizeWithAttributes:@{NSFontAttributeName:[usernameButton.titleLabel font]}];
     
     [usernameButton setFrame:CGRectMake(62, 0, sizeusername.width, 30)];
+    
     
     [usernameButton addTarget:self action:@selector(showProfile:) forControlEvents:UIControlEventTouchUpInside];
   
@@ -689,7 +696,11 @@
 
 
     UILabel *nbHairfies = [[UILabel alloc]initWithFrame:CGRectMake(62, 22, 92, 21)];
+    if (self.hairfie.businessMember != nil) {
+        nbHairfies.text = self.hairfie.businessMember.displayHairfies;
+    } else {
     nbHairfies.text = self.hairfie.author.displayHairfies;
+    }
     nbHairfies.font = [UIFont fontWithName:@"SourceSansPro-Light" size:13];
     nbHairfies.textColor = [[UIColor blackHairfie]colorWithAlphaComponent:0.8];
 
@@ -807,15 +818,17 @@
 
 -(IBAction)showProfile:(id)sender
 {
-    //if (self.hairfie.author)
-    
-    NSLog(@"AUTHOR ID %@", self.hairfie.author.id);
-    NSLog(@"BUSINESS MEMBERS %@",[self.hairfie.business toDictionary]);
-    NSLog(@"HAIRDRESSER %@",self.hairfie.businessMember.id);
-    //NSLog(@"%@",);
-   // NSLog(@"%@",);
-    
-   //[self performSegueWithIdentifier:@"showUserProfile" sender:self];
+    if (self.hairfie.businessMember != nil) {
+        [BusinessMember getById:self.hairfie.businessMember.id
+                    withSuccess:^(BusinessMember *businessMember) {
+                        [self performSegueWithIdentifier:@"showBusinessMember" sender:businessMember];
+                    }
+                        failure:^(NSError *error) {
+                            NSLog(@"Failed to retrieve complete business member: %@", error.localizedDescription);
+                        }];
+    } else {
+        [self performSegueWithIdentifier:@"showUserProfile" sender:self];
+    }
 }
 
 -(void)likeButtonHandler:(id)sender

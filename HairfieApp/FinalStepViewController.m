@@ -562,6 +562,7 @@
                 
                 claimHairdresser.claimedBusinessMembers = self.businessToManage.activeHairdressers;
                 [_businessToManage.activeHairdressers removeObjectIdenticalTo:businessMemberForEditing];
+          
             }
             else
     
@@ -683,9 +684,8 @@
     {
     if (_businessToManage != nil)
         businessMemberForEditing = [_businessToManage.activeHairdressers objectAtIndex:indexPath.row];
-    _isEditingHairdresser = YES;
-   
-    [self performSegueWithIdentifier:@"claimHairdresser" sender:self];
+        _isEditingHairdresser = YES;
+        [self performSegueWithIdentifier:@"claimHairdresser" sender:self];
     }
     if (tableView == _serviceTableView)
     {

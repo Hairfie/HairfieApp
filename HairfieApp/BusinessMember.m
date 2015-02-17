@@ -48,6 +48,16 @@
     return fullName;
 }
 
+-(NSString *)displayHairfies
+{
+    if ([self.numHairfies integerValue] < 2) {
+        return [NSString stringWithFormat:@"%@ hairfie", self.numHairfies];
+    } else {
+        return [NSString stringWithFormat:@"%@ hairfies", self.numHairfies];
+    }
+}
+
+
 -(NSURL *)pictureUrlWithWidth:(NSNumber *)aWdith
                        height:(NSNumber *)anHeight
 {
