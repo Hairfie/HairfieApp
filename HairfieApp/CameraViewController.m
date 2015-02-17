@@ -68,13 +68,12 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
             self.stillImageOutput.outputSettings = @{AVVideoCodecKey: AVVideoCodecJPEG};
             [self.session addOutput:self.stillImageOutput];
         }
-        
-        self.imagePicker = [[UIImagePickerController alloc] init];
-        self.imagePicker.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
-        self.imagePicker.mediaTypes = [[NSArray alloc] initWithObjects: (NSString *) kUTTypeImage, nil];
-        self.imagePicker.allowsEditing = YES;
-        self.imagePicker.delegate = self;
     });
+    self.imagePicker = [[UIImagePickerController alloc] init];
+    self.imagePicker.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+    self.imagePicker.mediaTypes = [[NSArray alloc] initWithObjects: (NSString *) kUTTypeImage, nil];
+    self.imagePicker.allowsEditing = YES;
+    self.imagePicker.delegate = self;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -150,6 +149,7 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
 
 -(IBAction)openGallery:(id)sender
 {
+    
     [self presentViewController:self.imagePicker animated:YES completion:nil];
 }
 
