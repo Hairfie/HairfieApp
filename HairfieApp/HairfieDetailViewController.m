@@ -610,7 +610,7 @@
     priceBg.layer.cornerRadius = priceBg.frame.size.height / 2;
     priceBg.clipsToBounds = YES;
     priceBg.backgroundColor = [UIColor pinkHairfie];
-    priceBg.layer.borderColor = [UIColor whiteColor].CGColor;
+    priceBg.layer.borderColor = [UIColor colorWithWhite:1 alpha:0.7].CGColor;
     priceBg.layer.borderWidth = 1;
     
     priceLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 15, 30, 30)];

@@ -132,30 +132,31 @@
     
 
     if (appDelegate.currentUser.picture != nil) {
-    SDWebImageManager *manager = [SDWebImageManager sharedManager];
-
-
-    [manager downloadImageWithURL:[appDelegate.currentUser pictureUrlWithWidth:@50 height:@50]
-                     options:0
-                    progress:^(NSInteger receivedSize, NSInteger expectedSize)
-     {
-         // progression tracking code
-     }
-                   completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL)
-     {
-         if (image)
+        SDWebImageManager *manager = [SDWebImageManager sharedManager];
+        
+        
+        [manager downloadImageWithURL:[appDelegate.currentUser pictureUrlWithWidth:@50 height:@50]
+                              options:0
+                             progress:^(NSInteger receivedSize, NSInteger expectedSize)
          {
-             _profileImageView.image = [image applyLightEffect];
+             // progression tracking code
          }
-     }];
-    _profileImageView.contentMode = UIViewContentModeScaleAspectFill;
-   
-    [profilePicture sd_setImageWithURL:[appDelegate.currentUser pictureUrlWithWidth:@200 height:@200]
-                      placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
+                            completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL)
+         {
+             if (image)
+             {
+                 _profileImageView.image = [image applyLightEffect];
+             }
+         }];
+        _profileImageView.contentMode = UIViewContentModeScaleAspectFill;
+        
+        [profilePicture sd_setImageWithURL:[appDelegate.currentUser pictureUrlWithWidth:@200 height:@200]
+                          placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
+        
     }else {
         
         [profilePicture setImage:[UIImage imageNamed:DEFAULT_PICTURE_URL]];
-
+        
         _profileImageView.image = [[UIImage imageNamed:DEFAULT_PICTURE_URL_BG] applyLightEffect];
     }
     

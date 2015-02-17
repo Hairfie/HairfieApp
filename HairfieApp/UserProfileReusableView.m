@@ -72,31 +72,30 @@
     userProfilePicture.contentMode = UIViewContentModeScaleAspectFit;
 
     if (self.user.picture != nil) {
-    SDWebImageManager *manager = [SDWebImageManager sharedManager];
-    
-    [manager downloadImageWithURL:[self.user pictureUrlWithWidth:@50 height:@50]
-                          options:0
-                         progress:^(NSInteger receivedSize, NSInteger expectedSize)
-     {
-         // progression tracking code
-     }
-                        completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL)
-     {
-         if (image)
+        SDWebImageManager *manager = [SDWebImageManager sharedManager];
+        
+        [manager downloadImageWithURL:[self.user pictureUrlWithWidth:@50 height:@50]
+                              options:0
+                             progress:^(NSInteger receivedSize, NSInteger expectedSize)
          {
-             self.backgroundProfilePicture.image = [image applyLightEffect];
+             // progression tracking code
          }
-     }];
-    
-       
-    [userProfilePicture sd_setImageWithURL:[self.user pictureUrlWithWidth:@150 height:@150]
-                          placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
-    
+                            completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL)
+         {
+             if (image)
+             {
+                 self.backgroundProfilePicture.image = [image applyLightEffect];
+             }
+         }];
+        [userProfilePicture sd_setImageWithURL:[self.user pictureUrlWithWidth:@150 height:@150]
+                              placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
+        
     } else {
         
         self.backgroundProfilePicture.image = [[UIImage imageNamed:DEFAULT_PICTURE_URL_BG] applyLightEffect];
         [userProfilePicture setImage:[UIImage imageNamed:DEFAULT_PICTURE_URL]];
     }
+    
     
     UIView *profileBorder =[[UIView alloc] initWithFrame:CGRectMake(self.bounds.size.width / 2 - 80, 40, 160, 160)];
     profileBorder.layer.cornerRadius = profileBorder.frame.size.height / 2;
