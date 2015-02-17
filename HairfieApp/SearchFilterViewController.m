@@ -71,22 +71,18 @@
 
 -(void)viewWillDisappear:(BOOL)animated {
     if (isCancelling == NO) {
-    if (self.isModifyingSearch == NO)
-    {
-        
-        NSDictionary* dict = [NSDictionary dictionaryWithObject:self.businessSearch
-                                                         forKey:@"businessSearch"];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"segueToSearchResults"
-                                                            object:nil
-                                                          userInfo:dict];
-       
-    }
-    if(self.isModifyingSearch == YES) {
-        if([self.myDelegate respondsToSelector:@selector(didSetABusinessSearch:)])
-        {
-            [self.myDelegate didSetABusinessSearch:self.businessSearch];
+        if (self.isModifyingSearch == NO) {
+            
+            NSDictionary* dict = [NSDictionary dictionaryWithObject:self.businessSearch
+                                                             forKey:@"businessSearch"];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"segueToSearchResults"
+                                                                object:nil
+                                                              userInfo:dict];
+        } if (self.isModifyingSearch == YES) {
+            if ([self.myDelegate respondsToSelector:@selector(didSetABusinessSearch:)]) {
+                [self.myDelegate didSetABusinessSearch:self.businessSearch];
+            }
         }
-    }
     }
 }
 /// NSNotification Methods

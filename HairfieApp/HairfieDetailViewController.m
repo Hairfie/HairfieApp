@@ -99,9 +99,6 @@
             @"segue": @"reportContent"
         }*/
     ];
- 
-    NSLog(@"hairfie : %@", [self.hairfie toDictionary]);
-
 }
 
 -(IBAction)changePage:(id)sender {

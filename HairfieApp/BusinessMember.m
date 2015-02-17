@@ -114,7 +114,7 @@
         [temp setObject:@false forKey:@"active"];
 
     [temp setObject:@false forKey:@"hidden"];
-
+    
     if (nil != self.numHairfies){
         [temp setObject:self.numHairfies forKey:@"numHairfies"];
     }
