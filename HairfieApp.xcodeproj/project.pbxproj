@@ -248,6 +248,8 @@
 		B37F9A56198F910B00881071 /* picto-camera.png in Resources */ = {isa = PBXBuildFile; fileRef = B37F9A52198F910B00881071 /* picto-camera.png */; };
 		B37F9A57198F910B00881071 /* picto-info.png in Resources */ = {isa = PBXBuildFile; fileRef = B37F9A53198F910B00881071 /* picto-info.png */; };
 		B37FDA271A94DD2B00B88137 /* ServiceRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = B37FDA261A94DD2B00B88137 /* ServiceRepository.m */; };
+		B37FDA2B1A94F89F00B88137 /* NewHairfieCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B37FDA291A94F89F00B88137 /* NewHairfieCollectionViewCell.m */; };
+		B37FDA2C1A94F89F00B88137 /* NewHairfieCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B37FDA2A1A94F89F00B88137 /* NewHairfieCollectionViewCell.xib */; };
 		B3844E3719FE65E40083CE0D /* AddTagsToHairfieViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3844E3619FE65E40083CE0D /* AddTagsToHairfieViewController.m */; };
 		B3844E3919FE67B60083CE0D /* add-tags-button.png in Resources */ = {isa = PBXBuildFile; fileRef = B3844E3819FE67B60083CE0D /* add-tags-button.png */; };
 		B3844E3D19FE83A20083CE0D /* TagsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B3844E3B19FE83A20083CE0D /* TagsTableViewCell.m */; };
@@ -819,6 +821,9 @@
 		B37F9A53198F910B00881071 /* picto-info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "picto-info.png"; sourceTree = "<group>"; };
 		B37FDA251A94DD2B00B88137 /* ServiceRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceRepository.h; sourceTree = "<group>"; };
 		B37FDA261A94DD2B00B88137 /* ServiceRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceRepository.m; sourceTree = "<group>"; };
+		B37FDA281A94F89F00B88137 /* NewHairfieCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewHairfieCollectionViewCell.h; sourceTree = "<group>"; };
+		B37FDA291A94F89F00B88137 /* NewHairfieCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewHairfieCollectionViewCell.m; sourceTree = "<group>"; };
+		B37FDA2A1A94F89F00B88137 /* NewHairfieCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewHairfieCollectionViewCell.xib; sourceTree = "<group>"; };
 		B3844E3519FE65E40083CE0D /* AddTagsToHairfieViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddTagsToHairfieViewController.h; sourceTree = "<group>"; };
 		B3844E3619FE65E40083CE0D /* AddTagsToHairfieViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddTagsToHairfieViewController.m; sourceTree = "<group>"; };
 		B3844E3819FE67B60083CE0D /* add-tags-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add-tags-button.png"; sourceTree = "<group>"; };
@@ -1555,6 +1560,9 @@
 				B3C39A501A5D4B1000DE11CA /* CategoriesCollectionViewCell.xib */,
 				B345BAD5199502A3007BB61A /* CustomCollectionViewCell.h */,
 				B345BAD6199502A3007BB61A /* CustomCollectionViewCell.m */,
+				B37FDA281A94F89F00B88137 /* NewHairfieCollectionViewCell.h */,
+				B37FDA291A94F89F00B88137 /* NewHairfieCollectionViewCell.m */,
+				B37FDA2A1A94F89F00B88137 /* NewHairfieCollectionViewCell.xib */,
 				B345BAD7199502A3007BB61A /* CustomCollectionViewCell.xib */,
 				15B8D63619C83A3700C889CF /* LoadingCollectionViewCell.xib */,
 				15B8D63819C83DD200C889CF /* LoadingCollectionViewCell.h */,
@@ -2506,6 +2514,7 @@
 				B3FA620819F7B4B7002D8B6F /* UserProfile.strings in Resources */,
 				15E3D2C719D075CC0065A07E /* Login_Sign_Up.strings in Resources */,
 				B37F9A4E198F8F5E00881071 /* picto-list-phone.png in Resources */,
+				B37FDA2C1A94F89F00B88137 /* NewHairfieCollectionViewCell.xib in Resources */,
 				15FD04521A52FB44009E7A0E /* original-vignette.JPG in Resources */,
 				B3AE0D3519C04D1A00149C2B /* hairdresser-price-hairfie-post.png in Resources */,
 				B3B29D4D19EE8E7D00C293C6 /* not_selected_star.png in Resources */,
@@ -2754,6 +2763,7 @@
 				1554FAA919D3408E00A0426B /* UIImage+Filters.m in Sources */,
 				71AAB62A19D005170000552D /* Money.m in Sources */,
 				B3B716091A518A9600DB6FDB /* HairfieNotifications.m in Sources */,
+				B37FDA2B1A94F89F00B88137 /* NewHairfieCollectionViewCell.m in Sources */,
 				1538A3A919E53FB600F09628 /* UIView+Borders.m in Sources */,
 				B319B5CB19C85E2E007F79B0 /* FirstStepViewController.m in Sources */,
 				B3BB63A81A1CA5F40087AB27 /* ReviewsCollectionViewCell.m in Sources */,

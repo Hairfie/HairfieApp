@@ -26,6 +26,7 @@
 #import "BusinessHairdressersCollectionViewCell.h"
 #import "BusinessServicesCollectionViewCell.h"
 #import "BusinessPictureGalleryViewController.h"
+#import "NewHairfieCollectionViewCell.h"
 
 #import "FinalStepViewController.h"
 
@@ -66,6 +67,7 @@
 #define DETAILS_CELL @"detailsCell"
 #define HAIRDRESSERS_CELL @"businessHairdresserCell"
 #define SERVICES_CELL @"businessServiceCell"
+#define NEW_HAIRFIE_CELL_IDENTIFIER @"newHairfieCell"
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -130,6 +132,7 @@
 
     
     [self.collectionView registerNib:[UINib nibWithNibName:@"CustomCollectionViewCell" bundle:nil]forCellWithReuseIdentifier:HAIRFIE_CELL];
+    [self.collectionView registerNib:[UINib nibWithNibName:@"NewHairfieCollectionViewCell" bundle:nil]forCellWithReuseIdentifier:NEW_HAIRFIE_CELL_IDENTIFIER];
     [self.collectionView registerNib:[UINib nibWithNibName:@"LoadingCollectionViewCell" bundle:nil]
           forCellWithReuseIdentifier:LOADING_CELL];
     [self.collectionView registerNib:[UINib nibWithNibName:@"BusinessDetailCollectionViewCell" bundle:nil]
@@ -480,6 +483,8 @@
     } else if (isDetailsTab == YES) {
         return CGSizeMake(width, 964);
     } else if (isHairfiesTab == YES) {
+        if (indexPath.row == 0)
+            return CGSizeMake(width - 20, 50);
         if (indexPath.row < (businessHairfies.count + 1)) {
             return CGSizeMake((width - 30) / 2, 210);
         } else {
@@ -553,9 +558,7 @@
 
 -(UICollectionViewCell *)newHairfieCellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    CustomCollectionViewCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:@"hairfieCell" forIndexPath:indexPath];
-    
-    [cell setAsNewHairfieButton];
+    NewHairfieCollectionViewCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:NEW_HAIRFIE_CELL_IDENTIFIER forIndexPath:indexPath];
     
     return cell;
 }

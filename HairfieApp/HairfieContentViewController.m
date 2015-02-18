@@ -15,6 +15,7 @@
 #define CATEGORY_CELL_IDENTIFIER @"categoryCell"
 #define LOADING_CELL_IDENTIFIER @"LoadingItemCell"
 
+
 @interface HairfieContentViewController ()
 
 @end
