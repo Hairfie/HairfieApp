@@ -1,49 +1,42 @@
 //
-//  ClaimAddPricesSalesViewController.m
+//  ClaimAddServicesViewController.m
 //  HairfieApp
 //
 //  Created by Leo Martin on 22/09/2014.
 //  Copyright (c) 2014 Hairfie. All rights reserved.
 //
 
-#import "ClaimAddPricesSalesViewController.h"
+#import "ClaimAddServicesViewController.h"
 #import "FinalStepViewController.h"
 #import "UITextField+Style.h"
 #import "Service.h"
 
-@interface ClaimAddPricesSalesViewController ()
+@interface ClaimAddServicesViewController ()
 
 @end
 
-@implementation ClaimAddPricesSalesViewController
+@implementation ClaimAddServicesViewController
 {
     NSMutableArray *services;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.topBarView addBottomBorderWithHeight:1 andColor:[UIColor lightGrey]];
     services = [[NSMutableArray alloc] init];
-    _priceDescriptionView.layer.cornerRadius = 5;
-    _priceDescriptionView.layer.borderColor = [UIColor lightGreyHairfie].CGColor;
-    _priceDescriptionView.layer.borderWidth = 1;
-    
-    _priceValueView.layer.cornerRadius = 5;
-    _priceValueView.layer.borderColor = [UIColor lightGreyHairfie].CGColor;
-    _priceValueView.layer.borderWidth = 1;
-    [_priceValue textFieldWithPhoneKeyboard:(self.view.frame.size.width / 2 - 50)];
-    _doneBttn.layer.cornerRadius = 5;
-    _doneBttn.layer.masksToBounds = YES;
+
+    [self.serviceValue textFieldWithPhoneKeyboard:(self.view.frame.size.width / 2 - 50)];
+    self.doneBttn.layer.cornerRadius = 5;
+    self.doneBttn.layer.masksToBounds = YES;
     // Do any additional setup after loading the view.
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    if (_serviceClaimed != nil)
+    if (self.serviceClaimed != nil)
         services = _serviceClaimed;
-    if (_serviceFromSegue != nil)
+    if (self.serviceFromSegue != nil)
     {
-        _priceValue.text = [NSString stringWithFormat:@"%@",_serviceFromSegue.price.amount ];
-        _priceDescription.text = _serviceFromSegue.label;
+        self.serviceValue.text = [NSString stringWithFormat:@"%@",self.serviceFromSegue.price.amount];
+        self.serviceDescription.text = self.serviceFromSegue.label;
     }
     
 }
@@ -52,10 +45,10 @@
 {
     NSNumberFormatter * formatter = [[NSNumberFormatter alloc] init];
     [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
-    NSNumber * priceAmount = [formatter numberFromString:_priceValue.text];
-    Money *priceToAdd = [[Money alloc] initWithAmount:priceAmount currency:@"EUR"];
+    NSNumber * serviceAmount = [formatter numberFromString:self.serviceValue.text];
+    Money *price = [[Money alloc] initWithAmount:serviceAmount currency:@"EUR"];
   
-    Service *serviceToAdd = [[Service alloc] initWithLabel:_priceDescription.text price:priceToAdd];
+    Service *serviceToAdd = [[Service alloc] initWithLabel:_serviceDescription.text price:price];
     
   
     if (_serviceFromSegue != nil)
@@ -65,18 +58,14 @@
     
 }
 
--(IBAction)validatePricesSales:(id)sender
+-(IBAction)validateservicesSales:(id)sender
 {
     // TO DO enregistrer les prix/promos ajoutés
     [self addService];
-    
-    
     FinalStepViewController *finalStep = [self.navigationController.viewControllers objectAtIndex:[self.navigationController.viewControllers count]-2];
 
     if (finalStep.businessToManage != nil)
         finalStep.businessToManage.services = services;
-    
-   NSLog(@"service %@", finalStep.businessToManage.services);
     
     [self goBack:self];
 }
@@ -91,7 +80,7 @@
         // Found next responder, so set it.
         [nextResponder becomeFirstResponder];
     } else {
-        [self validatePricesSales:self];
+        [self validateservicesSales:self];
         [textField resignFirstResponder];
     }
     return YES;

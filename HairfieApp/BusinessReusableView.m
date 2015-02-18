@@ -70,7 +70,7 @@
     [self decorateButton:self.detailsBttn withImage:@"infos" active:NO];
     [self decorateButton:self.hairfiesBttn withImage:@"hairfies" active:NO];
     [self decorateButton:self.hairdressersBttn withImage:@"hairdressers" active:NO];
-    [self decorateButton:self.servicesBttn withImage:@"prices" active:NO];
+    [self decorateButton:self.servicesBttn withImage:@"services" active:NO];
     
     if (aButton == self.detailsBttn) {
         [self decorateButton:self.detailsBttn withImage:@"infos" active:YES];
@@ -83,7 +83,7 @@
           [[NSNotificationCenter defaultCenter] postNotificationName:@"businessHairdressers" object:self];
 
     } else if (aButton == self.servicesBttn) {
-        [self decorateButton:self.servicesBttn withImage:@"prices" active:YES];
+        [self decorateButton:self.servicesBttn withImage:@"services" active:YES];
           [[NSNotificationCenter defaultCenter] postNotificationName:@"businessServices" object:self];
     }
     

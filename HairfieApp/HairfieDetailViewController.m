@@ -111,7 +111,6 @@
 -(void)reloadData
 {
     nbLike.text = [self.hairfie displayNumLikes];
-      // calculate infos to be displayed
     NSMutableArray *tempDisplayedInfoNames = [[NSMutableArray alloc] init];
     if (self.hairfie.business) {
         [tempDisplayedInfoNames addObject:@"business"];

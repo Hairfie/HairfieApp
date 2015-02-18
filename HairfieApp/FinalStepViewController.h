@@ -37,18 +37,23 @@
 
 // TAB VIEW
 
+@property (nonatomic) IBOutlet NSLayoutConstraint *firstSeparatorLeading;
+@property (nonatomic) IBOutlet NSLayoutConstraint *secondSeparatorLeading;
 @property (nonatomic) IBOutlet UIButton* infoBttn;
 @property (nonatomic) IBOutlet UIImageView* infoBttnImage;
 //@property (nonatomic) IBOutlet UIButton* hairfieBttn;
 @property (nonatomic) IBOutlet UIButton* hairdresserBttn;
 @property (nonatomic) IBOutlet UIImageView* hairdresserBttnImage;
-//@property (nonatomic) IBOutlet UIButton* priceAndSaleBttn;
+@property (nonatomic) IBOutlet UIButton* servicesBttn;
+@property (nonatomic) IBOutlet UIImageView* servicesBttnImage;
 @property (nonatomic) IBOutlet UIButton* descriptionBttn;
 @property (nonatomic) IBOutlet UIButton* timetableBttn;
 @property (nonatomic) IBOutlet UIView* containerView;
 @property (nonatomic) IBOutlet UIView* infoView;
 @property (nonatomic) IBOutlet UIView* hairfieView;
 @property (nonatomic) IBOutlet UIView* hairdresserView;
+@property (nonatomic) IBOutlet UIView* servicesView;
+
 @property (nonatomic) IBOutlet UIView* priceAndSaleView;
 @property (nonatomic) BOOL isSegueFromBusinessDetail;
 

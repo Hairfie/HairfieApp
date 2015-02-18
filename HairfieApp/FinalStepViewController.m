@@ -15,7 +15,7 @@
 #import "Picture.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "ClaimAddHairdresserViewController.h"
-#import "ClaimAddPricesSalesViewController.h"
+#import "ClaimAddServicesViewController.h"
 #import "HomeViewController.h"
 #import "BusinessViewController.h"
 #import "AppDelegate.h"
@@ -79,9 +79,13 @@
 {
     if (_businessToManage != nil)
         [self setupGallery:_businessToManage.pictures];
+    [self setupTabBar];
 }
 
-
+-(void)setupTabBar {
+    self.firstSeparatorLeading.constant = self.view.frame.size.width / 3;
+    self.secondSeparatorLeading.constant = self.view.frame.size.width / 3;
+}
 
 -(IBAction)changePage:(id)sender {
     
@@ -234,7 +238,6 @@
     } else {
         imageName = [NSString stringWithFormat:@"tab-business-%@", anImage];
     }
-    
     anImageView.image = [UIImage imageNamed:imageName];
 }
 
@@ -244,7 +247,6 @@
 {
     self.infoView.hidden = YES;
     self.hairdresserView.hidden = YES;
-    
     
     [self decorateImage:self.infoBttnImage withImage:@"infos" active:NO];
     [self decorateImage:self.hairdresserBttnImage withImage:@"hairdressers" active:NO];
@@ -257,16 +259,20 @@
         [self decorateImage:self.hairdresserBttnImage withImage:@"hairdressers" active:YES];
         [self.containerView bringSubviewToFront:self.hairdresserView];
         self.hairdresserView.hidden = NO;
+    } else if (aButton == self.hairdresserBttn) {
+    
+        [self decorateImage:self.servicesBttnImage withImage:@"services" active:YES];
+        [self.containerView bringSubviewToFront:self.servicesView];
+        self.servicesView.hidden = NO;
     }
 
-    
-    for (UIButton *btn in @[self.infoBttn, self.hairdresserBttn]) {
+    for (UIButton *btn in @[self.infoBttn, self.hairdresserBttn, self.servicesBttn]) {
         for (UIView *subView in btn.subviews) {
             if (subView.tag == 1) [subView removeFromSuperview];
         }
     }
     
-    UIView *bottomBorder = [[UIView alloc] initWithFrame:CGRectMake(0, aButton.frame.size.height, self.view.frame.size.width / 2, 3)];
+    UIView *bottomBorder = [[UIView alloc] initWithFrame:CGRectMake(0, aButton.frame.size.height, self.view.frame.size.width / 3, 3)];
     bottomBorder.backgroundColor = [UIColor salonDetailTab];
     bottomBorder.tag = 1;
     [aButton addSubview:bottomBorder];
@@ -576,7 +582,7 @@
     if ([segue.identifier isEqualToString:@"claimService"])
     {
         
-        ClaimAddPricesSalesViewController *claimService = [segue destinationViewController];
+        ClaimAddServicesViewController *claimService = [segue destinationViewController];
         
         if (_businessToManage != nil)
         {
