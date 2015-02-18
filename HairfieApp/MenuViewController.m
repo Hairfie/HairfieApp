@@ -321,7 +321,7 @@
             cell.selectionIndicator.hidden = YES;
             cell.backgroundColor = [UIColor whiteColor];
             [cell.menuPicto setImage:[UIImage imageNamed:@"picto-hairfie.png"]];
-            cell.menuItem.text = HAIRFIE_VERSION;
+            cell.menuItem.text = [NSString stringWithFormat:@"© Hairfie 2015 v%@", [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]];
             cell.menuPicto.layer.borderColor = [UIColor clearColor].CGColor;
             cell.indentationWidth = 0;
             cell.userInteractionEnabled = NO;
@@ -406,7 +406,7 @@
             [self performSegueWithIdentifier:@"BusinessSegue" sender:self];
         } if (indexPath.row <= [managedBusinesses count] && indexPath.row > 0) {
             cell.selectionIndicator.hidden = NO;
-            [self deselectHomeCell:tableView];
+            //[self deselectHomeCell:tableView];
             businessToManage = [managedBusinesses objectAtIndex:indexPath.row - 1];
             [self performSegueWithIdentifier:@"ManageBusiness" sender:self];
         }

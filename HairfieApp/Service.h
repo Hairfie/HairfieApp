@@ -12,15 +12,25 @@
 @interface Service : NSObject
 
 @property (strong, nonatomic) NSString *label;
+@property (strong, nonatomic) NSString *id;
+@property (strong, nonatomic) NSString *businessId;
+@property (strong, nonatomic) NSNumber *durationMinutes;
 @property (strong, nonatomic) Money *price;
+
 
 -(id)initWithDictionary:(NSDictionary *)aDictionary;
 
 -(id)initWithLabel:(NSString *)aLabel
-             price:(Money *)aPrice;
+             price:(Money *)aPrice
+          duration:(NSNumber *)aDuration
+        businessId:(NSString*)aBusinessId;
 
 -(NSDictionary*)toDictionary;
 
 +(id)fromSetterValue:(id)aValue;
+
+
+-(void)saveWithSuccess:(void(^)(NSDictionary* result))aSuccessHandler
+               failure:(void(^)(NSError *))aFailureHandler;
 
 @end

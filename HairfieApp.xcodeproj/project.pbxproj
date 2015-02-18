@@ -247,6 +247,7 @@
 		B37F9A55198F910B00881071 /* picto-hairdresser.png in Resources */ = {isa = PBXBuildFile; fileRef = B37F9A51198F910B00881071 /* picto-hairdresser.png */; };
 		B37F9A56198F910B00881071 /* picto-camera.png in Resources */ = {isa = PBXBuildFile; fileRef = B37F9A52198F910B00881071 /* picto-camera.png */; };
 		B37F9A57198F910B00881071 /* picto-info.png in Resources */ = {isa = PBXBuildFile; fileRef = B37F9A53198F910B00881071 /* picto-info.png */; };
+		B37FDA271A94DD2B00B88137 /* ServiceRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = B37FDA261A94DD2B00B88137 /* ServiceRepository.m */; };
 		B3844E3719FE65E40083CE0D /* AddTagsToHairfieViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3844E3619FE65E40083CE0D /* AddTagsToHairfieViewController.m */; };
 		B3844E3919FE67B60083CE0D /* add-tags-button.png in Resources */ = {isa = PBXBuildFile; fileRef = B3844E3819FE67B60083CE0D /* add-tags-button.png */; };
 		B3844E3D19FE83A20083CE0D /* TagsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B3844E3B19FE83A20083CE0D /* TagsTableViewCell.m */; };
@@ -816,6 +817,8 @@
 		B37F9A51198F910B00881071 /* picto-hairdresser.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "picto-hairdresser.png"; sourceTree = "<group>"; };
 		B37F9A52198F910B00881071 /* picto-camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "picto-camera.png"; sourceTree = "<group>"; };
 		B37F9A53198F910B00881071 /* picto-info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "picto-info.png"; sourceTree = "<group>"; };
+		B37FDA251A94DD2B00B88137 /* ServiceRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceRepository.h; sourceTree = "<group>"; };
+		B37FDA261A94DD2B00B88137 /* ServiceRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceRepository.m; sourceTree = "<group>"; };
 		B3844E3519FE65E40083CE0D /* AddTagsToHairfieViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddTagsToHairfieViewController.h; sourceTree = "<group>"; };
 		B3844E3619FE65E40083CE0D /* AddTagsToHairfieViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddTagsToHairfieViewController.m; sourceTree = "<group>"; };
 		B3844E3819FE67B60083CE0D /* add-tags-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add-tags-button.png"; sourceTree = "<group>"; };
@@ -1229,6 +1232,8 @@
 				B3844E4019FE978D0083CE0D /* TagRepository.m */,
 				B3844E4219FE98570083CE0D /* TagCategoryRepository.h */,
 				B3844E4319FE98570083CE0D /* TagCategoryRepository.m */,
+				B37FDA251A94DD2B00B88137 /* ServiceRepository.h */,
+				B37FDA261A94DD2B00B88137 /* ServiceRepository.m */,
 			);
 			name = Repositories;
 			sourceTree = "<group>";
@@ -2667,6 +2672,7 @@
 				7175C5DE1A666A410030DAA5 /* BusinessMemberClaim.m in Sources */,
 				B3FA620519F7AE64002D8B6F /* UILabel+Style.m in Sources */,
 				B35D112519BEFB5C00486050 /* ApplyFiltersViewController.m in Sources */,
+				B37FDA271A94DD2B00B88137 /* ServiceRepository.m in Sources */,
 				713C8A211A0A67CB00B7B94C /* HairfieDetailBusinessTableViewCell.m in Sources */,
 				B37277291A80CCF6006DAAEF /* ClaimBusinessWebViewController.m in Sources */,
 				71026D1B19CAE34200994831 /* HairfieLike.m in Sources */,

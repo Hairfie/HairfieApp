@@ -100,6 +100,7 @@
             <string>SourceSansPro-Light</string>
             <string>SourceSansPro-Light</string>
             <string>SourceSansPro-Light</string>
+            <string>SourceSansPro-Light</string>
         </mutableArray>
         <mutableArray key="SourceSansPro-Regular.ttf">
             <string>SourceSansPro-Regular</string>
@@ -6116,7 +6117,10 @@
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter the name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="t5j-iv-uCz">
                                                 <rect key="frame" x="20" y="0.0" width="280" height="40"/>
                                                 <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="17"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="IUm-l4-Vum" id="n7v-Au-9qP"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -6148,8 +6152,52 @@
                                     <constraint firstAttribute="height" constant="50" id="nPU-52-s7w"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6ry-4w-TTi" userLabel="SERVICE AMOUNT CONTAINER">
+                            <view contentMode="scaleToFill" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="bBy-Gc-H6E" userLabel="SERVICE DURATION CONTAINER">
                                 <rect key="frame" x="0.0" y="134" width="320" height="50"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oyA-sg-dWw" userLabel="Container field">
+                                        <rect key="frame" x="10" y="10" width="300" height="40"/>
+                                        <subviews>
+                                            <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter the duration" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BIi-Vd-mZY">
+                                                <rect key="frame" x="20" y="0.0" width="280" height="40"/>
+                                                <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="17"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="next"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="IUm-l4-Vum" id="LFK-Bf-hJO"/>
+                                                </connections>
+                                            </textField>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="Et5-c5-z1g"/>
+                                            <constraint firstItem="BIi-Vd-mZY" firstAttribute="leading" secondItem="oyA-sg-dWw" secondAttribute="leading" constant="20" id="V55-9I-dMo"/>
+                                            <constraint firstAttribute="bottom" secondItem="BIi-Vd-mZY" secondAttribute="bottom" id="XSW-uR-8sg"/>
+                                            <constraint firstAttribute="trailing" secondItem="BIi-Vd-mZY" secondAttribute="trailing" id="buR-Z2-iha"/>
+                                            <constraint firstItem="BIi-Vd-mZY" firstAttribute="top" secondItem="oyA-sg-dWw" secondAttribute="top" id="z3L-WF-YtZ"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                                <integer key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="layer.borderUIColor">
+                                                <color key="value" red="0.87450980389999999" green="0.87450980389999999" blue="0.87450980389999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Ll9-cc-Lnm"/>
+                                    <constraint firstAttribute="centerX" secondItem="oyA-sg-dWw" secondAttribute="centerX" id="OUE-yA-xy6"/>
+                                    <constraint firstAttribute="centerY" secondItem="oyA-sg-dWw" secondAttribute="centerY" constant="-5" id="PDP-Be-eFi"/>
+                                    <constraint firstAttribute="trailing" secondItem="oyA-sg-dWw" secondAttribute="trailing" constant="10" id="oCz-IL-78C"/>
+                                    <constraint firstItem="oyA-sg-dWw" firstAttribute="leading" secondItem="bBy-Gc-H6E" secondAttribute="leading" constant="10" id="xEQ-4h-SkS"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6ry-4w-TTi" userLabel="SERVICE AMOUNT CONTAINER">
+                                <rect key="frame" x="0.0" y="194" width="320" height="50"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bug-Ct-ySR" userLabel="Container field">
                                         <rect key="frame" x="10" y="10" width="300" height="40"/>
@@ -6181,10 +6229,13 @@
                                                     <constraint firstAttribute="height" constant="25" id="hHu-Q1-VaG"/>
                                                 </constraints>
                                             </imageView>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="How Much ?" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="S7Q-PX-86Q">
+                                            <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="How Much ?" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="S7Q-PX-86Q">
                                                 <rect key="frame" x="50" y="0.0" width="250" height="40"/>
                                                 <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="17"/>
-                                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="done"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="IUm-l4-Vum" id="x69-I4-die"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -6230,20 +6281,24 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="gIW-Jp-ZSB" firstAttribute="top" secondItem="uPw-kk-VFB" secondAttribute="bottom" constant="10" id="2Ot-PC-7FE"/>
+                            <constraint firstItem="6ry-4w-TTi" firstAttribute="top" secondItem="bBy-Gc-H6E" secondAttribute="bottom" constant="10" id="5fr-DB-70O"/>
                             <constraint firstAttribute="centerX" secondItem="gIW-Jp-ZSB" secondAttribute="centerX" id="HRO-Gj-nFU"/>
-                            <constraint firstItem="6ry-4w-TTi" firstAttribute="top" secondItem="gIW-Jp-ZSB" secondAttribute="bottom" constant="10" id="Jj8-XP-cbW"/>
+                            <constraint firstAttribute="width" secondItem="bBy-Gc-H6E" secondAttribute="width" id="MuI-9R-cmV"/>
                             <constraint firstAttribute="centerX" secondItem="6ry-4w-TTi" secondAttribute="centerX" id="PNh-nY-h37"/>
                             <constraint firstAttribute="centerX" secondItem="uPw-kk-VFB" secondAttribute="centerX" id="T70-qN-0fg"/>
+                            <constraint firstItem="bBy-Gc-H6E" firstAttribute="top" secondItem="gIW-Jp-ZSB" secondAttribute="bottom" constant="10" id="ebb-Gp-OPz"/>
                             <constraint firstItem="gIW-Jp-ZSB" firstAttribute="width" secondItem="b9O-Tz-Xhx" secondAttribute="width" id="knN-ir-VxQ"/>
                             <constraint firstItem="uPw-kk-VFB" firstAttribute="width" secondItem="b9O-Tz-Xhx" secondAttribute="width" id="nIW-l5-AQn"/>
                             <constraint firstItem="uPw-kk-VFB" firstAttribute="top" secondItem="Agh-D6-iRL" secondAttribute="bottom" constant="-20" id="qe8-Oo-s6y"/>
                             <constraint firstItem="6ry-4w-TTi" firstAttribute="width" secondItem="b9O-Tz-Xhx" secondAttribute="width" id="wHg-Z5-LXt"/>
+                            <constraint firstAttribute="centerX" secondItem="bBy-Gc-H6E" secondAttribute="centerX" id="ySn-iz-ZDb"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="3l9-iE-F4s"/>
                     <connections>
                         <outlet property="doneBttn" destination="RYt-s7-z4G" id="NG8-Qt-TdO"/>
                         <outlet property="serviceDescription" destination="t5j-iv-uCz" id="ucG-17-7h8"/>
+                        <outlet property="serviceDuration" destination="BIi-Vd-mZY" id="zs7-I4-rBh"/>
                         <outlet property="serviceValue" destination="S7Q-PX-86Q" id="Hnj-Bf-56P"/>
                     </connections>
                 </viewController>

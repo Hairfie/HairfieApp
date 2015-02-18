@@ -13,10 +13,12 @@
 
 @property (nonatomic) IBOutlet UITextField *serviceDescription;
 @property (nonatomic) IBOutlet UITextField *serviceValue;
+@property (nonatomic) IBOutlet UITextField *serviceDuration;
 
 @property (nonatomic) IBOutlet UIButton* doneBttn;
 @property (nonatomic) NSMutableArray *serviceClaimed;
 @property (nonatomic) Service *serviceFromSegue;
 @property (nonatomic) NSInteger serviceIndexFromSegue;
+@property (nonatomic) NSString *businessId;
 
 @end

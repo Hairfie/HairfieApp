@@ -213,6 +213,9 @@
        // _addHairfiesLbl.text = NSLocalizedStringFromTable(@"hairfie claim update", @"Claim", nil);
         [_serviceTableView reloadData];
         [_hairdresserTableView reloadData];
+        NSLog(@"services %@", self.businessToManage.services);
+        
+        
     }
     if (self.isSegueFromBusinessDetail == YES){
         _menuButton.hidden = YES;
@@ -591,10 +594,17 @@
         else
             claimService.serviceClaimed = [[NSMutableArray alloc] init];
         }
-        if (_isEditingService == YES)
+        if (_isEditingService == YES) {
             claimService.serviceFromSegue = serviceForEditing;
-        _isEditingService = NO;
+          _isEditingService = NO;
+        }
+        else {
+            claimService.serviceFromSegue = nil;
+        }
+       
         claimService.serviceIndexFromSegue = serviceIndex;
+        claimService.businessId = self.businessToManage.id;
+        
         
     }
     
@@ -660,6 +670,10 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.serviceName.text = service.label;
         cell.serviceAmount.text = [service.price formatted];
+        NSLog(@"service %@", [service toDictionary]);
+        
+        NSLog(@"version %@", [NSString stringWithFormat:@"Version %@",  [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]]);
+        
         cell.separatorInset = UIEdgeInsetsMake(0, 10000, 0, 0);
         cell.tag = indexPath.row;
         return cell;
@@ -722,7 +736,7 @@
 -(void)clearService:(NSNotification*)notification
 {
     ClaimServiceTableViewCell *cell = notification.object;
-    [_businessToManage.services removeObjectAtIndex:cell.tag];
+   // [_businessToManage.services removeObjectAtIndex:cell.tag];
     [_serviceTableView reloadData];
 }
 
