@@ -95,6 +95,7 @@
 		712667EB19C6E67500298FF0 /* UIRoundImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 712667EA19C6E67500298FF0 /* UIRoundImageView.m */; };
 		713C8A211A0A67CB00B7B94C /* HairfieDetailBusinessTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 713C8A1F1A0A67CB00B7B94C /* HairfieDetailBusinessTableViewCell.m */; };
 		713C8A221A0A67CB00B7B94C /* HairfieDetailBusinessTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 713C8A201A0A67CB00B7B94C /* HairfieDetailBusinessTableViewCell.xib */; };
+		713CD4871A96352C004EB804 /* LoopBack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3E4B45F19A73C010036BAD8 /* LoopBack.framework */; };
 		715290DD19FE477900C93950 /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 715290DA19FE477900C93950 /* Tag.m */; };
 		715290DE19FE477900C93950 /* TagCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 715290DC19FE477900C93950 /* TagCategory.m */; };
 		71537CAF1A4430C200519C1B /* BusinessMemberFavorite.m in Sources */ = {isa = PBXBuildFile; fileRef = 71537CAE1A4430C200519C1B /* BusinessMemberFavorite.m */; };
@@ -1070,6 +1071,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6A51555FE764820B9579157 /* libPods-HairfieAppTests.a in Frameworks */,
+				713CD4871A96352C004EB804 /* LoopBack.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1079,14 +1081,6 @@
 		151151821982B7A8001157A2 = {
 			isa = PBXGroup;
 			children = (
-				71DA85F119E28982001193D4 /* Crashlytics.framework */,
-				B3E4B45F19A73C010036BAD8 /* LoopBack.framework */,
-				B3423174198907A80058866B /* CoreLocation.framework */,
-				B3EDF89119879BEF00431B70 /* QuartzCore.framework */,
-				B330B5C1198656F20059AE56 /* CoreGraphics.framework */,
-				B330B5BF198656EA0059AE56 /* Foundation.framework */,
-				B330B5BD198656DD0059AE56 /* UIKit.framework */,
-				B342317619891AA40058866B /* MapKit.framework */,
 				1511518D1982B7A8001157A2 /* HairfieApp */,
 				151151A41982B7A8001157A2 /* HairfieAppTests */,
 				1511518C1982B7A8001157A2 /* Products */,
@@ -1380,6 +1374,14 @@
 		38C395959A7A499C87409BBF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				71DA85F119E28982001193D4 /* Crashlytics.framework */,
+				B3E4B45F19A73C010036BAD8 /* LoopBack.framework */,
+				B3423174198907A80058866B /* CoreLocation.framework */,
+				B3EDF89119879BEF00431B70 /* QuartzCore.framework */,
+				B330B5C1198656F20059AE56 /* CoreGraphics.framework */,
+				B330B5BF198656EA0059AE56 /* Foundation.framework */,
+				B330B5BD198656DD0059AE56 /* UIKit.framework */,
+				B342317619891AA40058866B /* MapKit.framework */,
 				B3B716001A51888300DB6FDB /* SystemConfiguration.framework */,
 				B3F6B70319F6749200EF4B5C /* libPods-HairfieApp.a */,
 				15B829C819B85F6200525802 /* FacebookSDK.framework */,
@@ -3292,6 +3294,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -3312,6 +3315,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = HairfieAppTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -3430,6 +3434,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = HairfieAppTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

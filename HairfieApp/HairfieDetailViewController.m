@@ -717,7 +717,7 @@
     
     UILabel *descLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, 43, 280, 54)];
     descLabel.numberOfLines = 2;
-    descLabel.attributedText = self.hairfie.displayDescAndTags;
+    descLabel.attributedText = self.hairfie.displayTags;
    
     UIView *tagsView = [[UIView alloc]initWithFrame:CGRectMake(10, 43, 280, 54)];
     

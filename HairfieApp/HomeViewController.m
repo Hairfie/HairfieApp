@@ -95,8 +95,10 @@
     refreshControl = [[UIRefreshControl alloc] init];
      self.takeHairfieBttn.hidden = YES;
     if([delegate.credentialStore isLoggedIn]) {
-        
-       [self.view addGestureRecognizer:self.slidingViewController.panGesture];
+        if (nil != self.slidingViewController.panGesture) {
+            // TODO: find why panGesture is nil when running tests
+            [self.view addGestureRecognizer:self.slidingViewController.panGesture];
+        }
     } else {
         NSLog(@"not logged");
         [self prepareUserNotLogged];

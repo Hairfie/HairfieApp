@@ -19,7 +19,6 @@
 
 @property (strong, nonatomic) NSString *id;
 @property (strong, nonatomic) Picture *picture;
-@property (strong, nonatomic) NSString *description;
 @property (strong, nonatomic) BusinessMember *businessMember;
 @property (strong, nonatomic) Money *price;
 @property (strong, nonatomic) NSNumber *numLikes;
@@ -44,7 +43,7 @@
 -(NSString *)displayPrice;
 -(NSString *)displayNumLikes;
 -(NSString *)displayNumComments;
--(NSAttributedString *)displayDescAndTags;
+-(NSAttributedString *)displayTags;
 -(NSString *)displayShortDate;
 -(NSString *)displayTimeAgo;
 

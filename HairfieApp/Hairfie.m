@@ -178,29 +178,18 @@
     return [_createdAt timeAgo];
 }
 
--(NSAttributedString *)displayDescAndTags {
-    NSDictionary *descAttributes = @{
-                               NSFontAttributeName : [UIFont fontWithName:@"SourceSansPro-Light" size:15],
-                               NSForegroundColorAttributeName : [[UIColor blackHairfie] colorWithAlphaComponent:0.8]
-                               };
-    
+-(NSAttributedString *)displayTags
+{
     NSDictionary *tagsAttributes = @{
-                                     NSFontAttributeName : [UIFont fontWithName:@"SourceSansPro-Light" size:15],
-                                     NSForegroundColorAttributeName : [UIColor salonDetailTab]
-                                    // NSBackgroundColorAttributeName : [UIColor colorWithRed:240/255.f green:241/255.0f blue:241/255.0f alpha:1]
-                                     };
-    
-    NSMutableAttributedString *output = [[NSMutableAttributedString alloc] initWithString:self.description attributes:descAttributes];
+        NSFontAttributeName : [UIFont fontWithName:@"SourceSansPro-Light" size:15],
+        NSForegroundColorAttributeName : [UIColor salonDetailTab]
+    };
     
     NSString *tagsString = [_.arrayMap(self.tags, ^(Tag *tag) {
         return [NSString stringWithFormat:@"#%@", tag.name];
     }) componentsJoinedByString:@" "];
     
-    NSAttributedString *tags = [[NSAttributedString alloc] initWithString:tagsString attributes:tagsAttributes];
-
-    [output appendAttributedString:tags];
-    
-    return (NSAttributedString *) output;
+    return [[NSAttributedString alloc] initWithString:tagsString attributes:tagsAttributes];
 }
 
 +(void)getHairfiesByAuthor:(NSString *)userId
