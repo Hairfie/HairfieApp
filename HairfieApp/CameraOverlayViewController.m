@@ -71,7 +71,6 @@
 
 -(void)cameraViewControllerDidCancel:(CameraViewController *)vc
 {
-    [[self.navigationController.viewControllers objectAtIndex:[self.navigationController.viewControllers count]-2] viewWillAppear:YES];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
