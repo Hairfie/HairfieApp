@@ -9,6 +9,7 @@
 #import "Picture.h"
 #import "AppDelegate.h"
 #import "SetterUtils.h"
+#import <AssetsLibrary/AssetsLibrary.h>
 
 @implementation Picture {
     AppDelegate *delegate;
@@ -95,6 +96,10 @@
     if ([fileManager fileExistsAtPath:fullPath]) {
         [fileManager removeItemAtPath:fullPath error:nil];
     }
+    
+    ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+    [library writeImageToSavedPhotosAlbum:[self.image CGImage] orientation:(ALAssetOrientation)[self.image imageOrientation] completionBlock:^(NSURL *assetURL, NSError *error){}];
+
     
     [UIImageJPEGRepresentation(_image, 1.0) writeToFile:fullPath atomically:YES];
     

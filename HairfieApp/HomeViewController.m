@@ -12,10 +12,8 @@
 #import "UIViewController+ECSlidingViewController.h"
 #import "AroundMeViewController.h"
 #import "HairfieDetailViewController.h"
-#import "ApplyFiltersViewController.h"
 #import "UserRepository.h"
 #import "LoginViewController.h"
-#import "CameraOverlayViewController.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "HairfieNotifications.h"
 #import "HairfieContentViewController.h"
@@ -357,7 +355,7 @@
     ALAssetsLibrary *lib = [[ALAssetsLibrary alloc] init];
     [lib enumerateGroupsWithTypes:ALAssetsGroupSavedPhotos usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
         if (isChecked == NO) {
-       [self performSegueWithIdentifier:@"cameraOverlay" sender:self];
+       [self performSegueWithIdentifier:@"postHairfie" sender:self];
             isChecked = YES;
         }
     } failureBlock:^(NSError *error) {
@@ -470,15 +468,7 @@
     {
         HairfieDetailViewController *hairfieDetail = [segue destinationViewController];
         hairfieDetail.hairfie = hairfieSelected;
-
     }
-    if ([segue.identifier isEqualToString:@"cameraOverlay"])
-    {
-        CameraOverlayViewController *cameraOverlay= [segue destinationViewController];
-    
-        cameraOverlay.isHairfie = YES;
-    }
-    
 }
 
 @end

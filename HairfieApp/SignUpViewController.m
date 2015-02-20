@@ -12,7 +12,7 @@
 #import "UserAuthenticator.h"
 #import "Picture.h"
 #import "MRProgress.h"
-#import "CameraOverlayViewController.h"
+#import "ImageSetPicker.h"
 
 @interface SignUpViewController ()
 
@@ -66,11 +66,30 @@
     // Do any additional setup after loading the view.
 }
 
--(void) viewWillAppear:(BOOL)animated {
+-(void) viewWillAppear:(BOOL)animated
+{
     [ARAnalytics pageView:@"AR - Sign up"];
-    if (self.imageFromSegue != nil) {
-        [self defineProfilePicture:self.imageFromSegue];
-    }
+}
+
+-(NSInteger)imageSetPickerMinimumImageCount:(ImageSetPicker *)imageSetPicker
+{
+    return 1;
+}
+
+-(NSInteger)imageSetPickerMaximumImageCount:(ImageSetPicker *)imageSetPicker
+{
+    return 1;
+}
+
+-(void)imageSetPickerDidCancel:(ImageSetPicker *)imageSetPicker
+{
+    [ImageSetPicker remove:imageSetPicker];
+}
+
+-(void)imageSetPicker:(ImageSetPicker *)imageSetPicker didReturnWithImages:(NSArray *)images
+{
+    [ImageSetPicker remove:imageSetPicker];
+    [self defineProfilePicture:images[0]];
 }
 
 -(void) setUserTitle
@@ -114,8 +133,6 @@ numberOfRowsInComponent:(NSInteger)component
     _titleView.hidden = YES;
     
 }
-
- 
 
 -(IBAction)createAccount:(id)sender
 {
@@ -259,7 +276,7 @@ numberOfRowsInComponent:(NSInteger)component
 
 -(void)takePicture
 {
-    [self performSegueWithIdentifier:@"cameraOverlay" sender:self];
+    [ImageSetPicker setup:self];
 }
 
 
@@ -274,15 +291,6 @@ numberOfRowsInComponent:(NSInteger)component
     self.profilePicture.layer.borderWidth = 1.0f;
     self.profilePicture.layer.borderColor = [UIColor whiteColor].CGColor;
     self.profilePicture.image = image;
-}
-
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([segue.identifier isEqualToString:@"cameraOverlay"]) {
-        CameraOverlayViewController *cameraOverlay = [segue destinationViewController];
-        cameraOverlay.isHairfie = NO;
-        
-    }
 }
 
 @end

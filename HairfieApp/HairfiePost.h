@@ -37,7 +37,7 @@
 -(id)initWithDictionary:(NSDictionary *)data;
 -(id)initWithBusiness:(Business *)aBusiness;
 
--(void)setPictureWithImage:(UIImage *)image andContainer:(NSString *)container;
+-(void)setImages:(NSArray *)images;
 
 -(void)saveWithSuccess:(void(^)())aSuccessHandler
                failure:(void(^)(NSError *error))aFailureHandler;

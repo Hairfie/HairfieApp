@@ -302,11 +302,11 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
     CGFloat y = (imageHeight - size) / 2;
     CGRect cropRect = CGRectMake(x, y, size, size);
     CGImageRef imageRef = CGImageCreateWithImageInRect([image CGImage], cropRect);
-    UIImage *croppedImage = [UIImage imageWithCGImage:imageRef scale:0.0f orientation:image.imageOrientation];
+    UIImage *croppedImage = [UIImage imageWithCGImage:imageRef scale:1.0 orientation:image.imageOrientation];
     CGImageRelease(imageRef);
     
     // scale it to 640x640
-    UIGraphicsBeginImageContextWithOptions(CGSizeMake(640, 640), NO, 0.0);
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(640, 640), NO, 1.0);
     [croppedImage drawInRect:CGRectMake(0, 0, 640, 640)];
     UIImage *scaledImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();

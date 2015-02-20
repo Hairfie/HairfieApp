@@ -17,7 +17,7 @@
 #import "SalonMapViewController.h"
 #import "HorairesViewController.h"
 #import "BusinessMemberViewController.h"
-#import "CameraOverlayViewController.h"
+#import "HairfiePostCameraViewController.h"
 #import "BusinessClaimExistingViewController.h"
 
 #import "LoadingCollectionViewCell.h"
@@ -677,11 +677,8 @@
     }
 
     if ([segue.identifier isEqualToString:@"postHairfie"]) {
-        HairfiePost *hairfiePost = [[HairfiePost alloc] initWithBusiness:self.business];
-        
-        CameraOverlayViewController *camera = [segue destinationViewController];
-        camera.isHairfie = YES;
-        camera.hairfiePost = hairfiePost;
+        HairfiePostCameraViewController *vc = [segue destinationViewController];
+        vc.hairfiePost = [[HairfiePost alloc] initWithBusiness:self.business];
     }
     if ([segue.identifier isEqualToString:@"editOwnedBusiness"]) {
         FinalStepViewController *finalStepVc = [segue destinationViewController];

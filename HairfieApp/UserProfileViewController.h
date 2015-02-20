@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "User.h"
+#import "ImageSetPicker.h"
 
-@interface UserProfileViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UIActionSheetDelegate>
+@interface UserProfileViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UIActionSheetDelegate, ImageSetPickerDelegate>
 
 @property (nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic) User * user;

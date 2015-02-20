@@ -11,7 +11,6 @@
 #import "CustomPinView.h"
 #import "AppDelegate.h"
 
-#import "CameraOverlayViewController.h"
 #import "SearchFilterViewController.h"
 
 #import "BusinessViewController.h"
@@ -321,11 +320,6 @@
     if ([segue.identifier isEqualToString:@"businessDetailtest"]) {
         BusinessViewController *business = [segue destinationViewController];
         [business setBusiness:[businesses objectAtIndex:rowSelected]];
-    }
-    if ([segue.identifier isEqualToString:@"cameraOverlay"]) {
-        CameraOverlayViewController *cameraOverlay= [segue destinationViewController];
-        
-        cameraOverlay.isHairfie = YES;
     }
     if ([segue.identifier isEqualToString:@"modifySearchFilters"]) {
         

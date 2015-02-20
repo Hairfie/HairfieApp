@@ -16,7 +16,6 @@
 #import "NoReviewCollectionViewCell.h"
 #import "UserProfileReusableView.h"
 #import "HairfieDetailViewController.h"
-#import "CameraOverlayViewController.h"
 #import "BusinessViewController.h"
 #import "Hairfie.h"
 #import "Picture.h"
@@ -119,7 +118,8 @@
     [lib enumerateGroupsWithTypes:ALAssetsGroupSavedPhotos usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
         NSLog(stop ? @"Yes" : @"No");
         if (isChecked == NO) {
-            [self performSegueWithIdentifier:@"changeUserPicture" sender:self];
+            [ImageSetPicker setup:self];
+
             isChecked = YES;
         }
     } failureBlock:^(NSError *error) {
@@ -165,6 +165,27 @@
     [self.collectionView reloadData];
 }
 
+-(NSInteger)imageSetPickerMinimumImageCount:(ImageSetPicker *)imageSetPicker
+{
+    return 1;
+}
+
+-(NSInteger)imageSetPickerMaximumImageCount:(ImageSetPicker *)imageSetPicker
+{
+    return 1;
+}
+
+-(void)imageSetPickerDidCancel:(ImageSetPicker *)imageSetPicker
+{
+    [ImageSetPicker remove:imageSetPicker];
+}
+
+-(void)imageSetPicker:(ImageSetPicker *)imageSetPicker didReturnWithImages:(NSArray *)images
+{
+    [ImageSetPicker remove:imageSetPicker];
+    
+    [self uploadProfileImage:images[0]];
+}
 
 -(void) uploadProfileImage:(UIImage *)image
 {
@@ -450,12 +471,6 @@
     if ([segue.identifier isEqualToString:@"showBusinessFromReview"]) {
         BusinessViewController *vc = (BusinessViewController*)segue.destinationViewController;
         vc.business = businessPicked;
-    }
-    if ([segue.identifier isEqualToString:@"changeUserPicture"])
-    {
-        CameraOverlayViewController *camera = [segue destinationViewController];
-        camera.isProfile = YES;
-        camera.user = self.user;
     }
 }
 

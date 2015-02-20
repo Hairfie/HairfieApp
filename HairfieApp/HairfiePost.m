@@ -36,11 +36,11 @@
         _business = [Business fromSetterValue:aBusiness];
 }
 
--(void)setPictureWithImage:(UIImage *)image
-              andContainer:(NSString *)container
+-(void)setImages:(NSArray *)images
 {
-    _picture = [[Picture alloc] initWithImage:image andContainer:container];
-    
+    self.pictures = _.arrayMap(images, ^(UIImage *image) {
+        return [[Picture alloc] initWithImage:image andContainer:@"hairfies"];
+    });
 }
 
 -(void)setPrice:(id)aPrice

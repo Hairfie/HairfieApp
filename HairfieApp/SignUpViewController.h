@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ImageSetPicker.h"
 
-
-@interface SignUpViewController : UIViewController <UINavigationControllerDelegate, UITextFieldDelegate, UIAlertViewDelegate, UIImagePickerControllerDelegate, UIPickerViewDelegate, UIWebViewDelegate>
+@interface SignUpViewController : UIViewController <UINavigationControllerDelegate, UITextFieldDelegate, UIAlertViewDelegate, UIImagePickerControllerDelegate, UIPickerViewDelegate, UIWebViewDelegate, ImageSetPickerDelegate>
 
 @property (nonatomic) IBOutlet UIView *mainView;
 @property (nonatomic) IBOutlet UIButton *signUpButton;
@@ -32,7 +32,6 @@
 @property (nonatomic) IBOutlet UITextField *titleField;
 @property (nonatomic) UITapGestureRecognizer *dismiss;
 @property (nonatomic) IBOutlet UIPickerView *userTitle;
-@property (nonatomic) UIImage *imageFromSegue;
 
 -(IBAction)goBack:(id)sender;
 -(IBAction)checkBox:(id)sender;
