@@ -15,6 +15,7 @@
 @property (nonatomic) IBOutlet UITextField *serviceValue;
 @property (nonatomic) IBOutlet UITextField *serviceDuration;
 
+@property (nonatomic) IBOutlet UILabel* titleLabel;
 @property (nonatomic) IBOutlet UIButton* doneBttn;
 @property (nonatomic) NSMutableArray *serviceClaimed;
 @property (nonatomic) Service *serviceFromSegue;

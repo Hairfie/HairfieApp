@@ -55,7 +55,7 @@
                                                object:nil];
 
 
-    self.addServicesLbl.text = NSLocalizedStringFromTable(@"Add services", @"Claim", nil);
+    self.addServicesLbl.text = NSLocalizedStringFromTable(@"Add service", @"Claim", nil);
     [self setupGallery:nil];
   
     [self.view bringSubviewToFront:self.topBarView];
@@ -68,12 +68,6 @@
     
     _validateBttn.layer.cornerRadius = 5;
     _validateBttn.layer.masksToBounds = YES;
-//    _addHairfiesBttn.layer.cornerRadius = 5;
-//    _addHairfiesBttn.layer.masksToBounds = YES;
-//    
-    
-    
-    // Do any additional setup after loading the view.
 }
 
 -(void)viewDidLayoutSubviews

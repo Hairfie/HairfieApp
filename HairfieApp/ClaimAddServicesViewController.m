@@ -27,6 +27,13 @@
     [self.serviceValue textFieldWithPhoneKeyboard:(self.view.frame.size.width / 2 - 50)];
     [self.serviceDuration textFieldWithPhoneKeyboard:(self.view.frame.size.width / 2 - 50)];
 
+    self.serviceDescription.placeholder = NSLocalizedStringFromTable(@"Name", @"Claim", nil);
+    
+    self.serviceDuration.placeholder = NSLocalizedStringFromTable(@"Duration", @"Claim", nil);
+    
+    self.serviceValue.placeholder = NSLocalizedStringFromTable(@"How much?", @"Claim", nil);
+    
+    self.titleLabel.text = NSLocalizedStringFromTable(@"Add service", @"Claim", nil);
     self.serviceDescription.tag = 0;
     self.serviceDuration.tag = 1;
     self.serviceValue.tag = 2;
