@@ -22,8 +22,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.topBarView addBottomBorderWithHeight:1 andColor:[UIColor lightGrey]];
-
     businessMembers = [[NSMutableArray alloc] init];
     
     _firstNameView.layer.cornerRadius = 5;
@@ -56,13 +54,15 @@
 {
     if (self.claimedBusinessMembers != nil) {
         businessMembers = self.claimedBusinessMembers;
+        
     }
     
     if (self.businessMemberFromSegue != nil) {
         self.firstNameField.text = self.businessMemberFromSegue.firstName;
-        self.lastNameField.text = self.businessMemberFromSegue.firstName;
+        self.lastNameField.text = self.businessMemberFromSegue.lastName;
         self.emailField.text = (![self.businessMemberFromSegue.email isEqual:(id)[NSNull null]]) ? self.businessMemberFromSegue.email : @"";
          self.phoneNumberField.text = (![self.businessMemberFromSegue.phoneNumber isEqual:(id)[NSNull null]]) ? self.businessMemberFromSegue.phoneNumber : @"";
+        
     }
 }
 
@@ -96,11 +96,30 @@
         businessMember.id = self.businessMemberFromSegue.id;
     }
     
-    [businessMembers addObject:businessMember];
-    NSLog(@"businessMembers %@", businessMembers);
-    [businessMember saveWithSuccess:^() {
-                        NSLog(@"Business member successfully saved");
-                    }
+    
+    [businessMember saveWithSuccess:^(NSDictionary *result) {
+        NSLog(@"Business member successfully saved %@", result);
+        
+        BusinessMember *newBusinessMember = [[BusinessMember alloc] initWithDictionary:result];
+        FinalStepViewController *finalStep = [self.navigationController.viewControllers objectAtIndex:[self.navigationController.viewControllers count]-2]; // TODO: c'est pas super beau...
+        
+        
+        NSArray *filteredMembers = _.filter(businessMembers, ^BOOL(BusinessMember *memberToTest){
+            return ![memberToTest.id isEqualToString:newBusinessMember.id];
+        });
+        
+        NSMutableArray *membersToSend = [NSMutableArray arrayWithArray:filteredMembers];
+        [membersToSend addObject:newBusinessMember];
+        
+        if (finalStep.businessToManage != nil) {
+            
+            finalStep.businessToManage.activeHairdressers = membersToSend;
+            
+        }
+        
+        [self.navigationController popViewControllerAnimated:YES];
+        
+    }
                             failure:^(NSError *error) {
                                 NSLog(@"Failed to save business member: %@", error.localizedDescription);
                             }];
@@ -108,24 +127,17 @@
 
 -(IBAction)validateHairdresser:(id)sender
 {
-    // TO DO enregistrer les coiffeurs ajoutés
-    FinalStepViewController *finalStep = [self.navigationController.viewControllers objectAtIndex:[self.navigationController.viewControllers count]-2]; // TODO: c'est pas super beau...
-    
+    FinalStepViewController *finalStep = [self.navigationController.viewControllers objectAtIndex:[self.navigationController.viewControllers count]-2];
     [self addHairdresserWithBusiness:finalStep.businessToManage];
 
-    if (finalStep.businessToManage != nil) {
-        finalStep.businessToManage.activeHairdressers = businessMembers;
-    
-    }
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(IBAction)goBack:(id)sender
 {
  
-    [self validateHairdresser:self];
+    //[self validateHairdresser:self];
     
-    //[self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

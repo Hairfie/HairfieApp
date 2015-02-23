@@ -38,8 +38,12 @@
 -(NSURL *)pictureUrlWithWidth:(NSNumber *)aWdith
                        height:(NSNumber *)anHeight;
 
+
 +(void)getById:(NSString *)aBusinessMemberId
    withSuccess:(void (^)(BusinessMember *))aSuccessHandler
        failure:(void (^)(NSError *))aFailureHandler;
+
+-(void)saveWithSuccess:(void(^)(NSDictionary* result))aSuccessHandler
+               failure:(void(^)(NSError *))aFailureHandler;
 
 @end

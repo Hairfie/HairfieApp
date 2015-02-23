@@ -536,21 +536,21 @@
         ClaimAddHairdresserViewController *claimHairdresser = [segue destinationViewController];
         if (_businessToManage != nil)
         {
+            
+            if (_isEditingHairdresser == YES) {
+                claimHairdresser.businessMemberFromSegue = businessMemberForEditing;
+                _isEditingHairdresser = NO;
+            }
             if  (_businessToManage.activeHairdressers != (id)[NSNull null])
             {
                 
                 claimHairdresser.claimedBusinessMembers = self.businessToManage.activeHairdressers;
-                [_businessToManage.activeHairdressers removeObjectIdenticalTo:businessMemberForEditing];
-          
             }
             else
     
                 claimHairdresser.claimedBusinessMembers = [[NSMutableArray alloc] init];
         }
-        
-        if (_isEditingHairdresser == YES)
-            claimHairdresser.businessMemberFromSegue = businessMemberForEditing;
-        _isEditingHairdresser = NO;
+       
     }
     if ([segue.identifier isEqualToString:@"claimService"])
     {
@@ -612,6 +612,7 @@
         if (_businessToManage != nil)
         {
             businessMember = [_businessToManage.activeHairdressers objectAtIndex:indexPath.row];
+            
         }
         
 
@@ -672,15 +673,17 @@
 {
     if (tableView == _hairdresserTableView)
     {
-    if (_businessToManage != nil)
-        businessMemberForEditing = [_businessToManage.activeHairdressers objectAtIndex:indexPath.row];
+        if (_businessToManage != nil) {
+            businessMemberForEditing = [_businessToManage.activeHairdressers objectAtIndex:indexPath.row];
+        }
         _isEditingHairdresser = YES;
         [self performSegueWithIdentifier:@"claimHairdresser" sender:self];
     }
     if (tableView == _serviceTableView)
     {
-        if (_businessToManage != nil)
+        if (_businessToManage != nil) {
             serviceForEditing = [_businessToManage.services objectAtIndex:indexPath.row];
+        }
         _isEditingService = YES;
         serviceIndex = indexPath.row;
         [self performSegueWithIdentifier:@"claimService" sender:self];
@@ -689,11 +692,10 @@
 
 -(void)clearHairdresser:(NSNotification*)notification
 {
-  
     HairdresserTableViewCell *cell = notification.object;
     BusinessMember *businessMember = [self.businessToManage.activeHairdressers objectAtIndex:cell.tag];
     businessMember.active = NO;
-    [businessMember saveWithSuccess:^{
+    [businessMember saveWithSuccess:^(NSDictionary *result){
                                 NSLog(@"Business member successfully saved");
                                 [self.businessToManage.activeHairdressers removeObjectAtIndex:cell.tag];
                                 [self.hairdresserTableView reloadData];
@@ -722,8 +724,6 @@
 
 -(IBAction)claimThisBusiness:(id)sender
 {
-    
-    
     void (^loadErrorBlock)(NSError *) = ^(NSError *error){
         
         NSLog(@"Error : %@", error.description);

@@ -121,14 +121,14 @@
     return [[NSDictionary alloc] initWithDictionary:temp];
 }
 
--(void)saveWithSuccess:(void(^)())aSuccessHandler
+-(void)saveWithSuccess:(void(^)(NSDictionary* result))aSuccessHandler
                failure:(void(^)(NSError *))aFailureHandler
 {
     void(^onSuccess)(NSDictionary *) = ^(NSDictionary *result) {
         if (nil == self.id) {
             self.id = [result objectForKey:@"id"];
         }
-        aSuccessHandler();
+        aSuccessHandler(result);
     };
     
     if (nil == self.id) {
@@ -137,7 +137,8 @@
                                                                                      verb:@"POST"]
                                             forMethod:@"businessMembers"];
 
-        [[[self class] repository] invokeStaticMethod:@"create"
+        
+        [[[self class]repository] invokeStaticMethod:@""
                                            parameters:[self toDictionary]
                                               success:onSuccess
                                               failure:aFailureHandler];
@@ -176,9 +177,9 @@
     return [SetterUtils getInstanceOf:[self class] fromSetterValue:aValue];
 }
 
-+(LBModelRepository *)repository
++(BusinessMemberRepository *)repository
 {
-    return [[AppDelegate lbAdaptater] repositoryWithClass:[BusinessMemberRepository class]];
+    return (BusinessMemberRepository*)[[AppDelegate lbAdaptater] repositoryWithClass:[BusinessMemberRepository class]];
 }
 
 @end
