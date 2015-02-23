@@ -20,6 +20,7 @@
     NSMutableArray *hairfieLikes;
     BOOL loadingNext;
     BOOL endOfScroll;
+    UIRefreshControl *refreshControl;
 }
 @end
 
@@ -44,15 +45,29 @@
     currentUser = [(AppDelegate *)[[UIApplication sharedApplication] delegate] currentUser];
     loadingNext = NO;
 
+    refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(getHairfiesFromRefresh:)
+             forControlEvents:UIControlEventValueChanged];
+    [self.collectionView addSubview:refreshControl];
+
+   
+    
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
     if (nil != currentUser) {
         [self refreshHairfieLikes];
     }
-    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)getHairfiesFromRefresh:(UIRefreshControl *)refresh {
+    [self refreshHairfieLikes];
 }
 
 -(void)refreshHairfieLikes
@@ -79,10 +94,12 @@
             if (![hairfieLikes containsObject:result]) {
                 [hairfieLikes addObject:result];
             }
+            
         }
         
         [self.collectionView reloadData];
-        
+        if (refreshControl)
+            [refreshControl endRefreshing];
         // did we reach the end of scroll?
         if (results.count < HAIRFIES_PAGE_SIZE) {
             NSLog(@"Got %@ harfies instead of %@ asked, we reached the end.", [NSNumber numberWithLong:results.count], [NSNumber numberWithInt:HAIRFIES_PAGE_SIZE]);
@@ -95,6 +112,7 @@
     void (^failureHandler)(NSError *) = ^(NSError *error) {
         NSLog(@"Failed to fetch next hairfies: %@", error.localizedDescription);
         loadingNext = NO;
+        [refreshControl endRefreshing];
     };
 
     NSDate *until = nil;
@@ -151,10 +169,8 @@
 
 -(UICollectionViewCell *)hairfieCellAtIndexPath:(NSIndexPath *)indexPath
 {
-    CustomCollectionViewCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:@"hairfieCell"
-                                                                                    forIndexPath:indexPath];
+    CustomCollectionViewCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:@"hairfieCell" forIndexPath:indexPath];
 
-    NSLog(@"INDEX %zd", indexPath.row);
     [cell setHairfie:[hairfieLikes[indexPath.row] hairfie]];
 
     return cell;
