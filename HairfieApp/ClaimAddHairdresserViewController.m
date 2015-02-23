@@ -118,7 +118,6 @@
         }
         
         [self.navigationController popViewControllerAnimated:YES];
-        
     }
                             failure:^(NSError *error) {
                                 NSLog(@"Failed to save business member: %@", error.localizedDescription);
