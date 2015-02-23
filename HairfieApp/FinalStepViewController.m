@@ -434,46 +434,6 @@
 }
 
 
-
-- (void)switchCamera
-{
-    if (imagePicker.cameraDevice == UIImagePickerControllerCameraDeviceRear)
-    {
-        imagePicker.cameraDevice = UIImagePickerControllerCameraDeviceFront;
-    }
-    else
-    {
-        imagePicker.cameraDevice = UIImagePickerControllerCameraDeviceRear;
-    }
-}
-
--(void)snapPicture
-{
-    [imagePicker takePicture];
-}
-
--(void) cancelTakePicture
-{
-    [imagePicker dismissViewControllerAnimated:YES completion:nil];
-    
-}
-
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
-{
-    UIImage *image;
-    if([info valueForKey:UIImagePickerControllerEditedImage]) {
-        image = [info valueForKey:UIImagePickerControllerEditedImage];
-    } else {
-        image = [info valueForKey:UIImagePickerControllerOriginalImage];
-    }
-    
-    
-    UIImage *resizedImage = [image resizedImageToFitInSize:CGSizeMake(640, 640) scaleIfSmaller:NO];
-    [self uploadSalonImage:resizedImage];
-    
-}
-
-
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     

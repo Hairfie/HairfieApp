@@ -105,7 +105,6 @@
             NSLog(@"Got %@ harfies instead of %@ asked, we reached the end.", [NSNumber numberWithLong:results.count], [NSNumber numberWithInt:HAIRFIES_PAGE_SIZE]);
             endOfScroll = YES;
         }
-
         loadingNext = NO;
     };
 
@@ -178,8 +177,7 @@
 
 -(UICollectionViewCell *)loadingCellAtIndexPath:(NSIndexPath *)indexPath
 {
-    LoadingCollectionViewCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:@"loadingCell"
-                                                                                     forIndexPath:indexPath];
+    LoadingCollectionViewCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:@"loadingCell" forIndexPath:indexPath];
     if (endOfScroll) {
         [cell showEndOfScroll];
     }
