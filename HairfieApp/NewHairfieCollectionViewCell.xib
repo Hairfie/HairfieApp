@@ -7,63 +7,62 @@
     <customFonts key="customFonts">
         <mutableArray key="SourceSansPro-Light.ttf">
             <string>SourceSansPro-Light</string>
-        </mutableArray>
-        <mutableArray key="SourceSansPro-Semibold.ttf">
-            <string>SourceSansPro-Semibold</string>
+            <string>SourceSansPro-Light</string>
         </mutableArray>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="newHairfieCell" id="gTV-IL-0wX">
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="newHairfieCell" id="gTV-IL-0wX" customClass="NewHairfieCollectionViewCell">
             <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ajouter un hairfie" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZsW-CG-LFc">
-                        <rect key="frame" x="92" y="14" width="181" height="21"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="21" id="MvV-GG-trl"/>
-                            <constraint firstAttribute="width" constant="181" id="fNA-30-R9u"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="20"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8d5-l2-F1P">
+                        <rect key="frame" x="65" y="8" width="35" height="35"/>
+                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="30"/>
                         <color key="textColor" red="0.42745098040000001" green="0.46274509800000002" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8d5-l2-F1P">
-                        <rect key="frame" x="65" y="3" width="35" height="42"/>
-                        <fontDescription key="fontDescription" name="SourceSansPro-Semibold" family="Source Sans Pro" pointSize="33"/>
-                        <color key="textColor" red="1" green="0.45882352939999999" blue="0.4431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mDB-7e-6YR">
+                        <rect key="frame" x="42" y="10" width="237" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="237" id="6xA-tP-bcF"/>
+                            <constraint firstAttribute="height" constant="30" id="Nd6-i9-CA3"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="20"/>
+                        <inset key="contentEdgeInsets" minX="40" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        <state key="normal" title="Ajouter un hairfie">
+                            <color key="titleColor" red="0.42745098040000001" green="0.46274509800000002" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <color key="backgroundColor" red="0.85490196080000003" green="0.85490196080000003" blue="0.85490196080000003" alpha="0.77000000000000002" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="8d5-l2-F1P" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="65" id="6AM-Nr-Cbc"/>
-                <constraint firstAttribute="trailing" secondItem="ZsW-CG-LFc" secondAttribute="trailing" constant="47" id="857-d2-6o0"/>
-                <constraint firstAttribute="centerX" secondItem="ZsW-CG-LFc" secondAttribute="centerX" constant="-0.5" id="BII-42-jbO"/>
+                <constraint firstItem="8d5-l2-F1P" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="7Vd-hG-fcJ"/>
                 <constraint firstItem="8d5-l2-F1P" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="3" id="Fnb-TF-LbZ"/>
-                <constraint firstItem="ZsW-CG-LFc" firstAttribute="leading" secondItem="8d5-l2-F1P" secondAttribute="trailing" constant="-42" id="HQl-dH-n1e"/>
-                <constraint firstItem="ZsW-CG-LFc" firstAttribute="leading" secondItem="8d5-l2-F1P" secondAttribute="trailing" constant="-42" id="Hb2-8l-eCF"/>
-                <constraint firstAttribute="bottom" secondItem="ZsW-CG-LFc" secondAttribute="bottom" constant="15" id="I9a-c7-ien"/>
+                <constraint firstAttribute="centerY" secondItem="mDB-7e-6YR" secondAttribute="centerY" id="P45-dO-MQf"/>
                 <constraint firstAttribute="bottom" secondItem="8d5-l2-F1P" secondAttribute="bottom" constant="5" id="YJi-WD-XzH"/>
-                <constraint firstItem="ZsW-CG-LFc" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="14" id="aY5-ZK-s5B"/>
+                <constraint firstItem="8d5-l2-F1P" firstAttribute="leading" secondItem="mDB-7e-6YR" secondAttribute="leading" constant="23" id="bzI-Qe-vOI"/>
                 <constraint firstItem="8d5-l2-F1P" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="80" id="dxN-fU-IBb"/>
-                <constraint firstAttribute="centerY" secondItem="ZsW-CG-LFc" secondAttribute="centerY" constant="0.5" id="hba-Qb-VE5"/>
-                <constraint firstItem="ZsW-CG-LFc" firstAttribute="leading" secondItem="8d5-l2-F1P" secondAttribute="trailing" constant="-8" id="jmC-OC-T9x"/>
+                <constraint firstAttribute="centerX" secondItem="mDB-7e-6YR" secondAttribute="centerX" constant="-0.5" id="hsP-Fj-ydR"/>
+                <constraint firstItem="mDB-7e-6YR" firstAttribute="leading" secondItem="8d5-l2-F1P" secondAttribute="trailing" constant="-58" id="kRa-pf-dEj"/>
+                <constraint firstAttribute="bottom" secondItem="8d5-l2-F1P" secondAttribute="bottom" constant="7" id="pGP-Js-ZZi"/>
             </constraints>
             <variation key="default">
                 <mask key="constraints">
+                    <exclude reference="6AM-Nr-Cbc"/>
+                    <exclude reference="Fnb-TF-LbZ"/>
+                    <exclude reference="YJi-WD-XzH"/>
                     <exclude reference="dxN-fU-IBb"/>
-                    <exclude reference="BII-42-jbO"/>
-                    <exclude reference="HQl-dH-n1e"/>
-                    <exclude reference="Hb2-8l-eCF"/>
-                    <exclude reference="hba-Qb-VE5"/>
                 </mask>
             </variation>
+            <point key="canvasLocation" x="187" y="287"/>
         </collectionViewCell>
     </objects>
 </document>
