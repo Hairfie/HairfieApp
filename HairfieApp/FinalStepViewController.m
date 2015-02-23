@@ -55,6 +55,7 @@
                                                object:nil];
 
 
+    self.addServicesLbl.text = NSLocalizedStringFromTable(@"Add services", @"Claim", nil);
     [self setupGallery:nil];
   
     [self.view bringSubviewToFront:self.topBarView];

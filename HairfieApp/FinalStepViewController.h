@@ -74,6 +74,7 @@
 // PRICES/SALES TAB
 
 @property (nonatomic) IBOutlet UITableView* serviceTableView;
+@property (nonatomic) IBOutlet UILabel* addServicesLbl;
 @property BOOL isEditingService;
 
 // FROM SEGUE
