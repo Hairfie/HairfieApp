@@ -12,7 +12,7 @@
 
 - (void)awakeFromNib {
     // Initialization code
-    
+    [self.hairfieBttn setTitle:NSLocalizedStringFromTable(@"Add a Hairfie", @"Salon_Detail", nil) forState:UIControlStateNormal];
 }
 
 @end

@@ -23,7 +23,8 @@
 -(id)initWithLabel:(NSString *)aLabel
              price:(Money *)aPrice
           duration:(NSNumber *)aDuration
-        businessId:(NSString*)aBusinessId;
+        businessId:(NSString*)aBusinessId
+         serviceId:(NSString*)anId;
 
 -(NSDictionary*)toDictionary;
 
@@ -32,5 +33,10 @@
 
 -(void)saveWithSuccess:(void(^)(NSDictionary* result))aSuccessHandler
                failure:(void(^)(NSError *))aFailureHandler;
+
+
++(void)deleteService:(NSString*)serviceId
+             success:(void(^)())aSuccessHandler
+             failure:(void(^)(NSError *error))aFailureHandler;
 
 @end

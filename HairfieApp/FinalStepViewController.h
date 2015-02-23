@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "BusinessClaim.h"
 #import "Business.h"
+#import "ImageSetPicker.h"
 
-@interface FinalStepViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIAlertViewDelegate>
+@interface FinalStepViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate, ImageSetPickerDelegate>
 
 @property (nonatomic) IBOutlet UIButton *phoneBttn;
 

@@ -49,7 +49,9 @@
     NSMutableArray *temp = [[NSMutableArray alloc] init];
     if (![services isEqual:[NSNull null]]) {
         for (id service in services) {
-            [temp addObject:[Service fromSetterValue:service]];
+            Service *serviceToAdd = [Service fromSetterValue:service];
+
+            [temp addObject:serviceToAdd];
         }
     }
     _services = temp;

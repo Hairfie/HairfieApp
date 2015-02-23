@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="SourceSansPro-Light.ttf">
@@ -20,18 +21,29 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="50F-D7-I0U">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="50F-D7-I0U">
                         <rect key="frame" x="8" y="11" width="202" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="202" id="EHv-XH-hXk"/>
+                            <constraint firstAttribute="height" constant="21" id="EVj-JV-m2p"/>
+                        </constraints>
                         <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="18"/>
                         <color key="textColor" red="0.1176470588" green="0.1647058824" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g7y-Ia-NwP">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g7y-Ia-NwP">
                         <rect key="frame" x="0.0" y="44" width="320" height="1"/>
                         <color key="backgroundColor" red="0.92549019610000005" green="0.92549019610000005" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="bJc-tE-jw6"/>
+                        </constraints>
                     </view>
-                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lxM-rS-Y4g">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lxM-rS-Y4g">
                         <rect key="frame" x="260" y="2" width="40" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="vq6-KM-YrO"/>
+                            <constraint firstAttribute="width" constant="40" id="zSk-Cl-vhd"/>
+                        </constraints>
                         <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                         <state key="normal" title="Button" image="cancel.png">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -40,13 +52,32 @@
                             <action selector="clearService:" destination="Zbe-jg-89o" eventType="touchUpInside" id="fcx-lE-gYd"/>
                         </connections>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.80000001192092896" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="300 " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="soO-5N-uSi">
+                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.80000001192092896" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="300 " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="soO-5N-uSi">
                         <rect key="frame" x="178" y="11" width="74" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="74" id="iOK-iK-zcs"/>
+                            <constraint firstAttribute="height" constant="21" id="vpv-2r-tKt"/>
+                        </constraints>
                         <fontDescription key="fontDescription" name="SourceSansPro-Light" family="Source Sans Pro" pointSize="13"/>
                         <color key="textColor" red="0.15686274510000001" green="0.19215686269999999" blue="0.22352941179999999" alpha="1" colorSpace="deviceRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottomMargin" secondItem="soO-5N-uSi" secondAttribute="bottom" constant="4.5" id="3jb-u8-NT0"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="g7y-Ia-NwP" secondAttribute="trailing" constant="-28" id="HSi-Lh-eg3"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="50F-D7-I0U" secondAttribute="bottom" constant="4.5" id="HTf-6Z-zxG"/>
+                    <constraint firstItem="lxM-rS-Y4g" firstAttribute="top" secondItem="8L7-sS-TH4" secondAttribute="topMargin" constant="-6" id="Hex-ih-Yo0"/>
+                    <constraint firstItem="50F-D7-I0U" firstAttribute="leading" secondItem="8L7-sS-TH4" secondAttribute="leadingMargin" id="IBJ-hq-Bow"/>
+                    <constraint firstItem="soO-5N-uSi" firstAttribute="top" secondItem="8L7-sS-TH4" secondAttribute="topMargin" constant="3" id="MpN-te-H1d"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="lxM-rS-Y4g" secondAttribute="bottom" constant="-5.5" id="N14-Nv-fLE"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="g7y-Ia-NwP" secondAttribute="bottom" constant="-8.5" id="NjF-7p-k8n"/>
+                    <constraint firstItem="50F-D7-I0U" firstAttribute="top" secondItem="8L7-sS-TH4" secondAttribute="topMargin" constant="3" id="Tf3-DW-TCI"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="lxM-rS-Y4g" secondAttribute="trailing" constant="-8" id="cGG-zQ-Brp"/>
+                    <constraint firstAttribute="centerX" secondItem="g7y-Ia-NwP" secondAttribute="centerX" constant="-10" id="itu-dJ-bBn"/>
+                    <constraint firstItem="g7y-Ia-NwP" firstAttribute="leading" secondItem="8L7-sS-TH4" secondAttribute="leadingMargin" constant="-8" id="lcu-qg-txX"/>
+                    <constraint firstItem="lxM-rS-Y4g" firstAttribute="leading" secondItem="soO-5N-uSi" secondAttribute="trailing" constant="8" id="uEd-DN-CNN"/>
+                </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="clearBttn" destination="lxM-rS-Y4g" id="av4-za-ZwZ"/>

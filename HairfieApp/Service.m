@@ -12,6 +12,7 @@
 #import "ServiceRepository.h"
 
 @implementation Service
+@synthesize id;
 
 -(id)initWithDictionary:(NSDictionary *)aDictionary
 {
@@ -19,11 +20,13 @@
                          price:[[Money alloc] initWithDictionary:[aDictionary objectForKey:@"price"]]
                       duration:[aDictionary objectForKey:@"durationMinutes"]
                     businessId:[aDictionary objectForKey:@"businessId"]
-            
+                     serviceId:[aDictionary objectForKey:@"id"]
             ];
 }
 
--(id)initWithLabel:(NSString *)aLabel price:(Money *)aPrice duration:(NSNumber *)aDuration businessId:(NSString*)aBusinessId
+
+
+-(id)initWithLabel:(NSString *)aLabel price:(Money *)aPrice duration:(NSNumber *)aDuration businessId:(NSString*)aBusinessId serviceId:(NSString*)anId
 {
     self = [super init];
     if (self) {
@@ -31,6 +34,7 @@
         self.price = aPrice;
         self.durationMinutes = aDuration;
         self.businessId = aBusinessId;
+        self.id = anId;
     }
     return self;
 }
@@ -76,10 +80,29 @@
     }
 }
 
++(void)deleteService:(NSString*)serviceId
+             success:(void(^)())aSuccessHandler
+             failure:(void(^)(NSError *error))aFailureHandler {
+    
+    
+    [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/businessServices/:id" verb:@"DELETE"]
+                                        forMethod:@"businessServices.delete"];
+    
+    LBModelRepository *repository = [self repository];
+    
+    [repository invokeStaticMethod:@"delete"
+                        parameters:@{@"id":serviceId}
+                           success:aSuccessHandler
+                           failure:aFailureHandler];
+    
+}
+
 +(ServiceRepository *)repository
 {
     return (ServiceRepository *)[[AppDelegate lbAdaptater] repositoryWithClass:[ServiceRepository class]];
 }
+
+
 
 
 

@@ -5382,11 +5382,7 @@
                                                         </connections>
                                                     </scrollView>
                                                     <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="5" translatesAutoresizingMaskIntoConstraints="NO" id="nb4-rX-cdb">
-                                                        <rect key="frame" x="224" y="150" width="100" height="37"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="100" id="XKi-Fo-Oot"/>
-                                                            <constraint firstAttribute="height" constant="37" id="gQN-Gm-9W4"/>
-                                                        </constraints>
+                                                        <rect key="frame" x="200" y="150" width="100" height="37"/>
                                                         <connections>
                                                             <action selector="changePage:" destination="BHW-4V-7I5" eventType="touchUpInside" id="b1X-Df-gRQ"/>
                                                         </connections>
@@ -5394,13 +5390,14 @@
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.85490196078431369" green="0.85490196078431369" blue="0.85490196078431369" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
-                                                    <constraint firstItem="nb4-rX-cdb" firstAttribute="top" secondItem="9do-Br-aXN" secondAttribute="top" constant="150" id="0wF-e3-Vgb"/>
-                                                    <constraint firstAttribute="bottom" secondItem="nb4-rX-cdb" secondAttribute="bottom" constant="-7" id="3wu-Tr-OqF"/>
+                                                    <constraint firstAttribute="bottom" secondItem="nb4-rX-cdb" secondAttribute="bottom" constant="-7" id="Ap4-P7-yKp"/>
                                                     <constraint firstAttribute="height" constant="180" id="E0o-Sk-QwP"/>
                                                     <constraint firstAttribute="height" secondItem="uto-Zl-RXJ" secondAttribute="height" id="Kc4-R8-1dx"/>
                                                     <constraint firstAttribute="centerX" secondItem="uto-Zl-RXJ" secondAttribute="centerX" id="Smm-Pf-0cv"/>
+                                                    <constraint firstAttribute="trailing" secondItem="nb4-rX-cdb" secondAttribute="trailing" constant="20" id="WjJ-wu-w5X"/>
+                                                    <constraint firstItem="nb4-rX-cdb" firstAttribute="leading" relation="lessThanOrEqual" secondItem="9do-Br-aXN" secondAttribute="leading" constant="200" id="ZdS-fY-ocr"/>
+                                                    <constraint firstItem="nb4-rX-cdb" firstAttribute="top" secondItem="9do-Br-aXN" secondAttribute="top" constant="150" id="mR2-hU-SuY"/>
                                                     <constraint firstAttribute="centerY" secondItem="uto-Zl-RXJ" secondAttribute="centerY" id="oSx-HG-vvA"/>
-                                                    <constraint firstAttribute="trailing" secondItem="nb4-rX-cdb" secondAttribute="trailing" constant="-4" id="ppJ-6f-fvT"/>
                                                     <constraint firstAttribute="width" secondItem="uto-Zl-RXJ" secondAttribute="width" id="yZn-jZ-KmC"/>
                                                 </constraints>
                                             </view>
@@ -7208,14 +7205,14 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="csi-dT-fBw"/>
-        <segue reference="q6S-lc-uSW"/>
-        <segue reference="18q-AN-mc0"/>
-        <segue reference="KKI-My-Uy4"/>
+        <segue reference="OXf-FI-oBV"/>
         <segue reference="Vzm-3A-jKo"/>
+        <segue reference="JOd-nL-lAl"/>
+        <segue reference="KKI-My-Uy4"/>
         <segue reference="9F8-Wo-5DF"/>
         <segue reference="N5w-ND-ZjU"/>
         <segue reference="cpa-I8-e9p"/>
-        <segue reference="JOd-nL-lAl"/>
+        <segue reference="q6S-lc-uSW"/>
+        <segue reference="18q-AN-mc0"/>
     </inferredMetricsTieBreakers>
 </document>

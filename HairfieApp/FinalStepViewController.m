@@ -10,6 +10,7 @@
 #import "FinalStepClaimInfoViewController.h"
 #import "HairdresserTableViewCell.h"
 #import "ClaimServiceTableViewCell.h"
+#import <AssetsLibrary/AssetsLibrary.h>
 #import "Address.h"
 #import "BusinessMember.h"
 #import "Picture.h"
@@ -36,8 +37,7 @@
     NSMutableArray *pictureForGallery;
     AppDelegate *appDelegate;
     NSInteger serviceIndex;
-
-    
+    BOOL uploadInProgress;
 }
 
 
@@ -133,7 +133,7 @@
         addPictureBttn.clipsToBounds = YES;
         addPictureBttn.backgroundColor = [UIColor colorWithRed:250/255.0f green:66/255.0f blue:77/255.0f alpha:1];
         [addPictureBttn addTarget:self
-                           action:@selector(chooseCameraType)
+                           action:@selector(validateAddPicture)
                  forControlEvents:UIControlEventTouchUpInside];
         
         [_imageSliderView addSubview:borderBttn];
@@ -350,105 +350,70 @@
     _isEditingService = NO;
     [self performSegueWithIdentifier:@"claimService" sender:self];
 }
--(void)chooseCameraType
+
+-(void)validateAddPicture
 {
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                             delegate:self
+                                                    cancelButtonTitle:NSLocalizedStringFromTable(@"Cancel", @"Salon_Detail", nil)
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:NSLocalizedStringFromTable(@"Add Pictures", @"Claim", nil),nil];
     
-    UIAlertView *chooseCameraType = [[UIAlertView alloc] initWithTitle:NSLocalizedStringFromTable(@"Choose camera type", @"Login_Sign_Up", nil) message:NSLocalizedStringFromTable(@"Take picture or pick one from the saved photos", @"Login_Sign_Up", nil) delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:NSLocalizedStringFromTable(@"Camera", @"Login_Sign_Up", nil), NSLocalizedStringFromTable(@"Library", @"Login_Sign_Up", nil),nil];
-    [chooseCameraType show];
     
+    [actionSheet showInView:self.view];
 }
 
-- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+    if (0 == buttonIndex) [self checkIfCameraDisabled];
+    if (1 == buttonIndex) return; // it's the cancel button
+}
+
+-(void)checkIfCameraDisabled
+{
+    __block BOOL isChecked = NO;
+    ALAssetsLibrary *lib = [[ALAssetsLibrary alloc] init];
     
-    imagePicker = [[UIImagePickerController alloc] init];
-    [imagePicker setDelegate:self];
-    if (buttonIndex == 2) {
-        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeSavedPhotosAlbum]) {
-            imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-            imagePicker.allowsEditing = YES;
+    [lib enumerateGroupsWithTypes:ALAssetsGroupSavedPhotos usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
+        NSLog(stop ? @"Yes" : @"No");
+        if (isChecked == NO) {
+            [ImageSetPicker setup:self];
             
-            [self presentViewController:imagePicker animated:YES completion:nil];
+            isChecked = YES;
         }
-    } if (buttonIndex == 1) {
-        if ([UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera]) {
-            imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-            imagePicker.cameraDevice = UIImagePickerControllerCameraDeviceRear;
-            imagePicker.showsCameraControls = NO;
-            imagePicker.allowsEditing = YES;
-            
-            imagePicker.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
-            [self initOverlayView];
-            [self presentViewController:imagePicker animated:YES completion:nil];
+    } failureBlock:^(NSError *error) {
+        if (error.code == ALAssetsLibraryAccessUserDeniedError) {
+            NSLog(@"user denied access : %@",error.description);
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedStringFromTable(@"Warning",@"Claim", nil) message:NSLocalizedStringFromTable(@"authorized access to camera", @"Post_Hairfie", nil) delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+            [alertView show];
+        }else{
+            NSLog(@"Other error code: %zi",error.code);
         }
-    }
+    }];
 }
 
--(void) initOverlayView
+-(NSInteger)imageSetPickerMinimumImageCount:(ImageSetPicker *)imageSetPicker
 {
-    
-    UIView *overlayView = [[UIView alloc] init];
-    
-    overlayView.frame =  imagePicker.cameraOverlayView.frame;
-    
-    UIView *navigationView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 60)];
-    navigationView.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.78];
-    
-    
-    UIImage *goBackImg = [UIImage imageNamed:@"arrow-nav.png"];
-    UIButton *goBackButton = [UIButton
-                              buttonWithType:UIButtonTypeCustom];
-    [goBackButton setImage:goBackImg forState:UIControlStateNormal];
-    [goBackButton addTarget:self action:@selector(cancelTakePicture) forControlEvents:UIControlEventTouchUpInside];
-    [goBackButton setFrame:CGRectMake(0, 22, 60, 40)];
-    [goBackButton setImageEdgeInsets:UIEdgeInsetsMake(10,10,10,30)];
-    
-    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(92, 30, 136, 23)];
-    titleLabel.text = NSLocalizedStringFromTable(@"Take Hairfie", @"Post_Hairfie", nil);
-    titleLabel.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:18];
-    titleLabel.textAlignment = NSTextAlignmentCenter;
-    titleLabel.textColor = [UIColor titleGrey];
-    [navigationView addSubview:titleLabel];
-    [navigationView addSubview:goBackButton];
-    
-    UIView *bottomNavigationView = [[UIView alloc] initWithFrame:CGRectMake(0, 380, 320, self.view.frame.size.height - 380)];
-    bottomNavigationView.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.78];
-    
-    [overlayView addSubview:navigationView];
-    [overlayView addSubview:bottomNavigationView];
-    
-    
-    UIImage *takePictureImg = [UIImage imageNamed:@"take-picture-button.png"];
-    
-    UIButton *takePictureButton = [UIButton
-                                   buttonWithType:UIButtonTypeCustom];
-    [takePictureButton setImage:takePictureImg forState:UIControlStateNormal];
-    [takePictureButton addTarget:self action:@selector(snapPicture) forControlEvents:UIControlEventTouchUpInside];
-    [takePictureButton setFrame:CGRectMake(122, 380 + bottomNavigationView.frame.size.height/2 - 38, 77, 77)];
-    
-    takePictureButton.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin;
-    
-  //  [self addLastPictureFromLibrary];
-  //  [self addGoToLibraryButton:nil toView:overlayView];
-    
-    UIImage *switchCameraImg = [UIImage imageNamed:@"switch-camera-button.png"];
-    
-    UIButton *switchCameraButton = [UIButton
-                                    buttonWithType:UIButtonTypeCustom];
-    [switchCameraButton setImage:switchCameraImg forState:UIControlStateNormal];
-    [switchCameraButton addTarget:self action:@selector(switchCamera) forControlEvents:UIControlEventTouchUpInside];
-    [switchCameraButton setFrame:CGRectMake(248, 65, 52, 52)];
-    [switchCameraButton setImageEdgeInsets:UIEdgeInsetsMake(10,10,10,10)];
-    
-    [overlayView addSubview:switchCameraButton];
-    [overlayView addSubview:takePictureButton];
-    //[self addFaceShapeToOverlay:overlayView];
-    
-    imagePicker.cameraOverlayView = overlayView;
-
+    return 1;
 }
 
+-(NSInteger)imageSetPickerMaximumImageCount:(ImageSetPicker *)imageSetPicker
+{
+    return 1;
+}
 
+-(void)imageSetPickerDidCancel:(ImageSetPicker *)imageSetPicker
+{
+    [ImageSetPicker remove:imageSetPicker];
+}
+
+-(void)imageSetPicker:(ImageSetPicker *)imageSetPicker didReturnWithImages:(NSArray *)images
+{
+    [ImageSetPicker remove:imageSetPicker];
+    
+    [self uploadSalonImage:images[0]];
+
+}
 
 -(void) uploadSalonImage:(UIImage *)image
 {
@@ -456,19 +421,24 @@
     
     void (^loadErrorBlock)(NSError *) = ^(NSError *error){
         NSLog(@"Error : %@", error.description);
-    
+        uploadInProgress = NO;
     };
 
     void (^loadSuccessBlock)(void) = ^(void){
+        
         if (_businessToManage != nil) {
             [_businessToManage.pictures addObject:imagePost];
-            NSLog(@"test %@", imagePost.url);
+            [self setupGallery:_businessToManage.pictures];
         }
-        [imagePicker dismissViewControllerAnimated:YES completion:nil];
+       // [imagePicker dismissViewControllerAnimated:YES completion:nil];
+        uploadInProgress = NO;
+
     };
     
     [imagePost uploadWithSuccess:loadSuccessBlock failure:loadErrorBlock];
 }
+
+
 
 - (void)switchCamera
 {
@@ -736,12 +706,24 @@
 -(void)clearService:(NSNotification*)notification
 {
     ClaimServiceTableViewCell *cell = notification.object;
-   // [_businessToManage.services removeObjectAtIndex:cell.tag];
-    [_serviceTableView reloadData];
+    
+    Service *serviceToDelete = [_businessToManage.services objectAtIndex:cell.tag];
+    
+    void (^loadErrorBlock)(NSError *) = ^(NSError *error){
+        NSLog(@"Error : %@", error.description);
+        
+    };
+    void (^loadSuccessBlock)() = ^(){
+        [_businessToManage.services removeObjectAtIndex:cell.tag];
+        [_serviceTableView reloadData];
+    };
+    [Service deleteService:serviceToDelete.id success:loadSuccessBlock failure:loadErrorBlock];
 }
 
 -(IBAction)claimThisBusiness:(id)sender
 {
+    
+    
     void (^loadErrorBlock)(NSError *) = ^(NSError *error){
         
         NSLog(@"Error : %@", error.description);

@@ -10,4 +10,7 @@
 
 @interface NewHairfieCollectionViewCell : UICollectionViewCell
 
+@property (nonatomic) IBOutlet UIButton *hairfieBttn;
+
+
 @end

@@ -59,8 +59,10 @@
     Money *price = [[Money alloc] initWithAmount:serviceAmount currency:@"EUR"];
     
   
-    Service *serviceToAdd = [[Service alloc] initWithLabel:_serviceDescription.text price:price duration:duration businessId:self.businessId];
+    Service *serviceToAdd = [[Service alloc] initWithLabel:_serviceDescription.text price:price duration:duration businessId:self.businessId serviceId:nil];
     
+    if (self.serviceFromSegue != nil)
+        serviceToAdd.id = self.serviceFromSegue.id;
     
     void (^loadErrorBlock)(NSError *) = ^(NSError *error){
         NSLog(@"Error : %@", error.description);
@@ -71,17 +73,27 @@
         
         Money *savedPrice = [[Money alloc] initWithDictionary:[result objectForKey:@"price"]];
         
-        Service *savedService = [[Service alloc] initWithLabel:[result objectForKey:@"label"] price:savedPrice duration:[result objectForKey:@"durationMinutes"] businessId:self.businessId];
+        Service *savedService = [[Service alloc] initWithLabel:[result objectForKey:@"label"] price:savedPrice duration:[result objectForKey:@"durationMinutes"] businessId:self.businessId serviceId:[result objectForKey:@"id"]];
+      
+        NSArray *filteredServices = _.filter(services, ^BOOL(Service *serviceToTest){
+            return ![serviceToTest.id isEqualToString:savedService.id];
+        });
         
-        savedService.id = [result objectForKey:@"id"];
-        [services addObject:savedService];
+        NSMutableArray *servicesToSend = [NSMutableArray arrayWithArray:filteredServices];
+        [servicesToSend addObject:savedService];
+        
         FinalStepViewController *finalStep = [self.navigationController.viewControllers objectAtIndex:[self.navigationController.viewControllers count]-2];
-        if (finalStep.businessToManage != nil)
-            finalStep.businessToManage.services = _.uniq(services);
+        if (finalStep.businessToManage != nil) {
+         
+            finalStep.businessToManage.services = servicesToSend;
+       
+        }
+        
 
         [self goBack:self];
 
     };
+    
     
     [serviceToAdd saveWithSuccess:loadSuccessBlock failure:loadErrorBlock];
     
