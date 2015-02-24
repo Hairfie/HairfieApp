@@ -14,10 +14,12 @@
 @end
 
 @implementation PostHairfieEmailViewController
-
+{
+    AppDelegate *appDelegate;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    appDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     self.headerTitle.text = NSLocalizedStringFromTable(@"email hairfie", @"Post_Hairfie", nil);
     _validateBttn.layer.cornerRadius = 5;
     _validateBttn.layer.masksToBounds = YES;
@@ -58,13 +60,8 @@
 
 -(IBAction)addEmailToHairfiePost:(id)sender
 {
-     HairfiePostDetailsViewController *hairfieDetails = [self.navigationController.viewControllers objectAtIndex:[self.navigationController.viewControllers count]-2];
-    
-    
     if ([self isValidEmail:_emailField.text]) {
-        
-        [self.hairfiePost setCustomerEmail: _emailField.text];
-        [hairfieDetails setHairfiePost:self.hairfiePost];
+        [appDelegate.hairfieUploader.hairfiePost setCustomerEmail:self.emailField.text];
         [self goBack:self];
     }
     else

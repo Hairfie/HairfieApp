@@ -21,6 +21,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     if (nil == picker) {
+        self.myAppDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
         picker = [ImageSetPicker setup:self];
     }
 }
@@ -38,12 +39,14 @@
     [ImageSetPicker remove:picker];
     picker = nil;
     
-    if (nil == self.hairfiePost) {
-        self.hairfiePost = [[HairfiePost alloc] init];
+    if (nil == self.myAppDelegate.hairfieUploader.hairfiePost) {
+        self.myAppDelegate.hairfieUploader.hairfiePost = [[HairfiePost alloc] init];
     }
     
-    [self.hairfiePost setImages:images];
-    
+    [self.myAppDelegate.hairfieUploader setupHairfieUploader];
+    [self.myAppDelegate.hairfieUploader.hairfiePost setImages:images];
+    [self.myAppDelegate.hairfieUploader uploadHairfieImages];
+ 
     [self performSegueWithIdentifier:@"hairfiePostDetails" sender:self];
 }
 
@@ -60,8 +63,8 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"hairfiePostDetails"]) {
-        HairfiePostDetailsViewController *vc = segue.destinationViewController;
-        vc.hairfiePost = self.hairfiePost;
+       // HairfiePostDetailsViewController *vc = segue.destinationViewController;
+       // vc.hairfiePost = self.myAppDelegate.hairfieUploader.hairfiePost;
     }
 }
 

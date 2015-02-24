@@ -7,6 +7,7 @@
 //
 
 #import "HairfiePostDetailsViewController.h"
+#import "HairfieUploader.h"
 #import "Picture.h"
 #import "AppDelegate.h"
 #import "Business.h"
@@ -32,14 +33,16 @@
     NSMutableArray *salonBusinessMembers;
     Picture *uploadedPicture;
     BOOL uploadInProgress;
-    AppDelegate *appDelegate;
     BOOL isLoaded;
+
 }
 
+
+@synthesize appDelegate;
 -(void)viewDidLoad
 {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeUploadStatus:) name:@"firstPicUploaded" object:nil];
     
+     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(segueToHome:) name:@"toHome" object:nil];
     //// TAGS = NO DESCRIPTION
     self.hairfieDesc.hidden = YES;
     ////
@@ -51,9 +54,9 @@
     
 
     // setup images
-    self.hairfieImageView.image = [[self.hairfiePost mainPicture] image];
-    if ([self.hairfiePost hasSecondaryPicture]) {
-        self.secondHairfieImageView.image = [[self.hairfiePost secondaryPicture] image];
+    self.hairfieImageView.image = [[appDelegate.hairfieUploader.hairfiePost mainPicture] image];
+    if ([appDelegate.hairfieUploader.hairfiePost hasSecondaryPicture]) {
+        self.secondHairfieImageView.image = [[appDelegate.hairfieUploader.hairfiePost secondaryPicture] image];
         self.secondHairfieImageView.layer.borderColor = [UIColor whiteColor].CGColor;
         self.secondHairfieImageView.layer.borderWidth = 1;
     }
@@ -91,23 +94,23 @@
 
     [self.priceTextField textFieldWithPhoneKeyboard:(self.view.frame.size.width / 2 - 50)];
     [self.topView addBottomBorderWithHeight:1 andColor:[UIColor lightGrey]];
-    
-    [self uploadHairfiePictures];
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    
+    NSLog(@"HAIRFIE POST %@",[appDelegate.hairfieUploader.hairfiePost toDictionary]);
     // customer email field
-    if (self.hairfiePost.customerEmail.length != 0) {
-        self.emailLabel.text = self.hairfiePost.customerEmail;
+    if (appDelegate.hairfieUploader.hairfiePost.customerEmail.length != 0) {
+        self.emailLabel.text = appDelegate.hairfieUploader.hairfiePost.customerEmail;
     } else {
         self.emailLabel.text = NSLocalizedStringFromTable(@"add email hairfie", @"Post_Hairfie", nil);
     }
 
     // selected tags count
-    if (self.hairfiePost.tags.count != 0) {
+    if (appDelegate.hairfieUploader.hairfiePost.tags.count != 0) {
         self.tagsButton.hidden = NO;
-        NSString *tagLabel = [NSString stringWithFormat:@"(%zd) tags", self.hairfiePost.tags.count];
+        NSString *tagLabel = [NSString stringWithFormat:@"(%zd) tags", appDelegate.hairfieUploader.hairfiePost.tags.count];
         [self.tagsButton setTitle:tagLabel forState:UIControlStateNormal];
     } else {
         self.tagsButton.hidden = YES;
@@ -127,7 +130,7 @@
         int height = cell.frame.size.height ;
         self.salonTableViewHeight.constant = salonTypes.count * height;
         
-        if (self.hairfiePost.business == nil) {
+        if (appDelegate.hairfieUploader.hairfiePost.business == nil) {
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:1 inSection:0];
             [self.dataChoice selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
             self.isSalon = YES;
@@ -135,12 +138,12 @@
         }
     }
 
-    if (self.hairfiePost.business != nil) {
-        if ([self.hairfiePost.business.activeHairdressers count] != 0) {
+    if (appDelegate.hairfieUploader.hairfiePost.business != nil) {
+        if ([appDelegate.hairfieUploader.hairfiePost.business.activeHairdressers count] != 0) {
             [self loadBusinessMembers];
         }
         self.isSalon = YES;
-        [self.salonLabelButton setTitle:self.hairfiePost.business.name forState:UIControlStateNormal];
+        [self.salonLabelButton setTitle:appDelegate.hairfieUploader.hairfiePost.business.name forState:UIControlStateNormal];
     }
 
     [self refreshShareButtons];
@@ -152,7 +155,7 @@
 {
     salonBusinessMembers = [[NSMutableArray alloc] init];
    
-    for (BusinessMember *hairdresser in _hairfiePost.business.activeHairdressers) {
+    for (BusinessMember *hairdresser in appDelegate.hairfieUploader.hairfiePost.business.activeHairdressers) {
         [salonBusinessMembers addObject:hairdresser];
     }
     
@@ -232,9 +235,9 @@
 
 -(void)deselectShareButtons
 {
-    self.hairfiePost.shareOnFacebook = NO;
-    self.hairfiePost.shareOnFacebookPage = NO;
-    self.hairfiePost.shareOnTwitter = NO;
+    appDelegate.hairfieUploader.hairfiePost.shareOnFacebook = NO;
+    appDelegate.hairfieUploader.hairfiePost.shareOnFacebookPage = NO;
+    appDelegate.hairfieUploader.hairfiePost.shareOnTwitter = NO;
     
     [self refreshShareButtons];
 }
@@ -286,17 +289,17 @@
         if (indexPath.row == salonTypes.count - 1) {
             [self performSegueWithIdentifier:@"choseSalonType" sender:self];
             [self showSalonsChoices:self];
-            _hairfiePost.selfMade = NO;
+            appDelegate.hairfieUploader.hairfiePost.selfMade = NO;
         } else if (indexPath.row == 0) {
             [_salonLabelButton setTitle:NSLocalizedStringFromTable(@"I did it", @"Post_Hairfie", nil) forState:UIControlStateNormal];
-            _hairfiePost.business = nil;
+            appDelegate.hairfieUploader.hairfiePost.business = nil;
             [self showSalonsChoices:self];
             _hairdresserSubview.hidden = YES;
-            _hairfiePost.selfMade = YES;
+            appDelegate.hairfieUploader.hairfiePost.selfMade = YES;
         } else {
             Business *business = [salonTypes objectAtIndex:indexPath.row];
              [_salonLabelButton setTitle:business.name forState:UIControlStateNormal];
-            _hairfiePost.business = business;
+            appDelegate.hairfieUploader.hairfiePost.business = business;
             if (business.activeHairdressers.count != 0) {
                 [self loadBusinessMembers];
                 [_hairdresserLabelButton setTitle:NSLocalizedStringFromTable(@"Who did this?", @"Post_Hairfie", nil) forState:UIControlStateNormal];
@@ -307,14 +310,14 @@
             }
             _hairdresserSubview.hidden = NO;
             [self showSalonsChoices:self];
-            _hairfiePost.selfMade = NO;
+            appDelegate.hairfieUploader.hairfiePost.selfMade = NO;
         }
         
         [self refreshShareButtons];
     } else {
         BusinessMember *businessMember = [salonBusinessMembers objectAtIndex:indexPath.row];
         [_hairdresserLabelButton setTitle:[businessMember displayFullName] forState:UIControlStateNormal];
-        _hairfiePost.businessMember = businessMember;
+        appDelegate.hairfieUploader.hairfiePost.businessMember = businessMember;
         [self showHairdresserChoices:self];
     }
 }
@@ -370,128 +373,50 @@
 
 -(void)saveHairfiePost {
     
-    [self addSpinnerAndOverlay];
-    
-    NSLog(@"Post Hairfie");
-    while (uploadInProgress) {
-        NSLog(@"---------- Upload in progress ----------");
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
-    }
-    
-    NSLog(@"isuploaded %c", [_hairfiePost pictureIsUploaded]);
-    if(![_hairfiePost pictureIsUploaded]) {
-        [self removeSpinnerAndOverlay];
-        [self showUploadFailedAlertView];
-        return;
-    }
-    
-    _hairfiePost.description = self.hairfieDesc.text;
+    appDelegate.hairfieUploader.hairfiePost.description = self.hairfieDesc.text;
     
     if (![self.priceTextField.text isEqualToString:@""]) {
         Money *price = [[Money alloc] initWithAmount:[NSNumber numberWithDouble:[self.priceTextField.text doubleValue]]
                                             currency:@"EUR"];
         
-        self.hairfiePost.price = price;
+        appDelegate.hairfieUploader.hairfiePost.price = price;
     }
     
-    NSLog(@"Hairfie to post : %@", [_hairfiePost toDictionary]);
+//    if (self.hairfiePost.shareOnTwitter) {
+//        SLComposeViewController *vc = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
+//        [vc addURL:hairfie.landingPageUrl];
+//        vc.completionHandler = ^(SLComposeViewControllerResult result) {
+//            
+//            [[NSNotificationCenter defaultCenter] postNotificationName:@"toHome" object:nil];
+//        };
+//        
+//         [self presentViewController:vc animated:YES completion:nil];
+//    } else {
+//        [[NSNotificationCenter defaultCenter] postNotificationName:@"toHome" object:nil];
+//    }
+//
     
-    void (^loadErrorBlock)(NSError *) = ^(NSError *error){
-        NSLog(@"Error : %@", error.description);
-        [self removeSpinnerAndOverlay];
-        [self showUploadFailedAlertView];
-        
-    };
-    void (^loadSuccessBlock)(Hairfie *) = ^(Hairfie *hairfie){
-        NSLog(@"Hairfie Posté");
-        [self removeSpinnerAndOverlay];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"currentUser" object:self];
-        
-        if (self.hairfiePost.shareOnTwitter) {
-            SLComposeViewController *vc = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
-            [vc addURL:hairfie.landingPageUrl];
-            vc.completionHandler = ^(SLComposeViewControllerResult result) {
-                [self performSegueWithIdentifier:@"toHome" sender:self];
-            };
-            
-            [self presentViewController:vc animated:YES completion:nil];
-        } else {
-            [self performSegueWithIdentifier:@"toHome" sender:self];
-        }
-        HairfieNotifications *notif = [HairfieNotifications new];
-        [notif showNotificationWithMessage:NSLocalizedStringFromTable(@"Hairfie Post Successful", @"Post_Hairfie", nil) ForDuration:2.5];
-    };
-    [_hairfiePost saveWithSuccess:loadSuccessBlock failure:loadErrorBlock];
-    
+    [appDelegate.hairfieUploader postHairfie];
+    [self performSegueWithIdentifier:@"toHome" sender:self];
 }
 
--(void)addSpinnerAndOverlay
+-(void)segueToHome:(NSNotification*)notification
 {
-    UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-    [spinner setFrame:CGRectMake(self.view.frame.size.width / 2 - spinner.frame.size.width / 2, self.view.frame.size.height/2, spinner.frame.size.width, spinner.frame.size.height)];
-    spinner.hidesWhenStopped = YES;
-    [spinner startAnimating];
-
-    UILabel *text = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 70, self.view.frame.size.height / 2 + 20, 140, 50)];
-    text.text = NSLocalizedStringFromTable(@"Upload in progress", @"Post_Hairfie", nil);
-    text.font = [UIFont fontWithName:@"SourceSansPro-Light" size:16];
-    [text setTextColor:[UIColor whiteColor]];
-    [text setTextAlignment:NSTextAlignmentCenter];
-
-    UIView *overlay = [[UIView alloc] initWithFrame:self.view.frame];
-    overlay.backgroundColor = [[UIColor blackHairfie] colorWithAlphaComponent:0.6];
-
-    [overlay addSubview:spinner];
-    [overlay addSubview:text];
-
-    [overlay setTag:OVERLAY_TAG];
-    [_mainView addSubview:overlay];
+    [self performSegueWithIdentifier:@"toHome" sender:self];
 }
 
--(void)removeSpinnerAndOverlay
-{
-    [[_mainView viewWithTag:OVERLAY_TAG] removeFromSuperview];
-}
-
--(void)changeUploadStatus:(NSNotification*)notification
-{
-    uploadInProgress = NO;
-}
-
--(void) uploadHairfiePictures
-{
-    uploadInProgress = YES;
-    [_hairfiePost uploadPictureWithSuccess:^{
-        NSLog(@"Uploaded !");
-        uploadInProgress = NO;
-    } failure:^(NSError *error) {
-        uploadInProgress = NO;
-        NSLog(@"Error HAIRFIE: %@", error.description);
-    }];
-}
-
--(void)showUploadFailedAlertView
-{
-    UIAlertView *errorAlert = [[UIAlertView alloc]initWithTitle:@"Error" message:NSLocalizedStringFromTable(@"There was an error uploading your hairfie, Try Again !", @"Post_Hairfie", nil)  delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-    [errorAlert show];
-}
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    [self uploadHairfiePictures];
-}
 
 -(IBAction)switchFacebookShare:(id)sender
 {
-    if (self.hairfiePost.shareOnFacebook) {
-        self.hairfiePost.shareOnFacebook = NO;
+    if (appDelegate.hairfieUploader.hairfiePost.shareOnFacebook) {
+        appDelegate.hairfieUploader.hairfiePost.shareOnFacebook = NO;
         [self refreshShareButtons];
     } else {
         // prior to activate facebook share, we need to get user's permission
         [self checkFacebookPermissions:@[@"publish_actions"]
                            withSuccess:^{
                                NSLog(@"Got facebook permissions");
-                               self.hairfiePost.shareOnFacebook = YES;
+                               appDelegate.hairfieUploader.hairfiePost.shareOnFacebook = YES;
                                [self refreshShareButtons];
                            }
                                failure:^(NSError *error) {
@@ -502,17 +427,17 @@
 
 -(IBAction)switchFacebookPageShare:(id)sender
 {
-    self.hairfiePost.shareOnFacebookPage = !self.hairfiePost.shareOnFacebookPage;
+    appDelegate.hairfieUploader.hairfiePost.shareOnFacebookPage = !appDelegate.hairfieUploader.hairfiePost.shareOnFacebookPage;
     [self refreshShareButtons];
 }
 
 -(IBAction)switchTwitterShare:(id)sender
 {
-    if (self.hairfiePost.shareOnTwitter) {
-        self.hairfiePost.shareOnTwitter = NO;
+    if (appDelegate.hairfieUploader.hairfiePost.shareOnTwitter) {
+        appDelegate.hairfieUploader.hairfiePost.shareOnTwitter = NO;
     } else {
         if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]) {
-            self.hairfiePost.shareOnTwitter = YES;
+            appDelegate.hairfieUploader.hairfiePost.shareOnTwitter = YES;
         } else {
             NSString *message = NSLocalizedStringFromTable(@"It seems that we cannot talk to Twitter at the moment or you have not yet added your Twitter account to this device.", @"Hairfie_Detail", nil);
             
@@ -534,22 +459,22 @@
         self.facebookPageShareButton.hidden = NO;
     } else {
         self.facebookPageShareButton.hidden = YES;
-        self.hairfiePost.shareOnFacebookPage = NO;
+        appDelegate.hairfieUploader.hairfiePost.shareOnFacebookPage = NO;
     }
     
-    if (self.hairfiePost.shareOnFacebook) {
+    if (appDelegate.hairfieUploader.hairfiePost.shareOnFacebook) {
         [self.facebookShareButton setImage:[UIImage imageNamed:@"facebook-share-on"] forState:UIControlStateNormal];
     } else {
         [self.facebookShareButton setImage:[UIImage imageNamed:@"facebook-share-off"] forState:UIControlStateNormal];
     }
     
-    if (self.hairfiePost.shareOnFacebookPage) {
+    if (appDelegate.hairfieUploader.hairfiePost.shareOnFacebookPage) {
         [self.facebookPageShareButton setImage:[UIImage imageNamed:@"facebook-page-share-on"] forState:UIControlStateNormal];
     } else {
         [self.facebookPageShareButton setImage:[UIImage imageNamed:@"facebook-page-share-off"] forState:UIControlStateNormal];
     }
     
-    if (self.hairfiePost.shareOnTwitter) {
+    if (appDelegate.hairfieUploader.hairfiePost.shareOnTwitter) {
         [self.twitterShareButton setImage:[UIImage imageNamed:@"twitter-share-on"] forState:UIControlStateNormal];
     } else {
         [self.twitterShareButton setImage:[UIImage imageNamed:@"twitter-share-off"] forState:UIControlStateNormal];
@@ -558,14 +483,14 @@
 
 -(BOOL)canShareOnFacebookPage
 {
-    return [self.hairfiePost.business isFacebookPageShareEnabled]
-        && [self currentUserIsManagerOfBusiness:self.hairfiePost.business];
+    return [appDelegate.hairfieUploader.hairfiePost.business isFacebookPageShareEnabled]
+        && [self currentUserIsManagerOfBusiness:appDelegate.hairfieUploader.hairfiePost.business];
 }
 
 -(BOOL)hasForgottenCustomerEmail
 {
-    return !self.hairfiePost.customerEmail
-    && [self currentUserIsManagerOfBusiness:self.hairfiePost.business];
+    return !appDelegate.hairfieUploader.hairfiePost.customerEmail
+    && [self currentUserIsManagerOfBusiness:appDelegate.hairfieUploader.hairfiePost.business];
 }
 
 -(IBAction)setHairfieEmail:(id)sender
@@ -601,16 +526,12 @@
 {
     if ([segue.identifier isEqualToString:@"addTagsToHairfie"])
     {
-        AddTagsToHairfieViewController *addTagsVc = [segue destinationViewController];
-        
-        addTagsVc.hairfiePost = self.hairfiePost;
+
         
     }
     if ([segue.identifier isEqualToString:@"postHairfieEmail"])
     {
-        PostHairfieEmailViewController *postEmail = [segue destinationViewController];
-    
-        [postEmail setHairfiePost:self.hairfiePost];
+
     }
 }
 

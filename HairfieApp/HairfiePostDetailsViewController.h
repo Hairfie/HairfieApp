@@ -11,9 +11,12 @@
 #import "Business.h"
 #import "HairfiePost.h"
 #import "BusinessMember.h"
+#import "AppDelegate.h"
 
 @interface HairfiePostDetailsViewController : UIViewController <UINavigationControllerDelegate, UITextViewDelegate, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, UIAlertViewDelegate>
 
+
+@property (nonatomic) AppDelegate *appDelegate;
 @property (nonatomic) IBOutlet UIView *mainView;
 @property (nonatomic) IBOutlet UIView *descView;
 @property (nonatomic) IBOutlet UIView *topView;

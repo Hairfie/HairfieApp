@@ -113,7 +113,7 @@
 {
     // TODO: pass the hairfiePost model to the controller
     HairfiePostDetailsViewController *details = [self.navigationController.viewControllers objectAtIndex:[self.navigationController.viewControllers count]-2];
-    details.hairfiePost.business = businesses[indexPath.row];
+    details.appDelegate.hairfieUploader.hairfiePost.business = businesses[indexPath.row];
     
     [self.navigationController popViewControllerAnimated:YES];
 }

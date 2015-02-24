@@ -14,6 +14,7 @@
 #import "KeychainItemWrapper.h"
 #import "CredentialStore.h"
 #import "Reachability.h"
+#import "HairfieUploader.h"
 #import <FacebookSDK/FacebookSDK.h>
 #import "HairfieNotifications.h"
 
@@ -34,6 +35,7 @@
 @property (nonatomic) FBSession *fbSession;
 @property (nonatomic) Reachability *reachability;
 @property (nonatomic) HairfieNotifications *hairfieNotif;
+@property (nonatomic) HairfieUploader *hairfieUploader;
 @property () BOOL restrictRotation;
 
 -(void)showLoginStoryboard;

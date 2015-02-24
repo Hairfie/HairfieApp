@@ -53,7 +53,6 @@
 {
     Picture *firstPic = [self.pictures objectAtIndex:0];
     [firstPic uploadWithSuccess:^{
-        NSLog(@"Uploaded 1st pic");
         [[NSNotificationCenter defaultCenter] postNotificationName:@"firstPicUploaded" object:self];
         if (self.pictures.count == 2) {
         Picture *secondPic = [self.pictures objectAtIndex:1];

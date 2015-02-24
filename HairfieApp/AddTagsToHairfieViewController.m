@@ -19,6 +19,7 @@
 
 @implementation AddTagsToHairfieViewController
 {
+    AppDelegate *appDelegate;
     NSMutableArray *tags;
     NSMutableArray *hairfieTags;
     NSInteger nbLines;
@@ -27,7 +28,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    hairfieTags = [NSMutableArray arrayWithArray:self.hairfiePost.tags];
+    appDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
+    hairfieTags = [NSMutableArray arrayWithArray:appDelegate.hairfieUploader.hairfiePost.tags];
     self.tagsDictionary = [[NSMutableDictionary alloc] init];
     [self.topView addBottomBorderWithHeight:1 andColor:[UIColor lightGrey]];
     self.validateBttn.layer.cornerRadius = 5;
@@ -134,9 +136,7 @@
 
 -(IBAction)validateTags:(id)sender
 {
-    HairfiePostDetailsViewController *hairfiePostVc = [self.navigationController.viewControllers objectAtIndex:[self.navigationController.viewControllers count]-2];
-
-    hairfiePostVc.hairfiePost.tags = hairfieTags;
+    appDelegate.hairfieUploader.hairfiePost.tags = hairfieTags;
     [self goBack:self];
 }
 /*

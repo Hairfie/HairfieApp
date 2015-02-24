@@ -89,15 +89,14 @@
     [_imageSliderView setContentOffset:offset animated:YES];
 }
 
+
 -(void) scrollViewDidScroll:(UIScrollView *)scrollview
 {
     if (scrollview == _imageSliderView)
     {
-        
         CGFloat pageWidth = scrollview.frame.size.width;
         int page = floor((scrollview.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
         _pageControl.currentPage = page;
-        
     }
 }
 
@@ -472,7 +471,7 @@
     {
         FinalStepClaimInfoViewController *claimInfo  = [segue destinationViewController];
         claimInfo.isAddress = YES;
-        claimInfo.headerTitle = NSLocalizedStringFromTable(@"Modify Address", @"Claim", nil);
+        claimInfo.headerTitle = NSLocalizedStringFromTable(@"Address", @"Claim", nil);
         if (_businessToManage != nil)
             claimInfo.address = _businessToManage.address;
     
