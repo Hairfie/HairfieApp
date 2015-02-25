@@ -162,7 +162,6 @@
 
 
 -(void) viewDidAppear:(BOOL)animated {
-    NSLog(@"%@",  self.view.constraints);
 }
 
 -(void)viewDidLayoutSubviews

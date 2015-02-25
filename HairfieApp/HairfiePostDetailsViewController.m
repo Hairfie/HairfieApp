@@ -47,7 +47,7 @@
     self.hairfieDesc.hidden = YES;
     ////
 
-    appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    
     
     [self.emailTextField setValue:[[UIColor whiteColor] colorWithAlphaComponent:0.6]
                        forKeyPath:@"_placeholderLabel.textColor"];
@@ -98,7 +98,7 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    
+    appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     NSLog(@"HAIRFIE POST %@",[appDelegate.hairfieUploader.hairfiePost toDictionary]);
     // customer email field
     if (appDelegate.hairfieUploader.hairfiePost.customerEmail.length != 0) {
@@ -144,6 +144,7 @@
         }
         self.isSalon = YES;
         [self.salonLabelButton setTitle:appDelegate.hairfieUploader.hairfiePost.business.name forState:UIControlStateNormal];
+
     }
 
     [self refreshShareButtons];

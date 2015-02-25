@@ -677,8 +677,7 @@
     }
 
     if ([segue.identifier isEqualToString:@"postHairfie"]) {
-        HairfiePostCameraViewController *vc = [segue destinationViewController];
-        vc.hairfiePost = [[HairfiePost alloc] initWithBusiness:self.business];
+        appDelegate.hairfieUploader.hairfiePost = [[HairfiePost alloc] initWithBusiness:self.business];
     }
     if ([segue.identifier isEqualToString:@"editOwnedBusiness"]) {
         FinalStepViewController *finalStepVc = [segue destinationViewController];

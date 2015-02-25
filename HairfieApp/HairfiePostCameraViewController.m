@@ -20,6 +20,8 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    
+    
     if (nil == picker) {
         self.myAppDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
         picker = [ImageSetPicker setup:self];
@@ -43,7 +45,9 @@
         self.myAppDelegate.hairfieUploader.hairfiePost = [[HairfiePost alloc] init];
     }
     
+    Business *hairfieBusiness = self.myAppDelegate.hairfieUploader.hairfiePost.business;
     [self.myAppDelegate.hairfieUploader setupHairfieUploader];
+    self.myAppDelegate.hairfieUploader.hairfiePost.business = hairfieBusiness;
     [self.myAppDelegate.hairfieUploader.hairfiePost setImages:images];
     [self.myAppDelegate.hairfieUploader uploadHairfieImages];
     [self performSegueWithIdentifier:@"hairfiePostDetails" sender:self];

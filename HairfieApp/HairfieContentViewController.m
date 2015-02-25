@@ -54,10 +54,7 @@
 
 -(void)viewDidLayoutSubviews
 {
-    [self.contentCollection reloadData];
     
-   
-
 }
 
 - (void)statusBarTappedAction:(NSNotification*)notification {
@@ -82,7 +79,7 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     [self getHairfies:nil];
-    
+    [self viewDidLayoutSubviews];
    
     
 }
