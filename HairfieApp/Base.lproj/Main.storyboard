@@ -3570,7 +3570,7 @@
         <!--Hairfie Content View Controller-->
         <scene sceneID="AfY-mH-noX">
             <objects>
-                <viewController storyboardIdentifier="HairfieContentViewController" id="v3c-Rc-565" customClass="HairfieContentViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HairfieContentViewController" autoresizesArchivedViewToFullSize="NO" id="v3c-Rc-565" customClass="HairfieContentViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="iHj-BP-Y7a"/>
                         <viewControllerLayoutGuide type="bottom" id="iFM-zP-ASk"/>
@@ -3580,7 +3580,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="4R5-Zq-ZRy">
-                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Nx5-Jn-pPk">
                                     <size key="itemSize" width="140" height="210"/>
@@ -3607,12 +3607,15 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="4R5-Zq-ZRy" firstAttribute="top" secondItem="iHj-BP-Y7a" secondAttribute="bottom" id="6aF-Pq-f6H"/>
+                            <constraint firstItem="4R5-Zq-ZRy" firstAttribute="top" secondItem="iHj-BP-Y7a" secondAttribute="bottom" id="8bi-x3-a1d"/>
+                            <constraint firstItem="iFM-zP-ASk" firstAttribute="top" secondItem="4R5-Zq-ZRy" secondAttribute="bottom" id="IB0-bA-PtK"/>
                             <constraint firstAttribute="width" secondItem="4R5-Zq-ZRy" secondAttribute="width" id="dVz-46-iPn"/>
-                            <constraint firstItem="iFM-zP-ASk" firstAttribute="top" secondItem="4R5-Zq-ZRy" secondAttribute="bottom" id="rCN-dX-4Q6"/>
                             <constraint firstAttribute="centerX" secondItem="4R5-Zq-ZRy" secondAttribute="centerX" id="uus-Li-xpy"/>
                         </constraints>
                     </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="contentCollection" destination="4R5-Zq-ZRy" id="tDl-Nx-I9K"/>
                     </connections>
@@ -7015,7 +7018,7 @@
                                     <size key="itemSize" width="290" height="100"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="10" minY="20" maxX="10" maxY="10"/>
+                                    <inset key="sectionInset" minX="10" minY="20" maxX="10" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Ot6-Ld-KyX">
@@ -7039,7 +7042,6 @@
                             <constraint firstItem="Q1V-KA-RZP" firstAttribute="top" secondItem="CJI-gf-scu" secondAttribute="bottom" id="Ghk-4J-iHf"/>
                             <constraint firstAttribute="width" secondItem="CJI-gf-scu" secondAttribute="width" id="K35-PG-Xot"/>
                             <constraint firstItem="CJI-gf-scu" firstAttribute="top" secondItem="ZLP-CD-c02" secondAttribute="bottom" id="Odu-dm-l3V"/>
-                            <constraint firstItem="Q1V-KA-RZP" firstAttribute="top" secondItem="CJI-gf-scu" secondAttribute="bottom" id="lqV-Kb-WXE"/>
                             <constraint firstAttribute="centerX" secondItem="CJI-gf-scu" secondAttribute="centerX" id="vip-lc-pQl"/>
                         </constraints>
                     </view>
@@ -7164,6 +7166,42 @@
             </objects>
             <point key="canvasLocation" x="1214" y="1021"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="ddc-is-xsY">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="Jxy-rh-1JS" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="I8j-Wg-LFL"/>
+                        <viewControllerLayoutGuide type="bottom" id="02F-zB-IYc"/>
+                    </layoutGuides>
+                    <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="W8U-HT-yhb">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <toolbarItems/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ks5-i2-5pt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="8XI-ls-Caz">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="yPE-Hq-9Cj" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Q5M-Vs-Fhd"/>
+                        <viewControllerLayoutGuide type="bottom" id="CF3-TW-qKr"/>
+                    </layoutGuides>
+                    <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="dfx-ir-X8d">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <toolbarItems/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GmZ-Xc-Idd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
     </scenes>
     <resources>
         <image name="add-comment-textfield.png" width="600" height="71"/>
@@ -7207,14 +7245,14 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="OXf-FI-oBV"/>
-        <segue reference="Vzm-3A-jKo"/>
-        <segue reference="JOd-nL-lAl"/>
-        <segue reference="KKI-My-Uy4"/>
-        <segue reference="9F8-Wo-5DF"/>
-        <segue reference="N5w-ND-ZjU"/>
-        <segue reference="cpa-I8-e9p"/>
         <segue reference="q6S-lc-uSW"/>
-        <segue reference="18q-AN-mc0"/>
+        <segue reference="F3H-m6-PK7"/>
+        <segue reference="N5w-ND-ZjU"/>
+        <segue reference="f6n-n6-g5l"/>
+        <segue reference="cpa-I8-e9p"/>
+        <segue reference="Vzm-3A-jKo"/>
+        <segue reference="OXf-FI-oBV"/>
+        <segue reference="9F8-Wo-5DF"/>
+        <segue reference="JOd-nL-lAl"/>
     </inferredMetricsTieBreakers>
 </document>

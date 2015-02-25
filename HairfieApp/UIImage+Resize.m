@@ -92,7 +92,7 @@
             break;
             
         default:
-            [NSException raise:NSInvalidArgumentException format:@"Unsupported content mode: %ld", contentMode];
+            [NSException raise:NSInvalidArgumentException format:@"Unsupported content mode: %d", contentMode];
     }
     
     CGSize newSize = CGSizeMake(self.size.width * ratio, self.size.height * ratio);
@@ -304,8 +304,7 @@
 /////////////////////////////////////////////////////////////////////////////
 
 
-
--(UIImage*)resizedImageToFitInSize:(CGSize)boundingSize scaleIfSmaller:(BOOL)scale
+- (UIImage*)resizedImageToFitInSize:(CGSize)boundingSize scaleIfSmaller:(BOOL)scale
 {
     // get the image size (independant of imageOrientation)
     CGImageRef imgRef = self.CGImage;

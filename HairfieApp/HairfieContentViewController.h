@@ -16,6 +16,4 @@
 @property (nonatomic) NSString *menuItemSelected;
 @property (nonatomic) IBOutlet UICollectionView *contentCollection;
 
-
-
 @end

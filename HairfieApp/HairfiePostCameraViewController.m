@@ -46,7 +46,6 @@
     [self.myAppDelegate.hairfieUploader setupHairfieUploader];
     [self.myAppDelegate.hairfieUploader.hairfiePost setImages:images];
     [self.myAppDelegate.hairfieUploader uploadHairfieImages];
- 
     [self performSegueWithIdentifier:@"hairfiePostDetails" sender:self];
 }
 
@@ -63,8 +62,6 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"hairfiePostDetails"]) {
-       // HairfiePostDetailsViewController *vc = segue.destinationViewController;
-       // vc.hairfiePost = self.myAppDelegate.hairfieUploader.hairfiePost;
     }
 }
 

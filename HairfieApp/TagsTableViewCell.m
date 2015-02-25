@@ -15,12 +15,13 @@
 {
     BOOL isSelected;
     NSMutableArray *tagsSelected;
-    NSArray *tagsList;
+    NSMutableArray *sortedTagsList;
     NSInteger lineNumber;
 }
 - (void)awakeFromNib {
     // Initialization code
     tagsSelected = [[NSMutableArray alloc] init];
+    sortedTagsList = [[NSMutableArray alloc] init];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -29,16 +30,24 @@
     // Configure the view for the selected state
 }
 
+
+
 -(void)setTags:(NSArray*)tags withSelectedTags:(NSArray*)selectedTags
 {
-    tagsList = [NSArray arrayWithArray:tags];
+    for (Tag *tag in tags)
+    {
+        [sortedTagsList addObject:[tag toDictionary]];
+    }
+    NSSortDescriptor *aSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"position" ascending:YES];
+    [sortedTagsList sortUsingDescriptors:[NSArray arrayWithObject:aSortDescriptor]];
     NSInteger posX = 15;
     NSInteger indentValue = 0;
     lineNumber = 1;
     NSInteger screenWidth = self.bounds.size.width;
-    for (int i = 1; i < [tags count] + 1; i++) {
+    for (int i = 1; i < [sortedTagsList count] + 1; i++) {
      
-        Tag *tag = [tags objectAtIndex:i - 1];
+        Tag *tag = [[Tag alloc] initWithDictionary:[sortedTagsList objectAtIndex:i - 1]];
+        
         UIButton *button = [[UIButton alloc] init];
         CGRect frame;
         [button setTitle:tag.name forState:UIControlStateNormal];
@@ -108,8 +117,7 @@
 
 -(IBAction)buttonClicked:(UIButton*)sender
 {
-    Tag *tag = [tagsList objectAtIndex:sender.tag];
-    
+    Tag *tag = [[Tag alloc] initWithDictionary:[sortedTagsList objectAtIndex:sender.tag]];
     if (sender.selected == YES) {
         [sender setTitleColor:[UIColor colorWithRed:148/255.f green:153/255.0f blue:161/255.0f alpha:1] forState:UIControlStateNormal];
         [sender setBackgroundColor:[UIColor colorWithRed:240/255.f green:241/255.0f blue:241/255.0f alpha:1]];

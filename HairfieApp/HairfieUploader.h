@@ -16,6 +16,5 @@
 -(void)uploadHairfieImages;
 -(void)postHairfie;
 -(void)setupHairfieUploader;
--(void)addLoadingOverlay;
--(void)removeLoadingOverlay;
+-(void)retry;
 @end

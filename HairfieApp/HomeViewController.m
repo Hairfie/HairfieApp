@@ -119,9 +119,11 @@
                                      completion:nil];
 
     // Change the size of page view controller
-    //CGRect frame = CGRectMake(0, 147, self.view.frame.size.width, self.view.frame.size.height - 147);
+   // CGRect frame = CGRectMake(0, 147, self.view.frame.size.width, self.view.frame.size.height - 147);
     //self.pageViewController.view.frame = frame;
     self.pageViewController.doubleSided = YES;
+    
+    
     [self addChildViewController:self.pageViewController];
     [self.view addSubview:self.pageViewController.view];
     [self.pageViewController didMoveToParentViewController:self];
@@ -142,10 +144,13 @@
 
     UIView *pageViewControllerView = _pageViewController.view;
     [pageViewControllerView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    
+    
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[pageViewControllerView]|"
                                                                       options:NSLayoutFormatDirectionLeadingToTrailing
                                                                       metrics:nil
                                                                         views:NSDictionaryOfVariableBindings(pageViewControllerView)]];
+    
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-147-[pageViewControllerView]|"
                                                                       options:NSLayoutFormatDirectionLeadingToTrailing
                                                                       metrics:nil
@@ -153,6 +158,12 @@
     
 }
 
+
+
+
+-(void) viewDidAppear:(BOOL)animated {
+    NSLog(@"%@",  self.view.constraints);
+}
 
 -(void)viewDidLayoutSubviews
 {

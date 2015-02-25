@@ -51,6 +51,15 @@
     // Do any additional setup after loading the view.
 }
 
+
+-(void)viewDidLayoutSubviews
+{
+    [self.contentCollection reloadData];
+    
+   
+
+}
+
 - (void)statusBarTappedAction:(NSNotification*)notification {
     [self.contentCollection scrollRectToVisible:CGRectMake(10, 0, self.contentCollection.frame.size.width, self.contentCollection.frame.size.height) animated:YES];
 }
@@ -60,17 +69,22 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    
     NSDictionary* dict = [NSDictionary dictionaryWithObject:NSLocalizedStringFromTable(@"Hairfies",@"Feed",nil)
                                                      forKey:@"menuItem"];
 
     [[NSNotificationCenter defaultCenter] postNotificationName:@"collectionChanged"
                                                         object:self
                                                       userInfo:dict];
+    
+     NSLog(@"%@", self.parentViewController.bottomLayoutGuide);
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated {
     [self getHairfies:nil];
+    
+   
+    
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
