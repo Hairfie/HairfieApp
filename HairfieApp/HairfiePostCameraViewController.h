@@ -14,6 +14,5 @@
 @interface HairfiePostCameraViewController : UIViewController<ImageSetPickerDelegate>
 
 @property (nonatomic, strong) AppDelegate *myAppDelegate;
-@property (nonatomic, strong) HairfiePost* hairfiePost;
 
 @end

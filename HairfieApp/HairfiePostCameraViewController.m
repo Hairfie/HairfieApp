@@ -20,8 +20,6 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    
-    
     if (nil == picker) {
         self.myAppDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
         picker = [ImageSetPicker setup:self];
@@ -61,12 +59,6 @@
 -(NSInteger)imageSetPickerMaximumImageCount:(ImageSetPicker *)imageSetPicker
 {
     return 2;
-}
-
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([segue.identifier isEqualToString:@"hairfiePostDetails"]) {
-    }
 }
 
 @end
