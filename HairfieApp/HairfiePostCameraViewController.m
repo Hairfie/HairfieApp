@@ -30,7 +30,7 @@
 {    
     [ImageSetPicker remove:picker];
     picker = nil;
-
+    [self.myAppDelegate.hairfieUploader removeHairfiePost];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -39,15 +39,11 @@
     [ImageSetPicker remove:picker];
     picker = nil;
     
-    if (nil == self.myAppDelegate.hairfieUploader.hairfiePost) {
-        self.myAppDelegate.hairfieUploader.hairfiePost = [[HairfiePost alloc] init];
-    }
     
-    Business *hairfieBusiness = self.myAppDelegate.hairfieUploader.hairfiePost.business;
     [self.myAppDelegate.hairfieUploader setupHairfieUploader];
-    self.myAppDelegate.hairfieUploader.hairfiePost.business = hairfieBusiness;
     [self.myAppDelegate.hairfieUploader.hairfiePost setImages:images];
     [self.myAppDelegate.hairfieUploader uploadHairfieImages];
+    
     [self performSegueWithIdentifier:@"hairfiePostDetails" sender:self];
 }
 

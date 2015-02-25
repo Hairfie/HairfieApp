@@ -19,9 +19,13 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wgs-Qo-gPh" userLabel="Image">
                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dGZ-Nz-Skz" userLabel="Add">
-                                <rect key="frame" x="-13" y="-12" width="75" height="75"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dGZ-Nz-Skz" userLabel="Add">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                 <color key="backgroundColor" white="0.81009285909999995" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="4uO-dA-2T5"/>
+                                    <constraint firstAttribute="width" constant="50" id="sSk-qx-bSc"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -30,6 +34,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="dGZ-Nz-Skz" firstAttribute="leading" secondItem="1LB-kI-nPv" secondAttribute="leading" constant="-13" id="4ac-Rb-REp"/>
+                            <constraint firstAttribute="centerX" secondItem="dGZ-Nz-Skz" secondAttribute="centerX" id="8Gs-gh-heY"/>
+                            <constraint firstAttribute="centerY" secondItem="dGZ-Nz-Skz" secondAttribute="centerY" id="9nr-m5-LJ8"/>
                             <constraint firstAttribute="bottom" secondItem="wgs-Qo-gPh" secondAttribute="bottom" id="FqB-Xa-1Dl"/>
                             <constraint firstItem="wgs-Qo-gPh" firstAttribute="leading" secondItem="1LB-kI-nPv" secondAttribute="leading" id="GEe-tF-nW6"/>
                             <constraint firstAttribute="trailing" secondItem="wgs-Qo-gPh" secondAttribute="trailing" id="IfG-KZ-v8I"/>
@@ -43,6 +49,14 @@
                                 <integer key="value" value="4"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="4ac-Rb-REp"/>
+                                <exclude reference="dYz-4Y-6My"/>
+                                <exclude reference="fdD-kE-yfw"/>
+                                <exclude reference="hGU-av-EGs"/>
+                            </mask>
+                        </variation>
                     </view>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

@@ -59,11 +59,6 @@ static LBRESTAdapter * _lbAdaptater = nil;
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(networkStateChanged:)
                                                  name:kReachabilityChangedNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(hairfiePostedWithSuccess:)
-                                                 name:@"hairfiePostSuccess"
-                                               object:nil];
-
     self.reachability = [Reachability reachabilityForInternetConnection];
     [self.reachability startNotifier];
     
@@ -111,11 +106,6 @@ static LBRESTAdapter * _lbAdaptater = nil;
     } else {
         [self.hairfieNotif removeNotification];
     }
-}
-
--(void)hairfiePostedWithSuccess:(NSNotification*)notification {
-    HairfieNotifications *notif = [HairfieNotifications new];
-    [notif showNotificationWithMessage:NSLocalizedStringFromTable(@"Hairfie Post Successful", @"Post_Hairfie", nil) ForDuration:2.5];
 }
 
 

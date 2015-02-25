@@ -17,4 +17,5 @@
 -(void)postHairfie;
 -(void)setupHairfieUploader;
 -(void)retry;
+-(void)removeHairfiePost;
 @end

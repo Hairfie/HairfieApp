@@ -72,8 +72,7 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"collectionChanged"
                                                         object:self
                                                       userInfo:dict];
-    
-     NSLog(@"%@", self.parentViewController.bottomLayoutGuide);
+
     
 }
 

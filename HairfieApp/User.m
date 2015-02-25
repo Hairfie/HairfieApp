@@ -122,7 +122,7 @@
                       
                   }
                   failure:^(NSError *error) {
-                      NSLog(@"Failed to refresh user: %@", error.localizedDescription);
+                      (@"Failed to refresh user: %@", error.localizedDescription);
                   }];
 }
 

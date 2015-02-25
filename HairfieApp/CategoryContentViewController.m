@@ -48,7 +48,6 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"collectionChanged"
                                                         object:self
                                                       userInfo:dict];
-    NSLog(@"frame collection height %f", self.view.frame.size.height);
     [self.contentCollection reloadData];
 
 }

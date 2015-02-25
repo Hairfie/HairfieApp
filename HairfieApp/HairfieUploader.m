@@ -6,17 +6,24 @@
 //  Copyright (c) 2015 Hairfie. All rights reserved.
 //
 
+#import "AppDelegate.h"
 #import "HairfieUploader.h"
 #import "HairfieNotifications.h"
 #import <Social/Social.h>
 
+typedef void(^myCompletion)(BOOL);
+
 @implementation HairfieUploader
 {
-    BOOL uploadInProgress;
+    BOOL postInProgress;
     UIApplication* app;
     BOOL didRetry;
+    BOOL isReadyToPost;
+
     UIAlertView *hairfieAlert;
     UIAlertView *uploadAlert;
+    AppDelegate *appDelegate;
+    HairfieNotifications *hairfieNotif;
 }
 
 #define OVERLAY_TAG 99
@@ -32,73 +39,72 @@
 
 -(void)setupHairfieUploader {
     
-    self.hairfiePost = [[HairfiePost alloc] init];
-    app = [UIApplication sharedApplication];
-    uploadInProgress = NO;
-    didRetry = NO;
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeUploadStatus:) name:@"firstPicUploaded" object:nil];
-
-}
-
--(void)changeUploadStatus:(NSNotification*)notification
-{
-    uploadInProgress = NO;
-    if (self.hairfiePost.pictures.count == 1) {
-        app.networkActivityIndicatorVisible = NO;
+    hairfieNotif = [HairfieNotifications new];
+    if (nil == self.hairfiePost.business) {
+        self.hairfiePost = [[HairfiePost alloc] init];
     }
-    NSLog(@"First Picture Uploaded");
+    isReadyToPost = NO;
+    self.hairfiePost.pictures = nil;
+    app = [UIApplication sharedApplication];
+    appDelegate = (AppDelegate*)app.delegate;
+    postInProgress = NO;
+    didRetry = NO;
+  
 }
+
+
 
 -(void)uploadHairfieImages {
     
     app.networkActivityIndicatorVisible = YES;
-    uploadInProgress = YES;
     [self.hairfiePost uploadPictureWithSuccess:^{
-        NSLog(@"Everything Uploaded !");
         app.networkActivityIndicatorVisible = NO;
-        uploadInProgress = NO;
+       
+        if (isReadyToPost == YES)
+        {
+            [self postHairfie];
+        }
     } failure:^(NSError *error) {
-        [self showUploadFailedAlertView];
-        uploadInProgress = NO;
+        [self showPostHairfieFailedAlertView];
+        
         NSLog(@"Error HAIRFIE: %@", error.description);
     }];
 }
 
 -(void)postHairfie
 {
+    
+    [hairfieNotif showNotificationWithMessage:NSLocalizedStringFromTable(@"Upload in progress", @"Post_Hairfie", nil)];
+   
     app.networkActivityIndicatorVisible = YES;
     NSLog(@"Post Hairfie");
-//    while (uploadInProgress) {
-//        NSLog(@"---------- Upload in progress ----------");
-//        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
-//    }
+   
     
-    if(![self.hairfiePost pictureIsUploaded]) {
-        [self showUploadFailedAlertView];
-        return;
-    }
+    isReadyToPost = YES;
     
     void (^loadErrorBlock)(NSError *) = ^(NSError *error){
         NSLog(@"Error : %@", error.description);
+        [hairfieNotif dismissNotification];
+        postInProgress = NO;
         [self showPostHairfieFailedAlertView];
-        didRetry = NO;
-        
     };
     void (^loadSuccessBlock)(Hairfie *) = ^(Hairfie *hairfie){
         NSLog(@"Hairfie Posté");
+        [hairfieNotif dismissNotificationWithCompletion:^{
+            [hairfieNotif showNotificationWithMessage:NSLocalizedStringFromTable(@"Hairfie Post Successful", @"Post_Hairfie", nil) ForDuration:2.5];
+        }];
+        postInProgress = NO;
+        self.hairfiePost = nil;
         [[NSNotificationCenter defaultCenter] postNotificationName:@"currentUser" object:self];
-        if (didRetry == NO)
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"hairfiePostSuccess" object:self];
         app.networkActivityIndicatorVisible = NO;
     };
-    [self.hairfiePost saveWithSuccess:loadSuccessBlock failure:loadErrorBlock];
+    
+    if (isReadyToPost == YES && [self.hairfiePost pictureIsUploaded] && postInProgress != YES) {
+        [self.hairfiePost saveWithSuccess:loadSuccessBlock failure:loadErrorBlock];
+        postInProgress = YES;
+   }
 }
 
--(void)showUploadFailedAlertView
-{
-  uploadAlert = [[UIAlertView alloc]initWithTitle:@"Error" message:NSLocalizedStringFromTable(@"There was an error uploading the picture, Try Again !", @"Post_Hairfie", nil)  delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
-    [uploadAlert show];
-}
 
 -(void)showPostHairfieFailedAlertView
 {
@@ -109,21 +115,14 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (alertView == uploadAlert) {
+    if (![self.hairfiePost pictureIsUploaded]) {
         [self uploadHairfieImages];
-    }
-    else {
-        if (didRetry == NO) {
-            [self retry];
-        }
+    } else {
+        [self postHairfie];
     }
 }
 
--(void)retry
-{
-    [self postHairfie];
-    didRetry = YES;
-}
+
 
 
 @end

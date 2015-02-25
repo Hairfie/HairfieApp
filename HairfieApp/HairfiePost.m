@@ -53,13 +53,17 @@
 {
     Picture *firstPic = [self.pictures objectAtIndex:0];
     [firstPic uploadWithSuccess:^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"firstPicUploaded" object:self];
-        if (self.pictures.count == 2) {
-        Picture *secondPic = [self.pictures objectAtIndex:1];
+        if (![self pictureIsUploaded]){
+            Picture *secondPic = [self.pictures objectAtIndex:1];
             [secondPic uploadWithSuccess:aSuccessHandler failure:aFailureHandler];
+        } else {
+            aSuccessHandler();
         }
+        
     }failure:aFailureHandler];
 }
+
+
 
 -(void)saveWithSuccess:(void(^)())aSuccessHandler
                failure:(void(^)(NSError *error))aFailureHandler
@@ -77,6 +81,8 @@
                             onFacebook:self.shareOnFacebook
                           facebookPage:self.shareOnFacebookPage
                            withSuccess:^() {
+                               AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
+                               [appDelegate.hairfieNotif removeNotification];
                                aSuccessHandler(hairfie);
                            }
                                failure:^(NSError *error) {
@@ -122,6 +128,8 @@
                                         forMethod:@"hairfies.create"];
     LBModelRepository *repository = (LBModelRepository *)[[self class] repository];
     
+
+    
     [repository invokeStaticMethod:@"create"
                         parameters:parameters
                            success:onSuccess
@@ -130,20 +138,11 @@
 
 -(BOOL)pictureIsUploaded
 {
-    BOOL result;
-    if (self.pictures.count == 1) {
-    Picture *firstPic = [self.pictures objectAtIndex:0];
-    
-    result = firstPic.name ? YES : NO;
-    }
-    else
-    {
-        Picture *firstPic = [self.pictures objectAtIndex:1];
-        
-        result = firstPic.name ? YES : NO;
-    }
-    return result;
+     return _.all(self.pictures, ^BOOL(Picture *pic){
+        return pic.name != nil;
+    });
 }
+
 
 -(Picture *)mainPicture
 {

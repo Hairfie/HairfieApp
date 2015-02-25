@@ -26,6 +26,8 @@
 }
 
 
+
+
 -(void)showNotificationWithMessage:(NSString*)aMessage{
     
     self.notificationLabelBackgroundColor = [UIColor salonDetailTab];

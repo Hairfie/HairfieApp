@@ -32,8 +32,7 @@
     NSMutableArray *salonTypes;
     NSMutableArray *salonBusinessMembers;
     Picture *uploadedPicture;
-    BOOL uploadInProgress;
-    BOOL isLoaded;
+    HairfieNotifications *hairfieNotif;
 
 }
 
@@ -41,6 +40,7 @@
 @synthesize appDelegate;
 -(void)viewDidLoad
 {
+    
     
      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(segueToHome:) name:@"toHome" object:nil];
     //// TAGS = NO DESCRIPTION
@@ -397,12 +397,13 @@
 //        [[NSNotificationCenter defaultCenter] postNotificationName:@"toHome" object:nil];
 //    }
 //
-    
-    
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//
+
+//    
+//    dispatch_queue_t queue = dispatch_queue_create("UploadQueue", NULL);
+//    dispatch_async(queue, ^{
         [appDelegate.hairfieUploader postHairfie];
-    });
-    
+//    });
     [self performSegueWithIdentifier:@"toHome" sender:self];
 }
 
