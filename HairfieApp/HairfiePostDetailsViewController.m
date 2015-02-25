@@ -54,16 +54,7 @@
     
 
     // setup images
-    self.hairfieImageView.image = [[appDelegate.hairfieUploader.hairfiePost mainPicture] image];
-    if ([appDelegate.hairfieUploader.hairfiePost hasSecondaryPicture]) {
-        self.secondHairfieImageView.image = [[appDelegate.hairfieUploader.hairfiePost secondaryPicture] image];
-        self.secondHairfieImageView.layer.borderColor = [UIColor whiteColor].CGColor;
-        self.secondHairfieImageView.layer.borderWidth = 1;
-    }
-    else {
-        self.secondHairfieImageView.hidden = YES;
-    }
-        
+    
 
     self.dataChoice.hidden = YES;
     self.dataChoice.layer.borderWidth = 1;
@@ -99,7 +90,17 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    NSLog(@"HAIRFIE POST %@",[appDelegate.hairfieUploader.hairfiePost toDictionary]);
+    
+    self.hairfieImageView.image = [[appDelegate.hairfieUploader.hairfiePost mainPicture] image];
+    if ([appDelegate.hairfieUploader.hairfiePost hasSecondaryPicture]) {
+        self.secondHairfieImageView.image = [[appDelegate.hairfieUploader.hairfiePost secondaryPicture] image];
+        self.secondHairfieImageView.layer.borderColor = [UIColor whiteColor].CGColor;
+        self.secondHairfieImageView.layer.borderWidth = 1;
+    }
+    else {
+        self.secondHairfieImageView.hidden = YES;
+    }
+    
     // customer email field
     if (appDelegate.hairfieUploader.hairfiePost.customerEmail.length != 0) {
         self.emailLabel.text = appDelegate.hairfieUploader.hairfiePost.customerEmail;

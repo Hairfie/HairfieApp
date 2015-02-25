@@ -130,10 +130,18 @@
 
 -(BOOL)pictureIsUploaded
 {
+    BOOL result;
+    if (self.pictures.count == 1) {
     Picture *firstPic = [self.pictures objectAtIndex:0];
     
-    BOOL result = firstPic.name ? YES : NO;
-    
+    result = firstPic.name ? YES : NO;
+    }
+    else
+    {
+        Picture *firstPic = [self.pictures objectAtIndex:1];
+        
+        result = firstPic.name ? YES : NO;
+    }
     return result;
 }
 

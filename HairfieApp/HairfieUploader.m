@@ -68,15 +68,16 @@
 {
     app.networkActivityIndicatorVisible = YES;
     NSLog(@"Post Hairfie");
-    while (uploadInProgress) {
-        NSLog(@"---------- Upload in progress ----------");
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
-    }
+//    while (uploadInProgress) {
+//        NSLog(@"---------- Upload in progress ----------");
+//        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
+//    }
     
     if(![self.hairfiePost pictureIsUploaded]) {
         [self showUploadFailedAlertView];
         return;
     }
+    
     void (^loadErrorBlock)(NSError *) = ^(NSError *error){
         NSLog(@"Error : %@", error.description);
         [self showPostHairfieFailedAlertView];
