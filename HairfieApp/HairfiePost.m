@@ -30,10 +30,7 @@
 
 -(void)setBusiness:(id)aBusiness
 {
-    if (aBusiness == nil)
-        _business = nil;
-    else
-        _business = [Business fromSetterValue:aBusiness];
+    _business = [Business fromSetterValue:aBusiness];
 }
 
 -(void)setImages:(NSArray *)images
