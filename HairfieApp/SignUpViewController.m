@@ -147,7 +147,7 @@ numberOfRowsInComponent:(NSInteger)component
         [MRProgressOverlayView dismissAllOverlaysForView:self.view animated:YES];
         NSLog(@"results %@", [results objectForKey:@"accessToken"]);
         NSDictionary *token = [results objectForKey:@"accessToken"];
-        [delegate.credentialStore setAuthTokenAndUserId:[token objectForKey:@"id"] forUser:[results objectForKey:@"id"]];
+        [delegate.credentialStore setAuthToken:[token objectForKey:@"id"] forUser:[results objectForKey:@"id"]];
         [AppDelegate lbAdaptater].accessToken = [token objectForKey:@"id"];
         
         [userAuthenticator getCurrentUser];

@@ -160,7 +160,7 @@
     };
     
     void (^loadSuccessBlock)(NSDictionary *) = ^(NSDictionary *results) {
-        [delegate.credentialStore setAuthTokenAndUserId:[results objectForKey:@"id"] forUser:[results objectForKey:@"userId"]];
+        [delegate.credentialStore setAuthToken:[results objectForKey:@"id"] forUser:[results objectForKey:@"userId"]];
         [AppDelegate lbAdaptater].accessToken = [results objectForKey:@"id"];
         [userAuthenticator getCurrentUser];
         aSuccessHandler();

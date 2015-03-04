@@ -14,9 +14,6 @@
 #define USER_ID_KEY @"user_id"
 #define TUTORIAL_KEY @"tuto"
 
-
-
-
 @implementation CredentialStore
 
 - (BOOL)isLoggedIn {
@@ -25,7 +22,7 @@
 
 - (void)clearSavedCredentials {
     [self setAuthToken:nil];
-    [self setAuthTokenAndUserId:nil forUser:nil];
+    [self setAuthToken:nil forUser:nil];
 }
 
 - (NSString *)authToken {
@@ -42,7 +39,7 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"token-changed" object:self];
 }
 
-- (void)setAuthTokenAndUserId:(NSString *)authToken forUser:(NSString *)userId {
+- (void)setAuthToken:(NSString *)authToken forUser:(NSString *)userId {
     [self setSecureValue:authToken forKey:AUTH_TOKEN_KEY];
     [self setSecureValue:userId forKey:USER_ID_KEY];
     NSLog(@"Store and Id token");
@@ -72,12 +69,7 @@
 }
 
 - (BOOL)hasSeenTutorial {
-    if([self secureValueForKey:TUTORIAL_KEY]) {
-        return YES;
-    } else {
-        return NO;
-    }
-    //return NO;
+    return [self secureValueForKey:TUTORIAL_KEY];
 }
 
 @end

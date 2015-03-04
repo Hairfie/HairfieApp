@@ -15,7 +15,7 @@
 - (NSString *)authToken;
 - (NSString *)userId;
 - (void)setAuthToken:(NSString *)authToken;
-- (void)setAuthTokenAndUserId:(NSString *)authToken forUser:(NSString *)userId;
+- (void)setAuthToken:(NSString *)authToken forUser:(NSString *)userId;
 - (void)setTutorialSeen;
 - (void)clearTutorialSeen;
 - (BOOL)hasSeenTutorial;
