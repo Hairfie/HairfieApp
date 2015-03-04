@@ -105,6 +105,10 @@ typedef void(^myCompletion)(BOOL);
    }
 }
 
+-(void)removeHairfiePost
+{
+    self.hairfiePost = nil;
+}
 
 -(void)showPostHairfieFailedAlertView
 {
