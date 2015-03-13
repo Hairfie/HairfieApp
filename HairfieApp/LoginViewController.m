@@ -21,6 +21,7 @@
 #import "MRProgress.h"
 #import "UIButton+Style.h"
 #import "FBAuthenticator.h"
+#import "ForgottenPasswordViewController.h"
 
 @interface LoginViewController ()
 @end
@@ -209,6 +210,11 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"skipLogin"]) {
         [userAuthenticator skipLogin];
+    }
+    
+    if ([segue.identifier isEqualToString:@"passwordLost"]) {
+        ForgottenPasswordViewController *vc = segue.destinationViewController;
+        vc.defaultEmail = self.emailField.text;
     }
 }
 

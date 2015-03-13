@@ -13,6 +13,7 @@
 @property (nonatomic) IBOutlet UIButton *sendButton;
 @property (nonatomic) IBOutlet UITextField *emailField;
 
+@property (nonatomic) IBOutlet NSString *defaultEmail;
 
 -(IBAction)goBack:(id)sender;
 -(IBAction)getNewPassword:(id)sender;

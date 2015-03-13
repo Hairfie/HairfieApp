@@ -20,7 +20,8 @@
 
 @synthesize sendButton, emailField;
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     sendButton.layer.cornerRadius = 5;
     sendButton.layer.masksToBounds = YES;
@@ -29,7 +30,8 @@
     [spinner setFrame:CGRectMake(150, self.view.frame.size.height/2, spinner.frame.size.width, spinner.frame.size.height)];
     spinner.hidesWhenStopped = YES;
     [self.view addSubview:spinner];
-    // Do any additional setup after loading the view.
+    
+    self.emailField.text = self.defaultEmail;
 }
 
 - (void)didReceiveMemoryWarning {
