@@ -40,9 +40,6 @@ static LBRESTAdapter * _lbAdaptater = nil;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    PDDebugger *debugger = [PDDebugger defaultInstance];
-    [debugger connectToURL:[NSURL URLWithString:@"ws://localhost:9000/device"]];
-    
     //[NewRelicAgent startWithApplicationToken:NEWRELIC_APP_TOKEN];
     [Crashlytics startWithAPIKey:CRASHLYTICS_API_KEY];
 

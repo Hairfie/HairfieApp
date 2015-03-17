@@ -84,6 +84,10 @@
              success:(void(^)())aSuccessHandler
              failure:(void(^)(NSError *error))aFailureHandler;
 
++(void)reportInappropriateHairfie:(NSString *)hairfieId
+                          success:(void(^)())aSuccessHandler
+                          failure:(void(^)(NSError *error))aFailureHandler;
+
 +(id)fromSetterValue:(id)aValue;
 
 +(HairfieRepository *)repository;

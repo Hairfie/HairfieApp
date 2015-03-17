@@ -130,6 +130,8 @@
 		71A564E61A1A38CC00398C7B /* field-icon-magnifier.png in Resources */ = {isa = PBXBuildFile; fileRef = 71A564E51A1A38CC00398C7B /* field-icon-magnifier.png */; };
 		71A564E91A1A3A9100398C7B /* CALayer+XibConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 71A564E81A1A3A9100398C7B /* CALayer+XibConfiguration.m */; };
 		71AAB62A19D005170000552D /* Money.m in Sources */ = {isa = PBXBuildFile; fileRef = 71AAB62919D005170000552D /* Money.m */; };
+		71B58A8E1AB835B300096EF2 /* ContentIssue.m in Sources */ = {isa = PBXBuildFile; fileRef = 71B58A8D1AB835B300096EF2 /* ContentIssue.m */; };
+		71B58A911AB836D500096EF2 /* ContentIssueRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 71B58A901AB836D500096EF2 /* ContentIssueRepository.m */; };
 		71C0D3FF19C1D7600037CBF4 /* Address.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C0D3FE19C1D7600037CBF4 /* Address.m */; };
 		71C0D40219C1D9190037CBF4 /* BusinessReview.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C0D40119C1D9190037CBF4 /* BusinessReview.m */; };
 		71C0D40B19C1DC040037CBF4 /* Picture.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C0D40A19C1DC040037CBF4 /* Picture.m */; };
@@ -646,6 +648,10 @@
 		71A564E81A1A3A9100398C7B /* CALayer+XibConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+XibConfiguration.m"; sourceTree = "<group>"; };
 		71AAB62819D005170000552D /* Money.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Money.h; sourceTree = "<group>"; };
 		71AAB62919D005170000552D /* Money.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Money.m; sourceTree = "<group>"; };
+		71B58A8C1AB835B300096EF2 /* ContentIssue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentIssue.h; sourceTree = "<group>"; };
+		71B58A8D1AB835B300096EF2 /* ContentIssue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentIssue.m; sourceTree = "<group>"; };
+		71B58A8F1AB836D500096EF2 /* ContentIssueRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentIssueRepository.h; sourceTree = "<group>"; };
+		71B58A901AB836D500096EF2 /* ContentIssueRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentIssueRepository.m; sourceTree = "<group>"; };
 		71C0D3FB19C1D65A0037CBF4 /* Address.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Address.h; sourceTree = "<group>"; };
 		71C0D3FE19C1D7600037CBF4 /* Address.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Address.m; sourceTree = "<group>"; };
 		71C0D40019C1D9190037CBF4 /* BusinessReview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessReview.h; sourceTree = "<group>"; };
@@ -1248,6 +1254,8 @@
 				B3844E4319FE98570083CE0D /* TagCategoryRepository.m */,
 				B37FDA251A94DD2B00B88137 /* ServiceRepository.h */,
 				B37FDA261A94DD2B00B88137 /* ServiceRepository.m */,
+				71B58A8F1AB836D500096EF2 /* ContentIssueRepository.h */,
+				71B58A901AB836D500096EF2 /* ContentIssueRepository.m */,
 			);
 			name = Repositories;
 			sourceTree = "<group>";
@@ -2104,6 +2112,8 @@
 				B3C39A541A5D4D8600DE11CA /* PredefinedSearch.m */,
 				7175C5DC1A666A410030DAA5 /* BusinessMemberClaim.h */,
 				7175C5DD1A666A410030DAA5 /* BusinessMemberClaim.m */,
+				71B58A8C1AB835B300096EF2 /* ContentIssue.h */,
+				71B58A8D1AB835B300096EF2 /* ContentIssue.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -2830,6 +2840,7 @@
 				B3CCE78F1998F4F600067DB9 /* CommentTableViewCell.m in Sources */,
 				B3DD7A8019911245007B1621 /* ReviewTableViewCell.m in Sources */,
 				B33DF76819B4C93900B4877F /* ForgottenPasswordViewController.m in Sources */,
+				71B58A8E1AB835B300096EF2 /* ContentIssue.m in Sources */,
 				B342317A19891EA40058866B /* MyAnnotation.m in Sources */,
 				15E9526E19FEAC5A00699CBE /* Week.m in Sources */,
 				B367DC2E19C8802200A0452A /* ThirdStepViewController.m in Sources */,
@@ -2849,6 +2860,7 @@
 				B3F6B70719F69A3900EF4B5C /* SuggestHairdresserViewController.m in Sources */,
 				B3615B3819AF242800F1141D /* User.m in Sources */,
 				15697B31199BB03800DA83FE /* UIImage+Resize.m in Sources */,
+				71B58A911AB836D500096EF2 /* ContentIssueRepository.m in Sources */,
 				B31556901A372DE30061FD1E /* FavoriteCell.m in Sources */,
 				71A564E91A1A3A9100398C7B /* CALayer+XibConfiguration.m in Sources */,
 				B36AC50519DAB47E00B8AC13 /* STCollapseTableView.m in Sources */,

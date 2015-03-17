@@ -15,6 +15,7 @@
 #import "URLUtils.h"
 #import "Tag.h"
 #import "NSDate+TimeAgo.h"
+#import "ContentIssue.h"
 
 @implementation Hairfie
 
@@ -365,6 +366,15 @@
                         parameters:@{@"id":hairfieId}
                            success:aSuccessHandler
                            failure:aFailureHandler];
+}
+
++(void)reportInappropriateHairfie:(NSString *)hairfieId
+                          success:(void (^)())aSuccessHandler
+                          failure:(void (^)(NSError *))aFailureHandler
+{
+    NSString *title = [NSString stringWithFormat:@"Hairfie %@ is inappropriate", hairfieId];
+    
+    [ContentIssue createWithTitle:title andBody:nil success:aSuccessHandler failure:aFailureHandler];
 }
 
 +(id)fromSetterValue:(id)aValue

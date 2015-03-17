@@ -23,6 +23,7 @@
 #import "UIImageView+UIActivityIndicatorForSDWebImage.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "Tag.h"
+#import "HairfieNotifications.h"
 
 @interface HairfieDetailViewController ()
 
@@ -92,12 +93,11 @@
             @"share": @"pinterest"
         },
         @{
-            @"share": @"saveHairfie"
-            }/*,
+            @"share": @"copyHairfie"
+        },
         @{
-            @"label": NSLocalizedStringFromTable(@"Report content", @"Hairfie_Detail",nil),
-            @"segue": @"reportContent"
-        }*/
+            @"share": @"reportInappropriate"
+        }
     ];
 }
 
@@ -131,60 +131,44 @@
 
 -(IBAction)showMenuActionSheet:(id)sender
 {
-    UIActionSheet *actionSheet;
-    
-     NSLog(@"\n%@\n%@", appDelegate.currentUser.id, self.hairfie.author.id);
-    
+    NSString *destructiveButtonTitle = nil;
     if ([self.hairfie.author.id isEqualToString:appDelegate.currentUser.id]) {
-        actionSheet = [[UIActionSheet alloc] initWithTitle:nil
-                                                             delegate:self
-                                                    cancelButtonTitle:NSLocalizedStringFromTable(@"Cancel", @"Salon_Detail", nil)
-                                               destructiveButtonTitle:NSLocalizedStringFromTable(@"Delete", @"Hairfie_Detail", nil)
-                                                    otherButtonTitles:NSLocalizedStringFromTable(@"Tweet", @"Hairfie_Detail", nil),NSLocalizedStringFromTable(@"Share on Facebook", @"Hairfie_Detail", nil),NSLocalizedStringFromTable(@"Post on Instagram", @"Hairfie_Detail", nil),NSLocalizedStringFromTable(@"Pin on Pinterest", @"Hairfie_Detail", nil),NSLocalizedStringFromTable(@"Copy Hairfie", @"Hairfie_Detail", nil),nil];
-    }
-    else {
-    actionSheet = [[UIActionSheet alloc] initWithTitle:nil
-                                                             delegate:self
-                                                    cancelButtonTitle:NSLocalizedStringFromTable(@"Cancel", @"Salon_Detail", nil)
-                                               destructiveButtonTitle:nil
-                                                    otherButtonTitles:NSLocalizedStringFromTable(@"Tweet", @"Hairfie_Detail", nil),NSLocalizedStringFromTable(@"Share on Facebook", @"Hairfie_Detail", nil),NSLocalizedStringFromTable(@"Post on Instagram", @"Hairfie_Detail", nil),NSLocalizedStringFromTable(@"Pin on Pinterest", @"Hairfie_Detail", nil),NSLocalizedStringFromTable(@"Copy Hairfie", @"Hairfie_Detail", nil),nil];//NSLocalizedStringFromTable(@"Report Hairfie", @"Hairfie_Detail", nil),nil];
-        
+        destructiveButtonTitle = NSLocalizedStringFromTable(@"Delete", @"Hairfie_Detail", nil);
     }
     
     
-   
-        [actionSheet showInView:self.view];
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                             delegate:self
+                                                    cancelButtonTitle:NSLocalizedStringFromTable(@"Cancel", @"Salon_Detail", nil)
+                                               destructiveButtonTitle:destructiveButtonTitle
+                                                    otherButtonTitles:NSLocalizedStringFromTable(@"Tweet", @"Hairfie_Detail", nil), NSLocalizedStringFromTable(@"Share on Facebook", @"Hairfie_Detail", nil), NSLocalizedStringFromTable(@"Post on Instagram", @"Hairfie_Detail", nil), NSLocalizedStringFromTable(@"Pin on Pinterest", @"Hairfie_Detail", nil), NSLocalizedStringFromTable(@"Copy Hairfie", @"Hairfie_Detail", nil), NSLocalizedStringFromTable(@"Report Hairfie", @"Hairfie_Detail", nil),nil];
+
+    [actionSheet showInView:self.view];
 }
 
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+    BOOL canDelete = [self.hairfie.author.id isEqualToString:appDelegate.currentUser.id];
     
-    NSInteger myIndex;
-    if ([self.hairfie.author.id isEqualToString:appDelegate.currentUser.id])
-        myIndex = buttonIndex - 1;
-    else
-        myIndex = buttonIndex;
-    // change to 6 if report button is on
-    
-    if ([self.hairfie.author.id isEqualToString:appDelegate.currentUser.id]) {
-        if (myIndex == -1)
-        {
-           
-            [self deleteHairfie];
-            }
+    // Hairfie deletion?
+    if (canDelete && 0 == buttonIndex) {
+        [self deleteHairfie];
+        return;
     }
     
-    if (5 == myIndex) return; // it's the cancel button
-    else  if (myIndex != -1){
-    NSDictionary *action = menuActions[myIndex];
+    NSInteger actionIndex = buttonIndex;
+    if (canDelete) {
+        actionIndex = buttonIndex - 1;
+    }
+    
+    // Cancel?
+    if (actionIndex >= [menuActions count]) {
+        return;
+    }
+    
+    NSDictionary *action = menuActions[actionIndex];
     NSString *shareName = [action objectForKey:@"share"];
-    NSString *segueName = [action objectForKey:@"segue"];
-    
-    if (nil != segueName) {
-        [self performSegueWithIdentifier:[menuActions[myIndex ] objectForKey:@"segue"] sender:self];
-    }
-    
     
     if ([shareName isEqualToString:@"instagram"]) {
         [self shareOnInstagram];
@@ -194,10 +178,11 @@
         [self shareOnFacebook];
     } else if ([shareName isEqualToString:@"pinterest"]) {
         [self shareOnPinterest];
-    } else if ([shareName isEqualToString:@"saveHairfie"]) {
+    } else if ([shareName isEqualToString:@"copyHairfie"]) {
         UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
         pasteboard.string = self.hairfie.landingPageUrl.absoluteString;
-    }
+    } else if ([shareName isEqualToString:@"reportInappropriate"]) {
+        [self reportInappropriate];
     }
 }
 
@@ -210,6 +195,23 @@
     NSLog(@"Failed to retrieve complete business: %@", error.localizedDescription);
                    }];
 
+}
+
+-(void)reportInappropriate
+{
+    [Hairfie reportInappropriateHairfie:self.hairfie.id
+                                success:^{
+                                    HairfieNotifications *notif = [HairfieNotifications new];
+                                    [notif showNotificationWithMessage:NSLocalizedStringFromTable(@"Hairfie successfully reported as inappropriate", @"Hairfie_Detail", nil)
+                                                           ForDuration:2.5];
+                                }
+                                failure:^(NSError *error) {
+                                    NSLog(@"Failed to report hairfie as inappropriate: %@", error.localizedDescription);
+                                    
+                                    HairfieNotifications *notif = [HairfieNotifications new];
+                                    [notif showNotificationWithMessage:NSLocalizedStringFromTable(@"Failed to report Hairfie as inappropriate", @"Hairfie_Detail", nil)
+                                                           ForDuration:2.5];
+                                }];
 }
 
 -(void)shareOnInstagram
