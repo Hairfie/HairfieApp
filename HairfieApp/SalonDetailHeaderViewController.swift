@@ -68,12 +68,12 @@ import QuartzCore
             numReviewsLabel.text = NSString(
                 format: NSLocalizedString("%@ review", tableName: "Salon_Detail", comment: ""),
                 business.numReviews
-            );
+            ) as String;
         } else {
             numReviewsLabel.text = NSString(
                 format: NSLocalizedString("%@ reviews", tableName: "Salon_Detail", comment: ""),
                 business.numReviews
-            );
+            ) as String;
         }
 
         // remove all existing pictures
@@ -115,7 +115,7 @@ import QuartzCore
             var index: Int
             for index = 0; index < business.pictures.count; ++index {
                 var frame = getFrameForPictureAtIndex(index);
-                var picture: Picture = business.pictures[index] as Picture
+                var picture: Picture = business.pictures[index] as! Picture
                 var pictureView = UIImageView(frame: frame)
                 pictureView.contentMode = UIViewContentMode.ScaleAspectFill;
                 var pictureUrl = picture.urlWithWidth(frame.width * 2, height: frame.height * 2)
@@ -173,7 +173,7 @@ import QuartzCore
         goToCurrentPicturePage(true);
     }
 
-    func scrollViewDidEndDecelerating(scrollView: UIScrollView!) {
+    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
         if (scrollView == self.picturesScrollView) {
             var pageWidth = self.view.frame.size.width;
             var pageNumber = floor((picturesScrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;

@@ -11,6 +11,8 @@
 		151151941982B7A8001157A2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 151151931982B7A8001157A2 /* AppDelegate.m */; };
 		151151A81982B7A8001157A2 /* HairfieAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 151151A71982B7A8001157A2 /* HairfieAppTests.m */; };
 		1536598819DED2DC0002D5ED /* back-arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 1536598719DED2DC0002D5ED /* back-arrow.png */; };
+		153877E41ADC197C00F16410 /* SearchCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 153877E31ADC197C00F16410 /* SearchCategory.m */; };
+		153877E71ADC1B9D00F16410 /* SearchCategoryRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 153877E61ADC1B9D00F16410 /* SearchCategoryRepository.m */; };
 		1538A39D19E53AFD00F09628 /* Tuto.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1538A39F19E53AFD00F09628 /* Tuto.storyboard */; };
 		1538A3A919E53FB600F09628 /* UIView+Borders.m in Sources */ = {isa = PBXBuildFile; fileRef = 1538A3A819E53FB600F09628 /* UIView+Borders.m */; };
 		153B08B919E43834002E915A /* Authentication.strings in Resources */ = {isa = PBXBuildFile; fileRef = 153B08AB19E43834002E915A /* Authentication.strings */; };
@@ -442,6 +444,10 @@
 		151151A61982B7A8001157A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		151151A71982B7A8001157A2 /* HairfieAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HairfieAppTests.m; sourceTree = "<group>"; };
 		1536598719DED2DC0002D5ED /* back-arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back-arrow.png"; sourceTree = "<group>"; };
+		153877E21ADC197C00F16410 /* SearchCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchCategory.h; sourceTree = "<group>"; };
+		153877E31ADC197C00F16410 /* SearchCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchCategory.m; sourceTree = "<group>"; };
+		153877E51ADC1B9D00F16410 /* SearchCategoryRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchCategoryRepository.h; sourceTree = "<group>"; };
+		153877E61ADC1B9D00F16410 /* SearchCategoryRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchCategoryRepository.m; sourceTree = "<group>"; };
 		1538A39E19E53AFD00F09628 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Tuto.storyboard; sourceTree = "<group>"; };
 		1538A3A319E53BBD00F09628 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Tuto.strings; sourceTree = "<group>"; };
 		1538A3A719E53FB600F09628 /* UIView+Borders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Borders.h"; sourceTree = "<group>"; };
@@ -1256,6 +1262,8 @@
 				B37FDA261A94DD2B00B88137 /* ServiceRepository.m */,
 				71B58A8F1AB836D500096EF2 /* ContentIssueRepository.h */,
 				71B58A901AB836D500096EF2 /* ContentIssueRepository.m */,
+				153877E51ADC1B9D00F16410 /* SearchCategoryRepository.h */,
+				153877E61ADC1B9D00F16410 /* SearchCategoryRepository.m */,
 			);
 			name = Repositories;
 			sourceTree = "<group>";
@@ -2114,6 +2122,8 @@
 				7175C5DD1A666A410030DAA5 /* BusinessMemberClaim.m */,
 				71B58A8C1AB835B300096EF2 /* ContentIssue.h */,
 				71B58A8D1AB835B300096EF2 /* ContentIssue.m */,
+				153877E21ADC197C00F16410 /* SearchCategory.h */,
+				153877E31ADC197C00F16410 /* SearchCategory.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -2748,6 +2758,7 @@
 				B319B5C719C6E77D007F79B0 /* BusinessReviewRepository.m in Sources */,
 				B33D4C5619D1A46D009DE6DD /* Service.m in Sources */,
 				153E1FB019B4A79B00DEC95D /* UserRepository.m in Sources */,
+				153877E71ADC1B9D00F16410 /* SearchCategoryRepository.m in Sources */,
 				1564959519AF6292008DC070 /* HairfieColors.m in Sources */,
 				B3AA0CBF1A24D4D900FAEC01 /* DetailsCollectionViewCell.m in Sources */,
 				B3391BB51A5A9B27006D63A9 /* FacebookPage.m in Sources */,
@@ -2786,6 +2797,7 @@
 				B3844E3719FE65E40083CE0D /* AddTagsToHairfieViewController.m in Sources */,
 				B36AC50A19DC27B000B8AC13 /* BusinessMember.m in Sources */,
 				B33E4C4919A4AA4C0024F5F7 /* CommentViewController.m in Sources */,
+				153877E41ADC197C00F16410 /* SearchCategory.m in Sources */,
 				B3E0B15A19ACC14800C3EACE /* SignUpViewController.m in Sources */,
 				B34E0C151A91FB0800CFAAE2 /* BusinessPictureGalleryViewController.m in Sources */,
 				B3E0B15619ACB6ED00C3EACE /* LoginViewController.m in Sources */,
