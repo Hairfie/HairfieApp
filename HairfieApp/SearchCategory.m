@@ -25,16 +25,16 @@
     _picture = [Picture fromSetterValue:aPicture];
 }
 
--(void)setTags:(id)someTags
-{
-    NSMutableArray *temp = [[NSMutableArray alloc] init];
-    if (![someTags isEqual:[NSNull null]]) {
-        for (id aTag in someTags) {
-            [temp addObject:[Tag fromSetterValue:aTag]];
-        }
-    }
-    _tags = [[NSArray alloc] initWithArray:temp];
-}
+//-(void)setTags:(id)someTags
+//{
+//    NSMutableArray *temp = [[NSMutableArray alloc] init];
+//    if (![someTags isEqual:[NSNull null]]) {
+//        for (id aTag in someTags) {
+//            [temp addObject:[Tag fromSetterValue:aTag]];
+//        }
+//    }
+//    _tags = [[NSArray alloc] initWithArray:temp];
+//}
 
 +(void)getCategoryWithSuccess:(void (^)(NSArray *))aSuccessHandler failure:(void (^)(NSError *))aFailureHandler {
 
@@ -48,9 +48,9 @@
             [temp addObject:cat];
         }
         
-        [temp sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"position" ascending:YES]]];
+        NSArray *cats = [temp sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"position" ascending:YES]]];
         
-        aSuccessHandler([[NSArray alloc] initWithArray:temp]);
+        aSuccessHandler([[NSArray alloc] initWithArray:cats]);
     };
     
     [[self repository] invokeStaticMethod:@"find" parameters:@{} success:loadSuccessBlock failure:aFailureHandler];

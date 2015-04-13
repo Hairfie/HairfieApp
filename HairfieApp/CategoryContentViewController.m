@@ -9,6 +9,7 @@
 #import "CategoryContentViewController.h"
 #import "CategoriesCollectionViewCell.h"
 #import "BusinessSearch.h"
+#import "SearchCategory.h"
 
 @interface CategoryContentViewController ()
 
@@ -16,8 +17,7 @@
 
 @implementation CategoryContentViewController
 {
-    NSArray *categoriesNames;
-    NSArray *categoriesImages;
+    NSArray *categories;
 }
 
 #define CATEGORY_CELL_IDENTIFIER @"categoryCell"
@@ -27,9 +27,7 @@
    
     [self.contentCollection registerNib:[UINib nibWithNibName:@"CategoriesCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:CATEGORY_CELL_IDENTIFIER];
     
-    
-    categoriesNames = [[NSArray alloc] initWithObjects:NSLocalizedStringFromTable(@"women hairdresser", @"Feed", nil),NSLocalizedStringFromTable(@"men hairdresser", @"Feed", nil), nil];
-    categoriesImages = [[NSArray alloc] initWithObjects:@"woman-category.png",@"man-category.png", nil];
+    [self getCategories];
 
     
     // Do any additional setup after loading the view.
@@ -59,7 +57,7 @@
 }
 
 - (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section {
-    return [categoriesNames count];
+    return [categories count];
 }
 
 - (NSInteger)numberOfSectionsInCollectionView: (UICollectionView *)collectionView {
@@ -79,7 +77,7 @@
         cell = [nib objectAtIndex:0];
     }
     
-    [cell setupCellWithName:[categoriesNames objectAtIndex:indexPath.item] andImage:[UIImage imageNamed:[categoriesImages objectAtIndex:indexPath.item]]];
+    [cell setupWithCategory:[categories objectAtIndex:indexPath.item]];
     
     return cell;
 }
@@ -99,6 +97,21 @@
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:businessSearch, @"businessSearch", nil];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"searchFromFeed" object:nil userInfo:dic];
+}
+
+-(void)getCategories {
+    void (^loadErrorBlock)(NSError *) = ^(NSError *error){
+        NSLog(@"Error on load %@", error.description);
+        //[refreshControl endRefreshing];
+    };
+    
+    void (^loadSuccessBlock)(NSArray *) = ^(NSArray *models){
+        categories = models;
+        [self.contentCollection reloadData];
+    };
+    
+    [SearchCategory getCategoryWithSuccess:loadSuccessBlock
+                                   failure:loadErrorBlock];
 }
 
 @end

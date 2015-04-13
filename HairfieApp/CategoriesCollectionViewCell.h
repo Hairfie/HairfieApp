@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SearchCategory.h"
 
 @interface CategoriesCollectionViewCell : UICollectionViewCell
 
@@ -14,6 +15,7 @@
 @property (nonatomic) IBOutlet UILabel *categoryName;
 
 -(void)setupCellWithName:(NSString*)aName andImage:(UIImage*)anImage;
+-(void)setupWithCategory:(SearchCategory*)cat;
 
 @end
 
