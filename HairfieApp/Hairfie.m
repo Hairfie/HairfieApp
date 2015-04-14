@@ -345,7 +345,7 @@
                                NSLog(@"SUCCESS");
                                NSMutableArray *hairfies = [[NSMutableArray alloc] init];
                                 for (NSDictionary *result in results) {
-                                    [hairfies addObject:[repository modelWithDictionary:result]];
+                                    [hairfies addObject:[[[self class] alloc] initWithDictionary:result]];
                                 }
                                aSuccessHandler([[NSArray alloc] initWithArray:hairfies]);
                             }
