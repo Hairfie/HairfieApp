@@ -221,10 +221,10 @@
         }
 
         
-        NSLog(@"GEO POINT %@, QUERY %@, types %@", [self.businessSearch.whereGeoPoint toApiValue], self.businessSearch.query, self.businessSearch.clientTypes);
+        NSLog(@"GEO POINT %@, QUERY %@, types %@", [self.businessSearch.whereGeoPoint toApiValue], self.businessSearch.query, self.businessSearch.categories);
         [Business listNearby:self.businessSearch.whereGeoPoint
                        query:self.businessSearch.query
-                    clientTypes:self.businessSearch.clientTypes
+                    categories:self.businessSearch.categories
                        limit:NUM_SEARCH_RESULTS
                      success:loadSuccessBlock
                      failure:loadErrorBlock];

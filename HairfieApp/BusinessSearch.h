@@ -13,7 +13,7 @@
 
 @property (strong, nonatomic) NSString *query;
 @property (strong, nonatomic) NSString *where;
-@property (strong, nonatomic) NSArray *clientTypes;
+@property (strong, nonatomic) NSArray *categories;
 
 -(NSString *)display;
 -(NSString *)changedEventName;

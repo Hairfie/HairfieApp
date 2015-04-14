@@ -10,6 +10,7 @@
 #import "CategoriesCollectionViewCell.h"
 #import "BusinessSearch.h"
 #import "SearchCategory.h"
+#import "AppDelegate.h"
 
 @interface CategoryContentViewController ()
 
@@ -27,8 +28,9 @@
    
     [self.contentCollection registerNib:[UINib nibWithNibName:@"CategoriesCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:CATEGORY_CELL_IDENTIFIER];
     
-    [self getCategories];
-
+    AppDelegate* delegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
+    categories = [delegate categories];
+    [self.contentCollection reloadData];
     
     // Do any additional setup after loading the view.
 }
@@ -85,14 +87,7 @@
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
     BusinessSearch *businessSearch = [[BusinessSearch alloc] init];
-
-    if (indexPath.row == 1) {
-         NSArray *clientTypes = [NSArray arrayWithObjects:@"women", nil];
-         businessSearch.clientTypes = clientTypes;
-    } else if (indexPath.row == 2) {
-        NSArray *clientTypes = [NSArray arrayWithObjects:@"men", nil];
-        businessSearch.clientTypes = clientTypes;
-    }
+    businessSearch.categories = [NSArray arrayWithObjects:[categories objectAtIndex:indexPath.item], nil];
    
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:businessSearch, @"businessSearch", nil];
     

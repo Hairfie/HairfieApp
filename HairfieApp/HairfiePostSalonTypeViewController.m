@@ -230,7 +230,7 @@
 
     [Business listNearby:[[GeoPoint alloc] initWithString:gpsString]
                    query:self.searchByName.text
-            clientTypes:nil
+              categories:nil
                    limit:@10
                  success:loadSuccessBlock
                  failure:loadErrorBlock];

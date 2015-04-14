@@ -61,13 +61,6 @@
 
 +(void)listNearby:(GeoPoint *)aGeoPoint
             query:(NSString *)aQuery
-      clientTypes:(NSArray *)clientTypes
-            limit:(NSNumber *)aLimit
-          success:(void(^)(NSArray *business))aSuccessHandler
-          failure:(void(^)(NSError *error))aFailureHandler;
-
-+(void)listNearby:(GeoPoint *)aGeoPoint
-            query:(NSString *)aQuery
       categories:(NSArray *)categories
             limit:(NSNumber *)aLimit
           success:(void(^)(NSArray *business))aSuccessHandler

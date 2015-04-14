@@ -9,6 +9,8 @@
 #import "SearchFilterViewController.h"
 #import "SearchFilterTableViewCell.h"
 #import <UIAlertView+Blocks.h>
+#import "AppDelegate.h"
+#import "SearchCategory.h"
 
 @interface SearchFilterViewController ()
 
@@ -32,7 +34,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initViewAndData];
+    AppDelegate* delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+
     queryfilters = [[NSMutableArray alloc] init];
+    
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(setFilterForQuery:)
@@ -45,11 +50,8 @@
     
     //temporary data TO REMOVE
     
-    sectionTitles = [[NSArray alloc]initWithObjects: NSLocalizedStringFromTable(@"Pour qui ?", @"Around_Me", nil), nil];
-    sectionContent = [[NSArray alloc] initWithObjects:
-                      @{@"displayValue":NSLocalizedStringFromTable(@"Man", @"Claim", nil), @"key":@"men", @"tag":@0},
-                      @{@"displayValue":NSLocalizedStringFromTable(@"Woman", @"Claim", nil), @"key":@"women", @"tag":@1},
-                      @{@"displayValue":NSLocalizedStringFromTable(@"Kid", @"Claim", nil), @"key":@"children", @"tag":@2}, nil];
+    sectionTitles = [[NSArray alloc]initWithObjects: NSLocalizedStringFromTable(@"Catégories", @"Around_Me", nil), nil];
+    sectionContent = delegate.categories;
     
     
     
@@ -92,9 +94,9 @@
     
     NSIndexPath * indexPath = [self.searchFiltersTable indexPathForCell:cell];
     
-    NSDictionary *dic = [sectionContent objectAtIndex:indexPath.row];
+    SearchCategory *cat = [sectionContent objectAtIndex:indexPath.row];
     
-    [queryfilters addObject:[dic objectForKey:@"key"]];
+    [queryfilters addObject:cat];
 }
 
 
@@ -104,8 +106,9 @@
     
     NSIndexPath * indexPath = [self.searchFiltersTable indexPathForCell:cell];
     
-    NSDictionary *dic = [sectionContent objectAtIndex:indexPath.row];
-    [queryfilters removeObject:[dic objectForKey:@"key"]];
+    SearchCategory *cat = [sectionContent objectAtIndex:indexPath.row];
+    
+    [queryfilters removeObject:cat];
 }
 
 //// Init methods
@@ -141,7 +144,7 @@
     }
     
     self.businessSearch.query = queryName;
-    self.businessSearch.clientTypes = queryfilters;
+    self.businessSearch.categories = queryfilters;
     
         
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -200,22 +203,19 @@
         cell = [nib objectAtIndex:0];
     }
     
-    NSDictionary *dic = [sectionContent objectAtIndex:indexPath.row];
+    SearchCategory *cat = [sectionContent objectAtIndex:indexPath.row];
     
+    cell.titleLabel.text = cat.name;
+    cell.tag = [cat.position integerValue];
     
-    
-    cell.titleLabel.text = [dic objectForKey:@"displayValue"];
-    cell.tag = [[dic objectForKey:@"tag"] integerValue];
-    
-    NSDictionary *alreadySelectedDic = _.find(self.businessSearch.clientTypes, ^BOOL (NSString *valueToTest) {
-        return [valueToTest isEqualToString:[dic objectForKey:@"key"]];
+    NSDictionary *alreadySelectedDic = _.find(self.businessSearch.categories, ^BOOL (SearchCategory *valueToTest) {
+        return [valueToTest.name isEqualToString:cat.name];
     });
     
-    if(alreadySelectedDic) 
-    {
+    if(alreadySelectedDic) {
         [cell setFilterSelected:YES];
         cell.isSelected = YES;
-        [queryfilters addObject:[dic objectForKey:@"key"]];
+        [queryfilters addObject:cat];
     }else {
         cell.isSelected = NO;
     }

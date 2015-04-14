@@ -15,7 +15,7 @@
 #import <Crashlytics/Crashlytics.h>
 #import "UserAuthenticator.h"
 #import <PonyDebugger/PonyDebugger.h>
-
+#import "SearchCategory.h"
 
 
 @interface AppDelegate ()
@@ -26,7 +26,7 @@
     UserAuthenticator *userAuthenticator;
 }
 
-@synthesize manager = _manager, myLocation = _myLocation, credentialStore = _credentialStore;
+@synthesize manager = _manager, myLocation = _myLocation, credentialStore = _credentialStore, categories = _categories;
 
 static LBRESTAdapter * _lbAdaptater = nil;
 
@@ -83,6 +83,11 @@ static LBRESTAdapter * _lbAdaptater = nil;
                                                  name:@"currentUser"
                                                object:nil];
     
+    [SearchCategory getCategoryWithSuccess:^(NSArray *results) {
+        _categories = results;
+    } failure:^(NSError *error) {
+        NSLog(@"Error on categories load %@", error.description);
+    }];
     
     if([ENV isEqualToString:@"dev"]) {
         PDDebugger *debugger = [PDDebugger defaultInstance];

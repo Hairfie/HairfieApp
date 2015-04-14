@@ -29,6 +29,7 @@
 @property (nonatomic) GeoPoint *currentLocation;
 @property (nonatomic) User *currentUser;
 @property (nonatomic) Hairfie *hairfie;
+@property (nonatomic) NSArray *categories;
 @property (nonatomic) CredentialStore *credentialStore;
 + ( LBRESTAdapter *) lbAdaptater;
 @property (nonatomic) KeychainItemWrapper *keychainItem;
@@ -40,7 +41,6 @@
 
 -(void)showLoginStoryboard;
 -(void)startTrackingLocation:(BOOL)forceLocation;
-
 
 @end
 

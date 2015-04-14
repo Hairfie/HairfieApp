@@ -229,13 +229,13 @@
 
 +(void)listNearby:(GeoPoint *)aGeoPoint
             query:(NSString *)aQuery
-          clientTypes:(NSArray *)clientTypes
+      categories:(NSArray *)categories
             limit:(NSNumber *)aLimit
           success:(void(^)(NSArray *business))aSuccessHandler
-          failure:(void(^)(NSError *error))aFailureHandler
-{
-    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+          failure:(void(^)(NSError *error))aFailureHandler {
 
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    
     if (nil != aGeoPoint) {
         [parameters setObject:[aGeoPoint toApiValue] forKey:@"here"];
     }
@@ -244,18 +244,19 @@
         [parameters setObject:aQuery forKey:@"query"];
     }
     
-    if (nil != clientTypes) {
-        [parameters setObject:clientTypes forKey:@"clientTypes"];
+    if (nil !=  categories) {
+        NSDictionary *facetFilters = @{@"categories":Underscore.pluck(categories, @"name")};
+        [parameters setObject:facetFilters
+                       forKey:@"facetFilters"];
     }
     
-
     [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/businesses/nearby" verb:@"GET"] forMethod:@"businesses.nearby"];
     LBModelRepository *businessData = [[AppDelegate lbAdaptater] repositoryWithModelName:@"businesses"];
     if(!aGeoPoint.lng || !aGeoPoint.lat){
         aFailureHandler(nil);
         return;
     }
-
+    
     
     
     
@@ -266,7 +267,7 @@
                                  for (NSDictionary *result in results) {
                                      [businesses addObject:[[Business alloc] initWithDictionary:result]];
                                  }
-
+                                 
                                  aSuccessHandler([[NSArray alloc] initWithArray: businesses]);
                              } failure:^(NSError *error) {
                                  aFailureHandler(error);
