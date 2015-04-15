@@ -34,7 +34,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initViewAndData];
-    AppDelegate* delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
 
     queryfilters = [[NSMutableArray alloc] init];
     
