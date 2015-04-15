@@ -36,7 +36,7 @@
 //    _tags = [[NSArray alloc] initWithArray:temp];
 //}
 
-+(void)getCategoryWithSuccess:(void (^)(NSArray *))aSuccessHandler failure:(void (^)(NSError *))aFailureHandler {
++(void)getCategoriesWithSuccess:(void (^)(NSArray *))aSuccessHandler failure:(void (^)(NSError *))aFailureHandler {
 
     [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/categories" verb:@"GET"] forMethod:@"categories.find"];
     

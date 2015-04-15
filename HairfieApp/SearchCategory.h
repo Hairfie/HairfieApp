@@ -22,7 +22,7 @@
 
 -(id)initWithDictionary:(NSDictionary *)aDictionary;
 
-+(void)getCategoryWithSuccess:(void(^)(NSArray *results))aSuccessHandler
++(void)getCategoriesWithSuccess:(void(^)(NSArray *results))aSuccessHandler
                                    failure:(void(^)(NSError *error))aFailureHandler;
 
 +(id)fromSetterValue:(id)aValue;

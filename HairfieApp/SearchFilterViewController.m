@@ -51,10 +51,11 @@
     //temporary data TO REMOVE
     
     sectionTitles = [[NSArray alloc]initWithObjects: NSLocalizedStringFromTable(@"Catégories", @"Around_Me", nil), nil];
-    sectionContent = delegate.categories;
-    
-    
-    
+    [self getCategories:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(getCategories:)
+                                                 name:@"getCategories"
+                                               object:nil];
     
         // Do any additional setup after loading the view.
 }
@@ -87,6 +88,13 @@
         }
     }
 }
+
+- (void) getCategories:(NSNotification *) notification {
+    AppDelegate* delegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
+    sectionContent = delegate.categories;
+    [self.searchFiltersTable reloadData];
+}
+
 /// NSNotification Methods
 
 -(void)setFilterForQuery:(NSNotification*)notification {

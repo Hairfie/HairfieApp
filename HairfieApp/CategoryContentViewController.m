@@ -28,11 +28,19 @@
    
     [self.contentCollection registerNib:[UINib nibWithNibName:@"CategoriesCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:CATEGORY_CELL_IDENTIFIER];
     
+    [self getCategories:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(getCategories:)
+                                                 name:@"getCategories"
+                                               object:nil];
+    
+    // Do any additional setup after loading the view.
+}
+
+- (void) getCategories:(NSNotification *) notification {
     AppDelegate* delegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     categories = [delegate categories];
     [self.contentCollection reloadData];
-    
-    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {
@@ -92,21 +100,6 @@
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:businessSearch, @"businessSearch", nil];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"searchFromFeed" object:nil userInfo:dic];
-}
-
--(void)getCategories {
-    void (^loadErrorBlock)(NSError *) = ^(NSError *error){
-        NSLog(@"Error on load %@", error.description);
-        //[refreshControl endRefreshing];
-    };
-    
-    void (^loadSuccessBlock)(NSArray *) = ^(NSArray *models){
-        categories = models;
-        [self.contentCollection reloadData];
-    };
-    
-    [SearchCategory getCategoryWithSuccess:loadSuccessBlock
-                                   failure:loadErrorBlock];
 }
 
 @end

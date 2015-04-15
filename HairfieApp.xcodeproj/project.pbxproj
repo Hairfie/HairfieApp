@@ -52,6 +52,7 @@
 		158FCA9519FE54110001F86C /* facebook-share-on.png in Resources */ = {isa = PBXBuildFile; fileRef = 158FCA9319FE54110001F86C /* facebook-share-on.png */; };
 		1592078A1A5B02BC007D7928 /* BusinessClaimExistingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 159207891A5B02BC007D7928 /* BusinessClaimExistingViewController.m */; };
 		159207901A5C184A007D7928 /* Claim.html in Resources */ = {isa = PBXBuildFile; fileRef = 1592078F1A5C184A007D7928 /* Claim.html */; };
+		1594ADE61ADE69F5007F6F7E /* ServerConstant.m in Sources */ = {isa = PBXBuildFile; fileRef = 1594ADE51ADE69F5007F6F7E /* ServerConstant.m */; };
 		15A50D9A19CC39AF0043BFB4 /* login-user.png in Resources */ = {isa = PBXBuildFile; fileRef = 15A50D9919CC39AF0043BFB4 /* login-user.png */; };
 		15A50D9D19CC6FAC0043BFB4 /* NotLoggedAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A50D9C19CC6FAB0043BFB4 /* NotLoggedAlert.m */; };
 		15A91EB219DADD97000539C9 /* hairdresser-who-string-hairfie-post.png in Resources */ = {isa = PBXBuildFile; fileRef = 15A91EB119DADD97000539C9 /* hairdresser-who-string-hairfie-post.png */; };
@@ -519,6 +520,8 @@
 		159207881A5B02BC007D7928 /* BusinessClaimExistingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessClaimExistingViewController.h; sourceTree = "<group>"; };
 		159207891A5B02BC007D7928 /* BusinessClaimExistingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessClaimExistingViewController.m; sourceTree = "<group>"; };
 		1592078F1A5C184A007D7928 /* Claim.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Claim.html; sourceTree = "<group>"; };
+		1594ADE41ADE69F5007F6F7E /* ServerConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerConstant.h; sourceTree = "<group>"; };
+		1594ADE51ADE69F5007F6F7E /* ServerConstant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerConstant.m; sourceTree = "<group>"; };
 		15A50D9919CC39AF0043BFB4 /* login-user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-user.png"; sourceTree = "<group>"; };
 		15A50D9B19CC6FAB0043BFB4 /* NotLoggedAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotLoggedAlert.h; sourceTree = "<group>"; };
 		15A50D9C19CC6FAB0043BFB4 /* NotLoggedAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotLoggedAlert.m; sourceTree = "<group>"; };
@@ -1128,6 +1131,7 @@
 		1511518D1982B7A8001157A2 /* HairfieApp */ = {
 			isa = PBXGroup;
 			children = (
+				1594ADE71ADE69FE007F6F7E /* Server Constants */,
 				B3B716021A51889100DB6FDB /* Reachability */,
 				7164B5621A0D0EF2002B68E5 /* Share */,
 				153E1FB119B4A97600DEC95D /* Repositories */,
@@ -1319,6 +1323,15 @@
 				158B802B1A5C1FC8000D586A /* style.css */,
 			);
 			name = Webviews;
+			sourceTree = "<group>";
+		};
+		1594ADE71ADE69FE007F6F7E /* Server Constants */ = {
+			isa = PBXGroup;
+			children = (
+				1594ADE41ADE69F5007F6F7E /* ServerConstant.h */,
+				1594ADE51ADE69F5007F6F7E /* ServerConstant.m */,
+			);
+			name = "Server Constants";
 			sourceTree = "<group>";
 		};
 		15B4972719DBFC4500917B83 /* Tuto */ = {
@@ -2860,6 +2873,7 @@
 				B3615B3519AF1D0600F1141D /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
 				7172997A1A9773100045BE59 /* ImageSetPickerFilterCell.m in Sources */,
 				B3844E3D19FE83A20083CE0D /* TagsTableViewCell.m in Sources */,
+				1594ADE61ADE69F5007F6F7E /* ServerConstant.m in Sources */,
 				B34231671988ECF50058866B /* FriendViewController.m in Sources */,
 				717299951A9794CA0045BE59 /* HairfiePostCameraViewController.m in Sources */,
 				B345BAEA19951A7E007BB61A /* OLEContainerScrollViewContentView.m in Sources */,

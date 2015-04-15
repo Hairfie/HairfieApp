@@ -16,6 +16,7 @@
 #import "UserAuthenticator.h"
 #import <PonyDebugger/PonyDebugger.h>
 #import "SearchCategory.h"
+#import "ServerConstant.h"
 
 
 @interface AppDelegate ()
@@ -24,6 +25,7 @@
 
 @implementation AppDelegate {
     UserAuthenticator *userAuthenticator;
+    ServerConstant *serverConstants;
 }
 
 @synthesize manager = _manager, myLocation = _myLocation, credentialStore = _credentialStore, categories = _categories;
@@ -51,6 +53,8 @@ static LBRESTAdapter * _lbAdaptater = nil;
     _manager = [[CLLocationManager alloc] init];
     _credentialStore = [[CredentialStore alloc] init];
     userAuthenticator = [[UserAuthenticator alloc] init];
+    serverConstants = [[ServerConstant alloc] init];
+
     self.hairfieNotif = [HairfieNotifications new];
     self.hairfieUploader = [[HairfieUploader alloc] init];
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -83,12 +87,8 @@ static LBRESTAdapter * _lbAdaptater = nil;
                                                  name:@"currentUser"
                                                object:nil];
     
-    [SearchCategory getCategoryWithSuccess:^(NSArray *results) {
-        _categories = results;
-    } failure:^(NSError *error) {
-        NSLog(@"Error on categories load %@", error.description);
-    }];
-    
+    [serverConstants getCategories];
+        
     if([ENV isEqualToString:@"dev"]) {
         PDDebugger *debugger = [PDDebugger defaultInstance];
         [debugger connectToURL:[NSURL URLWithString:@"ws://localhost:9000/device"]];
