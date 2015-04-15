@@ -20,7 +20,7 @@
     #define BASE_URL @"https://hairfie.herokuapp.com/"
 #endif
 
-#define API_URL (BASE_URL @"api/")
+#define API_URL (BASE_URL @"v0/")
 #define API_DATE_FORMAT @"yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
 #define DISPLAY_DATE_FORMAT @"d MMMM yyyy"
 
