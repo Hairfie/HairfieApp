@@ -9,6 +9,7 @@
 #import "ServerConstant.h"
 #import "AppDelegate.h"
 #import "SearchCategory.h"
+#import "Tag.h"
 
 @implementation ServerConstant {
     AppDelegate *delegate;
@@ -37,6 +38,23 @@
     };
     
     [SearchCategory getCategoriesWithSuccess:loadSuccessBlock failure:loadErrorBlock];
+}
+
+-(void)getTags {
+    __block NSArray *tags;
+
+    void (^successHandler)(NSArray *) = ^(NSArray *results) {
+        tags = [NSMutableArray arrayWithArray:results];
+        delegate.tags = tags;
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"getTags" object:self];
+    };
+    
+    void (^failureHandler)(NSError *) = ^(NSError *error) {
+        NSLog(@"Failed to get tags with error %@", error.description);
+        [self getTags];
+    };
+    
+    [Tag getTagsGroupedByCategoryWithSuccess:successHandler failure:failureHandler];
 }
 
 @end

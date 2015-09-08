@@ -30,6 +30,7 @@
 @property (nonatomic) User *currentUser;
 @property (nonatomic) Hairfie *hairfie;
 @property (nonatomic) NSArray *categories;
+@property (nonatomic) NSArray *tags;
 @property (nonatomic) CredentialStore *credentialStore;
 + ( LBRESTAdapter *) lbAdaptater;
 @property (nonatomic) KeychainItemWrapper *keychainItem;

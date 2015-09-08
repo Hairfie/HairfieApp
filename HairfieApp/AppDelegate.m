@@ -88,7 +88,8 @@ static LBRESTAdapter * _lbAdaptater = nil;
                                                object:nil];
     
     [serverConstants getCategories];
-        
+    [serverConstants getTags];
+    
     if([ENV isEqualToString:@"dev"]) {
         PDDebugger *debugger = [PDDebugger defaultInstance];
         [debugger connectToURL:[NSURL URLWithString:@"ws://localhost:9000/device"]];

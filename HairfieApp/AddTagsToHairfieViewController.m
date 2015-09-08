@@ -20,7 +20,7 @@
 @implementation AddTagsToHairfieViewController
 {
     AppDelegate *appDelegate;
-    NSMutableArray *tags;
+    NSArray *tags;
     NSMutableArray *hairfieTags;
     NSInteger nbLines;
 }
@@ -43,17 +43,9 @@
 
 -(void)initTags
 {
-    void (^successHandler)(NSArray *) = ^(NSArray *results) {
-       
-        tags = [NSMutableArray arrayWithArray:results];
-        [self.tagsTableView reloadData];
-    };
     
-    void (^failureHandler)(NSError *) = ^(NSError *error) {
-        NSLog(@"Failed to get tags with error %@", error.description);
-    };
-    
-    [Tag getTagsGroupedByCategoryWithSuccess:successHandler failure:failureHandler];
+    tags = appDelegate.tags;
+    [self.tagsTableView reloadData];
 }
 
 
