@@ -122,7 +122,7 @@ import QuartzCore
 
                 var gradientMaskLayer:CAGradientLayer = CAGradientLayer();
                 gradientMaskLayer.frame = pictureView.bounds;
-                gradientMaskLayer.colors = [UIColor.blackColor().CGColor!, UIColor.clearColor().CGColor!];
+                gradientMaskLayer.colors = [UIColor.blackColor().CGColor, UIColor.clearColor().CGColor];
                 gradientMaskLayer.locations = [0.0, 1.2];
                 pictureView.layer.mask = gradientMaskLayer;
 
@@ -137,12 +137,11 @@ import QuartzCore
         }
     }
 
-    func downloadImage(url: NSURL, callback: (UIImage?, error: NSError?) -> Void) {
-        SDWebImageDownloader.sharedDownloader().downloadImageWithURL(
-            url,
-            options: nil,
+    func downloadImage(url: NSURL?, callback: (UIImage?, error: NSError?) -> Void) {
+        SDWebImageDownloader.sharedDownloader().downloadImageWithURL(url,
+            options: SDWebImageDownloaderOptions.ProgressiveDownload,
             progress: nil,
-            completed: { (image, data, error, finished) -> Void in
+            completed: { (image, data, error, finished) in
                 if (nil != image) {
                     callback(image, error:error);
                 } else {

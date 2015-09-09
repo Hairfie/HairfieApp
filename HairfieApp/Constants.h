@@ -11,7 +11,7 @@
 
 #ifdef DEV
     #define ENV @"dev"
-    #define BASE_URL @"http://api.hairfie.com/"
+    #define BASE_URL @"http://localhost:3000/"
 #elif ADHOC
     #define ENV @"adhoc"
     #define BASE_URL @"http://api.hairfie.com/"
