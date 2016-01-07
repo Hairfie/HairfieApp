@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14D87p" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="m6Z-pY-ich">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D9c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="m6Z-pY-ich">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -190,7 +190,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="eh8-1Z-hag">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <rect key="frame" x="0.0" y="324" width="143" height="192"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="143" height="192"/>
@@ -601,13 +601,6 @@
                                             <segue destination="Pyc-9a-F9R" kind="unwind" unwindAction="unwindToMenuViewController:" id="Z86-Y5-JKW"/>
                                         </connections>
                                     </button>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hairffie-typo-2.png" translatesAutoresizingMaskIntoConstraints="NO" id="bga-tt-xwd" userLabel="Logo">
-                                        <rect key="frame" x="130" y="32" width="61" height="17"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="61" id="BvS-1B-2AQ"/>
-                                            <constraint firstAttribute="height" constant="17" id="rJN-kx-FQU"/>
-                                        </constraints>
-                                    </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zhH-cC-KGh" userLabel="Hairfie">
                                         <rect key="frame" x="262" y="29" width="50" height="23"/>
                                         <constraints>
@@ -629,13 +622,20 @@
                                             <constraint firstAttribute="height" constant="1" id="zNy-0D-Bgg"/>
                                         </constraints>
                                     </view>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo-large-33.png" translatesAutoresizingMaskIntoConstraints="NO" id="bga-tt-xwd" userLabel="Logo">
+                                        <rect key="frame" x="93" y="18" width="135" height="45"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="135" id="BvS-1B-2AQ"/>
+                                            <constraint firstAttribute="height" constant="45" id="rJN-kx-FQU"/>
+                                        </constraints>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="7Ej-qk-BUX" secondAttribute="bottom" id="4oP-Qh-ei4"/>
                                     <constraint firstAttribute="height" constant="64" id="5IL-Kr-e3E"/>
                                     <constraint firstItem="zhH-cC-KGh" firstAttribute="top" secondItem="rQE-Vr-vK4" secondAttribute="top" constant="29" id="C5V-ma-5Fi"/>
-                                    <constraint firstItem="bga-tt-xwd" firstAttribute="top" secondItem="rQE-Vr-vK4" secondAttribute="top" constant="32" id="OA5-ru-80n"/>
+                                    <constraint firstItem="bga-tt-xwd" firstAttribute="top" secondItem="rQE-Vr-vK4" secondAttribute="top" constant="18" id="OA5-ru-80n"/>
                                     <constraint firstAttribute="centerX" secondItem="bga-tt-xwd" secondAttribute="centerX" constant="-0.5" id="PIe-Bd-rki"/>
                                     <constraint firstAttribute="trailing" secondItem="7Ej-qk-BUX" secondAttribute="trailing" id="WaA-oB-Kv0"/>
                                     <constraint firstAttribute="trailing" secondItem="zhH-cC-KGh" secondAttribute="trailing" constant="8" id="bwg-f9-KQM"/>
@@ -1945,7 +1945,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="hairfieRelated" id="d4S-1O-Q26">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <rect key="frame" x="10" y="0.0" width="145" height="210"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="145" height="210"/>
@@ -2722,8 +2722,10 @@
                                 </view>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="yl3-fL-aRc">
+                                        <rect key="frame" x="0.0" y="182" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yl3-fL-aRc" id="XJ7-ey-eqy">
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <connections>
@@ -3046,7 +3048,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Kx7-Q3-ZD6">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <rect key="frame" x="0.0" y="324" width="123" height="201"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="123" height="201"/>
@@ -3516,7 +3518,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="hairfieCell" id="w2P-j2-O46">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <rect key="frame" x="10" y="10" width="145" height="210"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="145" height="210"/>
@@ -3590,7 +3592,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="T8c-Z4-YXH">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <rect key="frame" x="10" y="20" width="140" height="210"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="140" height="210"/>
@@ -3740,7 +3742,7 @@
                                             <outlet property="delegate" destination="12b-3C-dff" id="Z1S-c4-XFi"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="leo.m4rtin@gmail.com" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="okO-aY-vj2">
+                                    <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="leo.m4rtin@gmail.com" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="okO-aY-vj2">
                                         <rect key="frame" x="164" y="199" width="152" height="46"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -7022,7 +7024,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Ot6-Ld-KyX">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <rect key="frame" x="15" y="20" width="290" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="290" height="100"/>
@@ -7204,6 +7206,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Logo-large-33.png" width="302" height="100"/>
         <image name="add-comment-textfield.png" width="600" height="71"/>
         <image name="arrow-dropdown.png" width="37" height="22"/>
         <image name="arrow-nav.png" width="40" height="40"/>
@@ -7212,7 +7215,6 @@
         <image name="facebook-page-share-off.png" width="61" height="60"/>
         <image name="facebook-share-off.png" width="61" height="60"/>
         <image name="field-icon-magnifier.png" width="32" height="32"/>
-        <image name="hairffie-typo-2.png" width="122" height="33"/>
         <image name="hairfie-post-contour.png" width="208" height="305"/>
         <image name="location-button-search.png" width="76" height="54"/>
         <image name="location-icon-red.png" width="24" height="32"/>
@@ -7239,11 +7241,6 @@
         <image name="take-picture-button.png" width="153" height="153"/>
         <image name="twitter-share-off.png" width="60" height="60"/>
     </resources>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
-    </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="q6S-lc-uSW"/>
         <segue reference="F3H-m6-PK7"/>
