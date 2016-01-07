@@ -11,7 +11,7 @@
 
 #ifdef DEV
     #define ENV @"dev"
-    #define BASE_URL @"http://localhost:3000/"
+    #define BASE_URL @"https://hairfie.herokuapp.com/"
 #elif ADHOC
     #define ENV @"adhoc"
     #define BASE_URL @"http://api.hairfie.com/"
@@ -20,7 +20,7 @@
     #define BASE_URL @"https://hairfie.herokuapp.com/"
 #endif
 
-#define API_URL (BASE_URL @"v0/")
+#define API_URL (BASE_URL @"v1/")
 #define API_DATE_FORMAT @"yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
 #define DISPLAY_DATE_FORMAT @"d MMMM yyyy"
 

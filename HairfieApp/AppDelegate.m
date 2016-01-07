@@ -12,6 +12,7 @@
 #import "CredentialStore.h"
 #import "HomeViewController.h"
 #import "ECSlidingViewController.h"
+#import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
 #import "UserAuthenticator.h"
 #import <PonyDebugger/PonyDebugger.h>
@@ -43,7 +44,7 @@ static LBRESTAdapter * _lbAdaptater = nil;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     //[NewRelicAgent startWithApplicationToken:NEWRELIC_APP_TOKEN];
-    [Crashlytics startWithAPIKey:CRASHLYTICS_API_KEY];
+    [Fabric with:@[[Crashlytics class]]];
 
     [ARAnalytics setupWithAnalytics:@{
                                       ARGoogleAnalyticsID : GOOGLE_ANALYTICS_TOKEN

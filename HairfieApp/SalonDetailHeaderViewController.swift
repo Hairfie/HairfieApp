@@ -168,7 +168,7 @@ import QuartzCore
         picturesScrollView.scrollRectToVisible(bounds, animated: animated)
     }
 
-    @IBAction func picturePageChanged(AnyObject) {
+    @IBAction func picturePageChanged(_: AnyObject) {
         goToCurrentPicturePage(true);
     }
 

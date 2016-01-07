@@ -2320,6 +2320,7 @@
 				151151891982B7A8001157A2 /* Resources */,
 				49016DB8DD454A6A99DFD61A /* Copy Pods Resources */,
 				71DA85F019E28944001193D4 /* Run Script */,
+				8FD7BDF07A7F464B07A29676 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -2339,6 +2340,7 @@
 				1511519E1982B7A8001157A2 /* Frameworks */,
 				1511519F1982B7A8001157A2 /* Resources */,
 				02C5C422DD1F44D7A7C8F66F /* Copy Pods Resources */,
+				BEE0863F5188BF9861616393 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -2724,7 +2726,37 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "./Crashlytics.framework/run dbe02c1fae1a4ced539089c3010f899dfcfc6b18 b44a1a5e1c2817b7e9e7a71a4645a5b6a1b96c50a17759faeae1598b159e4d43";
+			shellScript = "${PODS_ROOT}/Fabric/run dbe02c1fae1a4ced539089c3010f899dfcfc6b18 b44a1a5e1c2817b7e9e7a71a4645a5b6a1b96c50a17759faeae1598b159e4d43";
+		};
+		8FD7BDF07A7F464B07A29676 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HairfieApp/Pods-HairfieApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BEE0863F5188BF9861616393 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HairfieAppTests/Pods-HairfieAppTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
