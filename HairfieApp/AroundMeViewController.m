@@ -179,6 +179,7 @@
     MyAnnotation *annotObj =[[MyAnnotation alloc] init];
     annotObj.title = business.name;
     annotObj.coordinate = [[business.gps location] coordinate];
+    annotObj.business = business;
     
     return annotObj;
 }
@@ -313,9 +314,9 @@
 
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"salonDetail"]) {
+    if ([segue.identifier isEqualToString:@"businessDetail"]) {
         BusinessViewController *salonDetail = [segue destinationViewController];
-        [salonDetail setBusiness:[businesses objectAtIndex:rowSelected]];
+        [salonDetail setBusiness:sender];
     }
     if ([segue.identifier isEqualToString:@"businessDetailtest"]) {
         BusinessViewController *business = [segue destinationViewController];
@@ -363,6 +364,20 @@
         return annotationView;
     }
     return nil;
+}
+
+- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
+{
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self  action:@selector(calloutTapped:)];
+    [view addGestureRecognizer:tapGesture];
+}
+
+-(void)calloutTapped:(UITapGestureRecognizer *) sender
+{    
+    MKAnnotationView *view = (MKAnnotationView*)sender.view;
+    MyAnnotation *annotation = [view annotation];
+    
+    [self performSegueWithIdentifier:@"businessDetail" sender:annotation.business];
 }
 
 @end

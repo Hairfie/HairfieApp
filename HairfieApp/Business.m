@@ -237,7 +237,7 @@
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     
     if (nil != aGeoPoint) {
-        [parameters setObject:[aGeoPoint toApiValue] forKey:@"here"];
+        [parameters setObject:[aGeoPoint toApiValue] forKey:@"location"];
     }
     
     if (nil != aQuery) {
@@ -250,9 +250,13 @@
                        forKey:@"facetFilters"];
     }
     
+    [parameters setObject:@"2000"
+                   forKey:@"radius"];
+    
     [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/businesses/search" verb:@"GET"] forMethod:@"businesses.search"];
     LBModelRepository *businessData = [[AppDelegate lbAdaptater] repositoryWithModelName:@"businesses"];
-    if(!aGeoPoint.lng || !aGeoPoint.lat){
+    
+    if(!aGeoPoint.lng || !aGeoPoint.lat) {
         aFailureHandler(nil);
         return;
     }

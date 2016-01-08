@@ -8,17 +8,19 @@
 
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
+#import "Business.h"
 
 @interface MyAnnotation : NSObject <MKAnnotation>
 
 {
     CLLocationCoordinate2D coordinate;
     NSString *title;
-    
 }
 
 @property (nonatomic) CLLocationCoordinate2D coordinate;
 @property (nonatomic, copy) NSString *title;
+@property (nonatomic) Business *business;
+
 
 -(id)initWithCoordinate:(CLLocationCoordinate2D) c title:(NSString *) t;
 

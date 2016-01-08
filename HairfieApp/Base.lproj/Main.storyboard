@@ -2729,7 +2729,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="m2a-HQ-iZ5" kind="push" identifier="businessDetailtest" id="17m-hw-CE8"/>
+                                            <segue destination="m2a-HQ-iZ5" kind="push" id="0jX-zl-ZzM"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -2761,11 +2761,12 @@
                         <outlet property="mapView" destination="y19-nC-OPE" id="OJP-o6-P4h"/>
                         <outlet property="topBarTitle" destination="NS5-u0-GN5" id="UXG-oJ-BgX"/>
                         <segue destination="yR0-uS-AJe" kind="modal" identifier="modifySearchFilters" id="y0x-ky-Mk2"/>
+                        <segue destination="m2a-HQ-iZ5" kind="push" identifier="businessDetail" id="qa8-Gq-ZXQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eNk-OA-e58" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2035" y="-1681"/>
+            <point key="canvasLocation" x="2019" y="-1544"/>
         </scene>
         <!--Salon Map View Controller-->
         <scene sceneID="ROs-dQ-bql">
@@ -7242,14 +7243,14 @@
         <image name="twitter-share-off.png" width="60" height="60"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="q6S-lc-uSW"/>
-        <segue reference="F3H-m6-PK7"/>
         <segue reference="N5w-ND-ZjU"/>
-        <segue reference="f6n-n6-g5l"/>
-        <segue reference="cpa-I8-e9p"/>
+        <segue reference="KKI-My-Uy4"/>
+        <segue reference="qa8-Gq-ZXQ"/>
+        <segue reference="y0x-ky-Mk2"/>
+        <segue reference="ljj-N5-0Sy"/>
         <segue reference="Vzm-3A-jKo"/>
-        <segue reference="OXf-FI-oBV"/>
         <segue reference="9F8-Wo-5DF"/>
         <segue reference="JOd-nL-lAl"/>
+        <segue reference="q6S-lc-uSW"/>
     </inferredMetricsTieBreakers>
 </document>
