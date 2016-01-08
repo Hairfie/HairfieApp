@@ -8,13 +8,17 @@
 
 #import <Foundation/Foundation.h>
 #import <LoopBack/LoopBack.h>
+#import <Cloudinary/Cloudinary.h>
 
 @interface Picture : NSObject
 
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSString *container;
+@property (strong, nonatomic) NSString *publicId;
 @property (strong, nonatomic) NSURL *url;
 @property (strong, nonatomic) UIImage *image;
+@property (strong, nonatomic) CLCloudinary *cloudinary;
+
 
 
 -(id)initWithDictionary:(NSDictionary *)aDictionary;

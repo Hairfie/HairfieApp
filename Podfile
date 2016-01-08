@@ -24,6 +24,7 @@ target "HairfieApp" do
   pod 'SocketRocket', '= 0.3.1-beta2'
   pod 'UIAlertView+Blocks'
   pod 'IDMPhotoBrowser'
+  pod 'Cloudinary'
 end
 
 target "HairfieAppTests" do

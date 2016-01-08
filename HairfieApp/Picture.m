@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 #import "SetterUtils.h"
 #import <AssetsLibrary/AssetsLibrary.h>
+#import <Cloudinary/Cloudinary.h>
 
 @implementation Picture {
     AppDelegate *delegate;
@@ -17,9 +18,13 @@
 
 -(id)initWithDictionary:(NSDictionary *)aDictionary
 {
-    return [self initWithName:[aDictionary objectForKey:@"name"]
-                    container:[aDictionary objectForKey:@"container"]
-                          url:[NSURL URLWithString:[aDictionary objectForKey:@"url"]]];
+    if([aDictionary objectForKey:@"cloudinary"]) {
+        return [self initWithCloudinary:[aDictionary objectForKey:@"cloudinary"]];
+    } else {
+        return [self initWithName:[aDictionary objectForKey:@"name"]
+                        container:[aDictionary objectForKey:@"container"]
+                              url:[NSURL URLWithString:[aDictionary objectForKey:@"url"]]];
+    }
 }
 
 -(id)initWithUrl:(NSURL *)anUrl
@@ -50,6 +55,21 @@
     return self;
 }
 
+-(id)initWithCloudinary:(NSDictionary *)aDictionary
+{
+    self = [super init];
+
+    if (self) {
+        self.cloudinary = [[CLCloudinary alloc] init];
+        [self.cloudinary.config setValue:[aDictionary objectForKey:@"cloudName"] forKey:@"cloud_name"];
+        [self.cloudinary.config setValue:[aDictionary objectForKey:@"publicId"] forKey:@"public_id"];
+        self.publicId = [aDictionary objectForKey:@"publicId"];
+
+        self.url = [NSURL URLWithString:[self.cloudinary url:[aDictionary objectForKey:@"publicId"]]];
+    }
+    return self;
+}
+
 -(NSString *)toApiValue
 {
     if ([self.name length] == 0) {
@@ -62,26 +82,36 @@
 -(NSURL *)urlWithWidth:(NSNumber *)aWidth
                 height:(NSNumber *)anHeight
 {
-    
-    NSURLComponents *components = [NSURLComponents componentsWithURL:self.url resolvingAgainstBaseURL:NO];
-
-    NSMutableArray *queryParts = [[NSMutableArray alloc] init];
-    if ([components.query length] > 0) {
-        [queryParts addObject:components.query];
-    }
-    if (aWidth) {
-        [queryParts addObject:[NSString stringWithFormat:@"width=%@", aWidth]];
-    }
-    if (anHeight) {
-        [queryParts addObject:[NSString stringWithFormat:@"height=%@", anHeight]];
-    }
-
-    if (0 == queryParts.count) {
-        components.query = nil;
+    if(self.cloudinary) {
+        CLTransformation *transformation = [CLTransformation transformation];
+        [transformation setWidthWithInt: [aWidth intValue]];
+        [transformation setHeightWithInt: [anHeight intValue]];
+        [transformation setCrop: @"fill"];
+        
+        NSString *url = [self.cloudinary url:self.publicId options:@{@"transformation": transformation}];
+        
+        return [NSURL URLWithString:url];
     } else {
-        components.query = [queryParts componentsJoinedByString:@"&"];
+        NSURLComponents *components = [NSURLComponents componentsWithURL:self.url resolvingAgainstBaseURL:NO];
+        
+        NSMutableArray *queryParts = [[NSMutableArray alloc] init];
+        if ([components.query length] > 0) {
+            [queryParts addObject:components.query];
+        }
+        if (aWidth) {
+            [queryParts addObject:[NSString stringWithFormat:@"width=%@", aWidth]];
+        }
+        if (anHeight) {
+            [queryParts addObject:[NSString stringWithFormat:@"height=%@", anHeight]];
+        }
+        
+        if (0 == queryParts.count) {
+            components.query = nil;
+        } else {
+            components.query = [queryParts componentsJoinedByString:@"&"];
+        }
+        return components.URL;
     }
-    return components.URL;
 }
 
 -(void) uploadWithSuccess:(void(^)())aSuccessHandler

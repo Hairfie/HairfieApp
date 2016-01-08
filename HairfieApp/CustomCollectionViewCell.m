@@ -35,10 +35,8 @@
 
     
     if (hairfie.displayBusiness == YES) {
-        
-        Picture *pic = (Picture*)[hairfie.business.pictures objectAtIndex:0];
-        
-        [self.profilePicture sd_setImageWithURL:pic.url
+
+        [self.profilePicture sd_setImageWithURL:[hairfie.business.thumbnail urlWithWidth:@100 height:@100]
                                placeholderImage:[UIColor imageWithColor:[UIColor lightGreyHairfie]]];
         
         self.name.text = hairfie.business.name;

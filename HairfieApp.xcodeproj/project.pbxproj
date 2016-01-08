@@ -67,6 +67,7 @@
 		15B8ADE319C09A3E009846AA /* BusinessRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B8ADE219C09A3E009846AA /* BusinessRepository.m */; };
 		15B8D63719C83A3700C889CF /* LoadingCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15B8D63619C83A3700C889CF /* LoadingCollectionViewCell.xib */; };
 		15B8D63A19C83DD200C889CF /* LoadingCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B8D63919C83DD200C889CF /* LoadingCollectionViewCell.m */; };
+		15BF3BB91C4019C1001F75A6 /* placeholder-100.png in Resources */ = {isa = PBXBuildFile; fileRef = 15BF3BB81C4019C1001F75A6 /* placeholder-100.png */; };
 		15C89EAD19D3567600E91171 /* take-hairfie.png in Resources */ = {isa = PBXBuildFile; fileRef = 15C89EAC19D3567600E91171 /* take-hairfie.png */; };
 		15CE407319B0E78C0088FEA7 /* CredentialStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 15CE407219B0E78C0088FEA7 /* CredentialStore.m */; };
 		15E3D2C219D075CC0065A07E /* Around_Me.strings in Resources */ = {isa = PBXBuildFile; fileRef = 15E3D2B019D075CC0065A07E /* Around_Me.strings */; };
@@ -544,6 +545,7 @@
 		15B8D63619C83A3700C889CF /* LoadingCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingCollectionViewCell.xib; sourceTree = "<group>"; };
 		15B8D63819C83DD200C889CF /* LoadingCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingCollectionViewCell.h; sourceTree = "<group>"; };
 		15B8D63919C83DD200C889CF /* LoadingCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingCollectionViewCell.m; sourceTree = "<group>"; };
+		15BF3BB81C4019C1001F75A6 /* placeholder-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "placeholder-100.png"; sourceTree = "<group>"; };
 		15C89EAC19D3567600E91171 /* take-hairfie.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "take-hairfie.png"; sourceTree = "<group>"; };
 		15CE407119B0E78C0088FEA7 /* CredentialStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CredentialStore.h; sourceTree = "<group>"; };
 		15CE407219B0E78C0088FEA7 /* CredentialStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CredentialStore.m; sourceTree = "<group>"; };
@@ -1156,6 +1158,7 @@
 		1511518E1982B7A8001157A2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				15BF3BB81C4019C1001F75A6 /* placeholder-100.png */,
 				15192DBE1C3EE99800EB1E5D /* Logo-large-33.png */,
 				B377B7C01A6D0BD70027513C /* Filter View */,
 				B3C39A401A5D30D400DE11CA /* HomePage Resources */,
@@ -2581,6 +2584,7 @@
 				B36AC50F19DC31C600B8AC13 /* HairdresserTableViewCell.xib in Resources */,
 				B3E0B15119ACB39200C3EACE /* facebook-connect.png in Resources */,
 				B3B29D4E19EE8E7D00C293C6 /* selected_star.png in Resources */,
+				15BF3BB91C4019C1001F75A6 /* placeholder-100.png in Resources */,
 				B342315D1988E1DC0058866B /* settings-picto.png in Resources */,
 				B3C39A421A5D30E500DE11CA /* hairffie-typo.png in Resources */,
 				B3844E3E19FE83A20083CE0D /* TagsTableViewCell.xib in Resources */,
@@ -3305,6 +3309,10 @@
 				INFOPLIST_FILE = HairfieApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -3365,6 +3373,10 @@
 				INFOPLIST_FILE = HairfieApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -3505,6 +3517,10 @@
 				INFOPLIST_FILE = HairfieApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",

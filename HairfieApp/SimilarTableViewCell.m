@@ -61,14 +61,17 @@
 
 -(void)refresh
 {
-    [SDWebImageDownloader.sharedDownloader downloadImageWithURL:[self.business.thumbnail urlWithWidth:@100 height:@100]
-                                                        options:0
-                                                       progress:^(NSInteger receivedSize, NSInteger expectedSize) { }
-                                                      completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
-                                                          if (image && finished) {
-                                                              self.salonPicture.image = image;
-                                                          }
-                                                      }];
+//    [SDWebImageDownloader.sharedDownloader downloadImageWithURL:[self.business.thumbnail urlWithWidth:@100 height:@100]
+//                                                        options:0
+//                                                       progress:^(NSInteger receivedSize, NSInteger expectedSize) { }
+//                                                      completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
+//                                                          if (image && finished) {
+//                                                              self.salonPicture.image = image;
+//                                                          }
+//                                                      }];
+//    self.salonPicture.image
+    [self.salonPicture sd_setImageWithURL:[self.business.thumbnail urlWithWidth:@100 height:@100]
+                           placeholderImage:[UIImage imageNamed:@"placeholder-100.png"]];
     
     self.name.text = self.business.name;
     self.numHairfiesLabel.text = self.business.displayNumHairfies;

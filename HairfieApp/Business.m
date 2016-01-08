@@ -257,9 +257,6 @@
         return;
     }
     
-    
-    
-    
     [businessData invokeStaticMethod:@"search"
                           parameters:parameters
                              success:^(NSDictionary *response) {
