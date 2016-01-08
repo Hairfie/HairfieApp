@@ -250,7 +250,7 @@
                        forKey:@"facetFilters"];
     }
     
-    [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/businesses/nearby" verb:@"GET"] forMethod:@"businesses.nearby"];
+    [[[AppDelegate lbAdaptater] contract] addItem:[SLRESTContractItem itemWithPattern:@"/businesses/search" verb:@"GET"] forMethod:@"businesses.search"];
     LBModelRepository *businessData = [[AppDelegate lbAdaptater] repositoryWithModelName:@"businesses"];
     if(!aGeoPoint.lng || !aGeoPoint.lat){
         aFailureHandler(nil);
@@ -260,9 +260,10 @@
     
     
     
-    [businessData invokeStaticMethod:@"nearby"
+    [businessData invokeStaticMethod:@"search"
                           parameters:parameters
-                             success:^(NSArray *results) {
+                             success:^(NSDictionary *response) {
+                                 NSArray *results = [response objectForKey:@"hits"];
                                  NSMutableArray *businesses = [[NSMutableArray alloc] init];
                                  for (NSDictionary *result in results) {
                                      [businesses addObject:[[Business alloc] initWithDictionary:result]];

@@ -7,10 +7,8 @@ target "HairfieApp" do
   pod 'SDWebImage', '~> 3.6'
   pod 'AKPickerView'
   pod 'SSKeychain'
-  pod 'GoogleAnalytics-iOS-SDK'
-  pod 'ARAnalytics/GoogleAnalytics'
-  pod 'ARAnalytics/Mixpanel'
-  pod 'ARAnalytics/DSL', '~> 2.8.0'
+  pod 'GoogleAnalytics'
+  pod "ARAnalytics", :subspecs => ["GoogleAnalytics", "Mixpanel"]
   pod 'MRProgress', '= 0.8.0-alpha1'
   pod 'SAMTextView'
   pod 'Fabric'

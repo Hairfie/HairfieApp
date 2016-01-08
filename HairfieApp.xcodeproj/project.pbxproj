@@ -3290,6 +3290,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DISPLAY_NAME_SUFFIX = " - Dev";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -3307,7 +3308,6 @@
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
-					"-lGoogleAnalyticsServices",
 					"-licucore",
 					"-lz",
 					"-framework",
@@ -3350,6 +3350,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DISPLAY_NAME_SUFFIX = "";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -3367,7 +3368,6 @@
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
-					"-lGoogleAnalyticsServices",
 					"-licucore",
 					"-lz",
 					"-framework",
@@ -3489,6 +3489,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DISPLAY_NAME_SUFFIX = " - Beta";
+				ENABLE_BITCODE = NO;
 				FACEBOOK_BUNDLE_ID = 766390670063004;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3507,7 +3508,6 @@
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
-					"-lGoogleAnalyticsServices",
 					"-licucore",
 					"-lz",
 					"-framework",
