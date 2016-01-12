@@ -287,14 +287,15 @@
         {
              Business *managedBusiness = [managedBusinesses objectAtIndex:indexPath.row -1];
             
-            Picture *pic = [managedBusiness.pictures objectAtIndex:0];
+            //Picture *pic = [managedBusiness.thumbnail urlWithWidth:sideLength height:sideLength];
+            
             
             cell.menuItem.text = managedBusiness.name;
             UIImageView *businessPic = [[UIImageView alloc] initWithFrame:cell.menuPicto.frame];
             
             NSNumber *sideLength = [NSNumber numberWithInt:cell.menuPicto.frame.size.height * 2];
             
-            [businessPic sd_setImageWithURL:[pic urlWithWidth:sideLength height:sideLength]
+            [businessPic sd_setImageWithURL:[managedBusiness.thumbnail urlWithWidth:sideLength height:sideLength]
                                 placeholderImage:[UIColor imageWithColor:[UIColor salonDetailTab]]];
            
             cell.menuPicto.layer.cornerRadius = cell.menuPicto.frame.size.height / 2;

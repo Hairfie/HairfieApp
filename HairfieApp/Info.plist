@@ -54,7 +54,21 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>2</string>
+	<key>Fabric</key>
+	<dict>
+		<key>APIKey</key>
+		<string>dbe02c1fae1a4ced539089c3010f899dfcfc6b18</string>
+		<key>Kits</key>
+		<array>
+			<dict>
+				<key>KitInfo</key>
+				<dict/>
+				<key>KitName</key>
+				<string>Crashlytics</string>
+			</dict>
+		</array>
+	</dict>
 	<key>FacebookAppID</key>
 	<string>${FACEBOOK_BUNDLE_ID}</string>
 	<key>FacebookDisplayName</key>
@@ -97,19 +111,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
-	<key>Fabric</key>
-	<dict>
-        <key>APIKey</key>
-        <string>dbe02c1fae1a4ced539089c3010f899dfcfc6b18</string>
-        <key>Kits</key>
-        <array>
-                <dict>
-                        <key>KitInfo</key>
-                        <dict/>
-                        <key>KitName</key>
-                        <string>Crashlytics</string>
-                </dict>
-        </array>
-	</dict>
 </dict>
 </plist>
