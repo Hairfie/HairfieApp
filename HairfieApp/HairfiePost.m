@@ -136,7 +136,7 @@
 -(BOOL)pictureIsUploaded
 {
      return _.all(self.pictures, ^BOOL(Picture *pic){
-        return pic.name != nil;
+        return pic.id != nil;
     });
 }
 

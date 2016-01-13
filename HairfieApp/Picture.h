@@ -13,6 +13,7 @@
 @interface Picture : NSObject
 
 @property (strong, nonatomic) NSString *name;
+@property (strong, nonatomic) NSString *id;
 @property (strong, nonatomic) NSString *container;
 @property (strong, nonatomic) NSString *publicId;
 @property (strong, nonatomic) NSURL *url;

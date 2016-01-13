@@ -72,10 +72,10 @@
 
 -(NSString *)toApiValue
 {
-    if ([self.name length] == 0) {
+    if ([self.id length] == 0) {
         return self.url.absoluteString;
     } else {
-        return self.name;
+        return self.id;
     }
 }
 
@@ -142,8 +142,8 @@
         aFailureHandler(error);
     };
     void (^loadSuccessBlock)(NSDictionary *) = ^(NSDictionary *results){
-        NSDictionary *uploadedFile = [[[results objectForKey:@"result"] objectForKey:@"files"] objectForKey:@"uploadfiles"];
-        self.name = [uploadedFile objectForKey:@"name"];
+        NSDictionary *uploadedFile = [results objectForKey:@"uploadfiles"];
+        self.id = [uploadedFile objectForKey:@"id"];
         self.container = [uploadedFile objectForKey:@"container"];
         self.url = [NSURL URLWithString:[uploadedFile objectForKey:@"url"]];
        aSuccessHandler();
