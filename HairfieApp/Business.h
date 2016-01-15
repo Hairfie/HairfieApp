@@ -34,6 +34,7 @@
 @property (strong, nonatomic) NSNumber *rating;
 @property (strong, nonatomic) NSMutableArray *activeHairdressers;
 @property (strong, nonatomic) FacebookPage *facebookPage;
+@property (strong, nonatomic) NSString *accountType;
 
 @property (nonatomic) BOOL crossSell;
 

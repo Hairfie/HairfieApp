@@ -38,7 +38,7 @@
     _infoView.layer.masksToBounds = YES;
     _infoView.layer.borderWidth = 1;
     _infoView.layer.borderColor = [UIColor colorWithRed:206/255.0f green:208/255.0f blue:210/255.0f alpha:1].CGColor;
-    _isNewsletterChecked = NO;
+    _isNewsletterChecked = YES;
     _dismiss = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
     title = [NSArray arrayWithObjects:NSLocalizedStringFromTable(@"Woman", @"Login_Sign_Up", nil), NSLocalizedStringFromTable(@"Man", @"Login_Sign_Up", nil), nil];
     

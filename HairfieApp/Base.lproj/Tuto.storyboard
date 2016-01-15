@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14D87p" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Cfc-gn-Xzs">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D9c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Cfc-gn-Xzs">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -71,7 +71,7 @@
                         <viewControllerLayoutGuide type="bottom" id="GgU-Bi-RhW"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="zh8-wV-vN5">
-                        <rect key="frame" x="0.0" y="64" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="myv-jB-Wfc">
@@ -287,7 +287,7 @@
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IFr-c5-bBB">
                                 <rect key="frame" x="0.0" y="240" width="320" height="150"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="aB9-E2-I12">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="aB9-E2-I12">
                                         <rect key="frame" x="16" y="129" width="288" height="70"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="288" id="dYw-KC-wWp"/>
@@ -1100,7 +1100,7 @@
                                                     <constraint firstAttribute="width" constant="23" id="ARJ-mM-teU"/>
                                                     <constraint firstAttribute="height" constant="23" id="d4L-We-I26"/>
                                                 </constraints>
-                                                <state key="normal" image="checkbox-false.png">
+                                                <state key="normal" image="checkbox-true.png">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
@@ -1418,13 +1418,13 @@
     <resources>
         <image name="arrow-nav.png" width="40" height="40"/>
         <image name="back-arrow.png" width="40" height="40"/>
-        <image name="checkbox-false.png" width="46" height="46"/>
+        <image name="checkbox-true.png" width="46" height="46"/>
         <image name="facebook-connect.png" width="560" height="95"/>
         <image name="hairfie-typo.png" width="247" height="66"/>
         <image name="login-form.png" width="560" height="191"/>
         <image name="login-separator.png" width="533" height="1"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Hxu-vu-aFy"/>
+        <segue reference="DUF-Tz-akN"/>
     </inferredMetricsTieBreakers>
 </document>

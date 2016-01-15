@@ -103,13 +103,12 @@
 {
     self = (Business*)[[Business repository] modelWithDictionary:data];
     
-    // seems there is a parser issue with boolean values...
-    if ([[data objectForKey:@"crossSell"] isEqualToNumber:@1]) {
-        self.crossSell = YES;
-    } else {
+    if([self.accountType isEqualToString:@"PREMIUM"]) {
         self.crossSell = NO;
+    } else {
+        self.crossSell = YES;
     }
-    
+
     [self setupEventListeners];
     
     return self;

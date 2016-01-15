@@ -134,7 +134,11 @@
 
 -(void)setupCrossSell
 {
-    if (!business.crossSell) return;
+    if (!business.crossSell) {
+        [self.similarTableView setHidden:YES];
+        [self.similarBusinessesLbl setHidden:YES];
+        return;
+    };
     
     [Business listSimilarTo:business.id
                       limit:[NSNumber numberWithInt:NUM_SIMILAR_BUSINESSES]
